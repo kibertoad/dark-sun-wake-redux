@@ -1,0 +1,92 @@
+---
+id: RULE-MAGIC-006
+title: DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10
+status: supported
+builds: [BLD-GOG-EN-1.1]
+superseded_by: []
+evidence: [FND-RNG-035, FND-RNG-034, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023]
+conflicting: []
+split_with: []
+related: [RULE-RNG-001]
+---
+
+## Summary
+
+When the hit routine applies `DATA` 306 to a target whose details record has byte `+0x12` 9, it
+rolls a d20 against a target number from the target's details byte `+0x1E` and a level byte the
+hit routine passes. On a total at least the target number, the target takes 1,000 damage and the
+hit's flags get bit 0x01; otherwise the routine calls `2D40:06E1` with the caster. Any other
+target makes no roll and nothing happens.
+
+## When it runs
+
+The case of `DATA` 306 in the hit routine's effect switch calls it with the target, the caster,
+the hit's flags and the hit routine's byte argument `a` as the level (FND-RNG-034, FND-RNG-035).
+
+## Parameters
+
+- `target: INT16`: the target's slot.
+- `caster: INT16`: the caster's slot.
+- `flags`: the hit's flags, which the routine returns with bit 0x01 set on a success.
+- `level: UINT8`: the level byte, the hit routine's `a`.
+
+## Inputs
+
+`combatant_details`: bytes `+0x12` and `+0x1E` of the target's details record, `unk_10[2]` and
+`unk_10[14]` of FMT-COMBAT-002.
+
+## Procedure
+
+```text
+define data_306_test(target, caster, flags, level: UINT8):
+    let found = combatant_found(target)
+    let d = combatant_details[combatant_details_of(target)]
+    if not found or d.unk_10[2] != 9:
+        return flags
+    let h: INT16 = d.unk_10[14]
+    if h > 4:
+        h = h + 1
+        if h > 13:
+            h = 13
+    let l: INT16 = level
+    if l >= 14:
+        l = 14
+    if l > 10:
+        l = l - 1
+        if l > 12:
+            l = l - 1
+    let need: INT16 = 3 * (h - l) + 10
+    if need == 22:
+        need = 20
+    # roll_sum draws once (RULE-RNG-001)
+    if INT16(roll_sum(1, 20)) >= need:
+        emit DamageDealt(target, 1000)
+        return flags | 0x01
+    emit DataTestFailed(caster)
+    return flags
+```
+
+## Outputs
+
+The 1,000 damage, dealt through overlay 179 `+2A05` with `DATA` number -1 and code -1, and bit
+0x01 of the hit's flags (FND-RNG-034), or the call of `2D40:06E1` with the caster.
+
+## Edge cases
+
+`h` takes the values 0 to 4 unchanged, 5 to 12 as 6 to 13, and 13 or more as 13; `level` takes 0
+to 10 unchanged, 11 as 10, 12 as 11, 13 as 12 and 14 or more as 12. A target number of 1 or less
+always succeeds and one above 20 never does, though the roll is still made. The number 22, from
+`h - l` of 4, is lowered to 20; 25 and 28, from `h - l` of 5 and 6, are not, and never succeed.
+
+## What the sources say
+
+None of the sources describe this.
+
+## Differences between builds
+
+None known.
+
+## Open questions
+
+- What details byte `+0x12` 9 and byte `+0x1E` stand for, which spell or power `DATA` 306 is, and
+  what `2D40:06E1` does with the caster after `DataTestFailed` (FND-RNG-035, Q-MAGIC-007).

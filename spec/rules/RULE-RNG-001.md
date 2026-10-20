@@ -7,7 +7,7 @@ superseded_by: []
 evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-030, FND-RNG-031, FND-RNG-032, FND-RNG-034, FND-RNG-035, FND-RNG-036, FND-RNG-037]
 conflicting: []
 split_with: []
-related: [RULE-VIDEO-005]
+related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003]
 ---
 
 ## Summary
@@ -48,8 +48,9 @@ nineteen `roll_sum` sites, the dice of the hit routine's per-`DATA` effects, who
 remain Q-RNG-017. FND-RNG-035 reads seven more, in overlays 191, 193, 198, 204 and 211: three
 d20 item tests, a `DATA` record's dice formula by level, a one-in-four spell-use test, a copy of
 the saving throw roll and a d20 turning test, and FND-RNG-036 overlay 195's ten: a d10 confusion
-table, a side roll, a d100 test and the dice of per-round effect damage; their rule entries also
-remain Q-RNG-017. FND-RNG-037 reads overlay 197's ten `roll_sum` sites: a d6, a d100, a 2d6 and a
+table, a side roll, a d100 test and the dice of per-round effect damage. RULE-MAGIC-005 takes the
+dice formula, RULE-MAGIC-006 the d20 test of `DATA` 306 and RULE-AI-003 the spell-use test; the
+other rule entries remain Q-RNG-017. FND-RNG-037 reads overlay 197's ten `roll_sum` sites: a d6, a d100, a 2d6 and a
 d20 in the hit routine's gates, a d100 under a class level in a check routine, d4 and d12 picks of a
 summoned creature and the 4d20 pool of `DATA` 71, whose rule entries remain Q-RNG-018. That reads
 every site of the direct-call census; calls not made directly remain Q-RNG-008.

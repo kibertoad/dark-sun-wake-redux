@@ -1,6 +1,6 @@
 # AI
 
-Next ID: Q-AI-004
+Next ID: Q-AI-005
 
 ## Static
 
@@ -20,7 +20,11 @@ Next ID: Q-AI-004
   routine (FND-AI-004). Blocks: none.
 
 - Q-AI-003. RULE-AI-002: When does a non-player character flee, fight back or call for help, and is that decided by combat or scripts? Settles it: the behavior-producing combat and script consumers for those outcomes, read with their callers. Blocks: completing RULE-AI-002.
-
+- Q-AI-004. RULE-AI-003: What do a combatant's kind byte and `g_50C2_0000` hold, and what does
+  overlay 198 `+0149` pick for the kind? Settles it: the writers of combatant record byte `+0x0E`
+  and of `50C2:0000`, and a reading of overlay 198 `+0149` for mode 0. Tried: FND-RNG-035 reads
+  the spell-use test and its caller, and FND-RNG-038 the routine that returns `g_50C2_0000`.
+  Blocks: slices 2-7.
 ## Emulated call
 
 None.

@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-006
+Next ID: Q-MAGIC-008
 
 ## Static
 
@@ -29,7 +29,16 @@ Next ID: Q-MAGIC-006
   take game time, restore hit points, stop for enemies, and in which order does it cast cure
   spells, and does the game keep memorized spells? Settles it: the code behind the Look pointer on
   a fire ring. Blocks: slice 5.
-
+- Q-MAGIC-006. RULE-MAGIC-005: What do the two callers of the `DATA` dice formula do with its
+  total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
+  use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit
+  routine, the routine around overlay 193 `+1431` and its use of both, and the writers of each
+  caller's level byte. Tried: FND-RNG-035 reads the formula and names the two calls. Blocks:
+  slices 2-7.
+- Q-MAGIC-007. RULE-MAGIC-006: What do details byte `+0x12` 9 and byte `+0x1E` hold, and what
+  does `2D40:06E1` do with the caster when `DATA` 306's test fails? Settles it: the writers of
+  the two details bytes for party members and for creatures, and a reading of `2D40:06E1`.
+  Tried: FND-RNG-035 reads the test and its one caller. Blocks: slices 2-7.
 ## Emulated call
 
 None.

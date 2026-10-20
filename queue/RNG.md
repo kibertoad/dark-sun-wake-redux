@@ -131,9 +131,8 @@ Next ID: Q-RNG-019
   FND-RNG-036, and what do the `DATA`
   numbers, the arguments `a` and `g`, and the callees that take the totals stand for? Settles it:
   rule entries, new or revised, for the healing, damage, duration, dispel, death, raising and
-  reincarnation cases with their dice, for overlay 191's item tests, overlay 193 `+1F88`'s `DATA`
-  dice formula, overlay 198 `+041D`'s spell-use test, overlay 204 `+214E`'s saving throw and
-  overlay 211 `+1E40`'s turning test, with the callers of `+214E`, and for overlay 195's confusion
+  reincarnation cases with their dice, for overlay 191's item tests and overlay 204 `+214E`'s
+  saving throw, with the callers of `+214E`, and for overlay 195's confusion
   table, d100 test and per-round effect damage; the names or
   uses of the 22 `DATA` numbers; the writers of `+0D2F`'s byte arguments at `bp+0x1C` and
   `bp+0x1E`; and readings of overlay 197 `+2D05`, `+2E40` and `+2EC0`, overlay 177 `+0CB3` and
@@ -141,7 +140,9 @@ Next ID: Q-RNG-019
   cases that reach them; FND-PARTY-096, FND-PARTY-099 and FND-PARTY-112 read `+1373`'s table, the
   saving throw and the gates before it; FND-RNG-035 reads the seven routines of overlays 191,
   193, 198, 204 and 211 and their direct callers, and FND-RNG-036 overlay 195 `+000E`, `+00D1`
-  and `+152F`. Blocks: slices 2-7.
+  and `+152F`. Tried: RULE-MAGIC-005, RULE-MAGIC-006 and RULE-AI-003 take FND-RNG-035's `DATA`
+  dice formula, `DATA` 306's d20 test and the spell-use test, with FND-RNG-038 for the byte the
+  last one reads. Blocks: slices 2-7.
 - Q-RNG-018. RULE-RNG-001: Which rule entries take overlay 197's ten `roll_sum` draws that
   FND-RNG-037 reads, and what do the values they test stand for? Settles it: rule entries, new or
   revised, for the d6 of `+111A` for a target with record byte `+0x0E` 13, the d100 block of
