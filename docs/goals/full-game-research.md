@@ -33,7 +33,19 @@ Do not repeat a retained search without new evidence, tooling or reading.
 ## Handover
 
 - Stage: Slices. Research continues toward the full Audit condition.
-- Last full gate: 2026-10-19, Test.ps1 -NoRestore passed, including 715
-  .NET tests.
-- Unfinished and blockers: as in docs/HANDOVER.md at goal start.
-- Next: Q-PARTY-020's remaining overlay-173 and overlay-213 readers.
+- Stopped 2026-10-21 at the owner's wrap-up request; the goal continues.
+- Last full gate: 2026-10-21, Test.ps1 -NoRestore passed on 6af0232b,
+  including 715 .NET tests.
+- Unfinished: none in the tree. Unfinished and blockers outside this goal's
+  batches are in docs/HANDOVER.md.
+- Owner's order for mapping: keep the installed DSUN.EXE inventory stable,
+  place the uncited functions, then complete readings.
+- Next:
+  - Place uncited overlays 193, 207, 188 and 172, then the next largest by
+    `npm exec -- standard-coverage`, in the form of FND-EXE-596 to FND-EXE-605.
+  - Complete readings for RULE-RNG-001's functions so it can reach
+    established.
+  - Q-RNG-003, Q-RNG-005 (four Tried notes: split before another attempt),
+    Q-RNG-007, Q-RNG-022 and Q-RNG-024 to Q-RNG-027.
+  - Q-PARTY-112 and Q-PARTY-113.
+  - Q-RNG-006 (Agent run) and Q-RNG-028 (Source).

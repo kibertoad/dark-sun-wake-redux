@@ -4,13 +4,11 @@
 
 - Stage: Slices; slices 2 and 3 remain in progress. Active goal:
   docs/goals/full-game-research.md (research side, on main).
-- Stop reason: owner cleared the full-game-research goal and requested wrap-up
-  on 2026-10-19. Its research Audit condition remains unfinished. The owner
-  explicitly requested the finished work be pushed to main. Start no new item
-  during this wrap-up.
-- Last full gate: 2026-10-19, ./tools/Test.ps1 -NoRestore passed, including
-  715 .NET tests and the synthetic checkpoint controls. Documentation passed
-  for 1430 entries, 170 parity rows and 5 deviations, with known skips.
+- Stop reason: owner requested wrap-up and a push to main on 2026-10-21. The
+  goal's Audit condition is unmet; the goal file stays and its Handover holds
+  the next items.
+- Last full gate: 2026-10-21, ./tools/Test.ps1 -NoRestore passed on 6af0232b,
+  including 715 .NET tests. The documentation check passes with known skips.
 - Template, toolkit and shared-library pins are recorded in
   docs/TEMPLATE-ACCEPTANCE.md; get the last gate's result from the latest
   section there and from Git.
@@ -23,14 +21,12 @@
 
 ## Remaining research toward slices 2 to 7
 
-Completed research entries are FND-PARTY-248 through FND-PARTY-256 and
-FND-UI-054. Full mapping remains unfinished. Use docs/RESEARCH-CLOSURE.md
-and the protocol's priority order; compute current coverage and queue counts
-instead of carrying forward old totals.
+Full mapping remains unfinished. Use docs/RESEARCH-CLOSURE.md and the
+protocol's priority order; compute current coverage and queue counts with
+`npm exec -- standard-coverage` instead of carrying forward old totals. Next
+items are in docs/goals/full-game-research.md (Handover).
 
-Next static item: Q-PARTY-020's remaining overlay-173 and overlay-213 readers.
-The latest batches each removed named obligations from Settles it; retain
-the queue's qualified Tried warning. Q-PARTY-108, Q-PARTY-107, Q-PARTY-106
+Q-PARTY-020 is split into Q-PARTY-112 and Q-PARTY-113. Q-PARTY-108, Q-PARTY-107, Q-PARTY-106
 and Q-PARTY-111 retain separate admission questions. Q-PARTY-082 and
 Q-PARTY-099 remain dependencies. Follow docs/goals/README.md before any
 new owner-requested goal claim.
@@ -51,20 +47,26 @@ new owner-requested goal claim.
   Historical states remain preserved. The session's emulator-digest guard
   does not establish intrinsic cross-release format incompatibility. Preserve
   FMT-EXE-005 and FND-EXE-520..524 as runtime review prerequisites.
-- All owned emulator sessions are closed. The final process audits found no
-  orphaned work; reusable MSBuild nodes remain intentionally alive.
+- Run the gate from PowerShell as ./tools/Test.ps1 -NoRestore *> <log> and
+  read $LASTEXITCODE; a pipe hides it. Run evidence scripts from files with
+  -I: `python -I -` with a heredoc hangs here.
+- Ghidra needs its JVM diagnostics directory on a path without spaces
+  (C:\Users\kiber\AppData\Local\Temp\dsun-restage-jvm), or it fails with
+  "JAVA_HOME invalid". The DSUN restage order is in docs/EVIDENCE-TOOLS.md.
+- No emulator session was started. Reusable MSBuild nodes remain
+  intentionally alive.
 
 ## Unfinished
 
-- Q-PARTY-020: preliminary bounded overlay-213 listings, without a new finding,
+- Q-PARTY-113: preliminary bounded overlay-213 listings, without a new finding,
   are in GAME_DIR/analysis/party-item-presentation-20261019/. The retained
   census is in GAME_DIR/analysis/party-record-fields-20261018/. No answer is
   claimed from those preliminary listings. FND-PARTY-256's report is in
   GAME_DIR/analysis/party-item-ability-rebuild-20261019/; check its decoder
   version provenance before further citation.
-- Reconcile FND-PARTY-255's inventory fragment before relying on complete
-  ownership. Keep the authoritative inventory unchanged until the tooling
-  batch is planned and validated; toolkit issue 477 has the bounded case.
+- The installed DSUN.EXE inventory was restaged (FND-EXE-597, FND-EXE-599,
+  FND-EXE-601). Reconcile FND-PARTY-255's inventory fragment against it
+  before relying on complete ownership; toolkit issue 477 has the case.
 - Q-PARTY-082 graph-table queries have no finding yet; local configurations
   are under GAME_DIR/analysis/party-record-heads/. Validate reached entries
   and initialization before treating candidates as runtime state.
@@ -93,8 +95,14 @@ new owner-requested goal claim.
 
 - refurbished-dinosaurs issue 77 and toolkit issue 297: build listing records;
   tools/evidence/build-listing.mjs holds this project's reconciliation.
-- Template issues 81, 82 and 90: machine-wide GAME_DIR stores, inherited
-  TEMP/TMP sandbox access, scheduled-generation fixture assumptions.
+- Template issues 82 and 90: inherited TEMP/TMP sandbox access,
+  scheduled-generation fixture assumptions.
+- Template main holds unadopted 4a92b0c (offscreen capture controls) and
+  b715696 (per-checkout project inputs, closing issue 81); bde25ad's buffer
+  is already applied locally. Adopt them in a tooling batch.
+- Template PR 138 adds a generic Ghidra near-target correction with declared
+  entries and flows. Once merged, adopt it and keep only this project's
+  overlay segment map local. The SLEIGH fix is draft kibertoad/ghidra PR 1.
 - Toolkit issue 538: Capstone's synthetic 16-bit 98/99 mnemonic labeling;
   check mode and prefixes directly.
 - Toolkit issue 477, comment 6256765999: FND-PARTY-255 inventory fragment.
