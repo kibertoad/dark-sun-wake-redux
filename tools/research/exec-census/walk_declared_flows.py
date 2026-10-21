@@ -19,7 +19,9 @@ names. It writes, in the layout tools/ghidra/ApplyDeclaredFlows.java reads:
 Resident addresses are written segment:offset in the segment the report's `declaredRegions` give
 them (load image at segment 0x1000), overlay addresses as eight-digit file offsets. The `returns`
 and `fallThroughs` lists and the `about` and `evidence` fields are copied from OUTPUT_JSON when it exists, since they
-are written by hand. Nothing else is written and nothing is executed.
+are written by hand, and so are the `jumps` entries there that carry an `evidence` field (table
+jumps the walk does not reach, declared from a finding) and whose site the walk does not declare.
+Nothing else is written and nothing is executed.
 """
 import json
 import os
@@ -113,6 +115,8 @@ for d in walk["indirectJumpDeclarations"]:
     })
 
 previous = json.load(open(out, encoding="utf-8")) if os.path.exists(out) else {}
+walk_sites = {j["site"] for j in jumps}
+jumps += [j for j in previous.get("jumps", []) if "evidence" in j and j["site"] not in walk_sites]
 result = {
     "build": "BLD-GOG-EN-1.1",
     "file": "DSUN.EXE",

@@ -47,7 +47,6 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4AE5:1103..4AE5:112D
-ends_on_last_byte: [4842:053E..4842:0561]
 tool: scientific-method-engine 19.3.0 (reach, Capstone 5.0.9, pypcode 4.0.1) and xxhash 4.0.1 (tools/research/exec-census/reach_config.py with q007_dsun_census.json, dsun_interrupt_census.py, far_pointer_words.py); Capstone 5.0.9 for the byte and reference searches
 environment: null
 ---

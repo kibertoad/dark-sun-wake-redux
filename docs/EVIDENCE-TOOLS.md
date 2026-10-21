@@ -74,9 +74,13 @@ resident`, which decodes the declared runs of FND-RNG-058's walk, gives the
 declared table jumps their targets and removes the other computed-jump
 targets, and repairs the declared returns and fall-throughs (FND-EXE-597).
 `python -I tools/research/exec-census/walk_declared_flows.py` writes the
-flows file's `jumps` and `decode` lists from the walk report; `returns` and
-`fallThroughs` are written by hand. Change those files, never the inventory,
-to add or drop a start or a flow. Export it with
+flows file's `jumps` and `decode` lists from the walk report; `returns`,
+`fallThroughs` and the `jumps` entries that name a finding as `evidence` (table
+jumps the walk does not declare) are written by hand, and the script keeps them. Change those files, never the inventory,
+to add or drop a start or a flow. Run `CorrectNearTransfers.java` once more,
+then `tools/ghidra/FillInstructionBodies.java`, which adds to each body the
+bytes of its own instructions that Ghidra left out because a call targets them
+(FND-EXE-601). Export it with
 `ExportResearchBaseline.java`, passing the plain import's resident regions
 (the rows of its regions file as start..exclusive-end), which leaves the
 overlay blocks out. For the overlay view, copy the
@@ -84,8 +88,8 @@ relocation-corrected overlay snapshot (revision 2 mapper) to a new project,
 run `CorrectNearTransfers.java apply 55E8:0000 229 <mapping JSON> <shipped
 DSUN.EXE>` (the mapping and the shipped file name the trampoline targets,
 which it keeps as entries), `ApplyDeclaredEntries.java <entries> overlay
-<mapping JSON>` and `ApplyDeclaredFlows.java <flows> overlay <mapping JSON>`
-on it, then
+<mapping JSON>` and `ApplyDeclaredFlows.java <flows> overlay <mapping JSON>`,
+`CorrectNearTransfers.java` again and `FillInstructionBodies.java` on it, then
 `tools/ghidra/ClipBodiesToEntryRegion.java` on the copy without
 `-readOnly`, passing the overlays' mapped code ranges from
 `ReportFbovOverlayMap.ps1`. It removes from each function body the
@@ -111,8 +115,8 @@ and regions files under the `@CD` path convention. Like
 from a checkout with Windows line endings.
 
 The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` was staged by this join,
-with the trampoline, near-transfer, declared-entry and declared-flow steps, from
-the views of 2026-10-21 (FND-EXE-597, FND-EXE-599). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
+with the trampoline, near-transfer, declared-entry, declared-flow and fill steps,
+from the views of 2026-10-21 (FND-EXE-597, FND-EXE-599, FND-EXE-601). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
 single-import resident view of 2026-10-10 and the `overlay-owned` snapshot of
 2026-10-09, without those steps; it is a diff reference only. `standard-coverage`
 accepts both.
