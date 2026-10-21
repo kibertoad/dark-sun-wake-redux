@@ -14,7 +14,7 @@ Entries by kind.
 
 ## rules
 
-6 entries.
+9 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -24,10 +24,13 @@ Entries by kind.
 | [RULE-ITEM-004](../../rules/RULE-ITEM-004.md) | Buying from and selling to a store | sourced |
 | [RULE-ITEM-005](../../rules/RULE-ITEM-005.md) | The armour, shields and weapons each class may use | sourced |
 | [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item | supported |
+| [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) | A corroding hit destroys a picked held item when a d20 falls below 8 less the item's byte 0x16 | supported |
+| [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) | DATA 235 hands the target's first held item of the lowest byte 0x12 below 6 to overlay 173 +2B88 when a d20 falls below 15 less the item's byte 0x16 | supported |
+| [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | A corroding hit destroys the first held item of type 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word | supported |
 
 ## findings
 
-9 entries.
+10 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -40,3 +43,4 @@ Entries by kind.
 | [FND-ITEM-007](../../findings/FND-ITEM-007.md) | SVIEW.EXE does not hold the name ITEMS.BIN in any case | recorded |
 | [FND-ITEM-008](../../findings/FND-ITEM-008.md) | The item names Longsword and Dagger seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF | recorded |
 | [FND-ITEM-009](../../findings/FND-ITEM-009.md) | DSUN.EXE holds the item placement and pick-up messages, pushed by overlays 179, 189 and 191 | recorded |
+| [FND-ITEM-010](../../findings/FND-ITEM-010.md) | The hit routine's cases for DATA 103, 235, 275, 283 and 284 run overlay 191's item tests on the target and set bit 0x02 of the hit's flags byte when a test returns 1 | recorded |

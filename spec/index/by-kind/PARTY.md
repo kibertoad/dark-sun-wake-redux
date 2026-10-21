@@ -20,7 +20,7 @@ Entries by kind.
 
 ## rules
 
-15 entries.
+16 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -39,6 +39,7 @@ Entries by kind.
 | [RULE-PARTY-013](../../rules/RULE-PARTY-013.md) | How a character gains levels in play | supported |
 | [RULE-PARTY-014](../../rules/RULE-PARTY-014.md) | Class flags, attack rate, THAC0 and saving throws from a character's classes and levels | supported |
 | [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members | supported |
+| [RULE-PARTY-016](../../rules/RULE-PARTY-016.md) | The spells a Preserver is given when the generation screen stores it | supported |
 
 ## findings
 

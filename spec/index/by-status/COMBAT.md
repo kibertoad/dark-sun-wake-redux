@@ -25,7 +25,7 @@ Entries by status.
 
 ## supported
 
-8 entries.
+16 entries.
 
 | ID | Title |
 |---|---|
@@ -36,6 +36,14 @@ Entries by status.
 | [RULE-COMBAT-005](../../rules/RULE-COMBAT-005.md) | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is |
 | [RULE-COMBAT-008](../../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat |
 | [RULE-COMBAT-009](../../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others |
+| [RULE-COMBAT-010](../../rules/RULE-COMBAT-010.md) | Five DATA numbers used by a combatant numbered 48 or more take effect only on a to-hit roll against its THAC0 less the target's Armor Class |
+| [RULE-COMBAT-011](../../rules/RULE-COMBAT-011.md) | After a swing with an item does damage, an eligible item breaks on one draw in eight followed by one in twenty |
+| [RULE-COMBAT-012](../../rules/RULE-COMBAT-012.md) | A combatant flagged in the turn word rolls a d10 that lets it act, holds it, or gives it a random side byte |
+| [RULE-COMBAT-013](../../rules/RULE-COMBAT-013.md) | A combatant passes a d100 check unless it rolls below a chance its record byte 0x19 sets, from 0 at 7 or less to 99 at 25 |
+| [RULE-COMBAT-014](../../rules/RULE-COMBAT-014.md) | At fight set-up each combatant gets an order word of a d10 plus a dexterity term, six effect terms and 20, and a d200 tie word, unless the side byte spares its group the draws |
+| [RULE-COMBAT-015](../../rules/RULE-COMBAT-015.md) | A combatant picks a target at random from the slots of the groups its mask names within a limit, nearest first, retrying when an Entranced or Sanctuary test fails on the drawn number |
+| [RULE-COMBAT-016](../../rules/RULE-COMBAT-016.md) | A removed combatant of slot 4 or above that holds objects of kind 1 drops them into object 2200, placed at a random offset of -7 to 7 in each position word |
+| [RULE-COMBAT-017](../../rules/RULE-COMBAT-017.md) | At the start of its round a combatant's effect block picks one of four holds or effects to handle, then up to five more, with d20, d4 and 2d4 damage, escape checks and a returned 8 plus 2d4 hits |
 | [SCR-COMBAT-001](../../screens/SCR-COMBAT-001.md) | Combat status panel |
 
 ## superseded
@@ -125,4 +133,12 @@ Entries whose Open questions section says more than None known.
 | [RULE-COMBAT-007](../../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat | unknown |
 | [RULE-COMBAT-008](../../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat | supported |
 | [RULE-COMBAT-009](../../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others | supported |
+| [RULE-COMBAT-010](../../rules/RULE-COMBAT-010.md) | Five DATA numbers used by a combatant numbered 48 or more take effect only on a to-hit roll against its THAC0 less the target's Armor Class | supported |
+| [RULE-COMBAT-011](../../rules/RULE-COMBAT-011.md) | After a swing with an item does damage, an eligible item breaks on one draw in eight followed by one in twenty | supported |
+| [RULE-COMBAT-012](../../rules/RULE-COMBAT-012.md) | A combatant flagged in the turn word rolls a d10 that lets it act, holds it, or gives it a random side byte | supported |
+| [RULE-COMBAT-013](../../rules/RULE-COMBAT-013.md) | A combatant passes a d100 check unless it rolls below a chance its record byte 0x19 sets, from 0 at 7 or less to 99 at 25 | supported |
+| [RULE-COMBAT-014](../../rules/RULE-COMBAT-014.md) | At fight set-up each combatant gets an order word of a d10 plus a dexterity term, six effect terms and 20, and a d200 tie word, unless the side byte spares its group the draws | supported |
+| [RULE-COMBAT-015](../../rules/RULE-COMBAT-015.md) | A combatant picks a target at random from the slots of the groups its mask names within a limit, nearest first, retrying when an Entranced or Sanctuary test fails on the drawn number | supported |
+| [RULE-COMBAT-016](../../rules/RULE-COMBAT-016.md) | A removed combatant of slot 4 or above that holds objects of kind 1 drops them into object 2200, placed at a random offset of -7 to 7 in each position word | supported |
+| [RULE-COMBAT-017](../../rules/RULE-COMBAT-017.md) | At the start of its round a combatant's effect block picks one of four holds or effects to handle, then up to five more, with d20, d4 and 2d4 damage, escape checks and a returned 8 plus 2d4 hits | supported |
 | [SCR-COMBAT-001](../../screens/SCR-COMBAT-001.md) | Combat status panel | supported |

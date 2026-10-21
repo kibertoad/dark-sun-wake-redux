@@ -50,3 +50,4 @@ Entries by area.
 | [RULE-SCRIPT-009](../../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
 | [RULE-SCRIPT-010](../../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
 | [RULE-SCRIPT-011](../../rules/RULE-SCRIPT-011.md) | The script instructions that change a variable in place | supported |
+| [RULE-SCRIPT-012](../../rules/RULE-SCRIPT-012.md) | Function 41 of script opcode 0x22 rolls a saving throw for each slot its target names and returns how many saved | supported |

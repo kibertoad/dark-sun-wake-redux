@@ -19,7 +19,7 @@ Entries by kind.
 
 ## findings
 
-464 entries.
+477 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -487,3 +487,16 @@ Entries by kind.
 | [FND-EXE-590](../../findings/FND-EXE-590.md) | The sound drivers the installed SOUND.CFG selects, ADV resources 11 and 8 of RESOURCE.GFF, are the disc's SBP2FM.ADV and SBPDIG.ADV, whose only transfer out of driver code goes to DSUN.EXE's music callback 4602:0040 | recorded |
 | [FND-EXE-591](../../findings/FND-EXE-591.md) | ADV resources 10 and 20 of the installed RESOURCE.GFF request no program execution; the DIGPAK image in ADV 10 installs its own interrupt 66 handler and calls back only into itself or DSUN.EXE's 4842:105F and 4842:107E | recorded |
 | [FND-EXE-592](../../findings/FND-EXE-592.md) | With the census's declarations and the classified rest declared, the walks from program start, the start window's callback and the gate routine's later calls leave no transfer unresolved, and they reach the region, effect and palette writers through script opcodes, window and frame callbacks and the exit table | recorded |
+| [FND-EXE-593](../../findings/FND-EXE-593.md) | The installed DSUN.EXE inventory decodes the bytes after INT 3Fh in 149 trampoline rows, starts a row one byte into 1BF3:3C90's instruction at 1BF3:40DC that no transfer targets, and has no row for 284 of the census walk's routines | recorded |
+| [FND-EXE-594](../../findings/FND-EXE-594.md) | The DSUN.EXE rows 3F96:0375, 3F96:0381 and 1BF3:5334 are not routine entries, and 15 walk routines in segment 4842 are one-byte iret targets inside an or bh, 0 | recorded |
+| [FND-EXE-595](../../findings/FND-EXE-595.md) | The restaged DSUN.EXE inventory has 3,261 rows, a five-byte row for each of the 854 trampolines, no row at 1BF3:40DD, and a row at every walk routine but 15 one-byte iret targets; 19,117 walk instructions stay outside its ranges | recorded |
+| [FND-EXE-596](../../findings/FND-EXE-596.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress | recorded |
+| [FND-EXE-597](../../findings/FND-EXE-597.md) | Ghidra 12.1.3 wraps near transfer targets at the 64K linear page; with them corrected and the walk's table jumps and runs declared, the DSUN.EXE inventory has 3,227 rows and 14 walk instructions outside its ranges | recorded |
+| [FND-EXE-598](../../findings/FND-EXE-598.md) | The 16 routines of overlay 175 that no entry placed open, fill, draw and close a six-slot item window and register two groups of six frame handlers for overlay 189 | recorded |
+| [FND-EXE-599](../../findings/FND-EXE-599.md) | Six overlay routines that only a trampoline enters started no row of the DSUN.EXE inventory; declared as entries, they add six rows and leave every other row unchanged | recorded |
+| [FND-EXE-600](../../findings/FND-EXE-600.md) | The 15 routines of overlay 173 that no entry placed score and count items, use up a counted item, reset combatant slot tables, and gather the slots in a cone, a strip, a rectangle or a circle into a list sorted by distance | recorded |
+| [FND-EXE-601](../../findings/FND-EXE-601.md) | Ghidra leaves call targets inside an instruction out of DSUN.EXE function bodies; with those bytes filled and one more overlay 204 table jump declared, every walk instruction that can execute lies in a row, and nothing enters overlay 191 +0B0A | recorded |
+| [FND-EXE-602](../../findings/FND-EXE-602.md) | The 10 routines of overlay 206 that no entry placed set a slot's frame, move a slot step by step along a line and draw each step, save and restore a 64 by 64 screen area, show a frame of BMP 19001 at one of four places for 40 ticks, place an object, and give one of eight directions between two points | recorded |
+| [FND-EXE-603](../../findings/FND-EXE-603.md) | The 13 routines of overlay 199 that no entry placed keep a text and choice dialog for overlay 188 in three windows at 52A1:0000, 0004 and 0008, take the MAP, BOOK, CLOSE, DEBUG and END lines, scroll the text and the list of up to ten choices, wait for a choice, and load and draw PORT pictures | recorded |
+| [FND-EXE-604](../../findings/FND-EXE-604.md) | The 5 routines of overlay 178 that no entry placed sort a clicked slot into an action or open a small window at 4DA0:0000 with three action buttons, a hover label of TALK, GET, USE or OPEN and a USEABLE BY list, handle that window's events, and close it | recorded |
+| [FND-EXE-605](../../findings/FND-EXE-605.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party | recorded |

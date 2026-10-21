@@ -14,3 +14,4 @@ Entries by area.
 | [FND-AI-004](../../findings/FND-AI-004.md) | A resident key routine at 28C9:0CFF handles 1 to 6, N, P, Space and the arrow keys, and Space turns computer control off for every unlocked party member | recorded |
 | [RULE-AI-001](../../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member | supported |
 | [RULE-AI-002](../../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn | unknown |
+| [RULE-AI-003](../../rules/RULE-AI-003.md) | Whether a combatant uses a spell from its list depends on its kind byte, its hit points, a one-in-four roll or a game state byte | supported |

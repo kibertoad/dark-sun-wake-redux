@@ -18,13 +18,14 @@ Entries by kind.
 
 ## rules
 
-3 entries.
+4 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |
+| [RULE-SOUND-004](../../rules/RULE-SOUND-004.md) | A combatant's cry is its own sound, a fixed sound or a random one of its gender's voice sounds | supported |
 
 ## findings
 

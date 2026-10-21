@@ -6,12 +6,13 @@ Entries by kind.
 
 ## rules
 
-2 entries.
+3 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [RULE-AI-001](../../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member | supported |
 | [RULE-AI-002](../../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn | unknown |
+| [RULE-AI-003](../../rules/RULE-AI-003.md) | Whether a combatant uses a spell from its list depends on its kind byte, its hit points, a one-in-four roll or a game state byte | supported |
 
 ## findings
 

@@ -11,5 +11,24 @@ Entries by area.
 | [FND-MAGIC-001](../../findings/FND-MAGIC-001.md) | The Use screen names the spell class and level or the psionic discipline its icons belong to | recorded |
 | [RULE-MAGIC-001](../../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | sourced |
 | [RULE-MAGIC-002](../../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | sourced |
-| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power | sourced |
+| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power | disputed |
 | [RULE-MAGIC-004](../../rules/RULE-MAGIC-004.md) | Camping restores spells and psionic strength points | sourced |
+| [RULE-MAGIC-005](../../rules/RULE-MAGIC-005.md) | A DATA record's dice are a count growing with the level, of sides the record gives, plus a bonus per level step | supported |
+| [RULE-MAGIC-006](../../rules/RULE-MAGIC-006.md) | DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10 | supported |
+| [RULE-MAGIC-007](../../rules/RULE-MAGIC-007.md) | A target whose record byte 0x0E is 13 ends the hit of a DATA record with byte 0x17 of -1, and on a d6 of 6 the record is queued from the combatant whose turn it is at the target | supported |
+| [RULE-MAGIC-008](../../rules/RULE-MAGIC-008.md) | A target with bit 0x40 of its effect block byte 5 blocks a DATA record whose overlay 208 +0885 value is 8 or less, other than 235 to 268, on a d100 of 75 or less and queues DATA 307 on itself | supported |
+| [RULE-MAGIC-009](../../rules/RULE-MAGIC-009.md) | A target with bit 0x80 of its effect block byte 9 that saves against a caster of details kind 9 hands a 2d6 total to overlay 179 +1304 and queues DATA 308 | supported |
+| [RULE-MAGIC-010](../../rules/RULE-MAGIC-010.md) | When the hit routine's byte flag is set, a target of details kind 8 and level 7 or more is spared on a d20 above 8, and one with bit 0x80 of effect block byte 5 queues DATA 307 instead | supported |
+| [RULE-MAGIC-011](../../rules/RULE-MAGIC-011.md) | Check 4 of overlay 197 +1A94 passes a slot at once, or on a d100 below its preserver level when bit 0x40 of its effect block byte 7 is set | supported |
+| [RULE-MAGIC-012](../../rules/RULE-MAGIC-012.md) | Eighteen DATA records summon a fixed creature or one picked by a d4 or d12, placed near the target point as combatant 4 | supported |
+| [RULE-MAGIC-013](../../rules/RULE-MAGIC-013.md) | DATA 71 rolls a 4d20 pool and kills listed combatants below level 9, lowest band first, each costing 1, 2, 10 or 20 of the pool | supported |
+| [RULE-MAGIC-014](../../rules/RULE-MAGIC-014.md) | Using a psionic power takes its cost in points and a d20 power check below the power score plus the rank, which an effect of code 58 can contest | supported |
+| [RULE-MAGIC-015](../../rules/RULE-MAGIC-015.md) | A target ignores an effect of type word 0x400 when two rolls of 1 to its psionic defence score each beat the last power check's die | supported |
+| [RULE-MAGIC-016](../../rules/RULE-MAGIC-016.md) | DATA 117, 166, 170, 194 and 210 pass 1d8, 2d6, 2d8+1, 3d8+3 or the target's maximum less its hit points less 1d4 to overlay 197 +2D05, and DATA 211 damages a target down to 1d4 | supported |
+| [RULE-MAGIC-017](../../rules/RULE-MAGIC-017.md) | DATA 227, 295 and 298 deal 8d6 to a target of details byte 0x12 9, 2d4 or 2d10, and 3d6 on a saved throw, and DATA 38, 243, 127 and 312 pass (a/2)d6, 1d6, 1d8 and 1d6 to unread routines | supported |
+| [RULE-MAGIC-018](../../rules/RULE-MAGIC-018.md) | DATA 89 applies effect 0x45 for 60 times 4d4, 2d4 or 1d4 by the target's hit points, kept as a signed byte, and DATA 23 and 245 apply effects 98 and 2 carrying a d6 | supported |
+| [RULE-MAGIC-019](../../rules/RULE-MAGIC-019.md) | DATA 26 and 150 remove each removable effect of the target on a d100 at most 50 plus 5 times a less 5 times the effect's level | supported |
+| [RULE-MAGIC-020](../../rules/RULE-MAGIC-020.md) | DATA 60 and 165 deal 10,000 damage to a target of details byte 0x12 14 when a d20 reaches 11 less a plus the target's details byte 0x1E | supported |
+| [RULE-MAGIC-021](../../rules/RULE-MAGIC-021.md) | DATA 203 raises a dead party member on a d100 below 5 times its byte 0x1B less 9, plus 70, at the cost of a point of that byte, and otherwise leaves it permanently dead | supported |
+| [RULE-MAGIC-022](../../rules/RULE-MAGIC-022.md) | DATA 77 gives a dead party member a d8 origin byte, rerolled while 1 unless it was 1, a d2 gender byte and full hit points, and places it again | supported |
+| [RULE-MAGIC-023](../../rules/RULE-MAGIC-023.md) | A cast samples up to 250 area points by its DATA record's effect row, as a box scan, a full turn or a sector, and rolls the row's dice plus a bonus per a, times the row's word 0x0C, as the amount | supported |

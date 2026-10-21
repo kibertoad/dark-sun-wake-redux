@@ -296,6 +296,7 @@ Entries by area.
 | [RULE-PARTY-013](../../rules/RULE-PARTY-013.md) | How a character gains levels in play | supported |
 | [RULE-PARTY-014](../../rules/RULE-PARTY-014.md) | Class flags, attack rate, THAC0 and saving throws from a character's classes and levels | supported |
 | [RULE-PARTY-015](../../rules/RULE-PARTY-015.md) | How experience is given to party members | supported |
+| [RULE-PARTY-016](../../rules/RULE-PARTY-016.md) | The spells a Preserver is given when the generation screen stores it | supported |
 | [SCR-PARTY-001](../../screens/SCR-PARTY-001.md) | Learn a spell | supported |
 | [SCR-PARTY-002](../../screens/SCR-PARTY-002.md) | Learn or enhance a psionic power | supported |
 | [SCR-PARTY-003](../../screens/SCR-PARTY-003.md) | Choose a new class | supported |

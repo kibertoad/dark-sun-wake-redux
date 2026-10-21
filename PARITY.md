@@ -7,17 +7,17 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | Status | Rows |
 |---|---|
 | unknown | 7 |
-| sourced | 19 |
-| supported | 124 |
+| sourced | 18 |
+| supported | 160 |
 | established | 0 |
-| disputed | 0 |
+| disputed | 1 |
 | implemented | 20 |
 | deviated | 0 |
 | validated | 0 |
 
 | Code | Rows |
 |---|---|
-| missing | 95 |
+| missing | 131 |
 | partial | 55 |
 | complete | 20 |
 
@@ -34,17 +34,17 @@ How much of the spec in `spec/` the rebuild does. The rows are in `parity/`, one
 | [REGION](parity/REGION.md) | 7 |
 | [ACTOR](parity/ACTOR.md) | 5 |
 | [EXPLORE](parity/EXPLORE.md) | 6 |
-| [SCRIPT](parity/SCRIPT.md) | 15 |
+| [SCRIPT](parity/SCRIPT.md) | 16 |
 | [TALK](parity/TALK.md) | 1 |
-| [PARTY](parity/PARTY.md) | 24 |
-| [MAGIC](parity/MAGIC.md) | 4 |
-| [ITEM](parity/ITEM.md) | 7 |
-| [COMBAT](parity/COMBAT.md) | 13 |
-| [AI](parity/AI.md) | 2 |
+| [PARTY](parity/PARTY.md) | 25 |
+| [MAGIC](parity/MAGIC.md) | 23 |
+| [ITEM](parity/ITEM.md) | 10 |
+| [COMBAT](parity/COMBAT.md) | 21 |
+| [AI](parity/AI.md) | 3 |
 | [RNG](parity/RNG.md) | 1 |
 | [TIME](parity/TIME.md) | 2 |
-| [SOUND](parity/SOUND.md) | 8 |
-| [VIDEO](parity/VIDEO.md) | 5 |
+| [SOUND](parity/SOUND.md) | 9 |
+| [VIDEO](parity/VIDEO.md) | 7 |
 | [CONFIG](parity/CONFIG.md) | 10 |
 | [SAVE](parity/SAVE.md) | 4 |
 | [QUEST](parity/QUEST.md) | 1 |

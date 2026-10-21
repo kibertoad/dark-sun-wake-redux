@@ -14,7 +14,7 @@ Entries by kind.
 
 ## rules
 
-4 entries.
+6 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -22,6 +22,8 @@ Entries by kind.
 | [RULE-VIDEO-002](../../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a Shift key | supported |
 | [RULE-VIDEO-003](../../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
 | [RULE-VIDEO-004](../../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
+| [RULE-VIDEO-005](../../rules/RULE-VIDEO-005.md) | Script request 27 reseeds the generator and moves the display offset for a number of steps in one of four patterns, the fourth drawing one of eight directions | supported |
+| [RULE-VIDEO-006](../../rules/RULE-VIDEO-006.md) | A removed combatant in view is unloaded and its rectangle is copied back from the second screen buffer pixel by pixel at random, two draws per copy and a wait every ten copies | supported |
 
 ## findings
 
