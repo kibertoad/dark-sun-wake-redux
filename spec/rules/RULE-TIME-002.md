@@ -4,7 +4,7 @@ title: The timer interrupt runs at the shortest period any of 17 timer slots ask
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-007, FND-TIME-008]
+evidence: [FND-TIME-007, FND-TIME-012, FND-TIME-013, FND-TIME-014]
 conflicting: []
 split_with: []
 related: []
@@ -17,18 +17,19 @@ hardware timer interrupt to fire at the shortest period among the timers in use,
 rate of 18.2 times a second when the period is too long for the chip. Each interrupt adds the
 period to every running slot's `timer_accumulators` entry and calls the slot's routine whenever
 that entry reaches the slot's period, taking the period off, so each slot runs at its own average
-rate (FND-TIME-008).
+rate (FND-TIME-012).
 
 With the installed sound set-up the slots during play are the library's own call of the BIOS
-timer handler every 54,925 µs, the music driver's service at 120 Hz, a sound counter at 100 Hz and
-the game tick at 96 Hz, which adds 1 to `game_tick`; an FLI adds a slot of 1,000 µs while it plays
-(FND-TIME-008, FND-VIDEO-008). The interrupt therefore runs at 120 Hz during play and at 1,000 Hz
-from the start of an FLI.
+timer handler every 54,925 µs, a sound counter at 100 Hz and the game tick at 96 Hz, which adds 1
+to `game_tick`; an FLI adds a slot of 1,000 µs while it plays (FND-TIME-012, FND-VIDEO-008). The
+installed launch never installs the FM music driver, whose service would run at 120 Hz
+(FND-TIME-013). The interrupt runs at 10,000 µs until the intro FLI and at 1,000 µs from then on,
+since giving the FLI's slot back does not choose the period again (FND-TIME-014).
 
 ## When it runs
 
 `choose_timer_period` runs whenever a slot's period is set, from the period setter `4842:093D`
-(FND-TIME-008). `timer_reload_for` runs inside it. Giving a slot back does not run it.
+(FND-TIME-012). `timer_reload_for` runs inside it. Giving a slot back does not run it.
 
 ## Parameters
 
@@ -80,7 +81,7 @@ period below 54,925.
 `timer_scan_slot` is the slot the interrupt handler is serving, so a period change made inside a
 slot's routine makes the handler start its scan again from slot 0. A slot given back leaves the
 rate as it was, so after an FLI the interrupt runs at 1,000 Hz until the next period change
-(FND-TIME-008).
+(FND-TIME-012).
 
 ## What the sources say
 
@@ -92,6 +93,5 @@ None known.
 
 ## Open questions
 
-- What the music driver's function `0x67` does on each of its 120 Hz calls, and in which order
-  the music driver, the game tick and the intro FLI take their slots at start-up (FND-TIME-008;
-  Q-TIME-002).
+- What a music driver's function `0x67` does on each of its 120 Hz calls, in a launch that installs
+  one, which the installed files never make (FND-TIME-012, FND-TIME-013; Q-TIME-002).

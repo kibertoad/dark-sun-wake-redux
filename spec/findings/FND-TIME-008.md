@@ -1,9 +1,9 @@
 ---
 id: FND-TIME-008
 title: The timer library at 4842 runs its slots from its own interrupt 8 handler through per-slot accumulators; during play the slots are the BIOS chain at 54,925 µs, the music driver at 120 Hz, a 100 Hz sound counter and the 96 Hz game tick, with 1,000 µs added while an FLI plays
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-TIME-012]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

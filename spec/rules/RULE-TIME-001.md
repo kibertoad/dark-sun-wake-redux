@@ -4,7 +4,7 @@ title: The game waits a number of milliseconds by reading the timer chip until e
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-004, FND-TIME-008, FND-TIME-009, FND-TIME-011]
+evidence: [FND-TIME-004, FND-TIME-012, FND-TIME-009, FND-TIME-011, FND-TIME-014]
 conflicting: []
 split_with: []
 related: []
@@ -73,7 +73,7 @@ long interruption between two readings, longer than one full turn of the counter
 makes the wait longer than asked. A reading below the one before means the counter has wrapped;
 when the target is then below 65,536 it has been passed, and the wait ends. Each wrap takes 65,536
 off the target, the length of a turn at the BIOS reload; once the game has set a shorter reload
-for its timer slots (RULE-TIME-002, FND-TIME-008) a turn is shorter than that.
+for its timer slots (RULE-TIME-002, FND-TIME-012) a turn is shorter than that.
 
 ## What the sources say
 
@@ -88,6 +88,3 @@ None known.
 - What event each caller waits for, including the overlay 172 pause fed by
   100 times the Preferences message-delay word (FND-CONFIG-010, FND-UI-034,
   Q-TIME-003).
-- Why play after the opening runs channel 0 at 1,000 µs with no music driver slot, and how long
-  `wait_ms` waits when a 120 Hz slot does run: at 1,000 µs it waits about ms / 55 (FND-TIME-008,
-  FND-TIME-011; Q-TIME-005).

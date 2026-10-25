@@ -62,7 +62,7 @@ Do not repeat a retained search without new evidence, tooling or reading.
 - Also done, later: Q-EXPLORE-003 (FND-EXPLORE-017, FND-EXPLORE-018,
   FND-INPUT-016), how a walker moves between cells (FND-EXPLORE-019 to
   FND-EXPLORE-021), the timer library's slots and the game tick
-  (FND-TIME-008 to FND-TIME-010), every script trigger list and its events
+  (FND-TIME-012 to FND-TIME-010), every script trigger list and its events
   (FND-SCRIPT-027 to FND-SCRIPT-029, RULE-SCRIPT-013), and what a saved
   game holds, the key callback and the exit cleanup (FND-SAVE-018 to
   FND-SAVE-024, Q-SAVE-001, Q-SAVE-004 and Q-SAVE-005 closed). New tools in
