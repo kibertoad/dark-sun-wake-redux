@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unintended
 player_reliance: unknown
-evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059, FND-COMBAT-060, FND-COMBAT-061, FND-COMBAT-062]
+evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059, FND-COMBAT-060, FND-COMBAT-061, FND-COMBAT-062, FND-COMBAT-063]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -69,6 +69,10 @@ lengths stay changed until something rewrites them; the round step repeats on ev
 `28C9:1EDB` for at least 17 s, with or without a leader key (FND-RNG-077), whenever the pointer is
 in its first mode (FND-COMBAT-058, FND-COMBAT-059).
 
+Record 9999's bytes are never rewritten until the program restarts, so once the state has been
+left, a later end of combat that leaves 9999 starts the passes again with no click
+(FND-COMBAT-063).
+
 ## Player reliance
 
 None known.
@@ -87,4 +91,5 @@ None known.
   `4C13:0369` (FND-RNG-087, FND-RNG-091, FND-RNG-092, Q-RNG-031, Q-RNG-037, Q-RNG-038, Q-RNG-039), and whether `31E0:2C86` can pass 9999, which needs a placed-object entry naming slot 9999
   (FND-RNG-085, FND-RNG-086, Q-RNG-034). Overlay 173 `+059A`
   stores 9999 only when it ends combat (FND-RNG-078, FND-PARTY-089).
-- What can end the state once the leader keys are refused (Q-COMBAT-035).
+- Whether opening a full-screen screen such as Load Game with F2 and leaving it ends the state, as
+  the static reading predicts (FND-COMBAT-063; Q-COMBAT-035).

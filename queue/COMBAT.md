@@ -4,16 +4,6 @@ Next ID: Q-COMBAT-037
 
 ## Static
 
-- Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
-  and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,
-  FND-RNG-073: overlay 182's four, overlay 190's three, `28C9:1EDB` and `28C9:305F` with
-  `DS:0DA5` not -1, `31E0:2D6E`) and for overlay 173 `+1098` keeping a combatant, whether it can run
-  in the state of FND-RNG-077, and any store to record 9999's word `+0x01`. Tried: FND-RNG-077
-  sees key 2 at 4000 ms refused and the steps go on to 20 s; FND-PARTY-176 with FND-RNG-068 shows
-  why the key is refused. Tried: FND-COMBAT-058 and FND-COMBAT-059 find the steps paused while the
-  pointer mode `DS:1440` is not 1 and going on when it returns to 1, and the keys `C`, `E`, `I`
-  and `V` changing nothing (FND-COMBAT-059's runs `end-<key>-20261025`); none of them ends the
-  state. Blocks: BUG-COMBAT-001's frequency.
 - Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
   the two combatant records hold, how many records does each table have, and how does
   `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks
@@ -293,7 +283,15 @@ None.
 
 ## Agent run
 
-None.
+- Q-COMBAT-035. BUG-COMBAT-001: Does F2 or F1 followed by EXIT end the repeated round steps once
+  the leader keys are refused? Settles it: a run that makes the bug's click, presses F2 two
+  seconds later and clicks EXIT, watching `DS:426D`, `DS:0DAB`, `DS:0D9C` and `4C13:035B`, then
+  presses a leader key; and the same with a load of a saved game. Tried: FND-RNG-077 sees key 2
+  refused and the steps go on to 20 s; FND-COMBAT-058 and FND-COMBAT-059 find the steps paused in
+  other pointer modes and the keys `C`, `E`, `I` and `V` changing nothing. Tried: FND-COMBAT-063
+  reads overlay 182 `+19F8` and `+15D7` storing `4C13:0369` in `DS:426D` when a full-screen
+  screen closes or a region loads, and no other store that can run in this state. Blocks:
+  BUG-COMBAT-001's frequency.
 
 ## Live session
 
