@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-037
+Next ID: Q-COMBAT-038
 
 ## Static
 
@@ -283,15 +283,13 @@ None.
 
 ## Agent run
 
-- Q-COMBAT-035. BUG-COMBAT-001: Does F2 or F1 followed by EXIT end the repeated round steps once
-  the leader keys are refused? Settles it: a run that makes the bug's click, presses F2 two
-  seconds later and clicks EXIT, watching `DS:426D`, `DS:0DAB`, `DS:0D9C` and `4C13:035B`, then
-  presses a leader key; and the same with a load of a saved game. Tried: FND-RNG-077 sees key 2
-  refused and the steps go on to 20 s; FND-COMBAT-058 and FND-COMBAT-059 find the steps paused in
-  other pointer modes and the keys `C`, `E`, `I` and `V` changing nothing. Tried: FND-COMBAT-063
-  reads overlay 182 `+19F8` and `+15D7` storing `4C13:0369` in `DS:426D` when a full-screen
-  screen closes or a region loads, and no other store that can run in this state. Blocks:
-  BUG-COMBAT-001's frequency.
+- Q-COMBAT-037. BUG-COMBAT-001: Does a load from the repeated-pass state store the leader over
+  9999 in `DS:426D` at overlay 182 `+1772`, and is a leader key for another slot taken after the
+  state ends? Settles it: a run from a checkpoint whose drive holds a saved game, that makes the
+  bug's click, gets F2 through in the gap after a pass's `flush_input`, loads the game watching
+  `DS:426D`, and after EXIT in another run presses a leader key for a slot other than the leader.
+  Tried: FND-COMBAT-064 ends the state with F1 or F2 and EXIT, and with a save; its load stored 1
+  over 1. Blocks: BUG-COMBAT-001's frequency.
 
 ## Live session
 

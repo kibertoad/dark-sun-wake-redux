@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unintended
 player_reliance: unknown
-evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059, FND-COMBAT-060, FND-COMBAT-061, FND-COMBAT-062, FND-COMBAT-063]
+evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059, FND-COMBAT-060, FND-COMBAT-061, FND-COMBAT-062, FND-COMBAT-063, FND-COMBAT-064]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -21,7 +21,9 @@ for July and August become the two bytes of a free record's number (14 and 0 in 
 so a later reseed from the DOS date counts dates from August on with the wrong number of days
 (RULE-RNG-001). From then on, about 15 times a second, the game runs one combat round step and the
 end of combat again with no combat going on, and the dword `4C13:035B`, which otherwise rises by 1 every 667 ms, rises by 60 on
-each pass. A leader key does not end this; it went on for the 17 s observed. The click itself
+each pass. A leader key does not end this; it went on for the 17 s observed. Most key presses
+and clicks are lost; F1 or F2 pressed at a moment the game reads it opens Save Game or Load Game,
+and leaving that screen with EXIT, or saving from it, ends the passes (FND-COMBAT-064). The click itself
 moves the view back to where it was before any scrolling, and the view otherwise stays as it was;
 the steps pause while the right button holds the pointer in another mode and go on when it
 returns to the first one (FND-COMBAT-059).
@@ -60,7 +62,11 @@ end-of-combat sequence, and stores 9999 back (FND-RNG-076, FND-RNG-077). The map
 The leader keys 1 to 4 store a slot in `DS:426D` only when `28C9:156C` finds bit `0x20` clear in
 byte `+0` of the record `DS:426D` names (FND-PARTY-176). For slot 9999 that byte is `DS:0CE6`, which
 holds `0x0A` before the click and `0xFF` after it (FND-RNG-068, FND-RNG-075), so after the click
-every leader key is refused (FND-RNG-077).
+every leader key would be refused (FND-RNG-077). In the runs the keys did not get that far: each
+pass's `flush_input` empties the key queue, and the queue is read only 10 to 13 ms after it, so a
+key is taken only when it arrives in that gap (FND-COMBAT-064). A taken F1 or F2 opens a
+full-screen screen, which sets `DS:0DAB` to 2 and stops the passes, and on EXIT or after a save
+overlay 182 `+1AFF` stores `4C13:0369` in `DS:426D` (FND-COMBAT-063, FND-COMBAT-064).
 
 ## Frequency
 
@@ -69,7 +75,8 @@ lengths stay changed until something rewrites them; the round step repeats on ev
 `28C9:1EDB` for at least 17 s, with or without a leader key (FND-RNG-077), whenever the pointer is
 in its first mode (FND-COMBAT-058, FND-COMBAT-059).
 
-Record 9999's bytes are never rewritten until the program restarts, so once the state has been
+The state lasts until F1 or F2 is taken, in roughly one press in five to seven, and its screen
+is left with EXIT or a save (FND-COMBAT-064). Record 9999's bytes are never rewritten until the program restarts, so once the state has been
 left, a later end of combat that leaves 9999 starts the passes again with no click
 (FND-COMBAT-063).
 
@@ -91,5 +98,6 @@ None known.
   `4C13:0369` (FND-RNG-087, FND-RNG-091, FND-RNG-092, Q-RNG-031, Q-RNG-037, Q-RNG-038, Q-RNG-039), and whether `31E0:2C86` can pass 9999, which needs a placed-object entry naming slot 9999
   (FND-RNG-085, FND-RNG-086, Q-RNG-034). Overlay 173 `+059A`
   stores 9999 only when it ends combat (FND-RNG-078, FND-PARTY-089).
-- Whether opening a full-screen screen such as Load Game with F2 and leaving it ends the state, as
-  the static reading predicts (FND-COMBAT-063; Q-COMBAT-035).
+- Whether a load from the state stores the leader over 9999 at overlay 182 `+1772`, as it stored 1
+  over 1 in the run, and whether a leader key for another slot is taken after the state ends
+  (FND-COMBAT-063, FND-COMBAT-064; Q-COMBAT-037).
