@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-088
 title: DSUN.EXE reads files at five DOS read requests; of the 19 calls of the read routine 44DE:01AF, eight read into frame locals or fixed DS buffers that miss DS:426D, three into blocks just allocated on the far heap, and eight through far pointers held in frame locals, arguments or DS variables
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-090]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

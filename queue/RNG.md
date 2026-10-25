@@ -112,14 +112,15 @@ Next ID: Q-RNG-039
   overlay 173 `+059A` storing 9999 only on its end-of-combat path; FND-RNG-087 finds the pointers
   formed between `DS:4200` and `DS:426D`. Split from Q-RNG-031. Blocks: complete seed-source
   reading.
-- Q-RNG-038. RULE-RNG-001, BUG-COMBAT-001: Can a file read put 9999 in `DS:426D` or `4C13:0369`?
-  Settles it: where the buffers of the reads that FND-RNG-088 leaves open point (the eight calls of
-  `44DE:01AF` through stored far pointers, the overlay manager's reads at `4AE5:0293` and
-  `4AE5:040C`, `15F3:0183`, and the callers of `1000:2F0F`), each shown to miss both words or
-  listed with the file and count it reads there. Tried: FND-RNG-088 finds five DOS read requests
-  and, of the 19 calls of `44DE:01AF`, 11 that miss both words. Tried: FND-SAVE-015 finds `4C13:0369` in
-  `SAVE` 46, which a load restores from what a save took, and `DS:426D` in no `SAVE` resource.
-  Split from Q-RNG-031. Blocks: complete seed-source reading.
+- Q-RNG-038. RULE-RNG-001, BUG-COMBAT-001: Can a read into a pool block or through a stored far
+  pointer to the archive read entries put 9999 in `DS:426D` or `4C13:0369`? Settles it: the pool
+  allocators `172C:0698` and `31E0:3C02` and the stores at `31E0:37EA` and `31E0:3E0F` read in
+  full, and a search for calls of `38FF:04AB` and `38FF:0438` through stored far pointers, each
+  shown to miss both words or listed with the file and count it reads there. Tried: FND-RNG-090
+  finds five DOS read requests and, of the 19 calls of `44DE:01AF`, 11 that miss both words.
+  Tried: FND-RNG-091 shows every other read FND-RNG-090 left open, and every direct call of
+  `38FF:04AB`, missing both words, except the `SAVE` load restoring the saved `4C13:0369`.
+  Blocks: complete seed-source reading.
 - Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it:
   the slot argument at the four calls of `31E0:0121` that FND-RNG-085 leaves unbounded (overlay 171
   `+0C25`, overlay 179 `+26DE`, overlay 182 `+04E0`, overlay 184 `+12E5`), the stores through
