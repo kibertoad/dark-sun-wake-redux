@@ -1,0 +1,10 @@
+{"name": "recon1", "start": "regen:v175-talk-final-20261019:talk", "duration": 12000,
+ "breaks": [{"addr": "05BA:12FA", "label": "wait_ms", "stack": 4, "cap": 20, "exit": true, "code_before": true,
+             "reads": [["4D9A:145E", 4], ["4D9A:3904", 4]]}],
+ "events": [
+  {"at_ms": 0, "shot": "t0", "read": [["41CD:0369", 2], ["4D9A:426D", 2], ["4D9A:1440", 2], ["4D9A:67BB", 37], ["4D9A:145E", 4], ["4D9A:3904", 4]]},
+  {"at_ms": 500, "click": [160, 40, "left"]},
+  {"at_ms": 2500, "shot": "t2500", "read": [["41CD:0369", 2], ["4D9A:426D", 2], ["4D9A:1440", 2], ["4D9A:67BB", 37]]},
+  {"at_ms": 5000, "shot": "t5000", "read": [["41CD:0369", 2], ["4D9A:426D", 2], ["4D9A:1440", 2], ["4D9A:67BB", 37]]},
+  {"at_ms": 9000, "shot": "t9000", "read": [["41CD:0369", 2], ["4D9A:426D", 2], ["4D9A:1440", 2], ["4D9A:67BB", 37], ["4D9A:145E", 4]]}
+ ]}

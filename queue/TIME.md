@@ -1,6 +1,6 @@
 # TIME
 
-Next ID: Q-TIME-005
+Next ID: Q-TIME-006
 
 ## Static
 
@@ -22,6 +22,13 @@ Next ID: Q-TIME-005
   word at `57E0:26B7` as message delay (FND-UI-034, FND-CONFIG-010), and
   FND-TIME-004 identifies its 100-ms scaling at one call, but the calling
   event and the other waits remain unclassified. Blocks: slices 3-7.
+- Q-TIME-005. RULE-TIME-001, RULE-TIME-002: Why does play after the opening run channel 0 at
+  1,000 µs with no music driver slot, when the installed `SOUND.CFG` names a driver whose
+  descriptor asks for 120 Hz, and how long does `wait_ms` wait once a 120 Hz slot runs? Settles
+  it: a reading of the driver install `4842:0B79` and its callers with the installed `SOUND.CFG`,
+  then a run that breaks there and times a `wait_ms` call with the slot running. Tried:
+  FND-TIME-008 reads the slot registrations; FND-TIME-011 sees channel 0 at 1,000 µs and slots
+  only for `4654:09A9`, the game tick and the BIOS chain. Blocks: none.
 
 ## Emulated call
 
@@ -29,10 +36,7 @@ None.
 
 ## Agent run
 
-- Q-TIME-004. RULE-TIME-001: How long does `wait_ms` wait during play, when channel 0 runs at the
-  reload the timer library set? Settles it: a run that breaks at the entry and exit of
-  `1000:12FA` on a call during play and reads `game_tick` at both, with the `ms` argument.
-  Tried: FND-TIME-004 reads the wait, and FND-TIME-008 the reload the library sets. Blocks: none.
+None.
 
 ## Live session
 

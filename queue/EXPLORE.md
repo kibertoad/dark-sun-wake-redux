@@ -53,23 +53,19 @@ None.
 
 ## Agent run
 
-- Q-EXPLORE-011. RULE-EXPLORE-004: Do the grey arrow keys of an enhanced keyboard step the chosen
-  character as the keypad keys do? The key hook reads keys with `INT 16h` services 1 and 0
-  (FND-INPUT-005), which BIOS documentation says report a grey arrow with the keypad's key word.
-  Settles it: a run that presses grey Up and keypad Up in turn on the map, with a breakpoint on the
-  key routine `28C9:0CFF` reading the key word each time. Tried: FND-INPUT-005 and FND-EXPLORE-004
-  read the hook and the key handlers statically. Blocks: none.
 - Q-EXPLORE-012. RULE-EXPLORE-004, RULE-EXPLORE-005: Does any code read the byte `4E71:0000`?
-  Settles it: a run with a read watch on `4E71:0000` over a Walk click, a walk of several cells and
-  a direction key step. Tried: FND-EXPLORE-018 finds three stores of 1 and no read through a
-  segment word loaded within six instructions or a pushed far pointer. Blocks: none.
+  Settles it: a run that scans every instruction's accesses for `4E71:0000` outside a fight (a
+  walk and a key step), over a save and over a load. Tried: FND-EXPLORE-018 finds three stores of 1
+  and no read through a segment word loaded within six instructions or a pushed far pointer.
+  Tried: FND-EXPLORE-023 scans a Walk click, a three-cell walk and a key step in the first fight and
+  finds only those stores. Blocks: none.
 - Q-EXPLORE-006. RULE-EXPLORE-005: How long does one cell of a walk take for a party member?
-  Settles it: a run from a checkpoint whose leader has a position, with a Walk click, that reads
-  word `+0x16` of the walker's slot record at `DS:67BB + 37 × slot` and counts the calls of
-  `31E0:1B60` for that record and the ticks of `DS:145E` per cell. Tried: FND-EXPLORE-019 reads
-  the frame mover and its tick gate, and FND-EXPLORE-020 tallies the walk frames of the shipped
-  `SCMD` resources; which resource a party member uses and the pass rate were not shown. Blocks:
-  slice 3.
+  Settles it: a run outside a fight, from a checkpoint where a Walk click is taken, walking a
+  member whose set is SCMD 599, 25 or 598 north and east, that counts the calls of `31E0:1B60` for
+  its record and the ticks of `DS:145E` per cell. Tried: FND-EXPLORE-019 reads the frame mover and
+  its tick gate, and FND-EXPLORE-020 tallies the walk frames of the shipped `SCMD` resources.
+  Tried: FND-EXPLORE-022 times Thy'rokh (SCMD 3917) walking north in the first fight, one pass per
+  frame; a Walk click before that fight was not taken. Blocks: slice 3.
 
 ## Live session
 

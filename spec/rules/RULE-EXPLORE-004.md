@@ -4,7 +4,7 @@ title: The keypad direction keys step the chosen character one cell, or in comba
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, FND-RNG-068, FND-EXPLORE-014, FND-EXPLORE-017, FND-EXPLORE-018, FND-INPUT-005, FND-INPUT-016, FND-CONFIG-171, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, FND-RNG-068, FND-EXPLORE-014, FND-EXPLORE-017, FND-EXPLORE-018, FND-INPUT-005, FND-INPUT-016, FND-INPUT-017, FND-EXPLORE-023, FND-CONFIG-171, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-EXPLORE-003, RULE-EXPLORE-005, RULE-COMBAT-006]
@@ -109,8 +109,11 @@ None known.
 
 ## Open questions
 
-- Whether any code reads `g_4E71_0000`; none was found, so what it stands for is unknown
-  (FND-EXPLORE-018, Q-EXPLORE-012).
-- Whether the grey arrow keys of an enhanced keyboard reach these handlers: the key hook reads keys
-  with `INT 16h` services 1 and 0, which BIOS documentation says report them with the keypad's key
-  words (FND-INPUT-005, FND-EXPLORE-004, Q-EXPLORE-011).
+- Whether any code reads `g_4E71_0000`: none was found in the code, and none read it over a walk
+  and a key step in the first fight, so what it stands for is unknown; play outside a fight, save
+  and load were not traced (FND-EXPLORE-018, FND-EXPLORE-023, Q-EXPLORE-012).
+- That an enhanced keyboard's grey arrows reach these handlers with the keypad's key words: the key
+  routine steps on `0x4800` whichever key sent it, but rust-dos puts that word in the key buffer
+  directly, and that a BIOS's service 0 turns the grey key's `0x48E0` into it rests on BIOS
+  documentation (FND-INPUT-005, FND-INPUT-017). (No item: the emulators at hand store the
+  converted word themselves, so no run of them can show it.)

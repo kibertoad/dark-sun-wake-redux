@@ -1,0 +1,113 @@
+{
+ "name": "wait1",
+ "start": "D:/rust-dos-games/work/walkruns/fightprep:fight",
+ "duration": 9000,
+ "max_stops": 3000,
+ "breaks": [
+  {
+   "addr": "05BA:12FA",
+   "label": "wait_ms",
+   "stack": 4,
+   "cap": 100,
+   "exit": true,
+   "code_before": true,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ],
+    [
+     "3DFC:0116",
+     4
+    ],
+    [
+     "4D9A:3904",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "1E83:0353",
+   "label": "click_walk",
+   "stack": 5,
+   "cap": 20,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "22FA:10AE",
+   "label": "plan_walk",
+   "stack": 5,
+   "cap": 20,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ],
+    [
+     "4503:039B",
+     28
+    ]
+   ]
+  }
+ ],
+ "events": [
+  {
+   "at_ms": 0,
+   "read": [
+    [
+     "3DFC:0000",
+     304
+    ],
+    [
+     "4D9A:145E",
+     4
+    ],
+    [
+     "4D9A:21E0",
+     4
+    ],
+    [
+     "4D9A:26B7",
+     2
+    ]
+   ]
+  },
+  {
+   "at_ms": 500,
+   "click": [
+    184,
+    126,
+    "left"
+   ]
+  },
+  {
+   "at_ms": 1500,
+   "shot": "t1500",
+   "read": [
+    [
+     "3DFC:0000",
+     304
+    ]
+   ]
+  },
+  {
+   "at_ms": 3000,
+   "shot": "t3000"
+  },
+  {
+   "at_ms": 7000,
+   "shot": "t7000",
+   "read": [
+    [
+     "3DFC:0000",
+     304
+    ]
+   ]
+  }
+ ]
+}

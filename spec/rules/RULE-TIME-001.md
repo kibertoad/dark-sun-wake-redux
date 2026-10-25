@@ -4,7 +4,7 @@ title: The game waits a number of milliseconds by reading the timer chip until e
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-004, FND-TIME-008, FND-TIME-009]
+evidence: [FND-TIME-004, FND-TIME-008, FND-TIME-009, FND-TIME-011]
 conflicting: []
 split_with: []
 related: []
@@ -88,6 +88,6 @@ None known.
 - What event each caller waits for, including the overlay 172 pause fed by
   100 times the Preferences message-delay word (FND-CONFIG-010, FND-UI-034,
   Q-TIME-003).
-- How long `wait_ms` really waits once the timer library has set channel 0 to a reload below
-  65,536, as it does for its slots during play: each wrap takes a full 65,536 off the target
-  (FND-TIME-004, FND-TIME-008; Q-TIME-004).
+- Why play after the opening runs channel 0 at 1,000 µs with no music driver slot, and how long
+  `wait_ms` waits when a 120 Hz slot does run: at 1,000 µs it waits about ms / 55 (FND-TIME-008,
+  FND-TIME-011; Q-TIME-005).

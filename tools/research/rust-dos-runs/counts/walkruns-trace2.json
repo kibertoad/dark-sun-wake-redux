@@ -1,0 +1,4 @@
+{"name": "trace2", "start": "D:/rust-dos-games/work/walkruns/fightprep:fight", "duration": 2700,
+ "events": [{"at_ms": 2450, "trace_on": ["51C0D", 2]},
+  {"at_ms": 2500, "key": "up"},
+  {"at_ms": 2650, "trace_off": true}]}

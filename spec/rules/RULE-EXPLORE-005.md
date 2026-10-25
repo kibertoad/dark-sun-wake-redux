@@ -4,7 +4,7 @@ title: How a character walks to the cell a left click with the Walk pointer chos
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-SCRIPT-028, FND-TIME-008, FND-TIME-010, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
+evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-EXPLORE-022, FND-SCRIPT-028, FND-TIME-008, FND-TIME-010, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004, RULE-SCRIPT-013]
@@ -365,8 +365,10 @@ None known.
 
 ## Open questions
 
-- How long a step takes for a given walker: which walk animation each walker uses, and how fast
-  the map pass runs against the 96 Hz tick (FND-EXPLORE-019, FND-EXPLORE-020; Q-EXPLORE-006).
+- How long a step takes outside a fight and for walkers with other walk sets: in the first fight
+  Thy'rokh's two-frame cells took one map pass per frame, 84 to 154 ms at 15,000 cycles per ms,
+  bound by the pass and not the 96 Hz tick (FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-022;
+  Q-EXPLORE-006).
 - What `fn_1B2E_07F3` does when a wall follower is boxed in on all four turns, where it reads the
   link of a node before its array (FND-EXPLORE-021; Q-EXPLORE-013).
 - What `fn_1B0B_000C`'s distance is measured in (FND-PARTY-098; Q-EXPLORE-010).

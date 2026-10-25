@@ -1,0 +1,4 @@
+{"name": "recon3", "start": "regen:v175-talk-final-20261019:talk", "duration": 1300,
+ "events": [{"at_ms": 0, "read": [["4D9A:1408", 4], ["4D9A:0DAB", 2]]},
+  {"at_ms": 500, "click": [160, 40, "left"]},
+  {"at_ms": 1200, "read": [["4D9A:1408", 4], ["4D9A:1440", 2], ["41CA:0019", 2], ["4D9A:426D", 2]], "shot": "t1200"}]}
