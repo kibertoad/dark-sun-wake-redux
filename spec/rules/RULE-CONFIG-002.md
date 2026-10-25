@@ -77,4 +77,5 @@ None known.
   new-game write among literal `DS:143A` displacement uses, but cannot
   exclude a block copy or computed writer (FND-CONFIG-009, FND-CONFIG-120,
   Q-CONFIG-001, Q-CONFIG-002).
-- What the difficulty changes in combat (RULE-COMBAT-007, Q-COMBAT-007).
+- What the scripts do with the difficulty through function 21 of instruction 0x22, and whether a
+  saved game's creatures are scaled again when it loads (RULE-COMBAT-007, Q-COMBAT-007).

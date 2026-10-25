@@ -4,7 +4,7 @@ title: What the difficulty setting changes in combat
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-065]
+evidence: [FND-COMBAT-065, FND-COMBAT-070]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-002, RULE-COMBAT-002]
@@ -14,16 +14,25 @@ related: [RULE-CONFIG-002, RULE-COMBAT-002]
 
 The difficulty setting (RULE-CONFIG-002) gives every combatant outside the party, slot 4 or more,
 `difficulty - 1` to hit: -1 on Easy, 0 on Balanced, +1 on Hard and +2 on Hideous
-(FND-COMBAT-065). The game reads the setting in other places too, which are not described here.
+(FND-COMBAT-065). A creature whose details record is above 4 has its greatest hit points set to
+50, 100, 150 or 200 percent of its resource's value, rounded down, when it is loaded, and the load
+then gives every slot from 4 up current hit points equal to its greatest value (FND-COMBAT-070).
+Scripts also read the setting, through function 21 of instruction 0x22.
 
 ## When it runs
 
 `enemy_to_hit` runs in each attack of overlay 173 `+1CC1` (RULE-COMBAT-002).
+`creature_max_hit_points` runs when overlay 187 `+039A` copies a details chunk of a `CHAR` load,
+and `appearing_hit_points` at the end of that load (`2D40:000A`) for each slot (FND-COMBAT-070).
 
 ## Parameters
 
 - `slot: INT16`: the attacker's slot.
 - `difficulty`: 0 to 3.
+- `record: INT16`: the details record number the load fills.
+- `resource_max: UINT16`: the resource's details word `+0x08`, the greatest hit points.
+- `max_hit_points: UINT16` and `hit_points: INT16`: the slot's greatest and current hit points
+  after the load.
 
 ## Inputs
 
@@ -36,15 +45,32 @@ define enemy_to_hit(slot, difficulty):
     if slot >= 4:
         return difficulty - 1
     return 0
+
+define creature_max_hit_points(record, resource_max, difficulty):
+    if record <= 4:
+        return resource_max
+    let p: INT32 = (difficulty - 1) * 50 + 100
+    return UINT16((INT32(resource_max) * p) / 100)
+
+define appearing_hit_points(slot, max_hit_points, hit_points):
+    if slot >= 4:
+        return max_hit_points
+    return hit_points
 ```
 
 ## Outputs
 
-The amount added to the attacker's to-hit bonus in RULE-COMBAT-002.
+The amount added to the attacker's to-hit bonus in RULE-COMBAT-002; the greatest hit points
+stored in the details record; the slot's current hit points.
 
 ## Edge cases
 
-Party members are not changed by the setting here.
+Party slots 0 to 3 use records 0 to 3 and are never scaled; slot 4 uses record 4, is not scaled,
+and still has its hit points set to the greatest. The scale keys on the record number, so allies
+outside the party are scaled too. A creature already loaded keeps its values when the setting
+changes, and each load scales the resource's value again, so the scale does not compound. A
+resource value of 1 gives 0 on Easy, so the creature appears with 0 hit points at `combat_mark`
+1. A scaled value above 65,535 keeps only its low 16 bits.
 
 ## What the sources say
 
@@ -52,7 +78,7 @@ SRC-MANUAL-1994, page 15: difficulty controls the level of difficulty in combat.
 section 2.8: a new game begins on Balanced; Easy seems to give hostile creatures about half the hit
 points they have on Balanced and Hideous about twice as many, and the change applies when a
 creature appears, not to creatures already present. It says nothing of Hard, of rounding, or of the
-party.
+party. The executable gives 50 and 200 percent, matching the FAQ, and 150 on Hard.
 
 ## Differences between builds
 
@@ -60,7 +86,5 @@ None known.
 
 ## Open questions
 
-- What the other readers of the difficulty word do, at overlay 187 file `0x703B1`, overlay 192
-  `0x7D705`, overlay 203 `0x8B633` to `0x8B916` and overlay 204 `0x8C226`, and whether one scales
-  the hit points of hostile creatures when they appear as the FAQ reports (FND-COMBAT-065,
-  Q-COMBAT-007).
+- What the 47 script calls of function 21 of instruction 0x22 do with the setting, and whether a
+  saved game's creatures are scaled again when it is loaded (FND-COMBAT-070, Q-COMBAT-007).

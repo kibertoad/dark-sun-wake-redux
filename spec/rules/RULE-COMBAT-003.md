@@ -4,7 +4,7 @@ title: A blow that leaves a combatant at 0 hit points or fewer knocks it out at 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-086, FND-PARTY-100, FND-RNG-043, FND-COMBAT-067, FND-COMBAT-069, FND-MAGIC-018, SRC-MANUAL-1994]
+evidence: [FND-PARTY-086, FND-PARTY-100, FND-RNG-043, FND-COMBAT-067, FND-COMBAT-069, FND-MAGIC-018, FND-COMBAT-071, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-002, RULE-RNG-001]
@@ -18,7 +18,11 @@ The hit routine doubles the damage against a combatant already at 0 hit points a
 the target's percentage for the hit word. The damage then sets the hit points: a blow at least the
 hit points plus 10 sets them to 0 and kills the combatant (`combat_mark` 7, or 8 from 10,000), a
 blow at least the hit points sets them to 0 and knocks it out (`combat_mark` 3), and a smaller one
-is subtracted. Hit points never go below 0 (FND-COMBAT-067, FND-COMBAT-069, FND-PARTY-086).
+is subtracted. Hit points never go below 0 (FND-COMBAT-067, FND-COMBAT-069, FND-PARTY-086). A combatant at
+`combat_mark` 3 takes no turn, the computer never chooses it as a target, and one outside the party
+is removed from the map; it stands up at mark 1 when it is healed, at the end of the fight (party
+members, with at least 1 hit point) or at a rest, and dies from one blow of 10 or more
+(FND-COMBAT-071).
 
 ## When it runs
 
@@ -95,7 +99,10 @@ spells and which apply to weapon hits through effects.
 A combatant at 0 hit points stays at 0 and `combat_mark` 3 under blows below 10 and dies only from
 one blow of 10 or more; a weapon hit on it deals double damage. The manual's "dead at -10" holds
 only as one blow that would take the combatant to -10. A ranged swing with attack number 1 or 2
-deals no damage (FND-COMBAT-067). The attacker's returned total keeps the damage before the
+deals no damage (FND-COMBAT-067). The doubled damage against a target at mark 3 reaches a party
+member through an attack whose target was set before it fell (the walker sweep, the direction
+key) or, as the maximum, through an area spell. A heal stands the combatant up even when it adds
+no hit points (FND-COMBAT-071). The attacker's returned total keeps the damage before the
 backstab multiplier; only the hit routine gets the product.
 
 ## What the sources say
@@ -109,10 +116,7 @@ None known.
 
 ## Open questions
 
-- Whether a combatant at `combat_mark` 3 can be chosen as a target, and how it leaves mark 3
-  (FND-COMBAT-069, Q-COMBAT-040).
+- How the player orders an attack on a chosen combatant, and whether that path tests the target's
+  `combat_mark` (FND-COMBAT-071, Q-COMBAT-040).
 - Which effects the bits behind `out_cold` and the percentage stand for (FND-COMBAT-069,
   Q-COMBAT-038).
-- The executable's list of nine names, New, Okay, Stunned, Out Cold, Dying, Animated, Petrified,
-  Dead and Gone, matches marks 3, 7 and 8 in order, but no reader of the list was found
-  (FND-COMBAT-028, circumstantial, Q-COMBAT-040).
