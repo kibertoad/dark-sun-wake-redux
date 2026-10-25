@@ -38,7 +38,7 @@ item type's record (FND-RNG-041).
 ## Inputs
 
 `object_slot_kinds`, `object_slot_combatants`, `object_slots` (`position_x`, `position_y`);
-`combatants`: `unk_15[0]` and `combat_mark`; `combatant_details`: byte `+0x1E` (`unk_10[14]` of FMT-COMBAT-002) of the picker's
+`combatants`: `combatant_kind` and `combat_mark`; `combatant_details`: byte `+0x1E` (`levels[0]` of FMT-COMBAT-002) of the picker's
 record; `view_left_min`, `view_top_min`, `view_right_limit`, `view_bottom_limit`; the effect
 entries through `fn_3143_00A8` and `g_4E71_024F`.
 
@@ -59,7 +59,7 @@ define pick_listed(s, mask: UINT16):
     if object_slot_kinds[s] != 2:
         return false
     let c = combatants[object_slot_combatants[s]]
-    if (1 << c.unk_15[0]) & mask == 0 or c.combat_mark > 2:
+    if (1 << c.combatant_kind) & mask == 0 or c.combat_mark > 2:
         return false
     let x: UINT16 = object_slots[s].position_x >> 4
     let y: UINT16 = object_slots[s].position_y >> 4
@@ -95,7 +95,7 @@ define pick_list(picker, mask, limit, line_test):
 define pick_target(picker, combatant, output, limit, line_test):
     if output != -1:
         return
-    let (list, n) = pick_list(picker, pick_group_mask(combatants[combatant].unk_15[0]), limit, line_test)
+    let (list, n) = pick_list(picker, pick_group_mask(combatants[combatant].combatant_kind), limit, line_test)
     let k = 0
     while n > 0:
         # one draw of RULE-RNG-001's generator, scaled to 0..n-1
@@ -106,7 +106,7 @@ define pick_target(picker, combatant, output, limit, line_test):
             ok = false
         if fn_3143_00A8(p, 87) != -1:
             # the saving throw makes its own draw (FND-PARTY-099)
-            if UINT8(fn_56A7_0075(picker, p, 125, combatant_details[picker].unk_10[14])) == 0:
+            if UINT8(fn_56A7_0075(picker, p, 125, combatant_details[picker].levels[0])) == 0:
                 ok = false
         if ok:
             output = list[p].slot

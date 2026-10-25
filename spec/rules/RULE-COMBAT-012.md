@@ -55,7 +55,7 @@ define confusion_roll(slot):
         if r > 9:
             return 2
     # roll_sum draws once (RULE-RNG-001)
-    combatants[c].unk_15[0] = UINT8(roll_sum(1, 2))
+    combatants[c].combatant_kind = UINT8(roll_sum(1, 2))
     g_4E71_0AC6[c] = -1
     return 7
 ```

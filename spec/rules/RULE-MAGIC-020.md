@@ -30,19 +30,19 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 60 or 165 (FN
 
 ## Inputs
 
-Through `object_slot_combatants`, `t`'s `combatant_details` record: bytes `+0x12` (`unk_10[2]`)
-and `+0x1E` (`unk_10[14]`).
+Through `object_slot_combatants`, `t`'s `combatant_details` record: bytes `+0x12` (`origin`)
+and `+0x1E` (`levels[0]`).
 
 ## Procedure
 
 ```text
 define destroy_roll(t, flags, a):
     let D = combatant_details[combatants[object_slot_combatants[t]].details_index]
-    let need: INT16 = 11 - a + D.unk_10[14]
+    let need: INT16 = 11 - a + D.levels[0]
     # roll_sum draws once (RULE-RNG-001); signed word compare
     if need > INT16(roll_sum(1, 20)):
         return
-    if D.unk_10[2] != 14:
+    if D.origin != 14:
         return
     fn_5671_005C(t, 10000)
     flags[0] = flags[0] | 0x01

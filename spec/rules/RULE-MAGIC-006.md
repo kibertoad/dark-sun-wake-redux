@@ -40,8 +40,8 @@ FND-RNG-035, FND-MAGIC-017, FND-MAGIC-023).
 
 ## Inputs
 
-`combatant_details`: bytes `+0x12` and `+0x1E` of the target's details record, `unk_10[2]` and
-`unk_10[14]` of FMT-COMBAT-002.
+`combatant_details`: bytes `+0x12` and `+0x1E` of the target's details record, `origin` and
+`levels[0]` of FMT-COMBAT-002.
 
 ## Procedure
 
@@ -49,9 +49,9 @@ FND-RNG-035, FND-MAGIC-017, FND-MAGIC-023).
 define data_306_test(target, caster, flags, level: UINT8):
     let found = combatant_found(target)
     let d = combatant_details[combatant_details_of(target)]
-    if not found or d.unk_10[2] != 9:
+    if not found or d.origin != 9:
         return flags
-    let h: INT16 = d.unk_10[14]
+    let h: INT16 = d.levels[0]
     if h > 4:
         h = h + 1
         if h > 13:

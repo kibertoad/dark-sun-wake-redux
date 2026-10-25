@@ -4,7 +4,7 @@ title: A target ignores an effect of type word 0x400 when two rolls of 1 to its 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-112, FND-PARTY-104, FND-PARTY-210, FND-COMBAT-022, FND-AI-004, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-023, FND-MAGIC-007, FND-MAGIC-008]
+evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-112, FND-PARTY-104, FND-PARTY-210, FND-COMBAT-022, FND-AI-004, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-023, FND-MAGIC-007, FND-MAGIC-008, FND-COMBAT-072]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-014]
@@ -34,8 +34,8 @@ called only from overlay 197 `+111A`, the hit routine's gate of FND-PARTY-112.
 ## Inputs
 
 `combatant_found`, `fn_2D40_3E64` (the combatant number `c`) and `combatant_details_of` (the
-details number `e`) of the slot; `combatants` record `c`: byte `+0x1D` (`unk_19[4]` of FMT-COMBAT-001) and the word
-`+0x02` (`unk_02`); `combatant_details` record `e`: byte `+0x1E` (`unk_10[14]` of
+details number `e`) of the slot; `combatants` record `c`: byte `+0x1D` (`wisdom` of FMT-COMBAT-001) and the word
+`+0x02` (`psionic_points`); `combatant_details` record `e`: byte `+0x1E` (`levels[0]` of
 FMT-COMBAT-002); `psionic_ranks`, `psionic_powers`, `psionic_check_result`.
 
 ## Procedure
@@ -48,19 +48,19 @@ define psionic_defence(slot, type) -> UINT8:
     let e = combatant_details_of(slot)
     if type != 0x400:
         return 0
-    let u: INT16 = INT16(combatants[c].unk_19[4]) - 7
+    let u: INT16 = INT16(combatants[c].wisdom) - 7
     if slot < 4:
         let kept: UINT16 = 0
         for p in [24, 27, 28, 30, 33]:
             if psionic_ranks[slot][p] & 1 != 0:
                 let candidate: INT16 = psionic_rank(slot, p) + psionic_powers[p].cost / 2
-                if candidate > u and psionic_powers[p].cost <= UINT16(combatants[c].unk_02):
+                if candidate > u and psionic_powers[p].cost <= UINT16(combatants[c].psionic_points):
                     u = candidate
                     kept = psionic_powers[p].cost
-        combatants[c].unk_02 = UINT16(combatants[c].unk_02) - kept
+        combatants[c].psionic_points = UINT16(combatants[c].psionic_points) - kept
     else:
-        if INT16(combatant_details[e].unk_10[14]) > u:
-            u = combatant_details[e].unk_10[14]
+        if INT16(combatant_details[e].levels[0]) > u:
+            u = combatant_details[e].levels[0]
     if u < 1:
         u = 1
     # random_between draws once when u > 1 (RULE-RNG-001)

@@ -32,7 +32,7 @@ Overlay 193 `+003C`, which runs a queued record (FND-PARTY-107), calls it at `+0
 ## Inputs
 
 `object_slot_kinds`; `combatant_details`: bytes `+0x12`, `+0x1E`, `+0x1F` and `+0x20`
-(`unk_10[2]`, `unk_10[14]`, `unk_10[15]` and `unk_10[16]` of FMT-COMBAT-002) of each slot's details
+(`origin`, `levels[0]`, `levels[1]` and `levels[2]` of FMT-COMBAT-002) of each slot's details
 record, through `object_slot_combatants` and `details_index`.
 
 ## Procedure
@@ -48,9 +48,9 @@ define data_71_pool(count: INT16, entries):
             let slot = entries[j].word(2)
             if object_slot_kinds[slot] == 2:
                 let d = combatant_details[combatants[object_slot_combatants[slot]].details_index]
-                let level: UINT8 = d.unk_10[14]
-                if d.unk_10[2] != 1:
-                    level = max(d.unk_10[14], d.unk_10[15], d.unk_10[16])
+                let level: UINT8 = d.levels[0]
+                if d.origin != 1:
+                    level = max(d.levels[0], d.levels[1], d.levels[2])
                 let cost: INT16 = 0
                 if level < 2:
                     if band == 0:

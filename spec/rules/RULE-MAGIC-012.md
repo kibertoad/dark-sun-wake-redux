@@ -67,9 +67,9 @@ define summon_creature(data_number: INT16, x: INT16, y: INT16, side: UINT8):
     let (found, px, py) = fn_5702_00CF(x / 16, y / 16, 0, 0, 0)
     if found:
         if fn_31E0_0121(p, 4, px, py, 0, 4, 6) >= 0:
-            combatants[4].unk_15[0] = 4
-            combatant_details[4].unk_10[38] = 4
-            combatant_details[4].unk_10[2] = 14
+            combatants[4].combatant_kind = 4
+            combatant_details[4].unk_36 = 4
+            combatant_details[4].origin = 14
             fn_2D40_085B(4, 11, g_4C13_0369, 0)
             if data_number == 92 or data_number == 88:
                 fn_197_32A1(data_number)

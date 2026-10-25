@@ -35,8 +35,8 @@ FND-RNG-048). No `GPL ` or `MAS ` resource has such an instruction (FND-RNG-048)
 
 `object_slot_kinds`, `object_slot_combatants`, `party_shown`, `leader`, `effect_block`; through
 `object_slot_combatants`, the slot's `combatants` record: `combat_mark`, `character_id` and byte
-`+0x1B` (`unk_19[2]` of FMT-COMBAT-001); its `combatant_details` record: bytes `+0x12`
-(`unk_10[2]` of FMT-COMBAT-002) and `+0x30 + s` (`unk_10[0x20 + s]`).
+`+0x1B` (`constitution` of FMT-COMBAT-001); its `combatant_details` record: bytes `+0x12`
+(`origin` of FMT-COMBAT-002) and `+0x30 + s` (`saving_throws[s - 1]`).
 
 ## Procedure
 
@@ -84,8 +84,8 @@ define script_save_modifier(t: INT16, block: UINT8[], s: UINT16) -> INT16:
     if s != 1:
         m = m - fn_27E5_02F2(t)
     else:
-        if D.unk_10[2] == 2 or D.unk_10[2] == 6:
-            m = m + INT16(R.unk_19[2]) * 2 / 7
+        if D.origin == 2 or D.origin == 6:
+            m = m + INT16(R.constitution) * 2 / 7
         m = m + fn_27E5_030B(t)
     return m
 
@@ -95,7 +95,7 @@ define script_saving_throw(t: INT16, s: UINT16, x: UINT8) -> UINT8:
     let D = combatant_details[R.details_index]
     if block[8] & 0x20 != 0 or R.combat_mark == 3:
         return 0
-    let need: UINT8 = D.unk_10[0x20 + s]
+    let need: UINT8 = D.saving_throws[s - 1]
     # roll_sum draws once (RULE-RNG-001); its low byte is kept
     let r: UINT8 = UINT8(roll_sum(1, 20))
     if r == 1:
@@ -127,7 +127,7 @@ listed slot that passes the first test of `script_saving_throw`.
 The sum is a byte, so a large modifier or bonus wraps: a negative modifier can make the sum 200
 or more and save, and a sum above 255 starts again from 0. The comparison with the save is
 unsigned. Save numbers 1 to 5 read the five saves of RULE-PARTY-014; 6 reads byte `+0x36`, and 7
-or more reads past `unk_10` into `footprint` and the bytes after it. Save number 1 takes the
+or more reads past `saving_throws` into `footprint` and the bytes after it. Save number 1 takes the
 constitution terms, and every other number takes the dexterity term instead. For a target of
 0x7FFE the kind test is skipped, and the party slots are tested by their own `combatants` record
 numbers 0 to 3, while `script_saving_throw` reads the record through `object_slot_combatants`.

@@ -34,8 +34,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 26 or 150 (FN
 
 ## Inputs
 
-Through `object_slot_combatants`, `t`'s `combatants` record: byte `+0x0E` (`unk_08[6]`); its
-`combatant_details` record: byte `+0x12` (`unk_10[2]`).
+Through `object_slot_combatants`, `t`'s `combatants` record: byte `+0x0E` (`special_attack`); its
+`combatant_details` record: byte `+0x12` (`origin`).
 
 ## Procedure
 
@@ -43,7 +43,7 @@ Through `object_slot_combatants`, `t`'s `combatants` record: byte `+0x0E` (`unk_
 define dispel_dice(t, c, n, bits, flags, a):
     let R = combatants[object_slot_combatants[t]]
     let D = combatant_details[R.details_index]
-    if D.unk_10[2] == 11 and R.unk_08[6] == 10 and c < 9999:
+    if D.origin == 11 and R.special_attack == 10 and c < 9999:
         emit EffectApplied(t, c, n, 0x41, 240, 0)
     for code in 0..113:
         if bits[code >> 3] & (1 << (code & 7)) == 0:

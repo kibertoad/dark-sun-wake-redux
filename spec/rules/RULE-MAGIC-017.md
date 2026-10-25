@@ -39,7 +39,7 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with one of these `DATA` 
 ## Inputs
 
 Through `object_slot_combatants`, `t`'s `combatant_details` record `D`: byte `+0x12`
-(`unk_10[2]`); `c`'s `combatants` record, when `c` is below 9999, and `t`'s record of `object_slots`.
+(`origin`); `c`'s `combatants` record, when `c` is below 9999, and `t`'s record of `object_slots`.
 
 ## Procedure
 
@@ -48,12 +48,12 @@ define caster_tail(t, c):
     fn_28C9_2C9E(c, object_slots[t])
     fn_5671_00F2(c)
     # through a pointer that is 0:0 when c is 9999 or more
-    combatants[object_slot_combatants[c]].unk_08[6] = 0
+    combatants[object_slot_combatants[c]].special_attack = 0
 
 define damage_dice(t, c, n, s, flags, a, u):
     let D = combatant_details[combatants[object_slot_combatants[t]].details_index]
     if n == 227:
-        if D.unk_10[2] == 9:
+        if D.origin == 9:
             # roll_sum draws eight times (RULE-RNG-001)
             emit DamageDealt(t, roll_sum(8, 6))
             flags[0] = flags[0] | 0x01

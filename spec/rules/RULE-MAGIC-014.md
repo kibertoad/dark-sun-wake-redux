@@ -40,12 +40,12 @@ at `bp+0x1A` is 0 (FND-PARTY-108). The dispatcher's eleven callers are in overla
 ## Inputs
 
 `psionic_powers`, `psionic_ranks`, `psionic_check_result`, `effect_entries`; through
-`object_slot_combatants`, the word `+0x02` of a slot's `combatants` record (`unk_02` of
+`object_slot_combatants`, the word `+0x02` of a slot's `combatants` record (`psionic_points` of
 FMT-COMBAT-001, its points) and its scores `current_score`; for slots 0 to 3, `combat_mark` of
 `combatants` record `s` and word `+0x0E` (`unk_0E` of FMT-COMBAT-002) of `combatant_details`
-record `s`; `g_4C4F_00B2`, `combat_state`; for powers 15, 20 and 21, the byte `+0x15` (`unk_10[5]`)
+record `s`; `g_4C4F_00B2`, `combat_state`; for powers 15, 20 and 21, the byte `+0x15` (`base_scores[0]`)
 of `t`'s details record and `fn_27E5_0154`; for the applied number, the class bytes `+0x1B..+0x20`
-(`unk_10[11..16]`) of `s`'s details record.
+(`classes` and `levels`) of `s`'s details record.
 
 ## Procedure
 
@@ -61,7 +61,7 @@ define power_known(s, p) -> UINT8:
     return 1 if psionic_rank(s, p) != 0 else 0
 
 define points_of(s) -> UINT16:
-    return UINT16(combatants[object_slot_combatants[s]].unk_02)
+    return UINT16(combatants[object_slot_combatants[s]].psionic_points)
 
 define power_usable(s, p) -> UINT8:
     let in_effect = 0
@@ -114,8 +114,8 @@ define power_check(s, p, extra: UINT8) -> INT8:
 define class_code_level(s, code) -> UINT8:
     let d = combatant_details[combatants[object_slot_combatants[s]].details_index]
     for i in 0..3:
-        if d.unk_10[11 + i] == code:
-            return d.unk_10[14 + i]
+        if d.classes[i] == code:
+            return d.levels[i]
     return 1 if code == 12 else 0
 
 define use_power(s, t, p, w, q, b) -> UINT8:
@@ -125,7 +125,7 @@ define use_power(s, t, p, w, q, b) -> UINT8:
         if UINT8(power_usable(s, p)) != 0:
             if p == 15:
                 let e = combatants[object_slot_combatants[t]].details_index
-                charge = (24 - combatant_details[e].unk_10[5]) * 2
+                charge = (24 - combatant_details[e].base_scores[0]) * 2
             else if p == 20 or p == 21:
                 let level: INT16 = fn_27E5_0154(t)
                 charge = 3 if level < 6 else 8 if level < 11 else 13 if level < 16 else 18
@@ -147,11 +147,11 @@ define use_power(s, t, p, w, q, b) -> UINT8:
                     emit MessageShown("psionics disrupted by static")
                 else if s < 4:
                     emit MessageShown("psionic power check fails")
-                combatants[object_slot_combatants[s]].unk_02 = points_of(s) - psionic_powers[p].cost / 2
+                combatants[object_slot_combatants[s]].psionic_points = points_of(s) - psionic_powers[p].cost / 2
     if psionic_check_result <= 0:
         return 0
     if not held:
-        combatants[object_slot_combatants[s]].unk_02 = points_of(s) - charge
+        combatants[object_slot_combatants[s]].psionic_points = points_of(s) - charge
     return fn_573B_007F(s, t, p + 235, class_code_level(s, 12), w, q, b)
 ```
 

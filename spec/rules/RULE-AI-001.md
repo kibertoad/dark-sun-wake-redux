@@ -4,7 +4,7 @@ title: The computer-control button toggles computer control of a party member un
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-AI-005, FND-AI-006, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, SRC-MANUAL-1994]
+evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-AI-005, FND-AI-006, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-COMBAT-072, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-AI-002, RULE-COMBAT-004, FMT-COMBAT-001, SCR-UI-002, SCR-UI-008]
@@ -37,7 +37,7 @@ number less 11313.
 
 ```text
 define toggle_computer_control(slot):
-    if combatant_details[slot].unk_0E == 0:
+    if combatant_details[slot].details_key == 0:
         return
     let member = combatants[slot]
     if member.control_locked == 1:
@@ -61,15 +61,16 @@ define release_computer_control():
 No return value. `toggle_computer_control` changes `computer_control` of the member's record
 and emits `MessageShown`; it also gives the button frame 5 when it turns the setting off and
 frame 4 when it turns it on. `release_computer_control` changes `computer_control` in the
-records and emits nothing.
+records and emits nothing. `fn_2D40_3E64` gives -1 for a slot that is not a combatant object,
+whose record number is 42 or more, or whose `details_index` is 17 or more (FND-COMBAT-072).
 
 ## Edge cases
 
-A button whose slot has `unk_0E` equal to 0 does nothing. The button does not look at
+A button whose slot has `details_key` equal to 0 does nothing. The button does not look at
 `combat_state`, so the setting can be changed outside combat. `release_computer_control` does not
 redraw any button and does not look at `combat_state` either. The hover text of the buttons
 (regions 11209 to 11212) reads `COMPUTER CONTROL IS ` followed by `LOCKED ` when the setting is
-locked and then `ON` or `OFF`, and `INACTIVE CHARACTER` for a slot whose `unk_0E` is 0
+locked and then `ON` or `OFF`, and `INACTIVE CHARACTER` for a slot whose `details_key` is 0
 (FND-AI-003).
 
 ## What the sources say
@@ -87,5 +88,5 @@ None known.
 
 - Whether the end of any active effect on a party member clears a computer-control setting the
   player turned on with the button, as the removal handler reads (FND-AI-005, Q-AI-005).
-- What `unk_0E` of `combatant_details` is (Q-COMBAT-002).
-- What `fn_2D40_3E64` returns for a slot with no combatant (Q-COMBAT-002).
+- Whether `fn_2D40_3E64` ever finds a combatant other than a party member's for slots 0 to 3,
+  which needs what object 4 and the other low objects hold (FND-COMBAT-072, Q-COMBAT-042).

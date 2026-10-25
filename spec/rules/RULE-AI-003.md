@@ -30,7 +30,7 @@ returns other than 0 (FND-RNG-035).
 
 ## Inputs
 
-`combatants`: byte `+0x0E` of the combatant's record, the kind byte (`unk_08[6]` of FMT-COMBAT-001),
+`combatants`: byte `+0x0E` of the combatant's record, the kind byte (`special_attack` of FMT-COMBAT-001),
 its `hit_points` and its `details_index`; `combatant_details`: the `max_hit_points` of that details
 record; and `g_50C2_0000`. The record is the combatant's number times 49, with no slot map.
 
@@ -39,7 +39,7 @@ record; and `g_50C2_0000`. The record is the combatant's number times 49, with n
 ```text
 define spell_use_test(combatant):
     let c = combatants[combatant]
-    let kind: UINT16 = c.unk_08[6]
+    let kind: UINT16 = c.special_attack
     # roll_sum draws once (RULE-RNG-001)
     let lucky = roll_sum(1, 4) == 4
     let low = UINT16(c.hit_points) < UINT16(combatant_details[c.details_index].max_hit_points) >> 1

@@ -4,7 +4,7 @@ title: DATA 77 gives a dead party member a d8 origin byte, rerolled while 1 unle
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-AI-004, FND-PARTY-081, FND-COMBAT-023, FND-PARTY-133, FND-RNG-041, FND-RNG-040, FND-ACTOR-003, FND-PARTY-013]
+evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-AI-004, FND-PARTY-081, FND-COMBAT-023, FND-PARTY-133, FND-RNG-041, FND-RNG-040, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-072]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-021]
@@ -31,8 +31,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 77 (FND-PARTY
 ## Inputs
 
 `combatant_found` and `fn_2D40_3E64` of `t`; through `object_slot_combatants`, `t`'s `combatants`
-record `R` and `combatant_details` record `D`: bytes `+0x12` and `+0x13` (`unk_10[2]`,
-`unk_10[3]`) and `max_hit_points`; `combatants` record `t`'s word `+0x10`; `t`'s record of
+record `R` and `combatant_details` record `D`: bytes `+0x12` and `+0x13` (`origin`,
+`gender`) and `max_hit_points`; `combatants` record `t`'s word `+0x10`; `t`'s record of
 `object_slots` and `g_57E0_67B7`.
 
 ## Procedure
@@ -51,22 +51,22 @@ define reincarnate_roll(t, flags):
         return
     let R = combatants[object_slot_combatants[t]]
     let D = combatant_details[R.details_index]
-    let old: UINT16 = D.unk_10[2]
+    let old: UINT16 = D.origin
     loop:
         # roll_sum draws once per pass (RULE-RNG-001)
-        D.unk_10[2] = UINT8(roll_sum(1, 8))
-        if old == 1 or D.unk_10[2] != 1:
+        D.origin = UINT8(roll_sum(1, 8))
+        if old == 1 or D.origin != 1:
             break
     # roll_sum draws once (RULE-RNG-001)
-    D.unk_10[3] = UINT8(roll_sum(1, 2))
-    if D.unk_10[2] == 8:
-        D.unk_10[3] = 2
-        R.unk_08_word_8 = 13
-    else if D.unk_10[2] == 7:
-        D.unk_10[3] = 1
-        R.unk_08_word_8 = 12
+    D.gender = UINT8(roll_sum(1, 2))
+    if D.origin == 8:
+        D.gender = 2
+        R.object_offset = 13
+    else if D.origin == 7:
+        D.gender = 1
+        R.object_offset = 12
     else:
-        R.unk_08_word_8 = UINT16(2 * D.unk_10[2] + D.unk_10[3] - 3)
+        R.object_offset = UINT16(2 * D.origin + D.gender - 3)
     R.hit_points = D.max_hit_points
     R.combat_mark = 1
     flags[0] = flags[0] | 0x02
@@ -77,10 +77,10 @@ define reincarnate_roll(t, flags):
     # all 37 bytes of the slot become 0xFF
     for i in 0..37:
         s[i] = 0xFF
-    fn_31E0_0121(combatants[t].unk_08_word_8 + 300, t, x, y, 0, 7, 0)
+    fn_31E0_0121(combatants[t].object_offset + 300, t, x, y, 0, 7, 0)
 ```
 
-`R.unk_08_word_8` is the word at `+0x10` of the record, bytes 8 and 9 of `unk_08`. The last call
+`R.object_offset` is the word at `+0x10` of the record. The last call
 reads the word from the combatant record numbered `t`, not through `object_slot_combatants`, and
 its result is not used. `+1373` then goes on to the steps after its switch (FND-PARTY-166).
 
@@ -107,6 +107,5 @@ None known.
 - Whether bytes `+0x12` and `+0x13` are the origin and gender (FND-PARTY-070) and word `+0x10` an
   image or object number, what the filled slot and the bit of `g_57E0_67B7` change, and
   what `fn_31E0_0121` places with these arguments (FND-RNG-044, FND-RNG-047, Q-RNG-021).
-- Whether `fn_2D40_3E64`, which this spec has not read, returns the index of `t`'s record of
-  `combatants` here (FND-RNG-047,
-  Q-RNG-021).
+- Whether the record number `fn_2D40_3E64` reads for `t` at `4F49:0C34` (FND-COMBAT-072) is the
+  record `object_slot_combatants` gives here (FND-RNG-047, Q-RNG-021).

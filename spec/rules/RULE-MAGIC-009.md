@@ -33,8 +33,8 @@ more than 1, makes `+1760` return before this step.
 
 ## Inputs
 
-The target's `effect_block`; `combatant_details`: byte `+0x12` (`unk_10[2]` of FMT-COMBAT-002) of
-the caster's details record; `combatants`: byte `+0x15` (`unk_15[0]` of FMT-COMBAT-001) of the
+The target's `effect_block`; `combatant_details`: byte `+0x12` (`origin` of FMT-COMBAT-002) of
+the caster's details record; `combatants`: byte `+0x15` (`combatant_kind` of FMT-COMBAT-001) of the
 target's record through `object_slot_combatants`.
 
 ## Procedure
@@ -43,14 +43,14 @@ target's record through `object_slot_combatants`.
 define kind_9_save_roll(target, caster, mask: UINT16):
     if effect_block(target)[9] & 0x80 == 0 or mask & 0x100 == 0:
         return false  # +1760 goes on to its last step
-    if combatant_details[combatant_details_of(caster)].unk_10[2] != 9:
+    if combatant_details[combatant_details_of(caster)].origin != 9:
         return false
     if UINT8(fn_56A7_0075(target, caster, 38, 6)) == 0:
         return false
     fn_573B_0057(target, 0x4F)
     # roll_sum draws twice (RULE-RNG-001); the total is passed as a word
     let total: UINT16 = roll_sum(2, 6)
-    fn_56A7_0089(caster, target, -1, 0x200, total, 1, 6, combatants[object_slot_combatants[target]].unk_15[0])
+    fn_56A7_0089(caster, target, -1, 0x200, total, 1, 6, combatants[object_slot_combatants[target]].combatant_kind)
     emit CastQueued(target, caster, 308, 6)
     return true  # +1760 returns 0 after its last step
 ```

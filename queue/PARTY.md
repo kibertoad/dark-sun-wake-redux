@@ -286,7 +286,9 @@ Next ID: Q-PARTY-115
   the three words to handles attached by CHAR chunks, FND-PARTY-054 and FND-PARTY-218 give the
   walk order 15, 16, 17, 4 and its field provenance, and FND-PARTY-217 shows the inventory redraw
   reads the merged graph by position byte rather than any head; no reader tells fields 16 and 17
-  apart. Blocks: slice 2.
+  apart. FND-COMBAT-074 tells fields 16 and 17 apart by use: the attack routine takes weapons
+  only from field 17, and the ability rebuild and two spell routines count field 16; what the
+  player sees of each list is still open. Blocks: slice 2.
 - Q-PARTY-097. FMT-PARTY-006: Which screens and actions, other than the recipient transfer, read
   or select the kind-2 field-4 head at `0x0C`, and which list does the player see it as?
   Settles it: the callers that request field 4 of a kind-2 object through the field accessor or

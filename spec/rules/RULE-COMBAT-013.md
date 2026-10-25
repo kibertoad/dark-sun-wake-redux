@@ -28,13 +28,13 @@ The per-round effect routine overlay 195 `+00D1` calls it in three of its steps 
 
 ## Inputs
 
-`combatants`: byte `+0x19` of the record, `unk_19[0]` of FMT-COMBAT-001.
+`combatants`: byte `+0x19` of the record, `strength` of FMT-COMBAT-001.
 
 ## Procedure
 
 ```text
 define byte_19_check(combatant):
-    let b: UINT8 = combatants[combatant].unk_19[0]
+    let b: UINT8 = combatants[combatant].strength
     let chance: INT16 = 0
     if b == 25:
         chance = 99

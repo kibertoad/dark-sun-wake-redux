@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-COMBAT-004, FND-COMBAT-006, FND-COMBAT-007, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-019, FND-COMBAT-020, FND-COMBAT-021, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-026, FND-COMBAT-027]
+evidence: [FND-COMBAT-004, FND-COMBAT-006, FND-COMBAT-007, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-019, FND-COMBAT-020, FND-COMBAT-021, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-026, FND-COMBAT-027, FND-COMBAT-072]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-001, RULE-COMBAT-004, RULE-COMBAT-005, RULE-COMBAT-006, RULE-COMBAT-008, RULE-COMBAT-009]
@@ -16,8 +16,8 @@ related: [RULE-COMBAT-001, RULE-COMBAT-004, RULE-COMBAT-005, RULE-COMBAT-006, RU
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Panel | `RESOURCE.GFF#BMP/19003`, 98 x 32 | None | (215, 4) | `combat_state` is neither 0 nor 1, each time the map view is redrawn | FND-COMBAT-004, FND-COMBAT-006, FND-COMBAT-007, FND-COMBAT-018 |
-| Name | The interface font, in the colours at `57E0:2D14` and `57E0:2D16` | `combatants[b].name`, where `b` is the record `2D40:3E64` gives for `turn_combatant` | centred on the panel at y 6 | With the panel | FND-COMBAT-018, FND-COMBAT-022 |
-| Hit points | The same font | `combatants[b].hit_points` and `combatant_details[a].max_hit_points` with `%d/%d`, or `???/???` when `turn_combatant` is above 4 | centred at y 12 | With the panel | FND-COMBAT-018, FND-COMBAT-019, FND-COMBAT-022 |
+| Name | The interface font, in the colours at `57E0:2D14` and `57E0:2D16` | `combatants[b].name`, where `b` and `a` are the combatant and details records `2D40:3E64` gives for `turn_combatant` | centred on the panel at y 6 | With the panel | FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-072 |
+| Hit points | The same font | `combatants[b].hit_points` and `combatant_details[a].max_hit_points` with `%d/%d`, when `turn_combatant` is 4 or less, `???/???` when it is above 4. The test is on the object number: objects 0 to 4 keep records of their own number and creatures loaded through the free lists are 5 or more | centred at y 12 | With the panel | FND-COMBAT-018, FND-COMBAT-019, FND-COMBAT-022, FND-COMBAT-072 |
 | Condition | The same font | `Okay`, or the `name` of the record of `effect_names` that RULE-COMBAT-009 gives when `combatants[b].combat_mark` is 1 | centred at y 18 | With the panel | FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-027 |
 | Movement | The same font | `movement_tenths[b] / 10`, truncated toward zero, after `Move : ` | centred at y 24 | With the panel | FND-COMBAT-018, FND-COMBAT-019, FND-COMBAT-022 |
 | Damage number | Not known | The damage of a hit, as a white number on a red and black splash | over the figure struck | After a hit | FND-COMBAT-019 |
@@ -67,8 +67,7 @@ None known.
 
 ## Open questions
 
-- What `2D40:3E64` maps a combatant to, why a `turn_combatant` above 4 shows question marks
-  while the value 4 does not, and whether 4 is ever a combatant's number (Q-COMBAT-002).
+- What object 4 holds, and whether it is ever `turn_combatant` (FND-COMBAT-072, Q-COMBAT-042).
 - Where the damage number is drawn from and for how long, what starts and ends a combat, and how
   the turn passes from one combatant to the next (Q-COMBAT-001).
 - Whether the frame FND-COMBAT-020's owner label describes as an enemy moving is the conversation

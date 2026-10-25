@@ -1,20 +1,27 @@
 # COMBAT
 
-Next ID: Q-COMBAT-042
+Next ID: Q-COMBAT-044
 
 ## Static
 
+- Q-COMBAT-042. FMT-COMBAT-001, SCR-COMBAT-001, RULE-AI-001: What does object 4 hold, which
+  loads or scripts put a combatant there, and is it ever `turn_combatant`? Does a creature's own
+  combatant record keep its shared details record from being freed when the creature is released?
+  Settles it: the callers of `2D40:000A` and `31E0:0EFF` that pass object 4, the writers of
+  `57E0:426D`, and the order of the kind-2 and kind-3 releases of `2D40:248D`, with overlay 187
+  `+1B67`, `2D40:0E80` and `2D40:0EB4`. Tried: FND-COMBAT-072 reads the allocators and finds
+  that they never hand out records 0 to 4; RULE-MAGIC-012 already places a summoned creature in
+  object 4; FND-PARTY-119 and FND-UI-047. Blocks: slice 4.
+- Q-COMBAT-043. FMT-COMBAT-001, FMT-COMBAT-002: What do combatant byte `+0x17` (field 9) and
+  details bytes `+0x36` (field 77) and `+0x41` (field 86) hold? Settles it: the scripts that
+  compare field 77, and any reader of field 9 of a kind-2 object. Tried: FND-COMBAT-074 finds no
+  executable reader of any of them and tallies the scripts' uses; FND-PARTY-151, FND-PARTY-152
+  and FND-PARTY-159. Blocks: slice 4.
 - Q-COMBAT-007. RULE-COMBAT-007, RULE-CONFIG-002: What do the 47 script calls of function 21 of
   instruction 0x22 do with the difficulty, and are a saved game's creatures scaled again when it
   loads? Settles it: the listed scripts and the callers of `2D40:000A` on the load-game path.
   Tried: FND-COMBAT-065 finds the enemies' to-hit term; FND-COMBAT-070 reads every executable
   reader of `DS:143A` and the hit point scaling. Blocks: slice 4.
-- Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
-  the two combatant records hold, how many records does each table have, and how does
-  `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks
-  only above 4? Settles it: a reading of `2D40:3E64` and of the code that fills the tables at
-  the far pointers `57E0:19C9` and `57E0:19C5`. Tried: the panel routine and the party buttons
-  (FND-COMBAT-022, FND-COMBAT-023). Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate

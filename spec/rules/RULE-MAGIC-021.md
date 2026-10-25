@@ -4,7 +4,7 @@ title: DATA 203 raises a dead party member on a d100 below 5 times its byte 0x1B
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-AI-004, FND-PARTY-081, FND-COMBAT-023, FND-ACTOR-003, FND-PARTY-013, FND-RNG-041]
+evidence: [FND-RNG-044, FND-RNG-047, FND-PARTY-096, FND-COMBAT-022, FND-COMBAT-052, FND-EXPLORE-001, FND-EXPLORE-002, FND-AI-004, FND-PARTY-081, FND-COMBAT-023, FND-ACTOR-003, FND-PARTY-013, FND-RNG-041, FND-COMBAT-072]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-022]
@@ -33,8 +33,8 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with `DATA` 203 (FND-PART
 
 `combatant_found`, `fn_2D40_3E64` and `combatant_details_of` of `t`; through
 `object_slot_combatants`, `t`'s `combatants` record `R`: `combat_mark`, `hit_points` and byte
-`+0x1B` (`unk_19[2]`); its `combatant_details` record `D`: bytes `+0x12` (`unk_10[2]`) and
-`+0x17` (`unk_10[7]`); `entry_index` of `t`'s record of `object_slots` and `g_57E0_67B7`.
+`+0x1B` (`constitution`); its `combatant_details` record `D`: bytes `+0x12` (`origin`) and
+`+0x17` (`base_scores[2]`); `entry_index` of `t`'s record of `object_slots` and `g_57E0_67B7`.
 
 ## Procedure
 
@@ -44,7 +44,7 @@ define may_raise(t) -> UINT8:
         return 0
     if combatants[fn_2D40_3E64(t)].combat_mark != 7:
         return 0
-    if combatant_details[combatant_details_of(t)].unk_10[2] == 3:
+    if combatant_details[combatant_details_of(t)].origin == 3:
         return 0
     return 1
 
@@ -54,14 +54,14 @@ define raise_roll(t, c, flags):
         return
     let R = combatants[object_slot_combatants[t]]
     let D = combatant_details[R.details_index]
-    let need: INT16 = 5 * (INT16(R.unk_19[2]) - 9) + 70
+    let need: INT16 = 5 * (INT16(R.constitution) - 9) + 70
     # roll_sum draws once (RULE-RNG-001); signed word compare
     if INT16(roll_sum(1, 100)) >= need:
         emit MessageShown("Blew Con roll, permanantly dead")
         R.combat_mark = 8
         return
-    D.unk_10[7] = UINT8(D.unk_10[7] - 1)
-    R.unk_19[2] = UINT8(R.unk_19[2] - 1)
+    D.base_scores[2] = UINT8(D.base_scores[2] - 1)
+    R.constitution = UINT8(R.constitution - 1)
     R.hit_points = 1
     R.combat_mark = 1
     for code in [0x42, 0x44, 0x41, 0x43]:
@@ -98,6 +98,6 @@ None known.
   bit 0x10 of the cleared byte marks, and whether
   byte `+0x1B` is the Constitution score the message names (FND-RNG-044, FND-RNG-047, Q-RNG-021).
 - What `EffectApplied` does in overlay 193 with its arguments (FND-RNG-047, Q-RNG-021).
-- Whether `fn_2D40_3E64`, which this spec has not read, returns the index of `t`'s record of
-  `combatants` here, and what else reads byte `+5` of `g_57E0_67B7`'s entries (FND-RNG-047,
-  Q-RNG-021).
+- Whether the record number `fn_2D40_3E64` reads for `t` at `4F49:0C34` (FND-COMBAT-072) is the
+  record `object_slot_combatants` gives here, and what else reads byte `+5` of `g_57E0_67B7`'s
+  entries (FND-RNG-047, Q-RNG-021).

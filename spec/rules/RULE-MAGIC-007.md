@@ -32,7 +32,7 @@ In `+111A` after the tests FND-PARTY-112 lists have let it go on. The hit routin
 
 ## Inputs
 
-`combatants`: byte `+0x0E` (`unk_08[6]` of FMT-COMBAT-001) of the target's record through
+`combatants`: byte `+0x0E` (`special_attack` of FMT-COMBAT-001) of the target's record through
 `object_slot_combatants`; bytes `+0x17` and word `+1` of `data_record`; `turn_combatant`.
 
 ## Procedure
@@ -44,7 +44,7 @@ define turned_back_roll(target, data_number: INT16, level: UINT8):
     if n < -1:
         negated = true
         n = -n
-    if combatants[object_slot_combatants[target]].unk_08[6] != 13 or n == -1:
+    if combatants[object_slot_combatants[target]].special_attack != 13 or n == -1:
         return false  # +111A goes on to its later tests
     let d = data_record(n)
     if d[0x17] != 0xFF or INT16(d.word(1)) <= -2:

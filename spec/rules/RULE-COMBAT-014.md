@@ -32,8 +32,8 @@ gets -1 as its first word and keeps its second.
 
 ## Inputs
 
-`object_slot_kinds`, `object_slot_combatants`; `combatants`: byte `+0x15` (`unk_15[0]` of
-FMT-COMBAT-001) and byte `+0x1A` (`unk_19[1]`) of the slot's record; the slot's `effect_block`;
+`object_slot_kinds`, `object_slot_combatants`; `combatants`: byte `+0x15` (`combatant_kind` of
+FMT-COMBAT-001) and byte `+0x1A` (`dexterity`) of the slot's record; the slot's `effect_block`;
 `g_4C4F_0006`; the 26 signed bytes of `g_57E0_084C`: 0, -6, -4, -3, -2, -1, 0 for 6 to 15, 1, 2,
 2, 3, 3, 4, 4, 4, 5, 5 (FND-RNG-042).
 
@@ -43,7 +43,7 @@ FMT-COMBAT-001) and byte `+0x1A` (`unk_19[1]`) of the slot's record; the slot's 
 define dexterity_term(slot):
     let score: UINT16 = 9
     if UINT16(slot) < 9999 and object_slot_kinds[slot] == 2 and UINT16(object_slot_combatants[slot]) < 9999:
-        score = combatants[object_slot_combatants[slot]].unk_19[1]
+        score = combatants[object_slot_combatants[slot]].dexterity
     return INT8(g_57E0_084C[score])  # no bound test; above 25 reads the bytes after the table
 
 define order_effect_terms(slot):
@@ -59,7 +59,7 @@ define order_effect_terms(slot):
 
 define set_order_words(slot):
     let c = object_slot_combatants[slot]
-    let bit: UINT16 = 1 << combatants[c].unk_15[0]
+    let bit: UINT16 = 1 << combatants[c].combatant_kind
     let spared = (g_4C4F_0006 == 0 and bit & 0x71 != 0)
         or (g_4C4F_0006 == 1 and bit & 0x184 != 0)
         or (g_4C4F_0006 == 2 and bit & 0x608 != 0)

@@ -38,7 +38,7 @@ When the hit routine overlay 179 `+0D2F` calls `+1373` with one of these `DATA` 
 
 ## Inputs
 
-Through `object_slot_combatants`, `t`'s `combatants` record `R`: `hit_points` and `unk_15[0]`
+Through `object_slot_combatants`, `t`'s `combatants` record `R`: `hit_points` and `combatant_kind`
 (byte `+0x15`); its `combatant_details` record `D`: `max_hit_points`.
 
 ## Procedure
@@ -59,7 +59,7 @@ define hit_point_dice(t, c, n, s, flags, g, u):
         # roll_sum draws three times (RULE-RNG-001)
         amount = roll_sum(3, 8) + 3
     else if n == 166:
-        if R.unk_15[0] != g:
+        if R.combatant_kind != g:
             if s == 0:
                 emit EffectApplied(t, c, n, 0x45, INT32(u), 0)
             flags[0] = flags[0] | 0x01

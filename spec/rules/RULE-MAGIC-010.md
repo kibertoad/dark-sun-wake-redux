@@ -31,7 +31,7 @@ from its own byte at `bp+0x14` (FND-RNG-040).
 
 ## Inputs
 
-The target's `effect_block`; `combatant_details`: byte `+0x12` (`unk_10[2]` of FMT-COMBAT-002) of
+The target's `effect_block`; `combatant_details`: byte `+0x12` (`origin` of FMT-COMBAT-002) of
 the target's details record.
 
 ## Procedure
@@ -48,7 +48,7 @@ define level_spared(target, flag: UINT8):
 define kind_8_spared(slot):
     if not combatant_found(slot):
         return false
-    if combatant_details[combatant_details_of(slot)].unk_10[2] != 8:
+    if combatant_details[combatant_details_of(slot)].origin != 8:
         return false
     if INT16(fn_27E5_0154(slot)) < 7:
         return false

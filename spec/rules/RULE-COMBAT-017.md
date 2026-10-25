@@ -36,8 +36,8 @@ a bit other than 0x10 set (FND-RNG-089).
 
 `effect_block` of `s` and of the source in step 5; `fn_3143_00A8`'s entries and their words
 `g_4E71_024F` and `g_4E71_0251` and bytes `g_4E71_0255` and `g_4E71_0256`; through
-`object_slot_combatants`, the `combatants` records' `combat_mark` and byte `+0x1B` (`unk_19[2]`
-of FMT-COMBAT-001), and `s`'s `combatant_details` byte `+0x12` (`unk_10[2]` of FMT-COMBAT-002);
+`object_slot_combatants`, the `combatants` records' `combat_mark` and byte `+0x1B` (`constitution`
+of FMT-COMBAT-001), and `s`'s `combatant_details` byte `+0x12` (`origin` of FMT-COMBAT-002);
 `combatants` record `s`'s `name`, read by its own number.
 
 ## Procedure
@@ -74,8 +74,8 @@ define effect_round(s):
                 # roll_sum draws once per die (RULE-RNG-001)
                 round_damage(s, g_4E71_024F[e], 0x40, roll_sum(INT16(INT8(g_4E71_0256[e])), 20))
     else if B[12] & 0x10 != 0:
-        R.unk_19[2] = UINT8(R.unk_19[2] - 1)
-        if R.unk_19[2] == 0:
+        R.constitution = UINT8(R.constitution - 1)
+        if R.constitution == 0:
             fn_5671_005C(s, 1000)
         let e = fn_3143_00A8(s, 0x64)
         if g_4E71_0251[e] == 0x122 and s < 4:
@@ -101,7 +101,7 @@ define effect_round(s):
             let e = fn_3143_00A8(s, 0x32)
             if e != -1 and g_4E71_0255[e] < 2:
                 emit EffectRemoved(s, 0x45)
-    if D.unk_10[2] == 0x10 and B[3] & 0x01 != 0:
+    if D.origin == 0x10 and B[3] & 0x01 != 0:
         let e = fn_3143_00A8(s, 0x18)
         let v = g_4E71_024F[e]
         let eaten = combatants[object_slot_combatants[v]].combat_mark >= 3
