@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-035
+Next ID: Q-RNG-036
 
 ## Static
 
@@ -100,12 +100,13 @@ Next ID: Q-RNG-035
   FND-RNG-070 find the end of combat leaving 9999 until a leader key, and FND-RNG-073 finds no
   direct store of 9999 in `DS:426D`, `DS:0DA5` or `4C13:0369`. Blocks: complete seed-source
   reading.
-- Q-RNG-033. RULE-RNG-001: What does `28C9:1EDB` store when `DS:426D` is 9999 and combat is off?
-  Settles it: a reading of `28C9:1EDB` with record 9999 (the bytes at `DS:0CE6`, or `0xFF` after
-  FND-RNG-068's step 4) and the entry `4F49:0C33 + 3 × 9999`, each store shown to miss the clock
-  conversion's windows (Q-RNG-005) or listed with what it writes. Tried: FND-RNG-073 finds that it
-  goes on with 9999 when combat is off; FND-RNG-067's 40 s watch saw no window change from it.
-  Split from Q-RNG-031. Blocks: complete seed-source reading.
+- Q-RNG-035. RULE-RNG-001: Does overlay 173 `+059A`, called by `28C9:1EDB` with combat word 0 and
+  `DS:426D` at 9999 on every pass after record 9999 is filled with `0xFF`, write the clock
+  conversion's windows? Settles it: a reading of its search from `+06E0` (the near routine at
+  `+1098`) and its end-of-combat path from `+071B` with their callees, each store shown to miss the
+  windows (Q-RNG-005) or listed with what it writes. Tried: FND-RNG-074 finds `28C9:1EDB` calling
+  it after the fill; FND-RNG-075 sees it return 0 about 15 times a second with no window change
+  beyond the link store. Blocks: complete seed-source reading.
 - Q-RNG-034. RULE-RNG-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it: the table at
   `52A2:0030` with its count, the far table at `DS:67B7` and the bitmap at `52A2:0000`, read to show
   whether a placed record can name slot 9999 with its bit set, and what `2D40:10AE` returns for

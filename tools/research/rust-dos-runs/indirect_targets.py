@@ -2,6 +2,7 @@
 
 Usage: python indirect_targets.py <source-run> <state> <new-run-name> <ms> <site> [<site> ...]
            [--clicks inputs.json] [--read SEG:OFF:LEN ...] [--watch SEG:OFF:LEN ...]
+           [--count SEG:OFF ...] [--count-from MS]
 
 The inputs file lists {at_ms, x, y, button} pointer inputs (button left, right or none for a
 move) and {at_ms, key} key presses. Restores checkpoint <state> of captures/rust-dos-regenerated/<source-run> in a new owned session,
@@ -15,7 +16,10 @@ as static ones. Each --read reads LEN bytes at the static address SEG:OFF once a
 and once at the end, and records them in hexadecimal. Each --watch covers LEN bytes at the static
 address SEG:OFF with watchpoints of up to 4 bytes, which stop after an instruction changes them,
 and records each change with the static address of the code that made it, when that is in the
-load image, or else with the 16 bytes before the stop. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
+load image, or else with the 16 bytes before the stop. Each --count sets a breakpoint that stays
+armed at the static load-image address SEG:OFF and records how often it is reached, with the run
+time of its first and last hit, up to 50 hits; --count-from arms those breakpoints only once the
+run reaches MS, after the restore. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
 written to the game's memory.
 """
 import json
@@ -58,7 +62,16 @@ def operand_address(insn, regs):
 
 def main():
     args = sys.argv[1:]
-    clicks, reads, watches = [], [], []
+    clicks, reads, watches, counts, count_from = [], [], [], {}, 0
+    if "--count-from" in args:
+        i = args.index("--count-from")
+        count_from = int(args[i + 1])
+        del args[i:i + 2]
+    while "--count" in args:
+        i = args.index("--count")
+        seg, off = (int(x, 16) for x in args[i + 1].split(":"))
+        counts[(seg, off)] = None
+        del args[i:i + 2]
     while "--watch" in args:
         i = args.index("--watch")
         seg, off, length = (int(x, 16) for x in args[i + 1].split(":"))
@@ -134,7 +147,8 @@ def main():
         return f"{s:04X}" if 0x1000 <= s < 0x1000 + load_paragraphs else None
 
     report = {"source_run": args[0], "state": args[1], "duration_ms": duration, "clicks": clicks,
-              "delta": f"{delta & 0xFFFF:04X}", "sites": [], "changes": []}
+              "delta": f"{delta & 0xFFFF:04X}", "sites": [], "changes": [], "counts": {}}
+    counted = {f"{(seg + delta) & 0xFFFF:04X}:{off:04X}": f"{seg:04X}:{off:04X}" for seg, off in counts}
 
     def record():
         report["sites"] = [{k: v for k, v in e.items() if k != "insn"} for e in by_address.values()]
@@ -157,8 +171,19 @@ def main():
             watched[address] = (f"{seg:04X}:{off:04X}", length, s.client.read_memory(address, length).data)
         for address in by_address:
             s.client.set_breakpoint(address, once=False)
+        armed = []
+        if not count_from:
+            for address in counted:
+                s.client.set_breakpoint(address, once=False)
+            armed.append(True)
 
         def run_to(target_ms):
+            if not armed and counted and target_ms > start_ms + count_from:
+                if int(s.stop["emu_ns"]) // 1000000 < start_ms + count_from:
+                    run_to(start_ms + count_from)
+                for address in counted:
+                    s.client.set_breakpoint(address, once=False)
+                armed.append(True)
             while True:
                 ob, exhausted = wait_for_stop(s, s.continue_(until_ms=target_ms))
                 if exhausted:
@@ -179,6 +204,14 @@ def main():
                                 "code_before": (None if static_of(cs) else s.client.read_memory(
                                     f"{cs:04X}:{(ip - 16) & 0xFFFF:04X}", 16).data.hex())})
                             watched[address] = (name, length, new)
+                    continue
+                if stop.get("reason") == "breakpoint" and stop.get("cs_ip") in counted:
+                    now = int(stop["emu_ns"]) // 1000000 - start_ms
+                    c = report["counts"].setdefault(counted[stop["cs_ip"]], {"hits": 0, "first_ms": now})
+                    c["hits"] += 1
+                    c["last_ms"] = now
+                    if c["hits"] >= 50:
+                        s.client.remove_breakpoints(stop["cs_ip"])
                     continue
                 e = by_address.get(stop.get("cs_ip"))
                 if stop.get("reason") != "breakpoint" or e is None:
@@ -230,7 +263,7 @@ def main():
         record()
     print(json.dumps({"sites": {e["site"]: {"hits": e["hits"], "targets": list(e["targets"])}
                                 for e in by_address.values()},
-                      "changes": len(report["changes"])}), flush=True)
+                      "counts": report["counts"], "changes": len(report["changes"])}), flush=True)
 
 
 if __name__ == "__main__":
