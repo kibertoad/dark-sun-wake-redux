@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-226, FND-UI-061, FND-COMBAT-025]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-226, FND-UI-061, FND-UI-062, FND-COMBAT-025]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -130,8 +130,8 @@ None known.
 
 - Which image and colours the game draws: the textured areas of the captures differ from
   `BMP/13001` under `PAL/1000` (FND-UI-021, Q-UI-004).
-- What Split does with a full backpack, where the handler's failure test never holds and it
-  asks to draw logical position 259 (FND-UI-061, Q-UI-024).
+- What Split shows with a full backpack, where the handler's failure test never holds and the
+  slot draw reads past the end of the position map (FND-UI-061, FND-UI-062, Q-UI-024).
 - Which slot clicks of an open pouch or chest view close it, given that the handler pairs the
   two slot groups with the opposite flags to the ones overlay 175 registers them with
   (FND-UI-061, FND-EXE-598, Q-UI-025).
