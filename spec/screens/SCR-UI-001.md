@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-024, FND-UI-035, FND-UI-059, SRC-YOUTUBE-FLOMVOSHEOM, SRC-MANUAL-1994]
+evidence: [FND-UI-024, FND-UI-035, FND-UI-059, FND-UI-067, SRC-YOUTUBE-FLOMVOSHEOM, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006, SCR-UI-002, SCR-UI-013]
@@ -30,7 +30,7 @@ child positions; their first frames are listed here.
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Start game | (94, 70, 127, 12) | Always | Blinks the button three times, fades to black, closes the window, shows the loading picture and enters the game with the party the game supplies (RULE-PARTY-006) and 5000 money. | FND-UI-024, FND-UI-035, FND-UI-059, SRC-MANUAL-1994 |
+| Start game | (94, 70, 127, 12) | Always | Blinks the button three times, fades to black, closes the window, shows the loading picture and enters the game with the party the game supplies (RULE-PARTY-006) and 5000 money. When box 0 holds a stored character with the identifier `0x8300`, it then opens SCR-UI-002 on that character. | FND-UI-024, FND-UI-035, FND-UI-059, FND-UI-067, SRC-MANUAL-1994 |
 | Create characters | (50, 87, 220, 12) | Always | Blinks the button three times, closes the window and opens SCR-UI-002. | FND-UI-024, FND-UI-035, FND-UI-059, SRC-MANUAL-1994, SRC-YOUTUBE-FLOMVOSHEOM |
 | Load saved game | (64, 104, 192, 12) | Always | Blinks the button three times, closes the window and opens SCR-UI-013 in load mode. | FND-UI-024, FND-UI-035, FND-UI-059 |
 | Exit to DOS | (92, 120, 127, 12) | Always | Blinks the button three times, fades to black, closes the window and ends the program. | FND-UI-024, FND-UI-035, FND-UI-059 |
@@ -65,7 +65,5 @@ None known.
   playthrough of an unknown release; no record or code gives it (FND-UI-024, Q-UI-003).
 - Which frame of each icon the game shows when a button is pointed at, pressed or unavailable,
   given that three icons have a 1 x 1 third frame (FND-UI-024, Q-UI-013).
-- When Start Game opens the character window instead of entering play, which it does when the
-  record at `DS:19C9` has the identifier `0x8300` and the region is 50 (FND-UI-059, Q-UI-021).
 - Whether the title picture and palette shown before this window change when it opens
   (Q-UI-004).

@@ -131,12 +131,6 @@ Next ID: Q-UI-026
   with those values and finds the span from +12FF to `0x05DC` running no callback or trigger
   script and writing the DAC only at `0x0000` and `0x05DC`, while the walk before +12FF reaches the
   script runners only through declared hook targets. Blocks: nothing yet.
-- Q-UI-021. SCR-UI-001: When does Start Game jump to the character window? Settles it: the
-  writers of word `+6` of the record at the far pointer `DS:19C9` and of `DS:140C` that can make
-  them `0x8300` and `0x32` when the start window's Start Game branch runs, and what the jump to
-  overlay 212 `+061C` then shows. Tried: split from Q-UI-015. FND-UI-059 reads the test and the
-  jump; `0x8300` is the identifier of `CHARSAVE.GFF#CHAR/33` and `/53` (FND-PARTY-050). Blocks:
-  nothing yet.
 
 ## Emulated call
 
