@@ -1,21 +1,22 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-008
+Next ID: Q-EXPLORE-010
 
 ## Static
 
-- Q-EXPLORE-001. RULE-EXPLORE-001, RULE-INPUT-001: What does `g_57E0_0DAB` hold, does the mouse
-  setup run after the video mode's word is stored, and does `fn_3D72_0D83` change the view words?
-  Settles it: the stores to `DS:0DAB`, the order of `39D1:0009` against
-  the mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads
-  the band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Tried:
-  FND-EXPLORE-007 finds the loop unpaced (50 passes in 88 ms idle, about 24 a second while
-  scrolling) and only three steps in 1.5 s with the pointer on the edge, with `DS:0DA8`,
-  `DS:0DAB` and `DS:0D9C` unchanged. Tried: FND-EXPLORE-009 finds the other passes reading
-  column 160 from the emulated mouse driver with no position set by the game, so the step rate
-  measured there is the emulator's; the loop's pacing and why the other passes did not step are
-  removed from Settles it. Tried: FND-EXPLORE-010 finds `DS:0DA8` 1 in the load image and only
-  cleared, which removes it from the item. Blocks: slice 3.
+- Q-EXPLORE-001. RULE-EXPLORE-001, RULE-INPUT-001: What does `g_57E0_0DAB` hold? Settles it: the
+  stores to `DS:0DAB` (`28C9:252A` with its two callers in overlay 204, and the six direct stores in
+  overlay 182), each placed in its routine with the value it stores, and the readers' tests of its
+  values 0 to 5. Tried: FND-EXPLORE-006, FND-EXPLORE-007, FND-EXPLORE-009 and FND-EXPLORE-010 read
+  the edge-scroll pass, its pass rate and `DS:0DA8`, which leave this word; split into
+  Q-EXPLORE-008 and Q-EXPLORE-009. Blocks: slice 3.
+- Q-EXPLORE-008. RULE-EXPLORE-001: Does the mouse setup run after the video mode's word is stored,
+  which the 320 by 200 range of the pointer depends on? Settles it: the order of `39D1:0009`
+  against the mode setter's call with 0x0113 in startup. Tried: split from Q-EXPLORE-001;
+  FND-EXPLORE-006 and FND-CONFIG-158 give the range and the setup. Blocks: slice 3.
+- Q-EXPLORE-009. RULE-EXPLORE-001: Does `fn_3D72_0D83`, which the edge-scroll pass calls first while
+  `pointer_mode` is 5, change the view words? Settles it: a reading of `3D72:0D83` from entry to
+  return. Tried: split from Q-EXPLORE-001; FND-EXPLORE-006 finds the call. Blocks: slice 3.
 - Q-EXPLORE-002. RULE-EXPLORE-003, FMT-COMBAT-002: Which slots are of kind 2, what values does the
   details byte `footprint` take, what does `25AF:02FA` decide from a cell's bits 0 to 2, and what
   is the object numbered 430? Settles it: the writers of `4F49:0C33`, the code that fills the

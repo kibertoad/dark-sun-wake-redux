@@ -150,6 +150,7 @@ None known.
 ## Open questions
 
 - Whether the mouse setup runs after the video mode's word is stored, which the 320 by 200 range
-  depends on, and whether `fn_3D72_0D83`, which runs first while `pointer_mode` is 5, changes the
-  view words (Q-EXPLORE-001).
+  depends on (Q-EXPLORE-008).
+- Whether `fn_3D72_0D83`, which runs first while `pointer_mode` is 5, changes the view words
+  (Q-EXPLORE-009).
 - What `g_57E0_0DAB` holds beyond being 1 whenever edge scrolling and `H` act (Q-EXPLORE-001).
