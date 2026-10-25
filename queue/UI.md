@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-024
+Next ID: Q-UI-026
 
 ## Static
 
@@ -77,12 +77,6 @@ Next ID: Q-UI-024
   selects and the offsets it adds to the box's position. Tried: split from Q-UI-002.
   FND-UI-005 gives the record's fields; no reading of its draw routine has been made. Blocks:
   nothing yet.
-- Q-UI-017. SCR-UI-008: What do the inventory window's controls do? Settles it: the event
-  branches of overlay 189's handler `+0559` for each control of `WIND/13500`, among them the two
-  42 x 12 buttons at the right and the buttons at (235, 159) and (277, 159). Tried: split from
-  Q-UI-002. FND-UI-030 lists the window's controls, and FND-PARTY-217 links the inventory
-  opener's request for `WIND/13500` to `+0559` and reads the redraw's position projection; the
-  handler's other branches remain. Blocks: nothing yet.
 - Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
@@ -151,6 +145,16 @@ Next ID: Q-UI-024
   overlay 190 `+139B` does for F4, F5, F6 and `A` while Preferences is open, including any message
   window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-060
   finds the dispatcher drawing nothing after `+139B` returns. Blocks: nothing yet.
+- Q-UI-024. SCR-UI-008, RULE-ITEM-002: What does Split do when the backpack is full? Settles it:
+  what overlay 189 `+1688` and `+1AD7` do when the handler passes logical position 259 after
+  `+3139` returns 0xFF, including the memory `+1AD7` reads at that index. Tried: split from
+  Q-UI-017. FND-UI-061 finds the failure test comparing a zero-extended byte with -1. Blocks:
+  nothing yet.
+- Q-UI-025. SCR-UI-008: Which clicks on an open pouch or chest view close it? Settles it: a
+  reading of overlay 175 `+131D`, `+16ED` and `+172A` against the inventory handler's kind-5 test,
+  settling which of `DS:6187` and `DS:6188` goes with frames 11248 to 11253, and the event words
+  `0x20` and `0x80`. Tried: split from Q-UI-017. FND-UI-061 and FND-EXE-598 pair them oppositely.
+  Blocks: nothing yet.
 
 ## Emulated call
 
