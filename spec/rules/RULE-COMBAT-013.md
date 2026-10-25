@@ -4,7 +4,7 @@ title: A combatant passes a d100 check unless it rolls below a chance its record
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-039, FND-COMBAT-052, FND-COMBAT-022]
+evidence: [FND-RNG-089, FND-COMBAT-052, FND-COMBAT-022]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-COMBAT-012]
@@ -19,7 +19,7 @@ less 14 for 19 to 23 and for 26 or more, 95 for 24 and 99 for 25.
 
 ## When it runs
 
-The per-round effect routine overlay 195 `+00D1` calls it in three of its steps (FND-RNG-039).
+The per-round effect routine overlay 195 `+00D1` calls it in three of its steps (FND-RNG-089).
 
 ## Parameters
 
@@ -81,4 +81,4 @@ None known.
 ## Open questions
 
 - What byte `+0x19` holds, and what each of the three steps that call the check does with 0 and
-  1 (FND-RNG-039, Q-COMBAT-027).
+  1 (FND-RNG-089, Q-COMBAT-027).

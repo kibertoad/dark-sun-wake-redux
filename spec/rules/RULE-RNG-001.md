@@ -4,7 +4,7 @@ title: The game's random number generator and its reductions
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059, FND-RNG-060, FND-RNG-061, FND-RNG-062, FND-RNG-063]
+evidence: [FND-RNG-001, FND-RNG-002, FND-RNG-011, FND-RNG-012, FND-RNG-013, FND-RNG-006, FND-SCRIPT-011, FND-RNG-009, FND-RNG-027, FND-RNG-028, FND-RNG-029, FND-RNG-032, FND-RNG-044, FND-RNG-035, FND-RNG-089, FND-RNG-040, FND-RNG-041, FND-RNG-043, FND-RNG-045, FND-RNG-046, FND-RNG-047, FND-RNG-048, FND-RNG-049, FND-RNG-050, FND-RNG-052, FND-RNG-053, FND-RNG-054, FND-RNG-055, FND-RNG-056, FND-RNG-057, FND-RNG-058, FND-RNG-059, FND-RNG-060, FND-RNG-061, FND-RNG-062, FND-RNG-063]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-005, RULE-MAGIC-005, RULE-MAGIC-006, RULE-AI-003, RULE-COMBAT-012, RULE-COMBAT-013, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-011, RULE-MAGIC-012, RULE-MAGIC-013, RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-016, RULE-MAGIC-017, RULE-MAGIC-018, RULE-MAGIC-019, RULE-MAGIC-020, RULE-MAGIC-021, RULE-MAGIC-022, RULE-SCRIPT-012, RULE-COMBAT-017, RULE-MAGIC-023]
@@ -66,7 +66,7 @@ the hit routine applies them, which RULE-COMBAT-010 takes. FND-RNG-044 reads ove
 nineteen `roll_sum` sites, the dice of the hit routine's per-`DATA` effects, whose rule entries
 RULE-MAGIC-016 to RULE-MAGIC-022 are, from FND-RNG-047's reading of every path through them. FND-RNG-035 reads seven more, in overlays 191, 193, 198, 204 and 211: three
 d20 item tests, a `DATA` record's dice formula by level, a one-in-four spell-use test, a copy of
-the saving throw roll and a d20 turning test, and FND-RNG-039 overlay 195's ten: a d10 confusion
+the saving throw roll and a d20 turning test, and FND-RNG-089 overlay 195's ten: a d10 confusion
 table, a side roll, a d100 test and the dice of per-round effect damage. RULE-MAGIC-005 takes the
 dice formula, RULE-MAGIC-006 the d20 test of `DATA` 306 and RULE-AI-003 the spell-use test,
 RULE-COMBAT-012 the d10 table, RULE-COMBAT-013 the d100 test and RULE-ITEM-007, RULE-ITEM-008
@@ -107,7 +107,7 @@ truncated quotient times b, so the remainder has the dividend's sign.
 Word casts retain low 16 bits;
 INT16 interprets that word as signed, and UINT16 as its unsigned bit value.
 The roll total is a returned word; each caller's width and signedness are
-recorded with its site (FND-RNG-043, FND-RNG-044, FND-RNG-035, FND-RNG-039, FND-RNG-040), rather than an unbounded default integer.
+recorded with its site (FND-RNG-043, FND-RNG-044, FND-RNG-035, FND-RNG-089, FND-RNG-040), rather than an unbounded default integer.
 
 ```text
 # draw() is the generator: it sets

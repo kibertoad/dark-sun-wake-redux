@@ -4,7 +4,7 @@ title: When the hit routine's byte flag is set, a target of details kind 8 and l
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-PARTY-081, FND-COMBAT-022, FND-EXPLORE-002, FND-RNG-039, FND-COMBAT-023]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-PARTY-081, FND-COMBAT-022, FND-EXPLORE-002, FND-RNG-089, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -80,4 +80,4 @@ None known.
 - Whether `+314E` is reached other than from `+0E8F`: its trampoline has no direct caller, and no
   computed call was searched for (FND-RNG-040, Q-MAGIC-008).
 - What `fn_27E5_0154`'s level counts beyond FND-PARTY-081's reading, and what the bytes of
-  `effect_block` stand for (FND-PARTY-081, FND-RNG-039, Q-MAGIC-008).
+  `effect_block` stand for (FND-PARTY-081, FND-RNG-089, Q-MAGIC-008).

@@ -4,7 +4,7 @@ title: A target with bit 0x40 of its effect block byte 5 blocks a DATA record wh
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-RNG-044, FND-RNG-039]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-RNG-044, FND-RNG-089]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -74,4 +74,4 @@ None known.
 
 - What bit 0x40 of block byte 5, the value overlay 208 `+0885` gives (`fn_57A6_0020`), code 0x2E
   of overlay 193 `+1AA4` (`fn_573B_0057`) and `DATA` 307 stand for (FND-RNG-040, Q-MAGIC-008).
-- What the bytes of `effect_block` stand for (FND-PARTY-112, FND-RNG-039, Q-MAGIC-008).
+- What the bytes of `effect_block` stand for (FND-PARTY-112, FND-RNG-089, Q-MAGIC-008).

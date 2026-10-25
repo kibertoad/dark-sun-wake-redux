@@ -4,7 +4,7 @@ title: At fight set-up each combatant gets an order word of a d10 plus a dexteri
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-041, FND-RNG-042, FND-PARTY-244, FND-PARTY-166, FND-COMBAT-036, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-022, FND-PARTY-112, FND-RNG-039, FND-ACTOR-005, FND-COMBAT-052]
+evidence: [FND-RNG-041, FND-RNG-042, FND-PARTY-244, FND-PARTY-166, FND-COMBAT-036, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-022, FND-PARTY-112, FND-RNG-089, FND-ACTOR-005, FND-COMBAT-052]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-COMBAT-012]

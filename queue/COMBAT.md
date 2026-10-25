@@ -4,18 +4,6 @@ Next ID: Q-COMBAT-036
 
 ## Static
 
-- Q-COMBAT-034. BUG-COMBAT-001: What does each repeated pass of overlay 173 `+059A` with combat
-  word 0 change that the player sees? Settles it: a reading of the round step `+0C65` (its slot
-  loop from `+0CB6`, `371D:0334` and overlay 195 `+0AAD` and `+0A98`) and of the end-of-combat
-  sequence from `+078D` with its callees, listing the state each changes per pass with no
-  combatant kept. Tried: FND-RNG-076 reads the path up to these calls; FND-RNG-077 sees
-  `4C13:035B` rise by 60 on each pass. Tried: FND-COMBAT-056 compares memory 3 s after the click
-  with a run without it, and finds the owner word of 21 slot records going from 1 to 0 and byte
-  `+1` of six records going down by 1 among the changes, with no code located. Tried:
-  FND-COMBAT-057 counts and watches the passes: `2D40:2F34` gets 9999 only once, each pass calls
-  `2D40:3D4C(0, 1)` from overlay code at run address `61B2:1870`, slot record 21's owner word and
-  `4C13:0373` flip on each pass, and the record bytes change only twice in 2.7 s. Blocks:
-  BUG-COMBAT-001's symptom.
 - Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
   and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,
   FND-RNG-073: overlay 182's four, overlay 190's three, `28C9:1EDB` and `28C9:305F` with
@@ -258,11 +246,11 @@ Next ID: Q-COMBAT-036
   `effect_block` stand for, which code sets bit 0x100 of a word in `g_4C4F_01D8`, and what do
   `g_4E71_0AC6` and record byte `+0x15` hold? Settles it: a reading of overlay 173 `+1238` past
   its store to `DS:420C`, of the writers of the three bits and of bit 0x100, and of the readers
-  of byte `+0x15` and `g_4E71_0AC6`. Tried: FND-RNG-039 reads overlay 195 `+000E` and its caller
+  of byte `+0x15` and `g_4E71_0AC6`. Tried: FND-RNG-089 reads overlay 195 `+000E` and its caller
   up to the store. Blocks: slice 4.
 - Q-COMBAT-027. RULE-COMBAT-013: What does record byte `+0x19` hold, and what does each of the
   three steps of overlay 195 `+00D1` that call `byte_19_check` do with 0 and 1? Settles it: a
-  reading of the writers of byte `+0x19` and of the three steps past each call. Tried: FND-RNG-039
+  reading of the writers of byte `+0x19` and of the three steps past each call. Tried: FND-RNG-089
   reads `+152F` and names the three steps. Blocks: slice 4.
 - Q-COMBAT-028. RULE-COMBAT-014: Which groups do the masks 0x71, 0x184 and 0x608 name, what do
   script request 25's values 7 and 11 and the byte at `DS:054E` do, and does a combatant that has
@@ -305,7 +293,14 @@ None.
 
 ## Agent run
 
-None.
+- Q-COMBAT-034. BUG-COMBAT-001: In the repeated passes, which code stores 0 in slot record 21's
+  word `+0` (`1000:3F9C`), and does overlay 173 `+0C65` take its initiative branch with its two
+  draws of `1000:0822` per slot? Settles it: a run in the bug state counting, per pass, calls of
+  `2D40:03C1` with their argument, `31E0:05BB`, overlay 197 `+29E0`, `1000:0822` and overlay 173
+  `+0E99`. Tried: FND-COMBAT-056 and FND-COMBAT-057 see the record flip and no change in `4C4F`;
+  FND-COMBAT-060 reads the whole pass statically, finds the 0 to 1 store at overlay 188 `+186B`
+  and names `2D40:03C1` as the only fill of a low slot's walk record found. Blocks:
+  BUG-COMBAT-001's symptom.
 
 ## Live session
 

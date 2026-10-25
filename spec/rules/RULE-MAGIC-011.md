@@ -4,7 +4,7 @@ title: Check 4 of overlay 197 +1A94 passes a slot at once, or on a d100 below it
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-081, FND-PARTY-083, FND-PARTY-057, FND-COMBAT-023, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-112, FND-RNG-039]
+evidence: [FND-RNG-040, FND-PARTY-081, FND-PARTY-083, FND-PARTY-057, FND-COMBAT-023, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-112, FND-RNG-089]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -83,4 +83,4 @@ None known.
 - What overlay 172 and overlay 211 do with the result, what the block bits, word `+0x0E` and
   `g_4C4F_00B2` stand for, and which slots the callers pass (FND-RNG-040, Q-MAGIC-010).
 - What `fn_27E5_00C1` returns beyond FND-PARTY-081's reading, and what the bytes of
-  `effect_block` stand for (FND-PARTY-081, FND-RNG-039, Q-MAGIC-010).
+  `effect_block` stand for (FND-PARTY-081, FND-RNG-089, Q-MAGIC-010).

@@ -4,7 +4,7 @@ title: At the start of its round a combatant's effect block picks one of four ho
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-049, FND-RNG-039, FND-PARTY-102, FND-PARTY-099, FND-PARTY-112, FND-RNG-040, FND-RNG-041, FND-RNG-044, FND-RNG-047, FND-PARTY-086, FND-PARTY-096, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025]
+evidence: [FND-RNG-049, FND-RNG-089, FND-PARTY-102, FND-PARTY-099, FND-PARTY-112, FND-RNG-040, FND-RNG-041, FND-RNG-044, FND-RNG-047, FND-PARTY-086, FND-PARTY-096, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-012, RULE-COMBAT-013, RULE-COMBAT-005, RULE-RNG-001]
@@ -25,8 +25,8 @@ for effect 0x6F hits of 8 and then 2d4 on the effect's source while the source h
 
 ## When it runs
 
-Overlay 173 `+0C65` calls it for a slot when overlay 173 `+2EC7` of the slot returns a value with
-a bit other than 0x10 set (FND-RNG-039).
+Overlay 173 `+1098`, which picks the combatant to act, calls it for a slot when overlay 173 `+2EC7` of the slot returns a value with
+a bit other than 0x10 set (FND-RNG-089).
 
 ## Parameters
 
@@ -189,4 +189,4 @@ None known.
   `fn_3143_00A8` returns beyond an entry number or -1, what `fn_573B_0052` and `fn_573B_0057`
   return and do, what `fn_5671_005C` does with 1000 beyond the damage, what the saving throw
   `fn_56A7_0075` adds through overlay 197, and what `EffectApplied` and `EffectRemoved` do in
-  overlay 193 (FND-RNG-039, FND-RNG-049, Q-COMBAT-033).
+  overlay 193 (FND-RNG-089, FND-RNG-049, Q-COMBAT-033).

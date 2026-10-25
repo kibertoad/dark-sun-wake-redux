@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unintended
 player_reliance: unknown
-evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059]
+evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176, FND-COMBAT-058, FND-COMBAT-059, FND-COMBAT-060]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -25,6 +25,12 @@ each pass. A leader key does not end this; it went on for the 17 s observed. The
 moves the view back to where it was before any scrolling, and the view otherwise stays as it was;
 the steps pause while the right button holds the pointer in another mode and go on when it
 returns to the first one (FND-COMBAT-059).
+
+Each pass also ends every maintained psionic power after charging its upkeep once, effect `0x45`
+on the party and the effects the end of a fight removes; makes timed effect ends come due about
+600 times faster through the extra 60; stops the sample playing; drops queued keys and clicks;
+stalls while the left button is held; and puts creatures from slot 5 up back on their fight-start
+walk records (FND-COMBAT-060).
 
 ## Trigger conditions
 
@@ -79,5 +85,6 @@ None known.
   `4C13:0369` (FND-RNG-087, Q-RNG-031, Q-RNG-037, Q-RNG-038), and whether `31E0:2C86` can pass 9999, which needs a placed-object entry naming slot 9999
   (FND-RNG-085, FND-RNG-086, Q-RNG-034). Overlay 173 `+059A`
   stores 9999 only when it ends combat (FND-RNG-078, FND-PARTY-089).
-- What the repeated round step and end-of-combat sequence change that the player sees
-  (Q-COMBAT-034), and what can end the state once the leader keys are refused (Q-COMBAT-035).
+- Which code clears slot record 21's word `+0` on each pass, and whether the round step draws
+  random numbers in this state (FND-COMBAT-060; Q-COMBAT-034); and what can end the state once the
+  leader keys are refused (Q-COMBAT-035).

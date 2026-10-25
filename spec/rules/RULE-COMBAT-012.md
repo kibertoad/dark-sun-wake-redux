@@ -4,7 +4,7 @@ title: A combatant flagged in the turn word rolls a d10 that lets it act, holds 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-039, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-112]
+evidence: [FND-RNG-089, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-022, FND-PARTY-112]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-COMBAT-013]
@@ -17,14 +17,14 @@ gets a result from `confusion_roll`. Bit 0x08 of byte 4 of its effect block give
 with bit 0x80 of byte 0 the combatant gets a random side byte at once; with bit 0x20 of byte 2 it
 rolls a d10, where 1 gives 1, 2 to 6 give 0, 7 to 9 give the random side byte and 10 gives 2; and
 with neither bit it gets 2. The random side byte is a d2 stored in byte `+0x15` of its record,
-with -1 stored in its second turn word, and gives the result 7. FND-RNG-039 reads the d10 as a
+with -1 stored in its second turn word, and gives the result 7. FND-RNG-089 reads the d10 as a
 confusion table.
 
 ## When it runs
 
 The turn routine overlay 173 `+1238` calls it for the combatant whose turn it is, when
 `2D40:3E64` finds it and bit 0x100 of its word in `g_4C4F_01D8` is set, and stores the result as
-a word in `DS:420C` (FND-RNG-039).
+a word in `DS:420C` (FND-RNG-089).
 
 ## Parameters
 
@@ -84,4 +84,4 @@ None known.
 
 - What the results 0, 1, 2 and 7 make the turn routine do, what the bits of `effect_block` and
   the words of `g_4C4F_01D8` and `g_4E71_0AC6` stand for, which code sets bit 0x100, and what
-  byte `+0x15` of the record holds (FND-RNG-039, Q-COMBAT-026).
+  byte `+0x15` of the record holds (FND-RNG-089, Q-COMBAT-026).
