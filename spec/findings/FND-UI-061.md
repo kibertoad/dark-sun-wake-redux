@@ -1,9 +1,9 @@
 ---
 id: FND-UI-061
 title: The inventory handler casts a pending spell on a clicked character box, gives the held item on a right click, otherwise switches character, drops, splits, pages and sells through four buttons, closes an open container view on its frame events, and passes the other buttons and keys to overlay 190
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-UI-063]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

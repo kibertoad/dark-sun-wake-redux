@@ -51,7 +51,7 @@ number under `DS:19C1`, reads that record's word `+0x0C` and goes on to draw.
 
 `444C:00FA` asks the allocator for one byte more than its argument (FND-EXE-293), so the map is
 a 97-byte request holding the 48 words that FND-PARTY-217's fills cover. The Split branch of the
-inventory handler passes 259 when the backpack has no free position (FND-UI-061). `+1AD7` then
+inventory handler passes 259 when the backpack has no free position (FND-UI-063). `+1AD7` then
 reads the word 518 bytes from the map's start, 421 bytes past the end of the request, in heap
 memory nothing in the map's code writes. When that word is not 0xFFFF, the routine draws the
 item of whatever graph entry it names, at the place `3F96:01A6` gives for frame 11471, a number

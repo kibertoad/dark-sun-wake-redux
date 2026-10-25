@@ -145,11 +145,6 @@ Next ID: Q-UI-026
   overlay 190 `+139B` does for F4, F5, F6 and `A` while Preferences is open, including any message
   window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-060
   finds the dispatcher drawing nothing after `+139B` returns. Blocks: nothing yet.
-- Q-UI-025. SCR-UI-008: Which clicks on an open pouch or chest view close it? Settles it: a
-  reading of overlay 175 `+131D`, `+16ED` and `+172A` against the inventory handler's kind-5 test,
-  settling which of `DS:6187` and `DS:6188` goes with frames 11248 to 11253, and the event words
-  `0x20` and `0x80`. Tried: split from Q-UI-017. FND-UI-061 and FND-EXE-598 pair them oppositely.
-  Blocks: nothing yet.
 
 ## Emulated call
 
@@ -161,7 +156,7 @@ None.
   a run from a state with a member's backpack positions 14 to 25 all taken and a stack of
   quantity above 1 held, clicking Split, with the word 518 bytes into the block at `DS:617D`, the
   words `+30E2` returns for position 259 and a screenshot read before and after. Tried: split
-  from Q-UI-017. FND-UI-061 finds the failure test comparing a zero-extended byte with -1.
+  from Q-UI-017. FND-UI-063 finds the failure test comparing a zero-extended byte with -1.
   Tried: FND-UI-062 finds the map a 96-byte request and `+1AD7` reading past it at that offset,
   drawing from the graph entry the word names unless it is 0xFFFF; the heap contents there are
   not decided by code. Blocks: nothing yet.

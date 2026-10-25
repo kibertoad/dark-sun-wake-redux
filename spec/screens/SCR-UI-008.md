@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-226, FND-UI-061, FND-UI-062, FND-COMBAT-025]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-021, FND-UI-030, SRC-MANUAL-1994, FND-PARTY-217, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-226, FND-UI-063, FND-UI-062, FND-COMBAT-025]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-008, RULE-ITEM-001, RULE-ITEM-002, RULE-ITEM-003, RULE-ITEM-004, RULE-UI-001, SCR-UI-002, SCR-UI-006, SCR-UI-009, SCR-UI-010, SCR-UI-018, SCR-UI-019]
@@ -68,40 +68,40 @@ Rectangles assume the window at (0, 0), where the outlines of FND-UI-021 put the
 
 | Region | Rectangle | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Character box `n`, left button, spell or power pending | (12, 5 + 48 * n, 34, 34), `BUTN/11300 + n`, `n` from 0 to 3 | A spell or power is waiting for its target | Casts it on that character. | FND-UI-061 |
-| Character box `n`, left button | as above | Otherwise | Shows that character's inventory; nothing on the current character's own box. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Character box `n`, right button, item picked up | as above | `n` is not the current character | Gives the item to that character without leaving the current inventory, or reports a full backpack. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Character box `n`, right button | as above | No item is picked up, or `n` is the current character | Shows that character's inventory. | FND-UI-061 |
+| Character box `n`, left button, spell or power pending | (12, 5 + 48 * n, 34, 34), `BUTN/11300 + n`, `n` from 0 to 3 | A spell or power is waiting for its target | Casts it on that character. | FND-UI-063 |
+| Character box `n`, left button | as above | Otherwise | Shows that character's inventory; nothing on the current character's own box. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Character box `n`, right button, item picked up | as above | `n` is not the current character | Gives the item to that character without leaving the current inventory, or reports a full backpack. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Character box `n`, right button | as above | No item is picked up, or `n` is the current character | Shows that character's inventory. | FND-UI-063 |
 | Leader button beside box `n` | `BUTN/11309 + n`, 10 x 9 | Not known | Makes the character the leader for walking and talking, and during combat only the character whose turn it is (RULE-PARTY-008, RULE-COMBAT-008). | FND-COMBAT-023, FND-UI-030, SRC-MANUAL-1994 |
 | Computer-control button beside box `n` | `BUTN/11313 + n`, 10 x 9 | Not known | Turns computer control of the character on or off unless it is locked (RULE-AI-001). | FND-AI-003, FND-UI-030, SRC-MANUAL-1994 |
-| Drop | (186, 130, 42, 12), `BUTN/13300` | An item is picked up | Drops the item at a party member's place. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Split | (186, 142, 42, 12), `BUTN/13302` | A grouped item with a quantity above 1 is picked up | Moves half the quantity, rounded down, to the first empty backpack slot (RULE-ITEM-002). | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| More | (235, 159, 42, 12), `BUTN/13303` | A store is shown | Shows the next page of the store's items. | FND-UI-030, FND-UI-061 |
-| Sell | (277, 159, 42, 12), `BUTN/13304` | A store is shown and an item is picked up | Shows the store's offer for the item. | FND-UI-030, FND-UI-061 |
-| View character | (163, 181, 16, 16), `BUTN/10300` | Not known | Closes the screen and opens SCR-UI-002. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| View inventory | (187, 181, 16, 16), `BUTN/11304` | Always | Nothing. | FND-UI-030, FND-UI-061 |
-| Cast spells or use psionics | (211, 181, 16, 16), `BUTN/11305` | Not known | Closes the screen and opens SCR-UI-009. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Current spell effects | (235, 181, 16, 16), `BUTN/11306` | Not known | Closes the screen and opens SCR-UI-010. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Game Menu | (258, 181, 28, 16), `BUTN/11308` | After the party has begun the adventure | Closes the screen and opens SCR-UI-006. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
-| Return to game | (288, 181, 28, 16), `BUTN/10308` | Not known | Closes the screen; with an item picked up, sets pointer mode 3. | FND-UI-030, FND-UI-061, SRC-MANUAL-1994 |
+| Drop | (186, 130, 42, 12), `BUTN/13300` | An item is picked up | Drops the item at a party member's place. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Split | (186, 142, 42, 12), `BUTN/13302` | A grouped item with a quantity above 1 is picked up | Moves half the quantity, rounded down, to the first empty backpack slot (RULE-ITEM-002). | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| More | (235, 159, 42, 12), `BUTN/13303` | A store is shown | Shows the next page of the store's items. | FND-UI-030, FND-UI-063 |
+| Sell | (277, 159, 42, 12), `BUTN/13304` | A store is shown and an item is picked up | Shows the store's offer for the item. | FND-UI-030, FND-UI-063 |
+| View character | (163, 181, 16, 16), `BUTN/10300` | Not known | Closes the screen and opens SCR-UI-002. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| View inventory | (187, 181, 16, 16), `BUTN/11304` | Always | Nothing. | FND-UI-030, FND-UI-063 |
+| Cast spells or use psionics | (211, 181, 16, 16), `BUTN/11305` | Not known | Closes the screen and opens SCR-UI-009. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Current spell effects | (235, 181, 16, 16), `BUTN/11306` | Not known | Closes the screen and opens SCR-UI-010. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Game Menu | (258, 181, 28, 16), `BUTN/11308` | After the party has begun the adventure | Closes the screen and opens SCR-UI-006. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
+| Return to game | (288, 181, 28, 16), `BUTN/10308` | Not known | Closes the screen; with an item picked up, sets pointer mode 3. | FND-UI-030, FND-UI-063, SRC-MANUAL-1994 |
 | Name box | (59, 5, 95, 8), `EBOX/4003`, mask 10 | Not known | Not known. | FND-UI-030 |
 
 The item slots are not buttons of `WIND/13500`; the manual's effects for them (picking up and
 placing items, the flashing outlines of valid slots, right-clicking an item for its summary,
 opening pouches and chests) belong to the item rules RULE-ITEM-001 and RULE-ITEM-003, and a store
 shown beside the screen to RULE-ITEM-004 (Q-ITEM-002). A frame event on `APFM/13200` or on an open
-pouch or chest view's slots closes that view and redraws the screen (FND-UI-061).
+pouch or chest view's unused slot frames closes that view and redraws the screen (FND-UI-063).
 
 ## Keyboard input
 
 | Key | Enabled when | Effect | Evidence |
 |---|---|---|---|
-| `I`, `i` | While the screen is shown | Nothing. | FND-UI-061 |
-| Any key | While an item's view is open | Closes the view and does nothing else. | FND-UI-061 |
-| 1 to 4 | As below | Act as a left click on character box 1 to 4. | FND-UI-061, FND-COMBAT-025 |
-| Esc, Alt-X, Ctrl-C, F3 | As below | Go to the game view's key routine; Esc closes the screen as Return to game does. | FND-UI-061, FND-COMBAT-025 |
-| Other keys | No store is shown | Go to the game view's key routine, overlay 190 `+139B`, with the screen's close routine. | FND-UI-061 |
-| Other keys but `S` and `s` | A store is shown | Nothing. | FND-UI-061 |
+| `I`, `i` | While the screen is shown | Nothing. | FND-UI-063 |
+| Any key | While an item's view is open | Closes the view and does nothing else. | FND-UI-063 |
+| 1 to 4 | As below | Act as a left click on character box 1 to 4. | FND-UI-063, FND-COMBAT-025 |
+| Esc, Alt-X, Ctrl-C, F3 | As below | Go to the game view's key routine; Esc closes the screen as Return to game does. | FND-UI-063, FND-COMBAT-025 |
+| Other keys | No store is shown | Go to the game view's key routine, overlay 190 `+139B`, with the screen's close routine. | FND-UI-063 |
+| Other keys but `S` and `s` | A store is shown | Nothing. | FND-UI-063 |
 
 ## Other input
 
@@ -131,10 +131,7 @@ None known.
 - Which image and colours the game draws: the textured areas of the captures differ from
   `BMP/13001` under `PAL/1000` (FND-UI-021, Q-UI-004).
 - What Split shows with a full backpack, where the handler's failure test never holds and the
-  slot draw reads past the end of the position map (FND-UI-061, FND-UI-062, Q-UI-024).
-- Which slot clicks of an open pouch or chest view close it, given that the handler pairs the
-  two slot groups with the opposite flags to the ones overlay 175 registers them with
-  (FND-UI-061, FND-EXE-598, Q-UI-025).
+  slot draw reads past the end of the position map (FND-UI-063, FND-UI-062, Q-UI-024).
 - Where the slots, the data panel, the description box and the money bar are drawn, and what
   the 90 x 125 frame `APFM/13200` at (75, 36) is (FND-UI-030, Q-UI-001, Q-ITEM-002).
 - Whether anything moves the loaded rectangles of the twelve backpack origins and the other
