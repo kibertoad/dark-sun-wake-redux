@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-004, FND-SAVE-007, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-004, FND-SAVE-007, FND-SAVE-024, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -57,7 +57,9 @@ None known.
 
 ## States
 
-None known.
+| State | Entered when | Left when | Evidence |
+|---|---|---|---|
+| Rows show saved games `save_list_top` + 1 to `save_list_top` + 10 | The window opens, with `save_list_top` as the stored-character list last left it | The window closes | FND-SAVE-024 |
 
 ## Timing
 
@@ -71,7 +73,6 @@ None known.
 
 - How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
   and painted, how long a description can be, whether a used slot can be
-  overwritten, what physical input maps to callback event 6, the list-base
-  value on entry (Q-SAVE-004), and the later
+  overwritten, what physical input maps to callback event 6, and the later
   transition after EXIT remain open (FND-UI-036, FND-UI-037,
   Q-UI-005).

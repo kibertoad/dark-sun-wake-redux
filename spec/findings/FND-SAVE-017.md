@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-017
 title: Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-022]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

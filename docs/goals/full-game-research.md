@@ -64,8 +64,8 @@ Do not repeat a retained search without new evidence, tooling or reading.
   FND-EXPLORE-021), the timer library's slots and the game tick
   (FND-TIME-008 to FND-TIME-010), every script trigger list and its events
   (FND-SCRIPT-027 to FND-SCRIPT-029, RULE-SCRIPT-013), and what a saved
-  game holds, the key callback and the exit cleanup (FND-SAVE-016 to
-  FND-SAVE-020, Q-SAVE-001 closed). New tools in
+  game holds, the key callback and the exit cleanup (FND-SAVE-018 to
+  FND-SAVE-024, Q-SAVE-001, Q-SAVE-004 and Q-SAVE-005 closed). New tools in
   `tools/research/exec-census/`: `segment_offset_refs.py`,
   `scmd_walk_frames.py`, `gff_byte_search.py`.
 - Found: BUG-COMBAT-001. With `DS:426D` at 9999, which the end of

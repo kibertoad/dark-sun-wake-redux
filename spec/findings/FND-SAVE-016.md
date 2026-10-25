@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-016
 title: A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF; the null table entries are filled from run-time pointers before each save and load
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-021]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
