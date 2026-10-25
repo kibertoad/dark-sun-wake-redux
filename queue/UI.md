@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-022
+Next ID: Q-UI-024
 
 ## Static
 
@@ -77,12 +77,6 @@ Next ID: Q-UI-022
   selects and the offsets it adds to the box's position. Tried: split from Q-UI-002.
   FND-UI-005 gives the record's fields; no reading of its draw routine has been made. Blocks:
   nothing yet.
-- Q-UI-016. SCR-UI-007: Which input events reach the Preferences dispatcher in overlay 203, and
-  what does the screen redraw after a button changes a setting? Settles it: the event value the
-  dispatcher compares against its 13 button numbers and the routine that delivers it, and the
-  draw calls each branch makes after its state change. Tried: split from Q-UI-002. FND-UI-034
-  reads the hover routine's labels and FND-CONFIG-010 the dispatcher's state change per button;
-  the event gating and the redraws remain. Blocks: nothing yet.
 - Q-UI-017. SCR-UI-008: What do the inventory window's controls do? Settles it: the event
   branches of overlay 189's handler `+0559` for each control of `WIND/13500`, among them the two
   42 x 12 buttons at the right and the buttons at (235, 159) and (277, 159). Tried: split from
@@ -98,8 +92,9 @@ Next ID: Q-UI-022
   (0, 9) for `WIND/11500` and (0, 0) for the inventory and the overhead map, which settles
   SCR-UI-022; party creation's placement of `WIND/11500` (SCR-UI-002) and Preferences, which `p`
   did not open, remain. Tried: FND-UI-058 opens Preferences from the Game Menu at (55, 42), which
-  places SCR-UI-007's window but not its bars and texts, and finds `DS:1431` null at the start
-  window.
+  places SCR-UI-007's window, and finds `DS:1431` null at the start window; FND-UI-060 then
+  places Preferences' bars and texts, leaving whether the Game Menu's `BMP/10000` is drawn under
+  it.
   Blocks: nothing yet.
 - Q-UI-005. SCR-UI-013 to SCR-UI-023, SCR-UI-014, SCR-UI-015, SCR-UI-016, SCR-UI-017, SCR-UI-018, SCR-UI-019, SCR-UI-020, SCR-UI-021, SCR-UI-022: Which resources, native widgets and handlers produce the
   manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles
@@ -148,6 +143,14 @@ Next ID: Q-UI-022
   overlay 212 `+061C` then shows. Tried: split from Q-UI-015. FND-UI-059 reads the test and the
   jump; `0x8300` is the identifier of `CHARSAVE.GFF#CHAR/33` and `/53` (FND-PARTY-050). Blocks:
   nothing yet.
+- Q-UI-022. SCR-UI-007: Does Esc close Preferences? Settles it: the writers of bit 2 of the word
+  `DS:9DEE`, and whether it is set while the Preferences window is open, so that the event builder
+  turns Esc into the kind-1 event the dispatcher closes on. Tried: split from Q-UI-016.
+  FND-UI-060 reads the builder and the dispatcher. Blocks: nothing yet.
+- Q-UI-023. SCR-UI-007: Do the keys that change settings redraw Preferences? Settles it: what
+  overlay 190 `+139B` does for F4, F5, F6 and `A` while Preferences is open, including any message
+  window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-060
+  finds the dispatcher drawing nothing after `+139B` returns. Blocks: nothing yet.
 
 ## Emulated call
 

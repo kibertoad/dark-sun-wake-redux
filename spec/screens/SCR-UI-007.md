@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-033, FND-UI-034, FND-UI-058, FND-CONFIG-010, SRC-MANUAL-1994]
+evidence: [FND-UI-033, FND-UI-034, FND-UI-058, FND-UI-060, FND-INPUT-012, FND-CONFIG-010, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-006, SCR-UI-023]
@@ -16,6 +16,13 @@ related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, RULE-CONFIG-004, RU
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
 | Thirteen buttons | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/16500` | None | each child's position from the window's corner, as FND-UI-033 lists | While the screen is shown | FND-UI-033 |
+| Top bar | `BMP/20106`, filled with `BMP/20107` from (76, 27) | the message delay minus 20 out of 80, or after a click on Music on or off the music level (0 when music is off) | (75, 26) from the window's corner | While the screen is shown | FND-UI-060 |
+| Effects bar | `BMP/20106`, filled with `BMP/20107` from (76, 46) | the effects volume out of 127; 0 after a click while effects are off | (75, 45) from the window's corner | While the screen is shown | FND-UI-060 |
+| Difficulty bar | `BMP/20106`, filled with `BMP/20107` from (66, 65) | the difficulty out of 3 | (65, 64) from the window's corner | While the screen is shown | FND-UI-060 |
+| Difficulty name | the name from FMT-TEXT-004's difficulty list | the current difficulty | y 66, centred on x 106, from the window's corner | While the screen is shown | FND-UI-060 |
+| Description | `APFM/11270`'s text | the label of the pointed-at control, or nothing | (18, 102) from the window's corner | While the pointer is over a control | FND-UI-034, FND-UI-060 |
+
+A filled part is `164 * value / limit / 2` pixels wide and 9 high.
 
 The window is `WIND/16500`, 210 x 116, with its corner at (55, 42) when the Game Menu opens it
 (FND-UI-058).
@@ -42,7 +49,10 @@ Rectangles are from the window's corner.
 
 ## Keyboard input
 
-None known.
+| Key | Enabled when | Effect | Evidence |
+|---|---|---|---|
+| Esc | While bit 2 of `DS:9DEE` is set | Closes the screen. | FND-UI-060 |
+| Any other key, and Esc otherwise | While the screen is shown | Goes to the game view's key routine, overlay 190 `+139B`, with the screen's close routine. | FND-UI-060, FND-INPUT-012 |
 
 ## Other input
 
@@ -50,7 +60,10 @@ None known.
 
 ## Sounds
 
-None known.
+| Sound | Resource | Played when | Evidence |
+|---|---|---|---|
+| Effects test | sound id 231 | Effects are turned on, or the volume changes while they are on | FND-UI-060 |
+| Difficulty | sound id 205, 143, 231 or 24 for difficulties 0 to 3 | A difficulty arrow is clicked while effects are on | FND-UI-060 |
 
 ## States
 
@@ -66,8 +79,7 @@ None known.
 
 ## Open questions
 
-- Whether the Game Menu's `BMP/10000` is drawn under it, and where the volume bars, the difficulty name and the descriptions of FMT-TEXT-004 are drawn (Q-UI-003,
-  Q-CONFIG-001).
+- Whether the Game Menu's `BMP/10000` is drawn under it (Q-UI-003).
 - The new-game values, message-delay timing units and upper bound, and which frame each
   button shows in each state (FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002, Q-CONFIG-007). The
   music bar has no control on this screen (RULE-CONFIG-003, FND-CONFIG-219).
@@ -76,6 +88,6 @@ None known.
 - What native widget treatment makes `BUTN/16302` at (67, 78) visible; its four
   extracted icon frames each have one uniform colour (FND-UI-033, FND-UI-034,
   Q-CONFIG-001, Q-UI-013).
-- The overlay 203 dispatcher handles the Preferences buttons. Its input-event
-  gating, later drawing paths and the native widget frames still need a complete
-  reading (FND-UI-034, FND-CONFIG-010, Q-UI-016).
+- Whether Esc closes the screen, which needs bit 2 of `DS:9DEE` set (FND-UI-060, Q-UI-022).
+- Whether the keys F4, F5, F6 and `A`, which change settings while the screen is shown, redraw
+  it (FND-UI-060, Q-UI-023).
