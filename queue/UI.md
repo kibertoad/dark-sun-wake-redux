@@ -97,11 +97,15 @@ Next ID: Q-UI-021
   Q-UI-002. FND-UI-030 lists the window's controls, and FND-PARTY-217 links the inventory
   opener's request for `WIND/13500` to `+0559` and reads the redraw's position projection; the
   handler's other branches remain. Blocks: nothing yet.
-- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003, SCR-UI-022: Where does the game
+- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
   Tried: FND-UI-055 and FND-UI-056 find the Game Menu's opener passing (55, 42) to overlay 182
   `+016B` and the record's words `+0x96` and `+0x98` holding them, which settles SCR-UI-006.
+  Tried: FND-UI-057 reads the same words after the keys V, C, E, I and O during the adventure:
+  (0, 9) for `WIND/11500` and (0, 0) for the inventory and the overhead map, which settles
+  SCR-UI-022; party creation's placement of `WIND/11500` (SCR-UI-002) and Preferences, which `p`
+  did not open, remain.
   Blocks: nothing yet.
 - Q-UI-005. SCR-UI-013 to SCR-UI-023, SCR-UI-014, SCR-UI-015, SCR-UI-016, SCR-UI-017, SCR-UI-018, SCR-UI-019, SCR-UI-020, SCR-UI-021, SCR-UI-022: Which resources, native widgets and handlers produce the
   manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles

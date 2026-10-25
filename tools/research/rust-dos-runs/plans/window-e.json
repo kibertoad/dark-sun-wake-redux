@@ -1,0 +1,7 @@
+{
+ "start": "C:/GOG Games/Dark Sun 2/captures/rust-dos-regenerated/v175-play-ready-b-20261019:play-ready",
+ "steps": [
+  {"keys": ["2"], "until_ms": 196000, "read": [["4D9A:426D", 2]]},
+  {"keys": ["e"], "until_ms": 197500, "shot": "window-e", "read": [["4D9A:1431", 4]], "read_far": [["4D9A:1431", 150, 4]]}
+ ]
+}

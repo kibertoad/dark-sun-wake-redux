@@ -251,6 +251,11 @@ with RustDosSession(settings) as s:
             print("  mouse", s.client.status().get("mouse"))
         for addr, n in step.get("read", []):
             print("  mem", addr, s.client.read_memory(addr, n).data.hex())
+        for addr, extra, n in step.get("read_far", []):
+            # The far pointer at addr (offset word first), then n bytes from that pointer plus extra.
+            off, seg = struct.unpack("<HH", s.client.read_memory(addr, 4).data)
+            target = f"{seg:04X}:{(off + extra) & 0xFFFF:04X}"
+            print("  far", addr, "->", target, s.client.read_memory(target, n).data.hex())
         if "shot" in step:
             (run / f"{step['shot']}.png").write_bytes(s.client.screenshot())
         if "save" in step:

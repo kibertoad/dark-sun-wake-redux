@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, FND-UI-048, FND-UI-050, SRC-MANUAL-1994]
+evidence: [FND-IMAGE-012, FND-SAVE-013, FND-UI-044, FND-UI-046, FND-UI-047, FND-UI-048, FND-UI-050, FND-UI-057, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-006, SCR-EXPLORE-001]
@@ -13,7 +13,8 @@ related: [SCR-UI-006, SCR-EXPLORE-001]
 
 ## Drawn elements
 
-The window is `RESOURCE.GFF#WIND/19502`, one full-window `BUTN/2099` [FND-UI-044].
+The window is `RESOURCE.GFF#WIND/19502`, one full-window `BUTN/2099` [FND-UI-044], with its corner
+at (0, 0) when the O key opens it [FND-UI-057].
 
 | Element | Resource | Shows | Position | Shown when | Evidence |
 |---|---|---|---|---|---|
@@ -105,7 +106,6 @@ None known.
 
 ## Open questions
 
-- Where the game places `WIND/19502` (Q-UI-003).
 - What first puts the region palette in the DAC on a new game. START GAME's gate routine writes
   768 zero bytes to the DAC, and on a new game the region fade is reached from script opcode
   0x22's functions 1, 26 and 37 rather than from the start window or the gate routine. The

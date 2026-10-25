@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-020, FND-UI-025, FND-UI-030, SRC-MANUAL-1994]
+evidence: [FND-AI-003, FND-COMBAT-023, FND-UI-020, FND-UI-025, FND-UI-030, FND-UI-057, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-001, RULE-PARTY-004, RULE-PARTY-008, RULE-UI-001, SCR-UI-001, SCR-UI-003, SCR-UI-004, SCR-UI-006, SCR-UI-008, SCR-UI-009, SCR-UI-010, SCR-UI-015]
@@ -19,8 +19,8 @@ related: [RULE-AI-001, RULE-COMBAT-008, RULE-PARTY-001, RULE-PARTY-004, RULE-PAR
 | Title | `RESOURCE.GFF#BMP/20079`, `VIEW CHARACTER` | None | (56, 11, 210, 23) | While the screen is shown | FND-UI-020 |
 | Controls | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/11500` | None | each child's position from the window's corner, as FND-UI-030 lists | While the screen is shown | FND-UI-030 |
 
-The window is `WIND/11500`, 320 x 189. Where the game places it is not known, so the rectangles
-below are from the window's corner.
+The window is `WIND/11500`, 320 x 189, with its corner at (0, 9) when the V key opens it during
+the adventure (FND-UI-057). The rectangles below are from the window's corner.
 
 ## Mouse input
 
@@ -72,8 +72,9 @@ None known.
 
 ## Open questions
 
-- Where the game places `WIND/11500`, and whether the picture at (0, 9) is drawn the same way in
-  party creation. The captures of FND-UI-020 were taken during the adventure (Q-UI-003, Q-UI-004).
+- Where party creation places `WIND/11500`, and whether the picture at (0, 9) is drawn the same
+  way there. The captures of FND-UI-020 and the runs of FND-UI-057 were made during the adventure
+  (Q-UI-003, Q-UI-004).
 - What each box, its status areas and the frames of `WIND/11500` show, and what the name box and
   the buttons with mask 160 do (FND-UI-030, Q-UI-002).
 - The effects of the other buttons come from the manual only; code is known only for the leader
