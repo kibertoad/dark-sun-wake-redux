@@ -47,23 +47,28 @@ Do not repeat a retained search without new evidence, tooling or reading.
   the two callers that set the cast byte (FND-RNG-064). Q-RNG-005 split
   into Q-RNG-005, Q-RNG-029 and Q-RNG-030; seven of FND-RNG-058's nine
   transfers resolved (FND-RNG-065, FND-RNG-066).
-- Found: with `DS:426D` at 9999, which the end of combat leaves until a
-  leader key (FND-RNG-069, FND-RNG-070), a view click sends slot 9999 to
-  `2D40:2F34`, which writes a record number over the July and August
-  month lengths that the clock reseeding converts with (FND-RNG-067,
-  FND-RNG-068); the routines it goes on to call write no clock storage
-  (FND-RNG-071). It has no BUG entry yet; write one once Q-RNG-031 says
-  which states pass 9999.
+- Found: BUG-COMBAT-001. With `DS:426D` at 9999, which the end of
+  combat leaves until a leader key (FND-RNG-069, FND-RNG-070), a view
+  click sends slot 9999 to `2D40:2F34`, which writes a record number over
+  the July and August month lengths (FND-RNG-067, FND-RNG-068) and fills
+  record 9999 with `0xFF`. From then on `28C9:1EDB` runs overlay 173
+  `+059A(0, &DS:426D)` on every pass: a combat round step adds 60 to
+  `4C13:035B` about 15 times a second, and the leader keys are refused
+  (FND-RNG-074 to FND-RNG-077, FND-COMBAT-056, FND-COMBAT-057). Open:
+  Q-COMBAT-034 (what each pass changes), Q-COMBAT-035 (what ends it),
+  Q-RNG-031 and Q-RNG-034 (other routes to 9999).
 - Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
   `indirect_targets.py` (armed breakpoints on indirect transfers, memory
-  reads, write watchpoints, key and pointer inputs). Run them with
+  reads, write watchpoints, key and pointer inputs, and `--count` sites
+  with callers and arguments, capped at 50 hits because each stop opens
+  TCP connections and uncapped runs use up the ephemeral ports). Run them with
   `artifacts/evidence-python/Scripts/python.exe -I`.
 - The owner asked whether runtime-first research belongs in the protocol
   or the template; an upstream issue or PR was offered and awaits their
   answer. File nothing upstream without it.
 - Next:
   - Q-RNG-031 (other stores to `DS:426D`, other paths of overlay 173
-    `+059A`), then the BUG entry.
+    `+059A`), Q-COMBAT-035 and Q-COMBAT-034.
   - Q-RNG-030 (segment `2707` table cases, timer callbacks), Q-RNG-029
     and Q-RNG-005.
   - Complete readings for RULE-RNG-001's functions.
