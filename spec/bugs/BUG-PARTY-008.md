@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-167, FND-PARTY-168, FND-PARTY-099, FND-PARTY-162]
+evidence: [FND-PARTY-164, FND-PARTY-166, FND-PARTY-167, FND-PARTY-168, FND-PARTY-099, FND-PARTY-258]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-014]
@@ -36,7 +36,7 @@ at most 30, since every source gives that count 15 or less (FND-PARTY-167, FND-P
 
 The subtraction reads as meant to deny the save to non-warriors, which would give the opposite
 result; nothing read for this entry says so, hence `intent: unclear`. The warrior levels come
-from `+076C`, which counts a dual-classed human's held-back former class (FND-PARTY-162).
+from `+076C`, which counts a dual-classed human's held-back former class (FND-PARTY-258).
 
 ## Frequency
 

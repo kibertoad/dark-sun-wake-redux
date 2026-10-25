@@ -1,3 +1,3 @@
-# ranger_casting_level
+# spell_term
 
 A function, defined by RULE-MAGIC-001.

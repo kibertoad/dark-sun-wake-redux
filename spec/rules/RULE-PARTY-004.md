@@ -4,7 +4,7 @@ title: A human can change class twice, from second level
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-161, FND-PARTY-162, FND-PARTY-081, FND-PARTY-085, FND-PARTY-160, FND-PARTY-232, SRC-MANUAL-1994]
+evidence: [FND-PARTY-161, FND-PARTY-258, FND-PARTY-081, FND-PARTY-085, FND-PARTY-160, FND-PARTY-232, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-002, SCR-UI-015, SCR-PARTY-003, RULE-PARTY-010]
@@ -22,12 +22,12 @@ class's level is higher than the old one's.
 ## When it runs
 
 The View Character screen (SCR-UI-002) shows DUAL for a human whose current class is level 2 or
-more (FND-PARTY-162). `can_change_class` supplies the class eligibility test while
+more (FND-PARTY-258). `can_change_class` supplies the class eligibility test while
 the class-selection window is prepared (SCR-PARTY-003). Its local button handler
 does not repeat that test before requesting the class change (FND-PARTY-232).
 `former_class_usable` runs
 whenever the game counts a dual-classed human's former class: its class flags, its spells and
-the level the game uses for its abilities (FND-PARTY-085, FND-PARTY-162).
+the level the game uses for its abilities (FND-PARTY-085, FND-PARTY-258).
 
 ## Parameters
 
@@ -90,7 +90,7 @@ the other two. The other minimum scores of RULE-PARTY-010 are not tested: a huma
 strength and 15 wisdom as a cleric can become a fighter whatever its other scores. When no class
 passes, the game shows `NO OTHER CLASSES AVAILABLE` instead of the window. A human whose new
 class level equals the former level still cannot use the former class's abilities
-(FND-PARTY-162). Some uses ignore this: a former druid's bonus of 2 to saving throws against fire
+(FND-PARTY-258). Some uses ignore this: a former druid's bonus of 2 to saving throws against fire
 and lightning applies at once (BUG-PARTY-007), and a former class's level still counts for the
 level of the powers it learned, the thief skills, the best cleric, druid and preserver when
 the party rests, a former code 3 cleric's escape from some hits, and the warrior test against

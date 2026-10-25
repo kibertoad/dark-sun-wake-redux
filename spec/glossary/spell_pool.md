@@ -1,3 +1,3 @@
-# ranger_spell_slots
+# spell_pool
 
 A function, defined by RULE-MAGIC-001.

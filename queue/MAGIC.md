@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-018
+Next ID: Q-MAGIC-020
 
 ## Static
 
@@ -8,11 +8,17 @@ Next ID: Q-MAGIC-018
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
   Blocks: slice 5.
-- Q-MAGIC-002. RULE-MAGIC-001: How does the game count the spells a caster can cast: which
-  progression a druid uses, whether the Wisdom bonus reaches spell levels the cleric's level does
-  not, how a multi-class or dual-class caster's spells add up, and what the ranger casting level
-  changes? Settles it: the code that decides whether a caster has a spell of a level left, read
-  with the tables it indexes. Blocks: slice 5.
+- Q-MAGIC-018. RULE-MAGIC-001: Is byte `+0x1D` of the combatant record the character's Wisdom
+  score, the value the priest spell count's second term reads through `27E5:04A0(slot, 4)`?
+  Settles it: the code that fills the combatant record's bytes `+0x19..+0x20` from the character
+  record, read with the field each takes. Tried: FND-PARTY-081 and FND-PARTY-165 read it as
+  Wisdom; FND-MAGIC-002 finds the spell count reading it. Blocks: slice 5.
+- Q-MAGIC-019. RULE-MAGIC-001: What do effect 0x5C and overlay 197 `+37A5` test when a wizard
+  spell is spent without taking from the pool, can overlay 208's byte at `DS:9BD3` be nonzero for
+  a party spell, and what do overlay 193 `+1A79` and overlay 197 `+14DA` do with overlay 211
+  `+1FB5`'s level? Settles it: readings of `197 +37A5`, the writers of `DS:9BD3`, and `193 +1A79`
+  and `197 +14DA`. Tried: FND-MAGIC-002 reads the spend at `197 +3060` and FND-MAGIC-003 the
+  cast window and the level the cast carries. Blocks: slice 5.
 - Q-MAGIC-003. RULE-MAGIC-002: Which cleric spells does the game offer a cleric, a druid and a
   ranger, where does it keep a spell's sphere and level and a character's sphere, and how does it
   treat a spell of several spheres? Settles it:
@@ -26,11 +32,11 @@ Next ID: Q-MAGIC-018
   Tried: FND-RNG-046 reads the activation: RULE-MAGIC-014 takes the power check, the half cost
   of a failed check rounded down and the refusal for too few points, which contradict
   RULE-MAGIC-003's check. Blocks: slice 5.
-- Q-MAGIC-005. RULE-MAGIC-004: What does camping do besides restoring PSPs and spells: does it
+- Q-MAGIC-005. RULE-MAGIC-004, RULE-MAGIC-001: What does camping do besides restoring PSPs and spells: does it
   take game time, restore hit points, stop for enemies, and in which order does it cast cure
   spells, and does the game keep memorized spells? Settles it: the code behind the Look pointer on
   a fire ring. Blocks: slice 5.
-- Q-MAGIC-006. RULE-MAGIC-005: What do the two callers of the `DATA` dice formula do with its
+- Q-MAGIC-006. RULE-MAGIC-005, RULE-MAGIC-001: What do the two callers of the `DATA` dice formula do with its
   total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
   use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit
   routine, the routine around overlay 193 `+1431` and its use of both, and the writers of each

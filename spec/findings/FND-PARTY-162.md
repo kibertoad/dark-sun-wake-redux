@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-162
 title: The class flags, the class level query 27E5:00C1 and the spell list routines of overlay 177 ignore a human's former class until the current class's level is higher, while overlay 176 +076C, which overlays 174, 197, 204 and 208 call, has no such test; overlay 190 offers DUAL to a human of level 2 or more
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-258]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

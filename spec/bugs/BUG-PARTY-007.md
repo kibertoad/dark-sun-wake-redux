@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unclear
 player_reliance: unknown
-evidence: [FND-PARTY-163, FND-PARTY-162, FND-PARTY-099]
+evidence: [FND-PARTY-163, FND-PARTY-258, FND-PARTY-099]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-004]
@@ -32,7 +32,7 @@ The saving throw adds the modifier of overlay 197 `+0206` to its roll (FND-PARTY
 routine gives 2 when overlay 176 `+076C` returns a druid level above 0, and `+076C` returns the
 level of any position holding the class, with no test of the origin (FND-PARTY-163). The class
 flags, `27E5:00C1` and the spell routines leave such a former class out for a human
-(FND-PARTY-162).
+(FND-PARTY-258).
 
 ## Frequency
 

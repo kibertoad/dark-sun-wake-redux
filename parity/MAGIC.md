@@ -2,7 +2,7 @@
 
 | Spec ID | Title | Spec status | Code | Tests | Deviations | Status | Notes |
 |---|---|---|---|---|---|---|---|
-| `RULE-MAGIC-001` | How many spells of each level a caster can cast before resting | sourced | missing | None | None | sourced | No code counts spells. `ExplorationSession` opens the Cast Spells / Use PSI view with no spells in it. |
+| `RULE-MAGIC-001` | How many spells of each level a caster can cast before resting | supported | missing | None | None | supported | No code counts spells. `ExplorationSession` opens the Cast Spells / Use PSI view with no spells in it. |
 | `RULE-MAGIC-002` | Which spheres of cleric spells a priest may cast | sourced | missing | None | None | sourced | No code holds spells or their spheres. A created character carries a `ClericalSphere` (RULE-PARTY-003). |
 | `RULE-MAGIC-003` | Activating and maintaining a psionic power | disputed | missing | None | None | disputed | Disputed (FND-RNG-046): the game's power check adds the rank less 1 and always succeeds on 1 and fails on 20 (RULE-MAGIC-014). No code holds psionic powers or PSPs. |
 | `RULE-MAGIC-004` | Camping restores spells and psionic strength points | sourced | missing | None | None | sourced | No code camps or rests. |
