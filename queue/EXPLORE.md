@@ -33,11 +33,6 @@ Next ID: Q-EXPLORE-010
   `28C9:2C9E` in full, the three redraw routines, the writers of the entry flags, and the two
   stores of overlay 187 at offsets `0x0F35` and `0x0F76`. Tried: the handlers of keys 5 and 6 and
   a byte search for stores to the byte (FND-EXPLORE-005). Blocks: slice 3.
-- Q-EXPLORE-005. RULE-EXPLORE-003, FMT-ACTOR-004: Is the opening leader's position `(1192,1496)`,
-  its figure's top-left plus the definition's offsets, so that its cell is `(74,93)`? Settles it:
-  the position routine the party loader of FND-PARTY-013 calls, and `31E0:435D`. Tried: the
-  movement, move and draw routines (FND-EXPLORE-003), which relate the cell to the position but
-  do not show how the party loader sets it. Blocks: slice 3.
 - Q-EXPLORE-006. RULE-EXPLORE-005: Which routine plans the walk to a cell clicked with the Walk
   pointer, how does it choose the cells, what happens when no route exists or a cell on the route
   becomes blocked, how long does one step take, and how close to the clicked cell does the walk

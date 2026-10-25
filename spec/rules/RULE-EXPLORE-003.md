@@ -294,5 +294,3 @@ None known.
   which slots the movement routine puts there (FND-EXPLORE-001, FND-EXPLORE-003, Q-EXPLORE-002).
 - Which objects are of kind 2 in `object_slot_kinds`, what values `footprint` takes, and what the
   object numbered 430 is (FND-EXPLORE-002, Q-EXPLORE-002).
-- Whether the opening leader's cell is `(74,93)`, from its position less the definition's offsets,
-  or `(74,91)`, from its figure's top-left (FND-EXPLORE-003, Q-EXPLORE-005).
