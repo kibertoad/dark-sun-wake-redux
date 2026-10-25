@@ -1,0 +1,42 @@
+{
+ "name": "tc",
+ "start": "D:/rust-dos-games/work/walk2/exprep:explore",
+ "duration": 2800,
+ "events": [
+  {
+   "at_ms": 0,
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ]
+   ]
+  },
+  {
+   "at_ms": 2450,
+   "trace_on": [
+    "51C0D",
+    2
+   ]
+  },
+  {
+   "at_ms": 2500,
+   "key": "up"
+  },
+  {
+   "at_ms": 2650,
+   "trace_off": true,
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "4D9A:67BB",
+     37
+    ]
+   ]
+  }
+ ],
+ "out": "walk2"
+}

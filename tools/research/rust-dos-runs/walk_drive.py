@@ -48,7 +48,7 @@ assert delta & 0xFFFF == (0x05BA - 0x1000) & 0xFFFF
 state = read_saved_state(source, nm)
 verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
 admit_state(state)
-run = Path("D:/rust-dos-games/work/walkruns") / cfg["name"]
+run = Path("D:/rust-dos-games/work") / cfg.get("out", "walkruns") / cfg["name"]
 if run.exists():
     raise SystemExit("run exists")
 settings = RustDosSettings(
@@ -282,7 +282,16 @@ with RustDosSession(settings) as s:
     def drain():
         tr = tracing
         while True:
-            page = s.client.get("/api/trace", since=tr["cursor"], limit=60000, format="json")
+            for attempt in range(6):
+                try:
+                    page = s.client.get("/api/trace", since=tr["cursor"], limit=cfg.get("trace_page", 60000), format="json")
+                    break
+                except OSError as err:
+                    tr.setdefault("retries", []).append([now(), repr(err)[:120]])
+                    out("trace page retry", now(), repr(err)[:120])
+                    time.sleep(3)
+            else:
+                raise RuntimeError("trace page failed six times")
             ents = page["entries"]
             tr["dropped"] += page.get("dropped", 0)
             for e in ents:
@@ -307,7 +316,7 @@ with RustDosSession(settings) as s:
         tr["on"] = False
         ev = {"t": now(), "kind": "trace", "from_t": tr["t0"], "lin": [f"{tr['lo']:X}", tr["hi"] - tr["lo"]],
               "entries": tr["entries"], "dropped": tr["dropped"], "first": tr["first"], "last": tr["last"],
-              "nfound": len(tr["found"]), "found": tr["found"][:2000], "wall_s": round(time.time() - tr["w0"], 1)}
+              "nfound": len(tr["found"]), "found": tr["found"][:2000], "wall_s": round(time.time() - tr["w0"], 1), "retries": tr.get("retries", [])}
         log["events"].append(ev)
         out("trace", tr["t0"], now(), tr["entries"], "entries", len(tr["found"]), "found, dropped", tr["dropped"])
 
@@ -325,7 +334,7 @@ with RustDosSession(settings) as s:
             tgt = min([target_ms] + nxt)
             if tracing["on"]:
                 tgt = min(tgt, now() + 40)
-                s.client.request("POST", "/api/trace", body={"count": 900000})
+                s.client.request("POST", "/api/trace", body={"count": cfg.get("trace_count", 900000)})
             ob, exhausted = wait_for_stop(s, s.continue_(until_ms=start_ms + tgt))
             if tracing["on"]:
                 drain()
@@ -357,7 +366,7 @@ with RustDosSession(settings) as s:
         t_end = now() + ms
         tw0 = time.time()
         while now() < t_end and not ended[0]:
-            st = s.client.request("POST", "/api/trace", body={"count": 900000}).body
+            st = s.client.request("POST", "/api/trace", body={"count": cfg.get("trace_count", 900000)}).body
             if cursor is None:
                 cursor = st.get("total", 0)
             run_to(min(t_end, now() + 50))

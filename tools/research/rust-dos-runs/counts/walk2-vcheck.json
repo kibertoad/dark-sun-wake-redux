@@ -1,0 +1,38 @@
+{
+ "name": "vcheck",
+ "start": "D:/rust-dos-games/work/walk2/exprep:explore",
+ "duration": 4000,
+ "events": [
+  {
+   "at_ms": 500,
+   "key": "v"
+  },
+  {
+   "at_ms": 1500,
+   "shot": "v"
+  },
+  {
+   "at_ms": 1700,
+   "move": [
+    47,
+    52
+   ]
+  },
+  {
+   "at_ms": 2300,
+   "shot": "hover0"
+  },
+  {
+   "at_ms": 2500,
+   "move": [
+    47,
+    112
+   ]
+  },
+  {
+   "at_ms": 3100,
+   "shot": "hover2"
+  }
+ ],
+ "out": "walk2"
+}

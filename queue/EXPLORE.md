@@ -1,6 +1,6 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-014
+Next ID: Q-EXPLORE-015
 
 ## Static
 
@@ -54,18 +54,20 @@ None.
 ## Agent run
 
 - Q-EXPLORE-012. RULE-EXPLORE-004, RULE-EXPLORE-005: Does any code read the byte `4E71:0000`?
-  Settles it: a run that scans every instruction's accesses for `4E71:0000` outside a fight (a
-  walk and a key step), over a save and over a load. Tried: FND-EXPLORE-018 finds three stores of 1
+  Settles it: a run that scans every instruction's accesses for `4E71:0000` over a whole load,
+  and over a load of a saved game where the byte is 0. Tried: FND-EXPLORE-018 finds three stores of 1
   and no read through a segment word loaded within six instructions or a pushed far pointer.
   Tried: FND-EXPLORE-023 scans a Walk click, a three-cell walk and a key step in the first fight and
-  finds only those stores. Blocks: none.
-- Q-EXPLORE-006. RULE-EXPLORE-005: How long does one cell of a walk take for a party member?
-  Settles it: a run outside a fight, from a checkpoint where a Walk click is taken, walking a
-  member whose set is SCMD 599, 25 or 598 north and east, that counts the calls of `31E0:1B60` for
-  its record and the ticks of `DS:145E` per cell. Tried: FND-EXPLORE-019 reads the frame mover and
-  its tick gate, and FND-EXPLORE-020 tallies the walk frames of the shipped `SCMD` resources.
-  Tried: FND-EXPLORE-022 times Thy'rokh (SCMD 3917) walking north in the first fight, one pass per
-  frame; a Walk click before that fight was not taken. Blocks: slice 3.
+  finds only those stores. Tried: FND-EXPLORE-026 scans a walk, two key steps and a save outside a
+  fight and the first 6.9 s of a load, and finds only those stores; the rest of the load, from
+  `preload` of run `slprep`, and a load of a game where the byte is 0 remain. Blocks: none.
+- Q-EXPLORE-014. RULE-EXPLORE-005: How long does a cell take for a follower, for slot 2's set
+  (SCMD 3917) outside a fight, and at other CPU speeds, and what sets the length of a map pass?
+  Settles it: a run from `explore` (FND-EXPLORE-024) that walks the party with followers and times
+  each follower's frame calls, the same at a second cycle count, and a reading of what the map
+  loop does in a long pass. Tried: FND-EXPLORE-022 times slot 2 in the first fight and
+  FND-EXPLORE-025 times the leader with sets 599, 25 and 598 outside it, one frame per pass in
+  both. Blocks: slice 3.
 
 ## Live session
 

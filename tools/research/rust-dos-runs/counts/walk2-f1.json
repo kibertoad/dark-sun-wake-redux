@@ -1,0 +1,60 @@
+{
+ "name": "f1",
+ "start": "D:/rust-dos-games/work/walkruns/fightprep:fight",
+ "duration": 3000,
+ "breaks": [
+  {
+   "addr": "1E83:0CFF",
+   "label": "key_routine",
+   "stack": 12,
+   "cap": 20
+  }
+ ],
+ "events": [
+  {
+   "at_ms": 0,
+   "shot": "t0",
+   "read": [
+    [
+     "41CA:0019",
+     2
+    ],
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "at_ms": 500,
+   "key": "v"
+  },
+  {
+   "at_ms": 1500,
+   "shot": "t1500"
+  },
+  {
+   "at_ms": 2900,
+   "shot": "t2900",
+   "read": [
+    [
+     "41CA:0019",
+     2
+    ],
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "4D9A:19C9",
+     196
+    ]
+   ]
+  }
+ ],
+ "out": "walk2"
+}

@@ -1,0 +1,210 @@
+{
+ "name": "e0",
+ "start": "D:/rust-dos-games/work/walk2/exprep:explore",
+ "duration": 4500,
+ "max_stops": 4000,
+ "watch": [
+  [
+   "4D9A:67C5",
+   2
+  ],
+  [
+   "4D9A:67C7",
+   2
+  ]
+ ],
+ "watch_reads": [
+  [
+   "4D9A:145E",
+   4
+  ],
+  [
+   "4D9A:67BB",
+   37
+  ]
+ ],
+ "breaks": [
+  {
+   "addr": "279A:1B60",
+   "label": "frame_mover",
+   "stack": 4,
+   "match": [
+    2,
+    "67BB"
+   ],
+   "cap": 400,
+   "from_ms": 300,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ],
+    [
+     "4D9A:67BB",
+     37
+    ]
+   ]
+  },
+  {
+   "addr": "22FA:10AE",
+   "label": "plan_walk",
+   "stack": 5,
+   "cap": 200,
+   "match": [
+    2,
+    "0000"
+   ],
+   "from_ms": 300,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "1E83:0353",
+   "label": "click_walk",
+   "stack": 5,
+   "cap": 20,
+   "from_ms": 300,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "1E83:0CFF",
+   "label": "key_routine",
+   "stack": 12,
+   "cap": 20,
+   "from_ms": 0,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "1E83:01CB",
+   "label": "key_step",
+   "stack": 5,
+   "cap": 20,
+   "from_ms": 300,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "1E83:04EF",
+   "label": "no_path",
+   "stack": 5,
+   "cap": 20,
+   "from_ms": 300,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  },
+  {
+   "addr": "279A:2BB9",
+   "label": "scan",
+   "stack": 4,
+   "cap": 300,
+   "from_ms": 1550,
+   "reads": [
+    [
+     "4D9A:145E",
+     4
+    ]
+   ]
+  }
+ ],
+ "events": [
+  {
+   "at_ms": 0,
+   "read": [
+    [
+     "41CA:0019",
+     2
+    ],
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:0369",
+     2
+    ],
+    [
+     "4D9A:1440",
+     2
+    ],
+    [
+     "4D9A:67BB",
+     148
+    ],
+    [
+     "4D9A:1408",
+     4
+    ],
+    [
+     "4D9A:145E",
+     4
+    ]
+   ],
+   "shot": "t0"
+  },
+  {
+   "at_ms": 1500,
+   "click": [
+    264,
+    160,
+    "left"
+   ]
+  },
+  {
+   "at_ms": 4400,
+   "read": [
+    [
+     "41CA:0019",
+     2
+    ],
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:0369",
+     2
+    ],
+    [
+     "4D9A:1440",
+     2
+    ],
+    [
+     "4D9A:67BB",
+     148
+    ],
+    [
+     "4D9A:1408",
+     4
+    ],
+    [
+     "4D9A:145E",
+     4
+    ]
+   ],
+   "shot": "end"
+  }
+ ],
+ "out": "walk2"
+}
