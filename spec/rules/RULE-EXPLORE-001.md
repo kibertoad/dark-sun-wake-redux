@@ -4,7 +4,7 @@ title: Holding the pointer at an edge of the map view scrolls the view toward th
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-EXPLORE-007, FND-EXPLORE-009, FND-INPUT-013, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-EXPLORE-007, FND-EXPLORE-009, FND-EXPLORE-010, FND-INPUT-013, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-REGION-001]
@@ -33,9 +33,10 @@ in the game's video mode (FND-EXPLORE-006, FND-CONFIG-158).
 
 ## Inputs
 
-`view_left`, `view_top`, `combat_state`, `turn_combatant`, `g_57E0_0DA8`, `g_57E0_0DAB`,
+`view_left`, `view_top`, `combat_state`, `turn_combatant`, `scroll_hold`, `g_57E0_0DAB`,
 `pointer_mode`, `scroll_step_x`, `scroll_step_y`, `view_left_min`, `view_top_min`, `view_right_limit` and
-`view_bottom_limit`.
+`view_bottom_limit`. `scroll_hold` is 1 when the program starts, and nothing but this rule's
+procedure stores into it (FND-EXPLORE-010).
 
 ## Procedure
 
@@ -110,9 +111,9 @@ define scroll_view(d: UINT16, mx: INT16, my: INT16) -> UINT8:
 define edge_scroll(px: INT16, py: INT16):
     if combat_state != 0 and turn_combatant >= 4: return
     if px != 0 and py != 0 and px < 318 and py < 199:
-        g_57E0_0DA8 = 0
+        scroll_hold = 0
         return
-    if g_57E0_0DA8 != 0: return
+    if scroll_hold != 0: return
     if g_57E0_0DAB != 1: return
     if pointer_mode == 5: fn_3D72_0D83()
     let d: UINT16 = pointer_direction(px, py)
@@ -148,8 +149,6 @@ None known.
 
 ## Open questions
 
-- What stores a value other than 0 in `g_57E0_0DA8`, which holds the scrolling until the
-  pointer leaves the band (Q-EXPLORE-001).
 - Whether the mouse setup runs after the video mode's word is stored, which the 320 by 200 range
   depends on, and whether `fn_3D72_0D83`, which runs first while `pointer_mode` is 5, changes the
   view words (Q-EXPLORE-001).

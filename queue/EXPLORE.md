@@ -4,10 +4,9 @@ Next ID: Q-EXPLORE-008
 
 ## Static
 
-- Q-EXPLORE-001. RULE-EXPLORE-001, RULE-INPUT-001: What stores a value other than 0 in
-  `g_57E0_0DA8`, what does `g_57E0_0DAB` hold, does the mouse setup run after the video mode's word
-  is stored, and does `fn_3D72_0D83` change the view words? Settles it: a search for stores to
-  `DS:0DA8` and `DS:0DAB`, the order of `39D1:0009` against
+- Q-EXPLORE-001. RULE-EXPLORE-001, RULE-INPUT-001: What does `g_57E0_0DAB` hold, does the mouse
+  setup run after the video mode's word is stored, and does `fn_3D72_0D83` change the view words?
+  Settles it: the stores to `DS:0DAB`, the order of `39D1:0009` against
   the mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads
   the band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Tried:
   FND-EXPLORE-007 finds the loop unpaced (50 passes in 88 ms idle, about 24 a second while
@@ -15,7 +14,8 @@ Next ID: Q-EXPLORE-008
   `DS:0DAB` and `DS:0D9C` unchanged. Tried: FND-EXPLORE-009 finds the other passes reading
   column 160 from the emulated mouse driver with no position set by the game, so the step rate
   measured there is the emulator's; the loop's pacing and why the other passes did not step are
-  removed from Settles it. Blocks: slice 3.
+  removed from Settles it. Tried: FND-EXPLORE-010 finds `DS:0DA8` 1 in the load image and only
+  cleared, which removes it from the item. Blocks: slice 3.
 - Q-EXPLORE-002. RULE-EXPLORE-003, FMT-COMBAT-002: Which slots are of kind 2, what values does the
   details byte `footprint` take, what does `25AF:02FA` decide from a cell's bits 0 to 2, and what
   is the object numbered 430? Settles it: the writers of `4F49:0C33`, the code that fills the
