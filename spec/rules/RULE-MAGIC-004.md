@@ -4,7 +4,7 @@ title: Resting heals the party, restores psionic strength points and spells, and
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-005, FND-MAGIC-006, FND-PARTY-211, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-005, FND-MAGIC-006, FND-MAGIC-018, FND-PARTY-211, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-MAGIC-001]
@@ -130,5 +130,7 @@ None known.
   how long the fire ring's 8 hours are in the clock's units (FND-MAGIC-005, Q-MAGIC-022).
 - What `combat_mark` 2, 3 and 8, effect 0x47, the 19 ended effect codes and the effect block bits
   stand for (FND-MAGIC-005, Q-MAGIC-023).
-- What `cast_cure` changes, and whether the four cures change a member who lacks the condition
-  (FND-MAGIC-005, Q-MAGIC-006).
+- What `cast_cure` changes, and whether the four cures change a member who lacks the condition:
+  it rolls no dice and deals no damage, and its level reaches only the save, the duration and the
+  effect switch, whose cases 148, 157, 159 and 178 were not read (FND-MAGIC-005, FND-MAGIC-018,
+  Q-MAGIC-028).

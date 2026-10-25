@@ -4,7 +4,7 @@ title: A DATA record's dice are a count growing with the level, of sides the rec
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-PARTY-112]
+evidence: [FND-RNG-035, FND-PARTY-112, FND-MAGIC-018, FND-MAGIC-019]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -22,8 +22,9 @@ routine can also report the largest total the roll could give. A record whose `A
 ## When it runs
 
 Overlay 193 `+003C`, the routine that applies a `DATA` number to its targets, calls it once for
-each target before the hit routine, with its level byte; a second routine of overlay 193 calls it
-too (FND-RNG-035).
+each target before the hit routine, with the cast's level byte. Overlay 193 `+13EC` calls it when
+a placed spell object is set off, for the object's `DATA` number at the level the object holds,
+the placing cast's level capped at 31 (FND-RNG-035, FND-MAGIC-018, FND-MAGIC-019).
 
 ## Parameters
 
@@ -67,7 +68,10 @@ define data_dice(data_number: INT16, level: UINT8):
 
 The total, as a word, and `maximum`, which the routine stores only when its caller passes a place
 for it. On the two early returns nothing is stored, and the 0 shown as the maximum there is not
-written.
+written. The total is the cast's damage to the target before overlay 197 `+0000`'s adjustments and
+the target's resistance percentage, which a successful save halves or sets to 0; the maximum
+replaces the roll only for a target at `combat_mark` 3 or with bit 0x20 of effect block byte 8
+(FND-MAGIC-018).
 
 ## Edge cases
 
@@ -85,5 +89,5 @@ None known.
 
 ## Open questions
 
-- What the caller does with the total and with `maximum`, and which level byte each caller
-  passes (FND-RNG-035, Q-MAGIC-006).
+- What bit 0x20 of effect block byte 8 stands for, which makes a target take `maximum` with no
+  roll (FND-MAGIC-018, Q-MAGIC-008).

@@ -4,7 +4,7 @@ title: How many spells of each level a caster can cast before resting
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-MAGIC-015, FND-MAGIC-016, FND-MAGIC-017, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-MAGIC-015, FND-MAGIC-016, FND-MAGIC-017, FND-MAGIC-018, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []
@@ -117,7 +117,9 @@ fourth-level spells at levels 14 and 15. With the debug byte `DS:13F8` at 1 ever
 below 4 is 19 and the window is not limited. The ranger's level less 7 sets only the window and,
 through overlay 193 `+1A2D`, the strength of the ranger's effects; the cast carries the full class
 level, or 6 when the spell was left pending and is cast from the inventory window (FND-MAGIC-016,
-FND-MAGIC-017).
+FND-MAGIC-017). The cast's level sets the damage dice up to 10, the effect's duration with no cap,
+the save term of `DATA` 60 and the effect switch's level; it never changes which or how many
+targets a cast reaches (FND-MAGIC-018).
 
 ## What the sources say
 
@@ -142,6 +144,3 @@ None known.
   on the load path empties the placed-object table; any of these would let a load reach the party
   loader and refill the pools of slots 0 to 3 (FND-MAGIC-006, FND-MAGIC-011, FND-PARTY-021,
   Q-MAGIC-024).
-- What the caster level a cast carries changes: the cast passes the full class level, a ranger's
-  included, and 6 for a pending spell cast from the inventory window (FND-MAGIC-003,
-  FND-MAGIC-016, Q-MAGIC-006).

@@ -1,9 +1,13 @@
 # MAGIC
 
-Next ID: Q-MAGIC-028
+Next ID: Q-MAGIC-029
 
 ## Static
 
+- Q-MAGIC-028. RULE-MAGIC-004: What do the effect switch's cases for the rest's cures 148, 157, 159
+  and 178 do with the level `a`, and do they change a member who lacks the condition? Settles it:
+  a reading of overlay 179 `+1373`'s cases for those numbers. Tried: FND-MAGIC-005 reads the
+  rest's casts; FND-MAGIC-018 finds the cures dealing no damage. Blocks: slice 5.
 - Q-MAGIC-001. FND-MAGIC-001, SCR-UI-009: What do the darker icons and the lower panel of the Use
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
@@ -40,18 +44,11 @@ Next ID: Q-MAGIC-028
   FND-MAGIC-006 finds the load reading the pools back from `SAVE` 23; FND-MAGIC-011 finds the
   word's writers and a successful load recounting it to the saved count before the gate. Blocks:
   slice 5.
-- Q-MAGIC-006. RULE-MAGIC-005, RULE-MAGIC-001, RULE-MAGIC-004: What do the two callers of the `DATA` dice formula do with its
-  total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
-  use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit
-  routine, the routine around overlay 193 `+1431` and its use of both, and the writers of each
-  caller's level byte. Tried: FND-RNG-035 reads the formula and names the two calls; FND-MAGIC-016 finds the
-  pending-spell routes of overlay 189 `+076A` and `+0B3C` passing the level 6, and FND-MAGIC-017
-  the effect sums of overlay 193 `+1A2D` taking overlay 211 `+1FB5`'s level. Blocks: slices 2-7.
 - Q-MAGIC-007. RULE-MAGIC-006: What do details byte `+0x12` 9 and byte `+0x1E` hold, and what
   does `2D40:06E1` do with the caster when `DATA` 306's test fails? Settles it: the writers of
   the two details bytes for party members and for creatures, and a reading of `2D40:06E1`.
   Tried: FND-RNG-035 reads the test and its one caller. Blocks: slices 2-7.
-- Q-MAGIC-008. RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010: What do the hit
+- Q-MAGIC-008. RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-005: What do the hit
   routine's gate tests in overlay 197 stand for: combatant record byte `+0x0E` 13, details byte
   `+0x12` 8 and 9, the effect block bits they test, bit 0x100 of `+1760`'s mask, the hit routine's
   byte at `bp+0x14`, overlay 208 `+0885`'s value, `2D40:35EF`, codes 0x2E and 0x4F of overlay 193
@@ -59,7 +56,9 @@ Next ID: Q-MAGIC-028
   readings of the writers of those record bytes and block bits, of overlay 208 `+0885`, `2D40:35EF`
   and overlay 193 `+1AA4`, of the hit routine's callers' byte argument, and a computed-call search
   for `+314E`'s trampoline `575A:00C0`. Tried: FND-RNG-040 reads the gates and FND-PARTY-112 the
-  tests before them. Blocks: slices 4-5.
+  tests before them; FND-MAGIC-018 finds overlay 197 `+0000` also testing bit 0x20 of effect
+  block byte 8, bit 1 of byte 1, bit 0x40 of byte 0x0C, effects 0x48 and 0x66 and `2D40:35EF`,
+  and FND-MAGIC-020 the turn-back on bits 0x10 and 0x20 of byte 0x0A. Blocks: slices 4-5.
 - Q-MAGIC-009. RULE-MAGIC-009: What does overlay 179 `+1304` do with the 2d6 total and its other
   seven arguments, and what does `DATA` 308 do when the cast queue runs it? Settles it: a reading of
   `+1304` from entry to return and of overlay 193 `+003C` for a queued record of `DATA` 308.
