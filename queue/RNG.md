@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-037
+Next ID: Q-RNG-039
 
 ## Static
 
@@ -93,23 +93,31 @@ Next ID: Q-RNG-037
   windows during 40 s of play from the two-character checkpoint and finds one change, the store
   of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
   not taken. Blocks: complete seed-source reading.
-- Q-RNG-031. RULE-RNG-001, BUG-COMBAT-001: Which block copies or file reads other than the `SAVE`
-  table's can put 9999 in `DS:426D` or `4C13:0369`? Settles it: every other block copy or file read
-  whose destination covers `DS:426D` or `4C13:0369`, with the values it can write there: the 38
-  calls of `1000:0452` and `1000:3F5A` whose destination is a far pointer in memory or an argument,
-  `2D40:093F`'s index and `1AA0:0625`'s base (FND-RNG-087), the inline string moves that
-  `block_copies.py` lists, the other copy and string routines (with `2D40:3E64`, `2D40:3DC2`,
-  `1000:374E` and `44DE:01AF` writing through `DS:420A`, `DS:4226` and `DS:4252`), and the file
-  reads. Tried: FND-RNG-067, FND-RNG-069 and FND-RNG-070 find the end of combat leaving 9999 until a
-  leader key, and FND-RNG-073 finds no direct store of 9999 in `DS:426D`, `DS:0DA5` or
-  `4C13:0369`. Tried: FND-RNG-078 with FND-PARTY-089 shows overlay 173 `+059A` storing 9999 only
-  on its end-of-combat path. Tried: FND-SAVE-015 finds `DS:426D` in no `SAVE` resource and
-  `4C13:0369` in `SAVE` 46, which a load restores from what a save took, with no `SAVE` resources
-  shipped. Tried: FND-RNG-087 classifies the destinations of the 104 calls of the two copy
-  routines and finds 64 that cannot reach either word with 9999 as the index, and the pointers
-  formed between `DS:4200` and `DS:426D`: `DS:420A`, `DS:4226` and `DS:4252`, passed to routines
-  whose writes were not read. Blocks: complete
-  seed-source reading.
+- Q-RNG-031. RULE-RNG-001, BUG-COMBAT-001: Can a call of the copy routines `1000:0452` or
+  `1000:3F5A` put 9999 in `DS:426D` or `4C13:0369`? Settles it: for the 38 calls whose destination
+  is a far pointer in memory or an argument, and for `2D40:093F`'s index and `1AA0:0625`'s base
+  (FND-RNG-087), where the destination can point, each shown to miss both words or listed with the
+  values it can copy there. Tried: FND-RNG-073 finds no direct store of 9999 in `DS:426D`,
+  `DS:0DA5` or `4C13:0369`, and FND-SAVE-015 finds `DS:426D` in no `SAVE` resource and
+  `4C13:0369` in `SAVE` 46. Tried: FND-RNG-087 classifies the destinations of the 104 calls and
+  finds 64 that cannot reach either word with 9999 as the index. Split into Q-RNG-031, Q-RNG-037
+  and Q-RNG-038. Blocks: complete seed-source reading.
+- Q-RNG-037. RULE-RNG-001, BUG-COMBAT-001: Can an inline string move or a copy or string routine
+  other than `1000:0452` and `1000:3F5A` put 9999 in `DS:426D` or `4C13:0369`? Settles it: the
+  destinations of the inline moves that `block_copies.py` lists and of the callers of each other
+  copy, fill and string routine, including what `2D40:3E64`, `2D40:3DC2` and `1000:374E` write
+  through `DS:420A` and `DS:4226` and how far (FND-RNG-087), each shown to miss both words or
+  listed with the values it can write there. Tried: FND-RNG-067, FND-RNG-069 and FND-RNG-070 find
+  the end of combat leaving 9999 until a leader key, and FND-RNG-078 with FND-PARTY-089 shows
+  overlay 173 `+059A` storing 9999 only on its end-of-combat path; FND-RNG-087 finds the pointers
+  formed between `DS:4200` and `DS:426D`. Split from Q-RNG-031. Blocks: complete seed-source
+  reading.
+- Q-RNG-038. RULE-RNG-001, BUG-COMBAT-001: Can a file read put 9999 in `DS:426D` or `4C13:0369`?
+  Settles it: every DOS read request (`int 0x21` with `AH` 0x3F) and its callers, with each buffer
+  shown to miss both words or listed with the file and count it reads there, including
+  `44DE:01AF`'s 3 bytes at `DS:4252` (FND-RNG-087). Tried: FND-SAVE-015 finds `4C13:0369` in
+  `SAVE` 46, which a load restores from what a save took, and `DS:426D` in no `SAVE` resource.
+  Split from Q-RNG-031. Blocks: complete seed-source reading.
 - Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it:
   the slot argument at the four calls of `31E0:0121` that FND-RNG-085 leaves unbounded (overlay 171
   `+0C25`, overlay 179 `+26DE`, overlay 182 `+04E0`, overlay 184 `+12E5`), the stores through

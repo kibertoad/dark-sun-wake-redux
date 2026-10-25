@@ -56,7 +56,7 @@ Do not repeat a retained search without new evidence, tooling or reading.
   `4C13:035B` about 15 times a second, and the leader keys are refused
   (FND-RNG-074 to FND-RNG-077, FND-COMBAT-056, FND-COMBAT-057). Open:
   Q-COMBAT-034 (what each pass changes), Q-COMBAT-035 (what ends it),
-  Q-RNG-031 and Q-RNG-034 (other routes to 9999).
+  Q-RNG-031, Q-RNG-037, Q-RNG-038 and Q-RNG-034 (other routes to 9999).
 - Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
   `indirect_targets.py` (armed breakpoints on indirect transfers, memory
   reads, write watchpoints, key and pointer inputs, and `--count` sites
@@ -67,8 +67,8 @@ Do not repeat a retained search without new evidence, tooling or reading.
   or the template; an upstream issue or PR was offered and awaits their
   answer. File nothing upstream without it.
 - Next:
-  - Q-RNG-031 (other stores to `DS:426D`, other paths of overlay 173
-    `+059A`), Q-COMBAT-035 and Q-COMBAT-034.
+  - Q-RNG-031, Q-RNG-037 and Q-RNG-038 (copies and reads into `DS:426D`),
+    Q-RNG-034, Q-COMBAT-035 and Q-COMBAT-034.
   - Q-RNG-029 and Q-RNG-005. Q-RNG-030 is closed: the `2707` copies,
     the program's timer callbacks and the sound drivers' timer functions
     write none of the clock windows (FND-RNG-079 to FND-RNG-084).
