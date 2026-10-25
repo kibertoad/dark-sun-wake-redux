@@ -4,7 +4,7 @@ title: Which spheres of cleric spells a priest may cast
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-004, FND-MAGIC-003, FND-PARTY-110, FND-PARTY-073, FND-PARTY-161, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-004, FND-MAGIC-012, FND-MAGIC-003, FND-PARTY-110, FND-PARTY-073, FND-PARTY-161, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-003, RULE-MAGIC-001]
@@ -113,6 +113,7 @@ None known.
 
 - Whether the running game offers a level 8 ranger Cosmos spells such as Bless (FND-MAGIC-004,
   Q-MAGIC-020).
-- Whether overlay 177 `+0B00`'s two record numberings, the slot for the class bytes and combatant
-  word `+0x04` for the origin and level bytes, are always the same record for a party slot
-  (FND-MAGIC-004, Q-MAGIC-021).
+- Whether a script field store or a `CHAR` resource the game writes can give a party slot's
+  combatant word `+0x04` a value other than the slot, so that overlay 177 `+0B00` reads the class
+  bytes and the origin and level bytes from two characters; every writer read sets it to the slot
+  (FND-MAGIC-004, FND-MAGIC-012, Q-MAGIC-027).

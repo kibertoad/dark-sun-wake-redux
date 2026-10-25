@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-027
+Next ID: Q-MAGIC-028
 
 ## Static
 
@@ -19,11 +19,13 @@ Next ID: Q-MAGIC-027
   `+1FB5`'s level? Settles it: readings of `197 +37A5`, the writers of `DS:9BD3`, and `193 +1A79`
   and `197 +14DA`. Tried: FND-MAGIC-002 reads the spend at `197 +3060` and FND-MAGIC-003 the
   cast window and the level the cast carries. Blocks: slice 5.
-- Q-MAGIC-021. RULE-MAGIC-002: Are the details record numbered by a party slot and the one numbered
-  by word `+0x04` of the slot's combatant record always the same record, as overlay 177 `+0B00`
-  takes them? Settles it: the writers of combatant word `+0x04` for party slots. Tried:
-  FND-MAGIC-004 finds `+0B00` reading the class bytes from one and the origin and level bytes from
-  the other. Blocks: slice 5.
+- Q-MAGIC-027. RULE-MAGIC-002: Can a script field store or a `CHAR` resource the game writes give
+  a party slot's combatant word `+0x04` a value other than the slot? Settles it: the callers of
+  `1AA0:012A` that pass a variable field (`2D40:25F1`, `2D40:2718`, `2D40:2940`) and the unread
+  ones (`1AA0:0317`, load image `0xEE3F`, overlay 188 `+0764` and `+079D`, overlay 204 `+18B5`),
+  whether any `GPL ` program stores field 15 of a kind-2 object, and the character writer's
+  chunks. Tried: FND-MAGIC-012 finds every other writer setting the word to the slot. Blocks:
+  slice 5.
 - Q-MAGIC-023. RULE-MAGIC-004, RULE-MAGIC-003: What do `combat_mark` 2, 3 and 8, effect 0x47, the 19 effect codes
   the rest ends (0x01, 0x13, 0x6C, 0x69, 0x65, 0x64, 0x52, 0x2C, 0x23, 0x21, 0x15, 0x14, 0x0A,
   0x41, 0x42, 0x44, 0x43, 0x45, 0x46), and bit 0x08 of byte 3, bit 0x80 of byte 8 and bit 0x80 of
@@ -36,9 +38,15 @@ Next ID: Q-MAGIC-027
   Tried: FND-MAGIC-008 finds the sweep's one load and one store. Blocks: slice 5.
 - Q-MAGIC-024. RULE-MAGIC-001: Can a load reach the new-game party loader overlay 182 `+063D`,
   which refills the spell pools of slots 0 to 3, through overlay 182 `+1167`'s gate on `DS:264E`?
-  Settles it: the writers of `DS:264E` and their order against the load path. Tried:
-  FND-PARTY-021 leaves the gate's value after a load open; FND-MAGIC-006 finds the load reading
-  the pools back from `SAVE` 23. Blocks: slice 5.
+  Settles it: whether play can reach a save with no placed object; whether a failed load from the
+  title screen passes `+1167`'s `DS:0DAB` test and its two `1BF3:27A8` calls with the count at 0
+  (a run breaking on `182 +063D` after loading a missing or truncated `SAVEnn.SAV` would show
+  it); whether a resident callee on the load path from overlay 192 `+0BC4` to `+0C32` reaches
+  `31E0:05BB` or `371D:050F`; what `28C9:2522` returning 1 means there; and any block fill or copy
+  covering `DS:264E`. Tried: FND-PARTY-021 leaves the gate's value after a load open;
+  FND-MAGIC-006 finds the load reading the pools back from `SAVE` 23; FND-MAGIC-011 finds the
+  word's writers and a successful load recounting it to the saved count before the gate. Blocks:
+  slice 5.
 - Q-MAGIC-006. RULE-MAGIC-005, RULE-MAGIC-001, RULE-MAGIC-004: What do the two callers of the `DATA` dice formula do with its
   total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
   use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit

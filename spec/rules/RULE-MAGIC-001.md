@@ -4,7 +4,7 @@ title: How many spells of each level a caster can cast before resting
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []
@@ -24,7 +24,8 @@ in most rows.
 
 When the pools are filled (overlay 182 `+0B52`: at a rest, at Start Game and in the new-game
 party loader, when ADD or character generation places a character, and on a debug key; a level
-gain does not refill them, and a load reads them back as saved, FND-MAGIC-006), when the cast window chooses the spell levels it
+gain does not refill them, and a load reads them back as saved, FND-MAGIC-006,
+and then reaches the party loader only when the saved game held no placed object, FND-MAGIC-011), when the cast window chooses the spell levels it
 offers and tests the pool before a cast, and when a cast spends a spell.
 
 ## Parameters
@@ -134,8 +135,11 @@ None known.
 
 - Which ability byte `+0x1D` of the combatant record is: it is read as Wisdom from FND-PARTY-081 and
   FND-PARTY-165 (Q-MAGIC-018).
-- Whether a load can reach the party loader, which would refill the pools of slots 0 to 3, through
-  the gate on `DS:264E` (FND-MAGIC-006, FND-PARTY-021, Q-MAGIC-024).
+- Whether play can reach a save with no placed object, or a failed load from the title screen can
+  pass overlay 182 `+1167`'s gate with the placed-object count at 0, and whether a resident routine
+  on the load path empties the placed-object table; any of these would let a load reach the party
+  loader and refill the pools of slots 0 to 3 (FND-MAGIC-006, FND-MAGIC-011, FND-PARTY-021,
+  Q-MAGIC-024).
 - What effect 0x5C and overlay 197 `+37A5` do, which let a wizard spell be cast without spending
   from the pool (FND-MAGIC-002, Q-MAGIC-019).
 - Whether overlay 208's byte at `DS:9BD3` can make a party spell carry the ranger level less 7,
