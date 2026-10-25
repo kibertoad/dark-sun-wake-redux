@@ -1,13 +1,16 @@
 # MAGIC
 
-Next ID: Q-MAGIC-029
+Next ID: Q-MAGIC-030
 
 ## Static
 
-- Q-MAGIC-028. RULE-MAGIC-004: What do the effect switch's cases for the rest's cures 148, 157, 159
-  and 178 do with the level `a`, and do they change a member who lacks the condition? Settles it:
-  a reading of overlay 179 `+1373`'s cases for those numbers. Tried: FND-MAGIC-005 reads the
-  rest's casts; FND-MAGIC-018 finds the cures dealing no damage. Blocks: slice 5.
+- Q-MAGIC-028. RULE-MAGIC-004: Can a gate of the hit routine before the effect switch (the
+  `DS:2588` table by combatant byte `+0x0F`, overlay 197 `+0E8F`, `+1760` and `+111A`) stop a rest
+  cure (`DATA` 148, 157, 159 or 178, total and maximum 0) reaching a member, and does the level
+  change that; and what do `2C5F:0A22` and overlay 206 `+1073` and `+1121` show after it? Settles
+  it: readings of those gates and routines for the four numbers. Tried: FND-MAGIC-005 reads the
+  rest's casts; FND-MAGIC-018 finds the cures dealing no damage; FND-MAGIC-021 reads the switch's
+  cases and the removals, none reading the level. Blocks: slice 5.
 - Q-MAGIC-001. FND-MAGIC-001, SCR-UI-009: What do the darker icons and the lower panel of the Use
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
@@ -44,10 +47,10 @@ Next ID: Q-MAGIC-029
   FND-MAGIC-006 finds the load reading the pools back from `SAVE` 23; FND-MAGIC-011 finds the
   word's writers and a successful load recounting it to the saved count before the gate. Blocks:
   slice 5.
-- Q-MAGIC-007. RULE-MAGIC-006: What do details byte `+0x12` 9 and byte `+0x1E` hold, and what
-  does `2D40:06E1` do with the caster when `DATA` 306's test fails? Settles it: the writers of
-  the two details bytes for party members and for creatures, and a reading of `2D40:06E1`.
-  Tried: FND-RNG-035 reads the test and its one caller. Blocks: slices 2-7.
+- Q-MAGIC-029. RULE-MAGIC-006: Which spell or power is `DATA` 306? Settles it: the places that
+  push 306 (0x132) as a `DATA` number, and the cast lists of spells, powers and items. Tried:
+  FND-RNG-035 reads the test; FND-MAGIC-022 reads its inputs and finds a failed test doing nothing.
+  Blocks: slices 2-7.
 - Q-MAGIC-008. RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-005: What do the hit
   routine's gate tests in overlay 197 stand for: combatant record byte `+0x0E` 13, details byte
   `+0x12` 8 and 9, the effect block bits they test, bit 0x100 of `+1760`'s mask, the hit routine's

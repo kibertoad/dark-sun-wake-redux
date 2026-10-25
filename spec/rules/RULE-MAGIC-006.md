@@ -4,7 +4,7 @@ title: DATA 306 destroys a target of details kind 9 on a d20 at least three time
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-RNG-044, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023]
+evidence: [FND-RNG-035, FND-RNG-044, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023, FND-MAGIC-022]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -15,8 +15,9 @@ related: [RULE-RNG-001]
 When the hit routine applies `DATA` 306 to a target whose details record has byte `+0x12` 9, it
 rolls a d20 against a target number from the target's details byte `+0x1E` and a level byte the
 hit routine passes. On a total at least the target number, the target takes 1,000 damage and the
-hit's flags get bit 0x01; otherwise the routine calls `2D40:06E1` with the caster. Any other
-target makes no roll and nothing happens.
+hit's flags get bit 0x01; otherwise nothing happens. Byte `+0x12` 9 is the undead creature kind
+and byte `+0x1E` the level of the first class position (FND-MAGIC-022). Any other target makes no
+roll and nothing happens.
 
 ## When it runs
 
@@ -62,14 +63,14 @@ define data_306_test(target, caster, flags, level: UINT8):
     if INT16(roll_sum(1, 20)) >= need:
         emit DamageDealt(target, 1000)
         return flags | 0x01
-    emit DataTestFailed(caster)
     return flags
 ```
 
 ## Outputs
 
 The 1,000 damage, dealt through overlay 179 `+2A05` with `DATA` number -1 and code -1, and bit
-0x01 of the hit's flags (FND-RNG-044), or the call of `2D40:06E1` with the caster.
+0x01 of the hit's flags (FND-RNG-044). On a failed roll the routine calls `2D40:06E1`, which
+returns at once (FND-MAGIC-022).
 
 ## Edge cases
 
@@ -88,5 +89,4 @@ None known.
 
 ## Open questions
 
-- What details byte `+0x12` 9 and byte `+0x1E` stand for, which spell or power `DATA` 306 is, and
-  what `2D40:06E1` does with the caster after `DataTestFailed` (FND-RNG-035, Q-MAGIC-007).
+- Which spell or power `DATA` 306 is (FND-RNG-035, FND-MAGIC-022, Q-MAGIC-029).
