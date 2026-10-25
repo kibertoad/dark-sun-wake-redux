@@ -47,6 +47,18 @@ Do not repeat a retained search without new evidence, tooling or reading.
   the two callers that set the cast byte (FND-RNG-064). Q-RNG-005 split
   into Q-RNG-005, Q-RNG-029 and Q-RNG-030; seven of FND-RNG-058's nine
   transfers resolved (FND-RNG-065, FND-RNG-066).
+- Also done: the start window, Preferences, inventory and Split readings
+  (FND-UI-059 to FND-UI-067); the edge scroll, the opening leader's cell
+  and the Walk planner (FND-EXPLORE-008 to FND-EXPLORE-015,
+  RULE-EXPLORE-005 now supported with its procedure); where
+  `control_locked` is set and where Space reaches the key routine
+  (FND-AI-005, FND-AI-006). New items: Q-EXPLORE-010 (the planner's
+  unread callees), Q-AI-005 (Agent run: does an effect's end clear the
+  button's setting). A play-ready Walk click fails because slot 1 has
+  no position at that checkpoint (FND-EXPLORE-015); start Walk runs from
+  a new game instead. During an edge hold the emulated mouse driver
+  returned the injected column only once in 50 calls (FND-EXPLORE-009),
+  which may be a rust-dos defect; nothing was filed.
 - Found: BUG-COMBAT-001. With `DS:426D` at 9999, which the end of
   combat leaves until a leader key (FND-RNG-069, FND-RNG-070), a view
   click sends slot 9999 to `2D40:2F34`, which writes a record number over
