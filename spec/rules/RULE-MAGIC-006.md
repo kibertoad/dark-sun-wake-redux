@@ -1,10 +1,10 @@
 ---
 id: RULE-MAGIC-006
-title: DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10
+title: Turn undead, DATA 306, destroys an undead target on a d20 at least three times its adjusted level less the adjusted caster level, plus 10
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-RNG-044, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023, FND-MAGIC-022]
+evidence: [FND-RNG-035, FND-RNG-044, FND-PARTY-086, FND-COMBAT-022, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-023, FND-MAGIC-022, FND-MAGIC-023, FND-MAGIC-017]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -12,7 +12,8 @@ related: [RULE-RNG-001]
 
 ## Summary
 
-When the hit routine applies `DATA` 306 to a target whose details record has byte `+0x12` 9, it
+`DATA` 306 is the cleric classes' turn undead (FND-MAGIC-023). When the hit routine applies it to a
+target whose details record has byte `+0x12` 9, it
 rolls a d20 against a target number from the target's details byte `+0x1E` and a level byte the
 hit routine passes. On a total at least the target number, the target takes 1,000 damage and the
 hit's flags get bit 0x01; otherwise nothing happens. Byte `+0x12` 9 is the undead creature kind
@@ -21,8 +22,14 @@ roll and nothing happens.
 
 ## When it runs
 
-The case of `DATA` 306 in the hit routine's effect switch calls it with the target, the caster,
-the hit's flags and the hit routine's byte argument `a` as the level (FND-RNG-044, FND-RNG-035).
+The spell window shows a `TURN UNDEAD` button, control 0x2BEF, for a member whose `class_flags`
+has one of the four cleric bits, except while `DS:140C` is 0x44. Using it casts 306 from the member
+at the greatest of its levels in class codes 1 to 4; the cast does not enter the recent-cast list
+and spends nothing, and in a fight it then ends the turn of the slot at `DS:426D`. The hit routine's
+gate overlay 208 `+0F07` ends the hit before the effect switch for a target whose details byte
+`+0x12` is not 9. The case of `DATA` 306 in the effect switch calls this rule with the target, the
+caster, the hit's flags and the hit routine's byte argument `a` as the level (FND-RNG-044,
+FND-RNG-035, FND-MAGIC-017, FND-MAGIC-023).
 
 ## Parameters
 
@@ -89,4 +96,5 @@ None known.
 
 ## Open questions
 
-- Which spell or power `DATA` 306 is (FND-RNG-035, FND-MAGIC-022, Q-MAGIC-029).
+- Whether a script casts `DATA` 306 by a computed number, and what region `DS:140C` 0x44 is, where
+  the button is not shown (FND-MAGIC-023, Q-MAGIC-029).

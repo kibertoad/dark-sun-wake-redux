@@ -4,13 +4,11 @@ Next ID: Q-MAGIC-030
 
 ## Static
 
-- Q-MAGIC-028. RULE-MAGIC-004: Can a gate of the hit routine before the effect switch (the
-  `DS:2588` table by combatant byte `+0x0F`, overlay 197 `+0E8F`, `+1760` and `+111A`) stop a rest
-  cure (`DATA` 148, 157, 159 or 178, total and maximum 0) reaching a member, and does the level
-  change that; and what do `2C5F:0A22` and overlay 206 `+1073` and `+1121` show after it? Settles
-  it: readings of those gates and routines for the four numbers. Tried: FND-MAGIC-005 reads the
-  rest's casts; FND-MAGIC-018 finds the cures dealing no damage; FND-MAGIC-021 reads the switch's
-  cases and the removals, none reading the level. Blocks: slice 5.
+- Q-MAGIC-028. RULE-MAGIC-004: Does the cast queue run a record during a rest, so that a cure
+  turned back by effect 85 lands on its caster, and what does `4C4F:00DC + 4 * j` hold outside a
+  fight? Settles it: the callers of the queue runner overlay 179 `+11DC` on the rest's path, and the
+  writers of `4C4F:00DC`. Tried: FND-MAGIC-021 reads the cures' cases; FND-MAGIC-024 reads the
+  gates before the switch and the sound after it. Blocks: slice 5.
 - Q-MAGIC-001. FND-MAGIC-001, SCR-UI-009: What do the darker icons and the lower panel of the Use
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
@@ -47,10 +45,11 @@ Next ID: Q-MAGIC-030
   FND-MAGIC-006 finds the load reading the pools back from `SAVE` 23; FND-MAGIC-011 finds the
   word's writers and a successful load recounting it to the saved count before the gate. Blocks:
   slice 5.
-- Q-MAGIC-029. RULE-MAGIC-006: Which spell or power is `DATA` 306? Settles it: the places that
-  push 306 (0x132) as a `DATA` number, and the cast lists of spells, powers and items. Tried:
-  FND-RNG-035 reads the test; FND-MAGIC-022 reads its inputs and finds a failed test doing nothing.
-  Blocks: slices 2-7.
+- Q-MAGIC-029. RULE-MAGIC-006: Does a script cast `DATA` 306 by a computed number, and what region
+  is `DS:140C` 0x44, where the turn undead button is not shown? Settles it: the script programs'
+  cast calls (script function 46 of opcode 0x22, FND-MAGIC-020) decoded for 306, and the writers
+  and meaning of `DS:140C` 0x44. Tried: FND-MAGIC-023 finds the button the only immediate cast of
+  306. Blocks: slices 2-7.
 - Q-MAGIC-008. RULE-MAGIC-007, RULE-MAGIC-008, RULE-MAGIC-009, RULE-MAGIC-010, RULE-MAGIC-005: What do the hit
   routine's gate tests in overlay 197 stand for: combatant record byte `+0x0E` 13, details byte
   `+0x12` 8 and 9, the effect block bits they test, bit 0x100 of `+1760`'s mask, the hit routine's

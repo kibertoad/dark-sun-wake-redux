@@ -4,7 +4,7 @@ title: Resting heals the party, restores psionic strength points and spells, and
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-005, FND-MAGIC-006, FND-MAGIC-018, FND-MAGIC-021, FND-PARTY-211, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-005, FND-MAGIC-006, FND-MAGIC-018, FND-MAGIC-021, FND-MAGIC-024, FND-PARTY-211, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-MAGIC-001]
@@ -98,7 +98,10 @@ removes every effect of code 27 from `target` and Neutralize Poison every effect
 Remove Curse sets `target`'s current Strength to its base Strength when it is lower; Remove
 Paralysis removes every effect of codes 91, 70, 65, 66, 67 and 68, and of 69 when `target` has no
 effect of code 71. The caster and the level change nothing. Each removal ends the effect and
-rebuilds `target`'s scores (FND-MAGIC-021).
+rebuilds `target`'s scores (FND-MAGIC-021). Each cure first removes effects 0x35 and 0x36 from
+`caster`, and afterwards plays sound effect 9 (Cure Disease, Remove Curse) or 59 (Remove Paralysis,
+Neutralize Poison) for a target it reached, Remove Curse only when it raised Strength; no picture
+or object is shown (FND-MAGIC-024).
 
 ## Outputs
 
@@ -117,6 +120,13 @@ The changes above; nothing is returned.
   the cures, and a second cast of a cure changes nothing more. Remove Curse's Strength is lowered
   again at the next score rebuild while an effect that lowers it remains. Remove Paralysis runs
   before Neutralize Poison, so a poisoned member keeps effect 69 (FND-MAGIC-021).
+- A cure does not reach a member that has effect 4, 92 or 74, effect 11 while its word at
+  `4C4F:00DC` is -1, or effect 55 whose row byte is above the spell's level; that loses a 75 in 100
+  roll with effect 46, which then loses effect 46 and gets `DATA` 307 queued on itself; or, against
+  another member's cure, has effect 56, or effect 85 for Cure Disease, Remove Curse or Remove
+  Paralysis, which turns the cure back at the caster at the rest's level. With effect 92 a worn
+  item of power 312 with capacity left absorbs the cure. The cast level decides none of these
+  (FND-MAGIC-024).
 
 ## What the sources say
 
@@ -139,6 +149,5 @@ None known.
   how long the fire ring's 8 hours are in the clock's units (FND-MAGIC-005, Q-MAGIC-022).
 - What `combat_mark` 2, 3 and 8, effect 0x47, the 19 ended effect codes and the effect block bits
   stand for (FND-MAGIC-005, Q-MAGIC-023).
-- Whether a gate of the hit routine before the effect switch (the `DS:2588` table, overlay 197
-  `+0E8F`, `+1760` and `+111A`) can stop a rest cure reaching a member, and whether the level
-  changes that; and what overlay 179 `+1168` shows for a cure (FND-MAGIC-021, Q-MAGIC-028).
+- Whether the cast queue runs during a rest, so that a cure turned back by effect 85 lands on its
+  caster, and what `4C4F:00DC` holds outside a fight (FND-MAGIC-024, Q-MAGIC-028).

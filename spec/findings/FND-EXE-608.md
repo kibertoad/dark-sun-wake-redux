@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-608
 title: The 7 routines of overlay 211 that no entry placed redraw the spell window's four party boxes and current name, close the spell window, handle the events of its 34 list controls, and draw a frame over one of those controls through overlay 190 or 2D40:3BEC
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-634]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
