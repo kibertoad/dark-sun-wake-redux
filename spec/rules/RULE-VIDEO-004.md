@@ -4,7 +4,7 @@ title: While an FLI plays, a timer slot with a period of 1,000 microseconds coun
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-008, FND-TIME-007]
+evidence: [FND-VIDEO-008, FND-TIME-007, FND-TIME-008]
 conflicting: []
 split_with: []
 related: [RULE-TIME-002]
@@ -47,6 +47,10 @@ fli_ticks = fli_ticks + 1
 With the FLI slot the shortest in use, `timer_reload_for(1000)` gives 1,193, so the interrupt and
 the tick run at 1,193,182 / 1,193 Hz, 0.99985 ms a tick.
 
+No other slot asks for a period shorter than 1,000 µs, and the timer handler runs each slot by its
+own accumulated time, so `fli_tick` advances 1,000 times a second on average whatever else runs
+(FND-TIME-008).
+
 ## What the sources say
 
 None known.
@@ -57,6 +61,4 @@ None known.
 
 ## Open questions
 
-- Whether another slot with a shorter period is in use while an FLI plays, and how the library
-  then decides when to run each slot's routine: the interrupt handler that calls the slots was not
-  read, so the rate of `fli_tick` is shown only for the FLI slot alone (FND-TIME-007, Q-TIME-002).
+None known.

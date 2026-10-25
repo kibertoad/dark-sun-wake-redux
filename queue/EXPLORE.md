@@ -33,7 +33,7 @@ Next ID: Q-EXPLORE-014
   case. Blocks: none.
 - Q-EXPLORE-010. RULE-EXPLORE-005: What do the calls in step 8 of `fn_2D40_2F34` (for slots 48
   and up, FND-RNG-068), `fn_1695_01D1` and the fight check `fn_2D40_1197` do, what are
-  `g_4C13_0367`, `g_57E0_145E`, `g_57E0_19AE` and `g_57E0_19BF` for, what units does
+  `g_4C13_0367`, `g_57E0_19AE` and `g_57E0_19BF` for, what units does
   `fn_1B0B_000C` give, and what does `plan_walk`
   read where its procedure has no value: the distance local when the wait test did not run, the
   step-record bytes after a queue's end, the step record on its first two exits, and the records of

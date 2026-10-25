@@ -4,7 +4,7 @@ title: The timer interrupt runs at the shortest period any of 17 timer slots ask
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-007]
+evidence: [FND-TIME-007, FND-TIME-008]
 conflicting: []
 split_with: []
 related: []
@@ -14,12 +14,21 @@ related: []
 
 A resident library keeps up to 17 timers, each with a period in microseconds, and sets the
 hardware timer interrupt to fire at the shortest period among the timers in use, or at the BIOS
-rate of 18.2 times a second when the period is too long for the chip.
+rate of 18.2 times a second when the period is too long for the chip. Each interrupt adds the
+period to every running slot's `timer_accumulators` entry and calls the slot's routine whenever
+that entry reaches the slot's period, taking the period off, so each slot runs at its own average
+rate (FND-TIME-008).
+
+With the installed sound set-up the slots during play are the library's own call of the BIOS
+timer handler every 54,925 µs, the music driver's service at 120 Hz, a sound counter at 100 Hz and
+the game tick at 96 Hz, which adds 1 to `game_tick`; an FLI adds a slot of 1,000 µs while it plays
+(FND-TIME-008, FND-VIDEO-008). The interrupt therefore runs at 120 Hz during play and at 1,000 Hz
+from the start of an FLI.
 
 ## When it runs
 
-`choose_timer_period` runs when the library's timer slots change; its callers were not located.
-`timer_reload_for` runs inside it.
+`choose_timer_period` runs whenever a slot's period is set, from the period setter `4842:093D`
+(FND-TIME-008). `timer_reload_for` runs inside it. Giving a slot back does not run it.
 
 ## Parameters
 
@@ -27,7 +36,7 @@ rate of 18.2 times a second when the period is too long for the chip.
 
 ## Inputs
 
-`timer_slot_used`, `timer_periods`, `timer_period`.
+`timer_slot_used`, `timer_periods`, `timer_period`, `timer_accumulators`.
 
 ## Procedure
 
@@ -40,20 +49,23 @@ define timer_reload_for(period_us: UINT16) -> UINT16:
     return UINT16((UINT32(period_us) * 10000) / 8380)
 
 define choose_timer_period():
-    g_4868_0120 = 0xFFFFFFFF
+    timer_shortest = 0xFFFFFFFF
     for slot in 0..17:
-        if timer_slot_used[slot] != 0 and timer_periods[slot] < g_4868_0120:
-            g_4868_0120 = timer_periods[slot]
-    if g_4868_0120 != timer_period:
-        g_4868_011E = 0xFFFF
-        timer_period = g_4868_0120
-        timer_reload = timer_reload_for(UINT16(g_4868_0120))
+        if timer_slot_used[slot] != 0 and timer_periods[slot] < timer_shortest:
+            timer_shortest = timer_periods[slot]
+    if timer_shortest != timer_period:
+        timer_scan_slot = 0xFFFF
+        timer_period = timer_shortest
+        timer_reload = timer_reload_for(UINT16(timer_shortest))
+        for slot in 0..17:
+            timer_accumulators[slot] = 0
 ```
 
 ## Outputs
 
 `timer_reload_for` returns the reload value. `choose_timer_period` returns nothing; when the
-shortest period changes it sets `g_4868_011E`, `timer_period` and `timer_reload`, and writes the
+shortest period changes it sets `timer_scan_slot`, `timer_period` and `timer_reload`, clears
+`timer_accumulators`, and writes the
 reload value to channel 0 of the timer chip in mode 3, which changes the rate of
 `timer_interrupt` to 1,193,182 divided by the reload value, with 0 meaning 65,536.
 
@@ -65,6 +77,11 @@ reach `timer_reload_for`, so a period of 65,536 µs or more is taken modulo 65,5
 `period_us * 10000` fits in 32 bits for every `UINT16`, and the quotient fits in 16 bits for every
 period below 54,925.
 
+`timer_scan_slot` is the slot the interrupt handler is serving, so a period change made inside a
+slot's routine makes the handler start its scan again from slot 0. A slot given back leaves the
+rate as it was, so after an FLI the interrupt runs at 1,000 Hz until the next period change
+(FND-TIME-008).
+
 ## What the sources say
 
 None known.
@@ -75,7 +92,6 @@ None known.
 
 ## Open questions
 
-- Which routines register timer slots, with which periods, and what runs on each; so the rate of
-  `timer_interrupt` while the game runs is not known (Q-TIME-002).
-- What `g_4868_011E` is for, and whether anything but `choose_timer_period` reads
-  `g_4868_0120`, where it keeps the shortest period while it searches (Q-TIME-002).
+- What the music driver's function `0x67` does on each of its 120 Hz calls, and in which order
+  the music driver, the game tick and the intro FLI take their slots at start-up (FND-TIME-008;
+  Q-TIME-002).

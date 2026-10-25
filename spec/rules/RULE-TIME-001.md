@@ -4,7 +4,7 @@ title: The game waits a number of milliseconds by reading the timer chip until e
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-TIME-004]
+evidence: [FND-TIME-004, FND-TIME-008, FND-TIME-009]
 conflicting: []
 split_with: []
 related: []
@@ -64,12 +64,16 @@ it returns once `ms` times `wait_units_per_ms` counts have passed.
 `wait_units_per_ms` starts at 2,386, the counts channel 0 of the timer chip makes per millisecond
 in mode 3, where it counts down by 2 per cycle of `pit_input` and `pit_countdown` is always odd;
 `calibrate_wait` changes it to 1,193 only when it reads an even value, as in a mode that counts
-by 1. Either way a millisecond is 1,193 cycles of `pit_input`, 0.99985 ms.
+by 1. Either way a millisecond is 1,193 cycles of `pit_input`, 0.99985 ms. Nothing in the game or
+in the installed sound drivers sets channel 0 to another mode (FND-TIME-009), so the value stays
+2,386.
 
 `wait_ms(0)` returns at once. The loop only notices time passing when it reads the counter, so a
 long interruption between two readings, longer than one full turn of the counter (65,536 counts),
 makes the wait longer than asked. A reading below the one before means the counter has wrapped;
-when the target is then below 65,536 it has been passed, and the wait ends.
+when the target is then below 65,536 it has been passed, and the wait ends. Each wrap takes 65,536
+off the target, the length of a turn at the BIOS reload; once the game has set a shorter reload
+for its timer slots (RULE-TIME-002, FND-TIME-008) a turn is shorter than that.
 
 ## What the sources say
 
@@ -84,5 +88,6 @@ None known.
 - What event each caller waits for, including the overlay 172 pause fed by
   100 times the Preferences message-delay word (FND-CONFIG-010, FND-UI-034,
   Q-TIME-003).
-- Whether the game ever reprograms channel 0 to a mode other than 3, which would make
-  `calibrate_wait` choose 1,193 (Q-TIME-002).
+- How long `wait_ms` really waits once the timer library has set channel 0 to a reload below
+  65,536, as it does for its slots during play: each wrap takes a full 65,536 off the target
+  (FND-TIME-004, FND-TIME-008; Q-TIME-004).

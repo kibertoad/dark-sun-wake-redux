@@ -4,7 +4,7 @@ title: How a character walks to the cell a left click with the Walk pointer chos
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
+evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-TIME-008, FND-TIME-010, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004]
@@ -33,7 +33,7 @@ plan, as the click (FND-RNG-068) and a blocked step do.
 `object_slots`, `object_slot_kinds`, `object_slot_combatants`, `combatants`, `leader`,
 `combat_state`, `walk_mode`, `walk_target_x`, `walk_target_y`, the step records (`step_queue`,
 `step_index`, `next_step`, `plan_target_x`, `plan_target_y`, `plan_start_x`, `plan_start_y`,
-`plan_skip`), `g_57E0_145E`, `g_57E0_19AE`, and the cells RULE-EXPLORE-003 reads.
+`plan_skip`), `game_tick`, `g_57E0_19AE`, and the cells RULE-EXPLORE-003 reads.
 
 ## Procedure
 
@@ -237,7 +237,7 @@ define plan_walk(slot: INT16, replan: UINT8) -> INT16:
             plan_start_x[s] = cx
             plan_start_y[s] = cy
             plan_skip[s] = 0
-        if combat_state == 0 and s >= 4 and UINT32(g_57E0_145E - g_57E0_19AE) < 32:
+        if combat_state == 0 and s >= 4 and UINT32(game_tick - g_57E0_19AE) < 32:
             distance = fn_1B0B_000C(cx, cy, tx, ty)
             if distance > 24:
                 next_step[s] = 0xFF
@@ -311,7 +311,7 @@ define plan_walk(slot: INT16, replan: UINT8) -> INT16:
     if next_step[s] >= 8 and next_step[s] < 0x80:
         next_step[s] = 0xFF
     if next_step[s] < 0x80 and s >= 4 and distance > 24:
-        g_57E0_19AE = g_57E0_145E
+        g_57E0_19AE = game_tick
     return end_plan(s, lifted, cells_x, cells_y)
 ```
 
@@ -323,7 +323,7 @@ and otherwise moves the footprint there and starts the move. At each cell `plan_
 takes the next queued step (FND-RNG-072, FND-EXPLORE-014).
 
 The move between cells is the walker's walk animation: each frame adds its pixel steps to the
-position, one frame per map pass and no more than one per tick of `g_57E0_145E`, and the frame that
+position, one frame per map pass and no more than one per tick of `game_tick`, and the frame that
 reaches a cell centre ends the step, so `plan_walk(slot, 0)` runs in the same pass and the next
 step starts in the next (FND-EXPLORE-019). The most common walk animation in the shipped data
 takes 4 frames per cell north or south and 6 in the other directions (FND-EXPLORE-020). With
@@ -351,7 +351,7 @@ place when it returns, unless the slot's combatant has no hit points left.
   it uses to the 8-way one before any call here.
 - `step_index` only grows while it is below 16, so `step_queue[s][step_index[s]]` stays in the
   record.
-- A slot of 4 or more outside a fight that planned less than 32 ticks of `g_57E0_145E` after
+- A slot of 4 or more outside a fight that planned less than 32 ticks of `game_tick` after
   another such plan, for a target more than 24 away, gets no plan and has its `walk_mode` negated.
 
 ## What the sources say
@@ -371,7 +371,7 @@ None known.
   link of a node before its array (FND-EXPLORE-021; Q-EXPLORE-013).
 - What `fn_1B0B_000C`'s distance is measured in (FND-PARTY-098; Q-EXPLORE-010).
 - What the calls that end `fn_2D40_2F34` do for slots of 48 and up, what `fn_1695_01D1` and the
-  fight check `fn_2D40_1197` do, and what `g_4C13_0367`, `g_57E0_145E`,
+  fight check `fn_2D40_1197` do, and what `g_4C13_0367`,
   `g_57E0_19AE` and `g_57E0_19BF` are for (FND-EXPLORE-014, FND-PARTY-199; Q-EXPLORE-010).
 - What the original reads where the procedure has none: `distance` when the wait test did not
   run, the step-record bytes after a queue's end marker, which it fills from leftover stack
