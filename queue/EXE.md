@@ -1,10 +1,15 @@
 # EXE
 
-Next ID: Q-EXE-032
+Next ID: Q-EXE-033
 
 ## Static
 
-None.
+- Q-EXE-032. FND-EXE-633: Which overlay rows of the function inventory end before their
+  routine's return, as those of overlay 204 `+2029`, `+2085` and `+214E` do (ending at
+  `0x8DDF3`, `0x8DF08` and `0x8DF15` with 217 body bytes in no row)? Settles it: an inventory
+  whose rows for `0x8DDE9`, `0x8DE45` and `0x8DF0E` end at `0x8DE17`, `0x8DF0E` and `0x8DFC4`
+  (through the declared-entry or reconciliation steps of `docs/GHIDRA.md`), with every other
+  overlay row checked by the test FND-EXE-633 describes. Blocks: none.
 
 ## Emulated call
 
