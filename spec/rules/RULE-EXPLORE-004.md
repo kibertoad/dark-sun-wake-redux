@@ -4,7 +4,7 @@ title: The keypad direction keys step the chosen character one cell, or in comba
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, FND-RNG-068, FND-EXPLORE-014, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, FND-RNG-068, FND-EXPLORE-014, FND-EXPLORE-017, FND-EXPLORE-018, FND-INPUT-005, FND-INPUT-016, FND-CONFIG-171, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-EXPLORE-003, RULE-EXPLORE-005, RULE-COMBAT-006]
@@ -54,7 +54,7 @@ define try_step(c: UINT16, tx: INT16, ty: INT16) -> UINT8:
                 let w = byte & 0xF
                 let h = byte / 16
                 if tx >= sx - w and tx <= sx + w and ty >= sy - h and ty <= sy + h:
-                    fn_28C9_305F(c, s, 1)
+                    key_attack(c, s, 1)
                     return 1
         return 0
     walk_target_x[c] = tx
@@ -73,12 +73,12 @@ define direction_key(d: UINT8):
     let step_x: INT8[8] = [0, 1, 1, 1, 0, -1, -1, -1]
     let step_y: INT8[8] = [-1, -1, 0, 1, 1, 1, 0, -1]
     if pointer_mode != 1:
-        fn_28C9_2535(1)
+        set_pointer_mode(1)
     let c = turn_combatant
     let tx = INT16(object_slots[c].position_x >> 4) + step_x[d]
     let ty = INT16(object_slots[c].position_y >> 4) + step_y[d]
     try_step(c, tx, ty)
-    fn_2C5F_0182()
+    flush_input()
 ```
 
 ## Outputs
@@ -94,6 +94,9 @@ area holds the cell. A character whose slot is 4 or more tests the cell with the
 place. A target cell outside the map is blocked (RULE-EXPLORE-003). The area searched in combat
 uses the low four bits of the footprint byte for columns and the high four bits for rows, both as
 distances from the object's cell, which differs from the footprint RULE-EXPLORE-003 occupies.
+`key_attack` runs the attack routine and the fight check of overlay 173, which can end the fight
+and set `pointer_mode` back to 1 (FND-EXPLORE-017). `flush_input` drops any key pressed while the
+step ran (FND-INPUT-016).
 
 ## What the sources say
 
@@ -106,9 +109,8 @@ None known.
 
 ## Open questions
 
-- What `fn_28C9_305F`, `fn_28C9_2535` and `fn_2C5F_0182` do, read here as starting the attack,
-  the Walk pointer and a redraw (FND-EXPLORE-003, FND-EXPLORE-004, Q-EXPLORE-003). `plan_walk`
-  plans the step (RULE-EXPLORE-005).
-- What `g_4E71_0000` stands for (FND-EXPLORE-004, FND-COMBAT-013, Q-EXPLORE-003).
-- Whether the grey arrow keys of an enhanced keyboard reach these handlers (FND-EXPLORE-004,
-  Q-EXPLORE-003).
+- Whether any code reads `g_4E71_0000`; none was found, so what it stands for is unknown
+  (FND-EXPLORE-018, Q-EXPLORE-012).
+- Whether the grey arrow keys of an enhanced keyboard reach these handlers: the key hook reads keys
+  with `INT 16h` services 1 and 0, which BIOS documentation says report them with the keypad's key
+  words (FND-INPUT-005, FND-EXPLORE-004, Q-EXPLORE-011).

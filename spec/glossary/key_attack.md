@@ -1,0 +1,3 @@
+# key_attack
+
+The far routine at `28C9:305F` in BLD-GOG-EN-1.1, which a direction key calls with the character, the object whose area holds the blocked cell, and 1 [FND-EXPLORE-004]. In a fight it returns 0 unless the character's action word at `4C4F:01D8` has bit 2 set (and bit `0x20` when its third argument is above 1); it then makes the object hostile to the character's side, runs the attack routine of overlay 173 `+1CC1`, and runs the fight check of overlay 173 `+059A`, which can start or end a fight, and when that check returns 0 gives the turn back and sets `pointer_mode` to 1 [FND-EXPLORE-017]. No other build has been described.

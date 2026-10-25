@@ -1,6 +1,6 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-011
+Next ID: Q-EXPLORE-013
 
 ## Static
 
@@ -20,13 +20,6 @@ Next ID: Q-EXPLORE-011
   66-byte details records, `25AF:02FA` in full, and the callers of `25AF:071F`. Tried: the cell,
   footprint and area routines (FND-EXPLORE-001, FND-EXPLORE-002), which show how a footprint is
   laid out but not which values the records hold. Blocks: slice 3.
-- Q-EXPLORE-003. RULE-EXPLORE-004: What do `28C9:305F`, `28C9:2535`, `2C5F:0182` and `2C5F:0C8D`
-  do, and what is the byte at `4E71:0000` for? Does the key routine read keys through a BIOS
-  service that gives the grey arrow keys the keypad's key words? Settles it: a reading of those
-  routines and of the code that fills the key word the key routine compares. Tried: the direction
-  key handlers and the step routine `28C9:01CB` (FND-EXPLORE-004); FND-RNG-068 and FND-EXPLORE-014
-  read the 19-byte records at `4F49:08A3` and what `2D40:10AE` does after its route search, which
-  leave Settles it. Blocks: slice 3.
 - Q-EXPLORE-004. RULE-EXPLORE-002: Where does key 5 put the members it shows, what do
   `2C5F:0271`, `2C5F:0139` and `28C9:2A81` redraw, what does bit 3 of an entry's byte 5 stand for,
   and which stores to `57E0:13FA` belong to Collapse Party and to loading a game? Settles it:
@@ -62,7 +55,16 @@ None.
 
 ## Agent run
 
-None.
+- Q-EXPLORE-011. RULE-EXPLORE-004: Do the grey arrow keys of an enhanced keyboard step the chosen
+  character as the keypad keys do? The key hook reads keys with `INT 16h` services 1 and 0
+  (FND-INPUT-005), which BIOS documentation says report a grey arrow with the keypad's key word.
+  Settles it: a run that presses grey Up and keypad Up in turn on the map, with a breakpoint on the
+  key routine `28C9:0CFF` reading the key word each time. Tried: FND-INPUT-005 and FND-EXPLORE-004
+  read the hook and the key handlers statically. Blocks: none.
+- Q-EXPLORE-012. RULE-EXPLORE-004, RULE-EXPLORE-005: Does any code read the byte `4E71:0000`?
+  Settles it: a run with a read watch on `4E71:0000` over a Walk click, a walk of several cells and
+  a direction key step. Tried: FND-EXPLORE-018 finds three stores of 1 and no read through a
+  segment word loaded within six instructions or a pushed far pointer. Blocks: none.
 
 ## Live session
 
