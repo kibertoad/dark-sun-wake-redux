@@ -98,8 +98,12 @@ Next ID: Q-RNG-033
   `28C9:0683`, and every other caller of `2D40:10AE` and `2D40:2F34` with where its slot comes
   from, each shown never to pass 9999 or listed with the state that does. Tried: FND-RNG-067 finds
   `DS:426D` at 9999 with combat off at the two-character play checkpoint and a left click on the
-  view passing it on; FND-RNG-068 reads the path from `28C9:0353`. Blocks: complete seed-source
-  reading.
+  view passing it on; FND-RNG-068 reads the path from `28C9:0353`. Tried: FND-RNG-069 and
+  FND-RNG-070 find overlay 173 `+059A` storing 9999 in `DS:426D` when combat ends with no next
+  combatant, which happens 66 ms after the two-character play state, and a leader key setting it
+  again; the other stores to `DS:426D` (`28C9:0CFF`, `28C9:1EDB`, `28C9:305F`, overlay 182 and
+  overlay 189) and the other paths of overlay 173 `+059A` are not read for 9999. Blocks: complete
+  seed-source reading.
 - Q-RNG-032. RULE-RNG-001: What do `2D40:3D4C`, the overlay 193 trampoline `573B:00AC`,
   `2D40:03C1` and `25AF:00E1` store when `2D40:2F34` or `28C9:0353` passes them slot 9999?
   Settles it: a reading of each routine's stores with the slot 9999 and the record copied from

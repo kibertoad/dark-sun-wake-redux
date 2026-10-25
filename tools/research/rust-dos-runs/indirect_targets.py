@@ -1,9 +1,10 @@
 """Records the targets that memory-indirect calls and jumps take in a rust-dos run.
 
 Usage: python indirect_targets.py <source-run> <state> <new-run-name> <ms> <site> [<site> ...]
-           [--clicks clicks.json] [--read SEG:OFF:LEN ...] [--watch SEG:OFF:LEN ...]
+           [--clicks inputs.json] [--read SEG:OFF:LEN ...] [--watch SEG:OFF:LEN ...]
 
-Restores checkpoint <state> of captures/rust-dos-regenerated/<source-run> in a new owned session,
+The inputs file lists {at_ms, x, y, button} pointer inputs (button left, right or none for a
+move) and {at_ms, key} key presses. Restores checkpoint <state> of captures/rust-dos-regenerated/<source-run> in a new owned session,
 as trampoline_census.py does, and sets a breakpoint that stays armed on each <site>, a static
 load-image address such as 1000:1D8D. At each stop it decodes the instruction there, forms the
 memory operand's address from the stop's registers (DS, or SS for a BP base, unless the
@@ -14,7 +15,7 @@ as static ones. Each --read reads LEN bytes at the static address SEG:OFF once a
 and once at the end, and records them in hexadecimal. Each --watch covers LEN bytes at the static
 address SEG:OFF with watchpoints of up to 4 bytes, which stop after an instruction changes them,
 and records each change with the static address of the code that made it, when that is in the
-load image. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
+load image, or else with the 16 bytes before the stop. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
 written to the game's memory.
 """
 import json
@@ -83,6 +84,10 @@ def main():
         raise ValueError("duration must be 1 to 600000 ms")
     sites = [tuple(int(x, 16) for x in a.split(":")) for a in args[4:]]
     for c in clicks:
+        if "key" in c:
+            if not re.fullmatch(r"[0-9a-z]", c["key"]) or not 0 <= c["at_ms"] < duration:
+                raise ValueError("unsupported key")
+            continue
         if (c.get("button") not in ("left", "right", "none") or not 0 <= c["x"] < 320 or not 0 <= c["y"] < 200
                 or not 0 <= c["at_ms"] < duration):
             raise ValueError("unsupported click")
@@ -169,7 +174,10 @@ def main():
                             report["changes"].append({
                                 "address": name, "old": old.hex(), "new": new.hex(),
                                 "at_ms": int(stop["emu_ns"]) // 1000000 - start_ms, "run": stop["cs_ip"],
-                                "static": f"{static_of(cs)}:{ip:04X}" if static_of(cs) else None})
+                                "static": f"{static_of(cs)}:{ip:04X}" if static_of(cs) else None,
+                                # For overlay code, the bytes before the stop, to find them in the file.
+                                "code_before": (None if static_of(cs) else s.client.read_memory(
+                                    f"{cs:04X}:{(ip - 16) & 0xFFFF:04X}", 16).data.hex())})
                             watched[address] = (name, length, new)
                     continue
                 e = by_address.get(stop.get("cs_ip"))
@@ -196,6 +204,14 @@ def main():
 
         for c in sorted(clicks, key=lambda c: c["at_ms"]):
             run_to(start_ms + c["at_ms"])
+            if "key" in c:
+                # A key press, such as the digit that selects a leader (FND-UI-054).
+                op = s.send_input("key", {"key": c["key"]})
+                for _ in range(50):
+                    if not s.observe(op, timeout=0).pending:
+                        break
+                    run_to(int(s.stop["emu_ns"]) // 1000000 + 50)
+                continue
             move = s.send_input("mouse", {"action": "move", "x": c["x"], "y": c["y"], "coords": "virtual"})
             for _ in range(50):
                 if not s.observe(move, timeout=0).pending:
