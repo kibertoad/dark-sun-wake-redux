@@ -4,7 +4,7 @@ title: How a character walks to the cell a left click with the Walk pointer chos
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
+evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004]
@@ -79,6 +79,70 @@ define straight_path(x1: INT16, y1: INT16, x2: INT16, y2: INT16, path_x: INT16[]
         if x == x2 and y == y2:
             return 1
 
+define next_cell_of(size: INT16, cut: INT16, prev: INT16) -> INT16:
+    let side = size + 1
+    let index = prev + 1
+    while index < side * side:
+        if side % 2 == 0:
+            return index
+        let dx = abs(index % side - side / 2)
+        let dy = abs(index / side - side / 2)
+        if dx + dy <= side - 1 - cut:
+            return index
+        index = index + 1
+    return -1
+
+define cell_beside(object: INT16, walker: INT16, bx: INT16[], by: INT16[]) -> UINT8:
+    set_footprint(walker)
+    let byte = footprint_byte(object)
+    let size = byte & 0xF
+    let cut = byte / 16
+    let side = size + 1
+    let ox = INT16(object_slots[object].position_x >> 4)
+    let oy = INT16(object_slots[object].position_y >> 4)
+    let wx = INT16(object_slots[walker].position_x >> 4)
+    let wy = INT16(object_slots[walker].position_y >> 4)
+    let best = 999
+    let found: UINT8 = 0
+    let index = next_cell_of(size, cut, -1)
+    while index != -1:
+        let fx = ox - side / 2 + index % side
+        let fy = oy - side / 2 + index / side
+        let near_x: INT16[4] = [fx - 1, fx + 1, fx, fx]
+        let near_y: INT16[4] = [fy, fy, fy - 1, fy + 1]
+        for k in 0..4:
+            if cell_blocked(near_x[k], near_y[k]) == 0:
+                let d = fn_1B0B_000C(near_x[k], near_y[k], wx, wy)
+                if d < best:
+                    bx[0] = near_x[k]
+                    by[0] = near_y[k]
+                    best = d
+                    found = 1
+        index = next_cell_of(size, cut, index)
+    return found
+
+define cell_away(cx: INT16, cy: INT16, tx: INT16[], ty: INT16[]):
+    let ox = tx[0]
+    let oy = ty[0]
+    tx[0] = cx
+    ty[0] = cy
+    let low = (footprint_size + 1) / 2
+    let high = footprint_size / 2
+    let best = fn_1B0B_000C(cx, cy, ox, oy)
+    let x = cx - 4
+    while x <= cx + 4:
+        let y = cy + 4
+        while y >= cy - 6:
+            let inside = x >= cx - low and x <= cx + high and y >= cy - low and y <= cy + high
+            if not inside:
+                let d = fn_1B0B_000C(ox, oy, x, y)
+                if d > best and footprint_blocked(x, y) == 0:
+                    tx[0] = x
+                    ty[0] = y
+                    best = d
+            y = y - 1
+        x = x + 1
+
 define end_plan(s: INT16, lifted: INT16, cells_x: INT16[], cells_y: INT16[]) -> INT16:
     if object_slot_kinds[s] == 2 and combatants[object_slot_combatants[s]].hit_points > 0:
         restore_footprint(s, lifted, cells_x, cells_y)
@@ -136,24 +200,23 @@ define plan_walk(slot: INT16, replan: UINT8) -> INT16:
         ty = walk_target_y[s]
     else if mode == 1 or mode == 10 or mode == 11 or mode == 13 or mode == 18 or mode == 19:
         let object = walk_target_x[s]
-        let found = 0
+        let found: UINT8 = 0
+        let bx: INT16[1] = [0]
+        let by: INT16[1] = [0]
         if mode != 1:
-            let beside = 0
-            let bx = 0
-            let by = 0
-            (beside, bx, by) = fn_2D40_38E2(object, s)
-            found = beside
-            tx = bx
-            ty = by
-        if found == 0:
+            found = cell_beside(object, s, bx, by)
+        if found != 0:
+            tx = bx[0]
+            ty = by[0]
+        else:
             tx = INT16(object_slots[object].position_x >> 4)
             ty = INT16(object_slots[object].position_y >> 4)
         if mode == 1:
-            let nx = 0
-            let ny = 0
-            (nx, ny) = fn_2D40_36E4(cx, cy, tx, ty)
-            tx = nx
-            ty = ny
+            let ax: INT16[1] = [tx]
+            let ay: INT16[1] = [ty]
+            cell_away(cx, cy, ax, ay)
+            tx = ax[0]
+            ty = ay[0]
             plan_target_x[s] = -1
     if tx == cx and ty == cy:
         next_step[s] = 0xFF
@@ -297,8 +360,8 @@ None known.
   were read only in outline, and `fn_28C9_19A1`'s move through `31E0:271E` and `31E0:1808` was not
   read (FND-EXPLORE-014; Q-EXPLORE-006).
 - What `fn_1B0B_000C`'s distance is measured in (FND-PARTY-098; Q-EXPLORE-010).
-- What `fn_2D40_2F34` does with slots of 48 and up, what `fn_1695_01D1`, `fn_2D40_38E2`,
-  `fn_2D40_36E4` and the fight check `fn_2D40_1197` do, and what `g_4C13_0367`, `g_57E0_145E`,
+- What the calls that end `fn_2D40_2F34` do for slots of 48 and up, what `fn_1695_01D1` and the
+  fight check `fn_2D40_1197` do, and what `g_4C13_0367`, `g_57E0_145E`,
   `g_57E0_19AE` and `g_57E0_19BF` are for (FND-EXPLORE-014, FND-PARTY-199; Q-EXPLORE-010).
 - What the original reads where the procedure has none: `distance` when the wait test did not
   run, the step-record bytes after a queue's end marker, which it fills from leftover stack
