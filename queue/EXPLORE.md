@@ -10,8 +10,11 @@ Next ID: Q-EXPLORE-008
   `fn_3D72_0D83` change the view words? Settles it: a reading of what paces the loop of
   `277D:0004`, a search for stores to `DS:0DA8` and `DS:0DAB`, the order of `39D1:0009` against
   the mode setter's call with 0x0113, and a reading of `3D72:0D83`. Tried: FND-EXPLORE-006 reads
-  the band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Blocks:
-  slice 3.
+  the band, direction, step size, bounds, Center on Leader and `H`, which leaves these. Tried:
+  FND-EXPLORE-007 finds the loop unpaced (50 passes in 88 ms idle, about 24 a second while
+  scrolling) and only three steps in 1.5 s with the pointer on the edge, with `DS:0DA8`,
+  `DS:0DAB` and `DS:0D9C` unchanged; why the other passes did not step, and the rest of the item,
+  remain. Blocks: slice 3.
 - Q-EXPLORE-002. RULE-EXPLORE-003, FMT-COMBAT-002: Which slots are of kind 2, what values does the
   details byte `footprint` take, what does `25AF:02FA` decide from a cell's bits 0 to 2, and what
   is the object numbered 430? Settles it: the writers of `4F49:0C33`, the code that fills the
