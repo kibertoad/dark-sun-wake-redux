@@ -130,8 +130,9 @@ None known.
 
 ## Open questions
 
-- How the chunks of a record are drawn and how the palette changes: the routines behind
-  `FliRecordShown` were not read (FND-VIDEO-008, Q-VIDEO-001).
+- How the palette changes while a record is drawn: the chunk decoders are read (FND-EXE-613,
+  FND-VIDEO-011), but not when the player asks for the colour chunk to be written to the VGA
+  palette (FND-VIDEO-008, Q-VIDEO-001).
 - What `fn_1BF3_2973` does beyond setting the mode (FND-VIDEO-009), and what `fn_2660_04F3`,
   `fn_1000_1C32` do, and what the BIOS reports in `fn_44B6_0011` under an emulator or a modern
   keyboard layer (FND-VIDEO-008, FND-INPUT-005, Q-VIDEO-001).

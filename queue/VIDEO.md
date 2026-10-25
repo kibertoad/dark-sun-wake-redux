@@ -4,14 +4,14 @@ Next ID: Q-VIDEO-004
 
 ## Static
 
-- Q-VIDEO-001. FMT-VIDEO-001, RULE-VIDEO-002, RULE-VIDEO-003: How does the player draw a record: what do the
-  data of the `0x0B`, `0x0C` and `0x0F` chunks hold, how does the palette change, and what does
-  the run-length routine read at the overlong last chunk of `5.FLI`'s first record? Settles it:
-  the routines at `57D4:0020`, `57D7:0020`, `57DA:0020` and `57DD:0020`, and `2660:04F3` and
-  `1000:1C32`. Tried: searches for the FLI header magic, the numbered cinematic
-  names and their templates, and the static title image's resource number; the magic led to the
-  player of overlay 196 (FND-VIDEO-008), which shows how records are read and paced but not how
-  chunks are decoded. Blocks: slice 7.
+- Q-VIDEO-001. FMT-VIDEO-001, RULE-VIDEO-002, RULE-VIDEO-003: How does the palette change while
+  the player draws a record? Settles it: `2660:04F3` and `1000:1C32`, and when overlay 196 asks
+  overlay 215 to write the colour chunk to the VGA palette. Tried: searches for the FLI header
+  magic, the numbered cinematic names and their templates, and the static title image's resource
+  number; the magic led to the player of overlay 196 (FND-VIDEO-008), which shows how records are
+  read and paced. Tried: FND-EXE-613 reads the four chunk decoders and FND-VIDEO-011 decodes the
+  installed files with them, which settles the chunk layouts and the overlong chunk of `5.FLI`.
+  Blocks: slice 7.
 - Q-VIDEO-002. RULE-VIDEO-001, RULE-VIDEO-003: When do cinematics 2 to 5 play, and what do the
   helper routines of the cinematic code do? Settles it: the scripts that run opcode `0x22` with
   6 as the first parameter, the other requests of overlay 204's routine at offset `0x169`,
