@@ -1,6 +1,6 @@
 # UI
 
-Next ID: Q-UI-021
+Next ID: Q-UI-022
 
 ## Static
 
@@ -77,14 +77,6 @@ Next ID: Q-UI-021
   selects and the offsets it adds to the box's position. Tried: split from Q-UI-002.
   FND-UI-005 gives the record's fields; no reading of its draw routine has been made. Blocks:
   nothing yet.
-- Q-UI-015. SCR-UI-001: Where does each start-window button lead? Settles it: the overlay 194
-  setup helper's effect for arguments 0 and 1, and the routine each of the four branches
-  reaches after it: overlay 187 and 182 for Start Game, overlay 212 for Create Characters,
-  overlay 192 for Load Saved Game, and the common path that clears `DS:1462` for Exit to DOS,
-  followed to the next window opened or to the program's exit. What the Create Characters and
-  Load Saved Game paths change in the party is Q-PARTY-017 and Q-PARTY-018. Tried: split from
-  Q-UI-002. FND-UI-035 reads the opener and the event-2 callback dispatching buttons 19300 to
-  19303 to four branches; their callees remain. Blocks: nothing yet.
 - Q-UI-016. SCR-UI-007: Which input events reach the Preferences dispatcher in overlay 203, and
   what does the screen redraw after a button changes a setting? Settles it: the event value the
   dispatcher compares against its 13 button numbers and the routine that delivers it, and the
@@ -150,6 +142,12 @@ Next ID: Q-UI-021
   with those values and finds the span from +12FF to `0x05DC` running no callback or trigger
   script and writing the DAC only at `0x0000` and `0x05DC`, while the walk before +12FF reaches the
   script runners only through declared hook targets. Blocks: nothing yet.
+- Q-UI-021. SCR-UI-001: When does Start Game jump to the character window? Settles it: the
+  writers of word `+6` of the record at the far pointer `DS:19C9` and of `DS:140C` that can make
+  them `0x8300` and `0x32` when the start window's Start Game branch runs, and what the jump to
+  overlay 212 `+061C` then shows. Tried: split from Q-UI-015. FND-UI-059 reads the test and the
+  jump; `0x8300` is the identifier of `CHARSAVE.GFF#CHAR/33` and `/53` (FND-PARTY-050). Blocks:
+  nothing yet.
 
 ## Emulated call
 
