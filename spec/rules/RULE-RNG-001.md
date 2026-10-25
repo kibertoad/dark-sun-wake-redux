@@ -191,7 +191,7 @@ None known.
   handler-source leads in SRC-RUSTDOS-172. The conversion's tables, label pointers and name are
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
-  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029 and Q-RNG-030.
+  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029, Q-RNG-030 and Q-RNG-036.
   One such write is found: with `DS:426D` holding 9999, a view click sends that slot to
   `2D40:2F34`, whose link store puts a record number over the July and August lengths at
   `DS:3956`, so a later reseed converts dates from August on with those lengths (FND-RNG-067,
