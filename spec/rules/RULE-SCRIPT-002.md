@@ -4,7 +4,7 @@ title: Running a script, reading its code and calling other scripts
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160, FND-SCRIPT-023, FND-CONFIG-161, FND-SCRIPT-024, FND-CONFIG-150, FND-CONFIG-153, FND-SCRIPT-026]
+evidence: [FND-SCRIPT-001, FND-SCRIPT-005, FND-SCRIPT-006, FND-SCRIPT-007, FND-SCRIPT-019, FND-SCRIPT-009, FND-SCRIPT-013, FND-SCRIPT-020, FND-CONFIG-160, FND-SCRIPT-023, FND-CONFIG-161, FND-SCRIPT-024, FND-CONFIG-150, FND-CONFIG-153, FND-SCRIPT-026, FND-SCRIPT-027, FND-SCRIPT-028]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-010, RULE-SCRIPT-004, RULE-SCRIPT-011, RULE-SCRIPT-003, RULE-SCRIPT-006, RULE-SCRIPT-007, RULE-SCRIPT-008, RULE-SCRIPT-009, RULE-TALK-001, FMT-SCRIPT-001]
@@ -31,7 +31,7 @@ offset in the current script, and `peek_byte(ahead)` a count of bytes past the c
 
 ## Inputs
 
-`g_4C0E_000B`, `script_stopped`, `script_frame_depth`, `script_frame_offsets`, `script_depth`,
+`script_state`, `script_stopped`, `script_frame_depth`, `script_frame_offsets`, `script_depth`,
 `script_stack_numbers`, `script_stack_selectors`, `script_code_start`, `script_buffer`,
 `script_buffer_size`, `script_if_depth`, `script_compare_depth`, `g_57E0_02F6`,
 `object_field_types`.
@@ -40,7 +40,7 @@ offset in the current script, and `peek_byte(ahead)` a count of bytes past the c
 
 ```text
 define run_script(number: UINT16, start: UINT16, selector: UINT16):
-    if g_4C0E_000B != 2:
+    if script_state != 2:
         return
     fn_172C_31ED()
     script_stopped = 0
@@ -233,7 +233,7 @@ above; the other functions return nothing and change the state their procedures 
 
 ## Edge cases
 
-`run_script` does nothing in any state but `g_4C0E_000B == 2`, and nothing for script number 0.
+`run_script` does nothing in any state but `script_state == 2`, and nothing for script number 0.
 The loop ends when the stop flag is set, by a stop instruction, by an unknown opcode, or by a
 script return from the first script of the run, which stops instead of popping, or when the frame
 depth falls below 0. A local return from the first frame of the run leaves the depth 0, and the
@@ -261,7 +261,7 @@ None known.
 
 - What `fn_172C_31ED` and `fn_5702_00B1` do, whether `fn_5702_00B1` returns, and what the far
   routine at `g_57E0_02F6` is when one is set (Q-SCRIPT-003).
-- What `g_4C0E_000B`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
+- What `script_state`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
 - What the handlers do after `read_operands`: opcode `0x22`'s functions (Q-SCRIPT-010), the field-path instructions `0x33` and `0x40`
   (Q-SCRIPT-009) and the handlers that call far routines (Q-SCRIPT-004).
 - Whether `object_field_types` holds `FNFO/2` when `0x33` runs, which decides whether it reads

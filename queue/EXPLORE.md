@@ -32,15 +32,16 @@ Next ID: Q-EXPLORE-014
   memory before the node array. Tried: FND-EXPLORE-021 reads the follower handling and leaves this
   case. Blocks: none.
 - Q-EXPLORE-010. RULE-EXPLORE-005: What do the calls in step 8 of `fn_2D40_2F34` (for slots 48
-  and up, FND-RNG-068), `fn_1695_01D1` and the fight check `fn_2D40_1197` do, what are
-  `g_4C13_0367`, `g_57E0_19AE` and `g_57E0_19BF` for, what units does
+  and up, FND-RNG-068) and the fight check `fn_2D40_1197` do, what are
+  `g_57E0_19AE` and `g_57E0_19BF` for, what units does
   `fn_1B0B_000C` give, and what does `plan_walk`
   read where its procedure has no value: the distance local when the wait test did not run, the
   step-record bytes after a queue's end, the step record on its first two exits, and the records of
-  slot 9999? Settles it: readings of those routines, of the writers and readers of the four words,
+  slot 9999? Settles it: readings of those routines, of the writers and readers of the two words,
   and of the stack the planner's frame reuses, or a run reading the step records. Tried: split from
   Q-EXPLORE-006; FND-EXPLORE-014 reads `plan_walk` and names these; FND-EXPLORE-016 reads the
-  two object-target routines, which leave it. Blocks: slice 3.
+  two object-target routines, which leave it; FND-SCRIPT-028 reads the tile trigger walker, which
+  takes that part out. Blocks: slice 3.
 - Q-EXPLORE-007. SCR-EXPLORE-001: Which resources and routines compose the exploration view, place
   its region and actors, draw the pointer modes and switch the party display? Settles it: the
   bounded resource graph and drawing/input paths for the view, followed by owner captures where

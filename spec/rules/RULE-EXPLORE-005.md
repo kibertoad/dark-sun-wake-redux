@@ -4,10 +4,10 @@ title: How a character walks to the cell a left click with the Walk pointer chos
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-TIME-008, FND-TIME-010, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
+evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-SCRIPT-028, FND-TIME-008, FND-TIME-010, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
 conflicting: []
 split_with: []
-related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004]
+related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004, RULE-SCRIPT-013]
 ---
 
 ## Summary
@@ -174,8 +174,8 @@ define plan_walk(slot: INT16, replan: UINT8) -> INT16:
             kind = 1
             if leader == s:
                 kind = 0
-        g_4C13_0367 = s
-        fn_1695_01D1(s, cx, cy, kind)
+        trigger_actor = s
+        run_tile_triggers(s, cx, cy, kind)
         lifted = lift_footprint(s, cx, cy, cells_x, cells_y)
         if combat_state != 0:
             let fight = fn_2D40_1197(s)
@@ -335,7 +335,7 @@ round both ways and joins the route where a follower first comes out on a later 
 
 `plan_walk` returns the slot, or 9999 after a fight check that set the fight state to 4. It sets
 `next_step`, and may change `step_queue`, `step_index`, `plan_target_x`, `plan_target_y`,
-`plan_start_x`, `plan_start_y`, `plan_skip`, `walk_mode`, `g_4C13_0367`, `g_57E0_19AE`,
+`plan_start_x`, `plan_start_y`, `plan_skip`, `walk_mode`, `trigger_actor`, `g_57E0_19AE`,
 `g_57E0_19BF`, `passability_slot` and `wall_follow_diagonals`. The footprint it lifted is back in
 place when it returns, unless the slot's combatant has no hit points left.
 
@@ -370,8 +370,8 @@ None known.
 - What `fn_1B2E_07F3` does when a wall follower is boxed in on all four turns, where it reads the
   link of a node before its array (FND-EXPLORE-021; Q-EXPLORE-013).
 - What `fn_1B0B_000C`'s distance is measured in (FND-PARTY-098; Q-EXPLORE-010).
-- What the calls that end `fn_2D40_2F34` do for slots of 48 and up, what `fn_1695_01D1` and the
-  fight check `fn_2D40_1197` do, and what `g_4C13_0367`,
+- What the calls that end `fn_2D40_2F34` do for slots of 48 and up, what the fight check
+  `fn_2D40_1197` does, and what
   `g_57E0_19AE` and `g_57E0_19BF` are for (FND-EXPLORE-014, FND-PARTY-199; Q-EXPLORE-010).
 - What the original reads where the procedure has none: `distance` when the wait test did not
   run, the step-record bytes after a queue's end marker, which it fills from leftover stack

@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-016
+Next ID: Q-SCRIPT-018
 
 ## Static
 
@@ -11,20 +11,29 @@ Next ID: Q-SCRIPT-016
   far pointer at `57E0:40C0`. Tried: a literal tag search of the resident image
   (FND-SCRIPT-004), and a reading of overlay 187 (FND-SCRIPT-017), which shows
   the conversions but not when they run. Blocks: slices 2-4.
-- Q-SCRIPT-002. RULE-SCRIPT-008, FMT-SCRIPT-004, FMT-SCRIPT-005: What do the
-  keys and bytes of each trigger list and the 19-byte records stand for, and
-  when does the game test each list and run its scripts? Settles it: the code
-  that writes the words at `4C0D:0001` to `4C0D:0009`, the callers of the four
-  walkers in segment `1695` and of `2D40:0EF1`, and the handlers of the other
-  trigger instructions `0x66` and `0x69` to `0x70`. Tried: `CSEQ` resource 1000, an XMIDI file
-  (FND-SOUND-015), the separate 19-byte list and the `SCMD` loader
-  (FND-SCRIPT-016, FND-SCRIPT-018), none of which fills the 13-byte records; the trigger instructions fill them (FND-SCRIPT-015).
-  Blocks: slices 3-6.
+- Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number, and
+  what does `fn_2D40_06E6` do when its argument names more than one slot, and what is the word at
+  `4C10:001F` it clears for? Settles it: the writer of the per-kind field offsets at `57E0:5A33`
+  and of field 0, `2D40:0D94` for each kind of argument, and the readers of `4C10:001F`. Tried:
+  FND-SCRIPT-027, FND-SCRIPT-028 and FND-SCRIPT-029 read the trigger instructions, the walkers and
+  their callers, which take the rest of the item out. Blocks: slices 3-6.
+- Q-SCRIPT-016. RULE-SCRIPT-008, RULE-SCRIPT-013: Is `1695:0235`, the only walker of the lists at
+  `g_4C10_0007` and `g_4C10_000B`, reached by a computed far call? Settles it: a resolution of the
+  computed far transfers in resident and overlay code that could carry segment `1695` and offset
+  `0x0235`, or a run with a breakpoint on it through doors, chests and region changes. Tried:
+  FND-SCRIPT-028 finds no direct call, far pointer or pushed offset. Blocks: none.
+- Q-SCRIPT-017. FMT-SCRIPT-005: What do the 19-byte records at `4F49:08A3` stand for, what do
+  `unk_00`, `unk_02` and `unk_10` hold, and when does the game run each entry point? The table is
+  the one FND-RNG-068 reads as each slot's walk record (words `+0`, `+2` the target, `+4` the walk
+  mode), and `0x1B` and `0x1C` write word `+4` and byte `+0x10` with an entry point. Settles it: the
+  runner `2D40:0EF1` and how it is reached, and the readers of byte `+0x10`. Tried: FND-SCRIPT-016
+  and FND-SCRIPT-018 read the list and the `SCMD` loader; FND-SCRIPT-027 reads the instructions
+  that set the entry points. Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the
   error routine `fn_5702_00B1`, and the far routine at `g_57E0_02F6`; what do
-  `g_4C0E_000B`, `g_4C13_032B`, `g_4C13_0325` and `g_4C0E_0002` mean; and which
+  `script_state`, `g_4C13_032B`, `g_4C13_0325` and `g_4C0E_0002` mean; and which
   archive the resource routines read scripts from? Settles it: reading those
   routines, the writers of those globals, and the resource routines at
   `38FF:04AB` and `38FF:05B5`. Tried: FND-SCRIPT-019 corrects the

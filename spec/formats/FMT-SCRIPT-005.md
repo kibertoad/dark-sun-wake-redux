@@ -50,4 +50,5 @@ no record was observed in memory.
 ## Open questions
 
 - What the records stand for, what `unk_00`, `unk_02` and `unk_10` hold, and when the game runs
-  each entry point (Q-SCRIPT-002).
+  each entry point. The table is the one FND-RNG-068 reads as each slot's walk record, and
+  instructions `0x6F`, `0x1B` and `0x1C` set its entry points (FND-SCRIPT-027; Q-SCRIPT-017).
