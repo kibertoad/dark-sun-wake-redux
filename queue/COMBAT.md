@@ -22,7 +22,10 @@ Next ID: Q-COMBAT-036
   `DS:0DA5` not -1, `31E0:2D6E`) and for overlay 173 `+1098` keeping a combatant, whether it can run
   in the state of FND-RNG-077, and any store to record 9999's word `+0x01`. Tried: FND-RNG-077
   sees key 2 at 4000 ms refused and the steps go on to 20 s; FND-PARTY-176 with FND-RNG-068 shows
-  why the key is refused. Blocks: BUG-COMBAT-001's frequency.
+  why the key is refused. Tried: FND-COMBAT-058 and FND-COMBAT-059 find the steps paused while the
+  pointer mode `DS:1440` is not 1 and going on when it returns to 1, and the keys `C`, `E`, `I`
+  and `V` changing nothing (FND-COMBAT-059's runs `end-<key>-20261025`); none of them ends the
+  state. Blocks: BUG-COMBAT-001's frequency.
 - Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
   the two combatant records hold, how many records does each table have, and how does
   `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks

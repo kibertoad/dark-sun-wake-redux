@@ -1,0 +1,184 @@
+{
+ "start": "C:/GOG Games/Dark Sun 2/captures/rust-dos-regenerated/v175-play-ready-b-20261019:play-ready",
+ "steps": [
+  {
+   "shot": "c00",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "move",
+    "x": 160,
+    "y": 199,
+    "coords": "virtual"
+   },
+   "until_ms": 195700
+  },
+  {
+   "mouse": {
+    "action": "move",
+    "x": 160,
+    "y": 100,
+    "coords": "virtual"
+   },
+   "until_ms": 197700,
+   "shot": "c01-moved"
+  },
+  {
+   "until_ms": 198300,
+   "shot": "c02-noclick",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "until_ms": 200300,
+   "shot": "c03",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "move",
+    "x": 160,
+    "y": 199,
+    "coords": "virtual"
+   },
+   "until_ms": 201800,
+   "shot": "c04-edge",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "move",
+    "x": 250,
+    "y": 150,
+    "coords": "virtual"
+   },
+   "until_ms": 202800,
+   "shot": "c05-moved"
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 250,
+    "y": 150,
+    "coords": "virtual"
+   },
+   "until_ms": 206800,
+   "shot": "c06-walk",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  },
+  {
+   "mouse": {
+    "action": "click",
+    "x": 250,
+    "y": 150,
+    "coords": "virtual",
+    "button": "right"
+   },
+   "until_ms": 208800,
+   "shot": "c07-right",
+   "read": [
+    [
+     "4D9A:426D",
+     2
+    ],
+    [
+     "41CD:035B",
+     4
+    ],
+    [
+     "4D9A:0CE6",
+     3
+    ],
+    [
+     "41CD:0369",
+     2
+    ]
+   ]
+  }
+ ]
+}
