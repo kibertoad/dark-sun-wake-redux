@@ -259,7 +259,8 @@ for root index zero it instead returns the root object number
 ## Open questions
 
 - What the word at `0x10` (field 8) of a 23-byte record holds;
-  FND-PARTY-196 gives the shipped values and FND-PARTY-248 the accesses
+  FND-PARTY-196 gives the shipped values, FND-PARTY-248 the accesses and
+  FND-PARTY-257 overlay 173's reads as an on-hit `DATA` number plus one
   (Q-PARTY-020).
 - Gameplay meaning, admitted inputs and later consumption of the packed
   bytes written by overlay 197 (FND-PARTY-249, Q-PARTY-106).

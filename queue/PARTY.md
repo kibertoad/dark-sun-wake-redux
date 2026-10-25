@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-114
+Next ID: Q-PARTY-115
 
 ## Static
 
@@ -116,7 +116,7 @@ Next ID: Q-PARTY-114
   slice 2.
 - Q-PARTY-020. FMT-PARTY-006: What does the word at `0x10` of a 23-byte attached record, kind-1
   field 8, hold?
-  Settles it: the answers of Q-PARTY-112 and Q-PARTY-113 put together with the local readings
+  Settles it: FND-PARTY-257 (overlay 173) and the answer of Q-PARTY-113 put together with the local readings
   already recorded into one description of field 8 in FMT-PARTY-006, by item type where its
   meaning depends on the type, with any type-dependent meaning still open in its Open questions.
   Split on 2026-10-21 into this item and the overlay 173 and overlay 213 readers, after eleven
@@ -128,12 +128,13 @@ Next ID: Q-PARTY-114
   `25AF:02D9` and `28C9:26EE`; FND-PARTY-254 overlay 189; FND-PARTY-255 overlay 204; and
   FND-PARTY-256 the remaining overlay 197 read. Their downstream meanings are Q-PARTY-106 to
   Q-PARTY-111. Blocks: slice 2.
-- Q-PARTY-112. FMT-PARTY-006: What do overlay 173's reads of word `0x10` at `+0511`, `+28ED`,
-  `+2924`, `+2B45` and `+3AF5` test or pass on? Settles it: a reading of each site's routine
-  from the read through every branch the value decides and every callee or store it reaches,
-  with the routine's callers where they decide which record is read. Tried: FND-PARTY-248's
-  census lists the five reads and the store at `+3EBF`, whose 0 FND-PARTY-245 reads; neither
-  reads the five. Blocks: Q-PARTY-020.
+- Q-PARTY-114. FND-PARTY-257: Can `4C4F:0007` hold a value that overlay 173 `+2A9A` stored on a
+  path that did not reach the swing `+2560`'s cast step, so that a later damaging swing casts an
+  effect its weapon does not carry? Settles it: for each caller of `+2A9A` (overlay 173 `+0444`,
+  `+1CC1`, `+2560` and resident `28C9:254C`), whether an ammunition entry is found and nothing
+  after it reaches `+29CB` before another swing reads `4C4F:0007`, with a search for its accesses
+  that does not depend on the segment load being near. Tried: FND-PARTY-257 finds one writer of a
+  nonzero value and one clearing store, by a near-context operand search. Blocks: Q-PARTY-020.
 - Q-PARTY-113. FMT-PARTY-006: What do overlay 213's reads of word `0x10` at `+010A`, `+019C`,
   `+0287`, `+04EA`, `+0529`, `+0754`, `+0766` and `+154C` test or pass on? Settles it: a reading of
   each site's routine from the read through every branch the value decides and every callee or
