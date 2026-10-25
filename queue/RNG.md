@@ -113,9 +113,11 @@ Next ID: Q-RNG-039
   formed between `DS:4200` and `DS:426D`. Split from Q-RNG-031. Blocks: complete seed-source
   reading.
 - Q-RNG-038. RULE-RNG-001, BUG-COMBAT-001: Can a file read put 9999 in `DS:426D` or `4C13:0369`?
-  Settles it: every DOS read request (`int 0x21` with `AH` 0x3F) and its callers, with each buffer
-  shown to miss both words or listed with the file and count it reads there, including
-  `44DE:01AF`'s 3 bytes at `DS:4252` (FND-RNG-087). Tried: FND-SAVE-015 finds `4C13:0369` in
+  Settles it: where the buffers of the reads that FND-RNG-088 leaves open point (the nine calls of
+  `44DE:01AF` through stored far pointers, the overlay manager's reads at `4AE5:0293` and
+  `4AE5:040C`, `15F3:0183`, and the callers of `1000:2F0F`), each shown to miss both words or
+  listed with the file and count it reads there. Tried: FND-RNG-088 finds five DOS read requests
+  and, of the 19 calls of `44DE:01AF`, ten that miss both words. Tried: FND-SAVE-015 finds `4C13:0369` in
   `SAVE` 46, which a load restores from what a save took, and `DS:426D` in no `SAVE` resource.
   Split from Q-RNG-031. Blocks: complete seed-source reading.
 - Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it:
