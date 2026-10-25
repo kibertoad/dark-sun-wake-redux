@@ -1,9 +1,15 @@
 # COMBAT
 
-Next ID: Q-COMBAT-036
+Next ID: Q-COMBAT-037
 
 ## Static
 
+- Q-COMBAT-036. BUG-COMBAT-001: What does `28C9:1E41` do through `2D40:197A(9999, 0xFFE2)`,
+  `2D40:2001` and `2D40:0BA4` on each repeated pass, besides clearing the walk records of 21 slots?
+  Settles it: a reading of `28C9:1E41`, `2D40:197A`, `2D40:2001` and `2D40:0BA4`, listing what each
+  stores for slot 9999 and for each slot it visits, and why `2D40:0BA4` runs for 21 of the 35.
+  Tried: FND-COMBAT-061 sees the chain clear record 21 on each pass after the end of combat set it.
+  Blocks: BUG-COMBAT-001's symptom.
 - Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
   and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,
   FND-RNG-073: overlay 182's four, overlay 190's three, `28C9:1EDB` and `28C9:305F` with
@@ -293,14 +299,7 @@ None.
 
 ## Agent run
 
-- Q-COMBAT-034. BUG-COMBAT-001: In the repeated passes, which code stores 0 in slot record 21's
-  word `+0` (`1000:3F9C`), and does overlay 173 `+0C65` take its initiative branch with its two
-  draws of `1000:0822` per slot? Settles it: a run in the bug state counting, per pass, calls of
-  `2D40:03C1` with their argument, `31E0:05BB`, overlay 197 `+29E0`, `1000:0822` and overlay 173
-  `+0E99`. Tried: FND-COMBAT-056 and FND-COMBAT-057 see the record flip and no change in `4C4F`;
-  FND-COMBAT-060 reads the whole pass statically, finds the 0 to 1 store at overlay 188 `+186B`
-  and names `2D40:03C1` as the only fill of a low slot's walk record found. Blocks:
-  BUG-COMBAT-001's symptom.
+None.
 
 ## Live session
 
