@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-020
+Next ID: Q-MAGIC-022
 
 ## Static
 
@@ -19,11 +19,11 @@ Next ID: Q-MAGIC-020
   `+1FB5`'s level? Settles it: readings of `197 +37A5`, the writers of `DS:9BD3`, and `193 +1A79`
   and `197 +14DA`. Tried: FND-MAGIC-002 reads the spend at `197 +3060` and FND-MAGIC-003 the
   cast window and the level the cast carries. Blocks: slice 5.
-- Q-MAGIC-003. RULE-MAGIC-002: Which cleric spells does the game offer a cleric, a druid and a
-  ranger, where does it keep a spell's sphere and level and a character's sphere, and how does it
-  treat a spell of several spheres? Settles it:
-  the spell definitions the game loads and the code that builds a caster's spell list for the Use
-  screen. Blocks: slice 5.
+- Q-MAGIC-021. RULE-MAGIC-002: Are the details record numbered by a party slot and the one numbered
+  by word `+0x04` of the slot's combatant record always the same record, as overlay 177 `+0B00`
+  takes them? Settles it: the writers of combatant word `+0x04` for party slots. Tried:
+  FND-MAGIC-004 finds `+0B00` reading the class bytes from one and the origin and level bytes from
+  the other. Blocks: slice 5.
 - Q-MAGIC-004. RULE-MAGIC-003: How many PSPs does a character have at each level, which powers
   can a character who is not a psionicist use, does the game keep the manual's costs, how does it
   price the powers the manual gives as Varies, and can a power with a zero maintenance cost be
@@ -119,7 +119,10 @@ None.
 
 ## Agent run
 
-None.
+- Q-MAGIC-020. RULE-MAGIC-002: Does the running game offer a ranger of level 8 or more the Cosmos
+  spells of levels 1 to 3, such as Bless? Settles it: a run that opens the Use screen for a ranger
+  of level 8 or more, with a breakpoint on overlay 177 `+050A` logging the spells it admits.
+  Tried: FND-MAGIC-004 reads the ranger's mask as the cleric's. Blocks: slice 5.
 
 ## Live session
 

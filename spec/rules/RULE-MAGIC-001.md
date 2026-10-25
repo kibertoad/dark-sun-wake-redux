@@ -27,8 +27,8 @@ offers and tests the pool before a cast, and when a cast spends a spell.
 
 ## Parameters
 
-`positions`, the member's class positions 0 to 2 as pairs of `character_class` code and level
-byte, with a held-back former class of a human already removed (FND-PARTY-258). `wisdom`, byte
+`positions`, the member's class positions 0 to 2 as pairs of class code (FMT-PARTY-001 `classes`,
+1 to 4 Cleric, 5 to 8 Druid, 11 Preserver, 13 to 16 Ranger) and level byte, with a held-back former class of a human already removed (FND-PARTY-258). `wisdom`, byte
 `+0x1D` of the member's combatant record. `kind`, 1 for wizard spells, 2 for priest spells.
 `spell_level`, 1 to 9.
 
