@@ -105,7 +105,9 @@ Next ID: Q-UI-021
   Tried: FND-UI-057 reads the same words after the keys V, C, E, I and O during the adventure:
   (0, 9) for `WIND/11500` and (0, 0) for the inventory and the overhead map, which settles
   SCR-UI-022; party creation's placement of `WIND/11500` (SCR-UI-002) and Preferences, which `p`
-  did not open, remain.
+  did not open, remain. Tried: FND-UI-058 opens Preferences from the Game Menu at (55, 42), which
+  places SCR-UI-007's window but not its bars and texts, and finds `DS:1431` null at the start
+  window.
   Blocks: nothing yet.
 - Q-UI-005. SCR-UI-013 to SCR-UI-023, SCR-UI-014, SCR-UI-015, SCR-UI-016, SCR-UI-017, SCR-UI-018, SCR-UI-019, SCR-UI-020, SCR-UI-021, SCR-UI-022: Which resources, native widgets and handlers produce the
   manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles

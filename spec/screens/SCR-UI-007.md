@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-033, FND-UI-034, FND-CONFIG-010, SRC-MANUAL-1994]
+evidence: [FND-UI-033, FND-UI-034, FND-UI-058, FND-CONFIG-010, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-006, SCR-UI-023]
@@ -17,7 +17,8 @@ related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, RULE-CONFIG-004, RU
 |---|---|---|---|---|---|
 | Thirteen buttons | the `ICON` of each `BUTN` child of `RESOURCE.GFF#WIND/16500` | None | each child's position from the window's corner, as FND-UI-033 lists | While the screen is shown | FND-UI-033 |
 
-The window is `WIND/16500`, 210 x 116; where the game places it is not known.
+The window is `WIND/16500`, 210 x 116, with its corner at (55, 42) when the Game Menu opens it
+(FND-UI-058).
 
 ## Mouse input
 
@@ -65,8 +66,7 @@ None known.
 
 ## Open questions
 
-- Where the window sits, whether the Game Menu's `BMP/10000` is drawn under it, and where the
-  volume bars, the difficulty name and the descriptions of FMT-TEXT-004 are drawn (Q-UI-003,
+- Whether the Game Menu's `BMP/10000` is drawn under it, and where the volume bars, the difficulty name and the descriptions of FMT-TEXT-004 are drawn (Q-UI-003,
   Q-CONFIG-001).
 - The new-game values, message-delay timing units and upper bound, and which frame each
   button shows in each state (FMT-CONFIG-003, Q-CONFIG-001, Q-CONFIG-002, Q-CONFIG-007). The

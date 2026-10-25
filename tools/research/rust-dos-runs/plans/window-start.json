@@ -1,0 +1,6 @@
+{
+ "start": "C:/GOG Games/Dark Sun 2/captures/rust-dos-regenerated/v175-menu-discovery-20261019:start",
+ "steps": [
+  {"until_ms": 131500, "shot": "window-start", "read": [["4D9A:1431", 4]], "read_far": [["4D9A:1431", 150, 4]]}
+ ]
+}
