@@ -108,15 +108,6 @@ Next ID: Q-RNG-037
   the slot. Tried: FND-RNG-072 finds `31E0:2D6E` storing `2D40:10AE`'s result through the address
   of `DS:426D` when the placed slot equals it. Split from Q-RNG-031. Blocks: complete seed-source
   reading.
-- Q-RNG-030. RULE-RNG-001: Do the functions of the `ADV ` sound driver that the timer reaches
-  write the clock conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the
-  driver's timer function `0067` (FND-EXE-585) and of function `0xC1`, which `4654:09A9` calls
-  through `4842:0D72` and the dispatch at `4842:03F4`, from the shipped driver resource, each store
-  shown to miss the windows or listed with what it writes. Tried: FND-RNG-058 lists the nine
-  transfers its walk could not resolve. Split from Q-RNG-005. Tried: FND-RNG-066 resolves seven
-  and FND-RNG-065 sees three callbacks taken in play. Tried: FND-RNG-081 reads the three callbacks
-  in the program's own code and finds none writing the windows. Blocks: complete seed-source
-  reading.
 
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
   change rng_state apart from its generator and setter? Settles it: the

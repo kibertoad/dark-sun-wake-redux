@@ -69,8 +69,9 @@ Do not repeat a retained search without new evidence, tooling or reading.
 - Next:
   - Q-RNG-031 (other stores to `DS:426D`, other paths of overlay 173
     `+059A`), Q-COMBAT-035 and Q-COMBAT-034.
-  - Q-RNG-030 (segment `2707` table cases, timer callbacks), Q-RNG-029
-    and Q-RNG-005.
+  - Q-RNG-029 and Q-RNG-005. Q-RNG-030 is closed: the `2707` copies,
+    the program's timer callbacks and the sound drivers' timer functions
+    write none of the clock windows (FND-RNG-079 to FND-RNG-084).
   - Complete readings for RULE-RNG-001's functions.
   - Q-RNG-003, Q-RNG-007, Q-RNG-022, Q-RNG-024 to Q-RNG-027 and
     Q-PARTY-113.

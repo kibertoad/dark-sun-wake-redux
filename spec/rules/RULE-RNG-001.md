@@ -191,9 +191,13 @@ None known.
   handler-source leads in SRC-RUSTDOS-172. The conversion's tables, label pointers and name are
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
-  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029 and
-  Q-RNG-030; the copies of segment `2707` write only video memory (FND-RNG-079, FND-RNG-080),
-  and the timer callbacks in the program's own code write none of the windows (FND-RNG-081).
+  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005 and Q-RNG-029; the
+  copies of segment `2707` write only video memory (FND-RNG-079, FND-RNG-080), the timer
+  callbacks in the program's own code write none of the windows (FND-RNG-081), and the sound
+  drivers' timer function and function `0xC1` write only their frames, their own images, the
+  sequence blocks on the far heap and, through the game's callback, words outside the windows
+  (FND-RNG-082, FND-RNG-083, FND-RNG-084), apart from the calls of `ADV 17` and `ADV 19`, which
+  the installed `SOUND.CFG` does not select, into code the game does not ship.
   One such write is found: with `DS:426D` holding 9999, a view click sends that slot to
   `2D40:2F34`, whose link store puts a record number over the July and August lengths at
   `DS:3956`, so a later reseed converts dates from August on with those lengths (FND-RNG-067,
