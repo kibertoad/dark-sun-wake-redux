@@ -2,7 +2,7 @@
 
 Usage: python indirect_targets.py <source-run> <state> <new-run-name> <ms> <site> [<site> ...]
            [--clicks inputs.json] [--read SEG:OFF:LEN ...] [--watch SEG:OFF:LEN ...]
-           [--count SEG:OFF ...] [--count-from MS]
+           [--count SEG:OFF[:REG] ...] [--count-from MS]
 
 The inputs file lists {at_ms, x, y, button} pointer inputs (button left, right or none for a
 move) and {at_ms, key} key presses. Restores checkpoint <state> of captures/rust-dos-regenerated/<source-run> in a new owned session,
@@ -19,7 +19,7 @@ and records each change with the static address of the code that made it, when t
 load image, or else with the 16 bytes before the stop. Each --count sets a breakpoint that stays
 armed at the static load-image address SEG:OFF and records how often it is reached, with the run
 time of its first and last hit and, for each, the far return address and the first two argument
-words at SS:SP, up to 50 hits; --count-from arms those breakpoints only once the
+words at SS:SP, and the value of register REG when one is named, up to 50 hits; --count-from arms those breakpoints only once the
 run reaches MS, after the restore. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
 written to the game's memory.
 """
@@ -70,8 +70,9 @@ def main():
         del args[i:i + 2]
     while "--count" in args:
         i = args.index("--count")
-        seg, off = (int(x, 16) for x in args[i + 1].split(":"))
-        counts[(seg, off)] = None
+        parts = args[i + 1].split(":")
+        seg, off = int(parts[0], 16), int(parts[1], 16)
+        counts[(seg, off)] = parts[2].lower() if len(parts) > 2 else None
         del args[i:i + 2]
     while "--watch" in args:
         i = args.index("--watch")
@@ -150,6 +151,7 @@ def main():
     report = {"source_run": args[0], "state": args[1], "duration_ms": duration, "clicks": clicks,
               "delta": f"{delta & 0xFFFF:04X}", "sites": [], "changes": [], "counts": {}}
     counted = {f"{(seg + delta) & 0xFFFF:04X}:{off:04X}": f"{seg:04X}:{off:04X}" for seg, off in counts}
+    count_reg = {f"{(seg + delta) & 0xFFFF:04X}:{off:04X}": reg for (seg, off), reg in counts.items()}
 
     def record():
         report["sites"] = [{k: v for k, v in e.items() if k != "insn"} for e in by_address.values()]
@@ -217,8 +219,13 @@ def main():
                     ss, sp = (int(regs[r], 16) if isinstance(regs[r], str) else regs[r] for r in ("ss", "sp"))
                     roff, rseg, a1, a2 = struct.unpack("<4H", s.client.read_memory(f"{ss:04X}:{sp:04X}", 8).data)
                     key = (f"{static_of(rseg)}:{roff:04X}" if static_of(rseg) else f"run {rseg:04X}:{roff:04X}")
+                    label = f"{key} ({a1:04X}, {a2:04X})"
+                    reg = count_reg[stop["cs_ip"]]
+                    if reg:
+                        value = regs[reg]
+                        label += f" {reg}={(int(value, 16) if isinstance(value, str) else value):04X}"
                     calls = c.setdefault("calls", {})
-                    calls[f"{key} ({a1:04X}, {a2:04X})"] = calls.get(f"{key} ({a1:04X}, {a2:04X})", 0) + 1
+                    calls[label] = calls.get(label, 0) + 1
                     if c["hits"] >= 50:
                         s.client.remove_breakpoints(stop["cs_ip"])
                     continue

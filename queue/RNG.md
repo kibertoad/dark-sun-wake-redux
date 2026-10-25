@@ -102,12 +102,16 @@ Next ID: Q-RNG-037
   on its end-of-combat path. Tried: FND-SAVE-015 finds `DS:426D` in no `SAVE` resource and
   `4C13:0369` in `SAVE` 46, which a load restores from what a save took, with no `SAVE` resources
   shipped. Blocks: complete seed-source reading.
-- Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it: the table at
-  `52A2:0030` with its count, the far table at `DS:67B7` and the bitmap at `52A2:0000`, read to show
-  whether a placed record can name slot 9999 with its bit set, and what `2D40:10AE` returns for
-  the slot. Tried: FND-RNG-072 finds `31E0:2D6E` storing `2D40:10AE`'s result through the address
-  of `DS:426D` when the placed slot equals it. Split from Q-RNG-031. Blocks: complete seed-source
-  reading.
+- Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it:
+  the slot argument at the four calls of `31E0:0121` that FND-RNG-085 leaves unbounded (overlay 171
+  `+0C25`, overlay 179 `+26DE`, overlay 182 `+04E0`, overlay 184 `+12E5`), the stores through
+  copies of the far pointer `DS:67B7`, and the block copies and file reads into its entries, each
+  shown not to put 9999 in an entry's word `+6` or listed with when it does. Tried: FND-RNG-072
+  finds `31E0:2D6E` storing `2D40:10AE`'s result through the address of `DS:426D` when the placed
+  slot equals it. Split from Q-RNG-031. Tried: FND-RNG-085 finds three direct stores of the word
+  `+6`, of which only `31E0:0EFF`'s can store 9999, and bounds the slot at 21 of its callers'
+  calls; FND-RNG-086 sees `31E0:2C86` pass only its own copy of the slot in the bug's run.
+  Blocks: complete seed-source reading.
 
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
   change rng_state apart from its generator and setter? Settles it: the
