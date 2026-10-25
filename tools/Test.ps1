@@ -103,7 +103,8 @@ $nodeTests = @(
     'tests/upstream/validation-selection.test.mjs',
     'tests/upstream/offline-validation.test.mjs',
     'tests/upstream/release-signing.test.mjs',
-    'tests/upstream/validation-receipts.test.mjs'
+    'tests/upstream/validation-receipts.test.mjs',
+    'tests/upstream/project-inputs.test.mjs'
 ) | ForEach-Object { Join-Path $root $_ }
 # Some tests run PowerShell scripts; give them the PowerShell running this gate, then restore the caller's environment.
 $previousPwsh = $env:PWSH

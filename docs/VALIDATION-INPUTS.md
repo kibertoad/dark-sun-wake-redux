@@ -1,5 +1,12 @@
 # Validation inputs and final records
 
+The runner removes any inherited `GAME_DIR` before it hashes inputs or starts the
+check, because the machine-wide variable on this machine belongs to another
+restoration. Tests here find the original through `tools/game-dir.mjs`. An
+ignored `.artifacts/local-inputs.json` (format in `tools/local-inputs.example.json`)
+is optional: when present, its identity enters every receipt, and a non-null
+`gameDirectory` is hashed and passed to the check as `GAME_DIR`.
+
 Finish implementation and evidence edits before running expensive checks. Write
 the final validation record afterwards, then run the documentation, citations,
 queue, schema, text policy and staged hook checks on the final text. A record

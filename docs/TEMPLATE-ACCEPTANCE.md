@@ -446,3 +446,27 @@ Engine 19.9.0 moves to 19.10.0 (same dependency pins; wheel hash from PyPI).
 Reader 4.3.0, checker 6.0.1, session 0.11.0 and RefurbishedDinosaurs 12.2.0 are
 already the latest releases. `./tools/Test.ps1` passes (145 upstream Node tests, 715 .NET tests). No spec
 status, parity row or pack revision changed.
+
+## Template 7325557 adoption, 2026-10-25
+
+Template PRs 136 and 137 (`7d5dc93` to `7325557`) are reviewed. Adopted as
+merged: `tools/Project-Inputs.mjs`, `tools/local-inputs.example.json`, the
+`tools/Run-ValidationCheck.mjs` change (inherited `GAME_DIR` is dropped, the
+optional `.artifacts/local-inputs.json` enters receipt identity, and a changed
+identity names the parts that changed), `tests/upstream/project-inputs.test.mjs`
+(added to `tools/Test.ps1`) and the `validation-receipts` test changes.
+`Save-DirectScreenFrame` takes the template's optional print flags.
+
+Retained: `tools/game-dir.mjs` and `DARK_SUN_WAKE_REDUX_GAME_DIR` stay the way
+tests find the original, so `docs/PROJECT-INPUTS.md` and the AGENTS.md hunk are
+not copied; `docs/VALIDATION-INPUTS.md` describes the runner instead. The .NET
+tests do not read `GAME_DIR`, so `Invoke-Validation.ps1` keeps calling `dotnet`
+directly and the matching `offline-validation` mock is not taken. The local
+capture fixture already has its own readiness waits and keeps them. The
+research-closure buffer fix was adopted on 2026-10-19. Handover, changelog and
+validation-record hunks are template-only.
+
+Rules (`ceefc84`), checker 6.0.1, reader 4.3.0, engine 19.10.0, session 0.11.0
+and RefurbishedDinosaurs 12.2.0 are already the latest releases
+(`node tools/upstream.mjs check-upstream` returns 0). No spec status, parity
+row or pack revision changed.
