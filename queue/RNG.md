@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-033
+Next ID: Q-RNG-035
 
 ## Static
 
@@ -93,23 +93,25 @@ Next ID: Q-RNG-033
   windows during 40 s of play from the two-character checkpoint and finds one change, the store
   of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
   not taken. Blocks: complete seed-source reading.
-- Q-RNG-031. RULE-RNG-001: Which states pass the slot 9999 to `2D40:2F34`? Settles it: every
-  store to `DS:426D` with the value it stores, read from the states in which a view event reaches
-  `28C9:0683`, and every other caller of `2D40:10AE` and `2D40:2F34` with where its slot comes
-  from, each shown never to pass 9999 or listed with the state that does. Tried: FND-RNG-067 finds
-  `DS:426D` at 9999 with combat off at the two-character play checkpoint and a left click on the
-  view passing it on; FND-RNG-068 reads the path from `28C9:0353`. Tried: FND-RNG-069 and
-  FND-RNG-070 find overlay 173 `+059A` storing 9999 in `DS:426D` when combat ends with no next
-  combatant, which happens 66 ms after the two-character play state, and a leader key setting it
-  again; the other stores to `DS:426D` (`28C9:0CFF`, `28C9:1EDB`, `28C9:305F`, overlay 182 and
-  overlay 189) and the other paths of overlay 173 `+059A` are not read for 9999. Tried:
-  FND-RNG-072 finds the one other store through the address of `DS:426D`, `31E0:2D6E` from
-  `31E0:2C86`, which passes 9999 on only if a placed record names slot 9999 and bit 9999 of
-  `52A2:0000` is set; what `2D40:10AE` returns and the table at `52A2:0030` are not read.
-  Tried: FND-RNG-073 finds no direct store of 9999 in `DS:426D`, `DS:0DA5` or `4C13:0369`, and
-  `28C9:1EDB` using `DS:426D` as a record when combat is off; left are the other paths of
-  overlay 173 `+059A`, what `2D40:10AE` returns, block copies and file reads into `4C13:0369`,
-  and what `28C9:1EDB` stores with 9999. Blocks: complete seed-source reading.
+- Q-RNG-031. RULE-RNG-001: Which states put 9999 in `DS:426D`? Settles it: the paths of overlay
+  173 `+059A` other than the end of combat FND-RNG-070 reads, each shown to store a slot below
+  9999 through its pointer or listed with the state that stores 9999, and every block copy or file
+  read that writes `4C13:0369`, with the values it can write. Tried: FND-RNG-067, FND-RNG-069 and
+  FND-RNG-070 find the end of combat leaving 9999 until a leader key, and FND-RNG-073 finds no
+  direct store of 9999 in `DS:426D`, `DS:0DA5` or `4C13:0369`. Blocks: complete seed-source
+  reading.
+- Q-RNG-033. RULE-RNG-001: What does `28C9:1EDB` store when `DS:426D` is 9999 and combat is off?
+  Settles it: a reading of `28C9:1EDB` with record 9999 (the bytes at `DS:0CE6`, or `0xFF` after
+  FND-RNG-068's step 4) and the entry `4F49:0C33 + 3 × 9999`, each store shown to miss the clock
+  conversion's windows (Q-RNG-005) or listed with what it writes. Tried: FND-RNG-073 finds that it
+  goes on with 9999 when combat is off; FND-RNG-067's 40 s watch saw no window change from it.
+  Split from Q-RNG-031. Blocks: complete seed-source reading.
+- Q-RNG-034. RULE-RNG-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it: the table at
+  `52A2:0030` with its count, the far table at `DS:67B7` and the bitmap at `52A2:0000`, read to show
+  whether a placed record can name slot 9999 with its bit set, and what `2D40:10AE` returns for
+  the slot. Tried: FND-RNG-072 finds `31E0:2D6E` storing `2D40:10AE`'s result through the address
+  of `DS:426D` when the placed slot equals it. Split from Q-RNG-031. Blocks: complete seed-source
+  reading.
 - Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's unresolved transfers write the clock
   conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the 16 cases of the
   segment `2707` jump tables at `2707:018D` and `2707:0591` with the routines they call
