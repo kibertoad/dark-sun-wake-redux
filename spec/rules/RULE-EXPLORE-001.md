@@ -4,7 +4,7 @@ title: Holding the pointer at an edge of the map view scrolls the view toward th
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-INPUT-013, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-EXPLORE-007, FND-EXPLORE-009, FND-INPUT-013, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-REGION-001]
@@ -22,7 +22,9 @@ a bound does nothing. Center on Leader puts `leader`'s slot, and the key `H` the
 ## When it runs
 
 `edge_scroll` runs once in each pass of the main loop, while `g_57E0_0D9C` is not 0
-(FND-PARTY-031, FND-EXPLORE-006).
+(FND-PARTY-031, FND-EXPLORE-006). Nothing holds a pass to a fixed rate, so how fast the view
+scrolls follows how long a pass takes: a pass every 1.8 ms idle and every 42 ms while scrolling,
+under rust-dos at 15,000 cycles (FND-EXPLORE-007, FND-EXPLORE-009).
 
 ## Parameters
 
@@ -146,9 +148,8 @@ None known.
 
 ## Open questions
 
-- How often the main loop runs a pass, which sets how fast the view scrolls, and what stores a
-  value other than 0 in `g_57E0_0DA8`, which holds the scrolling until the pointer leaves the
-  band (Q-EXPLORE-001).
+- What stores a value other than 0 in `g_57E0_0DA8`, which holds the scrolling until the
+  pointer leaves the band (Q-EXPLORE-001).
 - Whether the mouse setup runs after the video mode's word is stored, which the 320 by 200 range
   depends on, and whether `fn_3D72_0D83`, which runs first while `pointer_mode` is 5, changes the
   view words (Q-EXPLORE-001).
