@@ -152,4 +152,4 @@ None known.
 - Whether the game creates objects 428 and 430, the only shipped combatants with special attack
   6 or 13, whose special attack casts `DATA` 293 with the cast routine's byte `bp+0x1A` set and so
   runs the loop from a cast, and whether the party's target cursor can pass 293 (FND-RNG-053,
-  FND-RNG-055, FND-RNG-062, Q-RNG-003, Q-RNG-025).
+  FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025).

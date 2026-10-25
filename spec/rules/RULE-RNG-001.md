@@ -193,7 +193,7 @@ None known.
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
   FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005. Whether the game
   creates objects 428 and 430, and whether the party's
-  target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
+  target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The events that reach overlay 206's

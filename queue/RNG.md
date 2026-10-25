@@ -65,12 +65,15 @@ Next ID: Q-RNG-029
   startup path, the second root and the near buffer. Blocks: reproducible seeding and
   Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-025. RULE-RNG-001, RULE-VIDEO-005: Can the party's target cursor cast `DATA` 293 with the
-  cast routine's byte `bp+0x1A` set? Settles it: the numbers overlay 208 `+1612`'s callers store at
-  `DS:9BE2` and the byte they leave at `DS:9BD3`, or a reading that shows none of the numbers is
-  293. Tried: FND-RNG-055 finds overlay 208 `+179F` passing `DS:9BE2` to the spell dispatcher with
+  cast routine's byte `bp+0x1A` set? Settles it: whether `DS:43F5` can hold 293 when overlay 189
+  `+0B3C` runs, which needs the mode-0 reading of overlay 211 `+16ED`'s `SI` that Q-PARTY-105 asks
+  for, and a census of the stores to an item's word `0x10` showing whether any can write 294.
+  Tried: FND-RNG-055 finds overlay 208 `+179F` passing `DS:9BE2` to the spell dispatcher with
   the byte at `DS:9BD3` as `bp+0x1A`, and the party's spell, psionic and item numbers of
   FND-PARTY-242 and FND-PARTY-121 below 293 or never 294 in an item; the stores at `DS:9BE2` were
-  not followed. Blocks: reproducible seeding.
+  not followed. Tried: FND-RNG-064 finds both stores in overlay 208 `+1612` and its six callers;
+  only overlay 189 `+0B3C` (with `DS:43F5`) and overlay 213 `+0B82` (with an item's word `0x10`
+  less 1) pass the byte as 1, so the other four callers are out. Blocks: reproducible seeding.
 - Q-RNG-005. RULE-RNG-001: Does any reached write change the clock
   conversion's storage through a pointer formed outside it? Settles it: for
   the environment-array root DS:3920, classification-index window
