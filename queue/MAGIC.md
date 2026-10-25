@@ -8,12 +8,6 @@ Next ID: Q-MAGIC-028
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
   Blocks: slice 5.
-- Q-MAGIC-019. RULE-MAGIC-001: What do effect 0x5C and overlay 197 `+37A5` test when a wizard
-  spell is spent without taking from the pool, can overlay 208's byte at `DS:9BD3` be nonzero for
-  a party spell, and what do overlay 193 `+1A79` and overlay 197 `+14DA` do with overlay 211
-  `+1FB5`'s level? Settles it: readings of `197 +37A5`, the writers of `DS:9BD3`, and `193 +1A79`
-  and `197 +14DA`. Tried: FND-MAGIC-002 reads the spend at `197 +3060` and FND-MAGIC-003 the
-  cast window and the level the cast carries. Blocks: slice 5.
 - Q-MAGIC-027. RULE-MAGIC-002: Can a script field store or a `CHAR` resource the game writes give
   a party slot's combatant word `+0x04` a value other than the slot? Settles it: the callers of
   `1AA0:012A` that pass a variable field (`2D40:25F1`, `2D40:2718`, `2D40:2940`) and the unread
@@ -50,8 +44,9 @@ Next ID: Q-MAGIC-028
   total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
   use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit
   routine, the routine around overlay 193 `+1431` and its use of both, and the writers of each
-  caller's level byte. Tried: FND-RNG-035 reads the formula and names the two calls. Blocks:
-  slices 2-7.
+  caller's level byte. Tried: FND-RNG-035 reads the formula and names the two calls; FND-MAGIC-016 finds the
+  pending-spell routes of overlay 189 `+076A` and `+0B3C` passing the level 6, and FND-MAGIC-017
+  the effect sums of overlay 193 `+1A2D` taking overlay 211 `+1FB5`'s level. Blocks: slices 2-7.
 - Q-MAGIC-007. RULE-MAGIC-006: What do details byte `+0x12` 9 and byte `+0x1E` hold, and what
   does `2D40:06E1` do with the caster when `DATA` 306's test fails? Settles it: the writers of
   the two details bytes for party members and for creatures, and a reading of `2D40:06E1`.

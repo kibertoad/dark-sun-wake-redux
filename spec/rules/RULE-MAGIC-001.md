@@ -4,7 +4,7 @@ title: How many spells of each level a caster can cast before resting
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-MAGIC-015, FND-MAGIC-016, FND-MAGIC-017, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []
@@ -103,7 +103,8 @@ define cast_level_limit(positions, kind):
 resting; overlay 182 `+0B52` stores it, as a byte, for spell levels 1 to 9. `cast_level_limit`
 returns the highest spell level the cast window offers. A cast from the window is refused with the
 message `YOU NEED TO REST` when the pool byte at the window's level is 0, and a cast spends one
-from the pool of the spell's own kind and level. None of the functions changes state.
+from the pool of the spell's own kind and level; effect 0x5C on the caster never spares a wizard
+spell (FND-MAGIC-015). None of the functions changes state.
 
 ## Edge cases
 
@@ -113,7 +114,10 @@ first-level cleric with Wisdom 18 holds 4, 2 and 2 at spell levels 1 to 3 but th
 or druid at 15 one spell of level 8 above the window's 7; those spells cannot be cast. A cleric or
 druid at level 12 has a window of 7 and a level 7 count of 0 unless `wisdom` is 25. A ranger casts
 fourth-level spells at levels 14 and 15. With the debug byte `DS:13F8` at 1 every count of a slot
-below 4 is 19 and the window is not limited.
+below 4 is 19 and the window is not limited. The ranger's level less 7 sets only the window and,
+through overlay 193 `+1A2D`, the strength of the ranger's effects; the cast carries the full class
+level, or 6 when the spell was left pending and is cast from the inventory window (FND-MAGIC-016,
+FND-MAGIC-017).
 
 ## What the sources say
 
@@ -138,10 +142,6 @@ None known.
   on the load path empties the placed-object table; any of these would let a load reach the party
   loader and refill the pools of slots 0 to 3 (FND-MAGIC-006, FND-MAGIC-011, FND-PARTY-021,
   Q-MAGIC-024).
-- What effect 0x5C and overlay 197 `+37A5` do, which let a wizard spell be cast without spending
-  from the pool (FND-MAGIC-002, Q-MAGIC-019).
-- Whether overlay 208's byte at `DS:9BD3` can make a party spell carry the ranger level less 7,
-  and what overlay 193 `+1A79` and overlay 197 `+14DA` do with that level (FND-MAGIC-003,
-  Q-MAGIC-019).
 - What the caster level a cast carries changes: the cast passes the full class level, a ranger's
-  included (FND-MAGIC-003, Q-MAGIC-006).
+  included, and 6 for a pending spell cast from the inventory window (FND-MAGIC-003,
+  FND-MAGIC-016, Q-MAGIC-006).
