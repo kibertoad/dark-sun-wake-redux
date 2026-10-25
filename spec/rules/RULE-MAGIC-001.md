@@ -4,7 +4,7 @@ title: How many spells of each level a caster can cast before resting
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []
@@ -31,8 +31,8 @@ offers and tests the pool before a cast, and when a cast spends a spell.
 ## Parameters
 
 `positions`, the member's class positions 0 to 2 as pairs of class code (FMT-PARTY-001 `classes`,
-1 to 4 Cleric, 5 to 8 Druid, 11 Preserver, 13 to 16 Ranger) and level byte, with a held-back former class of a human already removed (FND-PARTY-258). `wisdom`, byte
-`+0x1D` of the member's combatant record. `kind`, 1 for wizard spells, 2 for priest spells.
+1 to 4 Cleric, 5 to 8 Druid, 11 Preserver, 13 to 16 Ranger) and level byte, with a held-back former class of a human already removed (FND-PARTY-258). `wisdom`, the member's
+Wisdom, byte `+0x1D` of its combatant record (FND-MAGIC-013). `kind`, 1 for wizard spells, 2 for priest spells.
 `spell_level`, 1 to 9.
 
 ## Inputs
@@ -133,8 +133,6 @@ None known.
 
 ## Open questions
 
-- Which ability byte `+0x1D` of the combatant record is: it is read as Wisdom from FND-PARTY-081 and
-  FND-PARTY-165 (Q-MAGIC-018).
 - Whether play can reach a save with no placed object, or a failed load from the title screen can
   pass overlay 182 `+1167`'s gate with the placed-object count at 0, and whether a resident routine
   on the load path empties the placed-object table; any of these would let a load reach the party

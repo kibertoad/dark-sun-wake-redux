@@ -4,7 +4,7 @@ title: Using a psionic power takes its cost in points and a d20 power check belo
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-104, FND-PARTY-108, FND-PARTY-210, FND-RNG-042, FND-PARTY-081, FND-CONFIG-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-052, FND-RNG-040, FND-EXPLORE-001, FND-EXPLORE-002, FND-MAGIC-007, FND-MAGIC-008]
+evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-104, FND-PARTY-108, FND-PARTY-210, FND-RNG-042, FND-PARTY-081, FND-CONFIG-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-052, FND-RNG-040, FND-EXPLORE-001, FND-EXPLORE-002, FND-MAGIC-007, FND-MAGIC-008, FND-MAGIC-013]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-003, RULE-MAGIC-015]
@@ -41,7 +41,7 @@ at `bp+0x1A` is 0 (FND-PARTY-108). The dispatcher's eleven callers are in overla
 
 `psionic_powers`, `psionic_ranks`, `psionic_check_result`, `effect_entries`; through
 `object_slot_combatants`, the word `+0x02` of a slot's `combatants` record (`unk_02` of
-FMT-COMBAT-001, its points) and its scores `fn_27E5_04A0`; for slots 0 to 3, `combat_mark` of
+FMT-COMBAT-001, its points) and its scores `current_score`; for slots 0 to 3, `combat_mark` of
 `combatants` record `s` and word `+0x0E` (`unk_0E` of FMT-COMBAT-002) of `combatant_details`
 record `s`; `g_4C4F_00B2`, `combat_state`; for powers 15, 20 and 21, the byte `+0x15` (`unk_10[5]`)
 of `t`'s details record and `fn_27E5_0154`; for the applied number, the class bytes `+0x1B..+0x20`
@@ -92,7 +92,7 @@ define power_check(s, p, extra: UINT8) -> INT8:
     if o != 9999:
         if o == s:
             return -1
-        let opposing: INT16 = INT16(fn_27E5_04A0(o, 3)) + psionic_powers[32].adjust + psionic_rank(o, 32) - 1
+        let opposing: INT16 = INT16(current_score(o, 3)) + psionic_powers[32].adjust + psionic_rank(o, 32) - 1
         let rank: INT16 = psionic_rank(s, p)
         # random_between draws once each (RULE-RNG-001); only the low bytes are kept
         let a: INT8 = INT8(random_between(1, 20))
@@ -102,7 +102,7 @@ define power_check(s, p, extra: UINT8) -> INT8:
         if not (c > opposing or c < a):
             return -1
     let k = psionic_powers[p].score_code
-    let threshold: INT8 = INT8(UINT8(fn_27E5_04A0(s, k) + extra + psionic_powers[p].adjust + psionic_rank(s, p) - 1))
+    let threshold: INT8 = INT8(UINT8(current_score(s, k) + extra + psionic_powers[p].adjust + psionic_rank(s, p) - 1))
     # random_between draws once (RULE-RNG-001)
     let r: INT8 = INT8(random_between(1, 20))
     if r == 20:
@@ -196,9 +196,6 @@ None known.
   blocks a use through `effect_entries` and `fn_573B_0020` (FND-RNG-046, Q-MAGIC-015).
 - What `g_4C4F_00B2` stands for, and what `fn_27E5_0154` returns beyond FND-PARTY-081's reading
   (FND-RNG-040, FND-PARTY-081, Q-MAGIC-015).
-- What `fn_27E5_04A0` returns for each `score_code`: read as the combatant record's bytes `+0x19`
-  to `+0x1D`, codes 2 to 4 being Constitution, Intelligence and Wisdom (FND-MAGIC-002,
-  FND-MAGIC-007, Q-MAGIC-018).
 - Which callers of the dispatcher pass a psionic number, with which `w` and `q`, whether any
   reaches the path that applies an earlier check's result, and what `fn_573B_007F` does with the
   number (FND-RNG-046, Q-MAGIC-013).

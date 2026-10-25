@@ -4,7 +4,7 @@ title: Keeping a psionic power in effect, a character's psionic strength points 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-007, FND-MAGIC-008, FND-MAGIC-009, FND-MAGIC-010, FND-RNG-046, FND-PARTY-081, FND-PARTY-104, FND-PARTY-169, FND-PARTY-210, FND-COMBAT-060, FND-MAGIC-005, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-007, FND-MAGIC-008, FND-MAGIC-009, FND-MAGIC-010, FND-RNG-046, FND-PARTY-081, FND-PARTY-104, FND-PARTY-169, FND-PARTY-210, FND-COMBAT-060, FND-MAGIC-005, FND-MAGIC-014, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-004]
@@ -17,7 +17,8 @@ step of a fight: when its upkeep, byte 2 of `psionic_powers`, is not above the m
 strength points (PSPs), it is applied again with no check and the upkeep is paid; otherwise it
 ends. An upkeep of 0 keeps a power for nothing, even at 0 PSPs, and 99 means the power is never
 kept. A member who falls loses every power in effect, and the end of a fight and a rest end them
-all. A psionicist's greatest PSPs grow by 10 per Psionicist level above the first plus a Wisdom
+all. A sweep outside a fight that would also end them runs only once the clock passes
+`0x7FFFFFFF`, after weeks of play in one game. A psionicist's greatest PSPs grow by 10 per Psionicist level above the first plus a Wisdom
 term, a character of any other class has 4 per level, and both add bonuses for Constitution,
 Intelligence and Wisdom of 15 or more. A new psionicist knows 18 fixed powers at rank 1 and any
 other new character the five powers of its one chosen discipline; any member can use a power whose
@@ -140,8 +141,10 @@ None known.
   selects (FND-MAGIC-008, Q-MAGIC-013).
 - Which effect sets bit 0x80 of byte 12 of the flag block, which keeps a member's powers a second
   time at its turn (FND-MAGIC-008, Q-MAGIC-023).
-- When the stored time `4F49:0002` can be more than 60 ahead of the clock, the only way
-  `2D40:37C1` ends the paid powers outside a fight (FND-MAGIC-008, Q-MAGIC-025).
+- Whether anything writes the stored time `4F49:0002` through a far pointer held in memory or a
+  table index out of range, which could let `2D40:37C1` end the paid powers outside a fight
+  before the clock passes `0x7FFFFFFF`; a run with the clock set to `0x80000000` would show the
+  sweep reaching it (FND-MAGIC-008, FND-MAGIC-014, Q-MAGIC-025).
 - Whether a run shows a kept power's upkeep taken each round and a 0 upkeep power kept for nothing,
   and a new non-psionicist's greatest PSPs rising after its first fight (FND-MAGIC-008,
   FND-MAGIC-010, Q-MAGIC-026).

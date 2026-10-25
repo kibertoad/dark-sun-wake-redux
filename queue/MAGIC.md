@@ -8,11 +8,6 @@ Next ID: Q-MAGIC-028
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
   Blocks: slice 5.
-- Q-MAGIC-018. RULE-MAGIC-001, RULE-MAGIC-014: Is byte `+0x1D` of the combatant record the character's Wisdom
-  score, the value the priest spell count's second term reads through `27E5:04A0(slot, 4)`?
-  Settles it: the code that fills the combatant record's bytes `+0x19..+0x20` from the character
-  record, read with the field each takes. Tried: FND-PARTY-081 and FND-PARTY-165 read it as
-  Wisdom; FND-MAGIC-002 finds the spell count reading it. Blocks: slice 5.
 - Q-MAGIC-019. RULE-MAGIC-001: What do effect 0x5C and overlay 197 `+37A5` test when a wizard
   spell is spent without taking from the pool, can overlay 208's byte at `DS:9BD3` be nonzero for
   a party spell, and what do overlay 193 `+1A79` and overlay 197 `+14DA` do with overlay 211
@@ -32,10 +27,14 @@ Next ID: Q-MAGIC-028
   byte 12 of the flag block of overlay 193 `+1BA3` stand for? Settles it: the writers of each mark value and the code
   that applies each effect code and sets each bit. Tried: FND-MAGIC-005 reads the rest using
   them; FND-MAGIC-008 finds byte 12 bit 0x80 keeping powers a second time. Blocks: slice 5.
-- Q-MAGIC-025. RULE-MAGIC-003: When can the double word `4F49:0002` be more than 60 ahead of the
-  clock `4C13:035B`, so that the walker sweep calls `2D40:37C1` and ends the paid powers? Settles
-  it: every write of `4F49:0002`, including block copies, saves and loads of segment `4F49`.
-  Tried: FND-MAGIC-008 finds the sweep's one load and one store. Blocks: slice 5.
+- Q-MAGIC-025. RULE-MAGIC-003: Does anything write `4F49:0002` other than the walker sweep's
+  store, so that the sweep can call `2D40:37C1` and end the paid powers before the clock
+  `4C13:035B` passes `0x7FFFFFFF`? Settles it: writes through far pointers held in memory into
+  segment `4F49`, the bounds of the indexes into the tables at `4F49:08A3` and `4F49:0C33`, DOS
+  reads into segment `4F49`, and the scripts outside `GPLDATA.GFF` and `OBJEX.GFF` and GPL 37's
+  undecoded bytes for instruction 0x30. Tried: FND-MAGIC-008 finds the sweep's one load and one
+  store; FND-MAGIC-014 finds no other write by immediate, segment-word, copy or save search, and
+  the clock's writers. Blocks: slice 5.
 - Q-MAGIC-024. RULE-MAGIC-001: Can a load reach the new-game party loader overlay 182 `+063D`,
   which refills the spell pools of slots 0 to 3, through overlay 182 `+1167`'s gate on `DS:264E`?
   Settles it: whether play can reach a save with no placed object; whether a failed load from the

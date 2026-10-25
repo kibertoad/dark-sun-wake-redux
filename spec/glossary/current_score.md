@@ -1,0 +1,3 @@
+# current_score
+
+The far routine at `27E5:04A0` in BLD-GOG-EN-1.1, which takes an object slot and a number `k` and returns the byte `+0x19 + k` of the slot's `combatants` record, zero-extended, or 9 when the slot is 9999 or more, its `object_slot_kinds` byte is not 2 or its combatant number is 9999 or more [FND-RNG-042, FND-MAGIC-013]. Bytes `+0x19` to `+0x1E` are the current Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma, so `k` 0 to 5 selects them in that order; nothing bounds `k`, and a `k` of 6 or more reads the facing, the byte after it or the name [FND-MAGIC-013]. No other build has been described.
