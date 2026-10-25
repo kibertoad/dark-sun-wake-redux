@@ -90,10 +90,17 @@ Next ID: Q-RNG-031
   other than DS on that walk, shown to miss the windows or listed with what it writes. Tried:
   FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-061 finds DS
   equal to SS at the helper's callers. Split from Q-RNG-005. Blocks: complete seed-source reading.
-- Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's nine unresolved transfers write the
-  clock conversion's storage (the windows Q-RNG-005 lists)? Settles it: the targets of the nine
-  transfers, and for each a reading of its stores against the windows. Tried: FND-RNG-058 lists the
-  nine transfers its walk could not resolve and reads no code behind them. Split from Q-RNG-005.
+- Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's unresolved transfers write the clock
+  conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the 16 cases of the
+  segment `2707` jump tables at `2707:018D` and `2707:0591` with the routines they call
+  (`2707:0395`, `2707:02A8`, `2707:048E`) and the segments `1BF3:42FB` gives their copies, and of
+  the timer callbacks `4654:09A9`, overlay 196 `+040B`, `31E0:31A7` and the `ADV ` driver's
+  function `0067` (FND-EXE-585), each shown to miss the windows or listed with what it writes.
+  Tried: FND-RNG-058 lists the nine transfers its walk could not resolve and reads no code behind
+  them. Split from Q-RNG-005. Tried: FND-RNG-066 resolves seven: `1000:1D8D` never runs,
+  `1000:2A24`, `44B6:00B8`, `4842:051A` and `55E3:003F` chain to interrupt vectors saved from
+  outside the program, `1000:298A` returns to `1000:0260`, and the callback slot `0x46` holds
+  `4842:0519`; FND-RNG-065 sees entry 4 of each `2707` table and three callbacks taken in play.
   Blocks: complete seed-source reading.
 
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
