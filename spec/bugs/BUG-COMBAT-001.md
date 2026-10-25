@@ -84,7 +84,7 @@ None known.
 ## Open questions
 
 - Whether block copies or file reads, such as loading a saved game, can put 9999 in `DS:426D` or
-  `4C13:0369` (FND-RNG-087, FND-RNG-091, Q-RNG-031, Q-RNG-037, Q-RNG-038), and whether `31E0:2C86` can pass 9999, which needs a placed-object entry naming slot 9999
+  `4C13:0369` (FND-RNG-087, FND-RNG-091, FND-RNG-092, Q-RNG-031, Q-RNG-037, Q-RNG-038, Q-RNG-039), and whether `31E0:2C86` can pass 9999, which needs a placed-object entry naming slot 9999
   (FND-RNG-085, FND-RNG-086, Q-RNG-034). Overlay 173 `+059A`
   stores 9999 only when it ends combat (FND-RNG-078, FND-PARTY-089).
 - What can end the state once the leader keys are refused (Q-COMBAT-035).

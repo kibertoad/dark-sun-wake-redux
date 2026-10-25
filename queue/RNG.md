@@ -1,9 +1,15 @@
 # RNG
 
-Next ID: Q-RNG-039
+Next ID: Q-RNG-040
 
 ## Static
 
+- Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
+  `0x25` to `0x2C`, which name `4C13:0369` and the words below it, and with what values? Settles it:
+  every script instruction that stores through an operand's address (`0x06` and the others the
+  interpreter's table lists), with a census of the shipped scripts' kind-9 operands. Tried:
+  FND-RNG-092 finds every shipped instruction `0x0A` writing a heap string table. Blocks: complete
+  seed-source reading.
 - Q-RNG-014. RULE-RNG-001, RULE-SOUND-004, RULE-VIDEO-006, RULE-VIDEO-005: Which game events
   empty overlay 173's removal list into overlay 206 `+0E1E`, whose dissolve and flag-1 cry draw?
   Settles it: the events that call overlay 188 `+1445` and `+14DE`, overlay 204 `+1322`, and the
@@ -102,16 +108,15 @@ Next ID: Q-RNG-039
   `4C13:0369` in `SAVE` 46. Tried: FND-RNG-087 classifies the destinations of the 104 calls and
   finds 64 that cannot reach either word with 9999 as the index. Split into Q-RNG-031, Q-RNG-037
   and Q-RNG-038. Blocks: complete seed-source reading.
-- Q-RNG-037. RULE-RNG-001, BUG-COMBAT-001: Can an inline string move or a copy or string routine
-  other than `1000:0452` and `1000:3F5A` put 9999 in `DS:426D` or `4C13:0369`? Settles it: the
-  destinations of the inline moves that `block_copies.py` lists and of the callers of each other
-  copy, fill and string routine, including what `2D40:3E64`, `2D40:3DC2` and `1000:374E` write
-  through `DS:420A` and `DS:4226` and how far (FND-RNG-087), each shown to miss both words or
-  listed with the values it can write there. Tried: FND-RNG-067, FND-RNG-069 and FND-RNG-070 find
-  the end of combat leaving 9999 until a leader key, and FND-RNG-078 with FND-PARTY-089 shows
-  overlay 173 `+059A` storing 9999 only on its end-of-combat path; FND-RNG-087 finds the pointers
-  formed between `DS:4200` and `DS:426D`. Split from Q-RNG-031. Blocks: complete seed-source
-  reading.
+- Q-RNG-037. RULE-RNG-001, BUG-COMBAT-001: Can a write site that FND-RNG-092 left unclassified put
+  9999 in `DS:426D` or `4C13:0369`? Settles it: for the inline `stos` sites, byte loops without
+  string instructions, and the `movs` sites FND-RNG-092 lists as not classified (`1B2E:0AA8`, the
+  22 `1BF3` page copies, `45CD:00CB`, `45CD:0102`, overlay 170 `+050D`, the near arrays of
+  overlays 173, 179 and 208, the FLI decoders of overlays 214, 216 and 217, `15F3:020F`), each
+  destination shown to miss both words or listed with the values it can write there. Tried:
+  FND-RNG-087 finds the pointers formed between `DS:4200` and `DS:426D`. Tried: FND-RNG-092
+  classifies the 370 calls of the copy, fill and string routines and most of the 138 `movs`
+  sites, none reaching either word. Blocks: complete seed-source reading.
 - Q-RNG-038. RULE-RNG-001, BUG-COMBAT-001: Can a read into a pool block or through a stored far
   pointer to the archive read entries put 9999 in `DS:426D` or `4C13:0369`? Settles it: the pool
   allocators `172C:0698` and `31E0:3C02` and the stores at `31E0:37EA` and `31E0:3E0F` read in
