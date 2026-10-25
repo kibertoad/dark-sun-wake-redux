@@ -106,7 +106,10 @@ Next ID: Q-RNG-033
   FND-RNG-072 finds the one other store through the address of `DS:426D`, `31E0:2D6E` from
   `31E0:2C86`, which passes 9999 on only if a placed record names slot 9999 and bit 9999 of
   `52A2:0000` is set; what `2D40:10AE` returns and the table at `52A2:0030` are not read.
-  Blocks: complete seed-source reading.
+  Tried: FND-RNG-073 finds no direct store of 9999 in `DS:426D`, `DS:0DA5` or `4C13:0369`, and
+  `28C9:1EDB` using `DS:426D` as a record when combat is off; left are the other paths of
+  overlay 173 `+059A`, what `2D40:10AE` returns, block copies and file reads into `4C13:0369`,
+  and what `28C9:1EDB` stores with 9999. Blocks: complete seed-source reading.
 - Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's unresolved transfers write the clock
   conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the 16 cases of the
   segment `2707` jump tables at `2707:018D` and `2707:0591` with the routines they call
