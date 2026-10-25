@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-022
+Next ID: Q-MAGIC-025
 
 ## Static
 
@@ -32,11 +32,18 @@ Next ID: Q-MAGIC-022
   Tried: FND-RNG-046 reads the activation: RULE-MAGIC-014 takes the power check, the half cost
   of a failed check rounded down and the refusal for too few points, which contradict
   RULE-MAGIC-003's check. Blocks: slice 5.
-- Q-MAGIC-005. RULE-MAGIC-004, RULE-MAGIC-001: What does camping do besides restoring PSPs and spells: does it
-  take game time, restore hit points, stop for enemies, and in which order does it cast cure
-  spells, and does the game keep memorized spells? Settles it: the code behind the Look pointer on
-  a fire ring. Blocks: slice 5.
-- Q-MAGIC-006. RULE-MAGIC-005, RULE-MAGIC-001: What do the two callers of the `DATA` dice formula do with its
+- Q-MAGIC-023. RULE-MAGIC-004: What do `combat_mark` 2, 3 and 8, effect 0x47, the 19 effect codes
+  the rest ends (0x01, 0x13, 0x6C, 0x69, 0x65, 0x64, 0x52, 0x2C, 0x23, 0x21, 0x15, 0x14, 0x0A,
+  0x41, 0x42, 0x44, 0x43, 0x45, 0x46), and bit 0x08 of byte 3 and bit 0x80 of byte 8 of the flag
+  block of overlay 193 `+1BA3` stand for? Settles it: the writers of each mark value and the code
+  that applies each effect code and sets each bit. Tried: FND-MAGIC-005 reads the rest using
+  them. Blocks: slice 5.
+- Q-MAGIC-024. RULE-MAGIC-001: Can a load reach the new-game party loader overlay 182 `+063D`,
+  which refills the spell pools of slots 0 to 3, through overlay 182 `+1167`'s gate on `DS:264E`?
+  Settles it: the writers of `DS:264E` and their order against the load path. Tried:
+  FND-PARTY-021 leaves the gate's value after a load open; FND-MAGIC-006 finds the load reading
+  the pools back from `SAVE` 23. Blocks: slice 5.
+- Q-MAGIC-006. RULE-MAGIC-005, RULE-MAGIC-001, RULE-MAGIC-004: What do the two callers of the `DATA` dice formula do with its
   total and its maximum, and which level byte does each pass? Settles it: overlay 193 `+003C`'s
   use of the total it stores at `bp-0x14` and of the maximum at `bp-0x16` on the way to the hit
   routine, the routine around overlay 193 `+1431` and its use of both, and the writers of each
@@ -119,6 +126,11 @@ None.
 
 ## Agent run
 
+- Q-MAGIC-022. RULE-MAGIC-004: Is the map object numbered 1317 the fire ring, which pointer mode
+  starts a rest from a click on it, and how far does a rest of 8 hours move the clock against the
+  time the game shows? Settles it: a run that clicks the Look pointer on a fire ring with a
+  breakpoint on overlay 204 `+0CBA`, reading `4C13:035B` and the shown time before and after.
+  Tried: FND-MAGIC-005 reads overlay 182 `+0C23` starting the rest for object 1317. Blocks: slice 5.
 - Q-MAGIC-020. RULE-MAGIC-002: Does the running game offer a ranger of level 8 or more the Cosmos
   spells of levels 1 to 3, such as Bless? Settles it: a run that opens the Use screen for a ranger
   of level 8 or more, with a breakpoint on overlay 177 `+050A` logging the spells it admits.
