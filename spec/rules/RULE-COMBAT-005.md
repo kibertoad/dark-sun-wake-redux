@@ -4,7 +4,7 @@ title: The end-of-move menu offers GUARD, WAIT and END TURN beside the character
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-052, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050, FND-COMBAT-051, FND-CONFIG-171, FND-CONFIG-175]
+evidence: [FND-COMBAT-026, FND-COMBAT-024, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-COMBAT-052, FND-ACTOR-003, FND-PARTY-013, FND-COMBAT-047, FND-COMBAT-048, FND-COMBAT-049, FND-COMBAT-050, FND-COMBAT-051, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-006, FND-EXE-588, FND-PARTY-195, FND-EXPLORE-011]
 conflicting: []
 split_with: []
 related: [RULE-COMBAT-004, FMT-COMBAT-001, FMT-ACTOR-004]
@@ -66,14 +66,14 @@ else if choice == 2:
 else if choice == 3:
     fn_5671_0098(c, 0)
 fn_182_19F8()
-fn_3D72_0D83()
+show_drawn_page()
 ```
 
 ## Outputs
 
 No return value. Shows the menu, then runs the action chosen: `fn_5671_0093` with 1 for GUARD
 or 2 for WAIT, `fn_5671_0098` with 0 for END TURN, and nothing for any other result. Then runs
-`fn_182_19F8` and `fn_3D72_0D83` whatever was chosen.
+`fn_182_19F8` and `show_drawn_page` whatever was chosen.
 
 The menu producer records choices separately from its handler's return:
 event type two maps control identifier 2844 to zero, 36B1/36B5 to one,
@@ -136,7 +136,7 @@ None known.
   and `fn_5671_0098`'s command
   stores (Q-COMBAT-006). FND-COMBAT-047 answers their local branches,
   resolver gate and distinct zero-mask/OR routes.
-- What the common postprocessing through `fn_182_19F8` and `fn_3D72_0D83`
+- What the common postprocessing through `fn_182_19F8` and `show_drawn_page`
   leaves for later consumers with admitted inputs, complete children,
   callback targets and storage/preservation contracts (Q-COMBAT-016).
   FND-COMBAT-052 answers the first root's local mode rereads, flag/slot

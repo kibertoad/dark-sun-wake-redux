@@ -4,7 +4,7 @@ title: A cinematic plays its FLI from the installation, copying it from the disc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-VIDEO-008, FND-VIDEO-009, FND-VIDEO-004, FND-VIDEO-010, FND-VIDEO-006, FND-VIDEO-007, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-COMBAT-023, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175]
+evidence: [FND-VIDEO-008, FND-VIDEO-009, FND-VIDEO-004, FND-VIDEO-010, FND-VIDEO-006, FND-VIDEO-007, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-COMBAT-023, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-006, FND-EXE-588, FND-PARTY-195, FND-EXPLORE-011]
 conflicting: []
 split_with: []
 related: [RULE-VIDEO-002, RULE-VIDEO-003, RULE-SOUND-002, FMT-VIDEO-001]
@@ -105,7 +105,7 @@ define play_cinematic(n: UINT8):
     fn_1BF3_2973(0x113)
     fn_1BF3_4723(1)
     fn_1BF3_4723(0)
-    fn_3D72_0D83()
+    show_drawn_page()
     if resume != 0:
         if combat_state == 0:
             resume_music_after_speech(1)
@@ -190,7 +190,7 @@ None known.
 - What `fn_187_2802` compares the length with: `fn_44DE_04A1` fills in words of which it
   multiplies the first two (FND-VIDEO-004, Q-VIDEO-002).
 - What `fn_4544_0000`, `fn_187_21EA`, `fn_44DE_0127`, `fn_44DE_02A9` and `fn_44DE_0569` do beyond
-  copying, measuring and deleting files; what `fn_1BF3_4723`, `fn_3D72_0D83`, `fn_187_23E3`,
+  copying, measuring and deleting files; what `fn_1BF3_4723`, `show_drawn_page`, `fn_187_23E3`,
   `fn_187_2424` and `fn_187_206E` do when a region is entered or a cinematic ends
   (FND-VIDEO-004, FND-VIDEO-007, Q-VIDEO-002).
 - What `g_57E0_6298` is for: no read of it was found (FND-VIDEO-004, Q-VIDEO-002).

@@ -4,7 +4,7 @@ title: Holding the pointer at an edge of the map view scrolls the view toward th
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-EXPLORE-007, FND-EXPLORE-009, FND-EXPLORE-010, FND-INPUT-013, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-006, FND-COMBAT-049, FND-COMBAT-050, FND-PARTY-031, FND-PARTY-046, FND-CONFIG-158, FND-COMBAT-013, FND-COMBAT-025, FND-COMBAT-026, FND-CONFIG-171, FND-CONFIG-175, FND-EXPLORE-004, FND-EXPLORE-005, FND-EXPLORE-007, FND-EXPLORE-009, FND-EXPLORE-010, FND-EXPLORE-011, FND-INPUT-013, SRC-MANUAL-1994, FND-EXE-588, FND-PARTY-195]
 conflicting: []
 split_with: []
 related: [RULE-REGION-001]
@@ -115,7 +115,7 @@ define edge_scroll(px: INT16, py: INT16):
         return
     if scroll_hold != 0: return
     if g_57E0_0DAB != 1: return
-    if pointer_mode == 5: fn_3D72_0D83()
+    if pointer_mode == 5: show_drawn_page()
     let d: UINT16 = pointer_direction(px, py)
     scroll_view(d, px + view_left, py + view_top)
 ```
@@ -151,6 +151,4 @@ None known.
 
 - Whether the mouse setup runs after the video mode's word is stored, which the 320 by 200 range
   depends on (Q-EXPLORE-008).
-- Whether `fn_3D72_0D83`, which runs first while `pointer_mode` is 5, changes the view words
-  (Q-EXPLORE-009).
 - What `g_57E0_0DAB` holds beyond being 1 whenever edge scrolling and `H` act (Q-EXPLORE-001).
