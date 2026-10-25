@@ -33,19 +33,40 @@ Do not repeat a retained search without new evidence, tooling or reading.
 ## Handover
 
 - Stage: Slices. Research continues toward the full Audit condition.
-- Stopped 2026-10-21 at the owner's wrap-up request; the goal continues.
-- Last full gate: 2026-10-21, Test.ps1 -NoRestore passed on 6af0232b,
+- Updated 2026-10-25 mid-session; the goal continues.
+- Last full gate: 2026-10-25, Test.ps1 -NoRestore passed on 36e0bb1c,
   including 715 .NET tests.
 - Unfinished: none in the tree. Unfinished and blockers outside this goal's
   batches are in docs/HANDOVER.md.
 - Owner's order for mapping: keep the installed DSUN.EXE inventory stable,
   place the uncited functions, then complete readings.
+- Done this session: every uncited installed DSUN.EXE routine is placed
+  (FND-EXE-606 to FND-EXE-631); FND-EXE-632 is a trampoline census;
+  FND-EXE-633 and Q-EXE-032 record three overlay 204 inventory rows that
+  stop short. Q-PARTY-112 closed (FND-PARTY-257). Q-RNG-025 narrowed to
+  the two callers that set the cast byte (FND-RNG-064). Q-RNG-005 split
+  into Q-RNG-005, Q-RNG-029 and Q-RNG-030; seven of FND-RNG-058's nine
+  transfers resolved (FND-RNG-065, FND-RNG-066).
+- Found: with `DS:426D` at 9999, which the end of combat leaves until a
+  leader key (FND-RNG-069, FND-RNG-070), a view click sends slot 9999 to
+  `2D40:2F34`, which writes a record number over the July and August
+  month lengths that the clock reseeding converts with (FND-RNG-067,
+  FND-RNG-068). It has no BUG entry yet; write one once Q-RNG-031 and
+  Q-RNG-032 say which states and stores it covers.
+- Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
+  `indirect_targets.py` (armed breakpoints on indirect transfers, memory
+  reads, write watchpoints, key and pointer inputs). Run them with
+  `artifacts/evidence-python/Scripts/python.exe -I`.
+- The owner asked whether runtime-first research belongs in the protocol
+  or the template; an upstream issue or PR was offered and awaits their
+  answer. File nothing upstream without it.
 - Next:
-  - Place uncited overlays 193, 207, 188 and 172, then the next largest by
-    `npm exec -- standard-coverage`, in the form of FND-EXE-596 to FND-EXE-605.
-  - Complete readings for RULE-RNG-001's functions so it can reach
-    established.
-  - Q-RNG-003, Q-RNG-005 (four Tried notes: split before another attempt),
-    Q-RNG-007, Q-RNG-022 and Q-RNG-024 to Q-RNG-027.
-  - Q-PARTY-112 and Q-PARTY-113.
+  - Q-RNG-031 (other stores to `DS:426D`, other paths of overlay 173
+    `+059A`) and Q-RNG-032 (the routines `2D40:2F34` calls with 9999),
+    then the BUG entry.
+  - Q-RNG-030 (segment `2707` table cases, timer callbacks), Q-RNG-029
+    and Q-RNG-005.
+  - Complete readings for RULE-RNG-001's functions.
+  - Q-RNG-003, Q-RNG-007, Q-RNG-022, Q-RNG-024 to Q-RNG-027 and
+    Q-PARTY-113.
   - Q-RNG-006 (Agent run) and Q-RNG-028 (Source).
