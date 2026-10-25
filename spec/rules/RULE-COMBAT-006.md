@@ -1,34 +1,41 @@
 ---
 id: RULE-COMBAT-006
-title: A click on an enemy attacks it, in melee when adjacent with a readied weapon or at range with a missile weapon or ammunition
-status: sourced
+title: An attack at distance 1 or less uses the first melee weapon held, or a natural attack without one, and beyond 1 needs a held missile weapon whose range reaches the target
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994, FND-COMBAT-021]
+evidence: [FND-COMBAT-065, FND-COMBAT-066, FND-COMBAT-067, FND-PARTY-100, SRC-MANUAL-1994, FND-COMBAT-021]
 conflicting: []
 split_with: []
-related: [RULE-COMBAT-002, RULE-INPUT-001]
+related: [RULE-COMBAT-002, RULE-COMBAT-003, RULE-INPUT-001]
 ---
 
 ## Summary
 
 In combat, clicking an enemy with the Walk or Attack pointer makes the character whose turn it is
-walk to it and attack. The game picks a hand-to-hand attack when the enemy is adjacent and the
-character has a weapon readied, and a ranged attack when the enemy is at a distance and the
-character has a missile weapon or ammunition readied.
+walk to it and attack (FND-COMBAT-021). The attack routine overlay 173 `+1CC1` takes the distance
+to the target. At distance 1 or less it attacks with the first melee weapon held at location
+0x11, a weapon type with range byte `+6` 1, or with a natural attack when there is none. Beyond 1
+it needs a held weapon whose range byte is above 1 and at least the distance, and refuses the
+attack otherwise. Attack numbers 0 to 2 step through the held weapons, so a second melee weapon is
+attack number 1. Each weapon swings up to its rate in half attacks per round (FND-COMBAT-065,
+FND-COMBAT-067).
 
 ## When it runs
 
-When the player left-clicks an enemy during a party member's turn in combat (SRC-MANUAL-1994,
-pages 4 and 5).
+When a combatant attacks: a party member through the click, and the computer's combatants through
+the resident calls of FND-COMBAT-065.
 
 ## Parameters
 
-`adjacent`, true when the target stands next to the attacker. `in_range`, true when the target is
-within the range of the attacker's missile weapon. `weapon_readied`, true when the attacker has a
-hand-to-hand weapon readied. `missile_readied`, true when the attacker has a missile weapon or
-ammunition readied. `main_one_handed` and `off_one_handed`, true when the weapon in each hand is
-one-handed.
+- `ranges`: for each entry of the attacker's item list in order, the range byte `+6` of its type
+  when the entry is of kind 1 at location 0x11, or 0 otherwise.
+- `distance: INT16`: the distance `2D40:35EF` gives, or 1 from the callers that pass 1.
+- `rate: UINT8`: the weapon type's byte `+7` at range, the attacker's details byte `+0x24` in
+  melee, or a natural attack's rate (FND-PARTY-100).
+- `rate_effect: UINT8`: overlay 197 `+2499`'s value for the attacker, 0 to 6 (FND-COMBAT-067).
+- `round_parity: UINT8`: bit 0 of the clock `4C13:035B` divided by 60.
+- `ammunition: INT16`: overlay 173 `+2A9A`'s count, 999 for a weapon that needs none.
 
 ## Inputs
 
@@ -37,26 +44,49 @@ None beyond the parameters.
 ## Procedure
 
 ```text
-define melee_allowed(adjacent, weapon_readied):
-    return adjacent and weapon_readied
+define pick_weapon(ranges, distance, after):
+    for i in after + 1..len(ranges):
+        if ranges[i] != 0:
+            if (distance <= 1 and ranges[i] == 1) or (distance > 1 and ranges[i] > 1):
+                return i
+    return -1
 
-define ranged_allowed(adjacent, in_range, missile_readied):
-    return not adjacent and in_range and missile_readied
+define attack_kind(ranges, distance):
+    let w = pick_weapon(ranges, distance, -1)
+    if distance <= 1:
+        if w == -1:
+            return [0, -1]
+        return [1, w]
+    if w == -1 or ranges[w] < distance:
+        return [-1, -1]
+    return [2, w]
 
-define two_weapons_allowed(main_one_handed, off_one_handed):
-    return main_one_handed and off_one_handed
+define swings_per_round(rate, rate_effect, round_parity, ammunition):
+    let r: INT16 = rate
+    if rate_effect == 4:
+        r = r * 2
+    if rate_effect == 1:
+        r = r / 2
+    r = (r + round_parity) / 2
+    if r > ammunition:
+        r = ammunition
+    return r
 ```
 
 ## Outputs
 
-`melee_allowed` and `ranged_allowed` give whether each kind of attack can be made;
-`two_weapons_allowed` whether the character fights with a weapon in each hand.
+`attack_kind` gives 0 for a natural attack, 1 for a melee attack and 2 for a ranged attack, with
+the weapon entry, or -1 when the attack is refused. `swings_per_round` gives how many swings the
+weapon can make this round.
 
 ## Edge cases
 
-When neither attack is allowed, the pointer shows the Invalid icon (SRC-MANUAL-1994, page 5). The
-manual does not say what happens when a character next to an enemy has only a missile weapon
-readied.
+A character next to an enemy with only a missile weapon makes a natural attack. A rate of 3
+alternates one and two swings from round to round, since each round step adds 60 to the clock
+(FND-COMBAT-060). An ammunition count of 0 shows "Out of ammo" and gives no swing. The routine
+stops at the first swing that hits and calls the swing routine again while the target stands, so
+one attack spends all the round's swings of a weapon. When neither attack is allowed, the pointer
+shows the Invalid icon (SRC-MANUAL-1994, page 5).
 
 ## What the sources say
 
@@ -66,9 +96,8 @@ adjacent and a weapon readied; a character may ready two one-handed weapons. Ran
 characters with a high Dexterity fight with two weapons without penalty, and others use the
 second at a disadvantage. A ranged attack needs the enemy at a distance, within range, and a
 missile weapon or ammunition readied; a target out of range shows the Invalid icon. The computer
-decides which kind of attack applies. Non-player characters may flee, fight back or call for
-help. The owner saw a click on an enemy make the active character walk up and strike it, with no
-step of choosing or confirming the target (FND-COMBAT-021).
+decides which kind of attack applies. The owner saw a click on an enemy make the active character
+walk up and strike it, with no step of choosing or confirming the target (FND-COMBAT-021).
 
 ## Differences between builds
 
@@ -76,6 +105,7 @@ None known.
 
 ## Open questions
 
-- Where the game decides the attack, what counts as adjacent and as in range, which Dexterity
-  counts as high, and what the penalty for the second weapon is; no code that handles a click on
-  an enemy has been found (Q-COMBAT-001, Q-COMBAT-005).
+- How the click on an enemy reaches the attack routine, and what the pointer shows before it
+  (Q-COMBAT-001).
+- What location 0x11, the range byte `+6` and the rate effects of overlay 197 `+2499` are by name
+  (FND-COMBAT-065, FND-COMBAT-067, Q-COMBAT-038).

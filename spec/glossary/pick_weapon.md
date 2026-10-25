@@ -1,3 +1,3 @@
-# two_weapons_allowed
+# pick_weapon
 
 A function, defined by RULE-COMBAT-006.

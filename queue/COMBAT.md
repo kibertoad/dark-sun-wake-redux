@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-038
+Next ID: Q-COMBAT-042
 
 ## Static
 
@@ -21,13 +21,16 @@ Next ID: Q-COMBAT-038
   callers of the key routines at overlay 190 offset `0x139B` and `28C9:0CFF`. Tried: a search for
   the six scancodes together (FND-COMBAT-001, FND-INPUT-008), the overlay 190 key routine
   (FND-COMBAT-025) and the resident key routine (FND-AI-004). Blocks: slice 4.
-- Q-COMBAT-005. RULE-COMBAT-002, RULE-COMBAT-003, RULE-COMBAT-006: Where does the game decide an
-  attack: its kind, its roll against THAC0 and Armor Class, whether equality, 1 and 20 are
-  special, the modifiers, the damage, and what a combatant's hit points do at 0 and -10? Settles
-  it: a reading from the code that handles a click on an enemy in combat, or from the writers of
-  `hit_points` in FMT-COMBAT-001. Tried: the constant -10 (FND-COMBAT-002), the literal `ATTACK`
-  (FND-COMBAT-003), the condition names (FND-COMBAT-028), and the coordinate branch of the input
-  loop (FND-COMBAT-012 to FND-COMBAT-017). Blocks: slice 4.
+- Q-COMBAT-038. RULE-COMBAT-002, RULE-COMBAT-003, RULE-COMBAT-006: Which effects set the block bits
+  and effect codes that overlay 197 `+259E`, `+27A7`, `+2499`, `+0E8F`, `+111A` and `+1C52` test in
+  a weapon attack, and what do the attack routine's location 0x11, type bytes `+1`, `+2`, `+6` and
+  `+0x0B` and the type words of `DS:2588` stand for? Settles it: the writers of the block bits
+  and the shipped item types' and creatures' values. Tried: FND-COMBAT-065 to FND-COMBAT-069 give
+  every term by bit and value. Blocks: slice 4.
+- Q-COMBAT-040. RULE-COMBAT-003: Can a combatant at `combat_mark` 3 be chosen as a target, and how
+  does it leave mark 3? Settles it: the target tests before overlay 173 `+1CC1` and the writers of
+  `combat_mark` over 3. Tried: FND-COMBAT-069 reads the doubled damage and overlay 173 `+22C4`.
+  Blocks: slice 4.
 - Q-COMBAT-006. RULE-COMBAT-004, RULE-COMBAT-005: What admitted state
   and later consumers give the guard, wait and end-turn stores their
   gameplay meaning? Settles it: producers, readers and lifetime of the
@@ -283,6 +286,11 @@ None.
 
 ## Agent run
 
+- Q-COMBAT-041. RULE-COMBAT-002: Does a non-ranger with two melee weapons and Dexterity below 6
+  hit more often, and does overlay 197 `+27A7`'s comparison at `+287D` ever replace the Armor
+  Class when block byte 13 bit 1 is clear? Settles it: a breakpoint run at overlay 173 `+20E2`
+  and overlay 197 `+287D` from a fight save, reading the bonus word and `bp-4` and `bp-2`. Tried:
+  FND-COMBAT-066 and FND-COMBAT-068 read both statically. Blocks: slice 4.
 - Q-COMBAT-037. BUG-COMBAT-001: Does a load from the repeated-pass state store the leader over
   9999 in `DS:426D` at overlay 182 `+1772`, and is a leader key for another slot taken after the
   state ends? Settles it: a run from a checkpoint whose drive holds a saved game, that makes the
@@ -305,8 +313,10 @@ None.
 - Q-COMBAT-007. RULE-COMBAT-007, RULE-CONFIG-002: Does the difficulty scale a hostile creature's hit points when
   it appears, by how much on each setting and with what rounding, and does it change anything
   else? Settles it: from equivalent saves, the same hostile's hit points looked at on each
-  setting, with the setting changed before and after the creature appears. Tried: none; no code
-  reads `difficulty` (RULE-CONFIG-002). Blocks: slice 4.
+  setting, with the setting changed before and after the creature appears. Tried: FND-COMBAT-065
+  finds the attack routine reading it for the enemies' to-hit and lists the other readers at
+  overlay 187 file `0x703B1`, overlay 192 `0x7D705`, overlay 203 `0x8B633` to `0x8B916` and
+  overlay 204 `0x8C226`. Blocks: slice 4.
 
 - Q-COMBAT-023. FMT-COMBAT-003: What does the effect window show for an effect whose record has a
   nonzero ICON number, and for one whose number is zero? Settles it: a live session with DOSBox

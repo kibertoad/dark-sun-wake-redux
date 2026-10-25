@@ -1,53 +1,102 @@
 ---
 id: RULE-COMBAT-003
-title: Damage lowers hit points; at 0 a character is unconscious and at -10 dead
-status: sourced
+title: A blow that leaves a combatant at 0 hit points or fewer knocks it out at 0, and one at least 10 more than its hit points kills it
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994]
+evidence: [FND-PARTY-086, FND-PARTY-100, FND-RNG-043, FND-COMBAT-067, FND-COMBAT-069, FND-MAGIC-018, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-COMBAT-002]
+related: [RULE-COMBAT-002, RULE-RNG-001]
 ---
 
 ## Summary
 
-Damage is taken from a character's hit points. A character left with 0 hit points or fewer falls
-unconscious, and one left with -10 or fewer dies.
+A swing that hits rolls the weapon's dice plus its bonuses, at least 1, adds Strength's damage
+entry in melee, and multiplies a thief's backstab on the round's first or second swing by 2 to 5.
+The hit routine doubles the damage against a combatant already at 0 hit points and scales it by
+the target's percentage for the hit word. The damage then sets the hit points: a blow at least the
+hit points plus 10 sets them to 0 and kills the combatant (`combat_mark` 7, or 8 from 10,000), a
+blow at least the hit points sets them to 0 and knocks it out (`combat_mark` 3), and a smaller one
+is subtracted. Hit points never go below 0 (FND-COMBAT-067, FND-COMBAT-069, FND-PARTY-086).
 
 ## When it runs
 
-`damage_outcome` runs each time a combatant takes damage.
+`swing_damage` for each swing that hits (RULE-COMBAT-002); `take_damage` when the hit routine
+deals the damage through overlay 179 `+2A05` and overlay 173 `+22C4`, for weapon hits and for
+spells (FND-MAGIC-018).
 
 ## Parameters
 
-`hit_points`, the combatant's hit points before the damage. `damage`, the damage done, 0 or more.
+- `dice`, `sides` and `bonus`: the weapon type's bytes `+9`, `+8` and signed `+0x0A`, or a
+  natural attack's values (FND-PARTY-100). `bonus` already holds the item's byte `+0x16` unless
+  the attacker or the target holds effect 4, the material damage term, and the ammunition's
+  byte `+0x16`.
+- `melee: BOOL`: the distance is 1 or less.
+- `strength_damage: INT8`: the attacker's `DS:0818` entry (FND-COMBAT-066).
+- `backstab: BOOL` and `rear: BOOL`: as RULE-COMBAT-002 gives them.
+- `swings_before: UINT8`: the swings the attacker has made this round before this one.
+- `thief_level: UINT8`: the attacker's level in class code 0x11.
+- `out_cold: BOOL`: the target's `combat_mark` is 3, or its `effect_block` byte 8 has bit 0x20.
+- `percentage: INT32`: overlay 197 `+1C52`'s percentage for the target and the hit word
+  (FND-COMBAT-069).
+- `hit_points: INT16` and `combat_mark: UINT8`: the target's combatant word `+0` and byte `+0x14`.
 
 ## Inputs
 
-None beyond the parameters.
+The Strength damage table `DS:0818` for scores 0 to 25: 0, -4, -2, -1, -1, -1, 0 from 6 to 15,
+1, 1, 4, 7, 8, 9, 10, 11, 12, 14 (FND-COMBAT-066). The material damage term of an unenchanted
+item of type nibble 0, 1, 2 or 3: -2, -1, -1 or -1.
 
 ## Procedure
 
 ```text
-define damage_outcome(hit_points, damage):
-    let left = hit_points - damage
-    if left <= -10:
-        return 2
-    if left <= 0:
-        return 1
-    return 0
+define swing_damage(dice, sides, bonus, melee, strength_damage, backstab, rear, swings_before, thief_level):
+    # roll_sum draws once per die (RULE-RNG-001)
+    let d: INT16 = INT16(roll_sum(dice, sides)) + bonus
+    if d < 1:
+        d = 1
+    if melee:
+        d = d + strength_damage
+    if backstab and rear and swings_before <= 1:
+        let m = (thief_level - 1) / 4 + 2
+        if m > 5:
+            m = 5
+        d = d * m
+    return d
+
+define weapon_hit_damage(d, out_cold, percentage):
+    let total: INT32 = d
+    if out_cold:
+        total = 2 * d
+    return (total * percentage) / 100
+
+define take_damage(hit_points, combat_mark, d):
+    if d <= 0:
+        return [hit_points, combat_mark]
+    if hit_points + 10 <= d:
+        if d >= 10000:
+            return [0, 8]
+        return [0, 7]
+    if d >= hit_points:
+        return [0, 3]
+    return [hit_points - d, combat_mark]
 ```
+
+`weapon_hit_damage` leaves out overlay 197 `+0000`'s other steps, which FND-MAGIC-018 lists for
+spells and which apply to weapon hits through effects.
 
 ## Outputs
 
-0 when the combatant stays conscious, 1 when it is unconscious, and 2 when it is dead. The
-combatant's hit points become `hit_points - damage`.
+`swing_damage` gives the damage of the swing; `take_damage` the new hit points and `combat_mark`.
 
 ## Edge cases
 
-A combatant already at 0 to -9 who takes more damage stays unconscious until the total reaches
--10. The manual sets no lower limit on hit points.
+A combatant at 0 hit points stays at 0 and `combat_mark` 3 under blows below 10 and dies only from
+one blow of 10 or more; a weapon hit on it deals double damage. The manual's "dead at -10" holds
+only as one blow that would take the combatant to -10. A ranged swing with attack number 1 or 2
+deals no damage (FND-COMBAT-067). The attacker's returned total keeps the damage before the
+backstab multiplier; only the hit routine gets the product.
 
 ## What the sources say
 
@@ -60,10 +109,10 @@ None known.
 
 ## Open questions
 
-- Whether the game keeps hit points below -10, how an unconscious character recovers, and what
-  each state stops a character doing (Q-COMBAT-005).
-- The executable holds a list of nine names, New, Okay, Stunned, Out Cold, Dying, Animated,
-  Petrified, Dead and Gone, which suggests states between conscious and dead that the manual does
-  not describe; no code that reads the list was found (FND-COMBAT-028, circumstantial). A search
-  for the constant -10 found too many uses to follow (FND-COMBAT-002, circumstantial)
-  (Q-COMBAT-005).
+- Whether a combatant at `combat_mark` 3 can be chosen as a target, and how it leaves mark 3
+  (FND-COMBAT-069, Q-COMBAT-040).
+- Which effects the bits behind `out_cold` and the percentage stand for (FND-COMBAT-069,
+  Q-COMBAT-038).
+- The executable's list of nine names, New, Okay, Stunned, Out Cold, Dying, Animated, Petrified,
+  Dead and Gone, matches marks 3, 7 and 8 in order, but no reader of the list was found
+  (FND-COMBAT-028, circumstantial, Q-COMBAT-040).
