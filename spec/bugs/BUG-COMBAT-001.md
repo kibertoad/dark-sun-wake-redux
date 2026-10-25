@@ -7,7 +7,7 @@ superseded_by: []
 impact: rules
 intent: unintended
 player_reliance: unknown
-evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077]
+evidence: [FND-RNG-069, FND-RNG-070, FND-RNG-067, FND-RNG-068, FND-RNG-074, FND-RNG-075, FND-RNG-076, FND-RNG-077, FND-PARTY-176]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -45,6 +45,11 @@ without a store; once the record's word `+0x01` is -1 it calls overlay 173 `+059
 the round step `+0C65`, which adds 60 to `4C13:035B` and calls the per-round routines, and then the
 end-of-combat sequence, and stores 9999 back (FND-RNG-076, FND-RNG-077).
 
+The leader keys 1 to 4 store a slot in `DS:426D` only when `28C9:156C` finds bit `0x20` clear in
+byte `+0` of the record `DS:426D` names (FND-PARTY-176). For slot 9999 that byte is `DS:0CE6`, which
+holds `0x0A` before the click and `0xFF` after it (FND-RNG-068, FND-RNG-075), so after the click
+every leader key is refused (FND-RNG-077).
+
 ## Frequency
 
 Each time combat ends with no next combatant and a view click comes before a leader key. The month
@@ -69,4 +74,4 @@ None known.
   copies or file reads into `4C13:0369` (Q-RNG-031), and whether `31E0:2C86` can pass 9999
   (Q-RNG-034).
 - What the repeated round step and end-of-combat sequence change that the player sees
-  (Q-COMBAT-034), and why the leader key no longer ends the state and what does (Q-COMBAT-035).
+  (Q-COMBAT-034), and what can end the state once the leader keys are refused (Q-COMBAT-035).

@@ -10,12 +10,13 @@ Next ID: Q-COMBAT-036
   sequence from `+078D` with its callees, listing the state each changes per pass with no
   combatant kept. Tried: FND-RNG-076 reads the path up to these calls; FND-RNG-077 sees
   `4C13:035B` rise by 60 on each pass. Blocks: BUG-COMBAT-001's symptom.
-- Q-COMBAT-035. BUG-COMBAT-001: Why does the leader key not set `DS:426D` once record 9999 is
-  filled, and what ends the repeated round steps? Settles it: a reading of the key path that
-  stores at `28C9:0E58` (FND-RNG-069), showing which test fails in the state of FND-RNG-077, and of
-  any other store or input that changes `DS:426D` or record 9999's word `+0x01` there. Tried:
-  FND-RNG-077 sees key 2 at 4000 ms leave `DS:426D` at 9999 and the steps go on to 20 s. Blocks:
-  BUG-COMBAT-001's frequency.
+- Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
+  and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,
+  FND-RNG-073: overlay 182's four, overlay 190's three, `28C9:1EDB` and `28C9:305F` with
+  `DS:0DA5` not -1, `31E0:2D6E`) and for overlay 173 `+1098` keeping a combatant, whether it can run
+  in the state of FND-RNG-077, and any store to record 9999's word `+0x01`. Tried: FND-RNG-077
+  sees key 2 at 4000 ms refused and the steps go on to 20 s; FND-PARTY-176 with FND-RNG-068 shows
+  why the key is refused. Blocks: BUG-COMBAT-001's frequency.
 - Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
   the two combatant records hold, how many records does each table have, and how does
   `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks
