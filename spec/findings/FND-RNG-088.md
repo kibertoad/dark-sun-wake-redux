@@ -1,6 +1,6 @@
 ---
 id: FND-RNG-088
-title: DSUN.EXE reads files at five DOS read requests; of the 19 calls of the read routine 44DE:01AF, eight read into frame locals or fixed DS buffers that miss DS:426D, two into blocks just allocated on the far heap, and nine through far pointers held in frame locals, arguments or DS variables
+title: DSUN.EXE reads files at five DOS read requests; of the 19 calls of the read routine 44DE:01AF, eight read into frame locals or fixed DS buffers that miss DS:426D, three into blocks just allocated on the far heap, and eight through far pointers held in frame locals, arguments or DS variables
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
@@ -34,8 +34,8 @@ calls of it, 15 in the load image and four in overlay code. The buffer and count
 | `DS:A43E` | 2 | file `0x3CEEC` |
 | `DS:45AC` | `0x1000` | overlay 187 `+224D` |
 | a frame local through `SS` | `0x1C`, 8, 1, `0x10` | file `0x2E2AA`, `0x2E931`, `0x3B5AE`; overlay 196 `+018E` |
-| the block `444C:00FA` has just returned, allocated with the same count or, at overlay 196, with its low word | `6 × [DS:4252]`; the doubleword read at overlay 196 `+018E` less `0x10` | file `0x1D9F0` (block kept at `DS:424E`); overlay 196 `+01F7` |
-| a far pointer in a frame local plus 0, 2 or `0x31` | a frame local, or `[DS:A43E] - 2` | file `0x2DA1A`, `0x2E40B`, `0x2EB92`, `0x3A733`, `0x3CF58`, `0x3D017` |
+| the block `444C:00FA` or `4AB9:001C` has just returned, allocated with the same count or, at overlay 196, with its low word | `6 × [DS:4252]`; the file's length from `44DE:0127`; the doubleword read at overlay 196 `+018E` less `0x10` | file `0x1D9F0` (block kept at `DS:424E`), `0x3D017`; overlay 196 `+01F7` |
+| a far pointer in a frame local plus 0, 2 or `0x31` | a frame local, or `[DS:A43E] - 2` | file `0x2DA1A`, `0x2E40B`, `0x2EB92`, `0x3A733`, `0x3CF58` |
 | the far pointer at `DS:342C` or `DS:3430` | `[DS:A42C]` | file `0x3B65C`, `0x3B68E` |
 | the far pointer argument `[bp + 0xA]` | `0x80` | overlay 196 `+014B` |
 
@@ -45,13 +45,13 @@ The file offsets are those of the far call's offset word, as `direct_callers.py`
 
 The eight reads into fixed buffers and frame locals miss `DS:426D` and `4C13:0369`: the one
 below `DS:426D` is the 3-byte read at `DS:4252`, which ends at `DS:4255`, and the others lie at
-`DS:45AC` or above. The two reads into blocks the far heap has just allocated land above `DS`
-(FND-RNG-083), overlay 196's only while the count is below `0x10000`. The nine reads through stored far pointers, the overlay manager's two reads,
-`15F3:0183` and the callers of `1000:2F0F` are not shown to miss either word.
+`DS:45AC` or above. The three reads into blocks the far heap has just allocated land above `DS`
+(FND-RNG-083), overlay 196's only while the count is below `0x10000`. The eight reads through
+stored far pointers, the overlay manager's two reads, `15F3:0183` and the callers of `1000:2F0F` are not shown to miss either word.
 
 ## Alternatives
 
-Where the nine stored far pointers point was not read, nor the destinations of the overlay
+Where the eight stored far pointers point was not read, nor the destinations of the overlay
 manager's reads, of `15F3:0170`'s caller or of `1000:2F0F`'s callers.
 
 ## How to reproduce
