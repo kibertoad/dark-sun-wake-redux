@@ -4,10 +4,10 @@ title: The keypad direction keys step the chosen character one cell, or in comba
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, SRC-MANUAL-1994]
+evidence: [FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-005, FND-AI-004, FND-ACTOR-003, FND-ACTOR-005, FND-COMBAT-052, FND-COMBAT-013, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-PARTY-013, FND-INPUT-013, FND-RNG-068, FND-EXPLORE-014, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
-related: [RULE-EXPLORE-003, RULE-COMBAT-006]
+related: [RULE-EXPLORE-003, RULE-EXPLORE-005, RULE-COMBAT-006]
 ---
 
 ## Summary
@@ -59,13 +59,13 @@ define try_step(c: UINT16, tx: INT16, ty: INT16) -> UINT8:
         return 0
     walk_target_x[c] = tx
     walk_target_y[c] = ty
-    g_4F49_08A7[c] = 15
+    walk_mode[c] = 15
     if combat_state == 0 and c < 4:
         lift_party_cells()
-        fn_2D40_10AE(c, 1)
+        plan_walk(c, 1)
         restore_party_cells()
     else:
-        fn_2D40_10AE(c, 1)
+        plan_walk(c, 1)
     g_4E71_0000 = 1
     return 1
 
@@ -84,7 +84,7 @@ define direction_key(d: UINT8):
 ## Outputs
 
 `try_step` returns 1 when the character moves or acts and 0 when it stays. On a move it sets the
-character's `walk_target_x`, `walk_target_y` and `g_4F49_08A7` and sets `g_4E71_0000` to 1.
+character's `walk_target_x`, `walk_target_y` and `walk_mode` and sets `g_4E71_0000` to 1.
 `direction_key` returns nothing.
 
 ## Edge cases
@@ -106,10 +106,9 @@ None known.
 
 ## Open questions
 
-- What `fn_2D40_10AE` does with the walk target after lifting the character's footprint, and what
-  `fn_28C9_305F`, `fn_28C9_2535` and `fn_2C5F_0182` do, read here as starting the move, the attack,
-  the Walk pointer and a redraw (FND-EXPLORE-003, FND-EXPLORE-004, Q-EXPLORE-003).
-- What `g_4F49_08A7` and `g_4E71_0000` stand for (FND-EXPLORE-004, FND-COMBAT-013,
-  Q-EXPLORE-003).
+- What `fn_28C9_305F`, `fn_28C9_2535` and `fn_2C5F_0182` do, read here as starting the attack,
+  the Walk pointer and a redraw (FND-EXPLORE-003, FND-EXPLORE-004, Q-EXPLORE-003). `plan_walk`
+  plans the step (RULE-EXPLORE-005).
+- What `g_4E71_0000` stands for (FND-EXPLORE-004, FND-COMBAT-013, Q-EXPLORE-003).
 - Whether the grey arrow keys of an enhanced keyboard reach these handlers (FND-EXPLORE-004,
   Q-EXPLORE-003).
