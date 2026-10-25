@@ -9,7 +9,10 @@ Next ID: Q-COMBAT-036
   loop from `+0CB6`, `371D:0334` and overlay 195 `+0AAD` and `+0A98`) and of the end-of-combat
   sequence from `+078D` with its callees, listing the state each changes per pass with no
   combatant kept. Tried: FND-RNG-076 reads the path up to these calls; FND-RNG-077 sees
-  `4C13:035B` rise by 60 on each pass. Blocks: BUG-COMBAT-001's symptom.
+  `4C13:035B` rise by 60 on each pass. Tried: FND-COMBAT-056 compares memory 3 s after the click
+  with a run without it, and finds the owner word of 21 slot records going from 1 to 0 and byte
+  `+1` of six records going down by 1 among the changes, with no code located. Blocks:
+  BUG-COMBAT-001's symptom.
 - Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
   and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,
   FND-RNG-073: overlay 182's four, overlay 190's three, `28C9:1EDB` and `28C9:305F` with
