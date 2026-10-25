@@ -11,7 +11,10 @@ Next ID: Q-COMBAT-036
   combatant kept. Tried: FND-RNG-076 reads the path up to these calls; FND-RNG-077 sees
   `4C13:035B` rise by 60 on each pass. Tried: FND-COMBAT-056 compares memory 3 s after the click
   with a run without it, and finds the owner word of 21 slot records going from 1 to 0 and byte
-  `+1` of six records going down by 1 among the changes, with no code located. Blocks:
+  `+1` of six records going down by 1 among the changes, with no code located. Tried:
+  FND-COMBAT-057 counts and watches the passes: `2D40:2F34` gets 9999 only once, each pass calls
+  `2D40:3D4C(0, 1)` from overlay code at run address `61B2:1870`, slot record 21's owner word and
+  `4C13:0373` flip on each pass, and the record bytes change only twice in 2.7 s. Blocks:
   BUG-COMBAT-001's symptom.
 - Q-COMBAT-035. BUG-COMBAT-001: What can end the repeated round steps once record 9999 is filled
   and the leader keys are refused? Settles it: for each other store to `DS:426D` (FND-RNG-072,

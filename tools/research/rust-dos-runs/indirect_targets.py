@@ -18,7 +18,8 @@ address SEG:OFF with watchpoints of up to 4 bytes, which stop after an instructi
 and records each change with the static address of the code that made it, when that is in the
 load image, or else with the 16 bytes before the stop. Each --count sets a breakpoint that stays
 armed at the static load-image address SEG:OFF and records how often it is reached, with the run
-time of its first and last hit, up to 50 hits; --count-from arms those breakpoints only once the
+time of its first and last hit and, for each, the far return address and the first two argument
+words at SS:SP, up to 50 hits; --count-from arms those breakpoints only once the
 run reaches MS, after the restore. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
 written to the game's memory.
 """
@@ -210,6 +211,14 @@ def main():
                     c = report["counts"].setdefault(counted[stop["cs_ip"]], {"hits": 0, "first_ms": now})
                     c["hits"] += 1
                     c["last_ms"] = now
+                    # At the entry of a far routine: the return address and the first two words
+                    # of arguments, keyed by the caller's static address when it has one.
+                    regs = {k.lower(): v for k, v in stop["registers"].items()}
+                    ss, sp = (int(regs[r], 16) if isinstance(regs[r], str) else regs[r] for r in ("ss", "sp"))
+                    roff, rseg, a1, a2 = struct.unpack("<4H", s.client.read_memory(f"{ss:04X}:{sp:04X}", 8).data)
+                    key = (f"{static_of(rseg)}:{roff:04X}" if static_of(rseg) else f"run {rseg:04X}:{roff:04X}")
+                    calls = c.setdefault("calls", {})
+                    calls[f"{key} ({a1:04X}, {a2:04X})"] = calls.get(f"{key} ({a1:04X}, {a2:04X})", 0) + 1
                     if c["hits"] >= 50:
                         s.client.remove_breakpoints(stop["cs_ip"])
                     continue
