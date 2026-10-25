@@ -59,6 +59,15 @@ Do not repeat a retained search without new evidence, tooling or reading.
   a new game instead. During an edge hold the emulated mouse driver
   returned the injected column only once in 50 calls (FND-EXPLORE-009),
   which may be a rust-dos defect; nothing was filed.
+- Also done, later: Q-EXPLORE-003 (FND-EXPLORE-017, FND-EXPLORE-018,
+  FND-INPUT-016), how a walker moves between cells (FND-EXPLORE-019 to
+  FND-EXPLORE-021), the timer library's slots and the game tick
+  (FND-TIME-008 to FND-TIME-010), every script trigger list and its events
+  (FND-SCRIPT-027 to FND-SCRIPT-029, RULE-SCRIPT-013), and what a saved
+  game holds, the key callback and the exit cleanup (FND-SAVE-016 to
+  FND-SAVE-020, Q-SAVE-001 closed). New tools in
+  `tools/research/exec-census/`: `segment_offset_refs.py`,
+  `scmd_walk_frames.py`, `gff_byte_search.py`.
 - Found: BUG-COMBAT-001. With `DS:426D` at 9999, which the end of
   combat leaves until a leader key (FND-RNG-069, FND-RNG-070), a view
   click sends slot 9999 to `2D40:2F34`, which writes a record number over
