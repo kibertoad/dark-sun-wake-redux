@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-031
+Next ID: Q-RNG-033
 
 ## Static
 
@@ -89,7 +89,23 @@ Next ID: Q-RNG-031
   Q-RNG-005 lists)? Settles it: each store whose address is formed from a register or a segment
   other than DS on that walk, shown to miss the windows or listed with what it writes. Tried:
   FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-061 finds DS
-  equal to SS at the helper's callers. Split from Q-RNG-005. Blocks: complete seed-source reading.
+  equal to SS at the helper's callers. Split from Q-RNG-005. Tried: FND-RNG-067 watches the
+  windows during 40 s of play from the two-character checkpoint and finds one change, the store
+  of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
+  not taken. Blocks: complete seed-source reading.
+- Q-RNG-031. RULE-RNG-001: Which states pass the slot 9999 to `2D40:2F34`? Settles it: every
+  store to `DS:426D` with the value it stores, read from the states in which a view event reaches
+  `28C9:0683`, and every other caller of `2D40:10AE` and `2D40:2F34` with where its slot comes
+  from, each shown never to pass 9999 or listed with the state that does. Tried: FND-RNG-067 finds
+  `DS:426D` at 9999 with combat off at the two-character play checkpoint and a left click on the
+  view passing it on; FND-RNG-068 reads the path from `28C9:0353`. Blocks: complete seed-source
+  reading.
+- Q-RNG-032. RULE-RNG-001: What do `2D40:3D4C`, the overlay 193 trampoline `573B:00AC`,
+  `2D40:03C1` and `25AF:00E1` store when `2D40:2F34` or `28C9:0353` passes them slot 9999?
+  Settles it: a reading of each routine's stores with the slot 9999 and the record copied from
+  `DS:0CE6`, each shown to miss the clock conversion's windows (Q-RNG-005) or listed with what it
+  writes. Tried: FND-RNG-068 reads `2D40:2F34` up to those calls. Blocks: complete seed-source
+  reading.
 - Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's unresolved transfers write the clock
   conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the 16 cases of the
   segment `2707` jump tables at `2707:018D` and `2707:0591` with the routines they call

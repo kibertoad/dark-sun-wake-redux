@@ -191,7 +191,12 @@ None known.
   handler-source leads in SRC-RUSTDOS-172. The conversion's tables, label pointers and name are
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
-  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029 and Q-RNG-030. Whether the game
+  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029 and Q-RNG-030.
+  One such write is found: with `DS:426D` holding 9999, a view click sends that slot to
+  `2D40:2F34`, whose link store puts a record number over the July and August lengths at
+  `DS:3956`, so a later reseed converts dates from August on with those lengths (FND-RNG-067,
+  FND-RNG-068); which states and routes do that, and what the routines it goes on to call store,
+  remain Q-RNG-031 and Q-RNG-032. Whether the game
   creates objects 428 and 430, and whether the party's
   target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in

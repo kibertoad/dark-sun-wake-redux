@@ -1,7 +1,7 @@
 """Records the targets that memory-indirect calls and jumps take in a rust-dos run.
 
 Usage: python indirect_targets.py <source-run> <state> <new-run-name> <ms> <site> [<site> ...]
-           [--clicks clicks.json] [--read SEG:OFF:LEN ...]
+           [--clicks clicks.json] [--read SEG:OFF:LEN ...] [--watch SEG:OFF:LEN ...]
 
 Restores checkpoint <state> of captures/rust-dos-regenerated/<source-run> in a new owned session,
 as trampoline_census.py does, and sets a breakpoint that stays armed on each <site>, a static
@@ -11,7 +11,10 @@ instruction names a segment), and reads the word (near) or double word (far) the
 It counts each distinct target per site, with the run time of its first hit, and removes a site's
 breakpoint after 200 hits. Targets are given both as run addresses and, for load-image segments,
 as static ones. Each --read reads LEN bytes at the static address SEG:OFF once after the restore
-and once at the end, and records them in hexadecimal. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
+and once at the end, and records them in hexadecimal. Each --watch covers LEN bytes at the static
+address SEG:OFF with watchpoints of up to 4 bytes, which stop after an instruction changes them,
+and records each change with the static address of the code that made it, when that is in the
+load image. Writes targets.json under captures/rust-dos-indirect/<new-run-name>. Nothing is
 written to the game's memory.
 """
 import json
@@ -54,7 +57,16 @@ def operand_address(insn, regs):
 
 def main():
     args = sys.argv[1:]
-    clicks, reads = [], []
+    clicks, reads, watches = [], [], []
+    while "--watch" in args:
+        i = args.index("--watch")
+        seg, off, length = (int(x, 16) for x in args[i + 1].split(":"))
+        o = off
+        while o < off + length:
+            n = max(k for k in (4, 2, 1) if k <= off + length - o)
+            watches.append((seg, o, n))
+            o += n
+        del args[i:i + 2]
     while "--read" in args:
         i = args.index("--read")
         seg, off, length = (int(x, 16) for x in args[i + 1].split(":"))
@@ -117,7 +129,7 @@ def main():
         return f"{s:04X}" if 0x1000 <= s < 0x1000 + load_paragraphs else None
 
     report = {"source_run": args[0], "state": args[1], "duration_ms": duration, "clicks": clicks,
-              "delta": f"{delta & 0xFFFF:04X}", "sites": []}
+              "delta": f"{delta & 0xFFFF:04X}", "sites": [], "changes": []}
 
     def record():
         report["sites"] = [{k: v for k, v in e.items() if k != "insn"} for e in by_address.values()]
@@ -133,6 +145,11 @@ def main():
                 f"{(seg + delta) & 0xFFFF:04X}:{off:04X}", length).data.hex() for seg, off, length in reads}
 
         read_all("reads_start")
+        watched = {}
+        for seg, off, length in watches:
+            address = f"{(seg + delta) & 0xFFFF:04X}:{off:04X}"
+            s.client.set_watchpoint(address, length)
+            watched[address] = (f"{seg:04X}:{off:04X}", length, s.client.read_memory(address, length).data)
         for address in by_address:
             s.client.set_breakpoint(address, once=False)
 
@@ -144,6 +161,17 @@ def main():
                 stop = ob.stop
                 if stop.get("reason") == "time":
                     return
+                if stop.get("reason") == "watchpoint":
+                    cs, ip = (int(x, 16) for x in stop["cs_ip"].split(":"))
+                    for address, (name, length, old) in watched.items():
+                        new = s.client.read_memory(address, length).data
+                        if new != old:
+                            report["changes"].append({
+                                "address": name, "old": old.hex(), "new": new.hex(),
+                                "at_ms": int(stop["emu_ns"]) // 1000000 - start_ms, "run": stop["cs_ip"],
+                                "static": f"{static_of(cs)}:{ip:04X}" if static_of(cs) else None})
+                            watched[address] = (name, length, new)
+                    continue
                 e = by_address.get(stop.get("cs_ip"))
                 if stop.get("reason") != "breakpoint" or e is None:
                     report["unexpected_stop"] = stop
@@ -184,8 +212,9 @@ def main():
         run_to(start_ms + duration)
         read_all("reads_end")
         record()
-    print(json.dumps({e["site"]: {"hits": e["hits"], "targets": list(e["targets"])}
-                      for e in by_address.values()}), flush=True)
+    print(json.dumps({"sites": {e["site"]: {"hits": e["hits"], "targets": list(e["targets"])}
+                                for e in by_address.values()},
+                      "changes": len(report["changes"])}), flush=True)
 
 
 if __name__ == "__main__":
