@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-019, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -55,14 +55,24 @@ define save_load_key(key_word):
 The Save Game or Load Game screen, a combat refusal message, or an exit
 choice whose Quit branch clears `DS:1462`. That zero value makes the
 resident main loop return at its next continuation check; the startup
-path then submits a DOS terminate request (FND-SAVE-012).
+path then runs the shutdown routine registered with `atexit`, which closes
+sound, video, the timer and the archives, and submits a DOS terminate
+request (FND-SAVE-012, FND-SAVE-019). Nothing on that path saves the game.
+Answering Save sets `DS:627C`, after which the Save Game screen ends the
+game once it has saved (FND-SAVE-018).
 
 ## Edge cases
 
-The key consumer can invoke an indirect callback before opening a
-Save/Load screen; its additional effects are not fully read. The exit
-choice omits its `SAVE` label when the combat-state word is nonzero
-(FND-SAVE-010).
+The screen that runs the key consumer can pass a routine that releases
+its windows and buffers; the consumer calls it before `F1` or `F2` opens
+a screen, on Esc, and on the Save and Quit answers. With such a routine,
+Esc closes that screen instead of showing the exit choice (FND-SAVE-018).
+The exit choice omits its `SAVE` label when the combat-state word is
+nonzero (FND-SAVE-010).
+
+Nothing found clears `DS:627C`: after Save is answered and the Save Game
+screen is left with EXIT, a later save or load would end the game
+(FND-SAVE-018).
 
 ## What the sources say
 
@@ -76,6 +86,6 @@ None known.
 
 ## Open questions
 
-- Whether other key consumers act differently, the full effects of the
-  indirect callback and cleanup effects before the DOS interrupt
-  (FND-SAVE-010, FND-SAVE-012, Q-SAVE-001).
+- Whether `DS:627C` stays set after Save is answered and the Save Game
+  screen is left with EXIT, so that the next save or load ends the game
+  (FND-SAVE-018; Q-SAVE-006).

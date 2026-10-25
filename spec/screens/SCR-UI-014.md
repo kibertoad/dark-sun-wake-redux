@@ -72,6 +72,6 @@ None known.
 - How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
   and painted, how long a description can be, whether a used slot can be
   overwritten, what physical input maps to callback event 6, the list-base
-  value on entry, and the later
-  transition after EXIT remain open (FND-UI-036, FND-UI-037, Q-SAVE-001,
+  value on entry (Q-SAVE-004), and the later
+  transition after EXIT remain open (FND-UI-036, FND-UI-037,
   Q-UI-005).

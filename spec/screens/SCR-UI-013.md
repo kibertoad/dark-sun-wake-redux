@@ -69,6 +69,6 @@ None known.
 
 - How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
   and painted, what physical input maps to callback event 6, the list-base
-  value on entry, and the later
+  value on entry (Q-SAVE-004), and the later
   transition after EXIT remain open (FND-UI-036, FND-UI-037, FND-SAVE-006,
-  Q-SAVE-001, Q-UI-005).
+  Q-UI-005).

@@ -1,30 +1,20 @@
 # SAVE
 
-Next ID: Q-SAVE-004
+Next ID: Q-SAVE-007
 
 ## Static
 
-- Q-SAVE-001. RULE-SAVE-001, RULE-SAVE-002, SCR-UI-013, SCR-UI-014: What does a `SAVEnn.SAV`
-  file hold beyond the traced resource group, what effects do the key
-  dispatcher's indirect callback and the exit cleanup have, and which
-  windows, lists and controls make up the Load Game and Save Game screens?
-  Settles it: inventory the working archive's other resources and trace the
-  indirect callback, cleanup callees, `SAVE??.SAV` search and list-base writes
-  (FND-SAVE-004, FND-SAVE-006). Tried:
-  FND-UI-036 identifies the shared `WIND/18500` window, ten list rows and the
-  LOAD/SAVE image switch. FND-UI-037 traces row selection and the action
-  branches to the save/load routines. FND-SAVE-007 identifies `STXT/1` as
-  the source of an available slot's description. FND-SAVE-008 traces `SAVE`
-  resource and `STXT/1` writes to `DARKRUN.GFF`, then its copy to the numbered
-  file. FND-SAVE-009 traces the later `PREF`/`GREQ` target to
-  `CHARSAVE.GFF`. FND-UI-038 traces event-6 row navigation and identifies
-  cross-overlay writes to the list-base word; its entry value, physical
-  input mapping, other resources and transitions remain open. FND-SAVE-010
-  traces the `F1` to `F3` branches. FND-SAVE-012 establishes that the
-  exit byte makes the resident loop return and traces startup cleanup to
-  the DOS terminate call; indirect cleanup and the key callback remain
-  open. Blocks:
-  slice 5.
+- Q-SAVE-004. RULE-SAVE-002, SCR-UI-013, SCR-UI-014: Is `save_list_top` (`4C4C:0002`) always 0
+  when the Load Game or Save Game screen opens? Settles it: every writer of the word, with the
+  paths from each to the entries of overlay 192. Tried: FND-SAVE-020 shows overlay 192 never writes
+  it; FND-UI-038 finds the stored-character list's writes from `DS:044C`.
+  Blocks: slice 5.
+- Q-SAVE-005. RULE-SAVE-002: What does the save writer's word replacement through `GPLI/1`
+  (overlay 187 `+1615` and `+1829`) change, and does a load leave the replaced form in memory?
+  Settles it: a reading of `GPLI/1`'s entries, of the 19-byte records' and trigger records' words
+  they match, and of every reader of those words after a load. Tried: FND-SAVE-016 finds the reader
+  does not call `+1829`.
+  Blocks: slice 5.
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
   its top bit mean? Settles it: the code that gives a new character its identifier. Tried:
   comparing every 16-bit window of both families with the `CHAR` resource numbers, which finds
@@ -39,7 +29,11 @@ None.
 
 ## Agent run
 
-None.
+- Q-SAVE-006. RULE-SAVE-001: After the player answers Save to the `F3` exit choice and leaves the
+  Save Game screen with EXIT, does the next save or load end the game? Settles it: a run that does
+  this and watches `DS:627C` and `DS:1462`. Tried: FND-SAVE-018 finds only stores of 1 and one test
+  of `DS:627C` among direct operands.
+  Blocks: slice 5.
 
 ## Live session
 
