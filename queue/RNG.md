@@ -104,12 +104,6 @@ Next ID: Q-RNG-033
   again; the other stores to `DS:426D` (`28C9:0CFF`, `28C9:1EDB`, `28C9:305F`, overlay 182 and
   overlay 189) and the other paths of overlay 173 `+059A` are not read for 9999. Blocks: complete
   seed-source reading.
-- Q-RNG-032. RULE-RNG-001: What do `2D40:3D4C`, the overlay 193 trampoline `573B:00AC`,
-  `2D40:03C1` and `25AF:00E1` store when `2D40:2F34` or `28C9:0353` passes them slot 9999?
-  Settles it: a reading of each routine's stores with the slot 9999 and the record copied from
-  `DS:0CE6`, each shown to miss the clock conversion's windows (Q-RNG-005) or listed with what it
-  writes. Tried: FND-RNG-068 reads `2D40:2F34` up to those calls. Blocks: complete seed-source
-  reading.
 - Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's unresolved transfers write the clock
   conversion's storage (the windows Q-RNG-005 lists)? Settles it: a reading of the 16 cases of the
   segment `2707` jump tables at `2707:018D` and `2707:0591` with the routines they call

@@ -195,8 +195,9 @@ None known.
   One such write is found: with `DS:426D` holding 9999, a view click sends that slot to
   `2D40:2F34`, whose link store puts a record number over the July and August lengths at
   `DS:3956`, so a later reseed converts dates from August on with those lengths (FND-RNG-067,
-  FND-RNG-068); which states and routes do that, and what the routines it goes on to call store,
-  remain Q-RNG-031 and Q-RNG-032. Whether the game
+  FND-RNG-068); the end of combat leaves that 9999 until a leader key (FND-RNG-069, FND-RNG-070),
+  the routines the path goes on to call write none of the windows (FND-RNG-071), and the other
+  states and routes that pass 9999 remain Q-RNG-031. Whether the game
   creates objects 428 and 430, and whether the party's
   target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
