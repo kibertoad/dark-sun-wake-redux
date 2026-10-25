@@ -1,0 +1,13 @@
+{
+ "start": "C:/GOG Games/Dark Sun 2/captures/rust-dos-regenerated/v175-play-ready-b-20261019:play-ready",
+ "steps": [
+  {"keys": ["2"], "until_ms": 196000},
+  {"keys": ["tab"], "until_ms": 197000},
+  {"mouse": {"action": "move", "x": 160, "y": 101, "coords": "virtual"}, "until_ms": 197500},
+  {"mouse": {"action": "click", "x": 160, "y": 101, "coords": "virtual"}, "until_ms": 200500, "shot": "prefs-open", "read": [["4D9A:1431", 4], ["4D9A:1435", 4]]},
+  {"keys": ["f4"], "until_ms": 201500, "shot": "prefs-f4-1s", "read": [["4D9A:1431", 4], ["4D9A:1435", 4]]},
+  {"until_ms": 206000, "shot": "prefs-f4-5s", "read": [["4D9A:1431", 4], ["4D9A:1435", 4]]},
+  {"keys": ["a"], "until_ms": 207000, "shot": "prefs-a-1s", "read": [["4D9A:1431", 4], ["4D9A:1435", 4]]},
+  {"until_ms": 212000, "shot": "prefs-a-5s", "read": [["4D9A:1431", 4], ["4D9A:1435", 4]]}
+ ]
+}

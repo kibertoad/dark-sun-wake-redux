@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-033, FND-UI-034, FND-UI-058, FND-UI-064, FND-UI-065, FND-INPUT-012, FND-CONFIG-010, SRC-MANUAL-1994]
+evidence: [FND-UI-033, FND-UI-034, FND-UI-058, FND-UI-064, FND-UI-065, FND-UI-066, FND-CONFIG-218, FND-INPUT-012, FND-CONFIG-010, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-001, RULE-CONFIG-002, RULE-CONFIG-003, RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-006, SCR-UI-023]
@@ -52,6 +52,7 @@ Rectangles are from the window's corner.
 | Key | Enabled when | Effect | Evidence |
 |---|---|---|---|
 | Esc | While the screen is shown | Closes the screen. | FND-UI-064, FND-UI-065 |
+| F4, `A` | While the screen is shown | Turn music or animations on or off as in the game view; the window stays open and the button showing the setting is repainted. | FND-UI-066, FND-CONFIG-218 |
 | Any other key | While the screen is shown | Goes to the game view's key routine, overlay 190 `+139B`, with the screen's close routine. | FND-UI-065, FND-INPUT-012 |
 
 ## Other input
@@ -88,5 +89,3 @@ None known.
 - What native widget treatment makes `BUTN/16302` at (67, 78) visible; its four
   extracted icon frames each have one uniform colour (FND-UI-033, FND-UI-034,
   Q-CONFIG-001, Q-UI-013).
-- Whether the keys F4, F5, F6 and `A`, which change settings while the screen is shown, redraw
-  it (FND-UI-065, Q-UI-023).

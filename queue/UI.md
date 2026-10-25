@@ -137,10 +137,6 @@ Next ID: Q-UI-026
   overlay 212 `+061C` then shows. Tried: split from Q-UI-015. FND-UI-059 reads the test and the
   jump; `0x8300` is the identifier of `CHARSAVE.GFF#CHAR/33` and `/53` (FND-PARTY-050). Blocks:
   nothing yet.
-- Q-UI-023. SCR-UI-007: Do the keys that change settings redraw Preferences? Settles it: what
-  overlay 190 `+139B` does for F4, F5, F6 and `A` while Preferences is open, including any message
-  window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-065
-  finds the dispatcher drawing nothing after `+139B` returns. Blocks: nothing yet.
 
 ## Emulated call
 
