@@ -1,0 +1,9 @@
+{
+ "start": "C:/GOG Games/Dark Sun 2/captures/rust-dos-regenerated/v175-play-ready-b-20261019:play-ready",
+ "steps": [
+  {"keys": ["2"], "until_ms": 196000},
+  {"mouse": {"action": "move", "x": 120, "y": 186, "coords": "virtual"}, "until_ms": 196900, "shot": "walkb-before"},
+  {"mouse": {"action": "click", "x": 120, "y": 186, "coords": "virtual"}, "until_ms": 198000, "shot": "walkb-1s"},
+  {"until_ms": 203000, "shot": "walkb-6s"}
+ ]
+}

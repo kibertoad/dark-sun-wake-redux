@@ -42,9 +42,12 @@ Next ID: Q-EXPLORE-008
 - Q-EXPLORE-006. RULE-EXPLORE-005: Which routine plans the walk to a cell clicked with the Walk
   pointer, how does it choose the cells, what happens when no route exists or a cell on the route
   becomes blocked, how long does one step take, and how close to the clicked cell does the walk
-  end? Settles it: the code that handles a left click on the map in Walk mode, which is not found
-  yet, and the route search at the start of `2D40:10AE`, which Q-EXPLORE-003 also reads. Tried:
-  nothing yet. Blocks: slice 3.
+  end? Settles it: the route search at the start of `2D40:10AE`, which Q-EXPLORE-003 also reads,
+  with the store at `2D40:1601` that clears the mode word of the record at `4F49:08A3 + 19 × slot`,
+  and what runs the walk's steps once a route is found. Tried: FND-RNG-068 reads the click path
+  `28C9:0683` to `28C9:0353`, which stores the clicked cell and mode 15 in that record and calls
+  `2D40:10AE`; FND-EXPLORE-008 sees it from play-ready, with the mode word cleared by `2D40:1601`
+  within 4 ms and nothing moving, so the click handler is removed from Settles it. Blocks: slice 3.
 - Q-EXPLORE-007. SCR-EXPLORE-001: Which resources and routines compose the exploration view, place
   its region and actors, draw the pointer modes and switch the party display? Settles it: the
   bounded resource graph and drawing/input paths for the view, followed by owner captures where

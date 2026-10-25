@@ -53,6 +53,8 @@ None known.
 
 ## Open questions
 
-- Which routine plans the walk, and whether it is the route search at the start of `2D40:10AE`
-  that the keypad step calls (RULE-EXPLORE-004); how it orders cells, what it does when no route
-  exists or a cell on the route becomes blocked, and how long each step takes (Q-EXPLORE-006).
+- How the walk is planned and run. The click stores the clicked cell for the current slot and
+  calls `2D40:10AE`, whose route search the keypad step also uses (RULE-EXPLORE-004), and from
+  play-ready that call cleared the stored mode at once with nothing moving (FND-RNG-068,
+  FND-EXPLORE-008). How the search orders cells, what it does when no route exists or a cell on
+  the route becomes blocked, and how long each step takes are open (Q-EXPLORE-006).
