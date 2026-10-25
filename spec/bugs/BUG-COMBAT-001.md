@@ -70,8 +70,8 @@ None known.
 
 ## Open questions
 
-- Which other states leave 9999 in `DS:426D`, through other paths of overlay 173 `+059A`, block
-  copies or file reads into `4C13:0369` (Q-RNG-031), and whether `31E0:2C86` can pass 9999
-  (Q-RNG-034).
+- Whether block copies or file reads, such as loading a saved game, can put 9999 in `DS:426D` or
+  `4C13:0369` (Q-RNG-031), and whether `31E0:2C86` can pass 9999 (Q-RNG-034). Overlay 173 `+059A`
+  stores 9999 only when it ends combat (FND-RNG-078, FND-PARTY-089).
 - What the repeated round step and end-of-combat sequence change that the player sees
   (Q-COMBAT-034), and what can end the state once the leader keys are refused (Q-COMBAT-035).

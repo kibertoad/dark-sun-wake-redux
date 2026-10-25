@@ -199,8 +199,9 @@ None known.
   the routines the path goes on to call write none of the windows (FND-RNG-071), and
   `28C9:1EDB` stores nothing with 9999 until the record is filled and then calls overlay 173
   `+059A` with combat word 0 on every pass (FND-RNG-074, FND-RNG-075), which indexes nothing with
-  9999 and runs a combat round step each time (FND-RNG-076, FND-RNG-077, BUG-COMBAT-001); the other
-  states and routes that pass 9999 remain Q-RNG-031 and Q-RNG-034. Whether the game
+  9999 and runs a combat round step each time (FND-RNG-076, FND-RNG-077, BUG-COMBAT-001); overlay 173
+  `+059A` stores 9999 only when it ends combat (FND-RNG-078), and block copies or file reads that
+  could pass 9999 and the route through `31E0:2C86` remain Q-RNG-031 and Q-RNG-034. Whether the game
   creates objects 428 and 430, and whether the party's
   target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in

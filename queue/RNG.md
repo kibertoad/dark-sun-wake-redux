@@ -93,13 +93,13 @@ Next ID: Q-RNG-036
   windows during 40 s of play from the two-character checkpoint and finds one change, the store
   of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
   not taken. Blocks: complete seed-source reading.
-- Q-RNG-031. RULE-RNG-001, BUG-COMBAT-001: Which states put 9999 in `DS:426D`? Settles it: the paths of overlay
-  173 `+059A` other than the end of combat FND-RNG-070 reads, each shown to store a slot below
-  9999 through its pointer or listed with the state that stores 9999, and every block copy or file
-  read that writes `4C13:0369`, with the values it can write. Tried: FND-RNG-067, FND-RNG-069 and
-  FND-RNG-070 find the end of combat leaving 9999 until a leader key, and FND-RNG-073 finds no
-  direct store of 9999 in `DS:426D`, `DS:0DA5` or `4C13:0369`. Blocks: complete seed-source
-  reading.
+- Q-RNG-031. RULE-RNG-001, BUG-COMBAT-001: Which block copies or file reads can put 9999 in
+  `DS:426D` or `4C13:0369`? Settles it: every block copy or file read whose destination covers
+  `DS:426D` or `4C13:0369` (a saved-game load among them), with the values it can write there.
+  Tried: FND-RNG-067, FND-RNG-069 and FND-RNG-070 find the end of combat leaving 9999 until a
+  leader key, and FND-RNG-073 finds no direct store of 9999 in `DS:426D`, `DS:0DA5` or
+  `4C13:0369`. Tried: FND-RNG-078 with FND-PARTY-089 shows overlay 173 `+059A` storing 9999 only
+  on its end-of-combat path. Blocks: complete seed-source reading.
 - Q-RNG-034. RULE-RNG-001, BUG-COMBAT-001: Can `31E0:2C86` pass 9999 to `2D40:10AE`? Settles it: the table at
   `52A2:0030` with its count, the far table at `DS:67B7` and the bitmap at `52A2:0000`, read to show
   whether a placed record can name slot 9999 with its bit set, and what `2D40:10AE` returns for
