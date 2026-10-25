@@ -1,6 +1,6 @@
 # RNG
 
-Next ID: Q-RNG-029
+Next ID: Q-RNG-031
 
 ## Static
 
@@ -74,36 +74,27 @@ Next ID: Q-RNG-029
   not followed. Tried: FND-RNG-064 finds both stores in overlay 208 `+1612` and its six callers;
   only overlay 189 `+0B3C` (with `DS:43F5`) and overlay 213 `+0B82` (with an item's word `0x10`
   less 1) pass the byte as 1, so the other four callers are out. Blocks: reproducible seeding.
-- Q-RNG-005. RULE-RNG-001: Does any reached write change the clock
-  conversion's storage through a pointer formed outside it? Settles it: for
-  the environment-array root DS:3920, classification-index window
-  DS:34F5..3675, calendar tables DS:3950..3976, label pointers DS:3976..397A,
-  offset/enable record DS:397A..3980, name DS:3980..3983 and label buffers
-  DS:A4E4..A4EC, the destinations of the string stores and copy helpers on
-  FND-RNG-058's walk (among them the append into DS:33F2), other computed or
-  segment-aliased stores, and the code behind that walk's nine unresolved
-  transfers, each shown to miss the windows or listed with what it writes.
-  Tried: FND-RNG-016 reads the calendar bodies and shipped windows,
-  FND-RNG-017 measures the default-path globals and FND-RNG-018 reads the
-  local initializer and helper writes. These establish local sites, not
-  complete storage/writer coverage. Split from Q-RNG-004 to separate that
-  coverage from service/input admission. Tried: FND-RNG-019 identifies the
-  environment constructor's record-backed entry, its root store/array
-  construction, startup label-buffer bulk zero and the timezone initializer's
-  separate stored caller. Those local producer/caller gaps are answered;
-  native constructor metadata, other writers, source/callback/allocator
-  admission and continued storage identity remain. Tried: FND-RNG-020
-  verifies the actual near constructor frame, requested spans, root/mirror
-  and terminated member metadata, then the distinct far startup timezone
-  frame/default record. That native prerequisite is answered for this
-  admitted case; other writers, full lifetime/allocator/source admission
-  and other paths remain. Tried: FND-RNG-058's census of displacement and
-  literal-pointer operands over a walk from all 21 established entries finds
-  the tables, pointers, name and label buffers never written directly, the
-  record written only by the initializer, the root only by the constructor,
-  and below the classification table only the pack size and exit count; the
-  direct reader/writer part is answered, and FND-RNG-061 finds DS equal to
-  SS at the helper's callers. Blocks: complete seed-source reading.
+- Q-RNG-005. RULE-RNG-001: Do the string stores and copy helpers on FND-RNG-058's walk write the
+  clock conversion's storage? Settles it: the destination of each string store and copy-helper
+  call on that walk (among them the append into DS:33F2), each shown to miss the windows of
+  Q-RNG-005's storage (the environment-array root DS:3920, classification-index window DS:34F5..3675, calendar tables DS:3950..3976, label pointers DS:3976..397A, offset/enable record DS:397A..3980, name DS:3980..3983 and label buffers DS:A4E4..A4EC) or listed with what it writes. Tried: FND-RNG-016, FND-RNG-017,
+  FND-RNG-018, FND-RNG-019 and FND-RNG-020 read the calendar bodies, globals, initializers,
+  constructor and timezone frames, which establish local sites only. Tried: FND-RNG-058 answers
+  the direct reader/writer part with a census of displacement and literal-pointer operands from
+  all 21 established entries, and FND-RNG-061 finds DS equal to SS at the helper's callers; the
+  computed-store and unresolved-transfer parts moved to Q-RNG-029 and Q-RNG-030. Blocks: complete
+  seed-source reading.
+- Q-RNG-029. RULE-RNG-001: Does a computed or segment-aliased store on FND-RNG-058's walk, other
+  than its string stores and copy helpers, write the clock conversion's storage (the windows
+  Q-RNG-005 lists)? Settles it: each store whose address is formed from a register or a segment
+  other than DS on that walk, shown to miss the windows or listed with what it writes. Tried:
+  FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-061 finds DS
+  equal to SS at the helper's callers. Split from Q-RNG-005. Blocks: complete seed-source reading.
+- Q-RNG-030. RULE-RNG-001: Does code behind FND-RNG-058's nine unresolved transfers write the
+  clock conversion's storage (the windows Q-RNG-005 lists)? Settles it: the targets of the nine
+  transfers, and for each a reading of its stores against the windows. Tried: FND-RNG-058 lists the
+  nine transfers its walk could not resolve and reads no code behind them. Split from Q-RNG-005.
+  Blocks: complete seed-source reading.
 
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
   change rng_state apart from its generator and setter? Settles it: the

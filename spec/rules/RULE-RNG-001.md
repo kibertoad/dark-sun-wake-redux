@@ -191,7 +191,7 @@ None known.
   handler-source leads in SRC-RUSTDOS-172. The conversion's tables, label pointers and name are
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
-  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005. Whether the game
+  FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005, Q-RNG-029 and Q-RNG-030. Whether the game
   creates objects 428 and 430, and whether the party's
   target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
