@@ -1,6 +1,6 @@
 # EXPLORE
 
-Next ID: Q-EXPLORE-013
+Next ID: Q-EXPLORE-014
 
 ## Static
 
@@ -26,14 +26,11 @@ Next ID: Q-EXPLORE-013
   `28C9:2C9E` in full, the three redraw routines, the writers of the entry flags, and the two
   stores of overlay 187 at offsets `0x0F35` and `0x0F76`. Tried: the handlers of keys 5 and 6 and
   a byte search for stores to the byte (FND-EXPLORE-005). Blocks: slice 3.
-- Q-EXPLORE-006. RULE-EXPLORE-005: How long does one step of a walk take, and how does the wall
-  follower of the route search treat a follower that lands on an earlier node? Settles it:
-  `31E0:271E`, `31E0:1808` and the per-pass mover that changes the position words while bit 5 of
-  the slot record's first byte is set, `1695:01D1`, and `1B2E:042D..1B2E:0579`; or a run from a
-  checkpoint whose leader has a position, timing a Walk click. Tried: FND-RNG-068 and
-  FND-EXPLORE-008 read and run the click path; FND-EXPLORE-014 reads the planning and the step
-  start, and FND-EXPLORE-015 shows why the play-ready click finds no route, which leave
-  Settles it. Blocks: slice 3.
+- Q-EXPLORE-013. RULE-EXPLORE-005: What does the route search `1B2E:02D2` read when a wall
+  follower is boxed in on all four turns and its step returns -1, so that it looks up the link of
+  node -2 (`1B2E:0446`)? Settles it: a reading of `1B2E:0441..1B2E:0470` with that value and of the
+  memory before the node array. Tried: FND-EXPLORE-021 reads the follower handling and leaves this
+  case. Blocks: none.
 - Q-EXPLORE-010. RULE-EXPLORE-005: What do the calls in step 8 of `fn_2D40_2F34` (for slots 48
   and up, FND-RNG-068), `fn_1695_01D1` and the fight check `fn_2D40_1197` do, what are
   `g_4C13_0367`, `g_57E0_145E`, `g_57E0_19AE` and `g_57E0_19BF` for, what units does
@@ -65,6 +62,13 @@ None.
   Settles it: a run with a read watch on `4E71:0000` over a Walk click, a walk of several cells and
   a direction key step. Tried: FND-EXPLORE-018 finds three stores of 1 and no read through a
   segment word loaded within six instructions or a pushed far pointer. Blocks: none.
+- Q-EXPLORE-006. RULE-EXPLORE-005: How long does one cell of a walk take for a party member?
+  Settles it: a run from a checkpoint whose leader has a position, with a Walk click, that reads
+  word `+0x16` of the walker's slot record at `DS:67BB + 37 × slot` and counts the calls of
+  `31E0:1B60` for that record and the ticks of `DS:145E` per cell. Tried: FND-EXPLORE-019 reads
+  the frame mover and its tick gate, and FND-EXPLORE-020 tallies the walk frames of the shipped
+  `SCMD` resources; which resource a party member uses and the pass rate were not shown. Blocks:
+  slice 3.
 
 ## Live session
 

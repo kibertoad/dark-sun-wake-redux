@@ -4,7 +4,7 @@ title: How a character walks to the cell a left click with the Walk pointer chos
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
+evidence: [FND-RNG-068, FND-RNG-072, FND-EXPLORE-001, FND-EXPLORE-002, FND-EXPLORE-003, FND-EXPLORE-004, FND-EXPLORE-014, FND-EXPLORE-015, FND-EXPLORE-016, FND-EXPLORE-019, FND-EXPLORE-020, FND-EXPLORE-021, FND-ACTOR-003, FND-ACTOR-005, FND-PARTY-013, FND-PARTY-098, FND-PARTY-199, FND-RNG-041, FND-COMBAT-022, FND-COMBAT-052, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-INPUT-001, RULE-EXPLORE-003, RULE-EXPLORE-004]
@@ -322,6 +322,15 @@ A Walk click sets `walk_target_x`, `walk_target_y` and `walk_mode` 15 for the sl
 and otherwise moves the footprint there and starts the move. At each cell `plan_walk(slot, 0)`
 takes the next queued step (FND-RNG-072, FND-EXPLORE-014).
 
+The move between cells is the walker's walk animation: each frame adds its pixel steps to the
+position, one frame per map pass and no more than one per tick of `g_57E0_145E`, and the frame that
+reaches a cell centre ends the step, so `plan_walk(slot, 0)` runs in the same pass and the next
+step starts in the next (FND-EXPLORE-019). The most common walk animation in the shipped data
+takes 4 frames per cell north or south and 6 in the other directions (FND-EXPLORE-020). With
+animations turned off a walker moves a whole cell per pass. `fn_1B2E_07F3` follows each obstacle
+round both ways and joins the route where a follower first comes out on a later point of the line
+(FND-EXPLORE-021).
+
 ## Outputs
 
 `plan_walk` returns the slot, or 9999 after a fight check that set the fight state to 4. It sets
@@ -356,9 +365,10 @@ None known.
 
 ## Open questions
 
-- How long a step takes and how the route search works inside: `fn_1B2E_07F3`'s wall followers
-  were read only in outline, and `fn_28C9_19A1`'s move through `31E0:271E` and `31E0:1808` was not
-  read (FND-EXPLORE-014; Q-EXPLORE-006).
+- How long a step takes for a given walker: which walk animation each walker uses, and how fast
+  the map pass runs against the 96 Hz tick (FND-EXPLORE-019, FND-EXPLORE-020; Q-EXPLORE-006).
+- What `fn_1B2E_07F3` does when a wall follower is boxed in on all four turns, where it reads the
+  link of a node before its array (FND-EXPLORE-021; Q-EXPLORE-013).
 - What `fn_1B0B_000C`'s distance is measured in (FND-PARTY-098; Q-EXPLORE-010).
 - What the calls that end `fn_2D40_2F34` do for slots of 48 and up, what `fn_1695_01D1` and the
   fight check `fn_2D40_1197` do, and what `g_4C13_0367`, `g_57E0_145E`,
