@@ -67,7 +67,11 @@ Next ID: Q-UI-021
   dispatcher's draw requests. Tried: split from Q-UI-002. FND-UI-004 gives the record's icon
   and frame counts, FND-UI-024 finds three start-window icons with a 1 x 1 third frame, and
   FND-UI-034 reads the Preferences hover and click routines, which choose no frame; the draw
-  routine has not been read. Blocks: nothing yet.
+  routine has not been read. Tried: FND-UI-055 finds the Game Menu setting frames 4 and 5
+  through `3EBE:071F` and Collapse party calling overlay 203 `+082D` with the window, its button
+  and the new state, and registering overlay 190 `+363B` and overlay 181 `+0648` as callbacks,
+  none of them read; FND-UI-056 sees the pointed-at menu button drawn with a lighter border.
+  Blocks: nothing yet.
 - Q-UI-014. FMT-UI-005: Which font does an edit box draw its text in, and where in the box?
   Settles it: a reading of the routine that draws an `EBOX` control's text, with the font it
   selects and the offsets it adds to the box's position. Tried: split from Q-UI-002.
@@ -93,15 +97,11 @@ Next ID: Q-UI-021
   Q-UI-002. FND-UI-030 lists the window's controls, and FND-PARTY-217 links the inventory
   opener's request for `WIND/13500` to `+0559` and reads the redraw's position projection; the
   handler's other branches remain. Blocks: nothing yet.
-- Q-UI-018. SCR-UI-006: What does each Game Menu button do? Settles it: the targets of overlay
-  181's fourteen-entry button table other than the overhead map's `+0289`, followed to the
-  window or state change each makes, and whether the menu prints a description line for the
-  pointed-at button. Tried: split from Q-UI-002. FND-UI-046 reads the handler's table of
-  fourteen button numbers and targets and the overhead-map branch; FND-UI-028 lists the
-  window's buttons. Blocks: nothing yet.
-- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-006, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003, SCR-UI-022: Where does the game
+- Q-UI-003. SCR-UI-002, SCR-UI-005, SCR-UI-007, SCR-UI-011, FMT-UI-001, SCR-UI-001, SCR-UI-003, SCR-PARTY-003, SCR-UI-022: Where does the game
   place each window, given that the resources hold no screen position? Settles it: a reading of
   the code that writes a window's runtime `unk_96` and `unk_98`, or captures of each screen.
+  Tried: FND-UI-055 and FND-UI-056 find the Game Menu's opener passing (55, 42) to overlay 182
+  `+016B` and the record's words `+0x96` and `+0x98` holding them, which settles SCR-UI-006.
   Blocks: nothing yet.
 - Q-UI-005. SCR-UI-013 to SCR-UI-023, SCR-UI-014, SCR-UI-015, SCR-UI-016, SCR-UI-017, SCR-UI-018, SCR-UI-019, SCR-UI-020, SCR-UI-021, SCR-UI-022: Which resources, native widgets and handlers produce the
   manual's load, save, context, training, quick-cast, item, store, exit, map and About views? Settles
