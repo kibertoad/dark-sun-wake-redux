@@ -1,6 +1,6 @@
 # AI
 
-Next ID: Q-AI-005
+Next ID: Q-AI-006
 
 ## Static
 
@@ -12,13 +12,6 @@ Next ID: Q-AI-005
   paths from the first hostile's object, `MONR`, `ETAB`, `RDFF`, coordinate input and the random
   number generator (FND-AI-001), and the computer-control strings and button (FND-AI-002,
   FND-AI-003). Blocks: slice 4.
-- Q-AI-002. RULE-AI-001, FMT-COMBAT-001: Where does the game set `control_locked`, and which
-  screens pass key events to the resident key routine at `28C9:0CFF`, so that Space turns
-  computer control off? Settles it: a search for writes of the whole byte `0x18` of the
-  combatant records, and for the far pointers or calls that reach `28C9:0CFF`. Tried: a byte
-  search for instructions that set bit 6 (FND-AI-003) and for direct far calls to the key
-  routine (FND-AI-004). Blocks: none.
-
 - Q-AI-003. RULE-AI-002: When does a non-player character flee, fight back or call for help, and is that decided by combat or scripts? Settles it: the behavior-producing combat and script consumers for those outcomes, read with their callers. Blocks: completing RULE-AI-002.
 - Q-AI-004. RULE-AI-003: What do a combatant's kind byte and `g_50C2_0000` hold, and what does
   overlay 198 `+0149` pick for the kind? Settles it: the writers of combatant record byte `+0x0E`
@@ -31,7 +24,11 @@ None.
 
 ## Agent run
 
-None.
+- Q-AI-005. RULE-AI-001, FMT-COMBAT-001: Does the end of an active effect on a party member clear a
+  computer-control setting the player turned on with the button, as overlay 195 `+1000`'s tail
+  reads? Settles it: a run that turns computer control on for a member with an active effect other
+  than the five locking ones, lets the effect end, and reads byte `+0x18` of the member's combatant
+  record before and after. Tried: FND-AI-005 reads the tail statically. Blocks: none.
 
 ## Live session
 

@@ -9,7 +9,7 @@ byte_order: little
 size: 49
 text: false
 definition: fmt_combat_001.ksy
-evidence: [FND-AI-003, FND-AI-004, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-PARTY-012, FND-PARTY-013, FND-EXPLORE-002]
+evidence: [FND-AI-003, FND-AI-004, FND-AI-005, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-PARTY-012, FND-PARTY-013, FND-EXPLORE-002]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-004, RULE-COMBAT-005]
@@ -32,8 +32,8 @@ table holds the other combatants too [FND-COMBAT-022].
 | `0x14` | 1 | `UINT8` | `combat_mark` | Set to 1 in every party slot with a character when combat starts. The panel names an effect only when it is 1, and the leader can be changed to a slot only when it is 0 or 1. | supported | FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-PARTY-013 |
 | `0x15` | 3 | `BYTE[3]` | `unk_15` | Purpose unknown. | supported | FND-COMBAT-022 |
 | `0x18 bits 0..5` | | `bits[5]` | `unk_18_bits_0_4` | Purpose unknown. | supported | FND-COMBAT-022 |
-| `0x18 bits 5..6` | | `bits[1]` | `computer_control` | Set when the computer controls the party member. The computer-control button toggles it, and Space clears it in every slot where `control_locked` is 0. | supported | FND-AI-003, FND-AI-004 |
-| `0x18 bits 6..7` | | `bits[1]` | `control_locked` | Set when the computer-control setting cannot be changed; the button then shows a message and Space leaves `computer_control` as it is. | supported | FND-AI-003, FND-AI-004 |
+| `0x18 bits 5..6` | | `bits[1]` | `computer_control` | Set when the computer controls the party member. The computer-control button toggles it, and Space clears it in every slot where `control_locked` is 0. Effects 7, 20, 21, 35 and 102 set it with `control_locked`, and the end of an effect clears both unless another of those remains during a fight. | supported | FND-AI-003, FND-AI-004, FND-AI-005 |
+| `0x18 bits 6..7` | | `bits[1]` | `control_locked` | Set when the computer-control setting cannot be changed; the button then shows a message and Space leaves `computer_control` as it is. Set and cleared with `computer_control` by the effect handlers; scripts can store the whole byte. | supported | FND-AI-003, FND-AI-004, FND-AI-005 |
 | `0x18 bits 7..8` | | `bits[1]` | `unk_18_bit_7` | Purpose unknown. | supported | FND-COMBAT-022 |
 | `0x19` | 8 | `BYTE[8]` | `unk_19` | Purpose unknown. | supported | FND-COMBAT-022 |
 | `0x21` | 16 | `char[16]` | `name` | The character's name, ending at the first NUL. The first line of the panel and the `%Fs` of the combat messages. | supported | FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-024 |
@@ -57,4 +57,5 @@ FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023]; no record was observed in memor
 - What `unk_02`, `unk_08`, `unk_15`, `unk_18_bits_0_4`, `unk_18_bit_7` and `unk_19` hold, what
   values `combat_mark` takes besides 0 and 1, how many records the table holds, and how
   `2D40:3E64` maps a combatant to a record (Q-COMBAT-002).
-- Where the game sets `control_locked`; no instruction found sets the bit on its own (Q-AI-002).
+- Whether the end of any active effect clears a `computer_control` the player set (FND-AI-005,
+  Q-AI-005).

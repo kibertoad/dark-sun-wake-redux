@@ -4,7 +4,7 @@ title: The computer-control button toggles computer control of a party member un
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, SRC-MANUAL-1994]
+evidence: [FND-AI-002, FND-AI-003, FND-AI-004, FND-AI-005, FND-AI-006, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-AI-002, RULE-COMBAT-004, FMT-COMBAT-001, SCR-UI-002, SCR-UI-008]
@@ -15,12 +15,14 @@ related: [RULE-AI-002, RULE-COMBAT-004, FMT-COMBAT-001, SCR-UI-002, SCR-UI-008]
 Each party member has a computer-control setting. The small button beside the member's character
 box turns it on or off, with a message saying which, unless the setting is locked, when the
 button only says so. Space turns the setting off for every member whose setting is not locked.
+The effects Berserk, Controlled, Confused and Afraid turn the setting on and lock it (FND-AI-005).
 
 ## When it runs
 
 `toggle_computer_control` runs when the player clicks one of the buttons `BUTN/11313` to
 `/11316`. `release_computer_control` runs when the player presses Space and the resident key
-routine of FND-AI-004 receives the key.
+routine of FND-AI-004 receives the key, which happens only while the main view is up, in or out of
+a fight (FND-AI-006).
 
 ## Parameters
 
@@ -83,8 +85,7 @@ None known.
 
 ## Open questions
 
-- Where the game sets `control_locked`; no instruction found sets the bit on its own (Q-AI-002).
-- Which screens pass Space to the resident key routine, and so whether Space works outside
-  combat (Q-AI-002).
+- Whether the end of any active effect on a party member clears a computer-control setting the
+  player turned on with the button, as the removal handler reads (FND-AI-005, Q-AI-005).
 - What `unk_0E` of `combatant_details` is (Q-COMBAT-002).
 - What `fn_2D40_3E64` returns for a slot with no combatant (Q-COMBAT-002).
