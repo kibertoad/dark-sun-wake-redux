@@ -75,9 +75,20 @@ Do not repeat a retained search without new evidence, tooling or reading.
   record 9999 with `0xFF`. From then on `28C9:1EDB` runs overlay 173
   `+059A(0, &DS:426D)` on every pass: a combat round step adds 60 to
   `4C13:035B` about 15 times a second, and the leader keys are refused
-  (FND-RNG-074 to FND-RNG-077, FND-COMBAT-056, FND-COMBAT-057). Open:
-  Q-COMBAT-034 (what each pass changes), Q-COMBAT-035 (what ends it),
-  Q-RNG-031, Q-RNG-037, Q-RNG-038 and Q-RNG-034 (other routes to 9999).
+  (FND-RNG-074 to FND-RNG-077, FND-COMBAT-056, FND-COMBAT-057). Each
+  pass is read (FND-COMBAT-060 to FND-COMBAT-062); F1 or F2 taken in the
+  short gap after a pass's input flush, then EXIT or a save, ends it
+  (FND-COMBAT-063, FND-COMBAT-064). Open: Q-COMBAT-037 (load, leader key
+  after), Q-RNG-031, Q-RNG-037 to Q-RNG-039 and Q-RNG-034 (other routes
+  to 9999). Also found: BUG-SAVE-001 (F3, Save, EXIT leaves `DS:627C` at
+  1, so the next save or load quits to DOS; FND-SAVE-025).
+- Later runs: walk timing in the first fight (FND-EXPLORE-022), no read
+  of `4E71:0000` (FND-EXPLORE-023), grey Up (FND-INPUT-017), `wait_ms`
+  at 1,000 µs with no music timer slot (FND-TIME-011, Q-TIME-005 open).
+  Spell counts and the cast window read (FND-MAGIC-002, FND-MAGIC-003,
+  RULE-MAGIC-001 supported). Run drivers in `tools/research/rust-dos-runs/`:
+  `pass_counts.py`, `pass_bins.py`, `input_watch.py`, `walk_drive.py`,
+  `bug_exit.py`, configs in `counts/`.
 - Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
   `indirect_targets.py` (armed breakpoints on indirect transfers, memory
   reads, write watchpoints, key and pointer inputs, and `--count` sites
@@ -88,8 +99,8 @@ Do not repeat a retained search without new evidence, tooling or reading.
   or the template; an upstream issue or PR was offered and awaits their
   answer. File nothing upstream without it.
 - Next:
-  - Q-RNG-031, Q-RNG-037 and Q-RNG-038 (copies and reads into `DS:426D`),
-    Q-RNG-034, Q-COMBAT-035 and Q-COMBAT-034.
+  - Q-RNG-031, Q-RNG-037 to Q-RNG-039 (copies and reads into `DS:426D`),
+    Q-RNG-034, Q-COMBAT-037, Q-TIME-005, Q-MAGIC-003 to Q-MAGIC-019.
   - Q-RNG-029 and Q-RNG-005. Q-RNG-030 is closed: the `2707` copies,
     the program's timer callbacks and the sound drivers' timer functions
     write none of the clock windows (FND-RNG-079 to FND-RNG-084).
