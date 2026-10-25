@@ -117,14 +117,6 @@ Next ID: Q-RNG-037
   `4842:051A` and `55E3:003F` chain to interrupt vectors saved from outside the program,
   `1000:298A` returns to `1000:0260`, and the callback slot `0x46` holds `4842:0519`; FND-RNG-065
   sees three callbacks taken in play. Blocks: complete seed-source reading.
-- Q-RNG-036. RULE-RNG-001: Can the cases of the segment `2707` jump tables at `2707:018D` and
-  `2707:0591` write the data segment? Settles it: every store to the page words at `1BF3:0004` and
-  the flag words at `1BF3:0C04` that `1BF3:42FB` reads, each shown to give a video-memory segment
-  or a page offset, or listed with the segment it can give, and the near routines `2707:0395`,
-  `2707:02A8` and `2707:048E` read for their destinations. Tried: FND-RNG-066 finds the first
-  table's cases copying between the segments `1BF3:42FB` returns; FND-RNG-079 sees only
-  video-memory segments and page offsets in the page words, and pages 0 and 1, and 10 and 9, passed.
-  Split from Q-RNG-030. Blocks: complete seed-source reading.
 
 - Q-RNG-007. RULE-RNG-001: Can a reached computed, aliased or bulk write
   change rng_state apart from its generator and setter? Settles it: the
