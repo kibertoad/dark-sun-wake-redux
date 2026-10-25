@@ -51,8 +51,9 @@ Do not repeat a retained search without new evidence, tooling or reading.
   leader key (FND-RNG-069, FND-RNG-070), a view click sends slot 9999 to
   `2D40:2F34`, which writes a record number over the July and August
   month lengths that the clock reseeding converts with (FND-RNG-067,
-  FND-RNG-068). It has no BUG entry yet; write one once Q-RNG-031 and
-  Q-RNG-032 say which states and stores it covers.
+  FND-RNG-068); the routines it goes on to call write no clock storage
+  (FND-RNG-071). It has no BUG entry yet; write one once Q-RNG-031 says
+  which states pass 9999.
 - Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
   `indirect_targets.py` (armed breakpoints on indirect transfers, memory
   reads, write watchpoints, key and pointer inputs). Run them with
@@ -62,8 +63,7 @@ Do not repeat a retained search without new evidence, tooling or reading.
   answer. File nothing upstream without it.
 - Next:
   - Q-RNG-031 (other stores to `DS:426D`, other paths of overlay 173
-    `+059A`) and Q-RNG-032 (the routines `2D40:2F34` calls with 9999),
-    then the BUG entry.
+    `+059A`), then the BUG entry.
   - Q-RNG-030 (segment `2707` table cases, timer callbacks), Q-RNG-029
     and Q-RNG-005.
   - Complete readings for RULE-RNG-001's functions.
