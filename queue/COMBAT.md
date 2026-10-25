@@ -1,9 +1,21 @@
 # COMBAT
 
-Next ID: Q-COMBAT-034
+Next ID: Q-COMBAT-036
 
 ## Static
 
+- Q-COMBAT-034. BUG-COMBAT-001: What does each repeated pass of overlay 173 `+059A` with combat
+  word 0 change that the player sees? Settles it: a reading of the round step `+0C65` (its slot
+  loop from `+0CB6`, `371D:0334` and overlay 195 `+0AAD` and `+0A98`) and of the end-of-combat
+  sequence from `+078D` with its callees, listing the state each changes per pass with no
+  combatant kept. Tried: FND-RNG-076 reads the path up to these calls; FND-RNG-077 sees
+  `4C13:035B` rise by 60 on each pass. Blocks: BUG-COMBAT-001's symptom.
+- Q-COMBAT-035. BUG-COMBAT-001: Why does the leader key not set `DS:426D` once record 9999 is
+  filled, and what ends the repeated round steps? Settles it: a reading of the key path that
+  stores at `28C9:0E58` (FND-RNG-069), showing which test fails in the state of FND-RNG-077, and of
+  any other store or input that changes `DS:426D` or record 9999's word `+0x01` there. Tried:
+  FND-RNG-077 sees key 2 at 4000 ms leave `DS:426D` at 9999 and the steps go on to 20 s. Blocks:
+  BUG-COMBAT-001's frequency.
 - Q-COMBAT-002. FMT-COMBAT-001, FMT-COMBAT-002, SCR-COMBAT-001, RULE-AI-001: What do the unknown fields of
   the two combatant records hold, how many records does each table have, and how does
   `2D40:3E64` map `turn_combatant` to a record of each? Why does the panel show question marks
