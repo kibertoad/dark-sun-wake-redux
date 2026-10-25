@@ -86,7 +86,7 @@ Next ID: Q-UI-026
   (0, 9) for `WIND/11500` and (0, 0) for the inventory and the overhead map, which settles
   SCR-UI-022; party creation's placement of `WIND/11500` (SCR-UI-002) and Preferences, which `p`
   did not open, remain. Tried: FND-UI-058 opens Preferences from the Game Menu at (55, 42), which
-  places SCR-UI-007's window, and finds `DS:1431` null at the start window; FND-UI-060 then
+  places SCR-UI-007's window, and finds `DS:1431` null at the start window; FND-UI-065 then
   places Preferences' bars and texts, leaving whether the Game Menu's `BMP/10000` is drawn under
   it.
   Blocks: nothing yet.
@@ -137,13 +137,9 @@ Next ID: Q-UI-026
   overlay 212 `+061C` then shows. Tried: split from Q-UI-015. FND-UI-059 reads the test and the
   jump; `0x8300` is the identifier of `CHARSAVE.GFF#CHAR/33` and `/53` (FND-PARTY-050). Blocks:
   nothing yet.
-- Q-UI-022. SCR-UI-007: Does Esc close Preferences? Settles it: the writers of bit 2 of the word
-  `DS:9DEE`, and whether it is set while the Preferences window is open, so that the event builder
-  turns Esc into the kind-1 event the dispatcher closes on. Tried: split from Q-UI-016.
-  FND-UI-060 reads the builder and the dispatcher. Blocks: nothing yet.
 - Q-UI-023. SCR-UI-007: Do the keys that change settings redraw Preferences? Settles it: what
   overlay 190 `+139B` does for F4, F5, F6 and `A` while Preferences is open, including any message
-  window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-060
+  window it opens and the redraw that follows its closing. Tried: split from Q-UI-016. FND-UI-065
   finds the dispatcher drawing nothing after `+139B` returns. Blocks: nothing yet.
 
 ## Emulated call

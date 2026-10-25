@@ -1,9 +1,9 @@
 ---
 id: FND-UI-060
 title: The Preferences dispatcher takes button numbers through the window's handler and keys through the global hook, and after each button redraws the button and the bar it changed, the music button drawing the music level in the message-delay bar's place
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-UI-065]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
