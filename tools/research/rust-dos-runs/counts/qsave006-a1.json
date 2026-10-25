@@ -1,0 +1,12 @@
+{"name": "qsave006-a1", "duration": 24000, "watch": [["4D9A:627C", 1], ["4D9A:1462", 2]],
+ "events": [{"at_ms": 300, "move": [160, 100]}, {"at_ms": 1000, "key": "f3"},
+  {"at_ms": 2300, "click": [145, 92, "left"]},
+  {"at_ms": 4200, "shot": "save-screen-1", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 4200, "click": [253, 67, "left"]}, {"at_ms": 5500, "shot": "after-exit", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 6000, "key": "f1"}, {"at_ms": 7700, "shot": "after-f1", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]], "save": "mark-f1"},
+  {"at_ms": 8000, "click": [128, 47, "left"]}, {"at_ms": 9000, "shot": "row0"},
+  {"at_ms": 9200, "type": "TEST"}, {"at_ms": 10500, "shot": "typed"},
+  {"at_ms": 11000, "click": [253, 47, "left"]},
+  {"at_ms": 12000, "shot": "t12000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 15000, "shot": "t15000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 20000, "shot": "t20000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]}]}

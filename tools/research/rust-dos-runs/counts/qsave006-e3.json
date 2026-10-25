@@ -1,0 +1,5 @@
+{"name": "qsave006-e3", "duration": 8000, "watch": [["4D9A:627C", 1], ["4D9A:1462", 2]],
+ "events": [{"at_ms": 300, "move": [160, 100]}, {"at_ms": 1000, "key": "f3"},
+  {"at_ms": 2300, "click": [145, 92, "left"]},
+  {"at_ms": 4200, "click": [253, 67, "left"]}, {"at_ms": 5500, "shot": "after-exit", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 6000, "key": "f1"}, {"at_ms": 7700, "shot": "after-f1", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]}]}

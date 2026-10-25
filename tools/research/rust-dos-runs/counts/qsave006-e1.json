@@ -1,0 +1,3 @@
+{"name": "qsave006-e1", "duration": 2500, "watch": [["4D9A:627C", 1], ["4D9A:1462", 2]],
+ "events": [{"at_ms": 300, "move": [160, 100]}, {"at_ms": 800, "shot": "before", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 1000, "key": "f3"}, {"at_ms": 2200, "shot": "after-f3"}]}

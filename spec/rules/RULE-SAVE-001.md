@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-019, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-019, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -70,9 +70,9 @@ Esc closes that screen instead of showing the exit choice (FND-SAVE-018).
 The exit choice omits its `SAVE` label when the combat-state word is
 nonzero (FND-SAVE-010).
 
-Nothing found clears `DS:627C`: after Save is answered and the Save Game
-screen is left with EXIT, a later save or load would end the game
-(FND-SAVE-018).
+Nothing clears `DS:627C`: after Save is answered and the Save Game screen
+is left with EXIT, the next save or load ends the game (FND-SAVE-018,
+FND-SAVE-025, BUG-SAVE-001).
 
 ## What the sources say
 
@@ -86,6 +86,4 @@ None known.
 
 ## Open questions
 
-- Whether `DS:627C` stays set after Save is answered and the Save Game
-  screen is left with EXIT, so that the next save or load ends the game
-  (FND-SAVE-018; Q-SAVE-006).
+None known.

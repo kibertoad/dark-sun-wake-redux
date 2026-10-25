@@ -1,0 +1,10 @@
+{"name": "qsave006-c1", "duration": 21000, "watch": [["4D9A:627C", 1], ["4D9A:1462", 2]],
+ "events": [{"at_ms": 300, "move": [160, 100]}, {"at_ms": 1000, "key": "f1"},
+  {"at_ms": 2700, "shot": "after-f1", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 3000, "click": [128, 47, "left"]}, {"at_ms": 4000, "shot": "row0"},
+  {"at_ms": 4200, "type": "CTRL"}, {"at_ms": 5500, "shot": "typed"},
+  {"at_ms": 6000, "click": [253, 47, "left"]},
+  {"at_ms": 7000, "shot": "t7000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 10000, "shot": "t10000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 15000, "shot": "t15000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]]},
+  {"at_ms": 20000, "shot": "t20000", "read": [["4D9A:627C", 1], ["4D9A:1462", 2]], "save": "control-saved"}]}

@@ -18,11 +18,7 @@ None.
 
 ## Agent run
 
-- Q-SAVE-006. RULE-SAVE-001: After the player answers Save to the `F3` exit choice and leaves the
-  Save Game screen with EXIT, does the next save or load end the game? Settles it: a run that does
-  this and watches `DS:627C` and `DS:1462`. Tried: FND-SAVE-018 finds only stores of 1 and one test
-  of `DS:627C` among direct operands.
-  Blocks: slice 5.
+None.
 
 ## Live session
 
