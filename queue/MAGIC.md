@@ -1,6 +1,6 @@
 # MAGIC
 
-Next ID: Q-MAGIC-025
+Next ID: Q-MAGIC-027
 
 ## Static
 
@@ -8,7 +8,7 @@ Next ID: Q-MAGIC-025
   screen show, which group of spells or powers does the screen open on, and how does it pick the
   captions it shows? Settles it: the code that draws the Use screen's icons and caption boxes.
   Blocks: slice 5.
-- Q-MAGIC-018. RULE-MAGIC-001: Is byte `+0x1D` of the combatant record the character's Wisdom
+- Q-MAGIC-018. RULE-MAGIC-001, RULE-MAGIC-014: Is byte `+0x1D` of the combatant record the character's Wisdom
   score, the value the priest spell count's second term reads through `27E5:04A0(slot, 4)`?
   Settles it: the code that fills the combatant record's bytes `+0x19..+0x20` from the character
   record, read with the field each takes. Tried: FND-PARTY-081 and FND-PARTY-165 read it as
@@ -24,20 +24,16 @@ Next ID: Q-MAGIC-025
   takes them? Settles it: the writers of combatant word `+0x04` for party slots. Tried:
   FND-MAGIC-004 finds `+0B00` reading the class bytes from one and the origin and level bytes from
   the other. Blocks: slice 5.
-- Q-MAGIC-004. RULE-MAGIC-003: How many PSPs does a character have at each level, which powers
-  can a character who is not a psionicist use, does the game keep the manual's costs, how does it
-  price the powers the manual gives as Varies, and can a power with a zero maintenance cost be
-  maintained? Settles it: the code that sets a character's PSPs, the values of `psionic_powers`
-  against the manual's, and the code that keeps a power running from round to round.
-  Tried: FND-RNG-046 reads the activation: RULE-MAGIC-014 takes the power check, the half cost
-  of a failed check rounded down and the refusal for too few points, which contradict
-  RULE-MAGIC-003's check. Blocks: slice 5.
-- Q-MAGIC-023. RULE-MAGIC-004: What do `combat_mark` 2, 3 and 8, effect 0x47, the 19 effect codes
+- Q-MAGIC-023. RULE-MAGIC-004, RULE-MAGIC-003: What do `combat_mark` 2, 3 and 8, effect 0x47, the 19 effect codes
   the rest ends (0x01, 0x13, 0x6C, 0x69, 0x65, 0x64, 0x52, 0x2C, 0x23, 0x21, 0x15, 0x14, 0x0A,
-  0x41, 0x42, 0x44, 0x43, 0x45, 0x46), and bit 0x08 of byte 3 and bit 0x80 of byte 8 of the flag
-  block of overlay 193 `+1BA3` stand for? Settles it: the writers of each mark value and the code
+  0x41, 0x42, 0x44, 0x43, 0x45, 0x46), and bit 0x08 of byte 3, bit 0x80 of byte 8 and bit 0x80 of
+  byte 12 of the flag block of overlay 193 `+1BA3` stand for? Settles it: the writers of each mark value and the code
   that applies each effect code and sets each bit. Tried: FND-MAGIC-005 reads the rest using
-  them. Blocks: slice 5.
+  them; FND-MAGIC-008 finds byte 12 bit 0x80 keeping powers a second time. Blocks: slice 5.
+- Q-MAGIC-025. RULE-MAGIC-003: When can the double word `4F49:0002` be more than 60 ahead of the
+  clock `4C13:035B`, so that the walker sweep calls `2D40:37C1` and ends the paid powers? Settles
+  it: every write of `4F49:0002`, including block copies, saves and loads of segment `4F49`.
+  Tried: FND-MAGIC-008 finds the sweep's one load and one store. Blocks: slice 5.
 - Q-MAGIC-024. RULE-MAGIC-001: Can a load reach the new-game party loader overlay 182 `+063D`,
   which refills the spell pools of slots 0 to 3, through overlay 182 `+1167`'s gate on `DS:264E`?
   Settles it: the writers of `DS:264E` and their order against the load path. Tried:
@@ -78,12 +74,7 @@ Next ID: Q-MAGIC-025
   `DATA` 71? Settles it: the names of the `DATA` records and creature resources in `RESOURCE.GFF`,
   readings of those routines, and of the writers of the two globals. Tried: FND-RNG-040 reads the
   summoning and the pool. Blocks: slices 4-5.
-- Q-MAGIC-012. RULE-MAGIC-014, RULE-MAGIC-015: Which values does `psionic_powers` hold for each
-  power, where do they come from, and which score does each `score_code` name? Settles it: the
-  writers of `51F1:07E0..51F1:0846` or the resource they load it from, and the readers of
-  `fn_27E5_04A0`'s numbers. Tried: FND-RNG-046 reads the check and defence that use the table.
-  Blocks: slice 5.
-- Q-MAGIC-013. RULE-MAGIC-014: Which callers of the `DATA` dispatcher overlay 193 `+2290` pass a
+- Q-MAGIC-013. RULE-MAGIC-014, RULE-MAGIC-003: Which callers of the `DATA` dispatcher overlay 193 `+2290` pass a
   number from 235 to 268, with which word arguments and byte pointer, does any reach `use_power`'s
   path that applies an earlier check's result, and what does `fn_573B_007F` do with a psionic
   number? Settles it: the eleven far callers of `+2290` read for the psionic numbers they pass,
@@ -126,6 +117,13 @@ None.
 
 ## Agent run
 
+- Q-MAGIC-026. RULE-MAGIC-003: Does a run show a kept power's upkeep taken at each round step and a
+  power of upkeep 0 kept for nothing, and a new character without a Psionicist class getting only
+  the score bonuses as greatest PSPs until its first fight ends? Settles it: a run with a
+  breakpoint on overlay 176 `+03CD` reading combatant word `+0x02` at each round step with
+  Inertial Barrier and Mind Blank in effect, and one that reads details word `+0x0C` of a new
+  non-psionicist after generation and after its first fight. Tried: FND-MAGIC-008 and
+  FND-MAGIC-010 read both statically. Blocks: slice 5.
 - Q-MAGIC-022. RULE-MAGIC-004: Is the map object numbered 1317 the fire ring, which pointer mode
   starts a rest from a click on it, and how far does a rest of 8 hours move the clock against the
   time the game shows? Settles it: a run that clicks the Look pointer on a fire ring with a

@@ -4,7 +4,7 @@ title: Using a psionic power takes its cost in points and a d20 power check belo
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-104, FND-PARTY-108, FND-PARTY-210, FND-RNG-042, FND-PARTY-081, FND-CONFIG-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-052, FND-RNG-040, FND-EXPLORE-001, FND-EXPLORE-002]
+evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-104, FND-PARTY-108, FND-PARTY-210, FND-RNG-042, FND-PARTY-081, FND-CONFIG-052, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-052, FND-RNG-040, FND-EXPLORE-001, FND-EXPLORE-002, FND-MAGIC-007, FND-MAGIC-008]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-003, RULE-MAGIC-015]
@@ -196,8 +196,9 @@ None known.
   blocks a use through `effect_entries` and `fn_573B_0020` (FND-RNG-046, Q-MAGIC-015).
 - What `g_4C4F_00B2` stands for, and what `fn_27E5_0154` returns beyond FND-PARTY-081's reading
   (FND-RNG-040, FND-PARTY-081, Q-MAGIC-015).
-- Which values `psionic_powers` holds for each power, where they come from, and which score each
-  `score_code` names through `fn_27E5_04A0` (FND-RNG-046, Q-MAGIC-012).
+- What `fn_27E5_04A0` returns for each `score_code`: read as the combatant record's bytes `+0x19`
+  to `+0x1D`, codes 2 to 4 being Constitution, Intelligence and Wisdom (FND-MAGIC-002,
+  FND-MAGIC-007, Q-MAGIC-018).
 - Which callers of the dispatcher pass a psionic number, with which `w` and `q`, whether any
   reaches the path that applies an earlier check's result, and what `fn_573B_007F` does with the
   number (FND-RNG-046, Q-MAGIC-013).

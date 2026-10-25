@@ -4,7 +4,7 @@
 |---|---|---|---|---|---|---|---|
 | `RULE-MAGIC-001` | How many spells of each level a caster can cast before resting | supported | missing | None | None | supported | No code counts spells. `ExplorationSession` opens the Cast Spells / Use PSI view with no spells in it. |
 | `RULE-MAGIC-002` | Which spheres of cleric spells a priest may cast | supported | missing | None | None | supported | No code holds spells or their spheres. A created character carries a `ClericalSphere` (RULE-PARTY-003). |
-| `RULE-MAGIC-003` | Activating and maintaining a psionic power | disputed | missing | None | None | disputed | Disputed (FND-RNG-046): the game's power check adds the rank less 1 and always succeeds on 1 and fails on 20 (RULE-MAGIC-014). No code holds psionic powers or PSPs. |
+| `RULE-MAGIC-003` | Keeping a psionic power in effect, a character's psionic strength points and the powers it starts with | supported | missing | None | None | supported | No code holds psionic powers or PSPs. |
 | `RULE-MAGIC-004` | Resting heals the party, restores psionic strength points and spells, and casts condition cures from the party's priests | supported | missing | None | None | supported | No code camps or rests. |
 | `RULE-MAGIC-005` | A DATA record's dice are a count growing with the level, of sides the record gives, plus a bonus per level step | supported | missing | None | None | supported | No code rolls a `DATA` record's dice. |
 | `RULE-MAGIC-006` | DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10 | supported | missing | None | None | supported | No code applies `DATA` 306. |

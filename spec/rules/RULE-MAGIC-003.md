@@ -1,74 +1,107 @@
 ---
 id: RULE-MAGIC-003
-title: Activating and maintaining a psionic power
-status: disputed
+title: Keeping a psionic power in effect, a character's psionic strength points and the powers it starts with
+status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [SRC-MANUAL-1994]
-conflicting: [FND-RNG-046]
+evidence: [FND-MAGIC-007, FND-MAGIC-008, FND-MAGIC-009, FND-MAGIC-010, FND-RNG-046, FND-PARTY-081, FND-PARTY-104, FND-PARTY-169, FND-PARTY-210, FND-COMBAT-060, FND-MAGIC-005, SRC-MANUAL-1994]
+conflicting: []
 split_with: []
-related: [RULE-MAGIC-014]
+related: [RULE-MAGIC-014, RULE-MAGIC-015, RULE-MAGIC-004]
 ---
 
 ## Summary
 
-Every psionic power names an ability and an amount added to or taken from the character's score
-in it; the result is the power score. Activating a power always needs a power check, which
-succeeds with a chance of 5 percent per point of power score. A power that activates costs its
-initial cost in psionic strength points (PSPs), and one that fails costs half of it. A power with a
-maintenance cost can be kept running from round to round, paying that cost each round with no
-new check.
+Using a power is RULE-MAGIC-014's. A power a party member has in effect is kept at every round
+step of a fight: when its upkeep, byte 2 of `psionic_powers`, is not above the member's psionic
+strength points (PSPs), it is applied again with no check and the upkeep is paid; otherwise it
+ends. An upkeep of 0 keeps a power for nothing, even at 0 PSPs, and 99 means the power is never
+kept. A member who falls loses every power in effect, and the end of a fight and a rest end them
+all. A psionicist's greatest PSPs grow by 10 per Psionicist level above the first plus a Wisdom
+term, a character of any other class has 4 per level, and both add bonuses for Constitution,
+Intelligence and Wisdom of 15 or more. A new psionicist knows 18 fixed powers at rank 1 and any
+other new character the five powers of its one chosen discipline; any member can use a power whose
+rank is above 0.
 
 ## When it runs
 
-When a character activates a psionic power from the Cast Spells / Use PSI screen (SCR-UI-009), and
-each round after that while the power is maintained.
+`keep_powers` runs for every slot at each round step of a fight (overlay 173 `+0C65`), and again
+at a slot's turn when byte 12 of its flag block has bit 0x80 (FND-MAGIC-008). `greatest_psp`
+runs at generation and, for every standing member, after every fight and every experience award
+(FND-MAGIC-010). `starting_powers` runs at generation (FND-MAGIC-009).
 
 ## Parameters
 
-`attribute`, the character's score in the ability the power names. `modifier`, the amount the
-power's description adds to that score, for example -3 for "Con -3". `initial_cost`, the power's
-initial cost in PSPs. `maintenance_cost`, the power's maintenance cost in PSPs per round, 0 when
-the description gives none.
+`member`, a party slot 0 to 3, with `psionic_points` its current PSPs, `in_effect[p]` whether
+power `p` is in effect for it, `standing` whether its slot state is not 0 and its `combat_mark`
+below 3. `psionicist_level`, the member's Psionicist level, 0 when it has none. `level`, its level
+as `fn_27E5_0154` gives it. `con`, `int` and `wis`, its Constitution, Intelligence and Wisdom.
+`is_psionicist` and `discipline` (0 psychokinesis, 1 psychometabolism, 2 telepathy) for
+`starting_powers`.
 
 ## Inputs
 
-None beyond the parameters.
+`psionic_powers`.
 
 ## Procedure
 
 ```text
-define power_score(attribute, modifier):
-    return attribute + modifier
+# Bonuses for scores 15 to 25 (FND-PARTY-081, FND-MAGIC-010); 0 below 15.
+let con_bonus: INT8[11] = [0, 1, 2, 3, 4, 5, 6, 7, 0, 1, 2]
+let int_bonus: INT8[11] = [0, 1, 2, 3, 4, 5, 6, 0, 20, 22, 24]
+let wis_bonus: INT8[11] = [20, 22, 24, 26, 28, 30, 32, 34, 0, 1, 2]
+let wis_per_level: INT8[11] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 8, 10]
 
-define power_check_percent(attribute, modifier):
-    return power_score(attribute, modifier) * 5
+define keep_powers(member):
+    for p in 0..34:
+        if member.in_effect[p]:
+            let upkeep = psionic_powers[p].byte_2
+            if member.standing and upkeep <= member.psionic_points:
+                # the power's DATA number p + 235 is applied again at psionicist_level, or 1
+                member.psionic_points = member.psionic_points - upkeep
+            else:
+                member.in_effect[p] = false
+                # the power's effect entries caused by member end
 
-define power_cost(initial_cost, succeeded):
-    if succeeded:
-        return initial_cost
-    return initial_cost / 2
+define score_bonus(table, score):
+    if score < 15:
+        return 0
+    return table[score - 15]
 
-define can_maintain(maintenance_cost):
-    return maintenance_cost > 0
+define greatest_psp(psionicist_level, level, con, int, wis):
+    let b = score_bonus(con_bonus, con) + score_bonus(int_bonus, int) + score_bonus(wis_bonus, wis)
+    if psionicist_level > 0:
+        return b + 10 * (psionicist_level - 1) + score_bonus(wis_per_level, wis) * (psionicist_level - 1)
+    return b + 4 * level
+
+define starting_powers(is_psionicist, discipline):
+    if is_psionicist:
+        return [0, 1, 4, 5, 7, 8, 11, 13, 14, 16, 23, 24, 25, 27, 31, 30, 32, 33]
+    if discipline == 0:
+        return [0, 1, 3, 5, 30]
+    if discipline == 1:
+        return [8, 10, 11, 18, 0]
+    return [23, 22, 25, 31, 30]
 ```
 
 ## Outputs
 
-`power_check_percent` returns the chance, in percent, that the power check succeeds.
-`power_cost` returns the PSPs the activation takes from the character. `can_maintain` returns true
-when the power can be kept running, at `maintenance_cost` PSPs a round. None of them changes
-state; the caller makes the check and takes the PSPs.
+`keep_powers` changes the member's PSPs and the powers in effect. `greatest_psp` gives the
+greatest PSPs; the game stores it only when it is above the stored value, and adds the rise to the
+current PSPs. `starting_powers` lists the powers a new character knows at rank 1; all others are
+rank 0.
 
 ## Edge cases
 
-A power score of 20 or more gives a chance of 100 percent or more, and one of 0 or less a chance
-of 0 or less. Half an odd initial cost is not a whole number; the manual does not say how it is
-rounded.
-
-Cell Adjustment and Mind Blank print a maintenance cost of zero rather than NA, and the Mind Blank
-description says it costs nothing to maintain. The procedure's `can_maintain` treats 0 as no
-maintenance cost, so for these two a zero cost would need to count as maintainable.
+- At generation a character with no Psionicist class gets the score bonuses alone; the first run
+  after a fight or an experience award raises it to `b + 4 * level` (FND-MAGIC-010).
+- The greatest PSPs are never lowered.
+- An upkeep of 0 (Mind Blank and the four defence modes) keeps the power with 0 PSPs.
+- Share Strength (19) is kept on the member it was used on; every power after it in the same call
+  is applied again on that member too (FND-MAGIC-008).
+- A character who is not a psionicist uses its powers at level 1, and their ranks never rise with
+  its levels; an item can teach or raise any power for any member (FND-MAGIC-009).
+- The bonus tables give 0 for Constitution 23 and Intelligence 22, as the game reads them.
 
 ## What the sources say
 
@@ -89,19 +122,26 @@ the subject, and Superior Invisibility's initial cost on how many creatures it p
 says all characters begin as first-level psionicists, and page 22 that all intelligent creatures
 on Athas have some psionic ability.
 
+The game differs (FND-MAGIC-007, FND-MAGIC-008, FND-MAGIC-009): the power check is a d20 and the
+activation cost is RULE-MAGIC-014's; Control Body, Life Draining and Cell Adjustment cannot be
+maintained; Tower of Iron Will, Intellect Fortress, Mental Barrier and Thought Shield are
+maintained at 0; Enhanced Strength's maintenance is a flat 8; Domination and Mass Domination cannot
+be maintained; Superior Invisibility costs a flat 5. Every character starts with powers, as page
+13 says, but a character who is not a psionicist gets the five powers of its one chosen
+discipline, and they never rise with its levels.
+
 ## Differences between builds
 
 None known.
 
 ## Open questions
 
-- The game's own power check and cost contradict `power_check_percent`: FND-RNG-046 reads a d20
-  that succeeds at or below the power score plus the power's rank less 1, always on a 1 and never
-  on a 20, a cost that differs from the table's for powers 15, 20 and 21, half the table cost,
-  rounded down, for a failed check, and a refusal with no check for too few PSPs (RULE-MAGIC-014).
-  This entry is to be superseded by entries for what the game does once its remaining parts are
-  read (Q-MAGIC-004).
-- How many PSPs a character has at each level, and which powers a character who is not a
-  psionicist can use (Q-MAGIC-004).
-- Whether the game keeps the manual's costs, how it prices the powers the manual gives as Varies,
-  and whether a zero maintenance cost lets a power be maintained (Q-MAGIC-004).
+- What overlay 193 `+0000` does when a kept power is applied again, and what its byte argument 1
+  selects (FND-MAGIC-008, Q-MAGIC-013).
+- Which effect sets bit 0x80 of byte 12 of the flag block, which keeps a member's powers a second
+  time at its turn (FND-MAGIC-008, Q-MAGIC-023).
+- When the stored time `4F49:0002` can be more than 60 ahead of the clock, the only way
+  `2D40:37C1` ends the paid powers outside a fight (FND-MAGIC-008, Q-MAGIC-025).
+- Whether a run shows a kept power's upkeep taken each round and a 0 upkeep power kept for nothing,
+  and a new non-psionicist's greatest PSPs rising after its first fight (FND-MAGIC-008,
+  FND-MAGIC-010, Q-MAGIC-026).

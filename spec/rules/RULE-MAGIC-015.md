@@ -4,7 +4,7 @@ title: A target ignores an effect of type word 0x400 when two rolls of 1 to its 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-112, FND-PARTY-104, FND-PARTY-210, FND-COMBAT-022, FND-AI-004, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-023]
+evidence: [FND-RNG-046, FND-RNG-025, FND-PARTY-112, FND-PARTY-104, FND-PARTY-210, FND-COMBAT-022, FND-AI-004, FND-PARTY-081, FND-EXPLORE-002, FND-COMBAT-052, FND-COMBAT-023, FND-MAGIC-007, FND-MAGIC-008]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-014]
@@ -99,7 +99,5 @@ None known.
 
 - Which `DATA` records reach `+1C52` with the type word 0x400, and so which effects the defence
   applies to (FND-RNG-046, Q-MAGIC-014).
-- Which powers 24, 27, 28, 30 and 33 are, and the values of `psionic_powers` (FND-RNG-046,
-  Q-MAGIC-012).
 - What byte `+0x1D` of the combatant record and byte `+0x1E` of the details record hold, and how
   `fn_2D40_3E64` maps a slot to its records (FND-RNG-046, FND-COMBAT-022, Q-MAGIC-014).
