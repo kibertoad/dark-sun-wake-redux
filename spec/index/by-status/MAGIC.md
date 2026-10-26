@@ -4,24 +4,18 @@
 
 Entries by status.
 
-## sourced
+## supported
 
-3 entries.
+23 entries.
 
 | ID | Title |
 |---|---|
 | [RULE-MAGIC-001](../../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting |
 | [RULE-MAGIC-002](../../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast |
-| [RULE-MAGIC-004](../../rules/RULE-MAGIC-004.md) | Camping restores spells and psionic strength points |
-
-## supported
-
-19 entries.
-
-| ID | Title |
-|---|---|
+| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Keeping a psionic power in effect, a character's psionic strength points and the powers it starts with |
+| [RULE-MAGIC-004](../../rules/RULE-MAGIC-004.md) | Resting heals the party, restores psionic strength points and spells, and casts condition cures from the party's priests |
 | [RULE-MAGIC-005](../../rules/RULE-MAGIC-005.md) | A DATA record's dice are a count growing with the level, of sides the record gives, plus a bonus per level step |
-| [RULE-MAGIC-006](../../rules/RULE-MAGIC-006.md) | DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10 |
+| [RULE-MAGIC-006](../../rules/RULE-MAGIC-006.md) | Turn undead, DATA 306, destroys an undead target on a d20 at least three times its adjusted level less the adjusted caster level, plus 10 |
 | [RULE-MAGIC-007](../../rules/RULE-MAGIC-007.md) | A target whose record byte 0x0E is 13 ends the hit of a DATA record with byte 0x17 of -1, and on a d6 of 6 the record is queued from the combatant whose turn it is at the target |
 | [RULE-MAGIC-008](../../rules/RULE-MAGIC-008.md) | A target with bit 0x40 of its effect block byte 5 blocks a DATA record whose overlay 208 +0885 value is 8 or less, other than 235 to 268, on a d100 of 75 or less and queues DATA 307 on itself |
 | [RULE-MAGIC-009](../../rules/RULE-MAGIC-009.md) | A target with bit 0x80 of its effect block byte 9 that saves against a caster of details kind 9 hands a 2d6 total to overlay 179 +1304 and queues DATA 308 |
@@ -40,21 +34,36 @@ Entries by status.
 | [RULE-MAGIC-022](../../rules/RULE-MAGIC-022.md) | DATA 77 gives a dead party member a d8 origin byte, rerolled while 1 unless it was 1, a d2 gender byte and full hit points, and places it again |
 | [RULE-MAGIC-023](../../rules/RULE-MAGIC-023.md) | A cast samples up to 250 area points by its DATA record's effect row, as a box scan, a full turn or a sector, and rolls the row's dice plus a bonus per a, times the row's word 0x0C, as the amount |
 
-## disputed
-
-1 entries.
-
-| ID | Title |
-|---|---|
-| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power |
-
 ## recorded
 
-1 entries.
+24 entries.
 
 | ID | Title |
 |---|---|
 | [FND-MAGIC-001](../../findings/FND-MAGIC-001.md) | The Use screen names the spell class and level or the psionic discipline its icons belong to |
+| [FND-MAGIC-002](../../findings/FND-MAGIC-002.md) | The game computes each caster's spells per level from two halving formulas in overlay 177 +0910, one on the class level and, for clerics and druids, one on the score at combatant byte +0x1D, sums them over the slot's casting classes into a wizard and a priest pool, and refuses a cast with YOU NEED TO REST when the pool byte of the window's level is 0; most rows differ from the manual's tables |
+| [FND-MAGIC-003](../../findings/FND-MAGIC-003.md) | The cast window reaches only spell levels up to overlay 211 +208C, a halving of the greatest qualifying class level that takes 7 off a ranger's level, so a ranger casts level 4 spells at levels 14 and 15 and a Preserver at 11, 13 and 15 holds a count one level above the window; the cast itself passes the full class level from overlay 177 +07AF |
+| [FND-MAGIC-004](../../findings/FND-MAGIC-004.md) | A priest spell's spheres are the byte at 51F1:07D3 + spell, bits 0x01 to 0x08 for air, earth, fire and water and 0x10 and 0x20 for two grades of Cosmos access, and overlay 177 +0A45 admits it when the byte shares a bit with the class code's mask, so a cleric and a ranger take their element and the Cosmos spells of levels 1 to 3, a druid its element and every Cosmos spell, and a spell of several spheres any caster of one of them |
+| [FND-MAGIC-005](../../findings/FND-MAGIC-005.md) | The rest routine, overlay 204 +0CBA, refuses during combat, casts Cure Disease, Remove Curse and Remove Paralysis from the party's best cleric and best druid of level 5 or more and Neutralize Poison from a druid of 7 or more on every member, ends effects, sets each standing member's hit points, PSPs and spell pools to full, and adds 60 times its hour argument to the clock; a map object numbered 0x525 starts it with 8 hours and script requests 1 and 4 with 0 |
+| [FND-MAGIC-006](../../findings/FND-MAGIC-006.md) | Overlay 182 +0B52 fills the spell pools only at a rest, at Start Game, in the new-game party loader, when ADD or the end of character generation places a character, and on the M key while DS:143C is set; the level gain does not call it, and a load restores the pools of slots 0 to 3 from SAVE 23 |
+| [FND-MAGIC-007](../../findings/FND-MAGIC-007.md) | The 34 rows of psionic_powers keep the manual's ability, adjustment and initial cost of every power the manual prices with a number, hold 0 for Enhanced Strength, Domination and Mass Domination, whose cost overlay 176 +0196 computes from the target, and 5 for Superior Invisibility, and their third byte is the maintenance per round, 99 for none, which differs from the manual for ten powers |
+| [FND-MAGIC-008](../../findings/FND-MAGIC-008.md) | Overlay 176 +03CD keeps each power a party member has in effect by applying its DATA number again and taking the third table byte from the member's points when they cover it, so a power whose byte is 0 stays in effect for nothing, and ends it otherwise; the round step of the fight routine calls it for every slot and overlay 195 +0789 again when a block bit is set, and 2D40:37C1 ends all but the zero-cost powers |
+| [FND-MAGIC-009](../../findings/FND-MAGIC-009.md) | Generation gives a psionicist 18 fixed powers at rank 1 and any other character the five powers of its one chosen discipline, an item whose DATA number is a power teaches it or raises its rank for any member, and no list or use of a power tests a class |
+| [FND-MAGIC-010](../../findings/FND-MAGIC-010.md) | Only generation, overlay 184 +06CD, and the level-gain pass, overlay 210 +0131, store the greatest psionic points, details word +0x0C; the pass runs for every standing party member each time overlay 210 +08BC runs, and generation gives a character without a Psionicist class the score bonuses alone |
+| [FND-MAGIC-011](../../findings/FND-MAGIC-011.md) | DS:264E is written by the placed-object insert and remove helpers, three recounts (the SAVE reader, the region change and the ETAB load) and two direct increments; a load leaves it at the count saved, or unchanged when a read fails, before the Load window calls overlay 182 +1167 with 0, so the party loader runs after a load only when the saved count, or the count before a failed load, is 0 |
+| [FND-MAGIC-012](../../findings/FND-MAGIC-012.md) | For a party slot of 4 or less, every writer of combatant word +0x04 found sets it to the slot, so overlay 177 +0B00's two details records are the same record; a CHAR load sets it through the details chunk's field 15, character generation stores the slot before copying the working record, and an edit keeps it |
+| [FND-MAGIC-013](../../findings/FND-MAGIC-013.md) | A CHAR load copies the character's Strength to Charisma at 0x23..0x28 into combatant bytes +0x19..+0x1E, facing and unk_2a into +0x1F and +0x20; overlay 197 +1E7B rebuilds +0x19..+0x1E from the base scores in the same order, and 27E5:04A0(slot, k) returns byte +0x19 + k unbounded, so k = 4 reads Wisdom |
+| [FND-MAGIC-014](../../findings/FND-MAGIC-014.md) | The walker sweep's store is the only write of 4F49:0002, made only when the test passes; no save, load, copy or fill reaches it, so it stays 0 until the clock 4C13:035B passes 0x80000000, and the shipped writers of the clock never take it below the stored time otherwise |
+| [FND-MAGIC-015](../../findings/FND-MAGIC-015.md) | Overlay 197 +3060 skips the spend of a wizard spell only when +37A5 returns nonzero, and +37A5 returns nonzero only for a spell whose overlay 177 +09C5 level is 0, which +09C5 never gives a number from 0 to 114; so effect 0x5C never saves a wizard spell, and the walk only rewrites word 0x0E of items whose word 0x10 is 313 |
+| [FND-MAGIC-016](../../findings/FND-MAGIC-016.md) | DS:9BD3 is 1 for a party spell or item power left pending by the cast window's DATA byte 0x0C of 3 when the inventory window closes, and overlay 189 +076A casts the same pending number on a clicked character box with the same byte 1; both routes carry the level 6, so overlay 211 +1FB5's level reaches the cast routine on no party route for a number below 235 |
+| [FND-MAGIC-017](../../findings/FND-MAGIC-017.md) | Overlay 193 +1A79 is the call in +1A2D that sums overlay 211 +1FB5 of each matching effect row's source slot and number, so an effect's strength in nine callers follows the source's class level now, a ranger's less 7; overlay 197 +14DA is the call in +111A that ends a hit of number 115 or more on a target with special attack byte 9 when +1FB5 of the slot in DS:426D, not the hit's caster, is below 7 |
+| [FND-MAGIC-018](../../findings/FND-MAGIC-018.md) | The cast routine overlay 193 +003C hands the hit routine the address of the DATA dice total and the maximum; overlay 197 +0000 turns them into the damage, taking the maximum for a target at combat_mark 3 or with effect block bit 0x20 of byte 8, and the hit routine scales it by the resistance percentage and deals it through +2A05; the level also sets the effect's duration with no cap of 10, and the target list never sees it |
+| [FND-MAGIC-019](../../findings/FND-MAGIC-019.md) | Overlay 193 +13EC, the second caller of the DATA dice, rolls them for an object's DATA number at the level the object holds and hits the slot that set the object off as both target and caster; the level is the low five bits of the object slot's byte +0x15, which +29EB stores as the placing cast's level capped at 31, and the same level times a field of the object record sets how long the object lasts |
+| [FND-MAGIC-020](../../findings/FND-MAGIC-020.md) | A spell turned back by overlay 197 +1760 is queued from the target onto the caster with the hit's number and level, so the call at +180F carries the level as well as 6; script function 46 of opcode 0x22 casts the number arg mod 1000 at the level (arg / 1000) mod 100 |
+| [FND-MAGIC-021](../../findings/FND-MAGIC-021.md) | The effect switch has no case for DATA 148 or 178 and reads no level for 157 or 159; the hit routine removes every effect of code 27 for 148 and of code 71 for 178 through a negative effect code, case 157 raises current Strength to base Strength when it is below, and case 159 removes effects 91, 70, 65 to 68 and, unless the target has effect 71, 69; nothing changes a member that has none of them |
+| [FND-MAGIC-022](../../findings/FND-MAGIC-022.md) | Details byte +0x12 is the origin, 1 to 8 for party members and 9 in the details chunks of nine RDFF creatures named as undead; byte +0x1E is the level of the first class position; 2D40:06E1 returns at once, so a failed DATA 306 test changes nothing |
+| [FND-MAGIC-023](../../findings/FND-MAGIC-023.md) | DATA 306 is the clerics' turn undead; the only code that casts it is the spell window's TURN UNDEAD button, control 0x2BEF, which overlay 211 +1CBD arms for a member with a cleric bit in class_flags and which casts at the member's greatest cleric level; overlay 208 +0F07 lets 306 through only to a target of details kind 9, and no cast list, item or other push holds 306 |
+| [FND-MAGIC-024](../../findings/FND-MAGIC-024.md) | A rest cure reaches a member through the hit routine's gates unless the member has one of effects 4, 11, 46, 55, 74 or 92, or effect 56 or 85 against another member's cure, or a type, special attack or resistance no shipped character has; the level decides none of these and only rides along when the cure is queued back on its caster; the rest sets DS:0DAB to 5, so after the switch only the sound of DATA byte +0x16 plays |
 
 ## Open questions
 
@@ -62,12 +71,12 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
-| [RULE-MAGIC-001](../../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | sourced |
-| [RULE-MAGIC-002](../../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | sourced |
-| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Activating and maintaining a psionic power | disputed |
-| [RULE-MAGIC-004](../../rules/RULE-MAGIC-004.md) | Camping restores spells and psionic strength points | sourced |
+| [RULE-MAGIC-001](../../rules/RULE-MAGIC-001.md) | How many spells of each level a caster can cast before resting | supported |
+| [RULE-MAGIC-002](../../rules/RULE-MAGIC-002.md) | Which spheres of cleric spells a priest may cast | supported |
+| [RULE-MAGIC-003](../../rules/RULE-MAGIC-003.md) | Keeping a psionic power in effect, a character's psionic strength points and the powers it starts with | supported |
+| [RULE-MAGIC-004](../../rules/RULE-MAGIC-004.md) | Resting heals the party, restores psionic strength points and spells, and casts condition cures from the party's priests | supported |
 | [RULE-MAGIC-005](../../rules/RULE-MAGIC-005.md) | A DATA record's dice are a count growing with the level, of sides the record gives, plus a bonus per level step | supported |
-| [RULE-MAGIC-006](../../rules/RULE-MAGIC-006.md) | DATA 306 destroys a target of details kind 9 on a d20 at least three times its adjusted level byte less the adjusted caster level, plus 10 | supported |
+| [RULE-MAGIC-006](../../rules/RULE-MAGIC-006.md) | Turn undead, DATA 306, destroys an undead target on a d20 at least three times its adjusted level less the adjusted caster level, plus 10 | supported |
 | [RULE-MAGIC-007](../../rules/RULE-MAGIC-007.md) | A target whose record byte 0x0E is 13 ends the hit of a DATA record with byte 0x17 of -1, and on a d6 of 6 the record is queued from the combatant whose turn it is at the target | supported |
 | [RULE-MAGIC-008](../../rules/RULE-MAGIC-008.md) | A target with bit 0x40 of its effect block byte 5 blocks a DATA record whose overlay 208 +0885 value is 8 or less, other than 235 to 268, on a d100 of 75 or less and queues DATA 307 on itself | supported |
 | [RULE-MAGIC-009](../../rules/RULE-MAGIC-009.md) | A target with bit 0x80 of its effect block byte 9 that saves against a caster of details kind 9 hands a 2d6 total to overlay 179 +1304 and queues DATA 308 | supported |

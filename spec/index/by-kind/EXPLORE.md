@@ -14,11 +14,11 @@ Entries by kind.
 | [RULE-EXPLORE-002](../../rules/RULE-EXPLORE-002.md) | Key 5 shows the whole party on the map and key 6, outside combat, shows only the leader | supported |
 | [RULE-EXPLORE-003](../../rules/RULE-EXPLORE-003.md) | Objects occupy the map cells of their footprint by setting the cells' blocked and occupied bits, which a cell test for movement reads | supported |
 | [RULE-EXPLORE-004](../../rules/RULE-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell, or in combat attack the object whose area holds the blocked cell | supported |
-| [RULE-EXPLORE-005](../../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose | unknown |
+| [RULE-EXPLORE-005](../../rules/RULE-EXPLORE-005.md) | How a character walks to the cell a left click with the Walk pointer chose | supported |
 
 ## findings
 
-6 entries.
+26 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -28,6 +28,26 @@ Entries by kind.
 | [FND-EXPLORE-004](../../findings/FND-EXPLORE-004.md) | The keypad direction keys step the chosen character one cell in eight directions, or in combat act on the object whose area holds a blocked cell | recorded |
 | [FND-EXPLORE-005](../../findings/FND-EXPLORE-005.md) | Key 5 sets the byte at 57E0:13FA and brings back the party members key 6 hid, and key 6, outside combat, hides every member but the leader and clears it | recorded |
 | [FND-EXPLORE-006](../../findings/FND-EXPLORE-006.md) | Each main-loop pass scrolls the view one step of 16 pixels toward the pointer's side of the screen centre while the pointer is on the screen's outer rows or columns, and Center on Leader and H centre the view on a slot | recorded |
+| [FND-EXPLORE-007](../../findings/FND-EXPLORE-007.md) | From play-ready the main loop runs about 50 passes in 88 ms with the pointer at the centre, and about 24 a second with the pointer on the right edge, where only three passes in 1.5 s step the view by 16 | recorded |
+| [FND-EXPLORE-008](../../findings/FND-EXPLORE-008.md) | From play-ready, a Walk click on the view stores the clicked cell for the leader's slot and calls 2D40:10AE, which clears the record's mode word within 4 ms, and nothing on screen moves in the next 6 s | recorded |
+| [FND-EXPLORE-009](../../findings/FND-EXPLORE-009.md) | In rust-dos, while the pointer is held at the right edge from play-ready, the mouse driver's position call returns column 319 on only 3 of 50 calls and 160 on the rest, and those 3 are the passes that step the view | recorded |
+| [FND-EXPLORE-010](../../findings/FND-EXPLORE-010.md) | DS:0DA8 is 1 in the load image and the only instruction that stores to it writes 0, when the edge-scroll pass finds the pointer outside the band, so scrolling waits only for the pointer's first time out of the band | recorded |
+| [FND-EXPLORE-011](../../findings/FND-EXPLORE-011.md) | 3D72:0D83, which the edge-scroll pass calls first in pointer mode 5, sets DS:2FB8 and runs the page flip 4328:0B4C, and with its hook at DS:A119 never set it writes neither view word | recorded |
+| [FND-EXPLORE-012](../../findings/FND-EXPLORE-012.md) | The party loader places the leader at DS:140E and DS:1410, 1192 and 1496 in the load image, snapped to the centre of the nearest open cell, and 31E0:0121 stores that point in record words 0x0A and 0x0C and the figure's top-left, less the definition's offsets, in words 0x03 and 0x05 | recorded |
+| [FND-EXPLORE-013](../../findings/FND-EXPLORE-013.md) | After Start Game, slot 0's record holds the point (1192, 1496) and the top-left (1184, 1459), and the other three slots (2112, 1632) | recorded |
+| [FND-EXPLORE-014](../../findings/FND-EXPLORE-014.md) | 2D40:10AE plans a walk as an 8-way line toward the target, cut back to its last open cell, with two wall followers around each blocked stretch, queues up to 16 step directions, and clears mode 15 only when no route starts from the current cell | recorded |
+| [FND-EXPLORE-015](../../findings/FND-EXPLORE-015.md) | At play-ready the leader's slot 1 holds 0xFFFF in its position words, so a Walk click plans from cell (4095, 4095), both route searches fail, 2D40:15D6 clears the walk and the no-path message runs | recorded |
+| [FND-EXPLORE-016](../../findings/FND-EXPLORE-016.md) | For an object target the planner walks to the open cell beside the object's footprint nearest the walker, and in mode 1 to the open cell around the walker farthest from the object | recorded |
+| [FND-EXPLORE-017](../../findings/FND-EXPLORE-017.md) | 28C9:305F, the direction key's blocked step in a fight, checks the walker's effect and action bits, marks the target hostile to the walker's side, runs overlay 173's attack routine, and runs the fight check of overlay 173 +059A, which can end the fight and reset the pointer to Walk | recorded |
+| [FND-EXPLORE-018](../../findings/FND-EXPLORE-018.md) | The byte at 4E71:0000 is stored only with 1, by the direction key's step, the Walk click and the step pop, and no instruction found reads it | recorded |
+| [FND-EXPLORE-019](../../findings/FND-EXPLORE-019.md) | A walker moves by its animation frames, at most one frame per map pass and per 1/96 s tick, each frame adding its signed pixel steps to the position; reaching a cell centre clears the between-cells bit and the same pass pops the next step | recorded |
+| [FND-EXPLORE-020](../../findings/FND-EXPLORE-020.md) | In the shipped SCMD resources the most common walk animation reaches a cell centre in 4 frames going north or south and in 6 frames in the other six directions, with delay 0; the walk sets take 2 to 7 frames per cell | recorded |
+| [FND-EXPLORE-021](../../findings/FND-EXPLORE-021.md) | In the route search a wall follower that lands on its own node is closed, one that lands on an earlier node walks on remembering it, one that lands on a later node links the nodes and moves the search there, and a node with both followers closed sends the search back to its parent | recorded |
+| [FND-EXPLORE-022](../../findings/FND-EXPLORE-022.md) | In the first fight Thy'rokh (slot 2, SCMD 3917) walks one cell north in two frame calls of 31E0:1B60, one per main-loop pass, taking 84 to 154 ms (8 to 15 ticks of DS:145E) at 15,000 cycles per ms | recorded |
+| [FND-EXPLORE-023](../../findings/FND-EXPLORE-023.md) | Over a Walk click, a three-cell walk and a direction key step in the first fight, no instruction reads 4E71:0000; it is only written with 1 at 28C9:0500, 31E0:2D76 and 28C9:0344 | recorded |
+| [FND-EXPLORE-024](../../findings/FND-EXPLORE-024.md) | After the opening talk a scripted scene holds input until about 3.7 s, so a Walk click is taken late and a key is not read; computer control on all four members wins the first fight by 55 s, and outside a fight a leader key puts the new leader on the old leader's point | recorded |
+| [FND-EXPLORE-025](../../findings/FND-EXPLORE-025.md) | Outside a fight the leader walks one frame per main-loop pass; a cell takes 4 frame calls north and 6 east for SCMD 599 and 25 (57 to 71 ms and 143 to 200 ms) and 2 north and 3 east for SCMD 598 (43 to 57 ms and 59 to 84 ms) at 15,000 cycles per ms | recorded |
+| [FND-EXPLORE-026](../../findings/FND-EXPLORE-026.md) | Outside a fight, over a Walk click and walk, two key steps and a whole save, and over the first 6.9 s of a load, no instruction reads 4E71:0000; it is only written with 1 at 28C9:0500, 28C9:0344 and 31E0:2D76 | recorded |
 
 ## screens
 

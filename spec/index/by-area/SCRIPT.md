@@ -39,6 +39,9 @@ Entries by area.
 | [FND-SCRIPT-024](../../findings/FND-SCRIPT-024.md) | Every script instruction's handler reads a fixed operand layout, apart from 0x33, 0x40 and 0x48, and 349 of the 350 shipped scripts decode with these layouts to their last byte | recorded |
 | [FND-SCRIPT-025](../../findings/FND-SCRIPT-025.md) | Script instructions 0x01 to 0x05, 0x07, 0x11 and 0x76 to 0x7F change the byte, word or double word at their first parameter's address in place | recorded |
 | [FND-SCRIPT-026](../../findings/FND-SCRIPT-026.md) | Overlay 169 allocates and clears the eight script variable blocks before MAS/99 runs, and the interpreter clears the four local blocks again whenever another script becomes current | recorded |
+| [FND-SCRIPT-027](../../findings/FND-SCRIPT-027.md) | Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead | recorded |
+| [FND-SCRIPT-028](../../findings/FND-SCRIPT-028.md) | The trigger walkers of segment 1695 run the first record of a list whose cell, box, key or key pair matches, after storing the trigger's actors and cell in the script variables, only while the script state 4C0E:000B is 2; a region change frees the cell and box triggers and those not registered by MAS 99 | recorded |
+| [FND-SCRIPT-029](../../findings/FND-SCRIPT-029.md) | The game runs cell and box triggers when an object enters a cell, and the one-key and key-pair triggers when the player picks an item up, talks to, attacks, looks at or uses an object, or uses one item on another, and at the end of a fight and a creature's death | recorded |
 | [RULE-SCRIPT-001](../../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |
@@ -46,8 +49,9 @@ Entries by area.
 | [RULE-SCRIPT-005](../../rules/RULE-SCRIPT-005.md) | Script variables start at 0 | supported |
 | [RULE-SCRIPT-006](../../rules/RULE-SCRIPT-006.md) | The script instruction that draws a random number | supported |
 | [RULE-SCRIPT-007](../../rules/RULE-SCRIPT-007.md) | The script instructions that print text and numbers, show a portrait and play sound and music | supported |
-| [RULE-SCRIPT-008](../../rules/RULE-SCRIPT-008.md) | The script instructions that register attack and move-tile triggers | supported |
+| [RULE-SCRIPT-008](../../rules/RULE-SCRIPT-008.md) | The script instructions that register triggers | supported |
 | [RULE-SCRIPT-009](../../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
 | [RULE-SCRIPT-010](../../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
 | [RULE-SCRIPT-011](../../rules/RULE-SCRIPT-011.md) | The script instructions that change a variable in place | supported |
 | [RULE-SCRIPT-012](../../rules/RULE-SCRIPT-012.md) | Function 41 of script opcode 0x22 rolls a saving throw for each slot its target names and returns how many saved | supported |
+| [RULE-SCRIPT-013](../../rules/RULE-SCRIPT-013.md) | The game runs the first script trigger whose cell, box, key or key pair matches an event, and a region change drops the triggers the region set | supported |

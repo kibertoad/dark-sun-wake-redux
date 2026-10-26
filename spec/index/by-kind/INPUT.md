@@ -16,7 +16,7 @@ Entries by kind.
 
 ## findings
 
-15 entries.
+17 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -35,3 +35,5 @@ Entries by kind.
 | [FND-INPUT-013](../../findings/FND-INPUT-013.md) | Pressing the right button over the map frame steps the word at 57E0:1440 from 1 to 4 to 2 and back to 1, through 3 when 57E0:1A34 is not 0xFFFF, once per press | recorded |
 | [FND-INPUT-014](../../findings/FND-INPUT-014.md) | The BIOS shift-flag routine 44B6:0011 has eleven resident and ten overlay far callers | recorded |
 | [FND-INPUT-015](../../findings/FND-INPUT-015.md) | The routine at 0x71659 that FND-INPUT-009 took for a dispatcher is overlay 187's GPLI reverse remap, which no keyboard caller reaches | recorded |
+| [FND-INPUT-016](../../findings/FND-INPUT-016.md) | The input packet queue is a ring buffer with its size at 57E0:33C0, free bytes at 33C2, read and write offsets at 33C4 and 33C6 and buffer at 33C8; a packet that does not fit is dropped whole, and 2C5F:0182 empties the queue | recorded |
+| [FND-INPUT-017](../../findings/FND-INPUT-017.md) | Grey Up as rust-dos delivers it reaches the key routine 28C9:0CFF as 0x4800 and steps the character north, as keypad Up with no character does; keypad Up typing 8 arrives as 0x4838 and does nothing | recorded |

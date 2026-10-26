@@ -21,12 +21,12 @@ Entries by kind.
 | ID | Title | Status |
 |---|---|---|
 | [RULE-COMBAT-001](../../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
-| [RULE-COMBAT-002](../../rules/RULE-COMBAT-002.md) | An attack hits when a roll of 1 to 20 is at least the attacker's THAC0 less the target's Armor Class | sourced |
-| [RULE-COMBAT-003](../../rules/RULE-COMBAT-003.md) | Damage lowers hit points; at 0 a character is unconscious and at -10 dead | sourced |
+| [RULE-COMBAT-002](../../rules/RULE-COMBAT-002.md) | An attack hits on a 20, misses on a 1, and otherwise hits when a d20 is at least the attacker's THAC0, lowered by its terms, less the target's Armor Class | supported |
+| [RULE-COMBAT-003](../../rules/RULE-COMBAT-003.md) | A blow that leaves a combatant at 0 hit points or fewer knocks it out at 0, and one at least 10 more than its hit points kills it | supported |
 | [RULE-COMBAT-004](../../rules/RULE-COMBAT-004.md) | G and W make the party member whose turn it is guard or wait, and Q opens the end-of-move menu | supported |
 | [RULE-COMBAT-005](../../rules/RULE-COMBAT-005.md) | The end-of-move menu offers GUARD, WAIT and END TURN beside the character whose turn it is | supported |
-| [RULE-COMBAT-006](../../rules/RULE-COMBAT-006.md) | A click on an enemy attacks it, in melee when adjacent with a readied weapon or at range with a missile weapon or ammunition | sourced |
-| [RULE-COMBAT-007](../../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat | unknown |
+| [RULE-COMBAT-006](../../rules/RULE-COMBAT-006.md) | An attack at distance 1 or less uses the first melee weapon held, or a natural attack without one, and beyond 1 needs a held missile weapon whose range reaches the target | supported |
+| [RULE-COMBAT-007](../../rules/RULE-COMBAT-007.md) | What the difficulty setting changes in combat | supported |
 | [RULE-COMBAT-008](../../rules/RULE-COMBAT-008.md) | Saving, resting, adding a character and changing the leader are refused during combat | supported |
 | [RULE-COMBAT-009](../../rules/RULE-COMBAT-009.md) | The status panel names the character's first effect, putting the named effects before the others | supported |
 | [RULE-COMBAT-010](../../rules/RULE-COMBAT-010.md) | Five DATA numbers used by a combatant numbered 48 or more take effect only on a to-hit roll against its THAC0 less the target's Armor Class | supported |
@@ -40,7 +40,7 @@ Entries by kind.
 
 ## findings
 
-55 entries.
+74 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -99,6 +99,33 @@ Entries by kind.
 | [FND-COMBAT-053](../../findings/FND-COMBAT-053.md) | Nothing from program start to START GAME's party load writes the effect count or rows, no writer sets the count to a constant, and the new-game routes to the effect writers start at the gate routine's later calls | recorded |
 | [FND-COMBAT-054](../../findings/FND-COMBAT-054.md) | With the effect count at zero the removal and transfer entries change nothing, and every route from the gate routine's later calls to an effect insertion passes the area-effect routine overlay 193 +12A8, which runs only for an object slot whose byte 0xF is not 0 | recorded |
 | [FND-COMBAT-055](../../findings/FND-COMBAT-055.md) | No placement on MAS/50's script route names object 147, its variable placements name 675 and 110 to 113, and START GAME's party objects are 300 to 313 | recorded |
+| [FND-COMBAT-056](../../findings/FND-COMBAT-056.md) | Three seconds after the view click that fills record 9999, the memory outside the stack differs from a run without the click in the copied record, the month lengths, 21 slot-record owners, three pairs of record bytes and words of 4C13 near 4C13:0369 | recorded |
+| [FND-COMBAT-057](../../findings/FND-COMBAT-057.md) | After the view click that fills record 9999, 2D40:2F34 gets slot 9999 only once; each later pass calls 2D40:3D4C(0, 1) from overlay code, block routines clear and 2D40:3DA0 restores the owner word of slot record 21, and 1B0B:00A0 flips 4C13:0373 between 1 and -1 | recorded |
+| [FND-COMBAT-058](../../findings/FND-COMBAT-058.md) | The map loop calls 28C9:1EDB only while the pointer mode word DS:1440 is 1, or while the combat word is set in a mode other than 5 | recorded |
+| [FND-COMBAT-059](../../findings/FND-COMBAT-059.md) | From play-ready a left click on the view snaps the view back and starts the round steps, which stop while right clicks hold the pointer in modes 4 and 2 and go on when it returns to mode 1, with the leader key still refused | recorded |
+| [FND-COMBAT-060](../../findings/FND-COMBAT-060.md) | With combat word 0 a pass of overlay 173 +059A adds 60 to the clock that timed effect ends wait on, ends maintained psionics, effect 0x45 and the fight-end effects, re-targets creatures to their fight-start walk records, stops the playing sample, flushes queued input and flips the drawn page | recorded |
+| [FND-COMBAT-061](../../findings/FND-COMBAT-061.md) | In the repeated passes 2D40:0BA4 clears slot record 21 and twenty other walk records after each end of combat, through 28C9:1E41 and 2D40:197A(9999), and overlay 173 +0C65 draws no random number | recorded |
+| [FND-COMBAT-062](../../findings/FND-COMBAT-062.md) | 28C9:1E41 runs the walker sweep 2D40:197A with the constant 9999 for all slots, which moves walkers, runs idle entry scripts, unlinks idle walk records and puts followers in formation; slot 9999 indexes nothing on that path | recorded |
+| [FND-COMBAT-063](../../findings/FND-COMBAT-063.md) | Returning from a full-screen screen or loading a region stores 4C13:0369 in DS:426D with combat off, so F1 or F2 followed by EXIT, a save or a load would end BUG-COMBAT-001's passes; nothing rewrites record 9999's bytes | recorded |
+| [FND-COMBAT-064](../../findings/FND-COMBAT-064.md) | In the repeated combat-end passes a key is read only when it arrives in the 10 to 13 ms between a pass's flush_input and the next queue read; F1 or F2 pressed then opens its screen and stops the passes, and EXIT or a save stores 4C13:0369 in DS:426D at overlay 182 +1AFF, ending them | recorded |
+| [FND-COMBAT-065](../../findings/FND-COMBAT-065.md) | The attack routine overlay 173 +1CC1 takes the attacker, the target, an item list and the distance 2D40:35EF gives, picks a melee weapon at distance 1 or less and a missile weapon in range beyond it, falls back to a natural attack only in melee, and lowers the needed roll for a rear attack and a thief's backstab | recorded |
+| [FND-COMBAT-066](../../findings/FND-COMBAT-066.md) | The to-hit and damage terms of an attack are a Strength or Dexterity table entry, nine effect-block terms, a -3, -1 or -2 to hit and -2 or -1 damage for an unenchanted item whose type nibble is 0 to 3, and a two-weapon term that adds the negated Dexterity entry when it is positive | recorded |
+| [FND-COMBAT-067](../../findings/FND-COMBAT-067.md) | Overlay 173 +2560 swings up to a rate of half attacks per round, rolls the damage dice plus the type, magic, material and ammunition bonuses with a floor of 1, adds Strength in melee, multiplies a first-swing backstab by 2 to 5, and hands the hit routine the damage with twice it as the maximum | recorded |
+| [FND-COMBAT-068](../../findings/FND-COMBAT-068.md) | Overlay 173 +2C00 computes the armour class from the base, worn armour and shields and their magic, a gladiator's level over 5, and overlay 197 +27A7's Dexterity entry, caps and effect terms; from the rear the shield and Dexterity do not count, and one cap comparison reads two locals no path but one writes | recorded |
+| [FND-COMBAT-069](../../findings/FND-COMBAT-069.md) | A weapon hit enters the hit routine with DATA number -1, passes gates on the target's type word, effects and range, takes twice the damage against a target at combat_mark 3, is scaled by overlay 197 +1C52's percentage of the hit word, and reaches overlay 173 +22C4, which leaves hit points at 0 at worst and kills only on one hit of at least the hit points plus 10 | recorded |
+| [FND-COMBAT-070](../../findings/FND-COMBAT-070.md) | The difficulty word DS:143A sets a loaded creature's greatest hit points to 50, 100, 150 or 200 percent, rounded down, for details records above 4, and the CHAR load then sets the current hit points of every slot from 4 up to that maximum; the other readers are the save and load of PREF, the Preferences screen and script function 21 | recorded |
+| [FND-COMBAT-071](../../findings/FND-COMBAT-071.md) | The computer's target choice skips combatants at combat_mark 3 or above, a combatant at mark 3 gets no turn and a non-party one is unloaded from the map when the removal list empties; it leaves mark 3 by a blow of 10 or more, by overlay 197's three heal routines, by the end of the fight or by a rest, and nothing reads the nine state names | recorded |
+| [FND-COMBAT-072](../../findings/FND-COMBAT-072.md) | Overlay 188 allocates 42 combatant records and 17 details records; 2D40:2C87 keeps an object of 4 or less on the records of its own number and gives a creature the first free combatant record from 5 and a details record from 5 to 16 shared by key; 2D40:3E64 reads the object's record number and that record's details_index; the panel's question marks test the object number, not the records | recorded |
+| [FND-COMBAT-073](../../findings/FND-COMBAT-073.md) | Each pass of the main loop, 2D40:3EBF gives party slots 0 to 3 one psionic point for every 300 clock units since its last run, up to details word +0x0C, and the same in hit points up to the maximum to a member whose Constitution byte is 20 or more | recorded |
+| [FND-COMBAT-074](../../findings/FND-COMBAT-074.md) | FNFO 1 gives every byte of the combatant and details records a field number, and the CHAR copy names all but four; overlay 173 +2DD0 returns the combatant field an item was reached through, so weapons come from field 17 and ability items from field 16; no engine code reads combatant byte +0x18 bits 0 to 4 and 7 or byte +0x20, which scripts set and test bit by bit | recorded |
+
+## bugs
+
+1 entries.
+
+| ID | Title | Status |
+|---|---|---|
+| [BUG-COMBAT-001](../../bugs/BUG-COMBAT-001.md) | After combat ends by itself, a click in the view before a leader key overwrites the July and August month lengths and makes every later pass run a combat round step | supported |
 
 ## screens
 

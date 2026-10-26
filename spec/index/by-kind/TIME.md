@@ -15,7 +15,7 @@ Entries by kind.
 
 ## findings
 
-7 entries.
+14 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -26,3 +26,10 @@ Entries by kind.
 | [FND-TIME-005](../../findings/FND-TIME-005.md) | A resident routine reprograms timer channel 0 to the shortest of up to 17 periods given in microseconds | superseded |
 | [FND-TIME-006](../../findings/FND-TIME-006.md) | The four INT 15h calls in DSUN.EXE ask for extended-memory services, not the BIOS wait | recorded |
 | [FND-TIME-007](../../findings/FND-TIME-007.md) | A resident routine reprograms timer channel 0 to the shortest of up to 17 periods given in microseconds | recorded |
+| [FND-TIME-008](../../findings/FND-TIME-008.md) | The timer library at 4842 runs its slots from its own interrupt 8 handler through per-slot accumulators; during play the slots are the BIOS chain at 54,925 µs, the music driver at 120 Hz, a 100 Hz sound counter and the 96 Hz game tick, with 1,000 µs added while an FLI plays | superseded |
+| [FND-TIME-009](../../findings/FND-TIME-009.md) | DSUN.EXE writes the timer control port only with 0x36, channel 0 in mode 3, and with the channel 0 latch command; of the ADV drivers only PCSPKR and the DIGPAK image write that port, and the installed SOUND.CFG selects neither | recorded |
+| [FND-TIME-010](../../findings/FND-TIME-010.md) | The game tick DS:145E is written only by the 96 Hz callback's increment, and is read by the walk planner's 32-tick wait, the slot update loop's 4-tick budget, a 24-tick call of 4097:0003, the animation frame timing and overlay 206's 40-tick waits | recorded |
+| [FND-TIME-011](../../findings/FND-TIME-011.md) | In play after the opening the timer library runs channel 0 at 1,000 µs with no music driver slot, and wait_ms waits about ms / 55: 91.25 ms for 5,000 and 0.23 to 0.27 ms for 1 | recorded |
+| [FND-TIME-012](../../findings/FND-TIME-012.md) | The timer library at 4842 runs its slots from its own interrupt 8 handler through per-slot accumulators; it registers the BIOS chain at 54,925 µs, a 100 Hz sound counter, the 96 Hz game tick, 1,000 µs while an FLI plays and, for a music driver whose descriptor gives a rate, that driver's service; a release does not choose the period again | recorded |
+| [FND-TIME-013](../../findings/FND-TIME-013.md) | The music driver install of 4734:0133 runs only while DS:3444 is not 0, and both the -L launch (through overlay 180) and bit 3 of SOUND.CFG word 0x14 store 0 there through 4734:0128, the word's one writer | recorded |
+| [FND-TIME-014](../../findings/FND-TIME-014.md) | From program start to the start menu the installed launch clears DS:3444 twice, installs only the digital driver with no timer slot, and runs channel 0 at 10,000 µs until the first FLI and at 1,000 µs from then on, with no wait_ms call | recorded |

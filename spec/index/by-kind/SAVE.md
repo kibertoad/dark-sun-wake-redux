@@ -24,7 +24,7 @@ Entries by kind.
 
 ## findings
 
-14 entries.
+25 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -42,3 +42,22 @@ Entries by kind.
 | [FND-SAVE-012](../../findings/FND-SAVE-012.md) | Clearing DS 1462 makes the resident main loop return | recorded |
 | [FND-SAVE-013](../../findings/FND-SAVE-013.md) | Script functions 33, 34 and 35 of opcode 0x22 set the subregion bounds, the map page and the defeat picture byte that a GREQ resource saves, and only the start of play and a load also set them | recorded |
 | [FND-SAVE-014](../../findings/FND-SAVE-014.md) | The shipped scripts set 137 different subregions through function 33 of opcode 0x22, and map pages 0 to 9, 255 or the value of the global that chose the subregion through function 34 | recorded |
+| [FND-SAVE-015](../../findings/FND-SAVE-015.md) | Overlay 187 saves and loads SAVE resources 1 to 61 through a table of far pointers at DS:157E and double-word lengths at 4F38:0000; entry 46 is the current-combatant word 4C13:0369 and no entry covers DS:426D | recorded |
+| [FND-SAVE-016](../../findings/FND-SAVE-016.md) | A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF; the null table entries are filled from run-time pointers before each save and load | superseded |
+| [FND-SAVE-017](../../findings/FND-SAVE-017.md) | Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned | superseded |
+| [FND-SAVE-018](../../findings/FND-SAVE-018.md) | The key dispatcher's callback is a release routine its caller passes, called before F1 and F2 open a screen, on Esc and on the exit choice's Save and Quit; Save from the exit choice sets DS:627C, which makes the Save screen end the game and which nothing clears | recorded |
+| [FND-SAVE-019](../../findings/FND-SAVE-019.md) | The exit after the main loop runs two atexit routines, one exit procedure, the runtime's vector restore and DOS function 4Ch; none of them writes a saved game, DARKRUN.GFF or CHARSAVE.GFF | recorded |
+| [FND-SAVE-020](../../findings/FND-SAVE-020.md) | The Save and Load list search finds SAVE??.SAV files and puts each in the record its two digits minus 1 name, with no upper bound; the window fills its ten rows from save_list_top, which overlay 192 never writes | recorded |
+| [FND-SAVE-021](../../findings/FND-SAVE-021.md) | A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF, with script entry points in GPLI form; the null table entries are filled from run-time pointers before each save and load | recorded |
+| [FND-SAVE-022](../../findings/FND-SAVE-022.md) | Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, re-places the objects, restores the script entry points, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned | recorded |
+| [FND-SAVE-023](../../findings/FND-SAVE-023.md) | Saving writes script entry points as GPLI/1 entry numbers, which GPLDATA.GFF maps to an offset and a GPL number, and every load and region change maps them back | recorded |
+| [FND-SAVE-024](../../findings/FND-SAVE-024.md) | Only the stored-character list of overlay 171 writes save_list_top, leaving its page start there when it closes, so the Save and Load screens open at that page | recorded |
+| [FND-SAVE-025](../../findings/FND-SAVE-025.md) | After Save is answered to the F3 exit choice and the Save Game screen is left with EXIT, DS:627C stays 1 and the next completed save or load ends the game | recorded |
+
+## bugs
+
+1 entries.
+
+| ID | Title | Status |
+|---|---|---|
+| [BUG-SAVE-001](../../bugs/BUG-SAVE-001.md) | After Save is answered to the F3 exit choice and the Save Game screen is left with EXIT, the next save or load quits the game | supported |

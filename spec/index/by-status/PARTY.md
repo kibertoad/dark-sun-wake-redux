@@ -54,7 +54,7 @@ Entries by status.
 
 ## superseded
 
-27 entries.
+28 entries.
 
 | ID | Title |
 |---|---|
@@ -81,6 +81,7 @@ Entries by status.
 | [FND-PARTY-118](../../findings/FND-PARTY-118.md) | Removing a placed entry through 31E0:05BB releases its object through 31E0:044C with no test that keeps the party objects 0 to 3 off the free list |
 | [FND-PARTY-132](../../findings/FND-PARTY-132.md) | The one routine found that marks a loaded object table entry unloaded, overlay 187 +071D, has no call or pointer reference in DSUN.EXE, and script opcode 0x22 function 9 renumbers only entries that are already unloaded |
 | [FND-PARTY-142](../../findings/FND-PARTY-142.md) | The six bytes at 0x5A of a CHAR record are the character's base ability scores, which overlay 197 +1E7B adjusts to set the current scores at 0x23 |
+| [FND-PARTY-162](../../findings/FND-PARTY-162.md) | The class flags, the class level query 27E5:00C1 and the spell list routines of overlay 177 ignore a human's former class until the current class's level is higher, while overlay 176 +076C, which overlays 174, 197, 204 and 208 call, has no such test; overlay 190 offers DUAL to a human of level 2 or more |
 | [FND-PARTY-165](../../findings/FND-PARTY-165.md) | Overlay 176 +076C, which counts a human's held-back former class, gives the psionicist level for psionic points and power use, the thief level for the thief skills, the best cleric, druid and preserver levels when the party rests, and a cleric code 3 level that ends a hit |
 | [FND-PARTY-172](../../findings/FND-PARTY-172.md) | Releasing a placed object empties a character box record only through the kind 3 case of the switch at 2D40:248D, which runs for the entries 2D40:2196 builds from the object table |
 | [FND-PARTY-233](../../findings/FND-PARTY-233.md) | No direct generic field-accessor call with an immediate, type-gated, traversal-list or transfer field selects field six |
@@ -88,7 +89,7 @@ Entries by status.
 
 ## recorded
 
-231 entries.
+232 entries.
 
 | ID | Title |
 |---|---|
@@ -233,7 +234,6 @@ Entries by status.
 | [FND-PARTY-159](../../findings/FND-PARTY-159.md) | No shipped DATA record that allows a saving throw names save 6 or 7, so the saving throw never reads details bytes 0x36 and 0x37 |
 | [FND-PARTY-160](../../findings/FND-PARTY-160.md) | No routine that sets a character's level tests the origin's level limit or a prime requisite, and README table 3's limits are not in the executable or the archives |
 | [FND-PARTY-161](../../findings/FND-PARTY-161.md) | The DUAL window offers a class only to a human of level 2 or more with fewer than three classes, a current-class prime requisite of 15, a new-class prime requisite of 17, no class of the same group, and a good alignment for a ranger or true neutral for a druid |
-| [FND-PARTY-162](../../findings/FND-PARTY-162.md) | The class flags, the class level query 27E5:00C1 and the spell list routines of overlay 177 ignore a human's former class until the current class's level is higher, while overlay 176 +076C, which overlays 174, 197, 204 and 208 call, has no such test; overlay 190 offers DUAL to a human of level 2 or more |
 | [FND-PARTY-163](../../findings/FND-PARTY-163.md) | The saving throw modifier overlay 197 +0206 adds 2 against fire and lightning effects for a target with a druid level from overlay 176 +076C, which counts a human's held-back former druid class |
 | [FND-PARTY-164](../../findings/FND-PARTY-164.md) | The saving throw modifier overlay 197 +0206 subtracts 100 against CHAOS for a target with no fighter, gladiator or ranger level from overlay 176 +076C, and the saving throw's byte sum and unsigned comparison make a modifier near -100 pass the save |
 | [FND-PARTY-166](../../findings/FND-PARTY-166.md) | The hit routine adds a spell's effect from DATA byte +0x19 only when the saving throw fails, CHAOS names effect 21 and has no case of its own, and the score table terms of the save modifier lie between -6 and 7 |
@@ -323,6 +323,8 @@ Entries by status.
 | [FND-PARTY-254](../../findings/FND-PARTY-254.md) | Overlay 189 dispatches a one-based item effect selector and its second helper cannot reach the call after an unsigned FFFF bound |
 | [FND-PARTY-255](../../findings/FND-PARTY-255.md) | Overlay 204 splits a created item's word 0x10 into three request fields and a bit-7 guard inside an omitted inventory fragment |
 | [FND-PARTY-256](../../findings/FND-PARTY-256.md) | Base ability scores feed the current-score rebuild, whose item selectors adjust six scores or movement and whose earlier 24 branch is a lower bound |
+| [FND-PARTY-257](../../findings/FND-PARTY-257.md) | Overlay 173 reads word 0x10 of a 23-byte item record as one more than the DATA number of an effect cast at the target after a damaging swing, ammunition's first and then the weapon's, and also as a nonzero test that stops item breakage and adds 10 to an item's score |
+| [FND-PARTY-258](../../findings/FND-PARTY-258.md) | The class flags, the class level query 27E5:00C1 and the spell list routines of overlay 177 ignore a human's former class until the current class's level is higher, while overlay 176 +076C, which overlays 174, 197, 204 and 208 call, has no such test; overlay 190 offers DUAL to a human of level 2 or more |
 
 ## Open questions
 

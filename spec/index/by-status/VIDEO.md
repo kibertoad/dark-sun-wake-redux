@@ -30,7 +30,7 @@ Entries by status.
 
 ## recorded
 
-7 entries.
+8 entries.
 
 | ID | Title |
 |---|---|
@@ -41,6 +41,7 @@ Entries by status.
 | [FND-VIDEO-008](../../findings/FND-VIDEO-008.md) | Overlay 196 plays an FLI file to the screen, one frame record every given number of 1 ms ticks, and stops after the header's frame count |
 | [FND-VIDEO-009](../../findings/FND-VIDEO-009.md) | The game sets BIOS mode 0x13 and unchains it for play, uses plain mode 0x13 for cinematics and mode 3 on exit, while the INT 10h wrapper at 1000:1136 serves text services |
 | [FND-VIDEO-010](../../findings/FND-VIDEO-010.md) | The cinematic routine runs at startup with cinematic 1 unless a test switch picks another, and from script opcode 0x22 with request 6 |
+| [FND-VIDEO-011](../../findings/FND-VIDEO-011.md) | Read with the chunk layouts of the FLI decoders, every chunk of the five installed FLI files ends where its data ends, and the run-length chunk of 5.FLI's first record, stated one byte longer than its record, is decoded to the record's last byte |
 
 ## Open questions
 
@@ -48,10 +49,8 @@ Entries whose Open questions section says more than None known.
 
 | ID | Title | Status |
 |---|---|---|
-| [FMT-VIDEO-001](../../formats/FMT-VIDEO-001.md) | FLI animation | supported |
 | [RULE-VIDEO-001](../../rules/RULE-VIDEO-001.md) | A cinematic plays its FLI from the installation, copying it from the disc first when it can, and falls back to still pictures | supported |
 | [RULE-VIDEO-002](../../rules/RULE-VIDEO-002.md) | The FLI player shows the first record after a wait and then one record every given number of milliseconds, until the header's frame count or a Shift key | supported |
 | [RULE-VIDEO-003](../../rules/RULE-VIDEO-003.md) | When an FLI cannot play, the cinematic's still pictures are shown for up to 8 seconds each | supported |
-| [RULE-VIDEO-004](../../rules/RULE-VIDEO-004.md) | While an FLI plays, a timer slot with a period of 1,000 microseconds counts milliseconds | supported |
 | [RULE-VIDEO-005](../../rules/RULE-VIDEO-005.md) | Script request 27 reseeds the generator and moves the display offset for a number of steps in one of four patterns, the fourth drawing one of eight directions | supported |
 | [RULE-VIDEO-006](../../rules/RULE-VIDEO-006.md) | A removed combatant in view is unloaded and its rectangle is copied back from the second screen buffer pixel by pixel at random, two draws per copy and a wait every ten copies | supported |

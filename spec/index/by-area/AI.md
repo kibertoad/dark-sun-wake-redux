@@ -12,6 +12,8 @@ Entries by area.
 | [FND-AI-002](../../findings/FND-AI-002.md) | The four COMPUTER CONTROL strings are resident data at 57E0:1D17 to 57E0:1D89, pushed only by overlay 190 | recorded |
 | [FND-AI-003](../../findings/FND-AI-003.md) | The computer-control buttons toggle bit 5 of byte 0x18 of the party member's combatant record unless bit 6 is set, and several screens read bit 5 | recorded |
 | [FND-AI-004](../../findings/FND-AI-004.md) | A resident key routine at 28C9:0CFF handles 1 to 6, N, P, Space and the arrow keys, and Space turns computer control off for every unlocked party member | recorded |
+| [FND-AI-005](../../findings/FND-AI-005.md) | Byte 0x18 of a combatant record is written by the effect handlers for five effect codes, by script function 49 and field paths for field 25, and by record loads and copies; the effects set bits 5 and 6 together and the removal handler clears them together | recorded |
+| [FND-AI-006](../../findings/FND-AI-006.md) | The key routine 28C9:0CFF is registered only by the main view's set-up in overlay 182 and by overlay 199 putting the main view back, as the main view window's handler and as the global key hook | recorded |
 | [RULE-AI-001](../../rules/RULE-AI-001.md) | The computer-control button toggles computer control of a party member unless it is locked, and Space turns it off for every unlocked member | supported |
 | [RULE-AI-002](../../rules/RULE-AI-002.md) | What a computer-controlled combatant does in its turn | unknown |
 | [RULE-AI-003](../../rules/RULE-AI-003.md) | Whether a combatant uses a spell from its list depends on its kind byte, its hit points, a one-in-four roll or a game state byte | supported |
