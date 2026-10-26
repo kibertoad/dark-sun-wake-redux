@@ -33,7 +33,8 @@ Do not repeat a retained search without new evidence, tooling or reading.
 ## Handover
 
 - Stage: Slices. Research continues toward the full Audit condition.
-- Updated 2026-10-25 mid-session; the goal continues.
+- Updated 2026-10-26 when the session wound down at the owner's request; the
+  goal continues. No workers or emulator runs of this goal are left running.
 - Last full gate: 2026-10-25, Test.ps1 -NoRestore passed on 36e0bb1c,
   including 715 .NET tests.
 - Unfinished: none in the tree. Unfinished and blockers outside this goal's
@@ -89,6 +90,34 @@ Do not repeat a retained search without new evidence, tooling or reading.
   RULE-MAGIC-001 supported). Run drivers in `tools/research/rust-dos-runs/`:
   `pass_counts.py`, `pass_bins.py`, `input_watch.py`, `walk_drive.py`,
   `bug_exit.py`, configs in `counts/`.
+- Latest session, magic: spell casting, the cast window and memorisation
+  counts (FND-MAGIC-002 to FND-MAGIC-024, RULE-MAGIC-001 to
+  RULE-MAGIC-006); turn undead is DATA 306 from the TURN UNDEAD button
+  (RULE-MAGIC-006, FND-EXE-634). Clock and timers:
+  FND-TIME-012 to FND-TIME-014. Closed Q-MAGIC-006, Q-MAGIC-007,
+  Q-MAGIC-018, Q-MAGIC-019 and Q-MAGIC-021; added Q-MAGIC-027 to
+  Q-MAGIC-029.
+- Latest session, combat: the attack routine, to-hit, damage, Armor Class
+  and swings (FND-COMBAT-065 to FND-COMBAT-069; RULE-COMBAT-002, 003 and
+  006 rewritten, parity Code partial with Defect notes), the difficulty's
+  to-hit and hit point scaling (FND-COMBAT-070, RULE-COMBAT-007), mark 3
+  and recovery (FND-COMBAT-071), and every field of the two combatant
+  records with how records are chosen (FND-COMBAT-072 to FND-COMBAT-074).
+  The rules use the new field names. Closed Q-COMBAT-002 and Q-COMBAT-005;
+  added Q-COMBAT-038 to Q-COMBAT-043. Possible original bugs, unconfirmed:
+  the two-weapon term is a bonus below Dexterity 6, and overlay 197
+  `+287D` compares two locals only one branch writes (Q-COMBAT-041).
+- Latest session, runs: the leader's walk outside a fight is timed
+  (FND-EXPLORE-024, FND-EXPLORE-025; Q-EXPLORE-006 closed, Q-EXPLORE-014
+  added for followers and pass length), and no read of `4E71:0000` over a
+  walk, key steps and a save outside a fight (FND-EXPLORE-026). Only the
+  first 6.9 s of a load were scanned: to finish Q-EXPLORE-012, run
+  `counts/walk2-tload.json` from `D:/rust-dos-games/work/walk2/slprep:preload`
+  with free memory (about 2.5 to 3 hours; one attempt failed when other jobs
+  held most of the RAM). `walk_drive.py` now takes `out`, `trace_page` and
+  `trace_count` from the config. Checkpoints `f3:won` (first fight won)
+  and `exprep:explore` (play outside the fight) are in
+  `D:/rust-dos-games/work/walk2/`.
 - Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
   `indirect_targets.py` (armed breakpoints on indirect transfers, memory
   reads, write watchpoints, key and pointer inputs, and `--count` sites
@@ -99,8 +128,13 @@ Do not repeat a retained search without new evidence, tooling or reading.
   or the template; an upstream issue or PR was offered and awaits their
   answer. File nothing upstream without it.
 - Next:
+  - Agent runs: Q-COMBAT-041 (the two-weapon term and `+287D` in play),
+    the rest of Q-EXPLORE-012's load scan, Q-EXPLORE-014.
+  - Static: Q-COMBAT-038, Q-COMBAT-040, Q-COMBAT-007, Q-COMBAT-042,
+    Q-COMBAT-043, Q-MAGIC-023, Q-MAGIC-025, Q-MAGIC-027 to Q-MAGIC-029,
+    and the other open Q-MAGIC items.
   - Q-RNG-031, Q-RNG-037 to Q-RNG-039 (copies and reads into `DS:426D`),
-    Q-RNG-034, Q-COMBAT-037, Q-TIME-005, Q-MAGIC-003 to Q-MAGIC-019.
+    Q-RNG-034, Q-COMBAT-037, Q-TIME-005.
   - Q-RNG-029 and Q-RNG-005. Q-RNG-030 is closed: the `2707` copies,
     the program's timer callbacks and the sound drivers' timer functions
     write none of the clock windows (FND-RNG-079 to FND-RNG-084).
