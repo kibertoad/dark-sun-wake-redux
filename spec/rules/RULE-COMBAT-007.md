@@ -4,7 +4,7 @@ title: What the difficulty setting changes in combat
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-COMBAT-065, FND-COMBAT-070]
+evidence: [FND-COMBAT-065, FND-COMBAT-075]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-002, RULE-COMBAT-002]
@@ -16,14 +16,14 @@ The difficulty setting (RULE-CONFIG-002) gives every combatant outside the party
 `difficulty - 1` to hit: -1 on Easy, 0 on Balanced, +1 on Hard and +2 on Hideous
 (FND-COMBAT-065). A creature whose details record is above 4 has its greatest hit points set to
 50, 100, 150 or 200 percent of its resource's value, rounded down, when it is loaded, and the load
-then gives every slot from 4 up current hit points equal to its greatest value (FND-COMBAT-070).
+then gives every slot from 4 up current hit points equal to its greatest value (FND-COMBAT-075).
 Scripts also read the setting, through function 21 of instruction 0x22.
 
 ## When it runs
 
 `enemy_to_hit` runs in each attack of overlay 173 `+1CC1` (RULE-COMBAT-002).
 `creature_max_hit_points` runs when overlay 187 `+039A` copies a details chunk of a `CHAR` load,
-and `appearing_hit_points` at the end of that load (`2D40:000A`) for each slot (FND-COMBAT-070).
+and `appearing_hit_points` at the end of that load (`2D40:000A`) for each slot (FND-COMBAT-075).
 
 ## Parameters
 
@@ -87,4 +87,4 @@ None known.
 ## Open questions
 
 - What the 47 script calls of function 21 of instruction 0x22 do with the setting, and whether a
-  saved game's creatures are scaled again when it is loaded (FND-COMBAT-070, Q-COMBAT-007).
+  saved game's creatures are scaled again when it is loaded (FND-COMBAT-075, Q-COMBAT-007).

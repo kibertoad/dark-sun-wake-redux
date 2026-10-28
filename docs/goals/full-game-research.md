@@ -100,7 +100,7 @@ Do not repeat a retained search without new evidence, tooling or reading.
 - Latest session, combat: the attack routine, to-hit, damage, Armor Class
   and swings (FND-COMBAT-065 to FND-COMBAT-069; RULE-COMBAT-002, 003 and
   006 rewritten, parity Code partial with Defect notes), the difficulty's
-  to-hit and hit point scaling (FND-COMBAT-070, RULE-COMBAT-007), mark 3
+  to-hit and hit point scaling (FND-COMBAT-075, RULE-COMBAT-007), mark 3
   and recovery (FND-COMBAT-071), and every field of the two combatant
   records with how records are chosen (FND-COMBAT-072 to FND-COMBAT-074).
   The rules use the new field names. Closed Q-COMBAT-002 and Q-COMBAT-005;

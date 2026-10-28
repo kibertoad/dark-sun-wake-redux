@@ -1,9 +1,9 @@
 ---
 id: FND-COMBAT-070
 title: The difficulty word DS:143A sets a loaded creature's greatest hit points to 50, 100, 150 or 200 percent, rounded down, for details records above 4, and the CHAR load then sets the current hit points of every slot from 4 up to that maximum; the other readers are the save and load of PREF, the Preferences screen and script function 21
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-COMBAT-075]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
