@@ -32,6 +32,20 @@ Do not repeat a retained search without new evidence, tooling or reading.
 
 ## Handover
 
+- Checkpoint 2026-10-29: commits 231d857b, e3f4181e, 0f924a82 and
+  2be8d56a are local; no push requested. Test.ps1 -NoRestore passed for
+  the FND-COMBAT-077 batch: 151 Node tests and 715 .NET tests.
+- Current: Q-COMBAT-007 and Q-COMBAT-044 remain open; use FND-COMBAT-075,
+  FND-COMBAT-076 and FND-COMBAT-077. No implementation changes or owned
+  emulator/validation processes remain.
+- Next Q-COMBAT-044: the special slot-319 allocation/reclamation obligation
+  (FND-PARTY-119, FND-PARTY-131, FND-COMBAT-054), then the other reader
+  children and load continuations of FND-SAVE-022. Presentation-helper
+  context is FND-EXPLORE-019. FND-COMBAT-077 is no whole-load proof.
+- Next Q-COMBAT-007: FND-COMBAT-076 child preservation and remaining
+  consumers from FND-COMBAT-075; dependencies include FND-SCRIPT-026,
+  FND-SCRIPT-028 and FND-SCRIPT-029.
+
 - Stage: Slices. Research continues toward the full Audit condition.
 - Updated 2026-10-26 when the session wound down at the owner's request; the
   goal continues. No workers or emulator runs of this goal are left running.
