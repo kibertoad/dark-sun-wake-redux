@@ -20,7 +20,7 @@ Next ID: Q-COMBAT-044
 - Q-COMBAT-007. RULE-COMBAT-007, RULE-CONFIG-002: What do the 47 script calls of function 21 of
   instruction 0x22 do with the difficulty, and are a saved game's creatures scaled again when it
   loads? Settles it: the listed scripts and the callers of `2D40:000A` on the load-game path.
-  Tried: FND-COMBAT-065 finds the enemies' to-hit term; FND-COMBAT-075 reads every executable
+  Tried: FND-COMBAT-065 finds the enemies' to-hit term; FND-COMBAT-076 reads the count helper and MAS/67 loop; the triangular totals still require child preservation of local word 0. FND-COMBAT-075 reads every executable
   reader of `DS:143A` and the hit point scaling. Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
