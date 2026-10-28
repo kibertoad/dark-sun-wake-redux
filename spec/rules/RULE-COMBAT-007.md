@@ -91,3 +91,5 @@ None known.
   (FND-COMBAT-075, FND-COMBAT-076, Q-COMBAT-007).
 - Whether saved creatures' current and maximum hit points are scaled or reset again
   on loading a numbered saved game (FND-COMBAT-075, FND-SAVE-022, Q-COMBAT-044).
+- Whether a numbered save can contain a populated temporary presentation slot 319 and
+  what its restoration changes (FND-COMBAT-078, Q-COMBAT-045).

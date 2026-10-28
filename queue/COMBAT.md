@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-045
+Next ID: Q-COMBAT-046
 
 ## Static
 
@@ -29,9 +29,17 @@ Next ID: Q-COMBAT-045
   or reset again when a numbered saved game is loaded? Settles it: trace both combatant tables
   through SAVE/5 and SAVE/6 restoration, the remaining re-placement children and later load continuations;
   distinguish copies of saved records from resource loads through 2D40:000A and its difficulty
-  scaling branch, including failure paths. Tried: split from Q-COMBAT-007. FND-COMBAT-075
+  scaling branch, including failure paths. Slot-319 admission and reclamation are separate in Q-COMBAT-045. Tried: split from Q-COMBAT-007. FND-COMBAT-075
   reads the resource-load scaling; FND-SAVE-015, FND-SAVE-021 and FND-SAVE-022 read the saved
   table pointers and restore order. FND-COMBAT-077 settles the zero flags and skipped RDFF branch, and the final coordinate helper; other re-placement children and later calls remain unread.
+  Blocks: slice 4.
+- Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
+  populated presentation slot 319, and what does loading that slot do to restored creatures?
+  Settles it: indexed and bulk producers of slot 319's presentation entry-index word, save
+  call admission relative to temporary-slot lifetime, and, if admitted, its free-list and
+  reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
+  accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
+  FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
   Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
