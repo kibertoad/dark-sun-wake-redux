@@ -86,5 +86,8 @@ None known.
 
 ## Open questions
 
-- What the 47 script calls of function 21 of instruction 0x22 do with the setting, and whether a
-  saved game's creatures are scaled again when it is loaded (FND-COMBAT-075, Q-COMBAT-007).
+- What the 47 script calls of function 21 of instruction 0x22 do with the setting,
+  including preservation of MAS/67's local counter through child calls
+  (FND-COMBAT-075, FND-COMBAT-076, Q-COMBAT-007).
+- Whether saved creatures' current and maximum hit points are scaled or reset again
+  on loading a numbered saved game (FND-COMBAT-075, FND-SAVE-022, Q-COMBAT-044).

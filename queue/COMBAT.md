@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-044
+Next ID: Q-COMBAT-045
 
 ## Static
 
@@ -18,10 +18,21 @@ Next ID: Q-COMBAT-044
   executable reader of any of them and tallies the scripts' uses; FND-PARTY-151, FND-PARTY-152
   and FND-PARTY-159. Blocks: slice 4.
 - Q-COMBAT-007. RULE-COMBAT-007, RULE-CONFIG-002: What do the 47 script calls of function 21 of
-  instruction 0x22 do with the difficulty, and are a saved game's creatures scaled again when it
-  loads? Settles it: the listed scripts and the callers of `2D40:000A` on the load-game path.
-  Tried: FND-COMBAT-065 finds the enemies' to-hit term; FND-COMBAT-076 reads the count helper and MAS/67 loop; the triangular totals still require child preservation of local word 0. FND-COMBAT-075 reads every executable
-  reader of `DS:143A` and the hit point scaling. Blocks: slice 4.
+  instruction 0x22 do with difficulty? Settles it: follow the setting through all 19 named
+  script resources of FND-COMBAT-075 to their consumers, including child preservation of
+  MAS/67 local word 0 before claiming its total attempts. Tried: FND-COMBAT-065 finds the
+  enemies' to-hit term; FND-COMBAT-075 reads every executable reader of DS:143A and the hit
+  point scaling. FND-COMBAT-076 reads the count helper and MAS/67 loop; its triangular totals
+  remain conditional on child preservation. The independent save-load question is Q-COMBAT-044.
+  Blocks: slice 4.
+- Q-COMBAT-044. RULE-COMBAT-007: Are saved creatures' current and maximum hit points scaled
+  or reset again when a numbered saved game is loaded? Settles it: trace both combatant tables
+  through SAVE/5 and SAVE/6 restoration, the re-placement calls and later load continuations;
+  distinguish copies of saved records from resource loads through 2D40:000A and its difficulty
+  scaling branch, including failure paths. Tried: split from Q-COMBAT-007. FND-COMBAT-075
+  reads the resource-load scaling; FND-SAVE-015, FND-SAVE-021 and FND-SAVE-022 read the saved
+  table pointers and restore order but leave re-placement children and later calls unread.
+  Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
