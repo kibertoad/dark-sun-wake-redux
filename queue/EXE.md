@@ -13,8 +13,13 @@ Next ID: Q-EXE-033
   Tried: FND-EXE-635 restores the missing static prerequisites and reproduces
   the three short bodies. Its isolated declared-decode control recovers exactly
   their 217 missing bytes in a frozen snapshot copy; normal fall-through
-  declarations do not. Durable decode regeneration, the full boundary census,
-  other full-model body differences and accepted joined inventories remain open.
+  declarations do not. FND-EXE-636 completes the bounded final-range census
+  and identifies three shared-frame adjacent entries and 226 omitted interior
+  bytes in two full-model bodies. Durable decode regeneration is now tested.
+  Remaining: apply these evidenced ownership/interior-range repairs through
+  the canonical declarations, review the two additional helper starts and all
+  replacement differences, and accept regenerated joined inventories. A
+  terminal-return result alone does not prove a complete body.
 
 ## Emulated call
 
