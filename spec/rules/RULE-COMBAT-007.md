@@ -107,6 +107,10 @@ None known.
 - Which live records, storage lifetimes and remaining writes supply the callback
   fields through the selector and service pointers (FND-COMBAT-087,
   FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, FND-COMBAT-092, FND-COMBAT-093,
+  FND-COMBAT-094,
   FND-UI-068, Q-COMBAT-051).
 - Which producer states and service order admit the modes that dispatch the two
   callback fields during loading (FND-CONFIG-189, Q-COMBAT-052).
+- Which source bytes, allocated extent and complete or failed transfer outcomes
+  supply the window passed into registration (FND-COMBAT-040, FND-COMBAT-093,
+  FND-COMBAT-094, Q-COMBAT-053).

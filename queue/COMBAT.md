@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-053
+Next ID: Q-COMBAT-054
 
 ## Static
 
@@ -93,28 +93,36 @@ Next ID: Q-COMBAT-053
   Blocks: slice 4.
 - Q-COMBAT-051. RULE-COMBAT-007: Which records and writes supply the APFM callback
   fields read through A125 and A15B on numbered-load paths? Settles it: graph and
-  child-table producers beyond the registration path of FND-COMBAT-093, input
-  provenance and preservation through that path's calls, payload identity, storage
-  lifetime and remaining construction/copy/write paths for both
+  child-table producers beyond the registration path of FND-COMBAT-093, preservation
+  through their calls, payload identity, storage lifetime and remaining construction/copy/write paths for both
   saved and reread pointers; account for block copies, alternative bases and split
   pointer stores beyond the bounded census. Bind aliases and text-source termination
   where the exclusions of the existing helper readings require them. Acquisition
-  admission is Q-COMBAT-050; selected-mode admission is Q-COMBAT-052.
-  Tried: split from Q-COMBAT-049. FND-COMBAT-087 separates the setter's saved lookup
-  from the selector's current record; FND-COMBAT-088, FND-COMBAT-090 and
-  FND-COMBAT-091 bound setup, paint and inline text writes under their explicit
-  storage conditions. FND-PARTY-044 and FND-EXE-588 retain census limitations.
-  Tried: FND-COMBAT-092 binds the setter's saved lookup to the first matching
-  tag/number entry in its supplied window, without payload or hit-eligibility checks.
-  FND-UI-068 maps the separate hit-search output and corrects APFM continuation.
-  Their local selection rules are removed from Settles it; actual table/graph
-  producers, payload identity, preservation and remaining writers stay open.
-  Tried: FND-COMBAT-093 maps the registration producer's head/count publication,
-  split child-pointer stores, constructor gates and success-only initialization,
-  plus the wrapper's retained failure and opener's diagnostic continuation. That
-  producer's own ordering is removed from Settles it. Caller inputs, callee/alias
-  preservation, actual admitted success/failure states and other producers remain;
-  neither graph membership nor a null opener result proves a completed lifecycle.
+  admission is Q-COMBAT-050; selected-mode admission is Q-COMBAT-052; parent-window
+  source and initial buffer admission is independently tracked by Q-COMBAT-053.
+  Tried: split from Q-COMBAT-049, with parent-window input admission now split to
+  Q-COMBAT-053. FND-COMBAT-087 separates saved and reread pointers;
+  FND-COMBAT-088, FND-COMBAT-090 and FND-COMBAT-091 bound conditional setup,
+  paint and text writes. FND-COMBAT-092 and FND-UI-068 map local selection;
+  FND-COMBAT-093 and FND-COMBAT-094 map this registration producer and connected
+  status/output propagation. Those bounded parts are removed from Settles it.
+  FND-PARTY-044 and FND-EXE-588 retain the other-writer census limits; actual
+  payload identity, aliases, lifetime and preservation remain unanswered.
+  Blocks: slice 4.
+- Q-COMBAT-053. RULE-COMBAT-007: Which source bytes and allocation/transfer states
+  supply the window buffer passed into registration during numbered loading?
+  Settles it: selected archive/resource and length, allocation extent and initialized
+  contents, and the resulting header/child-table bytes on the admitted complete,
+  early-rejection and post-allocation failure paths. Trace the input producers and
+  preservation needed for the actual window call; retain I/O and runtime limits
+  explicitly. Local status/output propagation is already FND-COMBAT-094; later
+  graph/table mutations and callback-byte writers remain Q-COMBAT-051.
+  Tried: split from Q-COMBAT-051. FND-COMBAT-040 identifies the window resource
+  request and FND-COMBAT-093 its registration order. FND-COMBAT-094 follows the
+  reader's allocated slot through the opener's pointer-only gate and distinguishes
+  the APFM child wrapper's AX gate. FND-CONFIG-151, FND-CONFIG-209 and
+  FND-CONFIG-210 retain archive, allocation, marker and conditional clearing limits;
+  nonnull does not establish complete source bytes, valid capacity or native failure.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
