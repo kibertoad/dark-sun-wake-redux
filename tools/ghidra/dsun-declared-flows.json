@@ -8,7 +8,9 @@
   "FND-EXE-597",
   "FND-EXE-601",
   "FND-EXE-633",
-  "FND-EXE-635"
+  "FND-EXE-635",
+  "FND-EXE-636",
+  "FND-EXE-637"
  ],
  "returns": [
   {
@@ -2896,6 +2898,21 @@
   }
  ],
  "decode": [
+  {
+   "range": "0x0008C686..0x0008C690",
+   "owner": "0x0008C647",
+   "evidence": "FND-EXE-636"
+  },
+  {
+   "range": "0x0008C6FF..0x0008C7C7",
+   "owner": "0x0008C647",
+   "evidence": "FND-EXE-636"
+  },
+  {
+   "range": "0x0008C8FE..0x0008C90E",
+   "owner": "0x0008C834",
+   "evidence": "FND-EXE-636"
+  },
   {
    "range": "1000:034C..1000:0361",
    "owner": "1000:0338"

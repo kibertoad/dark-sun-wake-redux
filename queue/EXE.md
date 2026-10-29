@@ -16,10 +16,13 @@ Next ID: Q-EXE-033
   declarations do not. FND-EXE-636 completes the bounded final-range census
   and identifies three shared-frame adjacent entries and 226 omitted interior
   bytes in two full-model bodies. Durable decode regeneration is now tested.
-  Remaining: apply these evidenced ownership/interior-range repairs through
-  the canonical declarations, review the two additional helper starts and all
-  replacement differences, and accept regenerated joined inventories. A
-  terminal-return result alone does not prove a complete body.
+  FND-EXE-637 resolves the two extra starts as internal blocks, persists the
+  canonical ownership/interior-range declarations, and reproduces the complete
+  bounded overlay delta: three merged entries and 217 added tail bytes, with
+  every other range unchanged. Remaining: regenerate/reconcile the missing
+  resident view, accept the joined inventory with provenance and regions, and
+  update its dependent closure-plan hashes. A terminal-return result alone
+  does not prove a complete body.
 
 ## Emulated call
 

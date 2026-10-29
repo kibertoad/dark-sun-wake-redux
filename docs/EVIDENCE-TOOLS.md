@@ -81,6 +81,10 @@ It also preserves manually reviewed `decode` rows with a nonempty `evidence`
 string, including FND-EXE-633's three tails tested by FND-EXE-635. An exact
 generated range/owner match retains the manual evidence; stale unevidenced
 rows are regenerated. Conflicting owners and duplicate manual ranges fail.
+FND-EXE-636 and FND-EXE-637 add three interior decode ranges and five internal
+entry removals. The canonical overlay candidate reproduces 874 rows with a
+fully explained range delta; the committed joined inventory is unchanged
+until its resident input and join/staging checks are reconciled.
 Change those files, never the inventory,
 to add or drop a start or a flow. Run `CorrectNearTransfers.java` once more,
 then `tools/ghidra/FillInstructionBodies.java`, which adds to each body the

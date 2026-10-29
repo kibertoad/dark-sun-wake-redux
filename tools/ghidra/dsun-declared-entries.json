@@ -6,9 +6,36 @@
   "FND-EXE-593",
   "FND-RNG-061",
   "FND-EXE-597",
-  "FND-EXE-599"
+  "FND-EXE-599",
+  "FND-EXE-636",
+  "FND-EXE-637"
  ],
  "remove": [
+  {
+   "starts": ["0x00065EB2"],
+   "owner": "0x00065653",
+   "clear": "0x00065EB2..0x00065ECE"
+  },
+  {
+   "starts": ["0x00065EF1"],
+   "owner": "0x00065653",
+   "clear": "0x00065EF1..0x00065F07"
+  },
+  {
+   "starts": ["0x00066A2C"],
+   "owner": "0x00065653",
+   "clear": "0x00066A2C..0x00066B11"
+  },
+  {
+   "starts": ["0x0006B749"],
+   "owner": "0x0006B581",
+   "clear": "0x0006B749..0x0006B7A1"
+  },
+  {
+   "starts": ["0x00070607"],
+   "owner": "0x0007054D",
+   "clear": "0x00070607..0x0007060A"
+  },
   {
    "starts": [
     "1BF3:40DD"
