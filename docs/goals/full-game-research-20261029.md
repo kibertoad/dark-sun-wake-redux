@@ -41,17 +41,22 @@ No push, release or history rewrite is authorized by this goal.
 
 - Stage: Slices; full research Audit remains unmet.
 - Latest research entry: FND-EXE-635; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-EXE-635.
+- Latest tooling: evidenced manual decode preservation in walk_declared_flows.py,
+  with synthetic regressions registered in Test.ps1 and CI.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after that tooling.
   Documentation passed with its reported skips. Pinned rules verified offline.
 - Next: Q-EXE-032, using FND-EXE-633/FND-EXE-635 and
   docs/implementation-plans/INVENTORY-TAIL-RECONCILIATION.md.
-  Make the evidenced decode declarations durable across regeneration, then
-  complete the overlay boundary census and review all replacement differences.
+  The three evidenced decode declarations are now durable across regeneration.
+  Next complete the overlay boundary census with synthetic controls and review
+  all replacement differences. Keep partial instruction decodes, adjacent entries
+  and unowned continuations distinct; do not infer complete function readings
+  from a terminal opcode check.
   Never edit generated inventory rows by hand or treat a local repair as an
   accepted joined denominator. The committed inventory remains unchanged.
 - Static inputs and projects exist under
   GAME_DIR/analysis/inventory-reconcile-20261029/. Keep the frozen and isolated
-  controls and the full-model comparison needed by FND-EXE-635. Its Setup and
+  controls and the full-model comparison needed by FND-EXE-635. Its control descriptions and
   reproduction instructions distinguish these runs. The saved project named
   INST-overlay-20261029a is the pre-repair input; INST-overlay-20261029d is the
   isolated control. No analysis process remains active. Installation paths and
