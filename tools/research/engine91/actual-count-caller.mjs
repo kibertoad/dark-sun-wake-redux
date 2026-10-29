@@ -12,7 +12,7 @@ add('sentinel',0x35b3e,0x35b73,0x4072,0x21e,'FND-CONFIG-177 complete four-word s
 add('split-body',0x376f0,0x38125,0x4237,0x180,'FND-CONFIG-178 bounded complete code region; detailed geometry interpretation and native admission remain open');
 add('self-copy',0x3835c,0x383ec,0x4237,0xdec,'FND-CONFIG-178 complete full-region self-copy');
 add('rectangle-equality',0x359b8,0x35a0d,0x4072,0x98,'FND-CONFIG-178 complete four-word equality');
-add('coordinate-offset',0x39262,0x3927f,0x4400,0x62,'FND-UI-011 complete coordinate-offset helper');
+add('coordinate-offset',0x39262,0x3927f,0x4400,0x62,'FND-UI-068 complete coordinate-offset helper');
 add('position',0x3851e,0x3853c,0x4328,0x9e,'FND-CONFIG-099 complete position writer');
 add('fixed-buffer-copy',0x384da,0x384fc,0x4328,0x5a,'FND-CONFIG-099 complete fixed-buffer wrapper');
 add('actual-stack-guard',0x8048,0x805a,0x1000,0x2e48,'FND-CONFIG-163 actual guard; DOS remains unmodeled');

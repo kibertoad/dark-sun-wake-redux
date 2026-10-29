@@ -143,7 +143,7 @@ rejecting unsupported semantics:
   its Look-panel label at offset 43 (`FND-ACTOR-007`, `FND-ACTOR-009`). The
   `RDFF` layout is unknown (`FMT-ACTOR-002`), and the label's bytes do not occur
   in `DSUN.EXE`. No source for the dynamic interaction text is identified.
-- `RULE-UI-001` and `FND-UI-011` give how the window code picks the control
+- `RULE-UI-001` and `FND-UI-068` give how the window code picks the control
   under the pointer. No specific control handler or widget drawing path is known,
   so image-less controls remain geometry and event contracts rather than
   invented pixels.

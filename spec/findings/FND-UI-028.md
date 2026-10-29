@@ -49,7 +49,7 @@ rectangle under it.
 ## Alternatives
 
 The symbols were matched to the manual's pictures by eye. The window holds no screen position;
-where the game places it is not known (FND-UI-011).
+where the game places it is not known (FND-UI-068).
 
 ## How to reproduce
 

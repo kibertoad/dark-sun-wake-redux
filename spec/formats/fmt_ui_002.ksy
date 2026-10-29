@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: One control a WIND places.
-doc-ref: FMT-UI-002, FND-UI-002, FND-UI-011
+doc-ref: FMT-UI-002, FND-UI-002, FND-UI-068
 seq:
   - id: control
     type: u4

@@ -98,7 +98,7 @@ local versus whole verdicts, admitted-state gaps and next available work.
 
 ## Issue 5 actual region-count caller
 
-Use FND-CONFIG-173/175/176/177/178 and FND-UI-011 as read-only inputs to
+Use FND-CONFIG-173/175/176/177/178 and FND-UI-068 as read-only inputs to
 trace the actual list caller's fixed-region initialization, count-one setup
 and connected pair/split/copy dependencies. Replace the historical guard
 models with FND-CONFIG-163's actual guard. Keep unknown incoming data, SP/BP

@@ -27,7 +27,7 @@ point and output locations for a control pointer and child index.
 The search initially clears its control output and DS:A121, and sets
 its index output to `0xFFFF` at `0x000337F2..0x00033808`.
 It traverses the registered windows and resolved children under the
-region and flag guards already recorded in FND-UI-011.
+region and flag guards already recorded in FND-UI-068.
 
 An intervening APFM-specific path is conditional on a nonzero hit,
 tag APFM and nonzero DS:A13F. It branches on loaded frame word
@@ -76,6 +76,6 @@ APFM-specific guards at `0x000329A4..0x00032A03` and conditional
 helper calls in bounded blocks through `0x00032A61`. Inspect selection
 refresh at `0x00032AB2..0x00032B1C`. Inspect the hit search's output
 initialization at `0x000337D8..0x00033808`, and follow its window
-and child guards through the windows recorded by FND-UI-011.
+and child guards through the windows recorded by FND-UI-068.
 Compare the later producer and dispatch in FND-CONFIG-094 and the
 six shipped frame records in FND-CONFIG-093 and FMT-UI-004.

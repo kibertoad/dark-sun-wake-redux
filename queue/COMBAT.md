@@ -92,8 +92,8 @@ Next ID: Q-COMBAT-053
   lookup, startup and wrapper gates, without proving their state at the load call.
   Blocks: slice 4.
 - Q-COMBAT-051. RULE-COMBAT-007: Which records and writes supply the APFM callback
-  fields read through A125 and A15B on numbered-load paths? Settles it: origins,
-  storage identity, lifetime and remaining construction/copy/write paths for both
+  fields read through A125 and A15B on numbered-load paths? Settles it: graph and
+  child-table producers, payload identity, storage lifetime and remaining construction/copy/write paths for both
   saved and reread pointers; account for block copies, alternative bases and split
   pointer stores beyond the bounded census. Bind aliases and text-source termination
   where the exclusions of the existing helper readings require them. Acquisition
@@ -102,6 +102,11 @@ Next ID: Q-COMBAT-053
   from the selector's current record; FND-COMBAT-088, FND-COMBAT-090 and
   FND-COMBAT-091 bound setup, paint and inline text writes under their explicit
   storage conditions. FND-PARTY-044 and FND-EXE-588 retain census limitations.
+  Tried: FND-COMBAT-092 binds the setter's saved lookup to the first matching
+  tag/number entry in its supplied window, without payload or hit-eligibility checks.
+  FND-UI-068 maps the separate hit-search output and corrects APFM continuation.
+  Their local selection rules are removed from Settles it; actual table/graph
+  producers, payload identity, preservation and remaining writers stay open.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,

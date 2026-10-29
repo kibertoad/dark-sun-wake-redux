@@ -55,7 +55,7 @@ environment: null
 
 FMT-UI-001 gives the word at window offset `0x9E` as `flags`, with two
 known bits: the child dispatcher `3D72:0EB8` passes over a window with
-bit 4 set and stops after one with bit `0x100` set (FND-UI-011). The
+bit 4 set and stops after one with bit `0x100` set (FND-UI-068). The
 shipped values are 256 in windows 14000 to 14002, 8,192 (`0x2000`) in
 19500, 2,048 (`0x800`) in 19501 and 0 in the others. Q-UI-001 asks
 what the other bits do.
@@ -89,7 +89,7 @@ pointer rebased onto the field.
   flags word. The only rebasing hit is the driver thunk `mov ax, 9Fh`
   at `4842:0CEE`.
 
-Positive controls are the two FND-UI-011 tests at `3D72:0F12` (`0x100`)
+Positive controls are the two FND-UI-068 tests at `3D72:0F12` (`0x100`)
 and `3D72:0F2B` (4), both found.
 
 **Whose record.** In module `3A8E` the pointer is the window argument

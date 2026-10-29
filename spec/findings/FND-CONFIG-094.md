@@ -34,7 +34,7 @@ local input packet at physical file offset `0x0002FABB`
 
 The pointer routine searches registered windows and children, retaining
 its current selected control pointer at DS:A125 and containing window
-at DS:A121 (FND-CONFIG-215, FND-UI-011). Its later branch at
+at DS:A121 (FND-CONFIG-215, FND-UI-068). Its later branch at
 `0x00032C84` continues only if DI has bit `0x04` or `0x10` set.
 After an intervening resident call it requires DS:A125 to be nonzero,
 reads the selected record's tag and selects a four-tag dispatch table.

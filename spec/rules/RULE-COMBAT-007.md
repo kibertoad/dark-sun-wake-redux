@@ -106,6 +106,7 @@ None known.
   call during loading (FND-COMBAT-089, Q-COMBAT-050).
 - Which live records, storage lifetimes and remaining writes supply the callback
   fields through the selector and service pointers (FND-COMBAT-087,
-  FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, Q-COMBAT-051).
+  FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, FND-COMBAT-092,
+  FND-UI-068, Q-COMBAT-051).
 - Which producer states and service order admit the modes that dispatch the two
   callback fields during loading (FND-CONFIG-189, Q-COMBAT-052).

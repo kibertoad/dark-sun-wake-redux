@@ -34,7 +34,7 @@ tag `EBOX` to the tag-aware resource lookup that the window code uses, and test 
 Ghidra finds no direct caller of any of the three.
 
 The child dispatcher `3D72:0EB8` tells `APFM`, `BUTN` and `EBOX` children apart (FND-UI-006,
-FND-UI-011). Its only two direct callers are inside `3D72:0009`, whose one direct caller is at
+FND-UI-068). Its only two direct callers are inside `3D72:0009`, whose one direct caller is at
 `39D1:097D`, reached for one class of decoded input event. `3D72:0009` passes the current pointer
 state to the child dispatcher twice, keeps the child and event it returns, and enters tables of
 far handlers under tests of event bits. Neither routine was found to draw an image, fill,

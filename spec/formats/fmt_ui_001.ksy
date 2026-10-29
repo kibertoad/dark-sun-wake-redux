@@ -6,7 +6,7 @@ meta:
   imports:
     - fmt_ui_002
 doc: A WIND resource of RESOURCE.GFF, a window and the controls it places.
-doc-ref: FMT-UI-001, FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-011
+doc-ref: FMT-UI-001, FND-UI-001, FND-UI-002, FND-UI-003, FND-UI-068
 seq:
   - id: tag
     type: str

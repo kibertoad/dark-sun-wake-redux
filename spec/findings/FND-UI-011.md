@@ -1,9 +1,9 @@
 ---
 id: FND-UI-011
 title: The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-UI-068]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
