@@ -38,8 +38,9 @@ Next ID: Q-COMBAT-055
 - Q-COMBAT-046. RULE-COMBAT-007: Which admitted window events and state producers reach the
   numbered-load call and reader roots? Settles it: remaining producers and lifetimes of
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
-  local navigation of FND-COMBAT-085; event delivery and handler restoration beyond
-  FND-UI-051's registrations; incoming transfers not covered by its direct caller census,
+  local navigation of FND-COMBAT-085; event delivery, snapshot/slot producers and
+  preservation and live window/handler identity beyond FND-COMBAT-098's three
+  restoration-site orderings; incoming transfers not covered by FND-UI-051's direct caller census,
   including the independent reader +0A6C routes.
   Tried: split from Q-COMBAT-044; FND-COMBAT-081 settles local confirm-table mapping and
   ignored load result, while FND-SAVE-022 gives reader order. FND-COMBAT-084 settles
@@ -48,6 +49,11 @@ Next ID: Q-COMBAT-055
   empty-result selection; FND-UI-051, FND-SAVE-018 and FND-SAVE-024 supply existing
   caller, exit-byte and shared-page producer evidence. The remaining admission and
   preservation obligations above are not settled by those local results. Blocks: slice 4.
+  Tried: FND-COMBAT-098 binds the three restoration sources named by FND-UI-051:
+  one late local snapshot and two shared-slot rereads, with their gates and later
+  window work. Their own restore-call ordering is removed from Settles it. Actual
+  caller/slot admission, preservation, handler/window identity at event delivery
+  and remaining incoming reader routes are still open.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C
   bypass states, remaining nonliteral pointer writers and destination/alias lifetimes beyond
