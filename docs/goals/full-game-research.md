@@ -37,10 +37,11 @@ Do not repeat a retained search without new evidence, tooling or reading.
   functions first, then complete readings. Use docs/RESEARCH-CLOSURE.md and
   docs/research-closure-numbered-load.json; mapping and citation coverage are
   separate from accepted complete readings.
-- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-084,
+- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-085
+  and SCR-UI-013,
   including 151 Node tests and 715 .NET tests. Documentation passed with its
   reported argument-count, Kaitai and scheduled-generation skips.
-- Current batch references: FND-COMBAT-075 through FND-COMBAT-084;
+- Current batch references: FND-COMBAT-075 through FND-COMBAT-085;
   Q-COMBAT-007 and Q-COMBAT-044 through Q-COMBAT-048 remain open.
   No implementation changes or original-game runs were made in these batches.
 - Unfinished: none in the working tree at this checkpoint. No owned emulator
@@ -50,7 +51,8 @@ Do not repeat a retained search without new evidence, tooling or reading.
   FND-CONFIG-037, FND-CONFIG-067 and FND-CONFIG-151. Consult existing
   FND-COMBAT-052 before reading overlay 182 +088B again.
 - Next Q-COMBAT-046: field/event admission and controlled incoming callers,
-  using FND-COMBAT-081 and FND-COMBAT-084. The remaining callback obligation
+  using FND-COMBAT-081, FND-COMBAT-084, FND-COMBAT-085 and FND-UI-051.
+  The remaining callback obligation
   is Q-COMBAT-048, with FND-CONFIG-189 as context.
 - Next Q-COMBAT-045: temporary-slot admission, using FND-COMBAT-078,
   FND-PARTY-119, FND-PARTY-131 and FND-COMBAT-054; then Q-COMBAT-044's
