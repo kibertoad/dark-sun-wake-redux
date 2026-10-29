@@ -37,15 +37,18 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: 5ae43124; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 5ae43124.
+- Last research commit: 7f20a13d; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 7f20a13d.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-051 input-window provenance, preservation through registration
-  calls, other graph/table producers, payload identity, lifetime and later writers.
-  Reuse FND-COMBAT-093 for the registration producer's own ordering and
-  FND-COMBAT-092/FND-UI-068 for selection. Do not repeat those readings as
-  input or preservation proofs. FND-COMBAT-040 and FND-CONFIG-151 are the
-  existing window-acquisition handoffs to review before following that input.
+- Next: Q-COMBAT-053 parent-window source and buffer admission. Reuse
+  FND-COMBAT-094 for connected status/output propagation; do not repeat it
+  as source, capacity or native I/O proof. FND-UI-001/FND-UI-002 are the
+  existing window-resource baseline; FND-COMBAT-089 records the archive
+  census procedure and controls for its APFM query. Verify unchanged inputs
+  and retained evidence before a distinct window-provider query.
+- Q-COMBAT-051 retains other graph/table producers, preservation, payload
+  identity, lifetime and later writers. Reuse FND-COMBAT-093 for this
+  registration producer and FND-COMBAT-092/FND-UI-068 for selection.
 - Q-COMBAT-050 retains acquisition, Q-COMBAT-052 mode admission, and
   Q-COMBAT-049 the combined dispatch question. Q-COMBAT-047 follows for
   resource-length and table-lifetime admission. Other queues remain in scope.
