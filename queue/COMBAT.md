@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-050
+Next ID: Q-COMBAT-053
 
 ## Static
 
@@ -69,29 +69,49 @@ Next ID: Q-COMBAT-050
   branches. FND-COMBAT-087 separates the APFM record-admission dependency from the
   remaining callbacks, rather than treating a selector reading as their effects. Blocks: slice 4.
 - Q-COMBAT-049. RULE-COMBAT-007: Can numbered loading reach a nonzero APFM +5A or +5E
-  callback, and if so which target? Settles it: origins and storage identity of the records
-  at A125 and A15B, selected-archive and I/O admission for the acquisition form of
-  FND-COMBAT-089, and remaining construction/copy/write paths
-  beyond the bounded setup, paint and text-copy paths of FND-COMBAT-088,
-  FND-COMBAT-090 and FND-COMBAT-091, and mode A13D/A155
-  admission through the services of FND-CONFIG-189; identify
-  the concrete target and its effects if nonzero fields are admitted. Account for the
-  block-copy, alternative-base and split-pointer limits retained in FND-EXE-588.
-  Tried: split from Q-COMBAT-048. FND-UI-005 supplies shipped zero fields;
-  FND-PARTY-044 and FND-EXE-588 supply the earlier field/setter census;
-  FND-COMBAT-087 reads both selector producer bodies and distinguishes their saved and
-  reread pointers without settling live record identity.
-  Tried: FND-COMBAT-088 removes the
-  local zero-image constructor as a callback-byte producer under its explicit guard
-  and storage conditions. FND-COMBAT-089 binds the child call to a null local destination
-  and finds the sole APFM provider among 26 fingerprinted top-level archives; live archive
-  selection, successful transfer, aliases and other-write admission stay open.
-  Tried: FND-COMBAT-090 reads the rebased APFM paint helper's full own-write footprint
-  and excludes its intact zero-style/image path as a callback-byte producer. Remaining
-  intervening style/image changes, other writes, aliases and live record identity remain.
-  Tried: FND-COMBAT-091 accounts for the rebased indexed 24-byte text setter and getter,
-  removing those own writes as callback/style producers under the named caller's storage
-  conditions. Actual input termination, aliases, other writes and live admission remain.
+  callback, and if so which target? Settles it: combine the independently evidenced
+  acquisition (Q-COMBAT-050), record identity and remaining writers (Q-COMBAT-051),
+  and mode admission (Q-COMBAT-052) for the numbered-load paths; identify the concrete
+  target and its effects if nonzero fields are admitted, or exclude both dispatches
+  on every admitted path. A conditional zero-field reading alone does not settle it.
+  Tried: split from Q-COMBAT-048. FND-UI-005, FND-PARTY-044 and FND-EXE-588
+  supply shipped zeros and the bounded field census; FND-COMBAT-087 through
+  FND-COMBAT-091 remove bounded selector/setup/paint/text questions. The remaining
+  independent acquisition, storage/writer and mode obligations are split below;
+  no live callback target or whole-load exclusion has been established.
+  Blocks: slice 4.
+- Q-COMBAT-050. RULE-COMBAT-007: Which archive and transfer paths can supply an APFM
+  child during numbered loading? Settles it: active archive, traversal-mode and open-list
+  producers reaching the FND-COMBAT-089 acquisition call; selected type/number/length,
+  allocation and seek/read admission, including rejection and alternative-archive paths.
+  Distinguish successful transfer from merely finding a shipped directory entry. Preserve
+  unresolved external I/O outcomes explicitly rather than assuming success.
+  Tried: split from Q-COMBAT-049. FND-COMBAT-089 binds the null local destination
+  and sole APFM provider among 26 inspected archives; FND-CONFIG-038,
+  FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-151 and FND-CONFIG-208 supply
+  lookup, startup and wrapper gates, without proving their state at the load call.
+  Blocks: slice 4.
+- Q-COMBAT-051. RULE-COMBAT-007: Which records and writes supply the APFM callback
+  fields read through A125 and A15B on numbered-load paths? Settles it: origins,
+  storage identity, lifetime and remaining construction/copy/write paths for both
+  saved and reread pointers; account for block copies, alternative bases and split
+  pointer stores beyond the bounded census. Bind aliases and text-source termination
+  where the exclusions of the existing helper readings require them. Acquisition
+  admission is Q-COMBAT-050; selected-mode admission is Q-COMBAT-052.
+  Tried: split from Q-COMBAT-049. FND-COMBAT-087 separates the setter's saved lookup
+  from the selector's current record; FND-COMBAT-088, FND-COMBAT-090 and
+  FND-COMBAT-091 bound setup, paint and inline text writes under their explicit
+  storage conditions. FND-PARTY-044 and FND-EXE-588 retain census limitations.
+  Blocks: slice 4.
+- Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
+  +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
+  A155, A141 and the services' blocking/selection state on each load path, including
+  rejected or bypassed services and preservation between target check and target read.
+  Keep current A125, retained A15B and the target rereads distinct. Record origins and
+  callback-byte writers are Q-COMBAT-051; this question establishes mode admission.
+  Tried: split from Q-COMBAT-049. FND-COMBAT-087 supplies conditional selector
+  transitions; FND-CONFIG-189 supplies distinct pre/post replacement service checks
+  and ordering, without native input or complete caller/producer admission.
   Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?

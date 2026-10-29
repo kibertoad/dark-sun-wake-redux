@@ -102,3 +102,10 @@ None known.
   (FND-COMBAT-080, FND-CONFIG-189, Q-COMBAT-048).
 - Whether APFM callback fields can be nonzero on an admitted load path, and which
   concrete targets that permits (FND-COMBAT-087, Q-COMBAT-049).
+- Which archive, selected resource and transfer outcomes admit the APFM acquisition
+  call during loading (FND-COMBAT-089, Q-COMBAT-050).
+- Which live records, storage lifetimes and remaining writes supply the callback
+  fields through the selector and service pointers (FND-COMBAT-087,
+  FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, Q-COMBAT-051).
+- Which producer states and service order admit the modes that dispatch the two
+  callback fields during loading (FND-CONFIG-189, Q-COMBAT-052).
