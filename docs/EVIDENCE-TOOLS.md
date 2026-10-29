@@ -132,6 +132,19 @@ overlay header that overlay code calls, to have none.
 `report.mjs inventory-check` predates the `ranges` column and rejects these
 files, so check them with `standard-coverage`.
 
+`python -I tools/research/exec-census/inventory_tails.py <installed DSUN.EXE>
+<inventory.tsv> [--view file|mapped]` reports a bounded linear tail census.
+The default reads the committed file-offset overlay rows and explicitly skips
+resident rows; `mapped` reads an overlay-view export using the established
+mapped segment addresses. Source identity and MZ/FBOV code bounds are checked.
+Malformed ranges, overlaps, empty selections and count/size limits fail.
+The JSON includes every overlay row, decoder/tool/input identities and separate
+return, unconditional-jump, adjacent-entry, other-body, unowned, code-end and
+incomplete-decode classifications. It decodes only each body's final range:
+this is neither reachability analysis nor a complete-reading declaration.
+Keep source-derived reports in GAME_DIR, never Git. Use the project-local
+locked Python explicitly when an inherited EVIDENCE_PYTHON names another checkout.
+
 `node tools/evidence/migrate-inventory.mjs <views.json> <staging-directory>
 <manifest-path>...` stages unchanged single-view inventories with full body
 ranges. It verifies source XXH3/MD5, exporter SHA256, repeated exports, ordered

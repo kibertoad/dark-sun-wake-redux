@@ -25,6 +25,16 @@ Acceptance:
   apply the boundary test to every overlay row. Retain legitimate adjacent
   entries, partial-instruction cases and unresolved transfers as distinct cases.
   Any new checker must have synthetic controls before it supplies a negative.
+  The bounded census reads the hash-guarded installed source and the existing
+  MZ/FBOV descriptors (FMT-EXE-001 through FMT-EXE-003), validates TSV body
+  ranges against their own overlay, and supports canonical file offsets or
+  the existing mapped segment addresses explicitly. It linearly decodes each
+  body's final range, not every branch. Reject malformed counts, overlaps,
+  source mismatches and empty overlay selections. Synthetic cases cover
+  prefixed returns, return-valued immediate bytes, conditional versus
+  unconditional jumps, incomplete instructions, adjacent entries and gaps.
+  Reports include the decoder/input identities, counts and every row's result;
+  they remain local and provide no complete-reading or reachability claim.
 - Reconcile through the existing join/staging checks. Explain all changed
   starts, body ranges and region accounting; refresh affected closure-plan
   inventory hashes only against the accepted regenerated files.
