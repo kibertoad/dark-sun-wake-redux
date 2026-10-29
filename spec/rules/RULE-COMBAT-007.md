@@ -114,3 +114,5 @@ None known.
 - Which source bytes, allocated extent and complete or failed transfer outcomes
   supply the window passed into registration (FND-COMBAT-040, FND-COMBAT-093,
   FND-COMBAT-094, FND-COMBAT-095, FND-COMBAT-096, Q-COMBAT-053).
+- Which actual caller and producer paths admit the archive/directory state used
+  by the window request (FND-COMBAT-096, FND-COMBAT-097, Q-COMBAT-054).

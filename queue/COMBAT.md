@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-054
+Next ID: Q-COMBAT-055
 
 ## Static
 
@@ -111,32 +111,36 @@ Next ID: Q-COMBAT-054
   Blocks: slice 4.
 - Q-COMBAT-053. RULE-COMBAT-007: Which source bytes and allocation/transfer states
   supply the window buffer passed into registration during numbered loading?
-  Settles it: live archive/directory producers and selected resource/length admission
-  beyond FND-COMBAT-095's provider/source bounds and FND-COMBAT-096's local
-  selection/preparation/close transitions, allocation extent and initialized
-  contents, and the resulting header/child-table bytes on the admitted complete,
+  Settles it: allocation extent and initialized contents, and the resulting
+  header/child-table bytes on the admitted complete,
   early-rejection and post-allocation failure paths. Trace the input producers and
   preservation needed for the actual window call; retain I/O and runtime limits
   explicitly. Local status/output propagation is already FND-COMBAT-094; later
-  graph/table mutations and callback-byte writers remain Q-COMBAT-051.
-  Tried: split from Q-COMBAT-051. FND-COMBAT-040 identifies the window resource
-  request and FND-COMBAT-093 its registration order. FND-COMBAT-094 follows the
-  reader's allocated slot through the opener's pointer-only gate and distinguishes
-  the APFM child wrapper's AX gate. FND-CONFIG-151, FND-CONFIG-209 and
-  FND-CONFIG-210 retain archive, allocation, marker and conditional clearing limits;
-  nonnull does not establish complete source bytes, valid capacity or native failure.
-  Tried: FND-COMBAT-095 verifies all 26 top-level archive fingerprints and finds
-  RESOURCE.GFF the sole WIND provider. It connects FND-UI-001/FND-UI-002's
-  known complete payloads to the count-word and table indexing without claiming
-  a live copy. Other unmodified files in that inspected set are removed as WIND
-  source candidates; live directory admission, buffer/heap contents, I/O and later
-  preservation remain. Reuse these source bounds rather than repeating the census.
-  Tried: FND-COMBAT-096 reads handle selection/resolution, preparation and close
-  ordering through the recursive close-all failure. Those local transitions are
-  removed from Settles it: selection rejection has no own active-pointer rewrite,
-  and a later close-all error does not roll back earlier completed closes. Actual
-  callers, state/link/handle producers, external results and preservation still
-  govern provider lifetime; no close-all execution during numbered loading is inferred.
+  graph/table mutations and callback-byte writers remain Q-COMBAT-051. Live
+  archive/directory and selected resource/length admission is split to Q-COMBAT-054.
+  Tried: split from Q-COMBAT-051, with archive-state admission now separated
+  into Q-COMBAT-054. FND-COMBAT-040 and FND-COMBAT-093 identify the request
+  and registration order; FND-COMBAT-094 binds the returned allocation slot, and
+  FND-COMBAT-095 supplies the fingerprinted provider/source bounds. Those
+  bounded parts are removed from Settles it. FND-CONFIG-151, FND-CONFIG-209
+  and FND-CONFIG-210 retain allocation, marker, clearing and I/O limits; nonnull
+  does not establish complete source bytes, valid capacity or native failure.
+  Blocks: slice 4.
+- Q-COMBAT-054. RULE-COMBAT-007: Which archive/directory state and selected resource
+  can reach the window reader on the numbered-load routes? Settles it: actual caller
+  ordering and input admission before each relevant request, plus the state, link,
+  handle and catalog producers for the known selection/open/close/growth and
+  traversal-mode mechanisms. Account for indirect and copied/aliased writes beyond
+  the retained literal censuses. Use Q-COMBAT-046 for caller/event admission;
+  Q-COMBAT-053 retains allocation and transferred-buffer contents.
+  Tried: split from Q-COMBAT-053. FND-COMBAT-095 bounds on-disk providers;
+  FND-COMBAT-096 maps local selection/preparation/close transitions.
+  FND-COMBAT-097 binds the Save/Load row reader's own temporary handle and
+  result ordering, including its absence of a close-AX test. Those local paths are
+  removed from Settles it; their admission and preservation at a particular later
+  window request remain. Reuse FND-CONFIG-037, FND-CONFIG-041,
+  FND-CONFIG-068, FND-CONFIG-069 and FND-PARTY-042 for the census and
+  startup limits; a row marker does not establish archive cleanup success.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
