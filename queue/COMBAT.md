@@ -70,14 +70,22 @@ Next ID: Q-COMBAT-050
   remaining callbacks, rather than treating a selector reading as their effects. Blocks: slice 4.
 - Q-COMBAT-049. RULE-COMBAT-007: Can numbered loading reach a nonzero APFM +5A or +5E
   callback, and if so which target? Settles it: origins and storage identity of the records
-  at A125 and A15B, APFM callback-field preservation through reached construction/copy/write
-  paths, and mode A13D/A155 admission through the services of FND-CONFIG-189; identify
+  at A125 and A15B, selected-archive and I/O admission for the acquisition form of
+  FND-COMBAT-089, and remaining construction/copy/write paths
+  beyond the intact zero-image APFM setup of FND-COMBAT-088, and mode A13D/A155
+  admission through the services of FND-CONFIG-189; identify
   the concrete target and its effects if nonzero fields are admitted. Account for the
   block-copy, alternative-base and split-pointer limits retained in FND-EXE-588.
   Tried: split from Q-COMBAT-048. FND-UI-005 supplies shipped zero fields;
   FND-PARTY-044 and FND-EXE-588 supply the earlier field/setter census;
   FND-COMBAT-087 reads both selector producer bodies and distinguishes their saved and
-  reread pointers without settling live record identity. Blocks: slice 4.
+  reread pointers without settling live record identity.
+  Tried: FND-COMBAT-088 removes the
+  local zero-image constructor as a callback-byte producer under its explicit guard
+  and storage conditions. FND-COMBAT-089 binds the child call to a null local destination
+  and finds the sole APFM provider among 26 fingerprinted top-level archives; live archive
+  selection, successful transfer, aliases and other-write admission stay open.
+  Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
   Settles it: indexed and bulk producers of slot 319's presentation entry-index word, save
