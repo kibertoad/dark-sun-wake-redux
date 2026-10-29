@@ -113,4 +113,4 @@ None known.
   callback fields during loading (FND-CONFIG-189, Q-COMBAT-052).
 - Which source bytes, allocated extent and complete or failed transfer outcomes
   supply the window passed into registration (FND-COMBAT-040, FND-COMBAT-093,
-  FND-COMBAT-094, FND-COMBAT-095, Q-COMBAT-053).
+  FND-COMBAT-094, FND-COMBAT-095, FND-COMBAT-096, Q-COMBAT-053).

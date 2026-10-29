@@ -111,8 +111,9 @@ Next ID: Q-COMBAT-054
   Blocks: slice 4.
 - Q-COMBAT-053. RULE-COMBAT-007: Which source bytes and allocation/transfer states
   supply the window buffer passed into registration during numbered loading?
-  Settles it: live archive/directory and selected resource/length admission beyond
-  FND-COMBAT-095's fingerprinted provider set and source extent, allocation extent and initialized
+  Settles it: live archive/directory producers and selected resource/length admission
+  beyond FND-COMBAT-095's provider/source bounds and FND-COMBAT-096's local
+  selection/preparation/close transitions, allocation extent and initialized
   contents, and the resulting header/child-table bytes on the admitted complete,
   early-rejection and post-allocation failure paths. Trace the input producers and
   preservation needed for the actual window call; retain I/O and runtime limits
@@ -130,6 +131,12 @@ Next ID: Q-COMBAT-054
   a live copy. Other unmodified files in that inspected set are removed as WIND
   source candidates; live directory admission, buffer/heap contents, I/O and later
   preservation remain. Reuse these source bounds rather than repeating the census.
+  Tried: FND-COMBAT-096 reads handle selection/resolution, preparation and close
+  ordering through the recursive close-all failure. Those local transitions are
+  removed from Settles it: selection rejection has no own active-pointer rewrite,
+  and a later close-all error does not roll back earlier completed closes. Actual
+  callers, state/link/handle producers, external results and preservation still
+  govern provider lifetime; no close-all execution during numbered loading is inferred.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
