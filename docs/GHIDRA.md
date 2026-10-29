@@ -29,8 +29,22 @@ The current research machine has:
 
 | Tool | Version | Location |
 |---|---|---|
-| Ghidra | 12.1.3 | `C:\Users\kiber\AppData\Local\Programs\Ghidra\ghidra_12.1.3_PUBLIC` |
-| Eclipse Temurin JDK | 25.0.4.1 | `C:\Program Files\Eclipse Adoptium\jdk-25.0.4.101-hotspot` |
+| Ghidra | 12.1.3 | `artifacts/static-tools/ghidra_12.1.3_PUBLIC` (ignored local installation) |
+| Eclipse Temurin JDK | 21.0.12.1 | `C:\Program Files\Eclipse Adoptium\jdk-21.0.12.101-hotspot` |
+
+The older profile installation and JDK 25 paths are absent on this machine.
+The local Ghidra installation was restored from the official
+[12.1.3 release](https://github.com/NationalSecurityAgency/ghidra/releases/tag/Ghidra_12.1.3_build),
+archive `ghidra_12.1.3_PUBLIC_20260817.zip`, after verifying SHA-256
+`93a5d11a9ad510622acaaf908c556a7b9b764d338e78a7567f3689bf5081fd54`.
+Its application properties require Java 21 or later. Set JAVA_HOME only for
+the analysis process; historical findings retain the versions they actually used.
+The ignored tool location is installation configuration, not an evidence store.
+
+When invoking analyzeHeadless.bat from PowerShell, pass the semicolon-separated
+result of Get-GhidraScriptPath.ps1 inside literal double quotes, as
+Measure-ResearchBaseline.ps1 does. Without them, the batch launcher can split
+the path into an extra argument and fail before import.
 
 Check `support\analyzeHeadless.bat` and `bin\java.exe` at these paths before
 searching the machine or installing anything. A sandboxed process may need

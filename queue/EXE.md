@@ -10,6 +10,11 @@ Next ID: Q-EXE-033
   whose rows for `0x8DDE9`, `0x8DE45` and `0x8DF0E` end at `0x8DE17`, `0x8DF0E` and `0x8DFC4`
   (through the declared-entry or reconciliation steps of `docs/GHIDRA.md`), with every other
   overlay row checked by the test FND-EXE-633 describes. Blocks: none.
+  Tried: FND-EXE-635 restores the missing static prerequisites and reproduces
+  the three short bodies. Its isolated declared-decode control recovers exactly
+  their 217 missing bytes in a frozen snapshot copy; normal fall-through
+  declarations do not. Durable decode regeneration, the full boundary census,
+  other full-model body differences and accepted joined inventories remain open.
 
 ## Emulated call
 
