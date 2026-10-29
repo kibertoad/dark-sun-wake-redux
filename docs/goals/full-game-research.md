@@ -32,127 +32,30 @@ Do not repeat a retained search without new evidence, tooling or reading.
 
 ## Handover
 
-- Checkpoint 2026-10-29: commits 231d857b, e3f4181e, 0f924a82 and
-  2be8d56a are local; no push requested. Test.ps1 -NoRestore passed for
-  the FND-COMBAT-077 batch: 151 Node tests and 715 .NET tests.
-- Current: Q-COMBAT-007 and Q-COMBAT-044 remain open; use FND-COMBAT-075,
-  FND-COMBAT-076 and FND-COMBAT-077. No implementation changes or owned
-  emulator/validation processes remain.
-- Next Q-COMBAT-044: the special slot-319 allocation/reclamation obligation
-  (FND-PARTY-119, FND-PARTY-131, FND-COMBAT-054), then the other reader
-  children and load continuations of FND-SAVE-022. Presentation-helper
-  context is FND-EXPLORE-019. FND-COMBAT-077 is no whole-load proof.
-- Next Q-COMBAT-007: FND-COMBAT-076 child preservation and remaining
-  consumers from FND-COMBAT-075; dependencies include FND-SCRIPT-026,
-  FND-SCRIPT-028 and FND-SCRIPT-029.
-
-- Stage: Slices. Research continues toward the full Audit condition.
-- Updated 2026-10-26 when the session wound down at the owner's request; the
-  goal continues. No workers or emulator runs of this goal are left running.
-- Last full gate: 2026-10-25, Test.ps1 -NoRestore passed on 36e0bb1c,
-  including 715 .NET tests.
-- Unfinished: none in the tree. Unfinished and blockers outside this goal's
-  batches are in docs/HANDOVER.md.
-- Owner's order for mapping: keep the installed DSUN.EXE inventory stable,
-  place the uncited functions, then complete readings.
-- Done this session: every uncited installed DSUN.EXE routine is placed
-  (FND-EXE-606 to FND-EXE-631); FND-EXE-632 is a trampoline census;
-  FND-EXE-633 and Q-EXE-032 record three overlay 204 inventory rows that
-  stop short. Q-PARTY-112 closed (FND-PARTY-257). Q-RNG-025 narrowed to
-  the two callers that set the cast byte (FND-RNG-064). Q-RNG-005 split
-  into Q-RNG-005, Q-RNG-029 and Q-RNG-030; seven of FND-RNG-058's nine
-  transfers resolved (FND-RNG-065, FND-RNG-066).
-- Also done: the start window, Preferences, inventory and Split readings
-  (FND-UI-059 to FND-UI-067); the edge scroll, the opening leader's cell
-  and the Walk planner (FND-EXPLORE-008 to FND-EXPLORE-015,
-  RULE-EXPLORE-005 now supported with its procedure); where
-  `control_locked` is set and where Space reaches the key routine
-  (FND-AI-005, FND-AI-006). New items: Q-EXPLORE-010 (the planner's
-  unread callees), Q-AI-005 (Agent run: does an effect's end clear the
-  button's setting). A play-ready Walk click fails because slot 1 has
-  no position at that checkpoint (FND-EXPLORE-015); start Walk runs from
-  a new game instead. During an edge hold the emulated mouse driver
-  returned the injected column only once in 50 calls (FND-EXPLORE-009),
-  which may be a rust-dos defect; nothing was filed.
-- Also done, later: Q-EXPLORE-003 (FND-EXPLORE-017, FND-EXPLORE-018,
-  FND-INPUT-016), how a walker moves between cells (FND-EXPLORE-019 to
-  FND-EXPLORE-021), the timer library's slots and the game tick
-  (FND-TIME-012 to FND-TIME-010), every script trigger list and its events
-  (FND-SCRIPT-027 to FND-SCRIPT-029, RULE-SCRIPT-013), and what a saved
-  game holds, the key callback and the exit cleanup (FND-SAVE-018 to
-  FND-SAVE-024, Q-SAVE-001, Q-SAVE-004 and Q-SAVE-005 closed). New tools in
-  `tools/research/exec-census/`: `segment_offset_refs.py`,
-  `scmd_walk_frames.py`, `gff_byte_search.py`.
-- Found: BUG-COMBAT-001. With `DS:426D` at 9999, which the end of
-  combat leaves until a leader key (FND-RNG-069, FND-RNG-070), a view
-  click sends slot 9999 to `2D40:2F34`, which writes a record number over
-  the July and August month lengths (FND-RNG-067, FND-RNG-068) and fills
-  record 9999 with `0xFF`. From then on `28C9:1EDB` runs overlay 173
-  `+059A(0, &DS:426D)` on every pass: a combat round step adds 60 to
-  `4C13:035B` about 15 times a second, and the leader keys are refused
-  (FND-RNG-074 to FND-RNG-077, FND-COMBAT-056, FND-COMBAT-057). Each
-  pass is read (FND-COMBAT-060 to FND-COMBAT-062); F1 or F2 taken in the
-  short gap after a pass's input flush, then EXIT or a save, ends it
-  (FND-COMBAT-063, FND-COMBAT-064). Open: Q-COMBAT-037 (load, leader key
-  after), Q-RNG-031, Q-RNG-037 to Q-RNG-039 and Q-RNG-034 (other routes
-  to 9999). Also found: BUG-SAVE-001 (F3, Save, EXIT leaves `DS:627C` at
-  1, so the next save or load quits to DOS; FND-SAVE-025).
-- Later runs: walk timing in the first fight (FND-EXPLORE-022), no read
-  of `4E71:0000` (FND-EXPLORE-023), grey Up (FND-INPUT-017), `wait_ms`
-  at 1,000 µs with no music timer slot (FND-TIME-011, Q-TIME-005 open).
-  Spell counts and the cast window read (FND-MAGIC-002, FND-MAGIC-003,
-  RULE-MAGIC-001 supported). Run drivers in `tools/research/rust-dos-runs/`:
-  `pass_counts.py`, `pass_bins.py`, `input_watch.py`, `walk_drive.py`,
-  `bug_exit.py`, configs in `counts/`.
-- Latest session, magic: spell casting, the cast window and memorisation
-  counts (FND-MAGIC-002 to FND-MAGIC-024, RULE-MAGIC-001 to
-  RULE-MAGIC-006); turn undead is DATA 306 from the TURN UNDEAD button
-  (RULE-MAGIC-006, FND-EXE-634). Clock and timers:
-  FND-TIME-012 to FND-TIME-014. Closed Q-MAGIC-006, Q-MAGIC-007,
-  Q-MAGIC-018, Q-MAGIC-019 and Q-MAGIC-021; added Q-MAGIC-027 to
-  Q-MAGIC-029.
-- Latest session, combat: the attack routine, to-hit, damage, Armor Class
-  and swings (FND-COMBAT-065 to FND-COMBAT-069; RULE-COMBAT-002, 003 and
-  006 rewritten, parity Code partial with Defect notes), the difficulty's
-  to-hit and hit point scaling (FND-COMBAT-075, RULE-COMBAT-007), mark 3
-  and recovery (FND-COMBAT-071), and every field of the two combatant
-  records with how records are chosen (FND-COMBAT-072 to FND-COMBAT-074).
-  The rules use the new field names. Closed Q-COMBAT-002 and Q-COMBAT-005;
-  added Q-COMBAT-038 to Q-COMBAT-043. Possible original bugs, unconfirmed:
-  the two-weapon term is a bonus below Dexterity 6, and overlay 197
-  `+287D` compares two locals only one branch writes (Q-COMBAT-041).
-- Latest session, runs: the leader's walk outside a fight is timed
-  (FND-EXPLORE-024, FND-EXPLORE-025; Q-EXPLORE-006 closed, Q-EXPLORE-014
-  added for followers and pass length), and no read of `4E71:0000` over a
-  walk, key steps and a save outside a fight (FND-EXPLORE-026). Only the
-  first 6.9 s of a load were scanned: to finish Q-EXPLORE-012, run
-  `counts/walk2-tload.json` from `D:/rust-dos-games/work/walk2/slprep:preload`
-  with free memory (about 2.5 to 3 hours; one attempt failed when other jobs
-  held most of the RAM). `walk_drive.py` now takes `out`, `trace_page` and
-  `trace_count` from the config. Checkpoints `f3:won` (first fight won)
-  and `exprep:explore` (play outside the fight) are in
-  `D:/rust-dos-games/work/walk2/`.
-- Runtime tools: `tools/research/rust-dos-runs/trampoline_census.py` and
-  `indirect_targets.py` (armed breakpoints on indirect transfers, memory
-  reads, write watchpoints, key and pointer inputs, and `--count` sites
-  with callers and arguments, capped at 50 hits because each stop opens
-  TCP connections and uncapped runs use up the ephemeral ports). Run them with
-  `artifacts/evidence-python/Scripts/python.exe -I`.
-- The owner asked whether runtime-first research belongs in the protocol
-  or the template; an upstream issue or PR was offered and awaits their
-  answer. File nothing upstream without it.
-- Next:
-  - Agent runs: Q-COMBAT-041 (the two-weapon term and `+287D` in play),
-    the rest of Q-EXPLORE-012's load scan, Q-EXPLORE-014.
-  - Static: Q-COMBAT-038, Q-COMBAT-040, Q-COMBAT-007, Q-COMBAT-042,
-    Q-COMBAT-043, Q-MAGIC-023, Q-MAGIC-025, Q-MAGIC-027 to Q-MAGIC-029,
-    and the other open Q-MAGIC items.
-  - Q-RNG-031, Q-RNG-037 to Q-RNG-039 (copies and reads into `DS:426D`),
-    Q-RNG-034, Q-COMBAT-037, Q-TIME-005.
-  - Q-RNG-029 and Q-RNG-005. Q-RNG-030 is closed: the `2707` copies,
-    the program's timer callbacks and the sound drivers' timer functions
-    write none of the clock windows (FND-RNG-079 to FND-RNG-084).
-  - Complete readings for RULE-RNG-001's functions.
-  - Q-RNG-003, Q-RNG-007, Q-RNG-022, Q-RNG-024 to Q-RNG-027 and
-    Q-PARTY-113.
-  - Q-RNG-006 (Agent run) and Q-RNG-028 (Source).
+- Stage: Slices. Full research Audit remains unproved; continue the complete
+  Condition above. The installed DSUN.EXE inventory stays stable: place uncited
+  functions first, then complete readings. Use docs/RESEARCH-CLOSURE.md and
+  docs/research-closure-numbered-load.json; mapping and citation coverage are
+  separate from accepted complete readings.
+- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-084,
+  including 151 Node tests and 715 .NET tests. Documentation passed with its
+  reported argument-count, Kaitai and scheduled-generation skips.
+- Current batch references: FND-COMBAT-075 through FND-COMBAT-084;
+  Q-COMBAT-007 and Q-COMBAT-044 through Q-COMBAT-048 remain open.
+  No implementation changes or original-game runs were made in these batches.
+- Unfinished: none in the working tree at this checkpoint. No owned emulator
+  or validation process remains. Other project blockers remain in docs/HANDOVER.md.
+- Next Q-COMBAT-047: archive/resource-length provenance and admitted table
+  lifetimes, using FND-COMBAT-082, FND-COMBAT-083, FND-COMBAT-084,
+  FND-CONFIG-037, FND-CONFIG-067 and FND-CONFIG-151. Consult existing
+  FND-COMBAT-052 before reading overlay 182 +088B again.
+- Next Q-COMBAT-046: field/event admission and controlled incoming callers,
+  using FND-COMBAT-081 and FND-COMBAT-084. The remaining callback obligation
+  is Q-COMBAT-048, with FND-CONFIG-189 as context.
+- Next Q-COMBAT-045: temporary-slot admission, using FND-COMBAT-078,
+  FND-PARTY-119, FND-PARTY-131 and FND-COMBAT-054; then Q-COMBAT-044's
+  direct continuations using FND-SAVE-022 and FND-COMBAT-077 through 081.
+- Next Q-COMBAT-007: script child preservation and remaining consumers,
+  using FND-COMBAT-075, FND-COMBAT-076 and FND-SCRIPT-026 through 029.
+- Later: the other area queues and explicit ownership/complete-reading work
+  required by the full goal. Do not interpret this local ordering as reduced scope.
