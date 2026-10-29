@@ -72,7 +72,8 @@ Next ID: Q-COMBAT-050
   callback, and if so which target? Settles it: origins and storage identity of the records
   at A125 and A15B, selected-archive and I/O admission for the acquisition form of
   FND-COMBAT-089, and remaining construction/copy/write paths
-  beyond the intact zero-image APFM setup of FND-COMBAT-088, and mode A13D/A155
+  beyond the bounded setup, paint and text-copy paths of FND-COMBAT-088,
+  FND-COMBAT-090 and FND-COMBAT-091, and mode A13D/A155
   admission through the services of FND-CONFIG-189; identify
   the concrete target and its effects if nonzero fields are admitted. Account for the
   block-copy, alternative-base and split-pointer limits retained in FND-EXE-588.
@@ -88,6 +89,9 @@ Next ID: Q-COMBAT-050
   Tried: FND-COMBAT-090 reads the rebased APFM paint helper's full own-write footprint
   and excludes its intact zero-style/image path as a callback-byte producer. Remaining
   intervening style/image changes, other writes, aliases and live record identity remain.
+  Tried: FND-COMBAT-091 accounts for the rebased indexed 24-byte text setter and getter,
+  removing those own writes as callback/style producers under the named caller's storage
+  conditions. Actual input termination, aliases, other writes and live admission remain.
   Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
