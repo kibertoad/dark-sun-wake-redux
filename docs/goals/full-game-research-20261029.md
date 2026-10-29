@@ -40,48 +40,37 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Latest research entry: FND-COMBAT-101; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-COMBAT-101.
+- Latest research entry: FND-EXE-635; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-EXE-635.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-EXE-032 and FND-EXE-633, using the DSUN reconciliation procedure
-  in docs/EVIDENCE-TOOLS.md. Check the existing local snapshot inputs before
-  changing declarations; never repair the generated inventory by hand.
+- Next: Q-EXE-032, using FND-EXE-633/FND-EXE-635 and
+  docs/implementation-plans/INVENTORY-TAIL-RECONCILIATION.md.
+  Make the evidenced decode declarations durable across regeneration, then
+  complete the overlay boundary census and review all replacement differences.
+  Never edit generated inventory rows by hand or treat a local repair as an
+  accepted joined denominator. The committed inventory remains unchanged.
+- Static inputs and projects exist under
+  GAME_DIR/analysis/inventory-reconcile-20261029/. Keep the frozen and isolated
+  controls and the full-model comparison needed by FND-EXE-635. Its Setup and
+  reproduction instructions distinguish these runs. The saved project named
+  INST-overlay-20261029a is the pre-repair input; INST-overlay-20261029d is the
+  isolated control. No analysis process remains active. Installation paths and
+  the quoted batch-launcher script-path requirement are current in docs/GHIDRA.md.
 - Q-COMBAT-056 continues from FND-COMBAT-100/FND-COMBAT-101.
-  Bind assignment coverage and intervening preservation for the four local
-  selectors, then the named context lifetime. Do not repeat the declared
-  entry-control or direct-assignment enumerations.
-  The regenerated index exists at
-  GAME_DIR/analysis/reader-admission-20261029/scripts.txt. Its inputs and decoder
-  are identified in FND-COMBAT-100. Reuse it while those inputs remain unchanged.
-  The literal-selector-entry-reach.txt report exists beside that index;
-  FND-COMBAT-101 names its declared controls, tool identity and limits.
-- Q-COMBAT-057 retains nonliteral first operands and the script decode gap;
-  Q-COMBAT-055 retains independent reader execution and preparation admission.
-  Reuse FND-COMBAT-099/FND-COMBAT-100. The existing closure map is
-  docs/research-closure-numbered-load.json; its assessment is not ready.
+  Bind assignment coverage and intervening preservation for the local selectors,
+  then the named context lifetime. Reuse the finite entry and assignment lists.
+  GAME_DIR/analysis/reader-admission-20261029/scripts.txt and
+  literal-selector-entry-reach.txt remain the retained index and control report;
+  their identities and limits are in those findings.
+- Q-COMBAT-055 retains independent reader execution and preparation admission;
+  Q-COMBAT-057 retains nonliteral first operands and the script decode gap.
+  Reuse FND-COMBAT-099/FND-COMBAT-100. The current closure map is
+  docs/research-closure-numbered-load.json; its assessment remains not ready.
 - Q-COMBAT-046 retains window/event admission and precedes Q-COMBAT-054.
-  Reuse FND-COMBAT-081/FND-COMBAT-084/FND-COMBAT-085 and FND-UI-051;
-  take up remaining state producers/lifetimes and window-path incoming transfers
-  rather than repeating local navigation or wrappers.
-- Reuse FND-COMBAT-098 for the three named restoration sites and their local
-  sources/gates/order. Remaining work is snapshot/slot provenance and preservation,
-  live window/handler identity and event delivery, not those restore-call bodies.
-  FND-CONFIG-162/FND-CONFIG-163 retain the stored-mirror/setter guard inputs.
-- Q-COMBAT-054 now independently tracks archive/directory state and selected
-  resource admission. Reuse FND-COMBAT-097 for this Save/Load row caller,
-  FND-COMBAT-096 for local transitions and FND-COMBAT-095 for source bounds.
-  DI, stack, handle/link and actual call admission remain explicit obligations.
-- Q-COMBAT-053 retains allocation/buffer contents, I/O and preservation;
-  FND-COMBAT-094 and FND-CONFIG-209/FND-CONFIG-210 retain its local
-  propagation and allocation/clearing inputs. No new native outcome is established.
-- Q-COMBAT-051 retains other graph/table producers, preservation, payload
-  identity, lifetime and later writers. Reuse FND-COMBAT-093 for this
-  registration producer and FND-COMBAT-092/FND-UI-068 for selection.
-- Q-COMBAT-050 retains acquisition, Q-COMBAT-052 mode admission, and
-  Q-COMBAT-049 the combined dispatch question. Q-COMBAT-047 follows for
-  resource-length and table-lifetime admission. Other queues remain in scope.
-- Findings are recorded, with no new complete-reading declaration or callback
-  target established. No original-game run or gameplay implementation added.
-- The licensed DSUN.EXE and locked resident-listing tool were revalidated.
-  No owned analysis/runtime process remains; reusable MSBuild workers are retained.
-- docs/HANDOVER.md retains other local tooling constraints and dependencies.
+  Reuse FND-COMBAT-081/FND-COMBAT-084/FND-COMBAT-085/FND-COMBAT-098 and FND-UI-051.
+  Q-COMBAT-054, Q-COMBAT-053 and Q-COMBAT-051 retain the separate archive,
+  transfer/buffer and record-lifetime obligations. Their existing findings
+  remain the starting evidence. Other queues and all goal areas stay in scope.
+- No original-game run, gameplay implementation, complete-reading promotion or
+  accepted inventory replacement was added. Reusable MSBuild workers are retained.
+  docs/HANDOVER.md retains other local tooling constraints and dependencies.
