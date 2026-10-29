@@ -33,20 +33,25 @@ No push, release or history rewrite is authorized by this goal.
   paint and text-copy readings. Do not equate them with live record admission.
 - Reuse FND-UI-068 for the corrected hit search. The citation-only change
   in the count-caller tool changes no model inputs or recorded tool outcomes.
+- On 2026-10-29, GAME_DIR/captures/rust-dos-regenerated/ and artifacts/runs/
+  were absent. Runtime follow-up needs state preparation; do not assume the
+  historical checkpoint files are present from their documented capability tests.
 
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: 4259283c; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 4259283c.
+- Last research commit: b382cde0; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for b382cde0.
   Documentation passed with its reported skips. Pinned rules verified offline.
 - Next: Q-COMBAT-053 live archive/directory admission, allocation/buffer
   contents, I/O and preservation. Reuse FND-COMBAT-095 for the fingerprinted
   provider set and source bounds; do not repeat that census with unchanged
   inputs. Reuse FND-COMBAT-094 for local status/output propagation.
-- Before extending live archive admission, reuse FND-CONFIG-037,
-  FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-041, FND-CONFIG-064 and
-  FND-CONFIG-067 for startup, list/traversal and numeric-handle lifetime.
+- Reuse FND-COMBAT-096 for local selection/preparation/close transitions;
+  next archive work needs actual caller and state/link/handle-producer admission.
+  FND-SAVE-007 and FND-PARTY-042 retain bounded caller/startup contexts to
+  review first. FND-CONFIG-041, FND-CONFIG-068 and FND-CONFIG-069 retain
+  census limits; do not infer complete indirect or alias coverage from them.
   FND-CONFIG-209/FND-CONFIG-210 retain the allocation/clearing limitations.
 - Q-COMBAT-051 retains other graph/table producers, preservation, payload
   identity, lifetime and later writers. Reuse FND-COMBAT-093 for this
