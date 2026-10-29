@@ -31,15 +31,23 @@ No push, release or history rewrite is authorized by this goal.
   from invoking Git; the same checker passed with approved child-process access.
 - Reuse prior Q-COMBAT-049 findings rather than repeating bounded APFM setup,
   paint and text-copy readings. Do not equate them with live record admission.
+- Reuse FND-UI-068 for the corrected hit search. The citation-only change
+  in the count-caller tool changes no model inputs or recorded tool outcomes.
 
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Base: 67b54db4; clean tree at discovery; previous owner wrap-up is complete.
-- Pinned rules verified offline. Documentation check passed with its reported
-  skips using --base main and approved child-process access.
-- Next: Q-COMBAT-049 remaining record identity, acquisition and other writers;
-  inspect the reduced Settles it before retrying. Q-COMBAT-047 follows for
+- Last research commits: d63747b7 and a0e3d926; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for a0e3d926.
+  Documentation passed with its reported skips. Pinned rules verified offline.
+- Next: Q-COMBAT-051 graph/table producers, payload identity, storage lifetime,
+  aliases and remaining writers. Reuse FND-COMBAT-092 and FND-UI-068 for the
+  local selection rules; do not repeat that reading as a producer proof.
+- Q-COMBAT-050 retains acquisition, Q-COMBAT-052 mode admission, and
+  Q-COMBAT-049 the combined dispatch question. Q-COMBAT-047 follows for
   resource-length and table-lifetime admission. Other queues remain in scope.
-- Prior source/tool paths must be revalidated; no owned runtime process started.
-- Existing handover retains local tooling constraints and remaining dependencies.
+- Findings are recorded, with no new complete-reading declaration or callback
+  target established. No original-game run or gameplay implementation added.
+- The licensed DSUN.EXE and locked resident-listing tool were revalidated.
+  No owned analysis/runtime process remains; reusable MSBuild workers are retained.
+- docs/HANDOVER.md retains other local tooling constraints and dependencies.
