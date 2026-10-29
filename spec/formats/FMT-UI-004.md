@@ -9,7 +9,7 @@ byte_order: little
 size: 116
 text: false
 definition: fmt_ui_004.ksy
-evidence: [FND-UI-001, FND-UI-005, FND-UI-006, FND-UI-007, FND-COMBAT-088]
+evidence: [FND-UI-001, FND-UI-005, FND-UI-006, FND-UI-007, FND-COMBAT-088, FND-COMBAT-090]
 conflicting: []
 split_with: []
 related: [RULE-UI-001]
@@ -43,6 +43,14 @@ resource, whose corresponding bytes are zero (FND-COMBAT-088):
 - `0x16`, two bytes: y + height - 1, retaining the low word.
 - `0x54`, four bytes: far pointer to the parent window supplied by registration.
 
+The shared frame-operation helper also interprets word `0x0E` as rendering
+control flags. Its tested bits are `0x01`, `0x02`, `0x04`, `0x08` and
+`0x10`; this word is zero in all shipped frames. On its bit-`0x02` path,
+the helper copies the eight placement bytes at `0x10..0x17` into a working
+rectangle at `0x20..0x27`, then conditionally adjusts its word endpoints.
+Other producers and the complete meaning of these bounds remain open
+(FND-COMBAT-090, Q-UI-001).
+
 The shared setup helper sees image-number fields at frame offsets `0x2C`
 and `0x34`; both are zero in all shipped frames. With those fields intact,
 valid disjoint storage, no address wrap and both stack guards bypassed,
@@ -50,6 +58,13 @@ the APFM setup branch returns zero without requesting images and preserves
 the mask and callback region. This is a local construction result, not a
 proof of later callback-field values or of successful resource acquisition
 (FND-COMBAT-088, Q-COMBAT-049).
+
+For an intact zero image field at `0x2C` and zero style word at `0x0E`,
+the APFM child-paint operation likewise returns zero without frame writes
+or rendering child calls after its guards, under the same valid-storage
+and bypassed-guard conditions. This preserves the callback bytes through
+that local operation; it is not a claim about the window's other callbacks
+or complete visible output (FND-COMBAT-090, Q-COMBAT-049).
 
 ## Enumerations and flags
 

@@ -85,6 +85,9 @@ Next ID: Q-COMBAT-050
   and storage conditions. FND-COMBAT-089 binds the child call to a null local destination
   and finds the sole APFM provider among 26 fingerprinted top-level archives; live archive
   selection, successful transfer, aliases and other-write admission stay open.
+  Tried: FND-COMBAT-090 reads the rebased APFM paint helper's full own-write footprint
+  and excludes its intact zero-style/image path as a callback-byte producer. Remaining
+  intervening style/image changes, other writes, aliases and live record identity remain.
   Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
