@@ -76,7 +76,12 @@ targets, and repairs the declared returns and fall-throughs (FND-EXE-597).
 `python -I tools/research/exec-census/walk_declared_flows.py` writes the
 flows file's `jumps` and `decode` lists from the walk report; `returns`,
 `fallThroughs` and the `jumps` entries that name a finding as `evidence` (table
-jumps the walk does not declare) are written by hand, and the script keeps them. Change those files, never the inventory,
+jumps the walk does not declare) are written by hand, and the script keeps them.
+It also preserves manually reviewed `decode` rows with a nonempty `evidence`
+string, including FND-EXE-633's three tails tested by FND-EXE-635. An exact
+generated range/owner match retains the manual evidence; stale unevidenced
+rows are regenerated. Conflicting owners and duplicate manual ranges fail.
+Change those files, never the inventory,
 to add or drop a start or a flow. Run `CorrectNearTransfers.java` once more,
 then `tools/ghidra/FillInstructionBodies.java`, which adds to each body the
 bytes of its own instructions that Ghidra left out because a call targets them

@@ -28,6 +28,11 @@ Acceptance:
 - Reconcile through the existing join/staging checks. Explain all changed
   starts, body ranges and region accounting; refresh affected closure-plan
   inventory hashes only against the accepted regenerated files.
+- Preserve explicitly evidenced manual decode rows when regenerating walk
+  declarations, including when a walk temporarily emits the same range or
+  later stops emitting it. Replace stale generated rows, keep evidence on
+  exact matches, and diagnose conflicting owners, duplicate manual ranges
+  and empty evidence. Synthetic tests exercise this without licensed inputs.
 
 Exit: Q-EXE-032 closes only when its full boundary check and regenerated
 inventories pass, evidence records the result and the repository gate passes.

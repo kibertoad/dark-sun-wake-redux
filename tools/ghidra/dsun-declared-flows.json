@@ -1,12 +1,14 @@
 {
  "build": "BLD-GOG-EN-1.1",
  "file": "DSUN.EXE",
- "about": "Declared flows ApplyDeclaredFlows.java applies to both DSUN.EXE views after the declared entries. jumps are the table jumps FND-RNG-058's walk resolves, with the bound the walk reads before each and the distinct targets of the table's rows, and the table jumps the walk does not resolve, each with the finding that reads its table as evidence; decode lists the runs of walk instructions outside every range of the inventory FND-EXE-595 staged, with the walk routine that decoded each; returns lists functions the views mark as not returning that return, and fallThroughs instructions whose next instruction runs after them, each with the reason. walk_declared_flows.py writes jumps and decode and keeps the jumps that carry evidence; those, returns and fallThroughs are written by hand. Resident addresses are segment:offset with the load image at segment 0x1000, overlay addresses shipped-file offsets.",
+ "about": "Declared flows ApplyDeclaredFlows.java applies to both DSUN.EXE views after the declared entries. jumps are the table jumps FND-RNG-058's walk resolves, with the bound the walk reads before each and the distinct targets of the table's rows, and the table jumps the walk does not resolve, each with the finding that reads its table as evidence; decode lists the runs of walk instructions outside every range of the inventory FND-EXE-595 staged, with the walk routine that decoded each; returns lists functions the views mark as not returning that return, and fallThroughs instructions whose next instruction runs after them, each with the reason. walk_declared_flows.py writes jumps and decode and keeps evidenced jumps and decode repairs; those, returns and fallThroughs are written by hand. Resident addresses are segment:offset with the load image at segment 0x1000, overlay addresses shipped-file offsets.",
  "evidence": [
   "FND-RNG-058",
   "FND-EXE-595",
   "FND-EXE-597",
-  "FND-EXE-601"
+  "FND-EXE-601",
+  "FND-EXE-633",
+  "FND-EXE-635"
  ],
  "returns": [
   {
@@ -3717,6 +3719,21 @@
   {
    "range": "0x0008DD92..0x0008DDE9",
    "owner": "0x0008DD77"
+  },
+  {
+   "range": "0x0008DDF3..0x0008DE17",
+   "owner": "0x0008DDE9",
+   "evidence": "FND-EXE-633"
+  },
+  {
+   "range": "0x0008DF08..0x0008DF0E",
+   "owner": "0x0008DE45",
+   "evidence": "FND-EXE-633"
+  },
+  {
+   "range": "0x0008DF15..0x0008DFC4",
+   "owner": "0x0008DF0E",
+   "evidence": "FND-EXE-633"
   },
   {
    "range": "0x0008E161..0x0008E2F1",
