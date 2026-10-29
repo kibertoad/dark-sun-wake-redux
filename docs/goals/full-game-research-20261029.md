@@ -37,12 +37,15 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commits: d63747b7 and a0e3d926; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for a0e3d926.
+- Last research commit: 5ae43124; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 5ae43124.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-051 graph/table producers, payload identity, storage lifetime,
-  aliases and remaining writers. Reuse FND-COMBAT-092 and FND-UI-068 for the
-  local selection rules; do not repeat that reading as a producer proof.
+- Next: Q-COMBAT-051 input-window provenance, preservation through registration
+  calls, other graph/table producers, payload identity, lifetime and later writers.
+  Reuse FND-COMBAT-093 for the registration producer's own ordering and
+  FND-COMBAT-092/FND-UI-068 for selection. Do not repeat those readings as
+  input or preservation proofs. FND-COMBAT-040 and FND-CONFIG-151 are the
+  existing window-acquisition handoffs to review before following that input.
 - Q-COMBAT-050 retains acquisition, Q-COMBAT-052 mode admission, and
   Q-COMBAT-049 the combined dispatch question. Q-COMBAT-047 follows for
   resource-length and table-lifetime admission. Other queues remain in scope.
