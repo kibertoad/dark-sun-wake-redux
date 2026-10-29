@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-024, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-024, FND-COMBAT-085, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -46,8 +46,18 @@ None known.
 
 | Device | Input | Enabled when | Effect | Evidence |
 |---|---|---|---|---|
-| Unknown | Callback event 6, word `0x4800` | Window shown | Moves toward the preceding row, wrapping among ten rows; Load mode tests the saved-file marker and tries to pass unreadable rows. Physical input mapping is unknown. | FND-UI-038 |
-| Unknown | Callback event 6, word `0x5000` | Window shown | Moves toward the following row, wrapping among ten rows; Load mode tests the saved-file marker and tries to pass unreadable rows. Physical input mapping is unknown. | FND-UI-038 |
+| Unknown | Callback event 6, word `0x4800` | Window shown | Decrements the selected row, searching past empty markers. Wraps from zero to nine and can continue searching after its first empty wrap; a second empty wrap stops at nine. Physical input mapping is unknown. | FND-UI-038, FND-COMBAT-085 |
+| Unknown | Callback event 6, word `0x5000` | Window shown | Increments the selected row, searching past empty markers until it wraps from nine to zero. That wrap ends the search even when row zero is empty. Physical input mapping is unknown. | FND-UI-038, FND-COMBAT-085 |
+
+These local search results assume an initial selected row within zero through
+nine, valid list storage and unchanged mode, markers and selection through
+the intervening calls. With all ten markers empty, the two branches leave
+the selected-row word at nine and zero respectively, skip requesting the
+new row's control state and skip the row-to-name-box helper. With initial
+row five and only row two nonempty, `0x4800` reaches row two but `0x5000`
+stops at empty row zero. These are conditional static results; native paint
+and whether a subsequent LOAD action is delivered remain open
+(FND-COMBAT-085, Q-COMBAT-046, Q-UI-005).
 
 ## Sounds
 
