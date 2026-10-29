@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "SAVE",
+      "scope": "Numbered-save restoration through the declared reader, object re-placement and region setup roots; other SAVE functions and all unassigned functions remain outside this initial ownership map."
+    },
+    {
+      "id": "COMBAT",
+      "scope": "Preservation or reset of current and maximum hit points during numbered-load restoration, including temporary presentation-slot admission; this is no closure claim for combat as a whole."
+    }
+  ],
+  "inventories": [
+    {
+      "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
+      "sha256": "8e2bbb48b9bc3d945e28969a658ec524e07420857f94392f76843003541f1677",
+      "assignments": [
+        {
+          "start": "31E0:0E1B",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "31E0:0EFF",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "31E0:444A",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00068BB5",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00069E27",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x0006A0A6",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x0007089C",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00070CEE",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x0007D8ED",
+          "areas": [
+            "SAVE",
+            "COMBAT"
+          ],
+          "reason": "Shared numbered-load path: SAVE owns restored-state sequencing; COMBAT owns the effect on restored creature hit points. Assignment does not assert a complete reading."
+        }
+      ]
+    }
+  ],
+  "obligations": [
+    {
+      "id": "load-callers",
+      "area": "SAVE",
+      "kind": "callers",
+      "question": "Which callers reach the declared numbered-load and reader roots, and how do they consume full-width results on complete, partial-read and failed-copy paths?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "saved-table-producers",
+      "area": "SAVE",
+      "kind": "state-producers",
+      "question": "Which allocations, saved-resource lengths and restored pointers admit SAVE/5 and SAVE/6 into the combatant and details tables?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "load-callback-targets",
+      "area": "SAVE",
+      "kind": "indirect-transfers",
+      "question": "Which callback targets reached through the input and window services called by the declared cleanup and region-setup roots are admitted on the numbered-load path?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "load-continuations",
+      "area": "SAVE",
+      "kind": "remaining-evidence",
+      "question": "Do the reached children named by FND-SAVE-022 and FND-COMBAT-079/080 preserve the restored tables through return, including archive and allocation failure branches?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "health-load-paths",
+      "area": "COMBAT",
+      "kind": "callers",
+      "question": "Does any admitted continuation of the declared numbered-load roots reload creature resources or reset current hit points after the saved-table reads?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "temporary-slot-admission",
+      "area": "COMBAT",
+      "kind": "state-producers",
+      "question": "Can original save-call admission include populated presentation slot 319 after indexed or bulk writes, and which reclamation effects follow if it can?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-045"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "health-callback-effects",
+      "area": "COMBAT",
+      "kind": "indirect-transfers",
+      "question": "Which admitted callbacks in the numbered-load closure can change current or maximum hit points, and what do those concrete targets do?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "health-restoration-proof",
+      "area": "COMBAT",
+      "kind": "remaining-evidence",
+      "question": "Which completed branch, child and storage-identity readings prove the final current and maximum hit points for admitted complete and partial loads?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-044",
+        "Q-COMBAT-045"
+      ],
+      "evidence": []
+    }
+  ]
+}
