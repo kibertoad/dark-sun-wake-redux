@@ -40,14 +40,17 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: 0addfa54; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 0addfa54
-  after the final wording edit; the earlier pre-edit run was not reused.
+- Last research commit: 999f0fee; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 999f0fee.
   Documentation passed with its reported skips. Pinned rules verified offline.
 - Next: Q-COMBAT-046, the caller/event admission dependency of Q-COMBAT-054.
   Reuse FND-COMBAT-081/FND-COMBAT-084/FND-COMBAT-085 and FND-UI-051;
   take up remaining state producers/lifetimes and incoming transfers, including
   the independent reader route, rather than repeating local navigation or wrappers.
+- Reuse FND-COMBAT-098 for the three named restoration sites and their local
+  sources/gates/order. Remaining work is snapshot/slot provenance and preservation,
+  live window/handler identity and event delivery, not those restore-call bodies.
+  FND-CONFIG-162/FND-CONFIG-163 retain the stored-mirror/setter guard inputs.
 - Q-COMBAT-054 now independently tracks archive/directory state and selected
   resource admission. Reuse FND-COMBAT-097 for this Save/Load row caller,
   FND-COMBAT-096 for local transitions and FND-COMBAT-095 for source bounds.
