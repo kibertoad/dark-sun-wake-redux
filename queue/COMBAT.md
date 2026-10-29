@@ -38,9 +38,11 @@ Next ID: Q-COMBAT-049
 - Q-COMBAT-046. RULE-COMBAT-007: Which admitted window events and state producers reach the
   numbered-load call and reader roots? Settles it: producers and lifetimes of 50AF:0004,
   4C4C:0000, 4C4C:0002 and DS:627C, registration and delivery to overlay 192 +0785,
-  and controlled caller census for +05ED, +0A6C and +0EBE, with result-width handling.
+  and controlled caller census for +05ED, +0A6C and +0EBE.
   Tried: split from Q-COMBAT-044; FND-COMBAT-081 settles local confirm-table mapping and
-  ignored load result, while FND-SAVE-022 gives reader order. Blocks: slice 4.
+  ignored load result, while FND-SAVE-022 gives reader order. FND-COMBAT-084 settles
+  the wrapper's AL/AX tests, close-obligation byte and replacement of the reader result
+  by the close result; event admission and other incoming callers remain. Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: pointer allocation,
   destination lifetimes, alias admission, actual archive/resource-length provenance for these
