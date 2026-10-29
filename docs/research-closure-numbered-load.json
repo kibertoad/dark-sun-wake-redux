@@ -98,7 +98,8 @@
       "question": "Which callers reach the declared numbered-load and reader roots, and how do they consume full-width results on complete, partial-read and failed-copy paths?",
       "state": "open",
       "queue": [
-        "Q-COMBAT-046"
+        "Q-COMBAT-046",
+        "Q-COMBAT-055"
       ],
       "evidence": []
     },
@@ -182,7 +183,8 @@
         "Q-COMBAT-046",
         "Q-COMBAT-047",
         "Q-COMBAT-048",
-        "Q-COMBAT-049"
+        "Q-COMBAT-049",
+        "Q-COMBAT-055"
       ],
       "evidence": []
     }

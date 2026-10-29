@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-055
+Next ID: Q-COMBAT-056
 
 ## Static
 
@@ -40,8 +40,8 @@ Next ID: Q-COMBAT-055
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
   local navigation of FND-COMBAT-085; event delivery, snapshot/slot producers and
   preservation and live window/handler identity beyond FND-COMBAT-098's three
-  restoration-site orderings; incoming transfers not covered by FND-UI-051's direct caller census,
-  including the independent reader +0A6C routes.
+  restoration-site orderings; window-path incoming transfers not covered by
+  FND-UI-051's direct caller census. Independent reader routes are Q-COMBAT-055.
   Tried: split from Q-COMBAT-044; FND-COMBAT-081 settles local confirm-table mapping and
   ignored load result, while FND-SAVE-022 gives reader order. FND-COMBAT-084 settles
   the wrapper's AL/AX tests, close-obligation byte and replacement of the reader result
@@ -54,6 +54,20 @@ Next ID: Q-COMBAT-055
   window work. Their own restore-call ordering is removed from Settles it. Actual
   caller/slot admission, preservation, handler/window identity at event delivery
   and remaining incoming reader routes are still open.
+  Tried: FND-COMBAT-099 resolves the script sentinel/argument widths and the
+  current-region equality gate. Its independent reader admission is split into
+  Q-COMBAT-055; this item retains the window/event producer question.
+- Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
+  admit the independent numbered reader +0A6C, including selector zero?
+  Settles it: the executed scripts and parameter producers/preservation at the
+  instruction 0x5E route, current DS:140C producers and lifetimes, preparation
+  outcomes before +1132's read, and incoming transfers beyond FND-UI-051's direct
+  caller census for the reader and its two wrappers. Reuse FND-COMBAT-035,
+  FND-COMBAT-043 and FND-COMBAT-044 for local reader/wrapper behavior.
+  Tried: split from Q-COMBAT-046. FND-COMBAT-099 establishes the full-width
+  sentinel test, three low-word arguments and current-region equality gate;
+  it does not establish actual operand values, preparation or transfer completeness.
+  Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C
   bypass states, remaining nonliteral pointer writers and destination/alias lifetimes beyond
