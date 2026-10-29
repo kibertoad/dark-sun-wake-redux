@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-049
+Next ID: Q-COMBAT-050
 
 ## Static
 
@@ -60,13 +60,24 @@ Next ID: Q-COMBAT-049
   stores and unchanged release aliases. FND-COMBAT-086 binds startup failure to the
   termination wrapper and the known release route to exit registration, distinguishing
   returning runtime wrappers. The remaining obligations above stay open. Blocks: slice 4.
-- Q-COMBAT-048. RULE-COMBAT-007: Which concrete callbacks reached during numbered loading can
-  change restored creature health or the state that selects a load continuation? Settles it:
-  admitted target producers and effects of input/window callbacks reached by the cleanup,
-  region setup and caller continuations of FND-COMBAT-079, FND-COMBAT-080 and FND-COMBAT-081,
-  especially 3D72:0B84 and 3D72:0942, with target rereads and preservation after each callback.
-  Tried: split from Q-COMBAT-044; FND-CONFIG-187 and FND-CONFIG-189 read local pointer-service
-  branches but retain child and callback effects. Blocks: slice 4.
+- Q-COMBAT-048. RULE-COMBAT-007: Which other callbacks reached during numbered loading can
+  change restored creature health or select a different continuation? Settles it: admitted
+  targets and effects of input/window callbacks reached by cleanup, region setup and caller
+  continuations of FND-COMBAT-079, FND-COMBAT-080 and FND-COMBAT-081, with target rereads
+  and preservation after each callback; APFM +5A/+5E record admission is Q-COMBAT-049.
+  Tried: split from Q-COMBAT-044; FND-CONFIG-187 and FND-CONFIG-189 read local service
+  branches. FND-COMBAT-087 separates the APFM record-admission dependency from the
+  remaining callbacks, rather than treating a selector reading as their effects. Blocks: slice 4.
+- Q-COMBAT-049. RULE-COMBAT-007: Can numbered loading reach a nonzero APFM +5A or +5E
+  callback, and if so which target? Settles it: origins and storage identity of the records
+  at A125 and A15B, APFM callback-field preservation through reached construction/copy/write
+  paths, and mode A13D/A155 admission through the services of FND-CONFIG-189; identify
+  the concrete target and its effects if nonzero fields are admitted. Account for the
+  block-copy, alternative-base and split-pointer limits retained in FND-EXE-588.
+  Tried: split from Q-COMBAT-048. FND-UI-005 supplies shipped zero fields;
+  FND-PARTY-044 and FND-EXE-588 supply the earlier field/setter census;
+  FND-COMBAT-087 reads both selector producer bodies and distinguishes their saved and
+  reread pointers without settling live record identity. Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
   Settles it: indexed and bulk producers of slot 319's presentation entry-index word, save

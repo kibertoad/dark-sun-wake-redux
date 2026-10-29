@@ -100,3 +100,5 @@ None known.
   details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
 - Which callbacks reached during loading can affect health or continuation selection
   (FND-COMBAT-080, FND-CONFIG-189, Q-COMBAT-048).
+- Whether APFM callback fields can be nonzero on an admitted load path, and which
+  concrete targets that permits (FND-COMBAT-087, Q-COMBAT-049).
