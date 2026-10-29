@@ -41,19 +41,29 @@ No push, release or history rewrite is authorized by this goal.
 
 - Stage: Slices; full research Audit remains unmet.
 - Latest research entry: FND-EXE-635; no unfinished batch.
-- Latest tooling: evidenced manual decode preservation in walk_declared_flows.py,
-  with synthetic regressions registered in Test.ps1 and CI.
+- Latest tooling: inventory_tails.py, with synthetic framing, decoder, ownership
+  and bounded-read controls registered in Test.ps1 and CI. Manual decode
+  preservation in walk_declared_flows.py remains in place.
 - Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after that tooling.
   Documentation passed with its reported skips. Pinned rules verified offline.
 - Next: Q-EXE-032, using FND-EXE-633/FND-EXE-635 and
   docs/implementation-plans/INVENTORY-TAIL-RECONCILIATION.md.
   The three evidenced decode declarations are now durable across regeneration.
-  Next complete the overlay boundary census with synthetic controls and review
-  all replacement differences. Keep partial instruction decodes, adjacent entries
+  Next record and assess the current census candidates and review all
+  replacement differences. Keep partial instruction decodes, adjacent entries
   and unowned continuations distinct; do not infer complete function readings
   from a terminal opcode check.
   Never edit generated inventory rows by hand or treat a local repair as an
   accepted joined denominator. The committed inventory remains unchanged.
+- Final-code census controls exist in
+  GAME_DIR/analysis/inventory-reconcile-20261029/runs/tail-census-03/:
+  committed.json, isolated.json and full-model.json. Reuse them while their
+  source, inventory and tool identities match; do not repeat unchanged scans.
+  Their method is the final-range linear census in docs/EVIDENCE-TOOLS.md.
+  Record the research answer separately from this tooling calibration.
+  Use the project-local locked Python explicitly: an inherited EVIDENCE_PYTHON
+  points at another checkout. The local wheels were restored and verified;
+  decoder reports distinguish distribution, binding-string and native identities.
 - Static inputs and projects exist under
   GAME_DIR/analysis/inventory-reconcile-20261029/. Keep the frozen and isolated
   controls and the full-model comparison needed by FND-EXE-635. Its control descriptions and
