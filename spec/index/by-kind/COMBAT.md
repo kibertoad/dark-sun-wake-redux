@@ -40,7 +40,7 @@ Entries by kind.
 
 ## findings
 
-74 entries.
+91 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -113,11 +113,28 @@ Entries by kind.
 | [FND-COMBAT-067](../../findings/FND-COMBAT-067.md) | Overlay 173 +2560 swings up to a rate of half attacks per round, rolls the damage dice plus the type, magic, material and ammunition bonuses with a floor of 1, adds Strength in melee, multiplies a first-swing backstab by 2 to 5, and hands the hit routine the damage with twice it as the maximum | recorded |
 | [FND-COMBAT-068](../../findings/FND-COMBAT-068.md) | Overlay 173 +2C00 computes the armour class from the base, worn armour and shields and their magic, a gladiator's level over 5, and overlay 197 +27A7's Dexterity entry, caps and effect terms; from the rear the shield and Dexterity do not count, and one cap comparison reads two locals no path but one writes | recorded |
 | [FND-COMBAT-069](../../findings/FND-COMBAT-069.md) | A weapon hit enters the hit routine with DATA number -1, passes gates on the target's type word, effects and range, takes twice the damage against a target at combat_mark 3, is scaled by overlay 197 +1C52's percentage of the hit word, and reaches overlay 173 +22C4, which leaves hit points at 0 at worst and kills only on one hit of at least the hit points plus 10 | recorded |
-| [FND-COMBAT-070](../../findings/FND-COMBAT-070.md) | The difficulty word DS:143A sets a loaded creature's greatest hit points to 50, 100, 150 or 200 percent, rounded down, for details records above 4, and the CHAR load then sets the current hit points of every slot from 4 up to that maximum; the other readers are the save and load of PREF, the Preferences screen and script function 21 | recorded |
+| [FND-COMBAT-070](../../findings/FND-COMBAT-070.md) | The difficulty word DS:143A sets a loaded creature's greatest hit points to 50, 100, 150 or 200 percent, rounded down, for details records above 4, and the CHAR load then sets the current hit points of every slot from 4 up to that maximum; the other readers are the save and load of PREF, the Preferences screen and script function 21 | superseded |
 | [FND-COMBAT-071](../../findings/FND-COMBAT-071.md) | The computer's target choice skips combatants at combat_mark 3 or above, a combatant at mark 3 gets no turn and a non-party one is unloaded from the map when the removal list empties; it leaves mark 3 by a blow of 10 or more, by overlay 197's three heal routines, by the end of the fight or by a rest, and nothing reads the nine state names | recorded |
 | [FND-COMBAT-072](../../findings/FND-COMBAT-072.md) | Overlay 188 allocates 42 combatant records and 17 details records; 2D40:2C87 keeps an object of 4 or less on the records of its own number and gives a creature the first free combatant record from 5 and a details record from 5 to 16 shared by key; 2D40:3E64 reads the object's record number and that record's details_index; the panel's question marks test the object number, not the records | recorded |
 | [FND-COMBAT-073](../../findings/FND-COMBAT-073.md) | Each pass of the main loop, 2D40:3EBF gives party slots 0 to 3 one psionic point for every 300 clock units since its last run, up to details word +0x0C, and the same in hit points up to the maximum to a member whose Constitution byte is 20 or more | recorded |
 | [FND-COMBAT-074](../../findings/FND-COMBAT-074.md) | FNFO 1 gives every byte of the combatant and details records a field number, and the CHAR copy names all but four; overlay 173 +2DD0 returns the combatant field an item was reached through, so weapons come from field 17 and ability items from field 16; no engine code reads combatant byte +0x18 bits 0 to 4 and 7 or byte +0x20, which scripts set and test bit by bit | recorded |
+| [FND-COMBAT-075](../../findings/FND-COMBAT-075.md) | The difficulty word DS:143A sets a loaded creature's greatest hit points to 50, 100, 150 or 200 percent, rounded down, for details records above 4, and the CHAR load then sets the current hit points of every slot from 4 up to that maximum; the other readers are the save and load of PREF, the Preferences screen and script function 21 | recorded |
+| [FND-COMBAT-076](../../findings/FND-COMBAT-076.md) | Script instruction 0x25 repeats its child by the second parameter and sums byte results; MAS 67 passes a decreasing twice-difficulty counter | recorded |
+| [FND-COMBAT-077](../../findings/FND-COMBAT-077.md) | Saved-object re-placement passes zero load flags and skips the RDFF reload branch; its final coordinate helper writes only two presentation words | recorded |
+| [FND-COMBAT-078](../../findings/FND-COMBAT-078.md) | The three explicit temporary-slot presentation references are loader copy and clear operations, which do not exclude indexed or restored writes | recorded |
+| [FND-COMBAT-079](../../findings/FND-COMBAT-079.md) | Numbered-load region setup uses zero flags to skip the object-rebuild block and optional region restore | recorded |
+| [FND-COMBAT-080](../../findings/FND-COMBAT-080.md) | The pre-load cleanup skips states zero and two, releases interface and region buffers, then stores state two | recorded |
+| [FND-COMBAT-081](../../findings/FND-COMBAT-081.md) | The numbered-load caller routes two event controls through load mode, ignores the loader result, and performs cleanup before its independent exit test | recorded |
+| [FND-COMBAT-082](../../findings/FND-COMBAT-082.md) | Saved combatant tables reuse bound pointers and complete resource lengths; nominal table sizes take one DOS read and failures stop the resource loop without rollback | recorded |
+| [FND-COMBAT-083](../../findings/FND-COMBAT-083.md) | Explicit combatant-table pointer stores occur in allocation and release, while allocation aliases are not refreshed by that release helper | recorded |
+| [FND-COMBAT-084](../../findings/FND-COMBAT-084.md) | The numbered-load wrapper replaces the reader result when its local byte requests closing | recorded |
+| [FND-COMBAT-085](../../findings/FND-COMBAT-085.md) | Load-list navigation searches differently after wrapping and can leave an empty selected row | recorded |
+| [FND-COMBAT-086](../../findings/FND-COMBAT-086.md) | Table initialization failure requests termination, and the registered exit handler calls table release | recorded |
+| [FND-COMBAT-087](../../findings/FND-COMBAT-087.md) | APFM mode selection can replace the setter's looked-up record or leave the prior record pointer unchanged | recorded |
+| [FND-COMBAT-088](../../findings/FND-COMBAT-088.md) | Intact zero-image APFM setup writes placement and a parent link while preserving the callback region | recorded |
+| [FND-COMBAT-089](../../findings/FND-COMBAT-089.md) | APFM child acquisition starts with a null destination and RESOURCE.GFF is the only provider in the inspected top-level archives | recorded |
+| [FND-COMBAT-090](../../findings/FND-COMBAT-090.md) | The zero-style APFM paint path returns without frame writes, while flagged styles use a working rectangle below the callback region | recorded |
+| [FND-COMBAT-091](../../findings/FND-COMBAT-091.md) | APFM text helpers copy a fixed inline 24-byte region below the parent link without setting the style word | recorded |
 
 ## bugs
 
