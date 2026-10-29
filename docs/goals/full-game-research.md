@@ -37,23 +37,27 @@ Do not repeat a retained search without new evidence, tooling or reading.
   functions first, then complete readings. Use docs/RESEARCH-CLOSURE.md and
   docs/research-closure-numbered-load.json; mapping and citation coverage are
   separate from accepted complete readings.
-- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-085
-  and SCR-UI-013,
+- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-087
+  and RULE-COMBAT-007,
   including 151 Node tests and 715 .NET tests. Documentation passed with its
   reported argument-count, Kaitai and scheduled-generation skips.
-- Current batch references: FND-COMBAT-075 through FND-COMBAT-085;
-  Q-COMBAT-007 and Q-COMBAT-044 through Q-COMBAT-048 remain open.
+- Current batch references: FND-COMBAT-075 through FND-COMBAT-087;
+  Q-COMBAT-007 and Q-COMBAT-044 through Q-COMBAT-049 remain open.
   No implementation changes or original-game runs were made in these batches.
 - Unfinished: none in the working tree at this checkpoint. No owned emulator
   or validation process remains. Other project blockers remain in docs/HANDOVER.md.
 - Next Q-COMBAT-047: archive/resource-length provenance and admitted table
-  lifetimes, using FND-COMBAT-082, FND-COMBAT-083, FND-COMBAT-084,
+  lifetimes, using FND-COMBAT-082, FND-COMBAT-083, FND-COMBAT-084, FND-COMBAT-086,
   FND-CONFIG-037, FND-CONFIG-067 and FND-CONFIG-151. Consult existing
   FND-COMBAT-052 before reading overlay 182 +088B again.
-- Next Q-COMBAT-046: field/event admission and controlled incoming callers,
+- Next Q-COMBAT-049: APFM record origins and callback-field preservation,
+  using FND-COMBAT-087, FND-EXE-588, FND-PARTY-044 and FND-UI-005.
+  Reuse their existing field and pointer censuses; do not repeat them
+  without changed coverage, tooling or a new reference form.
+- Next Q-COMBAT-046 and Q-COMBAT-048: field/event admission and other callbacks,
   using FND-COMBAT-081, FND-COMBAT-084, FND-COMBAT-085 and FND-UI-051.
-  The remaining callback obligation
-  is Q-COMBAT-048, with FND-CONFIG-189 as context.
+  with FND-CONFIG-189 as callback-service context. The APFM dependency is
+  separated under Q-COMBAT-049 in the closure plan; no obligation is closed.
 - Next Q-COMBAT-045: temporary-slot admission, using FND-COMBAT-078,
   FND-PARTY-119, FND-PARTY-131 and FND-COMBAT-054; then Q-COMBAT-044's
   direct continuations using FND-SAVE-022 and FND-COMBAT-077 through 081.
