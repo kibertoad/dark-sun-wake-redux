@@ -40,19 +40,21 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: b382cde0; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for b382cde0.
+- Last research commit: 0addfa54; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 0addfa54
+  after the final wording edit; the earlier pre-edit run was not reused.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-053 live archive/directory admission, allocation/buffer
-  contents, I/O and preservation. Reuse FND-COMBAT-095 for the fingerprinted
-  provider set and source bounds; do not repeat that census with unchanged
-  inputs. Reuse FND-COMBAT-094 for local status/output propagation.
-- Reuse FND-COMBAT-096 for local selection/preparation/close transitions;
-  next archive work needs actual caller and state/link/handle-producer admission.
-  FND-SAVE-007 and FND-PARTY-042 retain bounded caller/startup contexts to
-  review first. FND-CONFIG-041, FND-CONFIG-068 and FND-CONFIG-069 retain
-  census limits; do not infer complete indirect or alias coverage from them.
-  FND-CONFIG-209/FND-CONFIG-210 retain the allocation/clearing limitations.
+- Next: Q-COMBAT-046, the caller/event admission dependency of Q-COMBAT-054.
+  Reuse FND-COMBAT-081/FND-COMBAT-084/FND-COMBAT-085 and FND-UI-051;
+  take up remaining state producers/lifetimes and incoming transfers, including
+  the independent reader route, rather than repeating local navigation or wrappers.
+- Q-COMBAT-054 now independently tracks archive/directory state and selected
+  resource admission. Reuse FND-COMBAT-097 for this Save/Load row caller,
+  FND-COMBAT-096 for local transitions and FND-COMBAT-095 for source bounds.
+  DI, stack, handle/link and actual call admission remain explicit obligations.
+- Q-COMBAT-053 retains allocation/buffer contents, I/O and preservation;
+  FND-COMBAT-094 and FND-CONFIG-209/FND-CONFIG-210 retain its local
+  propagation and allocation/clearing inputs. No new native outcome is established.
 - Q-COMBAT-051 retains other graph/table producers, preservation, payload
   identity, lifetime and later writers. Reuse FND-COMBAT-093 for this
   registration producer and FND-COMBAT-092/FND-UI-068 for selection.
