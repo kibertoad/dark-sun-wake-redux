@@ -73,12 +73,20 @@ Next ID: Q-COMBAT-058
   Blocks: slice 4.
 - Q-COMBAT-056. RULE-COMBAT-007: Can the eleven decoded literal-sentinel sites
   with variable selectors supply zero to the independent numbered reader?
-  Settles it: the four local-number sites and seven kind-9 number-36 sites listed
-  by FND-COMBAT-100, including their admitted values, named-pointer preservation,
-  later writers and context lifetime relative to DS:140C. Reuse FND-PARTY-241 and
+  Settles it: assignment coverage and intervening preservation for the four
+  local-number sites beyond FND-COMBAT-101's declared literal-entry controls and
+  direct assignments, including other admitted entry sources and local-storage
+  lifetimes; the seven kind-9 number-36 sites listed by FND-COMBAT-100, including
+  admitted values, named-pointer preservation, later writers and context lifetime
+  relative to DS:140C. Reuse FND-PARTY-241 and
   FND-SCRIPT-028 for the initial pointer binding and region-context producer.
   Tried: split from Q-COMBAT-055; FND-COMBAT-100 enumerates the eleven sites,
   but source presence and a local context producer do not establish actual values.
+  Tried: FND-COMBAT-101 maps the 38 declared nonzero literal entry controls and
+  the 22 nonzero direct assignments for the four local selectors. The four
+  entry-zero walks return immediately and are not used as an admission negative.
+  Assignment coverage, intervening preservation, other entry sources and the
+  seven named-context selectors remain as specified above.
   Blocks: slice 4.
 - Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral sentinel operands or the decoder
   gap admit additional instruction 0x5E zero-selector routes?
