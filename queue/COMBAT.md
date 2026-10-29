@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-056
+Next ID: Q-COMBAT-058
 
 ## Static
 
@@ -59,14 +59,35 @@ Next ID: Q-COMBAT-056
   Q-COMBAT-055; this item retains the window/event producer question.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
-  Settles it: the executed scripts and parameter producers/preservation at the
-  instruction 0x5E route, current DS:140C producers and lifetimes, preparation
+  Settles it: execution admission and parameter preservation at instruction 0x5E,
+  after the operand domains in Q-COMBAT-056/Q-COMBAT-057; current DS:140C producers and lifetimes; preparation
   outcomes before +1132's read, and incoming transfers beyond FND-UI-051's direct
   caller census for the reader and its two wrappers. Reuse FND-COMBAT-035,
   FND-COMBAT-043 and FND-COMBAT-044 for local reader/wrapper behavior.
   Tried: split from Q-COMBAT-046. FND-COMBAT-099 establishes the full-width
   sentinel test, three low-word arguments and current-region equality gate;
   it does not establish actual operand values, preparation or transfer completeness.
+  Tried: FND-COMBAT-100 excludes zero selectors at 207 decoded literal sites.
+  The eleven variable-selector producers and nonliteral sentinel/gap obligations
+  are split into Q-COMBAT-056 and Q-COMBAT-057; executable admission remains here.
+  Blocks: slice 4.
+- Q-COMBAT-056. RULE-COMBAT-007: Can the eleven decoded literal-sentinel sites
+  with variable selectors supply zero to the independent numbered reader?
+  Settles it: the four local-number sites and seven kind-9 number-36 sites listed
+  by FND-COMBAT-100, including their admitted values, named-pointer preservation,
+  later writers and context lifetime relative to DS:140C. Reuse FND-PARTY-241 and
+  FND-SCRIPT-028 for the initial pointer binding and region-context producer.
+  Tried: split from Q-COMBAT-055; FND-COMBAT-100 enumerates the eleven sites,
+  but source presence and a local context producer do not establish actual values.
+  Blocks: slice 4.
+- Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral sentinel operands or the decoder
+  gap admit additional instruction 0x5E zero-selector routes?
+  Settles it: the runtime value domains of the 106 decoded nonliteral first
+  operands in FND-COMBAT-100 and the original instruction reading across
+  GPL/37's 0x0D39..0x0D58 decode gap, including any sentinel and selector values
+  they admit. Preserve FND-SCRIPT-024's decoder limits and independent incoming
+  transfers in Q-COMBAT-055. Tried: split from Q-COMBAT-055; FND-COMBAT-100's
+  literal positive control reproduces 218 sites but cannot exclude these cases.
   Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C

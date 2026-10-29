@@ -99,6 +99,9 @@ None known.
 - Which script states and other incoming routes admit the independent numbered
   reader, beyond its argument-width and current-region gates
   (FND-COMBAT-099, Q-COMBAT-055).
+- Whether the enumerated variable selectors, nonliteral sentinel operands or
+  undecoded script gap admit selector zero
+  (FND-COMBAT-100, Q-COMBAT-056, Q-COMBAT-057).
 - Which capacities, resource lengths and pointer lifetimes govern saved combatant and
   details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
 - Which callbacks reached during loading can affect health or continuation selection
