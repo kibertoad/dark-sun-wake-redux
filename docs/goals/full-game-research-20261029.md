@@ -40,15 +40,21 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Latest research entries: FND-COMBAT-099 and FND-COMBAT-100; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-COMBAT-100.
+- Latest research entry: FND-COMBAT-101; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-COMBAT-101.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-056, using FND-COMBAT-100's finite selector-site list.
-  Start with the four local-number sites, then the named context lifetime;
-  bind script entries and intervening preservation rather than only assignments.
+- Next: Q-EXE-032 and FND-EXE-633, using the DSUN reconciliation procedure
+  in docs/EVIDENCE-TOOLS.md. Check the existing local snapshot inputs before
+  changing declarations; never repair the generated inventory by hand.
+- Q-COMBAT-056 continues from FND-COMBAT-100/FND-COMBAT-101.
+  Bind assignment coverage and intervening preservation for the four local
+  selectors, then the named context lifetime. Do not repeat the declared
+  entry-control or direct-assignment enumerations.
   The regenerated index exists at
   GAME_DIR/analysis/reader-admission-20261029/scripts.txt. Its inputs and decoder
   are identified in FND-COMBAT-100. Reuse it while those inputs remain unchanged.
+  The literal-selector-entry-reach.txt report exists beside that index;
+  FND-COMBAT-101 names its declared controls, tool identity and limits.
 - Q-COMBAT-057 retains nonliteral first operands and the script decode gap;
   Q-COMBAT-055 retains independent reader execution and preparation admission.
   Reuse FND-COMBAT-099/FND-COMBAT-100. The existing closure map is
