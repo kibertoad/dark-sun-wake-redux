@@ -31,7 +31,7 @@ Next ID: Q-COMBAT-046
   distinguish copies of saved records from resource loads through 2D40:000A and its difficulty
   scaling branch, including failure paths. Slot-319 admission and reclamation are separate in Q-COMBAT-045. Tried: split from Q-COMBAT-007. FND-COMBAT-075
   reads the resource-load scaling; FND-SAVE-015, FND-SAVE-021 and FND-SAVE-022 read the saved
-  table pointers and restore order. FND-COMBAT-077 settles the zero flags and skipped RDFF branch, and the final coordinate helper; FND-COMBAT-079 excludes the numbered-load region setup object-rebuild block and optional region restore; FND-COMBAT-080 records the pre-reader cleanup own branches and calls; reached child effects, other re-placement children and later calls remain unread.
+  table pointers and restore order. FND-COMBAT-077 settles the zero flags and skipped RDFF branch, and the final coordinate helper; FND-COMBAT-079 excludes the numbered-load region setup object-rebuild block and optional region restore; FND-COMBAT-080 records the pre-reader cleanup own branches and calls; FND-COMBAT-081 reads the checked direct caller result handling; admitted events and field producers, reached child effects, other re-placement children and later calls remain unread.
   Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
