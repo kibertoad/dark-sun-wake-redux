@@ -49,11 +49,17 @@ Next ID: Q-COMBAT-049
   caller, exit-byte and shared-page producer evidence. The remaining admission and
   preservation obligations above are not settled by those local results. Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
-  SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: pointer allocation,
-  destination lifetimes, alias admission, actual archive/resource-length provenance for these
-  two entries, and whether later setup replaces the pointers.
+  SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C
+  bypass states, remaining nonliteral pointer writers and destination/alias lifetimes beyond
+  the declared startup, failure and exit-table routes of FND-COMBAT-086; actual
+  archive/resource-length provenance for these two entries; and later pointer replacement.
   Tried: split from Q-COMBAT-044; FND-COMBAT-072 gives 42 combatant and 17 details records;
-  FND-SAVE-015 and FND-SAVE-021 give table lengths and pointer binding. FND-COMBAT-082 settles the local pointer forwarding, absence of a read capacity argument, nominal one-request transfer and loop failure behavior; FND-COMBAT-083 accounts for eight explicit half-pointer stores and shows the release leaves copied aliases unchanged; nonliteral writers, alias/lifetime admission and resource provenance remain. Blocks: slice 4.
+  FND-SAVE-015 and FND-SAVE-021 give table lengths and pointer binding.
+  FND-COMBAT-082 settles pointer forwarding, the missing capacity argument, nominal
+  transfer and loop failure behavior; FND-COMBAT-083 accounts for explicit half-pointer
+  stores and unchanged release aliases. FND-COMBAT-086 binds startup failure to the
+  termination wrapper and the known release route to exit registration, distinguishing
+  returning runtime wrappers. The remaining obligations above stay open. Blocks: slice 4.
 - Q-COMBAT-048. RULE-COMBAT-007: Which concrete callbacks reached during numbered loading can
   change restored creature health or the state that selects a load continuation? Settles it:
   admitted target producers and effects of input/window callbacks reached by the cleanup,
