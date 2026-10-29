@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-046
+Next ID: Q-COMBAT-049
 
 ## Static
 
@@ -25,14 +25,35 @@ Next ID: Q-COMBAT-046
   point scaling. FND-COMBAT-076 reads the count helper and MAS/67 loop; its triangular totals
   remain conditional on child preservation. The independent save-load question is Q-COMBAT-044.
   Blocks: slice 4.
-- Q-COMBAT-044. RULE-COMBAT-007: Are saved creatures' current and maximum hit points scaled
-  or reset again when a numbered saved game is loaded? Settles it: trace both combatant tables
-  through SAVE/5 and SAVE/6 restoration, the remaining re-placement children and later load continuations;
-  distinguish copies of saved records from resource loads through 2D40:000A and its difficulty
-  scaling branch, including failure paths. Slot-319 admission and reclamation are separate in Q-COMBAT-045. Tried: split from Q-COMBAT-007. FND-COMBAT-075
-  reads the resource-load scaling; FND-SAVE-015, FND-SAVE-021 and FND-SAVE-022 read the saved
-  table pointers and restore order. FND-COMBAT-077 settles the zero flags and skipped RDFF branch, and the final coordinate helper; FND-COMBAT-079 excludes the numbered-load region setup object-rebuild block and optional region restore; FND-COMBAT-080 records the pre-reader cleanup own branches and calls; FND-COMBAT-081 reads the checked direct caller result handling; admitted events and field producers, reached child effects, other re-placement children and later calls remain unread.
-  Blocks: slice 4.
+- Q-COMBAT-044. RULE-COMBAT-007: Do the remaining direct load continuations reload creature
+  resources or reset restored current or maximum hit points? Settles it: the reached noncallback
+  children and failure continuations of FND-SAVE-022, FND-COMBAT-077, FND-COMBAT-079,
+  FND-COMBAT-080 and FND-COMBAT-081, after binding caller admission (Q-COMBAT-046), saved-table
+  producers (Q-COMBAT-047), callbacks (Q-COMBAT-048) and temporary-slot admission (Q-COMBAT-045).
+  Tried: split from Q-COMBAT-007. FND-COMBAT-075 reads resource-load scaling;
+  FND-COMBAT-077 excludes the flags-zero RDFF branch and reads coordinate adjustment;
+  FND-COMBAT-079 excludes the region object-rebuild block; FND-COMBAT-080 reads cleanup
+  ordering; FND-COMBAT-081 reads direct-caller result handling. Their independent remaining
+  admission, producer and callback obligations now have separate items. Blocks: slice 4.
+- Q-COMBAT-046. RULE-COMBAT-007: Which admitted window events and state producers reach the
+  numbered-load call and reader roots? Settles it: producers and lifetimes of 50AF:0004,
+  4C4C:0000, 4C4C:0002 and DS:627C, registration and delivery to overlay 192 +0785,
+  and controlled caller census for +05ED, +0A6C and +0EBE, with result-width handling.
+  Tried: split from Q-COMBAT-044; FND-COMBAT-081 settles local confirm-table mapping and
+  ignored load result, while FND-SAVE-022 gives reader order. Blocks: slice 4.
+- Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
+  SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: pointer allocation,
+  destination capacities and lifetimes, length selection and resource-read behavior for these
+  two entries, including short or failed reads and whether later setup replaces the pointers.
+  Tried: split from Q-COMBAT-044; FND-COMBAT-072 gives 42 combatant and 17 details records;
+  FND-SAVE-015 and FND-SAVE-021 give table lengths and pointer binding. Blocks: slice 4.
+- Q-COMBAT-048. RULE-COMBAT-007: Which concrete callbacks reached during numbered loading can
+  change restored creature health or the state that selects a load continuation? Settles it:
+  admitted target producers and effects of input/window callbacks reached by the cleanup,
+  region setup and caller continuations of FND-COMBAT-079, FND-COMBAT-080 and FND-COMBAT-081,
+  especially 3D72:0B84 and 3D72:0942, with target rereads and preservation after each callback.
+  Tried: split from Q-COMBAT-044; FND-CONFIG-187 and FND-CONFIG-189 read local pointer-service
+  branches but retain child and callback effects. Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
   Settles it: indexed and bulk producers of slot 319's presentation entry-index word, save

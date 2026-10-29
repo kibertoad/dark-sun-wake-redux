@@ -98,7 +98,7 @@
       "question": "Which callers reach the declared numbered-load and reader roots, and how do they consume full-width results on complete, partial-read and failed-copy paths?",
       "state": "open",
       "queue": [
-        "Q-COMBAT-044"
+        "Q-COMBAT-046"
       ],
       "evidence": []
     },
@@ -109,7 +109,7 @@
       "question": "Which allocations, saved-resource lengths and restored pointers admit SAVE/5 and SAVE/6 into the combatant and details tables?",
       "state": "open",
       "queue": [
-        "Q-COMBAT-044"
+        "Q-COMBAT-047"
       ],
       "evidence": []
     },
@@ -120,7 +120,7 @@
       "question": "Which callback targets reached through the input and window services called by the declared cleanup and region-setup roots are admitted on the numbered-load path?",
       "state": "open",
       "queue": [
-        "Q-COMBAT-044"
+        "Q-COMBAT-048"
       ],
       "evidence": []
     },
@@ -164,7 +164,7 @@
       "question": "Which admitted callbacks in the numbered-load closure can change current or maximum hit points, and what do those concrete targets do?",
       "state": "open",
       "queue": [
-        "Q-COMBAT-044"
+        "Q-COMBAT-048"
       ],
       "evidence": []
     },
@@ -176,7 +176,10 @@
       "state": "open",
       "queue": [
         "Q-COMBAT-044",
-        "Q-COMBAT-045"
+        "Q-COMBAT-045",
+        "Q-COMBAT-046",
+        "Q-COMBAT-047",
+        "Q-COMBAT-048"
       ],
       "evidence": []
     }

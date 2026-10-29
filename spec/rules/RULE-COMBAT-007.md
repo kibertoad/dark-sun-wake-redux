@@ -93,3 +93,10 @@ None known.
   on loading a numbered saved game (FND-COMBAT-075, FND-SAVE-022, Q-COMBAT-044).
 - Whether a numbered save can contain a populated temporary presentation slot 319 and
   what its restoration changes (FND-COMBAT-078, Q-COMBAT-045).
+
+- Which event and field producers admit the numbered-load caller and reader paths
+  (FND-COMBAT-081, Q-COMBAT-046).
+- Which capacities, resource lengths and pointer lifetimes govern saved combatant and
+  details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
+- Which callbacks reached during loading can affect health or continuation selection
+  (FND-COMBAT-080, FND-CONFIG-189, Q-COMBAT-048).
