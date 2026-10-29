@@ -37,15 +37,17 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: 7f20a13d; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 7f20a13d.
+- Last research commit: 4259283c; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 4259283c.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-053 parent-window source and buffer admission. Reuse
-  FND-COMBAT-094 for connected status/output propagation; do not repeat it
-  as source, capacity or native I/O proof. FND-UI-001/FND-UI-002 are the
-  existing window-resource baseline; FND-COMBAT-089 records the archive
-  census procedure and controls for its APFM query. Verify unchanged inputs
-  and retained evidence before a distinct window-provider query.
+- Next: Q-COMBAT-053 live archive/directory admission, allocation/buffer
+  contents, I/O and preservation. Reuse FND-COMBAT-095 for the fingerprinted
+  provider set and source bounds; do not repeat that census with unchanged
+  inputs. Reuse FND-COMBAT-094 for local status/output propagation.
+- Before extending live archive admission, reuse FND-CONFIG-037,
+  FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-041, FND-CONFIG-064 and
+  FND-CONFIG-067 for startup, list/traversal and numeric-handle lifetime.
+  FND-CONFIG-209/FND-CONFIG-210 retain the allocation/clearing limitations.
 - Q-COMBAT-051 retains other graph/table producers, preservation, payload
   identity, lifetime and later writers. Reuse FND-COMBAT-093 for this
   registration producer and FND-COMBAT-092/FND-UI-068 for selection.
