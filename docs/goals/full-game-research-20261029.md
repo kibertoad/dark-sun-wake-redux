@@ -40,13 +40,23 @@ No push, release or history rewrite is authorized by this goal.
 ## Handover
 
 - Stage: Slices; full research Audit remains unmet.
-- Last research commit: 999f0fee; no unfinished batch.
-- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed for 999f0fee.
+- Latest research entries: FND-COMBAT-099 and FND-COMBAT-100; no unfinished batch.
+- Last full gate: 2026-10-29, ./tools/Test.ps1 -NoRestore passed after FND-COMBAT-100.
   Documentation passed with its reported skips. Pinned rules verified offline.
-- Next: Q-COMBAT-046, the caller/event admission dependency of Q-COMBAT-054.
+- Next: Q-COMBAT-056, using FND-COMBAT-100's finite selector-site list.
+  Start with the four local-number sites, then the named context lifetime;
+  bind script entries and intervening preservation rather than only assignments.
+  The regenerated index exists at
+  GAME_DIR/analysis/reader-admission-20261029/scripts.txt. Its inputs and decoder
+  are identified in FND-COMBAT-100. Reuse it while those inputs remain unchanged.
+- Q-COMBAT-057 retains nonliteral first operands and the script decode gap;
+  Q-COMBAT-055 retains independent reader execution and preparation admission.
+  Reuse FND-COMBAT-099/FND-COMBAT-100. The existing closure map is
+  docs/research-closure-numbered-load.json; its assessment is not ready.
+- Q-COMBAT-046 retains window/event admission and precedes Q-COMBAT-054.
   Reuse FND-COMBAT-081/FND-COMBAT-084/FND-COMBAT-085 and FND-UI-051;
-  take up remaining state producers/lifetimes and incoming transfers, including
-  the independent reader route, rather than repeating local navigation or wrappers.
+  take up remaining state producers/lifetimes and window-path incoming transfers
+  rather than repeating local navigation or wrappers.
 - Reuse FND-COMBAT-098 for the three named restoration sites and their local
   sources/gates/order. Remaining work is snapshot/slot provenance and preservation,
   live window/handler identity and event delivery, not those restore-call bodies.
