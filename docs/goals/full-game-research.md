@@ -37,11 +37,11 @@ Do not repeat a retained search without new evidence, tooling or reading.
   functions first, then complete readings. Use docs/RESEARCH-CLOSURE.md and
   docs/research-closure-numbered-load.json; mapping and citation coverage are
   separate from accepted complete readings.
-- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-088,
-  FND-COMBAT-089 and FMT-UI-004,
+- Last full gate: 2026-10-29, Test.ps1 -NoRestore passed for FND-COMBAT-091
+  and FMT-UI-004,
   including 151 Node tests and 715 .NET tests. Documentation passed with its
   reported argument-count, Kaitai and scheduled-generation skips.
-- Current batch references: FND-COMBAT-075 through FND-COMBAT-089;
+- Current batch references: FND-COMBAT-075 through FND-COMBAT-091;
   Q-COMBAT-007 and Q-COMBAT-044 through Q-COMBAT-049 remain open.
   No implementation changes or original-game runs were made in these batches.
 - Unfinished: none in the working tree at this checkpoint. No owned emulator
@@ -51,13 +51,15 @@ Do not repeat a retained search without new evidence, tooling or reading.
   FND-CONFIG-037, FND-CONFIG-067 and FND-CONFIG-151. Consult existing
   FND-COMBAT-052 before reading overlay 182 +088B again.
 - Next Q-COMBAT-049: live archive selection, transfer, record lifetimes
-  and remaining construction/copy/write admission, using FND-COMBAT-087,
-  FND-COMBAT-088, FND-COMBAT-089, FND-EXE-588, FND-PARTY-044 and FND-UI-005.
+  and remaining writes beyond its named bounded paths, using FND-COMBAT-087
+  through FND-COMBAT-091, FND-EXE-588, FND-PARTY-044 and FND-UI-005.
   Reuse their existing field and pointer censuses; do not repeat them
   without changed coverage, tooling or a new reference form. Reuse
   FND-COMBAT-089's source census only while its fingerprints and scope match.
   Related remaining format fields are Q-UI-001; the FMT-UI-004 parity row
   carries the research handoff for a later implementation session.
+  Tracking warns about this item's four Tried notes: review its reduced
+  Settles it before another attempt; do not repeat the named bounded paths.
 - Next Q-COMBAT-046 and Q-COMBAT-048: field/event admission and other callbacks,
   using FND-COMBAT-081, FND-COMBAT-084, FND-COMBAT-085 and FND-UI-051.
   with FND-CONFIG-189 as callback-service context. The APFM dependency is
