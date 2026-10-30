@@ -51,7 +51,7 @@ Entries by status.
 
 ## recorded
 
-89 entries.
+99 entries.
 
 | ID | Title |
 |---|---|
@@ -144,6 +144,16 @@ Entries by status.
 | [FND-COMBAT-089](../../findings/FND-COMBAT-089.md) | APFM child acquisition starts with a null destination and RESOURCE.GFF is the only provider in the inspected top-level archives |
 | [FND-COMBAT-090](../../findings/FND-COMBAT-090.md) | The zero-style APFM paint path returns without frame writes, while flagged styles use a working rectangle below the callback region |
 | [FND-COMBAT-091](../../findings/FND-COMBAT-091.md) | APFM text helpers copy a fixed inline 24-byte region below the parent link without setting the style word |
+| [FND-COMBAT-092](../../findings/FND-COMBAT-092.md) | The APFM mode setter looks up the first matching child-table pointer without verifying its payload tag or hit eligibility |
+| [FND-COMBAT-093](../../findings/FND-COMBAT-093.md) | Window registration publishes the graph before region and child setup and keeps its own earlier stores on local failure |
+| [FND-COMBAT-094](../../findings/FND-COMBAT-094.md) | The window opener gates registration on the allocated output pointer rather than the resource reader status |
+| [FND-COMBAT-095](../../findings/FND-COMBAT-095.md) | RESOURCE.GFF is the sole WIND provider among the 26 fingerprinted top-level archives and its known windows have bounded child tables |
+| [FND-COMBAT-096](../../findings/FND-COMBAT-096.md) | Failed archive selection preserves the body's active pointer while close-all can retain earlier completed closes on a later failure |
+| [FND-COMBAT-097](../../findings/FND-COMBAT-097.md) | The Save/Load row reader closes its locally returned archive handle without branching on the close result |
+| [FND-COMBAT-098](../../findings/FND-COMBAT-098.md) | The three known handler-restoration calls use a late local snapshot or a reread shared slot before further window work |
+| [FND-COMBAT-099](../../findings/FND-COMBAT-099.md) | The script region-change route forwards three low words after a full-width sentinel test |
+| [FND-COMBAT-100](../../findings/FND-COMBAT-100.md) | Decoded literal region-change selectors are nonzero while eleven variable-selector sites remain |
+| [FND-COMBAT-101](../../findings/FND-COMBAT-101.md) | Declared literal script entries reach the four local-selector sites whose direct assignments are nonzero |
 
 ## Open questions
 

@@ -49,11 +49,12 @@ Entries by status.
 
 ## superseded
 
-4 entries.
+5 entries.
 
 | ID | Title |
 |---|---|
 | [FND-UI-009](../../findings/FND-UI-009.md) | A window's two handler pointers at 0xF9 and 0xFD are read only by the activation routine |
+| [FND-UI-011](../../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 |
 | [FND-UI-029](../../findings/FND-UI-029.md) | WIND 16500 places the thirteen Preferences buttons |
 | [FND-UI-060](../../findings/FND-UI-060.md) | The Preferences dispatcher takes button numbers through the window's handler and keys through the global hook, and after each button redraws the button and the bar it changed, the music button drawing the music level in the message-delay bar's place |
 | [FND-UI-061](../../findings/FND-UI-061.md) | The inventory handler casts a pending spell on a clicked character box, gives the held item on a right click, otherwise switches character, drops, splits, pages and sells through four buttons, closes an open container view on its frame events, and passes the other buttons and keys to overlay 190 |
@@ -73,7 +74,6 @@ Entries by status.
 | [FND-UI-007](../../findings/FND-UI-007.md) | The routine at 3F96:02F8 sets, clears or zeroes the event mask of an APFM record |
 | [FND-UI-008](../../findings/FND-UI-008.md) | The generic window lookup, registration, redraw and activation code does not read 0x3A of a WIND record |
 | [FND-UI-010](../../findings/FND-UI-010.md) | Three EBOX lookup wrappers have no direct callers, and the child dispatcher is reached from one input path |
-| [FND-UI-011](../../findings/FND-UI-011.md) | The child dispatcher at 3D72:0EB8 reads a window's count at 0xF3, flags at 0x9E and offset at 0x96 |
 | [FND-UI-012](../../findings/FND-UI-012.md) | No decoded instruction of the resident image has the number of a start-flow, Look-panel or character-view control as an operand |
 | [FND-UI-013](../../findings/FND-UI-013.md) | No resident function has both numbers of either pair of Preferences buttons 16300 and 16301 or 16304 and 16305 |
 | [FND-UI-014](../../findings/FND-UI-014.md) | No function of the overlay-mapped image has both the RDFF tag and the number 19003 |
@@ -127,6 +127,7 @@ Entries by status.
 | [FND-UI-065](../../findings/FND-UI-065.md) | The Preferences dispatcher takes button numbers through the window's handler and keys through the global hook, and after each button redraws the button and the bar it changed, the music button drawing the music level in the message-delay bar's place |
 | [FND-UI-066](../../findings/FND-UI-066.md) | With Preferences open, F4 turns music off and A turns animations off, the window stays open, and within a second the music and animation buttons show their grey form |
 | [FND-UI-067](../../findings/FND-UI-067.md) | Start Game opens the character window only when box 0 holds a stored character whose identifier is 0x8300, which no code makes and which the installed CHARSAVE.GFF's listable characters do not carry |
+| [FND-UI-068](../../findings/FND-UI-068.md) | The pointer hit search continues after APFM matches and reads region rectangles after a ten-byte header |
 
 ## Open questions
 

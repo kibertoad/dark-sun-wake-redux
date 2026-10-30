@@ -520,3 +520,6 @@ Entries by area.
 | [FND-EXE-632](../../findings/FND-EXE-632.md) | With a once-breakpoint on every overlay trampoline, four rust-dos runs from the two-character play checkpoint enter 24 overlay routines and none of the ten that no direct call reaches | recorded |
 | [FND-EXE-633](../../findings/FND-EXE-633.md) | Three overlay 204 routines run past their function inventory rows, leaving 217 bytes of their bodies in no row | recorded |
 | [FND-EXE-634](../../findings/FND-EXE-634.md) | The 7 routines of overlay 211 that no entry placed redraw the spell window's four party boxes and current name, close the spell window, handle the events of its TURN UNDEAD button, control 0x2BEF, and draw a frame over one of those controls through overlay 190 or 2D40:3BEC | recorded |
+| [FND-EXE-635](../../findings/FND-EXE-635.md) | Explicit tail decodes recover the three overlay 204 bodies in an isolated regenerated snapshot | recorded |
+| [FND-EXE-636](../../findings/FND-EXE-636.md) | Overlay tail census distinguishes shared-frame continuations from interior decode gaps | recorded |
+| [FND-EXE-637](../../findings/FND-EXE-637.md) | Canonical ownership and decode declarations reproduce a bounded repaired overlay view | recorded |
