@@ -41,7 +41,7 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 192 Node and 745 .NET tests, Release build and assetless smoke.
   Current documentation and queue checks pass; research mode passed without rebuild tests.
-- Latest completed research: FND-ITEM-016/015/014/013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-017/016/015/014/013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -51,15 +51,16 @@ reports before matched-menu pairing are diagnostic only.
   Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/008 remain open. Q-ACTOR-007 is closed.
   Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
   RULE-ITEM-007/008/009 now reconcile the recorded selector/quantity/bonus
-  bindings and signed inventory-position byte. Q-ITEM-004 retains removal,
-  writer, admission and hit-result consumers; no status promotion.
+  bindings and signed inventory-position byte. Q-ITEM-004 retains removal;
+  Q-ITEM-006/007/008/009 separate fields, quantity, selection and results.
+  Research gates passed for the split and FND-ITEM-017; no status promotion.
   Existing attack/damage/removal/equipment findings now supply its local field
   purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
-  - item-removal-20261104/: FND-ITEM-013/014/015/016 identify retained release,
-    allocation, recursion, callee-preservation and quantity-arithmetic reports.
+  - item-removal-20261104/: FND-ITEM-013/014/015/016/017 identify retained release,
+    allocation, recursion, preservation, quantity and hit-result reports.
   - item-type-fields-20261103/: FND-ITEM-011/012 identify descriptor, metadata,
     shared-row, exact renderer and material-pointer/operand/label reports.
     base-access-candidates.txt, type-byte-three-consumer.txt and the wider
@@ -127,11 +128,10 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Next: Q-ITEM-004's admitted pool chains/indices, setter copy spans and other
-  deletion-kind callees, reusing FND-ITEM-013/014/015 and FND-PARTY-214/218;
-  Q-ITEM-005's other native consumers;
-  Q-ACTOR-008's independent consumers; Q-SCRIPT-022's admitted getter bindings;
-  Q-SCRIPT-019's storage/reset admission. Do not repeat the settled leaf or
-  local recursive-order reading.
+- Next: Q-ITEM-009's near-pointer admission, child effects and later returned
+  byte consumers, reusing FND-ITEM-017 and FND-MAGIC-018/021; Q-ITEM-004's
+  admitted pool chains/indices, copy spans and other deletion-kind callees;
+  Q-ITEM-005's independent consumers; Q-ACTOR-008's independent consumers;
+  Q-SCRIPT-022's admitted getter bindings. Reuse existing local readings.
 - Goal remains active. Independent research is available; this checkpoint does
   not satisfy the full Audit or accept any unresolved question as out of reach.
