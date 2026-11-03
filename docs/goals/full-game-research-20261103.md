@@ -108,6 +108,16 @@ reports before matched-menu pairing are diagnostic only.
 - Adopted https://github.com/kibertoad/refurbished-dinosaurs-template/pull/143
   at the owner's request. Pinned rules, local guidance and section ranges
   are updated; checker and required gates are retained.
+- Completed the next Q-ITEM-005 reconciliation using FND-PARTY-248/252. Its
+  remaining obligations stay open; no status or complete-reading promotion.
+  Test.ps1 -NoRestore passed 175 Node and 745 .NET tests; Kaitai remains absent.
+- Requested validation improvements are in process PR128 and template PR146.
+  The latter passed 120 Node/55 .NET locally; its installer pin fix is awaiting
+  CI. No selected-gate changes have been adopted in this restoration.
+- Owner requested toolkit preflight adoption here and a separate template PR.
+  Checker 6.1.0 is tagged at 98e2e2000e365537c85ffa7605e4813a82a46cb4;
+  publication was still in progress when checked. Verify registry availability
+  and paired CI/package pins before adoption. Do not use preflight as acceptance.
 - Next: Q-ITEM-005's shared-row fields; Q-ACTOR-008's independent consumers;
   Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
   storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
