@@ -56,6 +56,8 @@ reports before matched-menu pairing are diagnostic only.
     type-byte-three-consumer.txt remain preliminary; reuse FND-RNG-043 for
     the latter's existing removal-threshold reading. Q-ITEM-005 now asks for
     semantic/native-consumer coverage, not another descriptor census.
+    Later type-detail-renderer and material-pointer/label queries are unrecorded
+    preparation; finish their evidence review before changing the format.
   - kind-four-reference-20261103/: FND-ACTOR-017 identifies the catalog and
     independent control-600-header/payload/type-row configs and reports.
     FND-ACTOR-018 identifies the repeated full census and refusal controls.
@@ -99,8 +101,9 @@ reports before matched-menu pairing are diagnostic only.
   Do not repeat declared-root, assignment or source-key counts as new findings.
 - Post-commit process audits found no owned orphan; reusable MSBuild nodes
   remain. No original-game runtime was started. No push is authorized.
-- Upstream process PR: https://github.com/kibertoad/refurbished-dinosaurs/pull/125.
-  Defer downstream adoption until merged, per owner instruction.
+- Adopted https://github.com/kibertoad/refurbished-dinosaurs-template/pull/143
+  at the owner's request. Pinned rules, local guidance and section ranges
+  are updated; checker and required gates are retained.
 - Next: Q-ITEM-005's shared-row fields; Q-ACTOR-008's independent consumers;
   Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
   storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
