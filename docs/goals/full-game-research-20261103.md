@@ -20,7 +20,7 @@ The existing implementation plan defines the supported edition and scope.
 
 src/, generated spec/index/ and PARITY.md, other goals' claims or acceptance
 records, licensed content in Git, unrelated host files and emulator processes.
-No push is authorized by this goal.
+Push only on an explicit owner request.
 
 ## Dead ends
 
@@ -49,6 +49,8 @@ reports before matched-menu pairing are diagnostic only.
 - Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
   Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/008 remain open. Q-ACTOR-007 is closed.
   Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
+  Existing attack/damage/removal/equipment findings now supply its local field
+  purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
@@ -100,7 +102,9 @@ reports before matched-menu pairing are diagnostic only.
   FND-COMBAT-074 and FND-ACTOR-015/016 before further field-zero research.
   Do not repeat declared-root, assignment or source-key counts as new findings.
 - Post-commit process audits found no owned orphan; reusable MSBuild nodes
-  remain. No original-game runtime was started. No push is authorized.
+  remain. No original-game runtime was started. The owner authorized publishing
+  the semantic-reconciliation batch and this checkpoint to main; further pushes
+  require an explicit request.
 - Adopted https://github.com/kibertoad/refurbished-dinosaurs-template/pull/143
   at the owner's request. Pinned rules, local guidance and section ranges
   are updated; checker and required gates are retained.
