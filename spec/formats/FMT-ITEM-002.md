@@ -9,7 +9,7 @@ byte_order: little
 size: 15
 text: false
 definition: fmt_item_002.ksy
-evidence: [FND-ITEM-011, FND-ITEM-012, FND-ACTOR-017, FND-ACTOR-018, FND-COMBAT-065, FND-COMBAT-067, FND-PARTY-100, FND-RNG-043, FND-EXE-616, FND-PARTY-085]
+evidence: [FND-ITEM-011, FND-ITEM-012, FND-ACTOR-017, FND-ACTOR-018, FND-COMBAT-065, FND-COMBAT-067, FND-PARTY-100, FND-RNG-043, FND-EXE-616, FND-PARTY-085, FND-PARTY-248, FND-PARTY-252]
 conflicting: []
 split_with: []
 related: []
@@ -28,18 +28,18 @@ No runtime decoder or complete semantic contract is claimed.
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 1 | `UINT8` | `byte_00` | Raw byte at generic selector 87; local mask uses below. | supported | FND-ITEM-011, FND-ITEM-012 |
+| `0x00` | 1 | `UINT8` | `byte_00` | Raw byte at generic selector 87; local display and property-mask uses below. | supported | FND-ITEM-011, FND-ITEM-012, FND-PARTY-252 |
 | `0x01` | 1 | `UINT8` | `byte_01` | Generic selector 88. Initial hit-word mask in the armed attack path, before magic-level bits are added. | supported | FND-ITEM-011, FND-COMBAT-065 |
 | `0x02` | 1 | `UINT8` | `byte_02` | Raw byte at generic selector 89; contributes to the guarded heavy classification below. | supported | FND-ITEM-011, FND-ITEM-012 |
 | `0x03` | 1 | `UINT8` | `byte_03` | Generic selector 90. State-one object's removal threshold: the recorded damage routine queues removal when positive incoming damage is greater. | supported | FND-ITEM-011, FND-RNG-043 |
-| `0x04` | 1 | `UINT8` | `byte_04` | Raw byte at generic selector 91; material nibble and local label flag uses below. | supported | FND-ITEM-011, FND-ITEM-012 |
+| `0x04` | 1 | `UINT8` | `byte_04` | Raw byte at generic selector 91; material nibble, local label and image-cache gates below. | supported | FND-ITEM-011, FND-ITEM-012, FND-PARTY-252 |
 | `0x05` | 1 | `UINT8` | `byte_05` | Generic selector 92. Category compared with the per-position codes of the automatic equipment helper. | supported | FND-ITEM-011, FND-EXE-616 |
 | `0x06` | 1 | `UINT8` | `byte_06` | Generic selector 93. Weapon selection distinguishes one from values above one; a ranged attack requires this value at least its distance argument. | supported | FND-ITEM-011, FND-COMBAT-065 |
 | `0x07` | 1 | `UINT8` | `byte_07` | Generic selector 94. Item rate source when the swing's distance argument is above one; otherwise the armed path uses the attacker's details rate. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
 | `0x08` | 1 | `UINT8` | `byte_08` | Generic selector 95. Damage die sides supplied by the item path of the recorded swing. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
 | `0x09` | 1 | `UINT8` | `byte_09` | Generic selector 96. Damage die count supplied by the same path. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
 | `0x0A` | 1 | `UINT8` | `byte_0a` | Generic selector 97. Read as a signed damage addend in the item swing before other terms; raw storage remains unsigned here. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
-| `0x0B` | 1 | `UINT8` | `byte_0b` | Raw byte at generic selector 25; guarded label flags below. | supported | FND-ITEM-011, FND-ITEM-012 |
+| `0x0B` | 1 | `UINT8` | `byte_0b` | Raw byte at generic selector 25; guarded display, completion and classification uses below. | supported | FND-ITEM-011, FND-ITEM-012, FND-PARTY-248, FND-PARTY-252 |
 | `0x0C` | 2 | `UINT16LE` | `word_0c` | Generic selector 40. Automatic equipment requires a shared bit with the combatant details class-flags word. This is one eligibility predicate, not the complete equipment rule. | supported | FND-ITEM-011, FND-EXE-616, FND-PARTY-085 |
 | `0x0E` | 1 | `UINT8` | `byte_0e` | Raw byte at generic selector 56; signed type contribution in the armor-bonus display below. | supported | FND-ITEM-011, FND-ITEM-012 |
 | | | | | Total size 15 | | |
@@ -77,29 +77,33 @@ The low nibble selects material text in the known detail renderer:
 | 3 | `MATERIAL_OBSIDIAN` | Obsidian. | supported | FND-ITEM-012 |
 | 4 | `MATERIAL_METAL` | Metal. | supported | FND-ITEM-012 |
 | 5 | `MATERIAL_LEATHER` | Leather. | supported | FND-ITEM-012 |
+| 0x20 | `LOCAL_IMAGE_CACHE_GATE` | When clear, the qualified property caller adds result bit 0x01 and may fill a zero item bitmap cache from its placed slot; when set it skips that branch. | supported | FND-PARTY-252 |
 | 0x40 | `LOCAL_MATERIAL_GATE` | Independent raw-byte mask suppressing material text; the hand description still requires its other predicates. | supported | FND-ITEM-012 |
 
-Values zero through five apply to the low nibble; 0x40 is a separate mask
+Values zero through five apply to the low nibble; 0x20 and 0x40 are separate masks
 of the raw byte. The codes are the installed source indices, not a bound enforced by the native
 nibble lookup; indices six through fifteen remain unexamined. The definition
 derives the material value without adding a validity restriction.
 
 ### byte_00
 
-These names describe the known detail renderer's predicates, not universal
-meanings in every consumer.
+These names describe the recorded local predicates, not universal meanings
+in every consumer.
 
 | Value | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|
 | 0x01 | `LOCAL_HEAVY_GATE` | Required by the heavy-label predicate, with its other guards below. | supported | FND-ITEM-012 |
-| 0x13 | `LOCAL_DESCRIPTION_MASK` | Any set bit satisfies the first part of the hand-description predicate. | supported | FND-ITEM-012 |
+| 0x13 | `LOCAL_DESCRIPTION_MASK` | Any set bit satisfies the first part of the hand-description predicate and separately assigns property result 0x08 before later overrides. | supported | FND-ITEM-012, FND-PARTY-252 |
 
 ### byte_0b
 
 | Value | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|
+| 0x01 | `LOCAL_DOOR_CLASSIFICATION_GATE` | The qualified caller tests the door range; a zero result ORs 0x10 into its result, while nonzero replaces it with 0x10. | supported | FND-PARTY-252 |
+| 0x02 | `LOCAL_COMPLETION_VALUE_GATE` | Selects the local completion restore/decrement branch below; separately contributes property result 0x08 when quantity is nonzero. | supported | FND-PARTY-248, FND-PARTY-252 |
+| 0x08 | `LOCAL_PROPERTY_40_GATE` | The qualified property caller ORs 0x40 into its local result. | supported | FND-PARTY-252 |
 | 0x40 | `LOCAL_HAND_GATE` | Required together with byte zero mask 0x13 for the hand description; suppresses the heavy label. | supported | FND-ITEM-012 |
-| 0x80 | `LOCAL_ARMOR_GATE` | Selects the armor-bonus calculation below. | supported | FND-ITEM-012 |
+| 0x80 | `LOCAL_ARMOR_GATE` | Selects the armor-bonus display and separately assigns property result 0x08 before later overrides. | supported | FND-ITEM-012, FND-PARTY-252 |
 
 ### Combined local uses
 
@@ -117,6 +121,26 @@ With byte eleven bit 0x80 set, it formats an armor-class bonus from signed
 byte fourteen plus the attached item's signed byte 0x16 (FND-ITEM-012).
 Combat's effect-dependent calculation is separately recorded in
 FND-COMBAT-068. Other flag domains and the complete field contract remain open.
+
+The completion helper's bit-0x02 test selects a full-word copy from the attached
+item's word 0x10 to its word 0x0E when the unsigned type index is below 9999
+and the bit is set. Otherwise it copies to quantity word 0x02. For nonzero low-byte action arguments in the recorded
+kind-three completion path, the helper runs before the conditional low-byte
+decrement; argument 2 bypasses that decrement when the same type flag is set.
+These local uses do not establish a universal charge or stackability flag,
+all action meanings, or stable identity across other calls (FND-PARTY-248).
+
+The classifier's byte-zero mask 0x13 and type-byte-eleven bits 0x02/0x80
+can assign 0x08, but a later admitted name-number test replaces its result
+with 0x80. Its caller can replace that result again in the door branch.
+The caller's type-byte-four bit-0x20-clear path copies the placed slot's word
+0x19 into an item bitmap cache only when that cache word equals zero; it
+retains a nonzero cache. Its item/type work is guarded by the recorded kind
+and unsigned-below-9999 checks. These checks are not proofs of table capacity,
+resource validity or all incoming domains. Result consumers and admitted
+inputs remain Q-PARTY-108; independent cache production/identity remain
+Q-PARTY-087 and Q-PARTY-089 (FND-PARTY-252). No new player-visible action rule
+or complete reading follows from these local flag bindings.
 
 ## Differences between builds
 
@@ -142,7 +166,8 @@ not establish all other consumers or the live table's admission/lifetime.
 
 ## Open questions
 
-- The unexamined field purposes, flag domains and native transformations,
+- Other flag domains, native transformations and field uses beyond the recorded
+  attack, display, equipment, completion, classification and cache branches,
   independent consumers and complete reader/writer coverage (Q-ITEM-005).
   The raw layout and local bindings above do not establish those meanings
   or a complete reading of every consumer.

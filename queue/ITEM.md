@@ -6,8 +6,9 @@ Next ID: Q-ITEM-006
 
 - Q-ITEM-005. FMT-ITEM-002: What is the complete field contract of the shared
   fifteen-byte item-type records? Settles it: remaining semantic reader/writer
-  coverage beyond the recorded attack, damage, removal and automatic equipment
-  routes, including independent reads/writes, arithmetic and unexamined flag
+  coverage beyond the recorded attack, damage, removal, automatic equipment,
+  completion, property-classification and conditional bitmap-cache routes,
+  including independent reads/writes, arithmetic and other flag
   meanings and combinations. The local field purposes and equipment mask
   overlap are already recorded; they are not complete rules for all routes.
   The descriptor partition and 102-row structural coverage are settled by
@@ -31,6 +32,12 @@ Next ID: Q-ITEM-006
   field purposes in FMT-ITEM-002. The superseded FND-PARTY-092 is not the
   current combat-field evidence. This removes another field-identification
   reading; independent consumers and unresolved flag meanings remain.
+  Tried: FND-PARTY-248/252 already settle local byte-eleven masks 0x01,
+  0x02 and 0x08 and byte-four mask 0x20, plus independent property uses of
+  byte-zero mask 0x13 and byte-eleven mask 0x80. FMT-ITEM-002 now records
+  those guarded completion/classifier/cache bindings and the result replacements.
+  This removes those local flag-identification readings; universal labels,
+  independent consumers and admitted-domain/lifetime coverage remain open.
 
 - Q-ITEM-001. FMT-ITEM-001, RULE-ITEM-006: Does DSUN.EXE read ITEMS.BIN, and what does an
   `old_item` number: which records of a Dark Sun 1 saved game the transfer utility reads its item
