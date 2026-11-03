@@ -18,3 +18,4 @@ Their own acceptance criteria and exits remain authoritative for their work.
 | Typed offset-word candidate classification | [Offset-word classification](OFFSET-WORD-CLASSIFICATION.md) |
 | Kind-five first-word provenance census | [RDFF key census](RDFF-KEY-CENSUS.md) |
 | Kind-four inline/shared-row comparison | [RDFF type comparison](RDFF-TYPE-COMPARISON.md) |
+| Shared item-type structural specification | [Item-type structure](ITEM-TYPE-STRUCTURE.md) |

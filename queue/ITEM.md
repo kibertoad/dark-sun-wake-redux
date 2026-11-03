@@ -5,17 +5,25 @@ Next ID: Q-ITEM-006
 ## Static
 
 - Q-ITEM-005. FMT-ITEM-002: What is the complete field contract of the shared
-  fifteen-byte item-type records? Settles it: remaining direct reader/writer
-  widths, meanings, masks and arithmetic for every field, their item-field/index
-  relationships and source coverage across the 102 installed rows. Reuse
-  FND-PARTY-248/252's existing consumers and FND-ACTOR-017's conditional
-  ALL/4 base/stride binding; those do not settle the remaining fields.
+  fifteen-byte item-type records? Settles it: remaining semantic reader/writer
+  coverage, including independent consumers and arithmetic for the known
+  fields, unexamined flag domains and equipment/class-mask interpretation.
+  The descriptor partition and 102-row structural coverage are settled by
+  FND-ITEM-011; material indices and the guarded detail-renderer hand/heavy/
+  armor-bonus bindings by FND-ITEM-012. Reuse FND-PARTY-248/252's field/index
+  and classifier consumers, FND-RNG-043's byte-three removal threshold,
+  FND-COMBAT-065/066/068 and FND-PARTY-092's combat consumers, and
+  FND-EXE-616's equipment/class-mask consumer rather than repeating them.
+  Higher material-index states remain outside the observed source domain.
   Archive/pointer lifetime and trigger getter admission remain Q-CONFIG-008
   and Q-SCRIPT-022. Blocks: slices 4-5.
   Tried: FND-ITEM-011 settles the complete installed generic descriptor,
   metadata and conditional width partition, with all 102 source rows covered.
   The remaining question is the semantic/native-consumer contract, not another
   descriptor census. Direct code may address interior bytes independently.
+  Tried: FND-ITEM-012 removes the material-label and named display-binding
+  questions from this item's remaining work. Full native-consumer and flag
+  coverage stays open; source labels do not prove every live alias or effect.
 
 - Q-ITEM-001. FMT-ITEM-001, RULE-ITEM-006: Does DSUN.EXE read ITEMS.BIN, and what does an
   `old_item` number: which records of a Dark Sun 1 saved game the transfer utility reads its item

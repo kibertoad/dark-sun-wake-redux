@@ -102,6 +102,11 @@ adjustment (FND-COMBAT-068). An unenchanted item whose type nibble is 0 to 3 hit
 or -2 and does 2, 1, 1 or 1 less damage; these are the nibbles RULE-COMBAT-011 lets break, which
 fits weapons of wood, bone and stone in the AD&D Dark Sun rules (circumstantial).
 
+FND-ITEM-012 subsequently resolves the detail renderer's material table:
+indices zero through five name wood, bone, stone, obsidian, metal and leather.
+This supplies direct shipped label identities for the low nibble. It does
+not complete the caller, input or live-table reading of these combat helpers.
+
 The two-weapon term is never a penalty: for a non-ranger holding two melee weapons it is 0 at
 Dexterity 6 or more and adds 1 to 6 to the bonus below that. No fixed penalty for the second
 weapon appears in the attack routine. The AD&D rule the manual paraphrases is a penalty reduced by

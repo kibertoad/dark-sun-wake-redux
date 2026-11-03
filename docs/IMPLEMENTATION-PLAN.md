@@ -996,4 +996,5 @@ Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
 
 Supporting tooling plans include [RDFF key census](implementation-plans/RDFF-KEY-CENSUS.md) and [type comparison](implementation-plans/RDFF-TYPE-COMPARISON.md).
+The [item-type structural specification](implementation-plans/ITEM-TYPE-STRUCTURE.md) defines its evidence, bounded layout and validation limits.
 They are indexed in [implementation plans](implementation-plans/README.md); each defines its scope, acceptance and exit.
