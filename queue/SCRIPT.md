@@ -27,10 +27,17 @@ Next ID: Q-SCRIPT-021
   initialized contents, pointer replacement/alias/lifetime and save/restore
   destinations reaching the setup, walkers and converters. Keep allocation
   suppression, zero pointers and the low-byte failure-check asymmetry explicit.
+  The qualified local allocation/reset link transformations are already
+  FND-CONFIG-156 and FND-SCRIPT-031; establish actual phase admission and
+  remaining content producers/preservation rather than assuming one terminal link.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
   Those locations do not establish valid live storage. Blocks: slices 2-4.
+  Tried: FND-SCRIPT-031 separates the DS:13FB-gated resident fill/link loop
+  from allocation's FFFF overwrite, retaining its cleanup-loop and child-return
+  conditions. The local reset transformation is removed from the unknowns;
+  actual phase, pointer/capacity/lifetime and later-use admission remain above.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
   either GPLI conversion outside the known save writer and reader calls?
   Settles it: computed, unrelocated, split and runtime-constructed targets,

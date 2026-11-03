@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -55,6 +55,14 @@ helper and stores the returned far pointer at 57E0:40C0. The allocation can be
 suppressed or fail, and the outer caller's low-byte check does not establish
 success. This identifies the allocation route without asserting valid storage
 at every later use.
+
+FND-SCRIPT-031 distinguishes the allocator's final FFFF link from the
+separate resident reset gated by DS:13FB. Under its buffer/pointer preservation
+conditions, that reset fills the current table with FF and writes links i plus
+one for records zero through 199, leaving record 199 linked to 200. Its own
+following head assignments do not replace that link with FFFF. Which phase
+reaches a particular use remains Q-SCRIPT-019; this does not establish a live
+access beyond the 200-record pool.
 
 FND-SAVE-021 binds that pointer to save-table entry 38. FND-SAVE-015 gives its
 length as 0x0A28, also 2600 bytes, and includes it in the selector-zero resource
