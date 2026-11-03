@@ -4,25 +4,7 @@ Next ID: Q-EXE-033
 
 ## Static
 
-- Q-EXE-032. FND-EXE-633: Which overlay rows of the function inventory end before their
-  routine's return, as those of overlay 204 `+2029`, `+2085` and `+214E` do (ending at
-  `0x8DDF3`, `0x8DF08` and `0x8DF15` with 217 body bytes in no row)? Settles it: an inventory
-  whose rows for `0x8DDE9`, `0x8DE45` and `0x8DF0E` end at `0x8DE17`, `0x8DF0E` and `0x8DFC4`
-  (through the declared-entry or reconciliation steps of `docs/GHIDRA.md`), with every other
-  overlay row checked by the test FND-EXE-633 describes. Blocks: none.
-  Tried: FND-EXE-635 restores the missing static prerequisites and reproduces
-  the three short bodies. Its isolated declared-decode control recovers exactly
-  their 217 missing bytes in a frozen snapshot copy; normal fall-through
-  declarations do not. FND-EXE-636 completes the bounded final-range census
-  and identifies three shared-frame adjacent entries and 226 omitted interior
-  bytes in two full-model bodies. Durable decode regeneration is now tested.
-  FND-EXE-637 resolves the two extra starts as internal blocks, persists the
-  canonical ownership/interior-range declarations, and reproduces the complete
-  bounded overlay delta: three merged entries and 217 added tail bytes, with
-  every other range unchanged. Remaining: regenerate/reconcile the missing
-  resident view, accept the joined inventory with provenance and regions, and
-  update its dependent closure-plan hashes. A terminal-return result alone
-  does not prove a complete body.
+None.
 
 ## Emulated call
 

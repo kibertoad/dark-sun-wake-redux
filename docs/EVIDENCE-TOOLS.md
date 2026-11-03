@@ -83,8 +83,8 @@ generated range/owner match retains the manual evidence; stale unevidenced
 rows are regenerated. Conflicting owners and duplicate manual ranges fail.
 FND-EXE-636 and FND-EXE-637 add three interior decode ranges and five internal
 entry removals. The canonical overlay candidate reproduces 874 rows with a
-fully explained range delta; the committed joined inventory is unchanged
-until its resident input and join/staging checks are reconciled.
+fully explained range delta. FND-EXE-638 regenerates the resident input,
+preserves every resident row and accepts the repaired join through staging.
 Change those files, never the inventory,
 to add or drop a start or a flow. Run `CorrectNearTransfers.java` once more,
 then `tools/ghidra/FillInstructionBodies.java`, which adds to each body the
@@ -125,7 +125,9 @@ from a checkout with Windows line endings.
 
 The committed `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` was staged by this join,
 with the trampoline, near-transfer, declared-entry, declared-flow and fill steps,
-from the views of 2026-10-21 (FND-EXE-597, FND-EXE-599, FND-EXE-601). `coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
+from the regenerated resident and repaired overlay views (FND-EXE-638,
+FND-EXE-637), preserving the resident rows of FND-EXE-601.
+`coverage/BLD-GOG-EN-1.1/@CD/DSUN.EXE.tsv` comes from the `CD-`
 single-import resident view of 2026-10-10 and the `overlay-owned` snapshot of
 2026-10-09, without those steps; it is a diff reference only. `standard-coverage`
 accepts both.
