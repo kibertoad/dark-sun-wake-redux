@@ -1,6 +1,6 @@
 # ITEM
 
-Next ID: Q-ITEM-006
+Next ID: Q-ITEM-010
 
 ## Static
 
@@ -51,50 +51,66 @@ Next ID: Q-ITEM-006
   and whether the game enforces the class weapon lists and by which item field? Settles it: the
   code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
   (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
-- Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What remains of
-  the item tests' removal, mutable-field and hit-result contract? Settles it:
-  the remaining callee/global-preservation and admitted storage/caller
-  contracts of `2D40:2452`, including admitted pool chains/indices and
-  setter destination spans disjoint from current-object/descriptor, graph,
-  map and stack storage, beyond its recorded local ordering, map builder,
-  kind switch, reparenting and item-release leaf,
-  independent writers and admission of attached-record byte +0x12, signed
-  position +0x13, signed bonus +0x16 and word +0x10, the admitted caller,
-  quantity-writer and storage/index domains of overlay 173 `+2B88`, admitted list/index domains for
-  `+2E1B`, and the hit routine's consumers
-  of result flag 0x02. Preserve the distinction between its local effect-test
-  flag and other combat masks. Blocks: slices 4-5.
-  Tried: FND-RNG-035 reads the three tests and FND-ITEM-010 their effect-switch
-  callers and flag store. FND-PARTY-120 records part of the removal dispatch,
-  not complete item-specific reclamation; do not treat the helper name as proof.
-  Tried: FND-COMBAT-065/FND-EXE-600 settle the selector's local -2/1 criteria
-  and the quantity/removal branch of `+2B88`; FND-PARTY-248 binds local signed
-  bonus uses and FND-PARTY-217 binds signed inventory position +0x13.
-  RULE-ITEM-007/008/009 now incorporate those facts. They remove those local
-  identification readings, not the remaining writers, domains or result-flag
-  consumer question. A complete reading is not established.
-  Tried: FND-ITEM-013 reads the complete 61-byte release leaf and its adjacent
-  52-byte allocator control. The leaf's free-list head/link and identifier
-  stores are settled, under stated stability/non-aliasing conditions. Reuse
-  FND-PARTY-214/218 for the map and kind switch; superseded FND-PARTY-172 is
-  not current evidence. Remaining removal work is recursion/continuation and
-  admitted storage/caller domains, not another local release-leaf reading.
-  Tried: FND-ITEM-014 settles the recursive body's own release-before-child
-  order, conditional reparenting and later child selection, and records its
-  explicit non-returning failure branch without admitting shipped inputs.
-  Remaining deletion work is reached callee effects, DS:60EB/descriptor
-  preservation, graph/map identity and admitted counts/indices/parents,
-  not another reading of this local continuation.
-  Tried: FND-ITEM-015 settles the pool helpers' complete conditional write
-  sets and the setter's local callee set. Reuse FND-CONFIG-140/137/182 for
-  its resolver/copy children. Do not search these bodies again for an
-  unrecorded direct current-object assignment; prove their admitted indices,
-  chains and computed copy spans instead. Other deletion-kind callees remain.
-  Tried: FND-ITEM-016 settles `+2B88`'s complete local word arithmetic,
-  initial-zero bypass and store/request/return order. RULE-ITEM-008 now
-  distinguishes initial zero from subtraction to zero and retains nonzero
-  wrapped results. Remaining work is caller/writer/storage admission and
-  deletion effects, not another local arithmetic reading.
+- Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Do the item-test
+  callers admit the storage and state required for complete recursive removal?
+  Settles it: remaining caller/global preservation and storage contracts of
+  `2D40:2452`, including pool chains/indices, graph/map identity, counts and
+  parent indices, and setter copy spans disjoint from current-object,
+  descriptor, graph, map and stack state. Reuse Q-PARTY-081 for its specific
+  defeat-cleanup segment-identity dependency; do not infer later identity from
+  startup equality alone. Blocks: slices 4-5.
+  Tried: split the independent field, quantity, selector and result-consumer
+  questions into Q-ITEM-006 through Q-ITEM-009. FND-ITEM-013/014 settle the
+  release leaf, local recursive ordering and conditional reparenting;
+  FND-ITEM-015 bounds pool writes and the setter's local callee set. Reuse
+  FND-PARTY-214/218 for map and graph provenance and FND-CONFIG-140/137/182
+  for resolver/copy children. FND-PARTY-120 alone is not complete reclamation;
+  superseded FND-PARTY-172 is not current graph evidence. Remaining work is
+  admission/preservation, not another reading of those settled local bodies.
+
+- Q-ITEM-006. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What independent
+  writers and admitted states give the item-test inputs their complete field
+  contracts? Settles it: producer, lifetime and consumer coverage for attached
+  record byte +0x12, signed position +0x13, signed bonus +0x16 and word +0x10,
+  including the position values zero, six and nine used by the armour test.
+  Keep the shared type record distinct from these attached fields.
+  Blocks: slices 4-5.
+  Tried: split from Q-ITEM-004. FND-RNG-035 reads the three tests;
+  FND-PARTY-248 binds local signed bonus uses and FND-PARTY-217/221 bind
+  signed inventory position. Their local purposes are already in the rules;
+  neither those uses nor a field's name establish every writer/admitted state.
+
+- Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
+  item helper's local quantity operations? Settles it: complete caller
+  coverage and argument producers for overlay 173 `+2B88`, independent
+  quantity-word writers/lifetime and table/index capacity, and consistency
+  of its independently supplied graph, entry and attached-record arguments.
+  Complete deletion effects remain Q-ITEM-004. Blocks: slices 4-5.
+  Tried: split from Q-ITEM-004. FND-ITEM-016 settles local word arithmetic,
+  initial-zero bypass and store/request/return order. FND-EXE-600 and
+  FND-RNG-035 record both known direct callers requesting one. Neither admits
+  every caller or quantity; do not repeat the settled arithmetic reading.
+
+- Q-ITEM-008. RULE-ITEM-007: What lists and indices can reach the corroding
+  hit's held-item selector? Settles it: callers and producer/lifetime coverage
+  for the graph and current-index domain of overlay 173 `+2E1B`, including
+  count, ancestor-chain and attached/shared-record bounds for its recorded
+  -2/1 selection. Graph storage admission is shared with Q-ITEM-004.
+  Blocks: slices 4-5.
+  Tried: split from Q-ITEM-004. FND-COMBAT-065/FND-EXE-600 settle the local
+  selector criteria: first qualifying kind one, kind-two ancestor field 0x11
+  and shared type byte +6 equal to one. The remaining question is admitted
+  input graphs/indices, not the same local predicate again.
+
+- Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
+  hit behavior consumes the item tests' result flag? Settles it: follow
+  overlay 179's continuation after `+2752` and its callers' later consumers
+  of the flags byte passed by near pointer, preserving every branch that
+  reads mask 0x02 and its observable continuation. Distinguish this local
+  effect-test result from unrelated combat masks. Blocks: slices 4-5.
+  Tried: split from Q-ITEM-004. FND-ITEM-010 records the effect-switch callers,
+  conditional store of mask 0x02 and continuation entry, and FND-RNG-035
+  records the test returns. The later consumers have not been read there.
 
 ## Emulated call
 

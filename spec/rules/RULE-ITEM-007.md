@@ -88,9 +88,10 @@ None known.
 
 ## Open questions
 
-- The complete recursive effects of `fn_2D40_2452` beyond the recorded item-release leaf, and the remaining
-  writer/admission contract of the selected record, its signed bonus and
-  `fn_5671_0084`'s list/index domain
-  (Q-ITEM-004). The selector's local criteria and bonus uses are recorded above.
+- Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
+- Independent selected-field writers and admitted bonus states remain
+  Q-ITEM-006; `fn_5671_0084` list/index admission is Q-ITEM-008. The local selector
+  criteria and bonus uses are recorded above.
+- Subsequent consumers of the hit's result flag remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

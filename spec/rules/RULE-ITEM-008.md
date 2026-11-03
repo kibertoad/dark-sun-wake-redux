@@ -95,8 +95,10 @@ None known.
 
 ## Open questions
 
-- `fn_5671_0075`'s removal effects, caller/storage admission contract, and
-  independent writers and uses of the +0x12 rank and +0x16 signed bonus
-  (Q-ITEM-004). Its local quantity arithmetic and zero branches are recorded above.
+- Recursive removal/storage admission remains Q-ITEM-004. The quantity
+  helper `fn_5671_0075` caller, writer and record-admission contract is Q-ITEM-007;
+  its local arithmetic and zero branches are recorded above.
+- Independent writers and admitted uses of the +0x12 rank and +0x16 signed
+  bonus remain Q-ITEM-006; hit-result consumers remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

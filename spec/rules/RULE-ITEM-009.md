@@ -89,7 +89,9 @@ None known.
 
 ## Open questions
 
-- The complete recursive effects of `fn_2D40_2452` beyond the recorded item-release leaf, which items byte `+0x13`'s values 0, 6
-  and 9 admit in this route and what word `+0x10` holds (FND-RNG-035, Q-ITEM-004).
+- Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
+- Which admitted items have position values zero, six and nine and the
+  writer/consumer contract of word +0x10 remain Q-ITEM-006 (FND-RNG-035).
+- Subsequent consumers of the hit's result flag remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
