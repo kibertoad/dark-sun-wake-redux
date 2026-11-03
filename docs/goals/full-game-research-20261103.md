@@ -49,6 +49,9 @@ reports before matched-menu pairing are diagnostic only.
 - Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
   Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/008 remain open. Q-ACTOR-007 is closed.
   Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
+  RULE-ITEM-007/008/009 now reconcile the recorded selector/quantity/bonus
+  bindings and signed inventory-position byte. Q-ITEM-004 retains removal,
+  writer, admission, arithmetic and hit-result consumers; no status promotion.
   Existing attack/damage/removal/equipment findings now supply its local field
   purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
@@ -112,13 +115,16 @@ reports before matched-menu pairing are diagnostic only.
   remaining obligations stay open; no status or complete-reading promotion.
   Test.ps1 -NoRestore passed 175 Node and 745 .NET tests; Kaitai remains absent.
 - Requested validation improvements are in process PR128 and template PR146.
-  The latter passed 120 Node/55 .NET locally and its complete CI. No
-  selected-gate changes have been adopted in this restoration.
+  PR128 is merged. PR146 now pins its final version and aligns research-only
+  acceptance, same-map receipt contracts and per-case isolation. It passed
+  123 Node/55 .NET locally; CI is rerunning for that alignment. No selected
+  gate changes have been adopted in this restoration.
 - Adopted published checker 6.1.0 with matching release-tag CI/package pins
   at 98e2e2000e365537c85ffa7605e4813a82a46cb4. Full Test.ps1 -NoRestore
   passed 176 Node/745 .NET. Optional docs --preflight is partial editing feedback;
   complete gates remain required. Template adoption is PR147; focused local
-  acceptance and complete CI, including Windows packaging, passed. Root changes
+  acceptance and complete CI, including Windows packaging, passed. PR147 also
+  adopts merged process PR128 and refreshed links; its latest CI is green. Root changes
   remain unpushed, as required. One pre-final validation family was stopped
   after a synthetic citation-fixture defect; final-tree acceptance passed.
 - Next: Q-ITEM-005's remaining independent consumers and flag domains; Q-ACTOR-008's independent consumers;
