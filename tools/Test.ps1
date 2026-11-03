@@ -88,6 +88,7 @@ $nodeTests = @(
     'tests/evidence/checkpoints.test.mjs',
     'tests/evidence/declared-flows.test.mjs',
     'tests/evidence/script-local-paths.test.mjs',
+    'tests/evidence/script-selector-census.test.mjs',
     'tests/evidence/inventory-tails.test.mjs',
     'tests/upstream/tool-dependencies.test.mjs',
     'tests/upstream/upstream.test.mjs',

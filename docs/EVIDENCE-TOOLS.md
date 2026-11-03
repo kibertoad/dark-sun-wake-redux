@@ -477,3 +477,28 @@ controls of FND-COMBAT-101; retain original-derived configs and reports in
 GAME_DIR/analysis/local-selector-paths-20261103/matched-menu/. Earlier files
 in that store are diagnostic, preceding corrected menu frame pairing.
 Recording a research conclusion from the reports is a separate research batch.
+
+## Script selector census
+
+`python -I tools/research/exec-census/script_selector_census.py LISTING CONFIG`
+uses the same bounded index grammar and operand splitter. Config requires
+`listingSha256` and a `controls` object: `total`, `sentinel`, `otherLiteral`,
+`nonliteral`, `sentinelLiteralSecond`, `sentinelNonliteralSecond` and `errors`.
+All are explicit expected counts; a missed control rejects the report.
+FND-COMBAT-100 records the original-index controls. The decoder's matching
+inline error diagnostic and final summary count as one error; unmatched or
+duplicate diagnostics fail instead of becoming silent coverage.
+
+The report groups top-level indexed opcode 0x5E starts by first-operand class,
+then distinguishes zero/nonzero literal selector low words and nonliteral
+selectors. Nonliteral fields are unknown, not zero. It records listing, config,
+tool and parser hashes, retains the decoder gap and excludes nested starts.
+Runtime admission, parameter preservation and native effects remain separate.
+The tool starts no game process and changes no resource.
+
+Synthetic controls in `tests/evidence/script-selector-census.test.mjs` cover
+nested commas, full-width sentinel identity, word narrowing, missing controls,
+error diagnostics and input/output bounds. Original configs and the successful
+repeated `census-c.json`/`census-d.json` reports are retained under
+GAME_DIR/analysis/selector-domain-census-20261103/. The earlier empty failed
+report is diagnostic only. Research conclusions belong in their own batch.

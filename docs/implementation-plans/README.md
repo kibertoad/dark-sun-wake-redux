@@ -14,3 +14,4 @@ Their own acceptance criteria and exits remain authoritative for their work.
 | Inventory tails | [Inventory tail reconciliation](INVENTORY-TAIL-RECONCILIATION.md) |
 | Pinned runtime checkpoint regeneration | [Checkpoint regeneration](CHECKPOINT-REGENERATION.md) |
 | Local-selector assignment research tooling | [Local selector paths](LOCAL-SELECTOR-PATHS.md) |
+| Nonliteral-first-operand selector census | [Script selector census](SCRIPT-SELECTOR-CENSUS.md) |
