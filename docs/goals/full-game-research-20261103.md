@@ -39,7 +39,8 @@ reports before matched-menu pairing are diagnostic only.
 - Baseline: pinned rules verified offline; documentation passed with the
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
-  including 176 Node and 745 .NET tests. Current documentation and queue checks pass.
+  including 192 Node and 745 .NET tests, Release build and assetless smoke.
+  Current documentation and queue checks pass; research mode passed without rebuild tests.
 - Latest completed research: FND-ITEM-016/015/014/013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
@@ -116,18 +117,16 @@ reports before matched-menu pairing are diagnostic only.
 - Completed the next Q-ITEM-005 reconciliation using FND-PARTY-248/252. Its
   remaining obligations stay open; no status or complete-reading promotion.
   Test.ps1 -NoRestore passed 175 Node and 745 .NET tests; Kaitai remains absent.
-- Requested validation improvements are in process PR128 and template PR146.
-  PR128 is merged. PR146 now pins its final version and aligns research-only
-  acceptance, same-map receipt contracts and per-case isolation. It passed
-  123 Node/55 .NET locally and complete CI for that alignment. No selected
-  gate changes have been adopted in this restoration.
-- Adopted published checker 6.1.0 with matching release-tag CI/package pins
-  at 98e2e2000e365537c85ffa7605e4813a82a46cb4. Full Test.ps1 -NoRestore
-  passed 176 Node/745 .NET. Optional docs --preflight is partial editing feedback;
-  complete gates remain required. Template adoption is PR147; focused local
-  acceptance and complete CI, including Windows packaging, passed. PR147 also
-  adopts merged process PR128 and refreshed links; its latest CI is green. Root changes
-  remain unpushed, as required.
+- Adopted merged template PR146/147 and process PR128 at the owner's request.
+  Rules now pin e5ccb6e7f34a83a0495cd0004c215a3737bdb5b1; checker 6.1.0 and
+  CI 98e2e2000e365537c85ffa7605e4813a82a46cb4 are retained. See
+  docs/implementation-plans/VALIDATION-SUITES.md and docs/VALIDATION-SUITES.md.
+  Research uses Test.ps1 -Research -ChangedSince the pre-batch commit;
+  uncertain/shared changes require separate integration. Complete fresh
+  policy/documentation/schema/queue and staged checks remain required.
+  Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
+  assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
+  without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
 - Next: Q-ITEM-004's admitted pool chains/indices, setter copy spans and other
   deletion-kind callees, reusing FND-ITEM-013/014/015 and FND-PARTY-214/218;
   Q-ITEM-005's other native consumers;
