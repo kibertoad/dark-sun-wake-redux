@@ -105,8 +105,9 @@ Next ID: Q-ITEM-010
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
   hit behavior consumes the item tests' result flag? Settles it: near-pointer
   identity and frame/record admission, reached child effects/preservation,
-  and complete caller/consumer coverage of the returned flags byte beyond
-  the recorded local presentation gates. Distinguish this local
+  complete incoming coverage and consumers beyond the forwarding wrapper
+  or queue return, beyond the recorded presentation gates and three known
+  direct hit-call continuations. Distinguish this local
   effect-test result from unrelated combat masks. Blocks: slices 4-5.
   Tried: split from Q-ITEM-004. FND-ITEM-010 records the effect-switch callers,
   conditional store of mask 0x02 and continuation entry, and FND-RNG-035
@@ -116,6 +117,13 @@ Next ID: Q-ITEM-010
   AL return. Reuse FND-MAGIC-021 for the switch tail and FND-MAGIC-018 for
   the known caller's aggregate OR. Remaining work is admission, whole-child
   effects and later returned-byte consumers, not another local gate reading.
+  Tried: FND-ITEM-018 settles the local result handling at all three direct
+  hit-call sites recorded by FND-PARTY-096. The wrapper saves/forwards AL
+  across queue processing; the queue continuation leaves AL untested;
+  casting zero-extends it into an aggregate, tests mask 01 for a follow-up
+  and returns separate bookkeeping. Remaining work excludes those local
+  post-call readings, but still includes incoming coverage, admission,
+  whole-child effects and consumers beyond the forwarding boundaries.
 
 ## Emulated call
 

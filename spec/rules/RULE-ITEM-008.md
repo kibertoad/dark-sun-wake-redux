@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -85,6 +85,13 @@ requests. Otherwise a zero combatant record word +0 also selects that path.
 Mode gates control its subsequent requests, and the wrapper returns the flags
 byte. These gates do not prove successful visible feedback or later caller
 behavior (FND-ITEM-017, Q-ITEM-009).
+
+Known hit-call continuations handle that byte differently: one wrapper saves
+and forwards it across queue processing; the queue continuation does not
+explicitly interpret it; casting zero-extends and aggregates it, tests only
+mask 0x01 at its recorded follow-up gate, and returns separate bookkeeping.
+These local paths do not establish complete caller coverage or whole-child
+preservation (FND-ITEM-018, Q-ITEM-009).
 
 ## Edge cases
 
