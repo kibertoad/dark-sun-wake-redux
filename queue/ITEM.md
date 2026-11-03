@@ -105,7 +105,8 @@ Next ID: Q-ITEM-010
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
   hit behavior consumes the item tests' result flag? Settles it: near-pointer
   identity and frame/record admission, reached child effects/preservation,
-  complete incoming coverage and consumers beyond the forwarding wrapper
+  direct entry-path coverage, split/computed/unrelocated incoming routes,
+  runtime pointer copies/use and consumers beyond the forwarding wrapper
   or queue return, beyond the recorded presentation gates and three known
   direct hit-call continuations. Distinguish this local
   effect-test result from unrelated combat masks. Blocks: slices 4-5.
@@ -124,6 +125,12 @@ Next ID: Q-ITEM-010
   and returns separate bookkeeping. Remaining work excludes those local
   post-call readings, but still includes incoming coverage, admission,
   whole-child effects and consumers beyond the forwarding boundaries.
+  Tried: FND-ITEM-019 enumerates the source-declared adjacent relocated
+  offset/segment representation with independent MZ/FBOV controls and the
+  known hit-call control. Its sole matching pair is the already-read casting
+  call, with no alias or unresolved row and no truncation. Repeating that
+  representation scan is unnecessary; the remaining incoming mechanisms
+  above are outside it. This does not establish universal absence of callers.
 
 ## Emulated call
 
