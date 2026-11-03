@@ -52,8 +52,10 @@ reports before matched-menu pairing are diagnostic only.
   Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
   RULE-ITEM-007/008/009 now reconcile the recorded selector/quantity/bonus
   bindings and signed inventory-position byte. Q-ITEM-004 retains removal;
-  Q-ITEM-006/007/008/009 separate fields, quantity, selection and results.
-  Research gates passed through FND-ITEM-020; no status promotion.
+  Q-ITEM-006/007/008/009 separate fields, quantity, selection and consumers;
+  Q-ITEM-010/011/012 separate incoming coverage, frames and feedback effects.
+  Research gates passed through FND-ITEM-020 and the RULE-ITEM-007/008/009
+  feedback reconciliation using FND-MAGIC-024/SOUND-007/EXE-602; no status promotion.
   Existing attack/damage/removal/equipment findings now supply its local field
   purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
@@ -130,10 +132,10 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Next: Q-ITEM-009's retained FND-ITEM-020 gaps, other incoming mechanisms,
-  near-pointer admission, child effects and later consumers; Q-ITEM-004's
-  admitted pool chains/indices, copy spans and other deletion-kind callees;
-  Q-ITEM-005's independent consumers; Q-ACTOR-008's independent consumers;
-  Q-SCRIPT-022's admitted getter bindings. Reuse existing local readings.
+- Next: Q-ITEM-009's later consumers; Q-ITEM-010's retained FND-ITEM-020 gaps
+  and other incoming mechanisms; Q-ITEM-011's near-pointer/frame preservation;
+  Q-ITEM-012's feedback admission/effects, reusing Q-SOUND-002;
+  Q-ITEM-004's admitted pool chains/indices, copy spans and other deletion
+  callees. Reuse existing local readings and controlled reports.
 - Goal remains active. Independent research is available; this checkpoint does
   not satisfy the full Audit or accept any unresolved question as out of reach.
