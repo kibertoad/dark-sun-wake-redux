@@ -40,24 +40,24 @@ reports before matched-menu pairing are diagnostic only.
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
   including 745 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ITEM-011, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
-  700bce0a. No gameplay implementation or evidence-status promotion was added.
+  700bce0a. FMT-ITEM-002 is supported structurally; no gameplay implementation
+  or complete-reading declaration was added.
 - Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
   Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/008 remain open. Q-ACTOR-007 is closed.
-  Q-ITEM-005 tracks FMT-ITEM-002, which remains unknown and unimplemented.
+  Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
-  - item-type-fields-20261103/: FND-ITEM-011 identifies the descriptor,
-    metadata and repeated shared-row reports. base-access-candidates.txt and
-    type-byte-three-consumer.txt remain preliminary; reuse FND-RNG-043 for
-    the latter's existing removal-threshold reading. Q-ITEM-005 now asks for
-    semantic/native-consumer coverage, not another descriptor census.
-    Later type-detail-renderer and material-pointer/label queries are unrecorded
-    preparation; finish their evidence review before changing the format.
+  - item-type-fields-20261103/: FND-ITEM-011/012 identify descriptor, metadata,
+    shared-row, exact renderer and material-pointer/operand/label reports.
+    base-access-candidates.txt, type-byte-three-consumer.txt and the wider
+    type-detail-panel.txt remain preliminary; reuse FND-RNG-043 for the
+    existing removal-threshold reading. Q-ITEM-005 retains semantic coverage.
+    The raw Kaitai declaration is uncompiled: the compiler remains unavailable.
   - kind-four-reference-20261103/: FND-ACTOR-017 identifies the catalog and
     independent control-600-header/payload/type-row configs and reports.
     FND-ACTOR-018 identifies the repeated full census and refusal controls.
