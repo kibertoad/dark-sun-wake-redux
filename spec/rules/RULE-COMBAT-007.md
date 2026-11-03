@@ -103,13 +103,20 @@ None known.
   undecoded script gap admit selector zero
   (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, FND-COMBAT-104,
   FND-COMBAT-105, Q-COMBAT-056,
-  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060, Q-COMBAT-061).
+  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060, Q-COMBAT-061,
+  Q-COMBAT-062).
 - Whether valid declared entries preserve their nonzero local assignments until
   the selector read, or another entry, bank replacement or alias changes them.
   FND-COMBAT-104 supplies direct histories and GPL/4's compare default for the
   first reading under preservation conditions; its other-effect and return
   boundaries leave the second possible. Q-COMBAT-056 and Q-COMBAT-060 need
   actual entry, storage and intervening-effect evidence to distinguish them.
+- Whether GPL/119's request-9 replacement admits a nested trigger run and
+  preserves the original continuation, or resets interpreter state so the old
+  frame no longer reaches its later selector. FND-COMBAT-107 connects the
+  conditional trigger-to-run-entry route without admitting its inputs. Trigger
+  matching and frame/stream continuation in Q-COMBAT-062 must distinguish
+  these readings; local clearing alone proves neither later execution nor zero.
 - Whether the named context word always agrees with current region at those
   fifteen enumerated selector reads, or retains another value across restored destinations
   and callback/child work. The known setter callers and separate save slots

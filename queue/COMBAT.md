@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-062
+Next ID: Q-COMBAT-063
 
 ## Static
 
@@ -108,15 +108,33 @@ Next ID: Q-COMBAT-062
   literal assignments and calls of 0x04E4 in FND-COMBAT-101/FND-COMBAT-104;
   preservation through the prefix's conditional native requests 9/49, nested
   instructions 0x1E/0x80, instruction 0x41 and earlier relocation 0x0522, and
-  its common request 37. Include callbacks, returning child script loads,
-  aliases, error paths and local clears of FND-SCRIPT-020/FND-SCRIPT-026.
+  its common request 37. Include remaining callbacks, aliases, error paths
+  and local clears of FND-SCRIPT-020/FND-SCRIPT-026. Request 9's independently
+  answerable trigger admission and interpreter continuation are Q-COMBAT-062.
   Q-COMBAT-055 retains the overall reader/parameter admission contract.
   Tried: split from Q-COMBAT-056 by FND-COMBAT-105. The earlier relocation's
   selector 65 excludes its own encoded zero-reader branch; it does not prove
   preservation of the later local. The visible requests 29/30 are after
   0x0547 in a different local routine and supply no bracketing proof for
   this prefix. Native-child effects and actual bank preservation remain open.
+  Tried: FND-COMBAT-107 connects request 9's group replacement to the loader's
+  conditional trigger call and the script run-entry resets. Its actual trigger
+  admission and later continuation move to Q-COMBAT-062, rather than treating a
+  native return as proof that the old frame reaches 0x0547 with cleared locals.
   Blocks: slice 4.
+- Q-COMBAT-062. RULE-COMBAT-007: Does GPL/119's request 9 admit a nested trigger
+  run, and can the old prefix then resume at its 0x0547 selector?
+  Settles it: actual -49 lookup matches and load/record state reaching the
+  31E0:02F6 call, the later DS:0DAB and script-state gates, selected cell/box
+  trigger and target, plus interpreter frame/stream/stop/local-bank continuation
+  through the nested run and native return. Preserve rejected and no-match paths
+  separately; distinguish local clearing from reaching the later selector.
+  Reuse Q-COMBAT-003 for the DS:0DAB state producers instead of duplicating them.
+  Tried: split from Q-COMBAT-060. FND-COMBAT-107 connects the encoded request,
+  mode-bit producer, loader's conditional trigger call and run-entry clear/reset.
+  FND-SCRIPT-007, FND-SCRIPT-020, FND-SCRIPT-026 and FND-SCRIPT-028 give local
+  contracts, not actual trigger admission or preservation of the outer run.
+  Other prefix effects remain Q-COMBAT-060. Blocks: slice 4.
 - Q-COMBAT-058. RULE-COMBAT-007: Can the fifteen kind-9 number-36 selector sites
   in FND-COMBAT-100/FND-COMBAT-105 supply zero while current DS:140C is nonzero?
   Settles it: admitted context values and entry/callback timing at those sites;
