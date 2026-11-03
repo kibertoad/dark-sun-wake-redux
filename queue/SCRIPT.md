@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-021
+Next ID: Q-SCRIPT-022
 
 ## Static
 
@@ -61,12 +61,24 @@ Next ID: Q-SCRIPT-021
   other callback entries. One former immediate label is a memory displacement.
   Those seven leads are removed from the unresolved candidates; the diagnostic
   holder window is not a complete literal-construction or indirect-use census.
-- Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number, and
-  what does `fn_2D40_06E6` do when its argument names more than one slot, and what is the word at
-  `4C10:001F` it clears for? Settles it: the writer of the per-kind field offsets at `57E0:5A33`
-  and of field 0, `2D40:0D94` for each kind of argument, and the readers of `4C10:001F`. Tried:
+- Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number?
+  Settles it: the field-zero producers and meaning for the kinds the trigger
+  walkers admit, with actual metadata loading and preservation kept explicit. Tried:
   FND-SCRIPT-027, FND-SCRIPT-028 and FND-SCRIPT-029 read the trigger instructions, the walkers and
   their callers, which take the rest of the item out. Blocks: slices 3-6.
+  Tried: FND-SCRIPT-033 reads the full context-setter loop with
+  FND-CONFIG-141's selector, taking multi-match iteration out of Settles it.
+  FND-PARTY-051 and FND-CONFIG-150 already identify the FNFO field-table
+  load; its producer identity is also removed. Field-zero semantics remain
+  above; the independently answerable cleared-word use is Q-SCRIPT-021.
+- Q-SCRIPT-021. RULE-SCRIPT-013: What uses the word at `4C10:001F` cleared by
+  the object-context setter? Settles it: its admitted readers, other producers
+  and meaning, including the named-variable binding, alias/block accesses and
+  save/restore behavior. Keep the setter's qualified no-match preservation
+  and direct zero store distinct from later state. Tried: split from
+  Q-SCRIPT-002 after FND-SCRIPT-033 settles the context helper's multi-match
+  loop. FND-PARTY-241 locates the clear and named-word bindings; it does
+  not establish the cleared word's purpose. Blocks: slices 3-6.
 - Q-SCRIPT-016. RULE-SCRIPT-008, RULE-SCRIPT-013: Is `1695:0235`, the only walker of the lists at
   `g_4C10_0007` and `g_4C10_000B`, reached by a computed far call? Settles it: a resolution of the
   computed far transfers in resident and overlay code that could carry segment `1695` and offset

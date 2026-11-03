@@ -4,7 +4,7 @@ title: The game runs the first script trigger whose cell, box, key or key pair m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005]
+evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
@@ -232,6 +232,13 @@ region's script.
   runs them (FND-SCRIPT-028).
 - Records go to the free list one at a time in list order, each becoming its head, so the free list
   is left in the reverse of their list order.
+- The context helper `fn_2D40_06E6` repeats a negative selector with an
+  advancing cursor. Under stable valid selector/record state, it assigns the
+  coordinates of each matching active slot in increasing order; the highest
+  matching slot supplies its last direct assignment. No match makes no local
+  assignment to the context coordinates or the word it clears. Direct
+  nonnegative inputs use one selector invocation; 9999 skips the stores.
+  Getter effects and live-state preservation remain separate (FND-SCRIPT-033).
 
 ## What the sources say
 
@@ -247,5 +254,6 @@ None known.
   (FND-SCRIPT-028; Q-SCRIPT-002).
 - Whether `1695:0235`, which runs the lists at `g_4C10_0007` and `g_4C10_000B` and returns
   `g_4C13_0325`, is reached by a computed call (FND-SCRIPT-028; Q-SCRIPT-016).
-- What `fn_2D40_06E6` does when its argument names more than one slot, and what the word at
-  `4C10:001F` it clears is for (FND-SCRIPT-028; Q-SCRIPT-002).
+- What the word at `4C10:001F` cleared by `fn_2D40_06E6` is for
+  (FND-SCRIPT-028; Q-SCRIPT-021). FND-SCRIPT-033 answers the helper's local
+  multi-match loop without establishing this word's later use.
