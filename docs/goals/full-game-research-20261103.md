@@ -40,7 +40,7 @@ reports before matched-menu pairing are diagnostic only.
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
   including 745 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ACTOR-018 and FND-SCRIPT-035; earlier FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-011, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -51,6 +51,11 @@ reports before matched-menu pairing are diagnostic only.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
+  - item-type-fields-20261103/: FND-ITEM-011 identifies the descriptor,
+    metadata and repeated shared-row reports. base-access-candidates.txt and
+    type-byte-three-consumer.txt remain preliminary; reuse FND-RNG-043 for
+    the latter's existing removal-threshold reading. Q-ITEM-005 now asks for
+    semantic/native-consumer coverage, not another descriptor census.
   - kind-four-reference-20261103/: FND-ACTOR-017 identifies the catalog and
     independent control-600-header/payload/type-row configs and reports.
     FND-ACTOR-018 identifies the repeated full census and refusal controls.
