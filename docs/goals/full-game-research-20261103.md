@@ -38,12 +38,12 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; full research Audit remains unmet.
 - Baseline: pinned rules verified offline; documentation check passed with
   reported argument-count, Kaitai and scheduled-generation skips.
-- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 168 Node and
+- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 174 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-COMBAT-104. Local-path tooling and its
-  synthetic controls are committed; no gameplay implementation was added.
+- Latest completed research: FND-COMBAT-105. Controlled selector-census tooling
+  and its synthetic controls are committed; no gameplay implementation was added.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
-  through Q-COMBAT-059, with executable admission in Q-COMBAT-055.
+  through Q-COMBAT-060, with executable admission in Q-COMBAT-055.
 - Context reading inputs are retained under
   GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
   table reports and bounded listings are under
@@ -52,18 +52,23 @@ reports before matched-menu pairing are diagnostic only.
   GAME_DIR/analysis/local-selector-paths-20261103/research-01/ and
   matched-menu/ in that store. FND-COMBAT-104 records their identities and
   regeneration procedure. Earlier top-level reports are diagnostic only.
+- Selector-census controls, accepted repeated reports and pointer/relocation
+  reports are under GAME_DIR/analysis/selector-domain-census-20261103/.
+  FND-COMBAT-105 records the accepted files and identities. The bounded
+  handler-41.txt reading in that directory is unrecorded preparation for the
+  next first-word producer attempt, not an admitted field-value result.
+- GPL/119 prefix and local-call controls are retained under
+  GAME_DIR/analysis/local-bank-preservation-20261103/.
 - Retained reconciliation inputs and reports are under
   GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
 - Post-commit process audit found no owned orphan to stop; reusable MSBuild
   nodes remain. No original-game runtime was started.
-- Next: Q-COMBAT-056 local-bank admission and preservation. Reuse
-  FND-COMBAT-104's matched histories and FND-SCRIPT-020/FND-SCRIPT-026;
-  take a new storage/producer or intervening-effect reading, rather than
-  repeating declared-root and assignment counts. Q-COMBAT-058 takes
-  the named-context contract separately. Then Q-COMBAT-057's nonliteral
-  domains, Q-COMBAT-059's error/handler preservation and Q-COMBAT-055's
-  executable admission. Retained selector inputs remain under
-  GAME_DIR/analysis/reader-admission-20261029/.
+- Next: Q-COMBAT-057's three named first-word sources, using FND-COMBAT-105;
+  Q-COMBAT-058's shared named context; Q-COMBAT-056's other local-bank
+  contracts; Q-COMBAT-060's GPL/119 prefix preservation; and Q-COMBAT-059's
+  error/handler preservation. Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
+  rather than repeating declared-root and assignment counts. The retained
+  decoded index remains under GAME_DIR/analysis/reader-admission-20261029/.
 - Goal remains active. This checkpoint does not satisfy the full Audit;
   independent research remains available and no owner decision blocks it.
