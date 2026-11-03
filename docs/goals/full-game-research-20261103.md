@@ -39,20 +39,21 @@ reports before matched-menu pairing are diagnostic only.
 - Baseline: pinned rules verified offline; documentation passed with the
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
-  including 727 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ACTOR-017 and FND-SCRIPT-035; earlier FND-ACTOR-016
+  including 745 .NET tests. Current documentation and queue checks pass.
+- Latest completed research: FND-ACTOR-018 and FND-SCRIPT-035; earlier FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
-  remain current. Census tooling is at 34fbedad; typed-immediate tooling at
+  remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
+  typed-immediate tooling at
   700bce0a. No gameplay implementation or evidence-status promotion was added.
 - Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
-  Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/007 remain open. Q-ITEM-005 tracks
-  FMT-ITEM-002, which remains unknown and unimplemented. Q-ACTOR-007 is
-  the separated kind-four question. Selector obligations remain Q-COMBAT-055
+  Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/008 remain open. Q-ACTOR-007 is closed.
+  Q-ITEM-005 tracks FMT-ITEM-002, which remains unknown and unimplemented.
+  Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
   - kind-four-reference-20261103/: FND-ACTOR-017 identifies the catalog and
     independent control-600-header/payload/type-row configs and reports.
-    Reuse its ALL/4 binding and original comparison control for the full census.
+    FND-ACTOR-018 identifies the repeated full census and refusal controls.
   - trigger-getter-admission-20261103/: FND-SCRIPT-035 identifies target-finder.txt.
     cursor-mask-caller.txt remains preliminary. This attempt did not settle
     Q-SCRIPT-022's admitted-domain requirement; resume with new producer/lifetime
@@ -93,7 +94,9 @@ reports before matched-menu pairing are diagnostic only.
   Do not repeat declared-root, assignment or source-key counts as new findings.
 - Post-commit process audits found no owned orphan; reusable MSBuild nodes
   remain. No original-game runtime was started. No push is authorized.
-- Next: Q-ACTOR-007's full payload comparison; Q-ITEM-005's shared-row fields;
+- Upstream process PR: https://github.com/kibertoad/refurbished-dinosaurs/pull/125.
+  Defer downstream adoption until merged, per owner instruction.
+- Next: Q-ITEM-005's shared-row fields; Q-ACTOR-008's independent consumers;
   Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
   storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
 - Goal remains active. Independent research is available; this checkpoint does
