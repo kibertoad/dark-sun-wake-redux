@@ -4,7 +4,7 @@ title: A corroding hit destroys the first held item at position 0, 6 or 9 at onc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -67,8 +67,11 @@ on a 1 (FND-ITEM-010).
 When recursive deletion reaches its kind-one branch, it passes the attached
 record index to a helper that links the record into the free list and clears
 its identifier word. This is the helper's own local effect under stable,
-disjoint storage; recursive continuation and admitted graph/map identities
-remain open (FND-ITEM-013, FND-PARTY-214, FND-PARTY-218).
+disjoint storage (FND-ITEM-013). The deletion body's local order is kind
+release, conditional parent-field request, map clear, conditional reparenting, then
+recursive calls for retained children. Its reparenting failure branch can
+be non-returning; admitted state and whole-callee effects remain open
+(FND-ITEM-014, FND-PARTY-214, FND-PARTY-218).
 
 ## Edge cases
 

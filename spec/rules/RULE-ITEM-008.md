@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -69,8 +69,11 @@ all input/writer domains and complete arithmetic contract remain open.
 When recursive deletion reaches its kind-one branch, it passes the attached
 record index to a helper that links the record into the free list and clears
 its identifier word. This is the helper's own local effect under stable,
-disjoint storage; recursive continuation and admitted graph/map identities
-remain open (FND-ITEM-013, FND-PARTY-214, FND-PARTY-218).
+disjoint storage (FND-ITEM-013). The deletion body's local order is kind
+release, conditional parent-field request, map clear, conditional reparenting, then
+recursive calls for retained children. Its reparenting failure branch can
+be non-returning; admitted state and whole-callee effects remain open
+(FND-ITEM-014, FND-PARTY-214, FND-PARTY-218).
 
 ## Edge cases
 
