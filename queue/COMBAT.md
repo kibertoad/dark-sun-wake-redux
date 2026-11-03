@@ -74,10 +74,12 @@ Next ID: Q-COMBAT-060
   Blocks: slice 4.
 - Q-COMBAT-056. RULE-COMBAT-007: Can the four decoded literal-sentinel sites
   with local-number selectors supply zero to the independent numbered reader?
-  Settles it: assignment coverage and intervening preservation for the four
-  local-number sites beyond FND-COMBAT-101's declared literal-entry controls and
-  direct assignments, including other admitted entry sources and local-storage
-  lifetimes. The independent named-context contract is Q-COMBAT-058.
+  Settles it: actual entry/compare-frame admission and local-bank identity,
+  lifetime and intervening preservation for FND-COMBAT-104's declared-path
+  assignments; other admitted entry sources and returning cross-script paths
+  beyond its fixed-listing boundaries. Include entry after compare initialization,
+  possible aliases and opcode/child effects before the selector parameter is read.
+  The independent named-context contract is Q-COMBAT-058.
   Tried: split from Q-COMBAT-055; FND-COMBAT-100 enumerates the eleven sites,
   but source presence and a local context producer do not establish actual values.
   Tried: FND-COMBAT-101 maps the 38 declared nonzero literal entry controls and
@@ -86,6 +88,12 @@ Next ID: Q-COMBAT-060
   Assignment coverage, intervening preservation and other entry sources remain.
   FND-COMBAT-102 separates the named-context setter/argument reading into
   Q-COMBAT-058 without treating it as local-storage preservation.
+  Tried: FND-COMBAT-104 records matched local-call histories for all 38 controls,
+  reproduces the four positive target counts and the 22 named assignments, and
+  reads GPL/4's nine-case/default assignment correlation. Its abstract bypass
+  is not an admitted zero or assignment omission. The bounded direct-history
+  assessment is removed from Settles it; actual admission, storage preservation
+  and unmodeled returns remain above.
   Blocks: slice 4.
 - Q-COMBAT-058. RULE-COMBAT-007: Can the seven kind-9 number-36 selector sites
   in FND-COMBAT-100 supply zero while current DS:140C is nonzero?
