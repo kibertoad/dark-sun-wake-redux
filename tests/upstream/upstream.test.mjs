@@ -9,6 +9,7 @@ import { spawnSync } from "node:child_process";
 import { verifySnapshot, validateLock, prepareSnapshot, checkUpstream, ciCheckerArgs, checkerEntry, main } from "../../tools/upstream.mjs";
 import { copyWorkingTree, includedPath } from "./copy-working-tree.mjs";
 import { checkLinks, linkFile, sections } from "../../tools/upstream-sections.mjs";
+import { populateCheckerFixture } from "./checker-fixture.mjs";
 import { checks, main as runNodeChecks } from "../../tools/Invoke-NodeChecks.mjs";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "../..");
 const lock = JSON.parse(readFileSync(resolve(root, "tools/upstream-lock.json")));
@@ -70,18 +71,21 @@ test("local runs take the checker inputs the CI step gives", () => {
 });
 test("docs passes CI's images to the checker, and a command-line value wins", async t => {
   const dir = fixture(t), ci = resolve(dir, ".github/workflows/ci.yml");
-  for (const path of ["spec", "parity", "deviations", "PARITY.md"]) cpSync(resolve(root, path), resolve(dir, path), { recursive: true });
+  populateCheckerFixture(dir, root);
   mkdirSync(resolve(dir, "src"), { recursive: true });
   writeFileSync(resolve(dir, "src/Bad.cs"), "// The entry point is at 0x00401000.\nclass Bad {}\n");
   const run = (...args) => main(["docs", "--check", "--no-ksy", ...args], dir);
   assert.equal(await run(), 0);
-  writeFileSync(ci, readFileSync(ci, "utf8").replace(/\r\n/g, "\n").replace(/(check-documentation@[0-9a-f]{40}.*\n)/, "$1        with:\n          images: 0x00400000..0x004C9000\n"));
+  const configuredCi = readFileSync(ci, "utf8").replace(/\r\n/g, "\n")
+    .replace(/(          scheduled-generation:)/, "          images: 0x00400000..0x004C9000\n$1");
+  assert.ok(ciCheckerArgs(configuredCi).includes("--images"), "negative control must configure image checking");
+  writeFileSync(ci, configuredCi);
   assert.notEqual(await run(), 0);
   assert.equal(await run("--images", ""), 0);
 });
 test("docs leaves the generated files alone under CI's scheduled-generation, and --generate writes them", async t => {
   const dir = fixture(t);
-  for (const path of ["spec", "parity", "deviations", "PARITY.md"]) cpSync(resolve(root, path), resolve(dir, path), { recursive: true });
+  populateCheckerFixture(dir, root);
   // The scheduled main baseline may intentionally lag the copied spec.
   assert.equal(await main(["docs", "--generate", "--no-ksy"], dir), 0);
   const parity = resolve(dir, "PARITY.md"), current = readFileSync(parity, "utf8");

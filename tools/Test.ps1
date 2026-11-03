@@ -1,12 +1,36 @@
 #Requires -Version 7.0
 [CmdletBinding()]
-param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0, [switch] $NoRestore)
+param([string] $TestFilter, [ValidateRange(0, 1000000)][int] $MinimumExpectedTests = 0,
+    [switch] $NoRestore, [string] $ChangedSince, [switch] $Research, [switch] $Integration)
 $ErrorActionPreference = 'Stop'
 $root = Split-Path -Parent $PSScriptRoot
+if ($Research -and (-not $ChangedSince -or $Integration -or $env:CI -or $TestFilter -or $MinimumExpectedTests)) {
+    throw 'Research needs -ChangedSince and cannot request rebuild tests or integration; run integration separately.'
+}
+$suiteBase = if ($Integration -or $env:CI -or -not $ChangedSince) { '--integration' } else { $ChangedSince }
+[string[]] $suiteArguments = @($suiteBase)
+if ($Research) { $suiteArguments = @('--research') + $suiteArguments }
+$selectionJson = & node (Join-Path $PSScriptRoot 'Select-ValidationSuites.mjs') @suiteArguments
+if ($LASTEXITCODE -ne 0) { throw 'Could not select validation suites.' }
+try { $selection = $selectionJson | ConvertFrom-Json -ErrorAction Stop }
+catch { throw 'Could not parse validation suite plan.' }
+if ($selection.mode -notin @('selected', 'integration') -or $selection.dotnet -isnot [bool]) {
+    throw 'Invalid validation suite plan.'
+}
+if ($Research -and ($selection.dotnet -or $selection.mode -eq 'integration')) {
+    throw 'Research selection returned rebuild tests; run integration separately.'
+}
+$runDotnet = $selection.dotnet -or $TestFilter -or $MinimumExpectedTests
+if ($selection.mode -eq 'integration' -and $TestFilter) {
+    Write-Host 'Integration is required; manual filters cannot narrow acceptance.'
+    $TestFilter = $null
+}
 & (Join-Path $PSScriptRoot 'Restore-ToolDependencies.ps1') -NoRestore:$NoRestore
 if ($LASTEXITCODE -ne 0) { throw 'Published tooling dependency setup failed.' }
-& (Join-Path $PSScriptRoot 'emu/Restore-Emulator.ps1') -NoRestore:$NoRestore
-if ($LASTEXITCODE -ne 0) { throw 'Test-only emulator setup failed.' }
+if ($selection.tests -contains 'tests/evidence/emulator.test.mjs') {
+    & (Join-Path $PSScriptRoot 'emu/Restore-Emulator.ps1') -NoRestore:$NoRestore
+    if ($LASTEXITCODE -ne 0) { throw 'Test-only emulator setup failed.' }
+}
 & (Join-Path $PSScriptRoot 'Verify-Repository.ps1') -RepositoryRoot $root
 if ($LASTEXITCODE -ne 0) { throw 'Repository policy failed.' }
 & (Join-Path $PSScriptRoot 'Verify-Configuration.ps1') -RepositoryRoot $root
@@ -79,43 +103,12 @@ if (-not (Get-Command node -ErrorAction SilentlyContinue)) {
 & node (Join-Path $root 'tools/upstream.mjs') links
 if ($LASTEXITCODE -ne 0) { throw 'Local upstream section links are invalid.' }
 
-# One node --test run, so the files run at the same time; its summary names each failing test.
-$nodeTests = @(
-    'tests/evidence/evidence.test.mjs',
-    'tests/evidence/xxh3.test.mjs',
-    'tests/evidence/build-listing.test.mjs',
-    'tests/evidence/emulator.test.mjs',
-    'tests/evidence/checkpoints.test.mjs',
-    'tests/evidence/declared-flows.test.mjs',
-    'tests/evidence/script-local-paths.test.mjs',
-    'tests/evidence/script-selector-census.test.mjs',
-    'tests/evidence/far-pointer-words.test.mjs',
-    'tests/evidence/inventory-tails.test.mjs',
-    'tests/upstream/tool-dependencies.test.mjs',
-    'tests/upstream/upstream.test.mjs',
-    'tests/upstream/mapped-locations.test.mjs',
-    'tests/upstream/diagnostics.test.mjs',
-    'tests/upstream/memory-blocks.test.mjs',
-    'tests/upstream/superseded-ownership.test.mjs',
-    'tests/upstream/research-tracking.test.mjs',
-    'tests/upstream/research-closure.test.mjs',
-    'tests/upstream/text-policy.test.mjs',
-    'tests/upstream/goal-run.test.mjs',
-    'tests/upstream/capture-window.test.mjs',
-    'tests/upstream/infrastructure.test.mjs',
-    'tests/upstream/export-boundaries.test.mjs',
-    'tests/upstream/work-baseline.test.mjs',
-    'tests/upstream/validation-selection.test.mjs',
-    'tests/upstream/offline-validation.test.mjs',
-    'tests/upstream/release-signing.test.mjs',
-    'tests/upstream/validation-receipts.test.mjs',
-    'tests/upstream/project-inputs.test.mjs'
-) | ForEach-Object { Join-Path $root $_ }
+# Full acceptance discovers every Node test; selected suites use the reviewed map.
 # Some tests run PowerShell scripts; give them the PowerShell running this gate, then restore the caller's environment.
 $previousPwsh = $env:PWSH
 if (-not $env:PWSH) { $env:PWSH = [Diagnostics.Process]::GetCurrentProcess().MainModule.FileName }
 try {
-    & node (Join-Path $PSScriptRoot 'Run-ValidationCheck.mjs') node-tests -- node --test @nodeTests
+    & node (Join-Path $PSScriptRoot 'Run-ValidationSuites.mjs') @suiteArguments
 }
 finally {
     $env:PWSH = $previousPwsh
@@ -132,6 +125,10 @@ if (-not $env:KSC) {
 # The documentation check takes the CI step's inputs, so it checks references in docs as CI does.
 & node (Join-Path $root 'tools/Invoke-NodeChecks.mjs')
 if ($LASTEXITCODE -ne 0) { throw 'Documentation, research tracking or reporter-pin checks failed.' }
+if (-not $runDotnet) {
+    Write-Host 'Selected validation passed without rebuild tests.'
+    return
+}
 $artifacts = Join-Path $root 'artifacts/test'
 $testArguments = @('test', '--project', (Join-Path $root 'tests/DarkSunWakeRedux.Tests/DarkSunWakeRedux.Tests.csproj'),
   '-p:UseSharedCompilation=false', '-p:RestoreLockedMode=true', '--artifacts-path', $artifacts, '--no-progress', '-v', 'minimal')

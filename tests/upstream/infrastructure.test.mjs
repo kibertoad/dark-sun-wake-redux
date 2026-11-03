@@ -107,6 +107,7 @@ try {
   catch { if ($_.Exception.Message -notmatch 'Another validation run') { throw } }
 } finally { $handle.Dispose() }
 function dotnet { $global:LASTEXITCODE=7 }
+function node { $global:LASTEXITCODE=0; '{"mode":"integration","dotnet":true,"suites":[],"tests":[]}' }
 try { & (Join-Path $root 'tools/Invoke-Validation.ps1'); throw 'accepted failed restore' }
 catch { if ($_.Exception.Message -notmatch 'restore failed with exit code 7') { throw } }
 $handle=[IO.File]::Open($path,'OpenOrCreate','ReadWrite','None');$handle.Dispose()

@@ -69,8 +69,9 @@ committing. The checker's
 [changelog](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/blob/main/packages/standard-checker/CHANGELOG.md)
 lists what each version checks. No spec claim is promoted as a side effect.
 
-Configuration tests copy Git-visible, non-ignored files and exclude caches and
-local output. Initialize a Git checkout before validating a ZIP download. Set
+Whole-checkout configuration integration copies Git-visible, non-ignored files
+and excludes caches and local output. Narrow checker-option controls use small
+synthetic metadata fixtures. Initialize Git before validating a ZIP download. Set
 `PWSH` when the PowerShell host is not named `pwsh` on PATH.
 
 Shared reporter contracts and local setup are in

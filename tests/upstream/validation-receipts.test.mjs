@@ -14,6 +14,8 @@ function fixture(t, contract = { tools: [[process.execPath, '--version']] }) {
   mkdirSync(path.join(root, 'docs'));
   copyFileSync(source, path.join(root, 'tools/Run-ValidationCheck.mjs'));
   copyFileSync(new URL('../../tools/Project-Inputs.mjs', import.meta.url), path.join(root, 'tools/Project-Inputs.mjs'));
+  for (const name of ['Select-ValidationSuites.mjs', 'Select-Validation.mjs'])
+    copyFileSync(new URL(`../../tools/${name}`, import.meta.url), path.join(root, 'tools', name));
   writeFileSync(path.join(root, '.gitignore'), '.artifacts/\n');
   writeFileSync(path.join(root, 'source.txt'), 'source');
   writeFileSync(path.join(root, 'docs/record.md'), 'before');
@@ -27,7 +29,7 @@ function fixture(t, contract = { tools: [[process.execPath, '--version']] }) {
   const command = "const fs=require('fs');fs.mkdirSync('.artifacts',{recursive:true});fs.appendFileSync('.artifacts/runs','x')";
   const run = (extra = '', environment = {}) => spawnSync(process.execPath,
     ['tools/Run-ValidationCheck.mjs', 'fixture', '--', process.execPath, '-e', command + extra],
-    { cwd: root, encoding: 'utf8', env: { ...process.env, CI: '', GAME_DIR: '', ...environment } });
+    { cwd: root, encoding: 'utf8', env: { ...process.env, CI: '', RESTORATION_VALIDATION_FRESH: '', GAME_DIR: '', ...environment } });
   const count = () => readFileSync(path.join(root, '.artifacts/runs'), 'utf8').length;
   const setOriginal = gameDirectory => { mkdirSync(path.join(root, '.artifacts'), {recursive:true}); writeFileSync(path.join(root, '.artifacts/local-inputs.json'), JSON.stringify({version:1, gameDirectory})); };
   return { root, run, count, setOriginal, write: (name, value) => writeFileSync(path.join(root, name), value) };
@@ -141,4 +143,15 @@ test('global game directories are ignored while local input configuration invali
   const mutated = f.run(";fs.writeFileSync('.artifacts/local-inputs.json',JSON.stringify({version:1,gameDirectory:'.artifacts/changed'}))");
   assert.equal(mutated.status, 1);
   assert.match(mutated.stderr, /Inputs changed/);
+});
+
+test('explicit integration bypasses reusable receipts and removes their prior success', t => {
+  const f = fixture(t);
+  assert.equal(f.run().status, 0);
+  assert.equal(f.run().status, 0);
+  assert.equal(f.count(), 1);
+  assert.equal(f.run('', { RESTORATION_VALIDATION_FRESH: '1' }).status, 0);
+  assert.equal(f.count(), 2);
+  assert.equal(f.run().status, 0);
+  assert.equal(f.count(), 3, 'fresh integration did not leave an older success reusable');
 });

@@ -147,7 +147,7 @@ script or reviewer can check. Guesses belong in `queue/` or an entry's Open
 questions, not in an API.
 
 The owner decides only what the work protocol's
-[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 558-560)
+[What needs the owner](vendor/upstream/work-protocol.md#what-needs-the-owner) (lines 572-574)
 lists: eligibility and supported editions, scope and non-goals, any deviation
 whose Default is `on` or `mandatory`, features outside the parity matrix,
 releases, and live sessions. Those decisions go in `docs/DECISIONS.md`, and a
@@ -472,7 +472,8 @@ It cannot reach the FBOV overlay pack. Use `docs/RUNTIME.md` and
 Emulated calls need no owner decision or run lock. The owner-only native capture
 rules under "Native runtime visual validation" remain binding.
 
-Every batch runs `./tools/Test.ps1` before commit, ends with the skills' status
+Every batch runs its selected `./tools/Test.ps1` gate before commit (research
+uses `-Research -ChangedSince <base commit>`, CI/releases use `-Integration`), ends with the skills' status
 block, and uses the protocol's Spec, Parity, Queue and Report trailers as needed.
 A committed document never cites a file under `artifacts/` as evidence: the
 directory is gitignored, so the file exists only on one machine. State the
@@ -806,9 +807,9 @@ reads; a failure whose leftover state changes the next call; and the source a
 request reads kept apart from the request and its destination. These tests
 compare the rebuild with the spec or with itself, so none of them validates a
 parity row or is listed in its Tests column; see the protocol's
-[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 220-238),
-[Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 324-332)
-and [Continuation cases](vendor/upstream/work-protocol.md#continuation-cases) (lines 334-366).
+[Implementation batches](vendor/upstream/work-protocol.md#implementation-batches) (lines 226-244),
+[Checkpoints and replay](vendor/upstream/work-protocol.md#checkpoints-and-replay) (lines 338-346)
+and [Continuation cases](vendor/upstream/work-protocol.md#continuation-cases) (lines 348-380).
 
 The protocol adds test cases for four more shapes of rule, which also
 compare the rebuild with the spec and validate no row. A caller that combines
@@ -830,10 +831,10 @@ tested with a test-supplied allocator and release routine that record calls,
 return null, fill blocks with a pattern, read or change the container when
 called, and change a count the copy loads again after the check. Each caller
 of one target is tested with the statuses its own comparison tells apart. See the protocol's
-[Calls that combine results](vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 240-256),
-[Rules behind an adapter](vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 258-274),
-[Arithmetic at the original's widths](vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 276-296)
-and [Allocation, containers and cleanup](vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 306-322).
+[Calls that combine results](vendor/upstream/work-protocol.md#calls-that-combine-results) (lines 246-262),
+[Rules behind an adapter](vendor/upstream/work-protocol.md#rules-behind-an-adapter) (lines 264-280),
+[Arithmetic at the original's widths](vendor/upstream/work-protocol.md#arithmetic-at-the-originals-widths) (lines 282-302)
+and [Allocation, containers and cleanup](vendor/upstream/work-protocol.md#allocation-containers-and-cleanup) (lines 320-336).
 
 Each rule ships with fast-gate tests over synthetic state. The rule itself is
 usually a static class over the serializable state type, called by `Game`.
@@ -1001,7 +1002,8 @@ fails before the commit instead of in CI.
 
 ## Definition of done
 
-A change is finished when the solution builds, `./tools/Test.ps1` passes, new
+A change is finished when its selected `./tools/Test.ps1` gate passes (including
+the build and relevant tests for implementation; no rebuild tests for research), new
 behavior has tests for every branch its spec entry describes, the spec entries it relies on exist with the status their
 evidence supports, the documents that assert status (`README.md`, `PARITY.md`,
 `parity/`, `deviations/`) match reality, and `queue/` and the plan's owner
@@ -1018,13 +1020,17 @@ verified and, when the owner asks, refreshed is in
 
 ## Change-aware checks during a batch
 
-During a documentation-only batch, record its base commit and run
-`./tools/Invoke-Validation.ps1 -ChangedSince <base-commit>`. Selection includes
-committed, staged, unstaged, untracked and both sides of renamed paths. It retains
-policy, configuration, infrastructure, documentation/citation, Kaitai and queue
-checks. Mixed or unknown changes require `-TestFilter`; explicit test requests
-run the normal gate. This project still requires full `./tools/Test.ps1` before
-every batch commit. Reuse a check result only on an exact match of command,
+Record the base before each batch, then run
+`./tools/Test.ps1 -ChangedSince <base-commit>`. The versioned suite map owns
+inputs, test files, dependencies and each reusable suite's receipt contract.
+Research uses `-Research -ChangedSince <base-commit>`: complete fresh policy,
+configuration, infrastructure, documentation/citation, Kaitai and queue checks
+plus affected tooling controls, without rebuild tests. Research rejects src/tests
+changes and explicit .NET requests; uncertain inputs require separate integration.
+Changed implemented entries retain the Code partial/Defect handoff. Shared or
+unknown inputs require full integration; invalid maps fail. CI and release
+acceptance use `-Integration`, discovering all Node tests and running the complete
+.NET suite; explicit filters cannot narrow it. Reuse a check only on an exact match of command,
 tools, configuration, environment, original inputs and configured file inputs.
 Without a reviewed narrower declaration, retain whole-tree inputs. See
 `docs/VALIDATION-INPUTS.md` for local receipts and final records. Keep

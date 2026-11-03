@@ -18,7 +18,9 @@ export function changedPaths(root, base) {
     return result.stdout;
   };
   const revision = git(['rev-parse', '--verify', '--end-of-options', `${base}^{commit}`]).trim();
-  const tracked = git(['diff', '--name-only', '-z', '--no-renames', revision, '--']);
+  const tracked = git(['diff', '--name-only', '-z', '--no-renames', revision, 'HEAD', '--']) +
+    git(['diff', '--cached', '--name-only', '-z', '--no-renames', '--']) +
+    git(['diff', '--name-only', '-z', '--no-renames', '--']);
   const untracked = git(['ls-files', '--others', '--exclude-standard', '-z']);
   return [...new Set((tracked + untracked).split('\0').filter(Boolean))].sort();
 }

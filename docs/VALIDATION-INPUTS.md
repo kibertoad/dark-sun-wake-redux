@@ -14,9 +14,11 @@ distinguishes a fresh run from a reused passing run and links its original date.
 
 `tools/Run-ValidationCheck.mjs CHECK -- EXECUTABLE ARG...` runs a check and can
 retain a local passing receipt under ignored `.artifacts/validation-receipts/`.
-The gate uses it for `node-tests`. Without a declaration in
-`validation-inputs.json`, it always runs fresh. CI always runs fresh. The helper
-does not authorize a narrower test selection or replace any required gate.
+Selected domains use it with a `suite-<id>` name and read their reviewed
+`receipt` contract from `tools/validation-suites.json`, the same map that owns
+their selected inputs. Only synthetic text-policy and goal-run suites currently
+declare reuse. All other suites run fresh. CI and integration force fresh runs.
+The helper does not replace any required check or staged hook.
 
 A project may declare a check's inputs after reviewing what the command reads:
 
@@ -33,8 +35,10 @@ A project may declare a check's inputs after reviewing what the command reads:
 }
 ```
 
-The template's own `validation-inputs.json` declares no checks; the example shows
-the format. Exclude a final record only when the check does not read it.
+`validation-inputs.json` remains an empty compatibility map for non-suite
+commands; the example shows only that generic format. A suite's contract belongs
+in the suite map, never in both maps. Exclude a final record only when the check
+does not read it.
 Everything tracked or untracked and not ignored is an input by default, including
 missing tracked files. New files enter the identity. An untracked nested
 repository or worktree is refused until it is ignored or excluded. Configuration, tools, hooks, lock files, JSON and MSBuild properties

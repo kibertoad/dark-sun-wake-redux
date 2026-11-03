@@ -17,6 +17,10 @@ function Assert-RequiredFile([string] $relative) {
 foreach ($relative in @(
     'tools/Bootstrap-Project.ps1',
     'tools/Invoke-Validation.ps1',
+    'tools/Select-ValidationSuites.mjs',
+    'tools/Run-ValidationSuites.mjs',
+    'tools/Repository-Policy.psm1',
+    'tools/validation-suites.json',
     'tools/Assert-WindowsSignature.ps1',
     'tools/Install-CodeSignTool.ps1',
     'tools/Invoke-ESigner.ps1',

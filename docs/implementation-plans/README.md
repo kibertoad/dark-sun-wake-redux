@@ -19,3 +19,4 @@ Their own acceptance criteria and exits remain authoritative for their work.
 | Kind-five first-word provenance census | [RDFF key census](RDFF-KEY-CENSUS.md) |
 | Kind-four inline/shared-row comparison | [RDFF type comparison](RDFF-TYPE-COMPARISON.md) |
 | Shared item-type structural specification | [Item-type structure](ITEM-TYPE-STRUCTURE.md) |
+| Domain validation and checker adoption | [Validation suites](VALIDATION-SUITES.md) |

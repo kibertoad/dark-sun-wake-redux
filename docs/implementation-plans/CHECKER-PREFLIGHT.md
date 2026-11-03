@@ -30,7 +30,8 @@ checks. Its synthetic wrapper controls passed. Full Test.ps1 -NoRestore passed
 check passed with the pre-existing argument-count skips, missing compilation
 for 59 Kaitai definitions, and scheduled-generation handling.
 
-The original rules snapshot, reader and Python pins are retained. Preflight
-never substitutes for the required complete gate. The independent template
-adoption is [PR147](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/147);
-it passed its prescribed local focused gate and its CI run remains separate.
+That checker-only batch retained its then-current rules snapshot, reader and
+Python pins. The subsequent merged template PR146/147 adoption, including the
+process PR128 snapshot and domain gates, is recorded in
+[Validation suites](VALIDATION-SUITES.md). Preflight remains optional editing
+feedback and never substitutes for complete required acceptance checks.

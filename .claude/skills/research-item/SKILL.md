@@ -5,7 +5,7 @@ description: Settle one research question about the original game as one batch -
 
 # Research batch
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 197-218),
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 203-224),
 and the sections of the methodology and the documentation standard the steps
 below link to. This skill is the procedure.
 Open a linked section only when a step leaves a question it answers, read
@@ -104,7 +104,7 @@ only the lines the link gives, and never a section already read this session.
    they need, and under `Live session` otherwise; `live-session` requests the
    owner's observation. Follow the local capture rules in `AGENTS.md` and
    `docs/live-sessions/README.md`.
-   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 417-429)
+   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 431-443)
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
    than fitting the rebuild to the recording. A probe runs only in a
@@ -116,7 +116,7 @@ only the lines the link gives, and never a section already read this session.
    An emulated call is always allowed, including in a repository whose
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's
-   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 443-479).
+   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 457-493).
    It needs no run lock. Check the current harness contract in `docs/RUNTIME.md`
    and `tools/emu/README.md`; the delivered resident harness admits no-argument
    far roots, while raw memory/argument seeding waits for supported named
@@ -308,19 +308,15 @@ only the lines the link gives, and never a section already read this session.
 During editing, `node tools/upstream.mjs docs --preflight` provides partial
 feedback without generated writes. It does not replace the checks below.
 
-8. **Check**: run the gate once, after the batch's last edit and before the
-   commit: `./tools/Test.ps1`, which this project requires before every
-   batch commit. It includes the documentation check, so that check is not
-   run on its own just before it. Run no gate when the batch starts: the last
-   batch commit passed it, and the commits since it (step 1's, a handover)
-   change only the documentation the pre-commit hook checks. Record
-   `git rev-parse HEAD` before the batch's first edit as its base commit.
-   While the batch is under way, check with the documentation check in
-   `--check` mode or the change-aware selection
-   (`./tools/Invoke-Validation.ps1 -ChangedSince <base commit>`), which asks
-   for `-TestFilter` once the batch changes anything outside documentation,
-   such as `tools/`. The pre-commit hook checks the staged tree once more;
-   keep it enabled. Leave
+8. **Check**: record `git rev-parse HEAD` before the first batch edit. After
+   the final edit run `./tools/Test.ps1 -Research -ChangedSince <base commit>`.
+   This keeps complete documentation/citation/schema, queue, policy and
+   configuration checks fresh, plus selected tooling controls, without rebuild
+   tests. Research cannot change src/tests or request .NET tests. Uncertain
+   selection requires separate integration acceptance; shared gate changes
+   are tooling batches. Changed implemented entries retain the Code partial/
+   Defect handoff for implementation to run the affected tests. CI and release
+   acceptance run fresh integration. Keep staged hooks enabled. Leave
    `spec/index/` and `PARITY.md` as they are: they change only on the main
    branch, where a scheduled job regenerates them, and the check fails a
    batch that edits one. To read current copies, run

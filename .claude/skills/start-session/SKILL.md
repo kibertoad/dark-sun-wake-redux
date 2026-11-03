@@ -5,8 +5,8 @@ description: Resume restoration work at the start of a session. Use before any r
 
 # Start a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 395-405).
-Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 562-660).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 409-419).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 576-674).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
