@@ -1,5 +1,22 @@
 # Bounded evidence tools
 
+## Offset-word candidate diagnostics
+
+`python -I tools/research/exec-census/far_pointer_words.py DSUN_EXE SEG:OFF ...`
+verifies the installed executable fingerprint and reports matching words.
+MOV/PUSH immediate labels require a typed immediate operand and both queried
+bytes inside its encoded immediate field. Matching memory displacements do
+not qualify. Synthetic controls in `tests/evidence/far-pointer-words.test.mjs`
+cover equal displacement/immediate values, byte/word/dword immediates, field
+boundaries, relative branches and nonzero addresses without licensed input.
+
+The six-byte backward holder search remains heuristic. Its decoded candidates,
+raw far-call patterns and nearby segment words do not establish instruction
+ownership, runtime admission or a complete census of computed calls. Keep
+original-derived reports in GAME_DIR and identify the tool revision when
+recording a research result; older rendered-text immediate labels need review
+before reuse. Far-call and relocated-pair classifications are unchanged.
+
 ## Measured work baseline
 
 `tools/ghidra/Measure-ResearchBaseline.ps1` runs the pinned Protocol's

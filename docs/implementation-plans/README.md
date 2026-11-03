@@ -15,3 +15,4 @@ Their own acceptance criteria and exits remain authoritative for their work.
 | Pinned runtime checkpoint regeneration | [Checkpoint regeneration](CHECKPOINT-REGENERATION.md) |
 | Local-selector assignment research tooling | [Local selector paths](LOCAL-SELECTOR-PATHS.md) |
 | Nonliteral-first-operand selector census | [Script selector census](SCRIPT-SELECTOR-CENSUS.md) |
+| Typed offset-word candidate classification | [Offset-word classification](OFFSET-WORD-CLASSIFICATION.md) |

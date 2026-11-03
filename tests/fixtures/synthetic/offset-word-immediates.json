@@ -1,0 +1,10 @@
+[
+  {"name":"memory displacement", "hex":"268987ac00", "words":[[3,172,false]]},
+  {"name":"word push", "hex":"68a700", "words":[[1,167,true],[0,42856,false],[2,0,false]]},
+  {"name":"word mov", "hex":"b8ac00", "words":[[1,172,true],[1,167,false]]},
+  {"name":"distinct displacement and immediate", "hex":"c787ac007a00", "words":[[2,172,false],[4,122,true],[3,31232,false]]},
+  {"name":"equal displacement and immediate", "hex":"c787ac00ac00", "words":[[2,172,false],[4,172,true]]},
+  {"name":"dword immediate", "hex":"6668a7003412", "words":[[2,167,true],[3,13312,true],[4,4660,true],[5,18,false]]},
+  {"name":"byte push", "hex":"6aa7", "words":[[1,167,false]]},
+  {"name":"relative branch", "hex":"e9a700", "words":[[1,167,false]]}
+]
