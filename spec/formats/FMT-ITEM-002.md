@@ -39,6 +39,10 @@ None known.
 The installed OBJEX.GFF ALL/4 directory span and conditional native base/stride
 binding (FND-ACTOR-017). Its full field schema has not been read.
 
+The 1216 known shipped inline kind-four payloads duplicate their indexed
+shared rows, with duplicate-row ambiguity retained (FND-ACTOR-018). This
+source relationship does not supply unexamined field meanings.
+
 ## Open questions
 
 - The field widths, meanings, flag domains and native transformations of

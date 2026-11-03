@@ -89,7 +89,8 @@ the item field-five relationship. The skipped payload is not authoritative
 for the known import path. The control supports the reading that inline
 payloads duplicate shared rows, but does not establish it for all 1216 cases.
 
-Q-ACTOR-007 retains the full payload relationship and other reader evidence.
+FND-ACTOR-018 subsequently settles the full known source payload relationship;
+Q-ACTOR-008 retains independent native reader discovery.
 FMT-ITEM-002 and Q-ITEM-005 separately track the complete shared-row field
 schema; isolated consumer bit tests are not a complete format. Native table
 and getter admission remain Q-CONFIG-008 and Q-SCRIPT-022.

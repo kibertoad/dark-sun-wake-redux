@@ -1,6 +1,6 @@
 # ACTOR
 
-Next ID: Q-ACTOR-008
+Next ID: Q-ACTOR-009
 
 ## Static
 
@@ -29,21 +29,19 @@ Next ID: Q-ACTOR-008
   (FND-ACTOR-010); FND-ACTOR-015 reads the chunk chain and the kinds, which leaves these.
   Tried: FND-ACTOR-016 settles the kind-five first-word source relationship
   and local selection/copy/clear bindings; those parts are removed above.
-  The independent kind-four payload/reference question is Q-ACTOR-007.
+  FND-ACTOR-017/018 settle the independent kind-four reference/payload
+  relationship; other native inline-reader discovery is Q-ACTOR-008.
   Blocks: nothing yet.
-- Q-ACTOR-007. FMT-ACTOR-002: What is the relationship of the skipped
-  fifteen-byte kind-four payloads to the shared type rows? Settles it: a
-  controlled comparison of all 1216 known payloads with ALL/4 at record_ref,
-  retaining out-of-range references, other-row matches and differing payloads;
-  any other admitted reader of the inline bytes remains explicit. The native
-  shared-reference/index binding is FND-ACTOR-017 and no longer unknown.
-  Tried: split from Q-ACTOR-003 after FND-ACTOR-016 settles an independent
-  kind-five field. FND-ACTOR-015 and FND-PARTY-051 already identify the
-  skipped copy and retained record_ref; their meaning remains open.
-  Tried: FND-ACTOR-017 binds the shared table and retained type index and
-  verifies RDFF/600 against row 61 independently. This removes reference
-  identity from Settles it; one case does not establish the full payload
-  relationship. Complete shared-row fields are Q-ITEM-005.
+- Q-ACTOR-008. FMT-ACTOR-002: Does a DSUN.EXE path outside the known
+  chunk importer consume the inline kind-four payload bytes? Settles it:
+  begin with a census of RDFF request/reader mechanisms and their consumers,
+  with positive controls for the known loader paths. Keep computed tags,
+  aliases, direct archive-byte reads and runtime-constructed consumers outside
+  a selected representation explicit; qualify absence by representation or
+  identify an actual consumer. Tried: separated while FND-ACTOR-018 closes
+  Q-ACTOR-007's full source relationship. FND-ACTOR-015/017 show the known
+  importer skips these bytes, but are not a complete reader census. Source
+  equality does not answer this independent native-consumer question.
   Blocks: nothing yet.
 - Q-ACTOR-006. FMT-ACTOR-003: What do the `value` words of `MONR` name, what does `549B:00C0`
   hold and which code reads or writes it, and does script request 8 run in play? Settles it: a
