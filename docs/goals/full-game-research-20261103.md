@@ -40,10 +40,10 @@ reports before matched-menu pairing are diagnostic only.
   reported argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 174 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-COMBAT-106. Controlled selector-census tooling
+- Latest completed research: FND-COMBAT-107. Controlled selector-census tooling
   and its synthetic controls are committed; no gameplay implementation was added.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
-  through Q-COMBAT-061, with executable admission in Q-COMBAT-055.
+  through Q-COMBAT-062, with executable admission in Q-COMBAT-055.
 - Context reading inputs are retained under
   GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
   table reports and bounded listings are under
@@ -61,17 +61,23 @@ reports before matched-menu pairing are diagnostic only.
   the bounded setter/index result; the candidate scans are not an admitted
   complete writer census.
 - GPL/119 prefix and local-call controls are retained under
-  GAME_DIR/analysis/local-bank-preservation-20261103/.
+  GAME_DIR/analysis/local-bank-preservation-20261103/. FND-COMBAT-107
+  records the request-9, loader and reentry-control readings there. The
+  request-37 case/child readings remain unrecorded preparation, not a
+  preservation result.
+- Inventory-word-window.txt and inventory-state-window.txt in the named-word
+  store are unrecorded diagnostic preparation. Reuse FND-PARTY-124 and
+  FND-CONFIG-117 for the existing state-writer result rather than treating
+  the latter report as a new state-domain proof.
 - Retained reconciliation inputs and reports are under
   GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
 - Post-commit process audit found no owned orphan to stop; reusable MSBuild
   nodes remain. No original-game runtime was started.
-- Next: Q-COMBAT-057's two named first-word sources and Q-COMBAT-061's
-  separated field-specific obligation, using FND-COMBAT-105/106;
-  Q-COMBAT-058's shared named context; Q-COMBAT-056's other local-bank
-  contracts; Q-COMBAT-060's GPL/119 prefix preservation; and Q-COMBAT-059's
-  error/handler preservation. Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
+- Next: Q-COMBAT-062's request-9 trigger admission and outer continuation;
+  Q-COMBAT-057/Q-COMBAT-061's first-word sources; Q-COMBAT-058's shared
+  named context; Q-COMBAT-056/Q-COMBAT-060's local-bank contracts; and
+  Q-COMBAT-059's error/handler preservation. Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
   rather than repeating declared-root and assignment counts. The retained
   decoded index remains under GAME_DIR/analysis/reader-admission-20261029/.
 - Goal remains active. This checkpoint does not satisfy the full Audit;
