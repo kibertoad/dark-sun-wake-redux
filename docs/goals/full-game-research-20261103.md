@@ -32,9 +32,17 @@ with supported escalated process access. Use the project-local evidence Python.
 - Stage: Slices; full research Audit remains unmet.
 - Baseline: pinned rules verified offline; documentation check passed with
   reported argument-count, Kaitai and scheduled-generation skips.
-- Last full gate: see docs/HANDOVER.md; no new batch completed yet.
-- Unfinished: Q-EXE-032 resident regeneration and inventory join/staging.
-- Retained overlay candidate verified present under
-  GAME_DIR/analysis/inventory-reconcile-20261029/runs/ownership-canonical-02/.
-- Next: Q-EXE-032, then Q-COMBAT-056 and Q-COMBAT-055/Q-COMBAT-057,
-  using the retained evidence named by docs/HANDOVER.md.
+- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 158 Node and
+  715 .NET tests. Documentation passed with the baseline skips above.
+- Latest research: FND-EXE-638; no unfinished batch.
+- Retained reconciliation inputs and reports are under
+  GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
+  GAME_DIR/analysis/inventory-reconcile-20261029/ store.
+- Post-commit process audit found no owned orphan to stop; reusable MSBuild
+  nodes remain. No original-game runtime was started.
+- Next: Q-COMBAT-056 assignment coverage and preservation. Existing
+  script_reach.py reports candidate routes and assumes local calls return;
+  use a new reading/tool for the remaining obligation rather than repeating
+  FND-COMBAT-101's root and direct-assignment counts. Then Q-COMBAT-055 and
+  Q-COMBAT-057. Retained selector inputs remain under
+  GAME_DIR/analysis/reader-admission-20261029/.
