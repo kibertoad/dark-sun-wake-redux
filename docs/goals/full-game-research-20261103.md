@@ -37,11 +37,13 @@ FND-COMBAT-101 supplies declared callback-entry controls.
   reported argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 158 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-EXE-638.
-- Unfinished: Q-COMBAT-056 named-context producer reading. Initial candidate
-  and caller scans, bounded listings and unsuccessful setup-entry controls
-  are retained under GAME_DIR/analysis/reader-context-20261103/. No finding,
-  queue change or zero-selector admission claim has been recorded from them.
+- Latest completed research: FND-COMBAT-102 and FND-COMBAT-103.
+- Unfinished: none. The remaining selector obligations are Q-COMBAT-056
+  through Q-COMBAT-059, with executable admission in Q-COMBAT-055.
+- Context reading inputs are retained under
+  GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
+  table reports and bounded listings are under
+  GAME_DIR/analysis/script-gap-20261103/. Reuse their matching identities.
 - Retained reconciliation inputs and reports are under
   GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
@@ -50,8 +52,10 @@ FND-COMBAT-101 supplies declared callback-entry controls.
 - Next: Q-COMBAT-056 assignment coverage and preservation. Existing
   script_reach.py reports candidate routes and assumes local calls return;
   use a new reading/tool for the remaining obligation rather than repeating
-  FND-COMBAT-101's root and direct-assignment counts. Then Q-COMBAT-055 and
-  Q-COMBAT-057. Retained selector inputs remain under
+  FND-COMBAT-101's root and direct-assignment counts. Q-COMBAT-058 takes
+  the named-context contract separately. Then Q-COMBAT-057's nonliteral
+  domains, Q-COMBAT-059's error/handler preservation and Q-COMBAT-055's
+  executable admission. Retained selector inputs remain under
   GAME_DIR/analysis/reader-admission-20261029/.
 - Goal remains active. This checkpoint does not satisfy the full Audit;
   independent research remains available and no owner decision blocks it.
