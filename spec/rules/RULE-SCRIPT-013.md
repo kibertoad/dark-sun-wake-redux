@@ -4,7 +4,7 @@ title: The game runs the first script trigger whose cell, box, key or key pair m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034, FND-ACTOR-016]
+evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034, FND-ACTOR-016, FND-SCRIPT-035]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
@@ -262,6 +262,8 @@ None known.
 - The admitted input and metadata/record states at `fn_1AA0_0009` walker uses
   (Q-SCRIPT-022). FND-SCRIPT-034 and FND-ACTOR-016 identify the source
   fields and local source-key bindings; they do not establish live validity.
+  FND-SCRIPT-035 identifies the cursor finder's local returned-word mechanism
+  without establishing its runtime producers or preservation.
 - Whether `1695:0235`, which runs the lists at `g_4C10_0007` and `g_4C10_000B` and returns
   `g_4C13_0325`, is reached by a computed call (FND-SCRIPT-028; Q-SCRIPT-016).
 - What the word at `4C10:001F` cleared by `fn_2D40_06E6` is for

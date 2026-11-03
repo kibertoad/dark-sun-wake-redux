@@ -71,6 +71,12 @@ Next ID: Q-SCRIPT-023
   valid keys. Tried: separated while closing Q-SCRIPT-002's source-key
   meaning with FND-ACTOR-016 and FND-SCRIPT-033/034. Those local bindings
   and the source census do not establish live validity. Blocks: slices 3-6.
+  Tried: FND-SCRIPT-035 accounts for the cursor target finder's local return
+  sources and reuses FND-PARTY-252/253 for the caller/classifier. It does not
+  settle the admitted-domain requirement: the initial sign check, record
+  address and returned entry-word reads are distinct, and no own metadata
+  range normalization establishes validity. New producer/lifetime and child
+  preservation evidence is needed; do not repeat the same root listing.
 - Q-SCRIPT-021. RULE-SCRIPT-013: What uses the word at `4C10:001F` cleared by
   the object-context setter? Settles it: its admitted readers, other producers
   and meaning, including the named-variable binding, alias/block accesses and
