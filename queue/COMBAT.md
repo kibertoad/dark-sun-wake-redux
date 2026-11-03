@@ -197,10 +197,13 @@ Next ID: Q-COMBAT-063
   remain. Full-width sign is not a bound after word narrowing. Blocks: slice 4.
 - Q-COMBAT-059. RULE-COMBAT-007: Can GPL/37's malformed-expression span admit
   another instruction 0x5E zero-selector route?
-  Settles it: admission of the malformed site or an independent entry into
-  0x0D37..0x0D58; the script-error children and their frame, segment, stream,
-  operand-address and stop-byte effects; preservation through the remaining
-  two-parameter opcode-0x77 handler and the following interpreter stop check.
+  Settles it: admitted source/buffer mutations or fetch/dispatch-context changes
+  around 0x0D37..0x0D58 that can supply another 0x5E route; the script-error
+  children and their frame, segment, stream, saved-value, operand-address and
+  stop-byte effects; the opcode callback and dispatch-argument/table preservation;
+  and the two-parameter opcode-0x77 handler's actual indirect-write target and
+  continuation into the interpreter stop check. FND-COMBAT-109 excludes an
+  encoded 0x5E at every byte alignment in the unchanged 33-byte span.
   Keep the incoming-transfer obligation of Q-COMBAT-055 separate and the
   earlier script/operand context explicit. Reuse FND-SCRIPT-023 and Q-SCRIPT-003
   for the error-child contract, not a terminating-error assumption.
@@ -210,6 +213,11 @@ Next ID: Q-COMBAT-063
   indirect byte write. No patch, admitted execution or pointer/stop preservation
   follows from those local bodies. FND-SCRIPT-024's recovery remains an analysis
   boundary, not original-game recovery.
+  Tried: FND-COMBAT-109 repeats the fingerprinted 33-byte read and finds no
+  0x5E, with independent GPL/119 0x0547 and 0x77/0xB3 controls. Native fetch
+  saves and reloads a byte around its cursor/error child, and dispatch rereads
+  its stack byte after an optional callback. Encoded-byte uncertainty is removed;
+  mutation, context/argument/target preservation and actual admission remain.
   Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C

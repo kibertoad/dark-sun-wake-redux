@@ -100,11 +100,17 @@ None known.
   reader, beyond its argument-width and current-region gates
   (FND-COMBAT-099, Q-COMBAT-055).
 - Whether the enumerated variable selectors, nonliteral sentinel operands or
-  undecoded script gap admit selector zero
+  native mutations around the undecoded script gap admit selector zero
   (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, FND-COMBAT-104,
   FND-COMBAT-105, Q-COMBAT-056,
   Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060, Q-COMBAT-061,
   Q-COMBAT-062).
+- Whether error children, the malformed handler's indirect write or changed
+  fetch/dispatch state can introduce another relocation route near GPL/37's
+  rejected span. FND-COMBAT-109 excludes an encoded opcode 0x5E in all 33
+  unchanged bytes, while FND-COMBAT-103 preserves the returning error path.
+  Mutation and fetch/dispatch preservation evidence in Q-COMBAT-059 must
+  distinguish changed-context execution from the unchanged-source exclusion.
 - Whether valid declared entries preserve their nonzero local assignments until
   the selector read, or another entry, bank replacement or alias changes them.
   FND-COMBAT-104 supplies direct histories and GPL/4's compare default for the
