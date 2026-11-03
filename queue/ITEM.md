@@ -51,13 +51,24 @@ Next ID: Q-ITEM-006
   and whether the game enforces the class weapon lists and by which item field? Settles it: the
   code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
   (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
-- Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What do overlay 191's item tests act
-  on: which entry overlay 173 `+2E1B` picks with -2 and 1, what `2D40:2452` and overlay 173 `+2B88`
-  do to the item, what bytes `+0x12`, `+0x13` and `+0x16` and word `+0x10` of an item record hold,
-  and what the hit routine does with bit 0x02 of its flags byte? Settles it: readings of `+2E1B`,
-  `+2B88` and `2D40:2452` from entry to return, of the writers of those item record fields, and of
-  the hit routine's readers of the flags byte. Tried: FND-RNG-035 reads the three tests and
-  FND-ITEM-010 their callers in the effect switch. Blocks: slices 4-5.
+- Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What remains of
+  the item tests' removal, mutable-field and hit-result contract? Settles it:
+  the reached item branch of `2D40:2452` through its collector/dispatch,
+  independent writers and admission of attached-record byte +0x12, signed
+  position +0x13, signed bonus +0x16 and word +0x10, the complete arithmetic
+  and input domain of overlay 173 `+2B88`, admitted list/index domains for
+  `+2E1B`, and the hit routine's consumers
+  of result flag 0x02. Preserve the distinction between its local effect-test
+  flag and other combat masks. Blocks: slices 4-5.
+  Tried: FND-RNG-035 reads the three tests and FND-ITEM-010 their effect-switch
+  callers and flag store. FND-PARTY-120 records part of the removal dispatch,
+  not complete item-specific reclamation; do not treat the helper name as proof.
+  Tried: FND-COMBAT-065/FND-EXE-600 settle the selector's local -2/1 criteria
+  and the quantity/removal branch of `+2B88`; FND-PARTY-248 binds local signed
+  bonus uses and FND-PARTY-217 binds signed inventory position +0x13.
+  RULE-ITEM-007/008/009 now incorporate those facts. They remove those local
+  identification readings, not the remaining writers, domains or result-flag
+  consumer question. A complete reading is not established.
 
 ## Emulated call
 

@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -31,6 +31,10 @@ for the target (FND-ITEM-010).
 The held-object list `fn_2D40_2196` gives for the slot, and bytes `+0x12` (unsigned) and `+0x16`
 (signed) of each listed item's record in `item_records`.
 
+The signed +0x16 byte is the item bonus used by the name formatter and
+recorded combat consumers (FND-PARTY-248). Byte +0x12 remains the numeric
+ranking input here; its complete writer and semantic contract is still open.
+
 ## Procedure
 
 ```text
@@ -55,6 +59,13 @@ define lowest_item_test(slot):
 Always 1, so the switch always sets bit 0x02 of the hit's flags byte (FND-ITEM-010); and the call
 of `fn_5671_0075` when the roll succeeds.
 
+The recorded helper tests shared type byte +0x0B mask 0x02. With it set and
+attached-item quantity word +2 nonzero, it subtracts its requested count
+(one here) and retains the entry while the resulting quantity is above zero.
+Otherwise it removes the entry through `fn_2D40_2452` and returns zero
+(FND-EXE-600). This is the local branch description; the removal dispatch,
+all input/writer domains and complete arithmetic contract remain open.
+
 ## Edge cases
 
 A later entry with the same byte `+0x12` does not replace the first. Each call that finds an entry
@@ -71,7 +82,8 @@ None known.
 
 ## Open questions
 
-- What `fn_5671_0075` does with the item, and what bytes `+0x12` and `+0x16` of an item record
-  hold (FND-RNG-035, Q-ITEM-004).
+- `fn_5671_0075`'s removal effects, complete arithmetic/admission contract, and
+  independent writers and uses of the +0x12 rank and +0x16 signed bonus
+  (Q-ITEM-004). Its local quantity/flag branch is recorded above.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

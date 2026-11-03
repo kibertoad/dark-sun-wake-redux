@@ -1,10 +1,10 @@
 ---
 id: RULE-ITEM-009
-title: A corroding hit destroys the first held item of type 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word
+title: A corroding hit destroys the first held item at position 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -31,6 +31,10 @@ when `weapon_corrodes` returned 0 (FND-ITEM-010).
 
 The held-object list `fn_2D40_2196` gives for the slot, and byte `+0x13` and word `+0x10`, both
 signed, of each listed item's record in `item_records`.
+Byte +0x13 is the signed inventory position, as the inventory projection
+reads it and the conditional transfer writes it (FND-PARTY-217, FND-PARTY-221). The numeric condition below tests position codes
+0, 6 and 9; it does not test the shared item-type index at word +0x0A.
+The individual positions' complete placement domains remain open.
 
 ## Procedure
 
@@ -41,8 +45,8 @@ define armour_corrodes(slot):
         if list[e].kind != 1:
             continue
         let r = item_records[list[e].item]
-        let t: INT16 = INT8(r[0x13])
-        if t != 0 and t != 6 and t != 9:
+        let position: INT16 = INT8(r[0x13])
+        if position != 0 and position != 6 and position != 9:
             continue
         let w: INT16 = INT16(r.word(0x10))
         if w != 0:
@@ -62,7 +66,7 @@ on a 1 (FND-ITEM-010).
 
 ## Edge cases
 
-A call draws once for each entry it reaches whose type matches and whose word is not 0, so it can
+A call draws once for each entry it reaches whose position matches and whose word is not 0, so it can
 draw several times and still return 0. An item whose word `+0x10` is 0 is removed at once, before
 any later entry. A word of 9 or more is never removed by the roll, and -11 or less always is.
 
@@ -77,6 +81,6 @@ None known.
 ## Open questions
 
 - What `fn_2D40_2452` does to the removed entry's item, which items byte `+0x13`'s values 0, 6
-  and 9 are and what word `+0x10` holds (FND-RNG-035, Q-ITEM-004).
+  and 9 admit in this route and what word `+0x10` holds (FND-RNG-035, Q-ITEM-004).
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

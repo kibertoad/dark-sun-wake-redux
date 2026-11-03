@@ -4,7 +4,7 @@ title: A corroding hit destroys a picked held item when a d20 falls below 8 less
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-009]
@@ -30,6 +30,17 @@ The hit routine's effect switch runs it on the target for `DATA` 103, followed b
 
 The held-object list `fn_2D40_2196` gives for the slot, and the signed byte `+0x16` of the item's
 record in `item_records`.
+
+For the recorded selector arguments -2 and 1, selection takes the first
+qualifying kind-one entry: following its parent links to a kind-two entry
+must give that ancestor's word +6 as 0x11, and its shared item-type byte +6
+must equal one. The item-type record is selected by the attached item's
+word +0x0A. This is the recorded local selection predicate, not an admission
+proof for arbitrary lists or indices (FND-COMBAT-065, FND-EXE-600).
+
+The signed byte +0x16 is an item bonus displayed after its name and used
+by the recorded combat consumers. That does not establish every writer,
+effect gate or use of the byte (FND-PARTY-248).
 
 ## Procedure
 
@@ -68,7 +79,9 @@ None known.
 
 ## Open questions
 
-- What `fn_5671_0084` picks with its arguments -2 and 1, what `fn_2D40_2452` does to the removed
-  entry's item, and what byte `+0x16` of an item record holds (FND-RNG-035, Q-ITEM-004).
+- What `fn_2D40_2452` does to the removed entry's item, and the remaining
+  writer/admission contract of the selected record, its signed bonus and
+  `fn_5671_0084`'s list/index domain
+  (Q-ITEM-004). The selector's local criteria and bonus uses are recorded above.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
