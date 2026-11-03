@@ -40,7 +40,7 @@ reports before matched-menu pairing are diagnostic only.
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 176 Node and 745 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ITEM-015/014/013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-016/015/014/013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -51,14 +51,14 @@ reports before matched-menu pairing are diagnostic only.
   Q-ITEM-005 tracks FMT-ITEM-002's remaining semantics; runtime code is missing.
   RULE-ITEM-007/008/009 now reconcile the recorded selector/quantity/bonus
   bindings and signed inventory-position byte. Q-ITEM-004 retains removal,
-  writer, admission, arithmetic and hit-result consumers; no status promotion.
+  writer, admission and hit-result consumers; no status promotion.
   Existing attack/damage/removal/equipment findings now supply its local field
   purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
-  - item-removal-20261104/: FND-ITEM-013/014/015 identify retained release,
-    allocator-control, recursive-deletion and callee-preservation reports.
+  - item-removal-20261104/: FND-ITEM-013/014/015/016 identify retained release,
+    allocation, recursion, callee-preservation and quantity-arithmetic reports.
   - item-type-fields-20261103/: FND-ITEM-011/012 identify descriptor, metadata,
     shared-row, exact renderer and material-pointer/operand/label reports.
     base-access-candidates.txt, type-byte-three-consumer.txt and the wider
