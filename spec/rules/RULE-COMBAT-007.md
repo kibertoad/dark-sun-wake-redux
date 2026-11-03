@@ -101,20 +101,22 @@ None known.
   (FND-COMBAT-099, Q-COMBAT-055).
 - Whether the enumerated variable selectors, nonliteral sentinel operands or
   undecoded script gap admit selector zero
-  (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, FND-COMBAT-104, Q-COMBAT-056,
-  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059).
+  (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, FND-COMBAT-104,
+  FND-COMBAT-105, Q-COMBAT-056,
+  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060).
 - Whether valid declared entries preserve their nonzero local assignments until
   the selector read, or another entry, bank replacement or alias changes them.
   FND-COMBAT-104 supplies direct histories and GPL/4's compare default for the
   first reading under preservation conditions; its other-effect and return
-  boundaries leave the second possible. Q-COMBAT-056 needs actual entry,
-  storage and intervening-effect evidence to distinguish them.
+  boundaries leave the second possible. Q-COMBAT-056 and Q-COMBAT-060 need
+  actual entry, storage and intervening-effect evidence to distinguish them.
 - Whether the named context word always agrees with current region at those
-  seven selector reads, or retains another value across restored destinations
+  fifteen enumerated selector reads, or retains another value across restored destinations
   and callback/child work. The known setter callers and separate save slots
   in FND-COMBAT-102 permit neither a permanent-equality proof nor an admitted
   mismatch; complete producer and lifetime evidence in Q-COMBAT-058 must
-  distinguish those readings.
+  distinguish those readings. The eight conditional-sentinel sites of
+  FND-COMBAT-105 also require their first-word domains in Q-COMBAT-057.
 - Which capacities, resource lengths and pointer lifetimes govern saved combatant and
   details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
 - Which callbacks reached during loading can affect health or continuation selection

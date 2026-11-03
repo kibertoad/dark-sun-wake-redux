@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-060
+Next ID: Q-COMBAT-061
 
 ## Static
 
@@ -72,17 +72,18 @@ Next ID: Q-COMBAT-060
   The eleven variable-selector producers and nonliteral sentinel/gap obligations
   are split into Q-COMBAT-056 through Q-COMBAT-059; executable admission remains here.
   Blocks: slice 4.
-- Q-COMBAT-056. RULE-COMBAT-007: Can the four decoded literal-sentinel sites
-  with local-number selectors supply zero to the independent numbered reader?
+- Q-COMBAT-056. RULE-COMBAT-007: Can the three local-number selector sites in
+  GPL/4, GPL/137 and GPL/163 supply zero to the independent numbered reader?
   Settles it: actual entry/compare-frame admission and local-bank identity,
   lifetime and intervening preservation for FND-COMBAT-104's declared-path
   assignments; other admitted entry sources and returning cross-script paths
   beyond its fixed-listing boundaries. Include entry after compare initialization,
   possible aliases and opcode/child effects before the selector parameter is read.
-  The independent named-context contract is Q-COMBAT-058.
+  GPL/119's separate shared-prefix preservation contract is Q-COMBAT-060;
+  the independent named-context contract is Q-COMBAT-058.
   Tried: split from Q-COMBAT-055; FND-COMBAT-100 enumerates the eleven sites,
   but source presence and a local context producer do not establish actual values.
-  Tried: FND-COMBAT-101 maps the 38 declared nonzero literal entry controls and
+  FND-COMBAT-101 maps the 38 declared nonzero literal entry controls and
   the 22 nonzero direct assignments for the four local selectors. The four
   entry-zero walks return immediately and are not used as an admission negative.
   Assignment coverage, intervening preservation and other entry sources remain.
@@ -94,10 +95,32 @@ Next ID: Q-COMBAT-060
   is not an admitted zero or assignment omission. The bounded direct-history
   assessment is removed from Settles it; actual admission, storage preservation
   and unmodeled returns remain above.
+  Tried: FND-COMBAT-105 reads GPL/119's intervening 0x0522 relocation and
+  conditional native-request prefix. Its selector 65 excludes its own encoded
+  zero-reader branch but proves no preservation for the later local read.
+  The visible backup/restore pair follows that read in a separate local routine;
+  native-child effects and bank preservation move to Q-COMBAT-060, leaving
+  the other three selector sites here.
   Blocks: slice 4.
-- Q-COMBAT-058. RULE-COMBAT-007: Can the seven kind-9 number-36 selector sites
-  in FND-COMBAT-100 supply zero while current DS:140C is nonzero?
+- Q-COMBAT-060. RULE-COMBAT-007: Does GPL/119's shared prefix preserve the
+  assigned local-number selector until instruction 0x0547 reads it?
+  Settles it: admitted entry/frame and local-bank identity/lifetime for the four
+  literal assignments and calls of 0x04E4 in FND-COMBAT-101/FND-COMBAT-104;
+  preservation through the prefix's conditional native requests 9/49, nested
+  instructions 0x1E/0x80, instruction 0x41 and earlier relocation 0x0522, and
+  its common request 37. Include callbacks, returning child script loads,
+  aliases, error paths and local clears of FND-SCRIPT-020/FND-SCRIPT-026.
+  Q-COMBAT-055 retains the overall reader/parameter admission contract.
+  Tried: split from Q-COMBAT-056 by FND-COMBAT-105. The earlier relocation's
+  selector 65 excludes its own encoded zero-reader branch; it does not prove
+  preservation of the later local. The visible requests 29/30 are after
+  0x0547 in a different local routine and supply no bracketing proof for
+  this prefix. Native-child effects and actual bank preservation remain open.
+  Blocks: slice 4.
+- Q-COMBAT-058. RULE-COMBAT-007: Can the fifteen kind-9 number-36 selector sites
+  in FND-COMBAT-100/FND-COMBAT-105 supply zero while current DS:140C is nonzero?
   Settles it: admitted context values and entry/callback timing at those sites;
+  preserve the first-operand condition of Q-COMBAT-057 for the eight additional sites;
   preservation or replacement of the initial named pointer; all later writers,
   including bulk restore destinations; and context/DS:140C/stack-argument
   preservation through the callers and children in FND-COMBAT-102. Include
@@ -109,16 +132,25 @@ Next ID: Q-COMBAT-060
   setter and read-only comparison controls, with indirect/bulk and other
   segment-formation exclusions. This does not establish equality with DS:140C
   or admit a zero-context execution. Blocks: slice 4.
+  FND-COMBAT-105 adds eight conditional-sentinel sites sharing this same
+  named context source; its initial pointer binding is not a lifetime proof.
 - Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral first operands admit additional
   instruction 0x5E zero-selector routes?
-  Settles it: the runtime value domains of the 106 decoded nonliteral first
-  operands in FND-COMBAT-100 and their accompanying selectors, including any
-  full-width sentinel and zero low-word selector they admit. The independent
+  Settles it: admitted values, pointer bindings and lifetimes of the three named
+  first-word sources at FND-COMBAT-105's eight remaining sites; can they read
+  0x7FFE under the signed-word getter while the context selector is zero and
+  DS:140C is nonzero? Keep joint timing and parameter preservation explicit;
+  Q-COMBAT-058 owns the shared selector source. The independent
   GPL/37 gap is Q-COMBAT-059. Preserve independent incoming
   transfers in Q-COMBAT-055. Tried: split from Q-COMBAT-055; FND-COMBAT-100's
   literal positive control reproduces 218 sites but cannot exclude these cases.
   FND-COMBAT-103 separates the native malformed-expression continuation from
   decoded nonliteral value domains; it does not exclude either route.
+  Tried: FND-COMBAT-105 excludes the other 98 sites' own encoded zero selectors
+  without requiring their first values, reproducing all FND-COMBAT-100 controls.
+  The eight retained first operands are named words 38, 40 and 44, with initial
+  pointer bindings checked through actual relocations. Actual domains and
+  pointer/field preservation remain above; no native absence is claimed.
   Blocks: slice 4.
 - Q-COMBAT-059. RULE-COMBAT-007: Can GPL/37's malformed-expression span admit
   another instruction 0x5E zero-selector route?
