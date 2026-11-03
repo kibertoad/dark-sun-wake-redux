@@ -41,7 +41,7 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 192 Node and 745 .NET tests, Release build and assetless smoke.
   Current documentation and queue checks pass; research mode passed without rebuild tests.
-- Latest completed research: FND-ITEM-019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -53,14 +53,14 @@ reports before matched-menu pairing are diagnostic only.
   RULE-ITEM-007/008/009 now reconcile the recorded selector/quantity/bonus
   bindings and signed inventory-position byte. Q-ITEM-004 retains removal;
   Q-ITEM-006/007/008/009 separate fields, quantity, selection and results.
-  Research gates passed through FND-ITEM-019; no status promotion.
+  Research gates passed through FND-ITEM-020; no status promotion.
   Existing attack/damage/removal/equipment findings now supply its local field
   purposes; use the current FND-PARTY-100 evidence.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
-  - hit-incoming-20261104/: FND-ITEM-019 identifies the repeated pointer
-    enumeration and matching/missed controls. Reuse FND-SCRIPT-030's controls.
+  - hit-incoming-20261104/: FND-ITEM-019/020 identify pointer/direct reports,
+    inventory-boundary accounting and repeat/cap/refusal controls. Retain gaps.
   - item-removal-20261104/: FND-ITEM-013/014/015/016/017/018 identify retained
     release, allocation, recursion, preservation, quantity and result-flow reports.
   - item-type-fields-20261103/: FND-ITEM-011/012 identify descriptor, metadata,
@@ -130,8 +130,8 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Next: Q-ITEM-009's remaining incoming mechanisms, near-pointer admission,
-  child effects and later consumers, reusing FND-ITEM-017/018/019; Q-ITEM-004's
+- Next: Q-ITEM-009's retained FND-ITEM-020 gaps, other incoming mechanisms,
+  near-pointer admission, child effects and later consumers; Q-ITEM-004's
   admitted pool chains/indices, copy spans and other deletion-kind callees;
   Q-ITEM-005's independent consumers; Q-ACTOR-008's independent consumers;
   Q-SCRIPT-022's admitted getter bindings. Reuse existing local readings.
