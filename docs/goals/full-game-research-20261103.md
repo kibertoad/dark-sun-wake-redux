@@ -26,6 +26,9 @@ No push is authorized by this goal.
 
 The sandbox documentation check could not list main; the same command passed
 with supported escalated process access. Use the project-local evidence Python.
+MAS/65@0 and MAS/66@0 walks are not positive controls for executing their
+registered callbacks. Do not use their empty selector results as a negative;
+FND-COMBAT-101 supplies declared callback-entry controls.
 
 ## Handover
 
@@ -34,7 +37,11 @@ with supported escalated process access. Use the project-local evidence Python.
   reported argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 158 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest research: FND-EXE-638; no unfinished batch.
+- Latest completed research: FND-EXE-638.
+- Unfinished: Q-COMBAT-056 named-context producer reading. Initial candidate
+  and caller scans, bounded listings and unsuccessful setup-entry controls
+  are retained under GAME_DIR/analysis/reader-context-20261103/. No finding,
+  queue change or zero-selector admission claim has been recorded from them.
 - Retained reconciliation inputs and reports are under
   GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
@@ -46,3 +53,5 @@ with supported escalated process access. Use the project-local evidence Python.
   FND-COMBAT-101's root and direct-assignment counts. Then Q-COMBAT-055 and
   Q-COMBAT-057. Retained selector inputs remain under
   GAME_DIR/analysis/reader-admission-20261029/.
+- Goal remains active. This checkpoint does not satisfy the full Audit;
+  independent research remains available and no owner decision blocks it.
