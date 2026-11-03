@@ -54,5 +54,7 @@ These are known direct call sites, not a complete incoming-transfer census.
 
 - Whether another incoming route reaches either conversion outside the known
   writer and reader calls (Q-SCRIPT-020). FND-SAVE-023 supplies the direct
-  call sites; computed, aliased and other transfer representations need their
-  own admission evidence.
+  call sites. FND-SCRIPT-030 excludes source-declared adjacent relocated
+  pointer pairs to either conversion, including aliases in that representation;
+  computed, unrelocated, split and runtime-constructed targets still need
+  their own producer and admission evidence.

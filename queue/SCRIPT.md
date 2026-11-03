@@ -33,13 +33,20 @@ Next ID: Q-SCRIPT-021
   Those locations do not establish valid live storage. Blocks: slices 2-4.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
   either GPLI conversion outside the known save writer and reader calls?
-  Settles it: remaining transfer representations, stored targets/address-taking
-  and independent incoming paths to overlay 187 +1615 and +1829, with known
-  direct-call controls, instruction ownership and all exclusions retained.
+  Settles it: computed, unrelocated, split and runtime-constructed targets,
+  their producers and actual indirect use, plus independent incoming paths
+  outside the known direct-call set to overlay 187 +1615 and +1829. Keep
+  instruction ownership and excluded representations explicit. Source-declared
+  adjacent relocated/fixed pairs are answered within FND-SCRIPT-030's scope.
   Tried: separated while closing Q-SCRIPT-001. FND-SAVE-023 binds the writer's
   forward/reverse and reader's reverse calls, including their selector flags;
   FND-SCRIPT-017 reads the local conversions. Its direct-call census is not
   proof that computed or aliased incoming routes are absent. Blocks: slices 2-4.
+  Tried: FND-SCRIPT-030 finds no exact or alias pair to either conversion among
+  12,844 inspected source-declared pairs, with 121 classified exclusions, no
+  unresolved pairs and no truncation. Independent MZ/FBOV target matching,
+  alias, missed-control and cap controls pass. That representation is removed
+  from Settles it; the other target constructions and runtime use remain above.
 - Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number, and
   what does `fn_2D40_06E6` do when its argument names more than one slot, and what is the word at
   `4C10:001F` it clears for? Settles it: the writer of the per-kind field offsets at `57E0:5A33`

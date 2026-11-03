@@ -71,4 +71,6 @@ current capacity or pointer lifetime.
   storage for all 200 records when they are used (Q-SCRIPT-019). The concrete
   allocation and save bindings above do not establish live capacity or lifetime.
 - Whether additional incoming routes reach the entry-point conversions outside
-  the known save writer and reader calls (Q-SCRIPT-020).
+  the known save writer and reader calls (Q-SCRIPT-020). FND-SCRIPT-030's
+  adjacent relocated-pair result does not exclude computed, unrelocated,
+  split or runtime-constructed targets.
