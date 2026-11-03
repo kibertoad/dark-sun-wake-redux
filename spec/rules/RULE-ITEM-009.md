@@ -4,7 +4,7 @@ title: A corroding hit destroys the first held item at position 0, 6 or 9 at onc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -64,6 +64,12 @@ define armour_corrodes(slot):
 1 when an entry was removed, 0 otherwise. The switch then sets bit 0x02 of the hit's flags byte
 on a 1 (FND-ITEM-010).
 
+When recursive deletion reaches its kind-one branch, it passes the attached
+record index to a helper that links the record into the free list and clears
+its identifier word. This is the helper's own local effect under stable,
+disjoint storage; recursive continuation and admitted graph/map identities
+remain open (FND-ITEM-013, FND-PARTY-214, FND-PARTY-218).
+
 ## Edge cases
 
 A call draws once for each entry it reaches whose position matches and whose word is not 0, so it can
@@ -80,7 +86,7 @@ None known.
 
 ## Open questions
 
-- What `fn_2D40_2452` does to the removed entry's item, which items byte `+0x13`'s values 0, 6
+- The complete recursive effects of `fn_2D40_2452` beyond the recorded item-release leaf, which items byte `+0x13`'s values 0, 6
   and 9 admit in this route and what word `+0x10` holds (FND-RNG-035, Q-ITEM-004).
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

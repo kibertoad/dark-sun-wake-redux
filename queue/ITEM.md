@@ -53,7 +53,8 @@ Next ID: Q-ITEM-006
   (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
 - Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What remains of
   the item tests' removal, mutable-field and hit-result contract? Settles it:
-  the reached item branch of `2D40:2452` through its collector/dispatch,
+  the remaining recursive continuation/order of `2D40:2452`, beyond its
+  recorded map builder, kind switch and item-release leaf,
   independent writers and admission of attached-record byte +0x12, signed
   position +0x13, signed bonus +0x16 and word +0x10, the complete arithmetic
   and input domain of overlay 173 `+2B88`, admitted list/index domains for
@@ -69,6 +70,12 @@ Next ID: Q-ITEM-006
   RULE-ITEM-007/008/009 now incorporate those facts. They remove those local
   identification readings, not the remaining writers, domains or result-flag
   consumer question. A complete reading is not established.
+  Tried: FND-ITEM-013 reads the complete 61-byte release leaf and its adjacent
+  52-byte allocator control. The leaf's free-list head/link and identifier
+  stores are settled, under stated stability/non-aliasing conditions. Reuse
+  FND-PARTY-214/218 for the map and kind switch; superseded FND-PARTY-172 is
+  not current evidence. Remaining removal work is recursion/continuation and
+  admitted storage/caller domains, not another local release-leaf reading.
 
 ## Emulated call
 

@@ -4,7 +4,7 @@ title: A corroding hit destroys a picked held item when a d20 falls below 8 less
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-009]
@@ -64,6 +64,12 @@ define weapon_corrodes(slot):
 1 when the entry was removed, 0 otherwise. The switch then sets bit 0x02 of the hit's flags byte
 on a 1 (FND-ITEM-010).
 
+When recursive deletion reaches its kind-one branch, it passes the attached
+record index to a helper that links the record into the free list and clears
+its identifier word. This is the helper's own local effect under stable,
+disjoint storage; recursive continuation and admitted graph/map identities
+remain open (FND-ITEM-013, FND-PARTY-214, FND-PARTY-218).
+
 ## Edge cases
 
 Each call that finds an entry draws once. A byte `+0x16` of 0 removes the entry on 1 to 7, 7 chances
@@ -79,7 +85,7 @@ None known.
 
 ## Open questions
 
-- What `fn_2D40_2452` does to the removed entry's item, and the remaining
+- The complete recursive effects of `fn_2D40_2452` beyond the recorded item-release leaf, and the remaining
   writer/admission contract of the selected record, its signed bonus and
   `fn_5671_0084`'s list/index domain
   (Q-ITEM-004). The selector's local criteria and bonus uses are recorded above.
