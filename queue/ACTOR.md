@@ -1,6 +1,6 @@
 # ACTOR
 
-Next ID: Q-ACTOR-007
+Next ID: Q-ACTOR-008
 
 ## Static
 
@@ -18,12 +18,26 @@ Next ID: Q-ACTOR-007
   and answers its local object-number/image-word resolver; that local
   reader is removed from Settles it. Its resource/buffer and cache admission
   remain Q-PARTY-087. Blocks: nothing yet.
-- Q-ACTOR-003. FMT-ACTOR-002: What does the table of 23-byte records at the far pointer
-  `57E0:19D1` hold, which a kind-5 chunk's data is copied into, what are the 15 bytes of a type-3
-  kind-4 chunk, which the load skips, and what are the fields of the 23-byte kind-5 records?
-  Settles it: a search for code that reads through `57E0:19D1`, and of readers of the kind-4
-  record number. Tried: a search for resident instructions with the displacement 43 or 76
+- Q-ACTOR-003. FMT-ACTOR-002: What are the remaining fields of the 23-byte
+  kind-one and kind-five records beyond their documented fields?
+  Settles it: native readers/writers of the remaining record bytes through
+  `57E0:19C1` and `57E0:19D1`, including their FNFO bindings and copied,
+  restored and released states; distinguish kind-specific meanings. The
+  kind-five first-word key/free-marker binding, logical twenty-slot search
+  and getter-base publication are FND-ACTOR-016 and are no longer unknown.
+  Actual trigger getter admission is Q-SCRIPT-022. Tried: a search for resident instructions with the displacement 43 or 76
   (FND-ACTOR-010); FND-ACTOR-015 reads the chunk chain and the kinds, which leaves these.
+  Tried: FND-ACTOR-016 settles the kind-five first-word source relationship
+  and local selection/copy/clear bindings; those parts are removed above.
+  The independent kind-four payload/reference question is Q-ACTOR-007.
+  Blocks: nothing yet.
+- Q-ACTOR-007. FMT-ACTOR-002: What do the skipped fifteen-byte kind-four
+  payloads and their retained record references mean? Settles it: the native
+  consumers of kind-four record numbers, any admitted reader of those payload
+  bytes, and the relationship to the resource data actually selected later.
+  Tried: split from Q-ACTOR-003 after FND-ACTOR-016 settles an independent
+  kind-five field. FND-ACTOR-015 and FND-PARTY-051 already identify the
+  skipped copy and retained record_ref; their meaning remains open.
   Blocks: nothing yet.
 - Q-ACTOR-006. FMT-ACTOR-003: What do the `value` words of `MONR` name, what does `549B:00C0`
   hold and which code reads or writes it, and does script request 8 run in play? Settles it: a

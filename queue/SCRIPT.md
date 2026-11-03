@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-022
+Next ID: Q-SCRIPT-023
 
 ## Static
 
@@ -61,25 +61,16 @@ Next ID: Q-SCRIPT-022
   other callback entries. One former immediate label is a memory displacement.
   Those seven leads are removed from the unresolved candidates; the diagnostic
   holder window is not a complete literal-construction or indirect-use census.
-- Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number?
-  Settles it: remaining kind-five field-zero meaning and its relationship to
-  trigger resource/selector keys (Q-ACTOR-003), and admitted metadata, widths
-  and record states at walker uses (Q-CONFIG-008). The kind-one attached-record
-  key, kind-two character identifier, kind-three details key, kind-four missing
-  mapping and kind-five first-word location are FND-SCRIPT-034; do not repeat
-  their source-field identification. Tried:
-  FND-SCRIPT-027, FND-SCRIPT-028 and FND-SCRIPT-029 read the trigger instructions, the walkers and
-  their callers, which take the rest of the item out. Blocks: slices 3-6.
-  Tried: FND-SCRIPT-033 reads the full context-setter loop with
-  FND-CONFIG-141's selector, taking multi-match iteration out of Settles it.
-  FND-PARTY-051 and FND-CONFIG-150 already identify the FNFO field-table
-  load; its producer identity is also removed. Field-zero semantics remain
-  above; the independently answerable cleared-word use is Q-SCRIPT-021.
-  Tried: FND-SCRIPT-034 reads the complete key wrapper and all five shipped
-  field-zero descriptors with repeated reports and three prior-binding controls.
-  The mechanism is a kind-specific comparison key, not a universal slot or
-  record offset. Its named field identities and missing-field local result
-  are removed from Settles it; kind-five semantics and actual admission remain.
+- Q-SCRIPT-022. RULE-SCRIPT-013, FMT-ACTOR-002: Which admitted input and shared-state bindings
+  reach the trigger key getters? Settles it: handle/kind/record producers at
+  the walker uses, the metadata and width setup reaching each getter, and
+  preservation of its base/stride/offset tables and record values across
+  intervening calls, aliases and restore paths. Q-CONFIG-008 supplies the
+  shared setup dependency; this item covers admission at the trigger uses.
+  Keep missing-field zero and invalid-handle/error results distinct from
+  valid keys. Tried: separated while closing Q-SCRIPT-002's source-key
+  meaning with FND-ACTOR-016 and FND-SCRIPT-033/034. Those local bindings
+  and the source census do not establish live validity. Blocks: slices 3-6.
 - Q-SCRIPT-021. RULE-SCRIPT-013: What uses the word at `4C10:001F` cleared by
   the object-context setter? Settles it: its admitted readers, other producers
   and meaning, including the named-variable binding, alias/block accesses and

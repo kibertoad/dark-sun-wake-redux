@@ -4,7 +4,7 @@ title: The game runs the first script trigger whose cell, box, key or key pair m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034]
+evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034, FND-ACTOR-016]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
@@ -236,10 +236,11 @@ region's script.
   the low word of the field-zero getter, without checking its status. With
   shipped FNFO mappings loaded, kinds one, two and three select the attached
   record's negated resource number, combatant character identifier and details
-  key respectively; kind four has a missing field and kind five selects its
-  first word. A missing-field getter returns zero. Metadata/width and record
-  validity remain conditional; no kind-five semantic name is assigned
-  (FND-SCRIPT-034).
+  key respectively; kind four has a missing field. Kind five selects its
+  first word, whose shipped copied value is the negated RDFF resource key;
+  its local free-slot marker is zero. A missing-field getter returns zero.
+  Metadata/width, record validity and preservation remain conditional
+  (FND-SCRIPT-034, FND-ACTOR-016).
 - The context helper `fn_2D40_06E6` repeats a negative selector with an
   advancing cursor. Under stable valid selector/record state, it assigns the
   coordinates of each matching active slot in increasing order; the highest
@@ -258,10 +259,9 @@ None known.
 
 ## Open questions
 
-- The remaining meaning of `fn_1AA0_0009` kind-five field zero and admitted metadata/record
-  states at walker uses (Q-SCRIPT-002). FND-SCRIPT-034 identifies the shipped
-  kind-specific source fields and the missing kind-four mapping; their shared
-  field number does not establish one universal object-number meaning.
+- The admitted input and metadata/record states at `fn_1AA0_0009` walker uses
+  (Q-SCRIPT-022). FND-SCRIPT-034 and FND-ACTOR-016 identify the source
+  fields and local source-key bindings; they do not establish live validity.
 - Whether `1695:0235`, which runs the lists at `g_4C10_0007` and `g_4C10_000B` and returns
   `g_4C13_0325`, is reached by a computed call (FND-SCRIPT-028; Q-SCRIPT-016).
 - What the word at `4C10:001F` cleared by `fn_2D40_06E6` is for

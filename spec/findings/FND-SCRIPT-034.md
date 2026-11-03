@@ -59,9 +59,10 @@ placed-object slot or record offset. Kind four's missing field also prevents
 assigning a valid object-number schema to every kind from this table.
 
 The known kind-one, kind-two and kind-three source identities are answered.
-Kind-five meaning remains Q-ACTOR-003 and Q-SCRIPT-002. Actual metadata,
-width/record preservation and which kinds reach a walker remain separate
-admission obligations in Q-CONFIG-008 and Q-SCRIPT-002. No native
+FND-ACTOR-016 subsequently answers kind-five source-key meaning. Its other
+fields remain Q-ACTOR-003. Actual metadata, width/record preservation and
+which kinds reach a walker remain separate admission obligations in
+Q-CONFIG-008 and Q-SCRIPT-022. No native
 missing-field case, complete reading or status promotion is established.
 
 ## Alternatives

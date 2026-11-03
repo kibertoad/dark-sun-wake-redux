@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_actor_002.ksy
-evidence: [FND-ACTOR-015, FND-PARTY-051, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
+evidence: [FND-ACTOR-015, FND-ACTOR-016, FND-PARTY-051, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
 conflicting: []
 split_with: []
 related: []
@@ -51,6 +51,14 @@ first chunk is always followed by a type-3 kind-3 chunk, and in 133 resources by
 or 4. A kind-5 first chunk is alone. In every type-2, 3 and 4 chunk `target_chunk` is an earlier
 chunk, and `unk_03` is 0 in every header (FND-ACTOR-015).
 
+In all 58 shipped kind-five first chunks, the signed word at data offset zero
+equals the negated full RDFF resource identifier. This is field zero under
+the shipped FNFO mappings. The native copy offers all 23 payload bytes to
+the indexed table through DS:19D1; its conditional getter base is DS:6163.
+The local record selector searches twenty logical records and treats a zero
+first word as free; the known deletion branch clears that word. Allocation,
+input validity and later preservation remain conditional (FND-ACTOR-016).
+
 ## Enumerations and flags
 
 `chunk_type` and `kind` are those of FMT-PARTY-006.
@@ -65,7 +73,9 @@ All 1,643 shipped resources walk to an end header; 1,642 end there (FND-ACTOR-01
 
 ## Open questions
 
-- What the table at the far pointer `57E0:19D1`, which kind-5 data is copied into, holds, and
-  what the 15 bytes of a type-3 kind-4 chunk are, which the load skips. (Q-ACTOR-003)
+- What the 15 bytes of a type-3 kind-4 chunk and its retained record reference
+  mean, beyond the known skipped copy (Q-ACTOR-007).
 - The fields of the 23-byte kind-1 and kind-5 records, beyond those FMT-PARTY-006 gives for
-  kind 1. (Q-ACTOR-003)
+  kind 1 and FND-ACTOR-016 gives for kind five's first word (Q-ACTOR-003).
+- Which admitted metadata, record and pointer states reach the trigger getter
+  uses of kind-five field zero (Q-SCRIPT-022).
