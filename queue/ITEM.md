@@ -59,8 +59,8 @@ Next ID: Q-ITEM-006
   map and stack storage, beyond its recorded local ordering, map builder,
   kind switch, reparenting and item-release leaf,
   independent writers and admission of attached-record byte +0x12, signed
-  position +0x13, signed bonus +0x16 and word +0x10, the complete arithmetic
-  and input domain of overlay 173 `+2B88`, admitted list/index domains for
+  position +0x13, signed bonus +0x16 and word +0x10, the admitted caller,
+  quantity-writer and storage/index domains of overlay 173 `+2B88`, admitted list/index domains for
   `+2E1B`, and the hit routine's consumers
   of result flag 0x02. Preserve the distinction between its local effect-test
   flag and other combat masks. Blocks: slices 4-5.
@@ -90,6 +90,11 @@ Next ID: Q-ITEM-006
   its resolver/copy children. Do not search these bodies again for an
   unrecorded direct current-object assignment; prove their admitted indices,
   chains and computed copy spans instead. Other deletion-kind callees remain.
+  Tried: FND-ITEM-016 settles `+2B88`'s complete local word arithmetic,
+  initial-zero bypass and store/request/return order. RULE-ITEM-008 now
+  distinguishes initial zero from subtraction to zero and retains nonzero
+  wrapped results. Remaining work is caller/writer/storage admission and
+  deletion effects, not another local arithmetic reading.
 
 ## Emulated call
 

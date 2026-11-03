@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -59,12 +59,16 @@ define lowest_item_test(slot):
 Always 1, so the switch always sets bit 0x02 of the hit's flags byte (FND-ITEM-010); and the call
 of `fn_5671_0075` when the roll succeeds.
 
-The recorded helper tests shared type byte +0x0B mask 0x02. With it set and
-attached-item quantity word +2 nonzero, it subtracts its requested count
-(one here) and retains the entry while the resulting quantity is above zero.
-Otherwise it removes the entry through `fn_2D40_2452` and returns zero
-(FND-EXE-600). This is the local branch description; the removal dispatch,
-all input/writer domains and complete arithmetic contract remain open.
+The helper tests shared type byte +0x0B mask 0x02. With the mask clear it
+requests removal through `fn_2D40_2452` and returns zero if that call returns.
+With the mask set and attached-item quantity word +2 initially zero, it
+returns zero without requesting removal. Otherwise it stores the low
+16 bits of quantity minus the requested count (one here). Every nonzero
+result is retained and returned, including wrapped or signed-negative
+words; a zero result requests removal after the store and returns zero
+if deletion returns (FND-ITEM-016). This is the local arithmetic contract
+under stable, valid record storage. Caller admission, independent writers
+and complete removal effects remain open.
 
 When recursive deletion reaches its kind-one branch, it passes the attached
 record index to a helper that links the record into the free list and clears
@@ -91,8 +95,8 @@ None known.
 
 ## Open questions
 
-- `fn_5671_0075`'s removal effects, complete arithmetic/admission contract, and
+- `fn_5671_0075`'s removal effects, caller/storage admission contract, and
   independent writers and uses of the +0x12 rank and +0x16 signed bonus
-  (Q-ITEM-004). Its local quantity/flag branch is recorded above.
+  (Q-ITEM-004). Its local quantity arithmetic and zero branches are recorded above.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
