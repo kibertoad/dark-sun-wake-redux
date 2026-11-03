@@ -129,12 +129,20 @@ Next ID: Q-COMBAT-063
   trigger and target, plus interpreter frame/stream/stop/local-bank continuation
   through the nested run and native return. Preserve rejected and no-match paths
   separately; distinguish local clearing from reaching the later selector.
+  For the unchanged category-two route, FND-COMBAT-108 excludes MAS/65's
+  eighteen encoded category-zero boxes without a coordinate proof. Establish
+  another admitted record, a smaller-slot/category path or changed category/record
+  state to admit reentry; retain actual list identity and preservation.
   Reuse Q-COMBAT-003 for the DS:0DAB state producers instead of duplicating them.
   Tried: split from Q-COMBAT-060. FND-COMBAT-107 connects the encoded request,
   mode-bit producer, loader's conditional trigger call and run-entry clear/reset.
   FND-SCRIPT-007, FND-SCRIPT-020, FND-SCRIPT-026 and FND-SCRIPT-028 give local
   contracts, not actual trigger admission or preservation of the outer run.
   Other prefix effects remain Q-COMBAT-060. Blocks: slice 4.
+  Tried: FND-COMBAT-108 reproduces the 150/321 global cell/box controls and
+  reads MAS/65's eighteen literal category-zero registrations against the loader
+  and walker predicates. Those unchanged records cannot select a category-two
+  event; active-list/slot/category admission and outer continuation remain above.
 - Q-COMBAT-058. RULE-COMBAT-007: Can the fifteen kind-9 number-36 selector sites
   in FND-COMBAT-100/FND-COMBAT-105 supply zero while current DS:140C is nonzero?
   Settles it: admitted context values and entry/callback timing at those sites;

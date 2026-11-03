@@ -117,6 +117,9 @@ None known.
   conditional trigger-to-run-entry route without admitting its inputs. Trigger
   matching and frame/stream continuation in Q-COMBAT-062 must distinguish
   these readings; local clearing alone proves neither later execution nor zero.
+  FND-COMBAT-108 excludes the eighteen unchanged MAS/65 box records when
+  the loader and walker preserve category two. Other admitted records, smaller
+  slots and category/record preservation remain part of Q-COMBAT-062.
 - Whether the named context word always agrees with current region at those
   fifteen enumerated selector reads, or retains another value across restored destinations
   and callback/child work. The known setter callers and separate save slots
