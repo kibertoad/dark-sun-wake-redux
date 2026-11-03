@@ -4,7 +4,7 @@ title: A corroding hit destroys the first held item at position 0, 6 or 9 at onc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -73,6 +73,13 @@ recursive calls for retained children. Its reparenting failure branch can
 be non-returning; admitted state and whole-callee effects remain open
 (FND-ITEM-014, FND-PARTY-214, FND-PARTY-218).
 
+Under admitted near-pointer, frame and record storage, the hit wrapper uses
+result mask 0x02 set with damage mask 0x01 clear to select presentation
+requests. Otherwise a zero combatant record word +0 also selects that path.
+Mode gates control its subsequent requests, and the wrapper returns the flags
+byte. These gates do not prove successful visible feedback or later caller
+behavior (FND-ITEM-017, Q-ITEM-009).
+
 ## Edge cases
 
 A call draws once for each entry it reaches whose position matches and whose word is not 0, so it can
@@ -92,6 +99,6 @@ None known.
 - Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
 - Which admitted items have position values zero, six and nine and the
   writer/consumer contract of word +0x10 remain Q-ITEM-006 (FND-RNG-035).
-- Subsequent consumers of the hit's result flag remain Q-ITEM-009.
+- Near-pointer admission, child effects and later result-flag consumers remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

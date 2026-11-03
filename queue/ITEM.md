@@ -103,14 +103,19 @@ Next ID: Q-ITEM-010
   input graphs/indices, not the same local predicate again.
 
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
-  hit behavior consumes the item tests' result flag? Settles it: follow
-  overlay 179's continuation after `+2752` and its callers' later consumers
-  of the flags byte passed by near pointer, preserving every branch that
-  reads mask 0x02 and its observable continuation. Distinguish this local
+  hit behavior consumes the item tests' result flag? Settles it: near-pointer
+  identity and frame/record admission, reached child effects/preservation,
+  and complete caller/consumer coverage of the returned flags byte beyond
+  the recorded local presentation gates. Distinguish this local
   effect-test result from unrelated combat masks. Blocks: slices 4-5.
   Tried: split from Q-ITEM-004. FND-ITEM-010 records the effect-switch callers,
   conditional store of mask 0x02 and continuation entry, and FND-RNG-035
   records the test returns. The later consumers have not been read there.
+  Tried: FND-ITEM-017 settles the pointer producer, numeric mask-02 versus
+  mask-01 local gate, combatant-word fallback, mode-gated request order and
+  AL return. Reuse FND-MAGIC-021 for the switch tail and FND-MAGIC-018 for
+  the known caller's aggregate OR. Remaining work is admission, whole-child
+  effects and later returned-byte consumers, not another local gate reading.
 
 ## Emulated call
 

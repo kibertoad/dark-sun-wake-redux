@@ -4,7 +4,7 @@ title: A corroding hit destroys a picked held item when a d20 falls below 8 less
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-009]
@@ -73,6 +73,13 @@ recursive calls for retained children. Its reparenting failure branch can
 be non-returning; admitted state and whole-callee effects remain open
 (FND-ITEM-014, FND-PARTY-214, FND-PARTY-218).
 
+Under admitted near-pointer, frame and record storage, the hit wrapper uses
+result mask 0x02 set with damage mask 0x01 clear to select presentation
+requests. Otherwise a zero combatant record word +0 also selects that path.
+Mode gates control its subsequent requests, and the wrapper returns the flags
+byte. These gates do not prove successful visible feedback or later caller
+behavior (FND-ITEM-017, Q-ITEM-009).
+
 ## Edge cases
 
 Each call that finds an entry draws once. A byte `+0x16` of 0 removes the entry on 1 to 7, 7 chances
@@ -92,6 +99,6 @@ None known.
 - Independent selected-field writers and admitted bonus states remain
   Q-ITEM-006; `fn_5671_0084` list/index admission is Q-ITEM-008. The local selector
   criteria and bonus uses are recorded above.
-- Subsequent consumers of the hit's result flag remain Q-ITEM-009.
+- Near-pointer admission, child effects and later result-flag consumers remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

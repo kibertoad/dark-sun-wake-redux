@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -79,6 +79,13 @@ recursive calls for retained children. Its reparenting failure branch can
 be non-returning; admitted state and whole-callee effects remain open
 (FND-ITEM-014, FND-PARTY-214, FND-PARTY-218).
 
+Under admitted near-pointer, frame and record storage, the hit wrapper uses
+result mask 0x02 set with damage mask 0x01 clear to select presentation
+requests. Otherwise a zero combatant record word +0 also selects that path.
+Mode gates control its subsequent requests, and the wrapper returns the flags
+byte. These gates do not prove successful visible feedback or later caller
+behavior (FND-ITEM-017, Q-ITEM-009).
+
 ## Edge cases
 
 A later entry with the same byte `+0x12` does not replace the first. Each call that finds an entry
@@ -99,6 +106,6 @@ None known.
   helper `fn_5671_0075` caller, writer and record-admission contract is Q-ITEM-007;
   its local arithmetic and zero branches are recorded above.
 - Independent writers and admitted uses of the +0x12 rank and +0x16 signed
-  bonus remain Q-ITEM-006; hit-result consumers remain Q-ITEM-009.
+  bonus remain Q-ITEM-006; hit-result admission and later consumers remain Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
