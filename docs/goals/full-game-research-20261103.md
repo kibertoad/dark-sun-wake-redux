@@ -41,12 +41,19 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 175 Node and
   715 .NET tests; the gate now includes the typed-immediate synthetic control.
   Documentation passed with the baseline skips above.
-- Latest completed research: FND-SCRIPT-032; tooling is at 700bce0a.
+- Latest completed research: FND-SCRIPT-033/034; tooling is at 700bce0a.
   Q-SCRIPT-019 and Q-SCRIPT-020 remain open with narrower obligations.
   No gameplay implementation or evidence/parity status promotion was added.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
   through Q-COMBAT-062, with executable admission in Q-COMBAT-055.
-  Q-SCRIPT-018 through Q-SCRIPT-020 hold the separated remaining obligations.
+  Q-SCRIPT-018 through Q-SCRIPT-021 hold separated remaining obligations.
+  Q-SCRIPT-002 retains kind-five key semantics and admission dependencies.
+- FND-SCRIPT-033/034 inputs remain under
+  GAME_DIR/analysis/trigger-object-context-20261103/: context-setter.txt,
+  selector.txt, trigger-key-wrapper.txt and repeated field-zero-offsets reports.
+  The full setter range ends at 0747; do not reuse its preliminary 073E bound.
+  Reuse FND-CONFIG-140/141/150/153/154, FND-PARTY-051/216/241,
+  FND-COMBAT-074 and FND-ACTOR-015 before further field-zero research.
 - Conversion pointer configs, accepted repeated reports and controls remain under
   GAME_DIR/analysis/conversion-incoming-20261103/; FND-SCRIPT-030 records
   their identities. FND-SCRIPT-032 identifies offset-word-typed.txt, its repeat,
