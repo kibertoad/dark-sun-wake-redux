@@ -38,9 +38,9 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet.
 - Baseline: pinned rules verified offline; documentation passed with the
   existing argument-count, Kaitai and scheduled-generation skips.
-- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
+- Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 176 Node and 745 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ITEM-011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-013/011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -57,6 +57,8 @@ reports before matched-menu pairing are diagnostic only.
   Q-ACTOR-008 retains independent consumer discovery. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
+  - item-removal-20261104/: FND-ITEM-013 identifies the retained release
+    and independent allocator-control reports.
   - item-type-fields-20261103/: FND-ITEM-011/012 identify descriptor, metadata,
     shared-row, exact renderer and material-pointer/operand/label reports.
     base-access-candidates.txt, type-byte-three-consumer.txt and the wider
@@ -117,7 +119,7 @@ reports before matched-menu pairing are diagnostic only.
 - Requested validation improvements are in process PR128 and template PR146.
   PR128 is merged. PR146 now pins its final version and aligns research-only
   acceptance, same-map receipt contracts and per-case isolation. It passed
-  123 Node/55 .NET locally; CI is rerunning for that alignment. No selected
+  123 Node/55 .NET locally and complete CI for that alignment. No selected
   gate changes have been adopted in this restoration.
 - Adopted published checker 6.1.0 with matching release-tag CI/package pins
   at 98e2e2000e365537c85ffa7605e4813a82a46cb4. Full Test.ps1 -NoRestore
@@ -125,10 +127,10 @@ reports before matched-menu pairing are diagnostic only.
   complete gates remain required. Template adoption is PR147; focused local
   acceptance and complete CI, including Windows packaging, passed. PR147 also
   adopts merged process PR128 and refreshed links; its latest CI is green. Root changes
-  remain unpushed, as required. One pre-final validation family was stopped
-  after a synthetic citation-fixture defect; final-tree acceptance passed.
-- Next: Q-ITEM-005's remaining independent consumers and flag domains; Q-ACTOR-008's independent consumers;
-  Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
-  storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
+  remain unpushed, as required.
+- Next: Q-ITEM-004's recursive continuation and admitted storage, reusing
+  FND-ITEM-013 and FND-PARTY-214/218; Q-ITEM-005's other native consumers;
+  Q-ACTOR-008's independent consumers; Q-SCRIPT-022's admitted getter bindings;
+  Q-SCRIPT-019's storage/reset admission. Do not repeat the settled release leaf.
 - Goal remains active. Independent research is available; this checkpoint does
   not satisfy the full Audit or accept any unresolved question as out of reach.
