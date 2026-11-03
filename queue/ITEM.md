@@ -5,13 +5,17 @@ Next ID: Q-ITEM-006
 ## Static
 
 - Q-ITEM-005. FMT-ITEM-002: What is the complete field contract of the shared
-  fifteen-byte item-type records? Settles it: native reader/writer widths,
-  meanings, masks and arithmetic for every byte, their item-field/index
+  fifteen-byte item-type records? Settles it: remaining direct reader/writer
+  widths, meanings, masks and arithmetic for every field, their item-field/index
   relationships and source coverage across the 102 installed rows. Reuse
   FND-PARTY-248/252's existing consumers and FND-ACTOR-017's conditional
   ALL/4 base/stride binding; those do not settle the remaining fields.
   Archive/pointer lifetime and trigger getter admission remain Q-CONFIG-008
   and Q-SCRIPT-022. Blocks: slices 4-5.
+  Tried: FND-ITEM-011 settles the complete installed generic descriptor,
+  metadata and conditional width partition, with all 102 source rows covered.
+  The remaining question is the semantic/native-consumer contract, not another
+  descriptor census. Direct code may address interior bytes independently.
 
 - Q-ITEM-001. FMT-ITEM-001, RULE-ITEM-006: Does DSUN.EXE read ITEMS.BIN, and what does an
   `old_item` number: which records of a Dark Sun 1 saved game the transfer utility reads its item
