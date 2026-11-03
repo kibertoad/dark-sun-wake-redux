@@ -40,14 +40,23 @@ reports before matched-menu pairing are diagnostic only.
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
   including 727 .NET tests. Current documentation and queue checks pass.
-- Latest completed research: FND-ACTOR-016; earlier FND-SCRIPT-030/031/032/033/034
+- Latest completed research: FND-ACTOR-017 and FND-SCRIPT-035; earlier FND-ACTOR-016
+  and FND-SCRIPT-030/031/032/033/034
   remain current. Census tooling is at 34fbedad; typed-immediate tooling at
   700bce0a. No gameplay implementation or evidence-status promotion was added.
 - Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
-  Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/007 remain open. Q-ACTOR-007 is
+  Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/007 remain open. Q-ITEM-005 tracks
+  FMT-ITEM-002, which remains unknown and unimplemented. Q-ACTOR-007 is
   the separated kind-four question. Selector obligations remain Q-COMBAT-055
   through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
 - Retained stores below are all under GAME_DIR/analysis/ and exist:
+  - kind-four-reference-20261103/: FND-ACTOR-017 identifies the catalog and
+    independent control-600-header/payload/type-row configs and reports.
+    Reuse its ALL/4 binding and original comparison control for the full census.
+  - trigger-getter-admission-20261103/: FND-SCRIPT-035 identifies target-finder.txt.
+    cursor-mask-caller.txt remains preliminary. This attempt did not settle
+    Q-SCRIPT-022's admitted-domain requirement; resume with new producer/lifetime
+    or child-preservation evidence, not another listing of the same root.
   - kind-five-key-census-20261103/: FND-ACTOR-016 identifies the controls,
     repeated census, refusals, copy/setup/selector listings and jump-table report.
   - trigger-object-context-20261103/: FND-SCRIPT-033/034 identify the full
@@ -84,8 +93,8 @@ reports before matched-menu pairing are diagnostic only.
   Do not repeat declared-root, assignment or source-key counts as new findings.
 - Post-commit process audits found no owned orphan; reusable MSBuild nodes
   remain. No original-game runtime was started. No push is authorized.
-- Next: Q-SCRIPT-022's admitted getter bindings; Q-SCRIPT-019's storage/reset
-  admission; Q-SCRIPT-020's remaining conversion routes; Q-SCRIPT-018's hook
-  admission; Q-SCRIPT-021's cleared context-word consumers.
+- Next: Q-ACTOR-007's full payload comparison; Q-ITEM-005's shared-row fields;
+  Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
+  storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
 - Goal remains active. Independent research is available; this checkpoint does
   not satisfy the full Audit or accept any unresolved question as out of reach.
