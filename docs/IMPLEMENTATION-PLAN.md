@@ -995,5 +995,5 @@ explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
 
-Supporting tooling plans, including [RDFF key census](implementation-plans/RDFF-KEY-CENSUS.md),
-are indexed in [implementation plans](implementation-plans/README.md); each defines its scope, acceptance and exit.
+Supporting tooling plans include [RDFF key census](implementation-plans/RDFF-KEY-CENSUS.md) and [type comparison](implementation-plans/RDFF-TYPE-COMPARISON.md).
+They are indexed in [implementation plans](implementation-plans/README.md); each defines its scope, acceptance and exit.

@@ -83,7 +83,11 @@ public sealed class RdffKeyInspectionTests
             case "wrong-type": data[0] = 2; break;
             case "wrong-kind": data[2] = 4; break;
             case "wrong-width": data[8] = 22; break;
-            case "oversized": data = new byte[1024 * 1024 + 1]; break;
+            case "oversized":
+                var larger = new byte[1024 * 1024 + 1];
+                data.CopyTo(larger,0);
+                data = larger;
+                break;
         }
         Assert.Throws<InvalidDataException>(() => RdffKeyInspection.Analyze([new(1,data)], Controls()));
     }
@@ -93,8 +97,9 @@ public sealed class RdffKeyInspectionTests
     {
         var record = Record(1,5,-1);
         Assert.Throws<InvalidDataException>(() => RdffKeyInspection.Analyze([record, record], Controls(five:2)));
-        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.Analyze(
+        var limitError = Assert.Throws<InvalidDataException>(() => RdffKeyInspection.Analyze(
             Enumerable.Repeat(record,4097), Controls()));
+        Assert.Contains("resource limit", limitError.Message);
     }
 
     [Fact]
@@ -107,8 +112,11 @@ public sealed class RdffKeyInspectionTests
         Assert.Equal(hash, RdffKeyInspection.VerifySource(source, Controls() with {SourceSha256=hash}));
         Assert.Equal(0, source.Position);
         using var empty = new MemoryStream();
-        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.VerifySource(empty, Controls()));
-        using var oversized = new MemoryStream(new byte[32 * 1024 * 1024 + 1]);
-        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.VerifySource(oversized, Controls()));
+        var emptyControls = Controls() with {SourceSha256=Convert.ToHexStringLower(SHA256.HashData(Array.Empty<byte>()))};
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.VerifySource(empty, emptyControls));
+        var largeBytes = new byte[32 * 1024 * 1024 + 1];
+        using var oversized = new MemoryStream(largeBytes);
+        var largeControls = Controls() with {SourceSha256=Convert.ToHexStringLower(SHA256.HashData(largeBytes))};
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.VerifySource(oversized, largeControls));
     }
 }

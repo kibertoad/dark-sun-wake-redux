@@ -1,5 +1,31 @@
 # Bounded evidence tools
 
+## Kind-four inline/shared-row comparison
+
+`dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-type-census ARCHIVE CONTROLS_JSON`
+compares the known 68-byte RDFF shape with the opaque fifteen-byte rows of
+ALL/4. It reuses GffArchive and verifies the source hash before interpreting
+the archive. This does not decode FMT-ITEM-002's unknown fields.
+
+Controls require `sourceSha256`, `resourceCount`, `inlineCount`, `typeRows`,
+`controlResource`, `controlReference` and `controlIndexedMatch`, all explicit.
+For the installed study the counts are 1643, 1216 and 102, with independent
+RDFF/600 control reference 61 and indexed match true (FND-ACTOR-017).
+Unknown properties, vacuous counts and any missed control refuse the report.
+
+The model validates both known headers and the complete end-header extent.
+Other resource sizes are counted as outside the model. It retains indexed
+matches, matches at other rows, unmatched payloads, out-of-range references
+and duplicate-row ambiguity separately. A matching payload does not establish
+unique row identity, field meaning, complete reader coverage or native admission.
+
+Bounds: source 32 MiB, controls 64 KiB, resources/type rows 4096, each resource
+1 MiB, matching-row relations 131072. A limit rejects rather than truncates.
+The report contains sorted metadata and source/config hashes, without payload
+bytes or strings. Synthetic tests cover relationship classes, malformed shapes,
+control and bound failures. Original-derived reports stay in GAME_DIR;
+their interpretation belongs to a separate research batch.
+
 ## Kind-five RDFF first-word census
 
 `dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-key-census ARCHIVE CONTROLS_JSON`

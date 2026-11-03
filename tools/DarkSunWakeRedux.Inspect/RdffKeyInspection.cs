@@ -44,9 +44,7 @@ internal static class RdffKeyInspection
 
     private static void ValidateControls(Controls controls)
     {
-        if (controls.SourceSha256 is not { Length: 64 } hash ||
-            !hash.All(value => value is >= '0' and <= '9' or >= 'a' and <= 'f'))
-            throw new InvalidDataException("Controls require a lowercase source SHA-256.");
+        ValidateSourceHash(controls.SourceSha256);
         long count = (long)controls.KindOne + controls.KindTwo + controls.KindFive;
         if (controls.KindOne < 0 || controls.KindTwo < 0 || controls.KindFive < 1 ||
             count > ResourceLimit)
@@ -56,11 +54,24 @@ internal static class RdffKeyInspection
     internal static string VerifySource(Stream source, Controls controls)
     {
         ValidateControls(controls);
+        return VerifySource(source, controls.SourceSha256);
+    }
+
+    internal static void ValidateSourceHash(string? sourceHash)
+    {
+        if (sourceHash is not { Length: 64 } hash ||
+            !hash.All(value => value is >= '0' and <= '9' or >= 'a' and <= 'f'))
+            throw new InvalidDataException("Controls require a lowercase source SHA-256.");
+    }
+
+    internal static string VerifySource(Stream source, string expectedHash)
+    {
+        ValidateSourceHash(expectedHash);
         if (!source.CanSeek || source.Length is 0 or > SourceLimit)
             throw new InvalidDataException("Source must be a seekable file of 1..32 MiB.");
         source.Position = 0;
         string hash = Convert.ToHexStringLower(SHA256.HashData(source));
-        if (hash != controls.SourceSha256)
+        if (hash != expectedHash)
             throw new InvalidDataException("Source SHA-256 does not match controls; archive was not interpreted.");
         source.Position = 0;
         return hash;
