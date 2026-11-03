@@ -207,6 +207,8 @@ Next ID: Q-COMBAT-063
   Keep the incoming-transfer obligation of Q-COMBAT-055 separate and the
   earlier script/operand context explicit. Reuse FND-SCRIPT-023 and Q-SCRIPT-003
   for the error-child contract, not a terminating-error assumption.
+  Reuse Q-SCRIPT-018 for opcode-hook target admission rather than assuming
+  the optional callback has no target.
   Tried: split from Q-COMBAT-057. FND-COMBAT-103 verifies the shipped byte's
   native default-table target, its returning local error continuation, the
   parameter loop without an inter-operand stop check and the handler's later

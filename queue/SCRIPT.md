@@ -1,9 +1,26 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-018
+Next ID: Q-SCRIPT-019
 
 ## Static
 
+- Q-SCRIPT-018. RULE-SCRIPT-002, RULE-COMBAT-007: Which targets can the optional opcode hook call?
+  Settles it: admission and ordering of the DS:193E-gated setup assignment;
+  remaining admitted writers of the four-byte field at 57E0:02F6 beyond
+  FND-EXE-586's bounded census, including each half, copied/aliased writes
+  and restores; target identity and lifetime at the dispatch check and later
+  call, including changes between those reads. Keep initial bytes distinct from
+  startup and live state, and retain transfer representations outside the census.
+  The initial zero, known setup binding and registered callback's local branches
+  are already FND-EXE-586 and FND-CONFIG-135/136. The input-0x31 child shares
+  Q-SCRIPT-003's error-helper dependency; malformed-path dispatch preservation
+  remains Q-COMBAT-059.
+  Tried: split from Q-SCRIPT-003. FND-SCRIPT-005 identifies the guarded far
+  call; FND-COMBAT-109 reads the post-callback stack-byte reread without
+  establishing the field's target producers. Reconciliation with FND-CONFIG-135,
+  FND-CONFIG-136 and FND-EXE-586 removes the initial-value, known binding,
+  argument producer and registered local-body questions from Settles it;
+  setup admission, later writers and lifetime remain above. Blocks: slices 2-4.
 - Q-SCRIPT-001. FMT-SCRIPT-003, FMT-SCRIPT-004: When does the game convert the
   script entry points of the trigger records to `GPLI` entry numbers and back,
   and where are the trigger tables allocated and saved? Settles it: the callers
@@ -32,11 +49,15 @@ Next ID: Q-SCRIPT-018
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the
-  error routine `fn_5702_00B1`, and the far routine at `g_57E0_02F6`; what do
+  error routine `fn_5702_00B1`; what do
   `script_state`, `g_4C13_032B`, `g_4C13_0325` and `g_4C0E_0002` mean; and which
   archive the resource routines read scripts from? Settles it: reading those
   routines, the writers of those globals, and the resource routines at
-  `38FF:04AB` and `38FF:05B5`. Tried: FND-SCRIPT-019 corrects the
+  `38FF:04AB` and `38FF:05B5`. Opcode-hook target admission is Q-SCRIPT-018;
+  FND-CONFIG-135/136 already read the registered hook's local branches and
+  opcode producer. Its input-0x31 child is the same shared error-helper
+  dependency retained here, not another unknown local hook body.
+  Tried: FND-SCRIPT-019 corrects the
   cache early returns, branch-specific age updates, double-word size output,
   low-word allocation arithmetic and pre-transfer state writes. FND-SCRIPT-020
   reads the guarded four-buffer reset; FND-CONFIG-160 reads the status-gated

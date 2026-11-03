@@ -111,6 +111,9 @@ None known.
   unchanged bytes, while FND-COMBAT-103 preserves the returning error path.
   Mutation and fetch/dispatch preservation evidence in Q-COMBAT-059 must
   distinguish changed-context execution from the unchanged-source exclusion.
+  FND-CONFIG-135/136 already identify the conditional registered opcode hook
+  and its local branches; Q-SCRIPT-018 retains its setup admission, replacement
+  and target lifetime, without assuming that the initial null remains live.
 - Whether valid declared entries preserve their nonzero local assignments until
   the selector read, or another entry, bank replacement or alias changes them.
   FND-COMBAT-104 supplies direct histories and GPL/4's compare default for the

@@ -259,8 +259,15 @@ None known.
 
 ## Open questions
 
-- What `fn_172C_31ED` and `fn_5702_00B1` do, whether `fn_5702_00B1` returns, and what the far
-  routine at `g_57E0_02F6` is when one is set (Q-SCRIPT-003).
+- What `fn_172C_31ED` and `fn_5702_00B1` leave under admitted state and
+  child effects, including whether the latter returns (Q-SCRIPT-003).
+- Whether dispatch retains a null hook or the known registered target, or
+  admits another pointer through replacement or restoration. FND-EXE-586
+  records the initial zero and bounded writer census; FND-CONFIG-135/136
+  identify the DS:193E-gated binding to 2D40:37F3, its opcode argument and
+  local branches. Q-SCRIPT-018 needs setup admission, remaining-writer and
+  target-lifetime evidence to distinguish the live-state readings. The known
+  input-0x31 child shares Q-SCRIPT-003's error-helper contract.
 - What `script_state`, `g_4C13_032B` and `g_4C13_0325` mean (Q-SCRIPT-003).
 - What the handlers do after `read_operands`: opcode `0x22`'s functions (Q-SCRIPT-010), the field-path instructions `0x33` and `0x40`
   (Q-SCRIPT-009) and the handlers that call far routines (Q-SCRIPT-004).
