@@ -5,8 +5,8 @@ description: Close a work session on this restoration - stop processes the sessi
 
 # End a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 387-397).
-Goal completion follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 550-648).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 395-405).
+Goal completion follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 562-660).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 

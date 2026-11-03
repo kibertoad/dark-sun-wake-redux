@@ -46,7 +46,7 @@ in session-package runs, owner live sessions and the emulator harness.
 4. **Move queue items** between `Emulated call` and `Live session` where an
    answer changed, in the same commit. Agent runs, through the session package,
    take the machine's run lock as the protocol's
-   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 399-433)
+   [Running the original](../../../vendor/upstream/work-protocol.md#running-the-original) (lines 407-441)
    says, and items move to `Agent run`.
    Each queued run names the capability parts it needs in Settles it. An
    unavailable part blocks that run; any required person-only part makes it
