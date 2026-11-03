@@ -40,10 +40,10 @@ reports before matched-menu pairing are diagnostic only.
   reported argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 174 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-COMBAT-105. Controlled selector-census tooling
+- Latest completed research: FND-COMBAT-106. Controlled selector-census tooling
   and its synthetic controls are committed; no gameplay implementation was added.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
-  through Q-COMBAT-060, with executable admission in Q-COMBAT-055.
+  through Q-COMBAT-061, with executable admission in Q-COMBAT-055.
 - Context reading inputs are retained under
   GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
   table reports and bounded listings are under
@@ -55,8 +55,11 @@ reports before matched-menu pairing are diagnostic only.
 - Selector-census controls, accepted repeated reports and pointer/relocation
   reports are under GAME_DIR/analysis/selector-domain-census-20261103/.
   FND-COMBAT-105 records the accepted files and identities. The bounded
-  handler-41.txt reading in that directory is unrecorded preparation for the
-  next first-word producer attempt, not an admitted field-value result.
+  handler-41.txt reading in that directory is now recorded by FND-COMBAT-106.
+- Named-word producer readings and diagnostic candidate scans remain under
+  GAME_DIR/analysis/named-word-producers-20261103/. FND-COMBAT-106 records
+  the bounded setter/index result; the candidate scans are not an admitted
+  complete writer census.
 - GPL/119 prefix and local-call controls are retained under
   GAME_DIR/analysis/local-bank-preservation-20261103/.
 - Retained reconciliation inputs and reports are under
@@ -64,7 +67,8 @@ reports before matched-menu pairing are diagnostic only.
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
 - Post-commit process audit found no owned orphan to stop; reusable MSBuild
   nodes remain. No original-game runtime was started.
-- Next: Q-COMBAT-057's three named first-word sources, using FND-COMBAT-105;
+- Next: Q-COMBAT-057's two named first-word sources and Q-COMBAT-061's
+  separated field-specific obligation, using FND-COMBAT-105/106;
   Q-COMBAT-058's shared named context; Q-COMBAT-056's other local-bank
   contracts; Q-COMBAT-060's GPL/119 prefix preservation; and Q-COMBAT-059's
   error/handler preservation. Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
