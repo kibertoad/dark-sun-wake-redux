@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-061
+Next ID: Q-COMBAT-062
 
 ## Static
 
@@ -120,7 +120,8 @@ Next ID: Q-COMBAT-061
 - Q-COMBAT-058. RULE-COMBAT-007: Can the fifteen kind-9 number-36 selector sites
   in FND-COMBAT-100/FND-COMBAT-105 supply zero while current DS:140C is nonzero?
   Settles it: admitted context values and entry/callback timing at those sites;
-  preserve the first-operand condition of Q-COMBAT-057 for the eight additional sites;
+  preserve the first-operand conditions of Q-COMBAT-057 and Q-COMBAT-061
+  for the eight additional sites;
   preservation or replacement of the initial named pointer; all later writers,
   including bulk restore destinations; and context/DS:140C/stack-argument
   preservation through the callers and children in FND-COMBAT-102. Include
@@ -136,8 +137,8 @@ Next ID: Q-COMBAT-061
   named context source; its initial pointer binding is not a lifetime proof.
 - Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral first operands admit additional
   instruction 0x5E zero-selector routes?
-  Settles it: admitted values, pointer bindings and lifetimes of the three named
-  first-word sources at FND-COMBAT-105's eight remaining sites; can they read
+  Settles it: admitted values, pointer bindings and lifetimes of named words 38
+  and 40 at GPL/176 0x0451 and GPL/301 0x073D; can they read
   0x7FFE under the signed-word getter while the context selector is zero and
   DS:140C is nonzero? Keep joint timing and parameter preservation explicit;
   Q-COMBAT-058 owns the shared selector source. The independent
@@ -151,7 +152,23 @@ Next ID: Q-COMBAT-061
   The eight retained first operands are named words 38, 40 and 44, with initial
   pointer bindings checked through actual relocations. Actual domains and
   pointer/field preservation remain above; no native absence is claimed.
+  Tried: FND-COMBAT-106 separates the six number-44 sites' producer proof into
+  Q-COMBAT-061. This item keeps the two other first-word sites; shared context
+  and joint timing remain Q-COMBAT-058, not a presumed object-index bound.
   Blocks: slice 4.
+- Q-COMBAT-061. RULE-COMBAT-007: Can named word 44 supply the sentinel at
+  GPL/163 0x148D, GPL/185 0x0885/0x0893/0x0A49/0x0A57 or GPL/301 0x0748?
+  Settles it: admitted setter input domains, other field writers, initial-pointer
+  preservation and field lifetime at those six reads, including retained values
+  on failed lookup and narrowing before lookup. Bind their 0x7FFE reads jointly
+  to the zero-context/nonzero-current-region condition of Q-COMBAT-058; keep
+  entry and parameter preservation in Q-COMBAT-055. Reuse FND-RNG-068 for
+  the known native replacement producer rather than treating 0x41 as the only writer.
+  Tried: split from Q-COMBAT-057. FND-COMBAT-106 reads the full local setter
+  and distinguishes 16 negative literal inputs from 299 named reads and one path
+  expression. The literal inputs cannot directly produce 0x7FFE under the stated
+  lookup-preservation conditions; other inputs, retention and native writers
+  remain. Full-width sign is not a bound after word narrowing. Blocks: slice 4.
 - Q-COMBAT-059. RULE-COMBAT-007: Can GPL/37's malformed-expression span admit
   another instruction 0x5E zero-selector route?
   Settles it: admission of the malformed site or an independent entry into

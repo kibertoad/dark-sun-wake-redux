@@ -103,7 +103,7 @@ None known.
   undecoded script gap admit selector zero
   (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, FND-COMBAT-104,
   FND-COMBAT-105, Q-COMBAT-056,
-  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060).
+  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059, Q-COMBAT-060, Q-COMBAT-061).
 - Whether valid declared entries preserve their nonzero local assignments until
   the selector read, or another entry, bank replacement or alias changes them.
   FND-COMBAT-104 supplies direct histories and GPL/4's compare default for the
@@ -116,7 +116,14 @@ None known.
   in FND-COMBAT-102 permit neither a permanent-equality proof nor an admitted
   mismatch; complete producer and lifetime evidence in Q-COMBAT-058 must
   distinguish those readings. The eight conditional-sentinel sites of
-  FND-COMBAT-105 also require their first-word domains in Q-COMBAT-057.
+  FND-COMBAT-105 also require their first-word domains in Q-COMBAT-057
+  and Q-COMBAT-061.
+- Whether named word 44's admitted producers keep it below the sentinel,
+  or can supply 0x7FFE at one of its six conditional sites. FND-COMBAT-106
+  shows the setter's unbounded positive bypass, narrowing before lookup and
+  300 nonliteral indexed inputs, but supplies no admitted sentinel execution.
+  Q-COMBAT-061 requires all relevant input, writer and preservation evidence
+  to distinguish these readings, including retention after lookup failure.
 - Which capacities, resource lengths and pointer lifetimes govern saved combatant and
   details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
 - Which callbacks reached during loading can affect health or continuation selection
