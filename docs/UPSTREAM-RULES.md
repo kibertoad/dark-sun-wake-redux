@@ -19,6 +19,7 @@ required; configuration tests also require Git.
 ```sh
 node tools/upstream.mjs verify
 node tools/upstream.mjs docs --check
+node tools/upstream.mjs docs --preflight
 node tools/upstream.mjs docs --generate
 node tools/upstream.mjs links
 ```
@@ -81,3 +82,11 @@ Local documentation checks compare against local `main` when it exists, because
 this project's sessions commit without pushing and `origin/main` may predate
 already adopted generated files. CI keeps its pull-request base. An explicit
 `--base` overrides the local default; comparisons remain enabled.
+
+
+Optional editing feedback uses `node tools/upstream.mjs docs --preflight`.
+Checker 6.1.0 prints a partial pass and names the checks it skips. The wrapper
+omits its implicit scheduled-generation flag for this mode; explicit
+incompatible options still fail. Preflight never writes generated files and
+does not replace complete documentation, citation, schema, queue or staged
+acceptance checks. `--generate` cannot be combined with it.

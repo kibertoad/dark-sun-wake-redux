@@ -160,13 +160,16 @@ export async function main(args, root = ROOT) {
     // The checker keeps the last value of an option, so arguments given here override CI's inputs.
     // A flag cannot be overridden that way, so --generate drops CI's --scheduled-generation: the
     // check then writes spec/index/ and PARITY.md, as the scheduled job on the main branch does.
-    const generate = rest.includes("--generate"), passed = rest.filter((a) => a !== "--generate");
+    // Preflight also drops this implicit flag: it writes nothing and cannot check generation.
+    const generate = rest.includes("--generate"), preflight = rest.includes("--preflight");
+    if (generate && preflight) throw new Error("Cannot combine --generate and --preflight");
+    const passed = rest.filter((a) => a !== "--generate");
     const fromCi = ciCheckerArgs(read(resolve(root, ".github/workflows/ci.yml")).toString("utf8"))
-      .filter((a) => !(generate && a === "--scheduled-generation"));
+      .filter((a) => !((generate || preflight) && a === "--scheduled-generation"));
     // Local work is committed without pushing; origin/main can precede already adopted generated
     // files. Compare local batches with the authoritative local main when it exists. CI retains
     // its pull-request base, and an explicit --base always wins.
-    const localMain = !process.env.GITHUB_ACTIONS && !passed.includes("--base") &&
+    const localMain = !preflight && !process.env.GITHUB_ACTIONS && !passed.includes("--base") &&
       spawnSync("git", ["-C", root, "rev-parse", "--verify", "refs/heads/main"], { stdio: "ignore" }).status === 0;
     const base = localMain ? ["--base", "main"] : [];
     const result = spawnSync(process.execPath, [checker, "--root", root, ...fromCi, ...base, ...passed], { cwd: root, stdio: "inherit" });

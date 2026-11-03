@@ -305,6 +305,9 @@ only the lines the link gives, and never a section already read this session.
      too); drop it from any live session request that lists it, with the
      script steps only it needed, and delete a request left with no items.
      Handovers and findings that cite it as a record of earlier work stay.
+During editing, `node tools/upstream.mjs docs --preflight` provides partial
+feedback without generated writes. It does not replace the checks below.
+
 8. **Check**: run the gate once, after the batch's last edit and before the
    commit: `./tools/Test.ps1`, which this project requires before every
    batch commit. It includes the documentation check, so that check is not
