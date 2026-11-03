@@ -9,7 +9,7 @@ byte_order: little
 size: 15
 text: false
 definition: fmt_item_002.ksy
-evidence: [FND-ITEM-011, FND-ITEM-012, FND-ACTOR-017, FND-ACTOR-018]
+evidence: [FND-ITEM-011, FND-ITEM-012, FND-ACTOR-017, FND-ACTOR-018, FND-COMBAT-065, FND-COMBAT-067, FND-PARTY-100, FND-RNG-043, FND-EXE-616, FND-PARTY-085]
 conflicting: []
 split_with: []
 related: []
@@ -29,18 +29,18 @@ No runtime decoder or complete semantic contract is claimed.
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
 | `0x00` | 1 | `UINT8` | `byte_00` | Raw byte at generic selector 87; local mask uses below. | supported | FND-ITEM-011, FND-ITEM-012 |
-| `0x01` | 1 | `UINT8` | `byte_01` | Raw byte at generic selector 88; remaining interpretations stay open. | supported | FND-ITEM-011 |
+| `0x01` | 1 | `UINT8` | `byte_01` | Generic selector 88. Initial hit-word mask in the armed attack path, before magic-level bits are added. | supported | FND-ITEM-011, FND-COMBAT-065 |
 | `0x02` | 1 | `UINT8` | `byte_02` | Raw byte at generic selector 89; contributes to the guarded heavy classification below. | supported | FND-ITEM-011, FND-ITEM-012 |
-| `0x03` | 1 | `UINT8` | `byte_03` | Raw byte at generic selector 90; remaining interpretations stay open. | supported | FND-ITEM-011 |
+| `0x03` | 1 | `UINT8` | `byte_03` | Generic selector 90. State-one object's removal threshold: the recorded damage routine queues removal when positive incoming damage is greater. | supported | FND-ITEM-011, FND-RNG-043 |
 | `0x04` | 1 | `UINT8` | `byte_04` | Raw byte at generic selector 91; material nibble and local label flag uses below. | supported | FND-ITEM-011, FND-ITEM-012 |
-| `0x05` | 1 | `UINT8` | `byte_05` | Raw byte at generic selector 92; remaining interpretations stay open. | supported | FND-ITEM-011 |
-| `0x06` | 1 | `UINT8` | `byte_06` | Raw byte at generic selector 93; remaining interpretations stay open. | supported | FND-ITEM-011 |
-| `0x07` | 1 | `UINT8` | `byte_07` | Raw byte at generic selector 94; remaining interpretations stay open. | supported | FND-ITEM-011 |
-| `0x08` | 1 | `UINT8` | `byte_08` | Raw byte at generic selector 95; remaining interpretations stay open. | supported | FND-ITEM-011 |
-| `0x09` | 1 | `UINT8` | `byte_09` | Raw byte at generic selector 96; remaining interpretations stay open. | supported | FND-ITEM-011 |
-| `0x0A` | 1 | `UINT8` | `byte_0a` | Raw byte at generic selector 97; signed uses require explicit consumer interpretation. | supported | FND-ITEM-011 |
+| `0x05` | 1 | `UINT8` | `byte_05` | Generic selector 92. Category compared with the per-position codes of the automatic equipment helper. | supported | FND-ITEM-011, FND-EXE-616 |
+| `0x06` | 1 | `UINT8` | `byte_06` | Generic selector 93. Weapon selection distinguishes one from values above one; a ranged attack requires this value at least its distance argument. | supported | FND-ITEM-011, FND-COMBAT-065 |
+| `0x07` | 1 | `UINT8` | `byte_07` | Generic selector 94. Item rate source when the swing's distance argument is above one; otherwise the armed path uses the attacker's details rate. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
+| `0x08` | 1 | `UINT8` | `byte_08` | Generic selector 95. Damage die sides supplied by the item path of the recorded swing. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
+| `0x09` | 1 | `UINT8` | `byte_09` | Generic selector 96. Damage die count supplied by the same path. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
+| `0x0A` | 1 | `UINT8` | `byte_0a` | Generic selector 97. Read as a signed damage addend in the item swing before other terms; raw storage remains unsigned here. | supported | FND-ITEM-011, FND-PARTY-100, FND-COMBAT-067 |
 | `0x0B` | 1 | `UINT8` | `byte_0b` | Raw byte at generic selector 25; guarded label flags below. | supported | FND-ITEM-011, FND-ITEM-012 |
-| `0x0C` | 2 | `UINT16LE` | `word_0c` | Raw word at generic selector 40; remaining interpretations stay open. | supported | FND-ITEM-011 |
+| `0x0C` | 2 | `UINT16LE` | `word_0c` | Generic selector 40. Automatic equipment requires a shared bit with the combatant details class-flags word. This is one eligibility predicate, not the complete equipment rule. | supported | FND-ITEM-011, FND-EXE-616, FND-PARTY-085 |
 | `0x0E` | 1 | `UINT8` | `byte_0e` | Raw byte at generic selector 56; signed type contribution in the armor-bonus display below. | supported | FND-ITEM-011, FND-ITEM-012 |
 | | | | | Total size 15 | | |
 
@@ -54,6 +54,14 @@ The definition retains byte patterns as unsigned storage. The native getter
 and direct consumers can interpret them differently; a signed-byte use converts
 values at least 128 by subtracting 256. The layout's raw types do not replace
 those consumer transformations. Direct consumers can address interior bytes.
+
+The purposes above reconcile existing native findings. FND-COMBAT-067
+records later rate scaling, ammunition limits, damage terms and effect gates;
+the source bytes alone are not complete combat formulas. FND-EXE-616 records
+the automatic equipment helper's additional position, hand and sum checks.
+Its class-flags overlap does not settle every manual class restriction or
+every other placement route. FND-PARTY-100 is the current successor of
+FND-PARTY-092; its bounded negative search is not a universal absence claim.
 
 ## Enumerations and flags
 
