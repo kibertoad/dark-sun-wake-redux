@@ -31,13 +31,19 @@ Next ID: Q-ACTOR-008
   and local selection/copy/clear bindings; those parts are removed above.
   The independent kind-four payload/reference question is Q-ACTOR-007.
   Blocks: nothing yet.
-- Q-ACTOR-007. FMT-ACTOR-002: What do the skipped fifteen-byte kind-four
-  payloads and their retained record references mean? Settles it: the native
-  consumers of kind-four record numbers, any admitted reader of those payload
-  bytes, and the relationship to the resource data actually selected later.
+- Q-ACTOR-007. FMT-ACTOR-002: What is the relationship of the skipped
+  fifteen-byte kind-four payloads to the shared type rows? Settles it: a
+  controlled comparison of all 1216 known payloads with ALL/4 at record_ref,
+  retaining out-of-range references, other-row matches and differing payloads;
+  any other admitted reader of the inline bytes remains explicit. The native
+  shared-reference/index binding is FND-ACTOR-017 and no longer unknown.
   Tried: split from Q-ACTOR-003 after FND-ACTOR-016 settles an independent
   kind-five field. FND-ACTOR-015 and FND-PARTY-051 already identify the
   skipped copy and retained record_ref; their meaning remains open.
+  Tried: FND-ACTOR-017 binds the shared table and retained type index and
+  verifies RDFF/600 against row 61 independently. This removes reference
+  identity from Settles it; one case does not establish the full payload
+  relationship. Complete shared-row fields are Q-ITEM-005.
   Blocks: nothing yet.
 - Q-ACTOR-006. FMT-ACTOR-003: What do the `value` words of `MONR` name, what does `549B:00C0`
   hold and which code reads or writes it, and does script request 8 run in play? Settles it: a

@@ -1,8 +1,17 @@
 # ITEM
 
-Next ID: Q-ITEM-005
+Next ID: Q-ITEM-006
 
 ## Static
+
+- Q-ITEM-005. FMT-ITEM-002: What is the complete field contract of the shared
+  fifteen-byte item-type records? Settles it: native reader/writer widths,
+  meanings, masks and arithmetic for every byte, their item-field/index
+  relationships and source coverage across the 102 installed rows. Reuse
+  FND-PARTY-248/252's existing consumers and FND-ACTOR-017's conditional
+  ALL/4 base/stride binding; those do not settle the remaining fields.
+  Archive/pointer lifetime and trigger getter admission remain Q-CONFIG-008
+  and Q-SCRIPT-022. Blocks: slices 4-5.
 
 - Q-ITEM-001. FMT-ITEM-001, RULE-ITEM-006: Does DSUN.EXE read ITEMS.BIN, and what does an
   `old_item` number: which records of a Dark Sun 1 saved game the transfer utility reads its item

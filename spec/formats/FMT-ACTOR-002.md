@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_actor_002.ksy
-evidence: [FND-ACTOR-015, FND-ACTOR-016, FND-PARTY-051, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
+evidence: [FND-ACTOR-015, FND-ACTOR-016, FND-ACTOR-017, FND-PARTY-051, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
 conflicting: []
 split_with: []
 related: []
@@ -59,6 +59,13 @@ The local record selector searches twenty logical records and treats a zero
 first word as free; the known deletion branch clears that word. Allocation,
 input validity and later preservation remain conditional (FND-ACTOR-016).
 
+For the known kind-four import path, record_ref is retained as a shared type
+index and assigned to the target's field five; the fifteen payload bytes are
+skipped. The native shared table is ALL/4, whose complete field schema is
+FMT-ITEM-002. RDFF/600's inline payload exactly matches shared row 61;
+this single control does not establish every payload's relationship
+(FND-ACTOR-017).
+
 ## Enumerations and flags
 
 `chunk_type` and `kind` are those of FMT-PARTY-006.
@@ -73,8 +80,15 @@ All 1,643 shipped resources walk to an end header; 1,642 end there (FND-ACTOR-01
 
 ## Open questions
 
-- What the 15 bytes of a type-3 kind-4 chunk and its retained record reference
-  mean, beyond the known skipped copy (Q-ACTOR-007).
+- Whether every skipped kind-four payload duplicates the current ALL/4 row
+  named by record_ref, or some retain historical/custom values (Q-ACTOR-007).
+  The first reading is supported by the native binding and RDFF/600's exact
+  row match in FND-ACTOR-017; a single mismatch in a controlled census would
+  refute uniform equality. No contradictory case is recorded yet. The second
+  reading remains possible because the known importer ignores these bytes
+  (FND-ACTOR-015/017), but no actual differing payload is established. Compare
+  all 1216 known chunks and retain other-row matches and missing references
+  separately. Other admitted payload-reader evidence also remains open.
 - The fields of the 23-byte kind-1 and kind-5 records, beyond those FMT-PARTY-006 gives for
   kind 1 and FND-ACTOR-016 gives for kind five's first word (Q-ACTOR-003).
 - Which admitted metadata, record and pointer states reach the trigger getter
