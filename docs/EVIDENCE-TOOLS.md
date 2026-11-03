@@ -447,3 +447,33 @@ treated as right. It decodes no instruction and establishes neither native
 flow nor ownership, and it never justifies widening Code ranges.
 Licensed-source configs/reports remain in GAME_DIR. Inventory changes need
 separate research.
+
+## Local script assignment paths
+
+`python -I tools/research/exec-census/script_local_paths.py LISTING CONFIG`
+reads a retained `script_decode.py --all` index. Config names `resource`
+(`GPL/NUMBER` or `MAS/NUMBER`), decimal `roots`, selector instruction `target`,
+local-number index `local` and the raw listing's `listingSha256`. Optional
+`maxStates` caps all roots together (default 20000, maximum 100000);
+`maxDepth` bounds additional modeled local frames (default 32, maximum 49).
+Use the project-local locked evidence Python. Regenerate the index using its
+recorded source/decoder identities; the tool verifies the listing hash, not
+the original files from which someone generated it.
+
+Local calls and menu targets pair with their own return continuations.
+The report stops at the first requested opcode-0x5E instruction per candidate
+path and lists last direct named assignments, including explicit zero,
+expression assignments and no known assignment as distinct cases. Other
+effects remain marked; a later assignment starts a new direct history.
+Cross-script calls, unknown or missing targets, rejected spans, unmodeled
+returns, menu selection/overlap and caps remain explicit unresolved boundaries.
+Conditions and menu availability are not evaluated. Paths in the fixed listing
+do not prove opcode-callback effects, alias or storage preservation, runtime
+admission, actual selector values or complete readings.
+
+Synthetic controls are in `tests/evidence/script-local-paths.test.mjs` and
+the canonical gate runs them. Installed-index acceptance uses the 38 declared
+controls of FND-COMBAT-101; retain original-derived configs and reports in
+GAME_DIR/analysis/local-selector-paths-20261103/matched-menu/. Earlier files
+in that store are diagnostic, preceding corrected menu frame pairing.
+Recording a research conclusion from the reports is a separate research batch.
