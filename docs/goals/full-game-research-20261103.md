@@ -40,10 +40,17 @@ reports before matched-menu pairing are diagnostic only.
   reported argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 174 Node and
   715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-COMBAT-109. Controlled selector-census tooling
-  and its synthetic controls are committed; no gameplay implementation was added.
+- Latest completed research: Q-SCRIPT-018 reconciliation and Q-SCRIPT-001
+  closure from existing evidence. Latest new finding remains FND-COMBAT-109;
+  no finding ID or gameplay implementation was added in these batches.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
   through Q-COMBAT-062, with executable admission in Q-COMBAT-055.
+  Q-SCRIPT-018 through Q-SCRIPT-020 hold the separated remaining obligations.
+- Opcode-hook reproduction reports and bounded listings are retained under
+  GAME_DIR/analysis/opcode-hook-producers-20261103/. Reuse
+  FND-CONFIG-135/136/144/149/156/159 and FND-EXE-586 before another attempt.
+  The gate-overlap window there is unrecorded preparation, not a complete
+  writer or setup-admission result.
 - Context reading inputs are retained under
   GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
   table reports and bounded listings are under
@@ -78,11 +85,9 @@ reports before matched-menu pairing are diagnostic only.
   GAME_DIR/analysis/inventory-reconcile-20261029/ store.
 - Post-commit process audit found no owned orphan to stop; reusable MSBuild
   nodes remain. No original-game runtime was started.
-- Next: Q-COMBAT-059's fetch/dispatch preservation, reusing Q-SCRIPT-003
-  for helper contracts and separating its opcode-hook producer question before
-  another attempt; Q-COMBAT-062's trigger admission and outer continuation;
-  Q-COMBAT-057/Q-COMBAT-061's first-word sources; Q-COMBAT-058's shared
-  named context; and Q-COMBAT-056/Q-COMBAT-060's local-bank contracts.
+- Next: Q-SCRIPT-018's hook admission; Q-SCRIPT-019's trigger storage;
+  Q-SCRIPT-020's other conversion-entry routes; Q-COMBAT-059's fetch/dispatch
+  preservation; and Q-COMBAT-062's trigger admission and outer continuation.
   Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
   rather than repeating declared-root and assignment counts. The retained
   decoded index remains under GAME_DIR/analysis/reader-admission-20261029/.
