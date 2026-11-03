@@ -45,6 +45,8 @@ Next ID: Q-SCRIPT-021
   outside the known direct-call set to overlay 187 +1615 and +1829. Keep
   instruction ownership and excluded representations explicit. Source-declared
   adjacent relocated/fixed pairs are answered within FND-SCRIPT-030's scope.
+  FND-SCRIPT-032 also resolves the six typed immediate candidates in its
+  retained offset-word query elsewhere; broader split constructions remain.
   Tried: separated while closing Q-SCRIPT-001. FND-SAVE-023 binds the writer's
   forward/reverse and reader's reverse calls, including their selector flags;
   FND-SCRIPT-017 reads the local conversions. Its direct-call census is not
@@ -54,6 +56,11 @@ Next ID: Q-SCRIPT-021
   unresolved pairs and no truncation. Independent MZ/FBOV target matching,
   alias, missed-control and cap controls pass. That representation is removed
   from Settles it; the other target constructions and runtime use remain above.
+  Tried: FND-SCRIPT-032 uses the corrected typed-immediate classifier and
+  exact FBOV segment operands to resolve its six split literal candidates to
+  other callback entries. One former immediate label is a memory displacement.
+  Those seven leads are removed from the unresolved candidates; the diagnostic
+  holder window is not a complete literal-construction or indirect-use census.
 - Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number, and
   what does `fn_2D40_06E6` do when its argument names more than one slot, and what is the word at
   `4C10:001F` it clears for? Settles it: the writer of the per-kind field offsets at `57E0:5A33`

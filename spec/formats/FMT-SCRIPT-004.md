@@ -82,3 +82,5 @@ current capacity or pointer lifetime.
   the known save writer and reader calls (Q-SCRIPT-020). FND-SCRIPT-030's
   adjacent relocated-pair result does not exclude computed, unrelocated,
   split or runtime-constructed targets.
+  FND-SCRIPT-032 excludes six particular split literal pairs from one diagnostic
+  query, without establishing completeness for that representation.

@@ -58,3 +58,6 @@ These are known direct call sites, not a complete incoming-transfer census.
   pointer pairs to either conversion, including aliases in that representation;
   computed, unrelocated, split and runtime-constructed targets still need
   their own producer and admission evidence.
+  FND-SCRIPT-032 resolves six immediate-offset candidates from one bounded
+  query to other callback entries; that diagnostic does not close the broader
+  split-construction question.
