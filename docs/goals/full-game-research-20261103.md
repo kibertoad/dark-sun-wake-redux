@@ -38,9 +38,10 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; full research Audit remains unmet.
 - Baseline: pinned rules verified offline; documentation check passed with
   reported argument-count, Kaitai and scheduled-generation skips.
-- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 174 Node and
-  715 .NET tests. Documentation passed with the baseline skips above.
-- Latest completed research: FND-SCRIPT-030 and FND-SCRIPT-031.
+- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 175 Node and
+  715 .NET tests; the gate now includes the typed-immediate synthetic control.
+  Documentation passed with the baseline skips above.
+- Latest completed research: FND-SCRIPT-032; tooling is at 700bce0a.
   Q-SCRIPT-019 and Q-SCRIPT-020 remain open with narrower obligations.
   No gameplay implementation or evidence/parity status promotion was added.
 - Unfinished: none. The remaining selector obligations are Q-COMBAT-056
@@ -48,8 +49,10 @@ reports before matched-menu pairing are diagnostic only.
   Q-SCRIPT-018 through Q-SCRIPT-020 hold the separated remaining obligations.
 - Conversion pointer configs, accepted repeated reports and controls remain under
   GAME_DIR/analysis/conversion-incoming-20261103/; FND-SCRIPT-030 records
-  their identities. Offset-word-preparation.txt there is diagnostic candidate
-  preparation, not an admitted literal or computed-call census.
+  their identities. FND-SCRIPT-032 identifies offset-word-typed.txt, its repeat,
+  the six split operand configs/reports and resident-displacement-context.txt.
+  Offset-word-preparation.txt is superseded diagnostic preparation. The typed
+  report is still a candidate query, not a complete computed-call census.
 - The resident phase listings remain under
   GAME_DIR/analysis/trigger-initialization-audit-20261103/;
   FND-SCRIPT-031 records their scope. Reuse FND-SCRIPT-014 and
