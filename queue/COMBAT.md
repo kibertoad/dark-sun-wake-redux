@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-058
+Next ID: Q-COMBAT-059
 
 ## Static
 
@@ -60,7 +60,7 @@ Next ID: Q-COMBAT-058
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,
-  after the operand domains in Q-COMBAT-056/Q-COMBAT-057; current DS:140C producers and lifetimes; preparation
+  after the operand domains in Q-COMBAT-056/Q-COMBAT-057/Q-COMBAT-058; current DS:140C producers and lifetimes; preparation
   outcomes before +1132's read, and incoming transfers beyond FND-UI-051's direct
   caller census for the reader and its two wrappers. Reuse FND-COMBAT-035,
   FND-COMBAT-043 and FND-COMBAT-044 for local reader/wrapper behavior.
@@ -69,25 +69,37 @@ Next ID: Q-COMBAT-058
   it does not establish actual operand values, preparation or transfer completeness.
   Tried: FND-COMBAT-100 excludes zero selectors at 207 decoded literal sites.
   The eleven variable-selector producers and nonliteral sentinel/gap obligations
-  are split into Q-COMBAT-056 and Q-COMBAT-057; executable admission remains here.
+  are split into Q-COMBAT-056, Q-COMBAT-057 and Q-COMBAT-058; executable admission remains here.
   Blocks: slice 4.
-- Q-COMBAT-056. RULE-COMBAT-007: Can the eleven decoded literal-sentinel sites
-  with variable selectors supply zero to the independent numbered reader?
+- Q-COMBAT-056. RULE-COMBAT-007: Can the four decoded literal-sentinel sites
+  with local-number selectors supply zero to the independent numbered reader?
   Settles it: assignment coverage and intervening preservation for the four
   local-number sites beyond FND-COMBAT-101's declared literal-entry controls and
   direct assignments, including other admitted entry sources and local-storage
-  lifetimes; the seven kind-9 number-36 sites listed by FND-COMBAT-100, including
-  admitted values, named-pointer preservation, later writers and context lifetime
-  relative to DS:140C. Reuse FND-PARTY-241 and
-  FND-SCRIPT-028 for the initial pointer binding and region-context producer.
+  lifetimes. The independent named-context contract is Q-COMBAT-058.
   Tried: split from Q-COMBAT-055; FND-COMBAT-100 enumerates the eleven sites,
   but source presence and a local context producer do not establish actual values.
   Tried: FND-COMBAT-101 maps the 38 declared nonzero literal entry controls and
   the 22 nonzero direct assignments for the four local selectors. The four
   entry-zero walks return immediately and are not used as an admission negative.
-  Assignment coverage, intervening preservation, other entry sources and the
-  seven named-context selectors remain as specified above.
+  Assignment coverage, intervening preservation and other entry sources remain.
+  FND-COMBAT-102 separates the named-context setter/argument reading into
+  Q-COMBAT-058 without treating it as local-storage preservation.
   Blocks: slice 4.
+- Q-COMBAT-058. RULE-COMBAT-007: Can the seven kind-9 number-36 selector sites
+  in FND-COMBAT-100 supply zero while current DS:140C is nonzero?
+  Settles it: admitted context values and entry/callback timing at those sites;
+  preservation or replacement of the initial named pointer; all later writers,
+  including bulk restore destinations; and context/DS:140C/stack-argument
+  preservation through the callers and children in FND-COMBAT-102. Include
+  incoming transfers outside its direct-call census. Reuse FND-PARTY-241,
+  FND-SCRIPT-028, FND-SAVE-015 and FND-COMBAT-035.
+  Tried: split from Q-COMBAT-056. FND-COMBAT-102 reads the setter's store
+  before its state gate, both known caller argument producers and the separate
+  conditional save destinations. The displacement candidates have one checked
+  setter and read-only comparison controls, with indirect/bulk and other
+  segment-formation exclusions. This does not establish equality with DS:140C
+  or admit a zero-context execution. Blocks: slice 4.
 - Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral sentinel operands or the decoder
   gap admit additional instruction 0x5E zero-selector routes?
   Settles it: the runtime value domains of the 106 decoded nonliteral first

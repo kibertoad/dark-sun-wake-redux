@@ -101,7 +101,14 @@ None known.
   (FND-COMBAT-099, Q-COMBAT-055).
 - Whether the enumerated variable selectors, nonliteral sentinel operands or
   undecoded script gap admit selector zero
-  (FND-COMBAT-100, FND-COMBAT-101, Q-COMBAT-056, Q-COMBAT-057).
+  (FND-COMBAT-100, FND-COMBAT-101, Q-COMBAT-056, Q-COMBAT-057,
+  Q-COMBAT-058).
+- Whether the named context word always agrees with current region at those
+  seven selector reads, or retains another value across restored destinations
+  and callback/child work. The known setter callers and separate save slots
+  in FND-COMBAT-102 permit neither a permanent-equality proof nor an admitted
+  mismatch; complete producer and lifetime evidence in Q-COMBAT-058 must
+  distinguish those readings.
 - Which capacities, resource lengths and pointer lifetimes govern saved combatant and
   details restoration (FND-SAVE-015, FND-SAVE-021, Q-COMBAT-047).
 - Which callbacks reached during loading can affect health or continuation selection
