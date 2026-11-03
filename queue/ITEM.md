@@ -105,7 +105,8 @@ Next ID: Q-ITEM-010
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
   hit behavior consumes the item tests' result flag? Settles it: near-pointer
   identity and frame/record admission, reached child effects/preservation,
-  direct entry-path coverage, split/computed/unrelocated incoming routes,
+  unresolved transfers/calls and undecoded or unmapped paths retained by
+  FND-ITEM-020, split/computed/unrelocated incoming routes,
   runtime pointer copies/use and consumers beyond the forwarding wrapper
   or queue return, beyond the recorded presentation gates and three known
   direct hit-call continuations. Distinguish this local
@@ -131,6 +132,13 @@ Next ID: Q-ITEM-010
   call, with no alias or unresolved row and no truncation. Repeating that
   representation scan is unnecessary; the remaining incoming mechanisms
   above are outside it. This does not establish universal absence of callers.
+  Tried: FND-ITEM-020 qualifies the three known direct signatures from
+  inventory-rooted entry paths across all declared search regions, with
+  independent controls, source-table counts, repeatability and cap/refusal
+  checks. No extra matching raw or contested site appears, but unresolved
+  call rows, computed transfers, undecoded ranges and boundary gaps remain.
+  Reuse that finite report before another direct-signature search; the
+  remaining question is those gaps/mechanisms, admission and later consumers.
 
 ## Emulated call
 
