@@ -101,8 +101,8 @@ None known.
   (FND-COMBAT-099, Q-COMBAT-055).
 - Whether the enumerated variable selectors, nonliteral sentinel operands or
   undecoded script gap admit selector zero
-  (FND-COMBAT-100, FND-COMBAT-101, Q-COMBAT-056, Q-COMBAT-057,
-  Q-COMBAT-058).
+  (FND-COMBAT-100, FND-COMBAT-101, FND-COMBAT-103, Q-COMBAT-056,
+  Q-COMBAT-057, Q-COMBAT-058, Q-COMBAT-059).
 - Whether the named context word always agrees with current region at those
   seven selector reads, or retains another value across restored destinations
   and callback/child work. The known setter callers and separate save slots

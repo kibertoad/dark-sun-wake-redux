@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-059
+Next ID: Q-COMBAT-060
 
 ## Static
 
@@ -60,7 +60,8 @@ Next ID: Q-COMBAT-059
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,
-  after the operand domains in Q-COMBAT-056/Q-COMBAT-057/Q-COMBAT-058; current DS:140C producers and lifetimes; preparation
+  after the operand domains in Q-COMBAT-056/Q-COMBAT-057/Q-COMBAT-058 and
+  gap reading in Q-COMBAT-059; current DS:140C producers and lifetimes; preparation
   outcomes before +1132's read, and incoming transfers beyond FND-UI-051's direct
   caller census for the reader and its two wrappers. Reuse FND-COMBAT-035,
   FND-COMBAT-043 and FND-COMBAT-044 for local reader/wrapper behavior.
@@ -69,7 +70,7 @@ Next ID: Q-COMBAT-059
   it does not establish actual operand values, preparation or transfer completeness.
   Tried: FND-COMBAT-100 excludes zero selectors at 207 decoded literal sites.
   The eleven variable-selector producers and nonliteral sentinel/gap obligations
-  are split into Q-COMBAT-056, Q-COMBAT-057 and Q-COMBAT-058; executable admission remains here.
+  are split into Q-COMBAT-056 through Q-COMBAT-059; executable admission remains here.
   Blocks: slice 4.
 - Q-COMBAT-056. RULE-COMBAT-007: Can the four decoded literal-sentinel sites
   with local-number selectors supply zero to the independent numbered reader?
@@ -100,14 +101,32 @@ Next ID: Q-COMBAT-059
   setter and read-only comparison controls, with indirect/bulk and other
   segment-formation exclusions. This does not establish equality with DS:140C
   or admit a zero-context execution. Blocks: slice 4.
-- Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral sentinel operands or the decoder
-  gap admit additional instruction 0x5E zero-selector routes?
+- Q-COMBAT-057. RULE-COMBAT-007: Can nonliteral first operands admit additional
+  instruction 0x5E zero-selector routes?
   Settles it: the runtime value domains of the 106 decoded nonliteral first
-  operands in FND-COMBAT-100 and the original instruction reading across
-  GPL/37's 0x0D39..0x0D58 decode gap, including any sentinel and selector values
-  they admit. Preserve FND-SCRIPT-024's decoder limits and independent incoming
+  operands in FND-COMBAT-100 and their accompanying selectors, including any
+  full-width sentinel and zero low-word selector they admit. The independent
+  GPL/37 gap is Q-COMBAT-059. Preserve independent incoming
   transfers in Q-COMBAT-055. Tried: split from Q-COMBAT-055; FND-COMBAT-100's
   literal positive control reproduces 218 sites but cannot exclude these cases.
+  FND-COMBAT-103 separates the native malformed-expression continuation from
+  decoded nonliteral value domains; it does not exclude either route.
+  Blocks: slice 4.
+- Q-COMBAT-059. RULE-COMBAT-007: Can GPL/37's malformed-expression span admit
+  another instruction 0x5E zero-selector route?
+  Settles it: admission of the malformed site or an independent entry into
+  0x0D37..0x0D58; the script-error children and their frame, segment, stream,
+  operand-address and stop-byte effects; preservation through the remaining
+  two-parameter opcode-0x77 handler and the following interpreter stop check.
+  Keep the incoming-transfer obligation of Q-COMBAT-055 separate and the
+  earlier script/operand context explicit. Reuse FND-SCRIPT-023 and Q-SCRIPT-003
+  for the error-child contract, not a terminating-error assumption.
+  Tried: split from Q-COMBAT-057. FND-COMBAT-103 verifies the shipped byte's
+  native default-table target, its returning local error continuation, the
+  parameter loop without an inter-operand stop check and the handler's later
+  indirect byte write. No patch, admitted execution or pointer/stop preservation
+  follows from those local bodies. FND-SCRIPT-024's recovery remains an analysis
+  boundary, not original-game recovery.
   Blocks: slice 4.
 - Q-COMBAT-047. RULE-COMBAT-007: Which saved-resource and allocation contracts admit restoring
   SAVE/5 and SAVE/6 into the combatant and details tables? Settles it: admitted DS:193C
