@@ -35,79 +35,57 @@ reports before matched-menu pairing are diagnostic only.
 
 ## Handover
 
-- Stage: Slices; full research Audit remains unmet.
-- Baseline: pinned rules verified offline; documentation check passed with
-  reported argument-count, Kaitai and scheduled-generation skips.
-- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed: 175 Node and
-  715 .NET tests; the gate now includes the typed-immediate synthetic control.
-  Documentation passed with the baseline skips above.
-- Latest completed research: FND-SCRIPT-033/034; tooling is at 700bce0a.
-  Q-SCRIPT-019 and Q-SCRIPT-020 remain open with narrower obligations.
-  No gameplay implementation or evidence/parity status promotion was added.
-- Unfinished: none. The remaining selector obligations are Q-COMBAT-056
-  through Q-COMBAT-062, with executable admission in Q-COMBAT-055.
-  Q-SCRIPT-018 through Q-SCRIPT-021 hold separated remaining obligations.
-  Q-SCRIPT-002 retains kind-five key semantics and admission dependencies.
-- FND-SCRIPT-033/034 inputs remain under
-  GAME_DIR/analysis/trigger-object-context-20261103/: context-setter.txt,
-  selector.txt, trigger-key-wrapper.txt and repeated field-zero-offsets reports.
-  The full setter range ends at 0747; do not reuse its preliminary 073E bound.
-  Reuse FND-CONFIG-140/141/150/153/154, FND-PARTY-051/216/241,
-  FND-COMBAT-074 and FND-ACTOR-015 before further field-zero research.
-- Conversion pointer configs, accepted repeated reports and controls remain under
-  GAME_DIR/analysis/conversion-incoming-20261103/; FND-SCRIPT-030 records
-  their identities. FND-SCRIPT-032 identifies offset-word-typed.txt, its repeat,
-  the six split operand configs/reports and resident-displacement-context.txt.
-  Offset-word-preparation.txt is superseded diagnostic preparation. The typed
-  report is still a candidate query, not a complete computed-call census.
-- The resident phase listings remain under
-  GAME_DIR/analysis/trigger-initialization-audit-20261103/;
-  FND-SCRIPT-031 records their scope. Reuse FND-SCRIPT-014 and
-  FND-CONFIG-156 as distinct phase inputs, not conflicting local observations.
-- Opcode-hook reproduction reports and bounded listings are retained under
-  GAME_DIR/analysis/opcode-hook-producers-20261103/. Reuse
-  FND-CONFIG-135/136/144/149/156/159 and FND-EXE-586 before another attempt.
-  The gate-overlap window there is unrecorded preparation, not a complete
-  writer or setup-admission result.
-- Context reading inputs are retained under
-  GAME_DIR/analysis/reader-context-20261103/. Gap reading configurations,
-  table reports and bounded listings are under
-  GAME_DIR/analysis/script-gap-20261103/. FND-COMBAT-109 records the repeated
-  span, independent byte control and opcode fetch/dispatch readings there.
-  Reuse their matching identities.
-- Assignment histories and their configs are retained under
-  GAME_DIR/analysis/local-selector-paths-20261103/research-01/ and
-  matched-menu/ in that store. FND-COMBAT-104 records their identities and
-  regeneration procedure. Earlier top-level reports are diagnostic only.
-- Selector-census controls, accepted repeated reports and pointer/relocation
-  reports are under GAME_DIR/analysis/selector-domain-census-20261103/.
-  FND-COMBAT-105 records the accepted files and identities. The bounded
-  handler-41.txt reading in that directory is now recorded by FND-COMBAT-106.
-- Named-word producer readings and diagnostic candidate scans remain under
-  GAME_DIR/analysis/named-word-producers-20261103/. FND-COMBAT-106 records
-  the bounded setter/index result; the candidate scans are not an admitted
-  complete writer census.
-- GPL/119 prefix and local-call controls are retained under
-  GAME_DIR/analysis/local-bank-preservation-20261103/. FND-COMBAT-107
-  records the request-9, loader and reentry-control readings there. The
-  MAS/65 category-control reading there is recorded by FND-COMBAT-108.
-  Outer-run-continuation.txt remains unrecorded preparation. The
-  request-37 case/child readings remain unrecorded preparation, not a
-  preservation result.
-- Inventory-word-window.txt and inventory-state-window.txt in the named-word
-  store are unrecorded diagnostic preparation. Reuse FND-PARTY-124 and
-  FND-CONFIG-117 for the existing state-writer result rather than treating
-  the latter report as a new state-domain proof.
-- Retained reconciliation inputs and reports are under
-  GAME_DIR/analysis/inventory-reconcile-20261103/ and the earlier
-  GAME_DIR/analysis/inventory-reconcile-20261029/ store.
-- Post-commit process audit found no owned orphan to stop; reusable MSBuild
-  nodes remain. No original-game runtime was started.
-- Next: Q-SCRIPT-019's trigger storage/reset admission; Q-SCRIPT-020's
-  other conversion-entry routes; Q-SCRIPT-018's hook admission; Q-COMBAT-059's fetch/dispatch
-  preservation; and Q-COMBAT-062's trigger admission and outer continuation.
-  Reuse FND-COMBAT-104 and FND-SCRIPT-020/026
-  rather than repeating declared-root and assignment counts. The retained
-  decoded index remains under GAME_DIR/analysis/reader-admission-20261029/.
-- Goal remains active. This checkpoint does not satisfy the full Audit;
-  independent research remains available and no owner decision blocks it.
+- Stage: Slices; the full research Audit remains unmet.
+- Baseline: pinned rules verified offline; documentation passed with the
+  existing argument-count, Kaitai and scheduled-generation skips.
+- Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
+  including 727 .NET tests. Current documentation and queue checks pass.
+- Latest completed research: FND-ACTOR-016; earlier FND-SCRIPT-030/031/032/033/034
+  remain current. Census tooling is at 34fbedad; typed-immediate tooling at
+  700bce0a. No gameplay implementation or evidence-status promotion was added.
+- Q-SCRIPT-002 is closed. Remaining admission work is Q-SCRIPT-022;
+  Q-SCRIPT-018/019/020/021 and Q-ACTOR-003/007 remain open. Q-ACTOR-007 is
+  the separated kind-four question. Selector obligations remain Q-COMBAT-055
+  through Q-COMBAT-062. Unfinished: none. No owner decision blocks available work.
+- Retained stores below are all under GAME_DIR/analysis/ and exist:
+  - kind-five-key-census-20261103/: FND-ACTOR-016 identifies the controls,
+    repeated census, refusals, copy/setup/selector listings and jump-table report.
+  - trigger-object-context-20261103/: FND-SCRIPT-033/034 identify the full
+    context-setter, selector and key-wrapper listings and repeated field-zero
+    reports. Use the complete inventory bounds, not the replaced preliminary range.
+  - conversion-incoming-20261103/: FND-SCRIPT-030/032 identify the pointer
+    queries, controls, repeated typed-word report and six split-operand reports.
+    offset-word-preparation.txt is superseded diagnostic preparation; the typed
+    report is still not a complete computed-call census.
+  - trigger-initialization-audit-20261103/: FND-SCRIPT-031 identifies the
+    resident phase listings. Reuse FND-SCRIPT-014 and FND-CONFIG-156 as
+    distinct phase inputs. Reuse FND-PARTY-213/185 and FND-EXE-293 before
+    another cleanup, guard or allocation reading.
+  - opcode-hook-producers-20261103/: reuse FND-CONFIG-135/136/144/149/156/159
+    and FND-EXE-586. setup-gate-overlap-window.txt remains unrecorded preparation.
+  - reader-context-20261103/ and script-gap-20261103/: FND-COMBAT-109
+    identifies the gap/span, byte controls and fetch/dispatch readings.
+  - local-selector-paths-20261103/matched-menu/: FND-COMBAT-104 identifies
+    accepted histories/configs. Earlier top-level reports remain diagnostic.
+  - selector-domain-census-20261103/: FND-COMBAT-105 identifies accepted
+    census/control reports; handler-41.txt is recorded by FND-COMBAT-106.
+  - named-word-producers-20261103/: FND-COMBAT-106 identifies the setter
+    reading. Candidate scans and inventory-word-window.txt remain diagnostic;
+    inventory-state-window.txt is unrecorded preparation. Reuse FND-PARTY-124
+    and FND-CONFIG-117 before another state-writer attempt.
+  - local-bank-preservation-20261103/: FND-COMBAT-107/108 identify the
+    recorded prefix, request-9, loader/reentry and category readings.
+    Outer-run-continuation.txt and request-37 readings remain unrecorded preparation.
+  - inventory-reconcile-20261103/ and inventory-reconcile-20261029/: retained
+    reconciliation inputs/reports. The decoded index remains
+    reader-admission-20261029/scripts.txt; reuse its recorded identity.
+- Reuse FND-CONFIG-140/141/150/153/154/182/209, FND-PARTY-051/172/216/218/241,
+  FND-COMBAT-074 and FND-ACTOR-015/016 before further field-zero research.
+  Do not repeat declared-root, assignment or source-key counts as new findings.
+- Post-commit process audits found no owned orphan; reusable MSBuild nodes
+  remain. No original-game runtime was started. No push is authorized.
+- Next: Q-SCRIPT-022's admitted getter bindings; Q-SCRIPT-019's storage/reset
+  admission; Q-SCRIPT-020's remaining conversion routes; Q-SCRIPT-018's hook
+  admission; Q-SCRIPT-021's cleared context-word consumers.
+- Goal remains active. Independent research is available; this checkpoint does
+  not satisfy the full Audit or accept any unresolved question as out of reach.
