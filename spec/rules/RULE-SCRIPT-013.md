@@ -4,7 +4,7 @@ title: The game runs the first script trigger whose cell, box, key or key pair m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033]
+evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
@@ -15,7 +15,7 @@ related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
 The trigger lists that scripts fill (RULE-SCRIPT-008) are tested when something happens in the
 game. An object entering a cell runs the first tile trigger on that cell that its kind may set
 off, or else the first box trigger whose box holds the cell. Picking an item up, talking to,
-attacking, looking at or using an object runs the first trigger keyed by that object's number on
+attacking, looking at or using an object runs the first trigger keyed by that object's trigger key on
 the matching list, and using one item on another runs the first trigger keyed by the two numbers
 in either order. Before the trigger's script runs, the game stores who set it off, the objects it
 concerns and the actor's cell where the script reads them. Nothing runs until the script system is
@@ -52,7 +52,7 @@ items. `object` for `trigger_mask`. `region` for `region_triggers_change`.
 ## Procedure
 
 ```text
-define object_number(x: INT16) -> INT16:
+define object_trigger_key(x: INT16) -> INT16:
     if x < 0:
         return x
     return INT16(fn_1AA0_0009(x, 0))
@@ -104,7 +104,7 @@ define run_tile_triggers(slot: INT16, x: INT16, y: INT16, kind: INT16) -> UINT8:
 define run_key_triggers(head: INT16, a: INT16, b: INT16) -> UINT8:
     if script_state != 2:
         return 0
-    trigger_key = object_number(b)
+    trigger_key = object_trigger_key(b)
     trigger_actor = a
     trigger_object = b
     trigger_object_2 = b
@@ -119,8 +119,8 @@ define run_key_triggers(head: INT16, a: INT16, b: INT16) -> UINT8:
 define run_pair_triggers(a: INT16, b: INT16, c: INT16) -> UINT8:
     if script_state != 2:
         return 0
-    trigger_key = object_number(b)
-    trigger_key_2 = object_number(c)
+    trigger_key = object_trigger_key(b)
+    trigger_key_2 = object_trigger_key(c)
     trigger_actor = a
     trigger_object = b
     trigger_object_2 = c
@@ -146,7 +146,7 @@ define trigger_keyed(head: INT16, both: UINT8) -> UINT8:
     return 0
 
 define trigger_mask(object: INT16) -> UINT16:
-    trigger_key = object_number(object)
+    trigger_key = object_trigger_key(object)
     let mask: UINT16 = 0
     if trigger_keyed(pick_up_trigger_head, 0) != 0:
         mask = mask | 0x01
@@ -232,6 +232,14 @@ region's script.
   runs them (FND-SCRIPT-028).
 - Records go to the free list one at a time in list order, each becoming its head, so the free list
   is left in the reverse of their list order.
+- `object_trigger_key` passes negative literals unchanged and otherwise returns
+  the low word of the field-zero getter, without checking its status. With
+  shipped FNFO mappings loaded, kinds one, two and three select the attached
+  record's negated resource number, combatant character identifier and details
+  key respectively; kind four has a missing field and kind five selects its
+  first word. A missing-field getter returns zero. Metadata/width and record
+  validity remain conditional; no kind-five semantic name is assigned
+  (FND-SCRIPT-034).
 - The context helper `fn_2D40_06E6` repeats a negative selector with an
   advancing cursor. Under stable valid selector/record state, it assigns the
   coordinates of each matching active slot in increasing order; the highest
@@ -250,8 +258,10 @@ None known.
 
 ## Open questions
 
-- Whether field 0 that `fn_1AA0_0009` reads is the object's number, which the shipped keys suggest
-  (FND-SCRIPT-028; Q-SCRIPT-002).
+- The remaining meaning of `fn_1AA0_0009` kind-five field zero and admitted metadata/record
+  states at walker uses (Q-SCRIPT-002). FND-SCRIPT-034 identifies the shipped
+  kind-specific source fields and the missing kind-four mapping; their shared
+  field number does not establish one universal object-number meaning.
 - Whether `1695:0235`, which runs the lists at `g_4C10_0007` and `g_4C10_000B` and returns
   `g_4C13_0325`, is reached by a computed call (FND-SCRIPT-028; Q-SCRIPT-016).
 - What the word at `4C10:001F` cleared by `fn_2D40_06E6` is for
