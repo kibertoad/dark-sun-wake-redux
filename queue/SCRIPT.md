@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-019
+Next ID: Q-SCRIPT-021
 
 ## Static
 
@@ -21,13 +21,25 @@ Next ID: Q-SCRIPT-019
   FND-CONFIG-136 and FND-EXE-586 removes the initial-value, known binding,
   argument producer and registered local-body questions from Settles it;
   setup admission, later writers and lifetime remain above. Blocks: slices 2-4.
-- Q-SCRIPT-001. FMT-SCRIPT-003, FMT-SCRIPT-004: When does the game convert the
-  script entry points of the trigger records to `GPLI` entry numbers and back,
-  and where are the trigger tables allocated and saved? Settles it: the callers
-  of the two conversion routines of overlay 187 and the code that writes the
-  far pointer at `57E0:40C0`. Tried: a literal tag search of the resident image
-  (FND-SCRIPT-004), and a reading of overlay 187 (FND-SCRIPT-017), which shows
-  the conversions but not when they run. Blocks: slices 2-4.
+- Q-SCRIPT-019. FMT-SCRIPT-004: Which admitted states provide valid storage
+  for the 200 trigger records at their uses?
+  Settles it: allocation/failure and bypass admission, actual extent and
+  initialized contents, pointer replacement/alias/lifetime and save/restore
+  destinations reaching the setup, walkers and converters. Keep allocation
+  suppression, zero pointers and the low-byte failure-check asymmetry explicit.
+  Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
+  200-times-thirteen request, pointer store and local failures; FND-SAVE-015
+  and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
+  Those locations do not establish valid live storage. Blocks: slices 2-4.
+- Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
+  either GPLI conversion outside the known save writer and reader calls?
+  Settles it: remaining transfer representations, stored targets/address-taking
+  and independent incoming paths to overlay 187 +1615 and +1829, with known
+  direct-call controls, instruction ownership and all exclusions retained.
+  Tried: separated while closing Q-SCRIPT-001. FND-SAVE-023 binds the writer's
+  forward/reverse and reader's reverse calls, including their selector flags;
+  FND-SCRIPT-017 reads the local conversions. Its direct-call census is not
+  proof that computed or aliased incoming routes are absent. Blocks: slices 2-4.
 - Q-SCRIPT-002. RULE-SCRIPT-013: Is field 0 that `fn_1AA0_0009` reads the object's number, and
   what does `fn_2D40_06E6` do when its argument names more than one slot, and what is the word at
   `4C10:001F` it clears for? Settles it: the writer of the per-kind field offsets at `57E0:5A33`

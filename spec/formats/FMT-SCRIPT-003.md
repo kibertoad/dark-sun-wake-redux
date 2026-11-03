@@ -9,7 +9,7 @@ byte_order: little
 size: 6
 text: false
 definition: fmt_script_003.ksy
-evidence: [FND-SCRIPT-002, FND-SCRIPT-017]
+evidence: [FND-SCRIPT-002, FND-SCRIPT-017, FND-SAVE-023]
 conflicting: []
 split_with: []
 related: []
@@ -42,6 +42,17 @@ None known.
 The 1,316 records of the installed `GPLDATA.GFF#GPLI/1` [FND-SCRIPT-002]. The disc's copy was not
 compared.
 
+FND-SAVE-023 connects the conversions to the save writer and reader. The writer
+calls the forward conversion before its resource writes and the reverse conversion
+on the local returning paths after that phase. The reader calls the reverse after
+its resource phase, including the failed-read continuation. Both select conversion
+of the 200 thirteen-byte trigger records only when their save selector is zero;
+the attached nineteen-byte records are also converted for nonzero selectors.
+These are known direct call sites, not a complete incoming-transfer census.
+
 ## Open questions
 
-- When the game runs the two conversions of overlay 187 (Q-SCRIPT-001).
+- Whether another incoming route reaches either conversion outside the known
+  writer and reader calls (Q-SCRIPT-020). FND-SAVE-023 supplies the direct
+  call sites; computed, aliased and other transfer representations need their
+  own admission evidence.

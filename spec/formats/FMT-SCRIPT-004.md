@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -48,6 +48,27 @@ None known.
 Read from the code that sets up, walks, fills and converts the records [FND-SCRIPT-014,
 FND-SCRIPT-015, FND-SCRIPT-017]; no record was observed in memory.
 
+FND-CONFIG-156 locates allocation in the initializer reached through 565C:0020.
+On its nonpositive-status initialization path, the known caller supplies 200;
+the initializer requests 200 times thirteen, or 2600 bytes, through its allocation
+helper and stores the returned far pointer at 57E0:40C0. The allocation can be
+suppressed or fail, and the outer caller's low-byte check does not establish
+success. This identifies the allocation route without asserting valid storage
+at every later use.
+
+FND-SAVE-021 binds that pointer to save-table entry 38. FND-SAVE-015 gives its
+length as 0x0A28, also 2600 bytes, and includes it in the selector-zero resource
+loop as SAVE/38. Nonzero selectors cover only entries 1 through 17 and omit
+this table. FND-SAVE-023 connects selector-zero conversion of its entry points
+to GPLI numbers before the writer's resource phase, reverse conversion afterward,
+and reverse conversion after the reader's resource phase, including failed-read
+continuations. These call and transfer contracts do not prove archive success,
+current capacity or pointer lifetime.
+
 ## Open questions
 
-- Where the table is allocated and whether it is saved (Q-SCRIPT-001).
+- Which admitted allocation, failure, replacement and restore states leave valid
+  storage for all 200 records when they are used (Q-SCRIPT-019). The concrete
+  allocation and save bindings above do not establish live capacity or lifetime.
+- Whether additional incoming routes reach the entry-point conversions outside
+  the known save writer and reader calls (Q-SCRIPT-020).
