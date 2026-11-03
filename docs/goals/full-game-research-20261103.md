@@ -118,7 +118,7 @@ reports before matched-menu pairing are diagnostic only.
   at 98e2e2000e365537c85ffa7605e4813a82a46cb4. Full Test.ps1 -NoRestore
   passed 176 Node/745 .NET. Optional docs --preflight is partial editing feedback;
   complete gates remain required. Template adoption is PR147; focused local
-  acceptance passed and its Windows packaging CI is running. Root changes
+  acceptance and complete CI, including Windows packaging, passed. Root changes
   remain unpushed, as required. One pre-final validation family was stopped
   after a synthetic citation-fixture defect; final-tree acceptance passed.
 - Next: Q-ITEM-005's remaining independent consumers and flag domains; Q-ACTOR-008's independent consumers;
