@@ -39,7 +39,7 @@ reports before matched-menu pairing are diagnostic only.
 - Baseline: pinned rules verified offline; documentation passed with the
   existing argument-count, Kaitai and scheduled-generation skips.
 - Last full gate: 2026-11-03, Test.ps1 -NoRestore passed all checks,
-  including 745 .NET tests. Current documentation and queue checks pass.
+  including 176 Node and 745 .NET tests. Current documentation and queue checks pass.
 - Latest completed research: FND-ITEM-011/012, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
@@ -112,13 +112,16 @@ reports before matched-menu pairing are diagnostic only.
   remaining obligations stay open; no status or complete-reading promotion.
   Test.ps1 -NoRestore passed 175 Node and 745 .NET tests; Kaitai remains absent.
 - Requested validation improvements are in process PR128 and template PR146.
-  The latter passed 120 Node/55 .NET locally; its installer pin fix is awaiting
-  CI. No selected-gate changes have been adopted in this restoration.
-- Owner requested toolkit preflight adoption here and a separate template PR.
-  Checker 6.1.0 is tagged at 98e2e2000e365537c85ffa7605e4813a82a46cb4;
-  publication was still in progress when checked. Verify registry availability
-  and paired CI/package pins before adoption. Do not use preflight as acceptance.
-- Next: Q-ITEM-005's shared-row fields; Q-ACTOR-008's independent consumers;
+  The latter passed 120 Node/55 .NET locally and its complete CI. No
+  selected-gate changes have been adopted in this restoration.
+- Adopted published checker 6.1.0 with matching release-tag CI/package pins
+  at 98e2e2000e365537c85ffa7605e4813a82a46cb4. Full Test.ps1 -NoRestore
+  passed 176 Node/745 .NET. Optional docs --preflight is partial editing feedback;
+  complete gates remain required. Template adoption is PR147; focused local
+  acceptance passed and its Windows packaging CI is running. Root changes
+  remain unpushed, as required. One pre-final validation family was stopped
+  after a synthetic citation-fixture defect; final-tree acceptance passed.
+- Next: Q-ITEM-005's remaining independent consumers and flag domains; Q-ACTOR-008's independent consumers;
   Q-SCRIPT-022's admitted getter bindings with new evidence; Q-SCRIPT-019's
   storage/reset admission; Q-SCRIPT-020's remaining conversion routes.
 - Goal remains active. Independent research is available; this checkpoint does
