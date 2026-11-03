@@ -1,6 +1,6 @@
 # ITEM
 
-Next ID: Q-ITEM-010
+Next ID: Q-ITEM-013
 
 ## Static
 
@@ -102,43 +102,56 @@ Next ID: Q-ITEM-010
   and shared type byte +6 equal to one. The remaining question is admitted
   input graphs/indices, not the same local predicate again.
 
-- Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What subsequent
-  hit behavior consumes the item tests' result flag? Settles it: near-pointer
-  identity and frame/record admission, reached child effects/preservation,
-  unresolved transfers/calls and undecoded or unmapped paths retained by
-  FND-ITEM-020, split/computed/unrelocated incoming routes,
-  runtime pointer copies/use and consumers beyond the forwarding wrapper
-  or queue return, beyond the recorded presentation gates and three known
-  direct hit-call continuations. Distinguish this local
-  effect-test result from unrelated combat masks. Blocks: slices 4-5.
-  Tried: split from Q-ITEM-004. FND-ITEM-010 records the effect-switch callers,
-  conditional store of mask 0x02 and continuation entry, and FND-RNG-035
-  records the test returns. The later consumers have not been read there.
-  Tried: FND-ITEM-017 settles the pointer producer, numeric mask-02 versus
-  mask-01 local gate, combatant-word fallback, mode-gated request order and
-  AL return. Reuse FND-MAGIC-021 for the switch tail and FND-MAGIC-018 for
-  the known caller's aggregate OR. Remaining work is admission, whole-child
-  effects and later returned-byte consumers, not another local gate reading.
-  Tried: FND-ITEM-018 settles the local result handling at all three direct
-  hit-call sites recorded by FND-PARTY-096. The wrapper saves/forwards AL
-  across queue processing; the queue continuation leaves AL untested;
-  casting zero-extends it into an aggregate, tests mask 01 for a follow-up
-  and returns separate bookkeeping. Remaining work excludes those local
-  post-call readings, but still includes incoming coverage, admission,
-  whole-child effects and consumers beyond the forwarding boundaries.
-  Tried: FND-ITEM-019 enumerates the source-declared adjacent relocated
-  offset/segment representation with independent MZ/FBOV controls and the
-  known hit-call control. Its sole matching pair is the already-read casting
-  call, with no alias or unresolved row and no truncation. Repeating that
-  representation scan is unnecessary; the remaining incoming mechanisms
-  above are outside it. This does not establish universal absence of callers.
-  Tried: FND-ITEM-020 qualifies the three known direct signatures from
-  inventory-rooted entry paths across all declared search regions, with
-  independent controls, source-table counts, repeatability and cap/refusal
-  checks. No extra matching raw or contested site appears, but unresolved
-  call rows, computed transfers, undecoded ranges and boundary gaps remain.
-  Reuse that finite report before another direct-signature search; the
-  remaining question is those gaps/mechanisms, admission and later consumers.
+- Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What later
+  callers consume the forwarded hit result beyond the three known direct
+  continuations? Settles it: consumers of the result forwarded by overlay
+  179 +0C7F and any use of the queue runner +11DC return, including the
+  branches and observable requests selected by each result mask. Complete
+  incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
+  feedback effects Q-ITEM-012. Blocks: slices 4-5.
+  Tried: split the independently answerable dependencies from this item.
+  FND-ITEM-010/017 settle the local flag store and hit feedback gate;
+  FND-ITEM-018 settles the three direct callers recorded by FND-PARTY-096.
+  Do not repeat their post-call reading or treat the casting bookkeeping
+  return as the aggregate hit flags.
+
+- Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
+  incoming mechanisms can reach the hit routine outside the qualified direct
+  calls? Settles it: the unresolved/computed transfers, unmapped edges and
+  undecoded paths retained by FND-ITEM-020, plus split or unrelocated target
+  construction and runtime pointer copies/use. Qualify instruction ownership
+  and native input domains rather than treating raw candidates as callers.
+  Blocks: slices 4-5.
+  Tried: split from Q-ITEM-009. FND-ITEM-019 exhausts the source-declared
+  adjacent relocated-pair representation for this target; FND-ITEM-020
+  qualifies the three direct matches with complete declared byte scanning.
+  Its gap lists remain open. Reuse the retained controls and reports instead
+  of another direct-signature or adjacent-pair census.
+
+- Q-ITEM-011. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: When does the
+  effect-switch near flags pointer identify the hit wrapper frame byte, and
+  which admitted calls preserve the live result/frame state? Settles it:
+  segment producers and preservation on the item-test paths, valid frame and
+  record spans, and aliases or reached writes that can change the flags byte
+  or saved result before its reload. Startup equality alone is insufficient.
+  Blocks: slices 4-5.
+  Tried: split from Q-ITEM-009. FND-ITEM-017 records the near offset producer
+  and SS-local reload, and FND-ITEM-018 the forwarding wrapper save/reload.
+  Neither establishes arbitrary DS/SS identity or whole-child preservation.
+
+- Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
+  feedback state makes the hit requests return with their documented sound
+  and visual effects? Settles it: visual number/table producers and lifetime,
+  view/slot/resource/layout admission for overlay 206 +1073 and +1121, and
+  their reached drawing/timer effects. Frame preservation is Q-ITEM-011;
+  reuse Q-SOUND-002 for the sound library/driver dependency rather than
+  duplicating its question. Blocks: slices 4-5.
+  Tried: split from Q-ITEM-009. FND-MAGIC-024 binds DATA sound byte +0x16
+  and visual word +0x14 or fallback to the hit continuation. FND-SOUND-007
+  records sound gates and BVOC/loose-file selection; FND-EXE-602 records
+  view/create gating for object feedback and the bitmap frame/save/wait/restore
+  path, including its slot-four layout edge. The rules now identify these
+  requests. Actual outcomes, deeper effects and admission remain.
 
 ## Emulated call
 

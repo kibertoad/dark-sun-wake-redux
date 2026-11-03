@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -93,6 +93,16 @@ mask 0x01 at its recorded follow-up gate, and returns separate bookkeeping.
 These local paths do not establish complete caller coverage or whole-child
 preservation (FND-ITEM-018, Q-ITEM-009).
 
+The first request selects the sound effect numbered by DATA byte +0x16.
+Its routine applies sound-setting and driver gates, preferring a BVOC resource
+before the numbered loose SOUND file (FND-SOUND-007). The mode-one visual
+helper places and draws an object subject to its view and creation gates;
+the alternate helper requests frame 4 of BMP 19001 through its slot, resource
+and layout gates and recorded counter wait (FND-EXE-602). The visual number
+comes from DATA word +0x14 or the recorded fallback (FND-MAGIC-024). These
+requests do not guarantee audible or visible output. Remaining feedback
+admission/effects are Q-ITEM-012; lower-level audio is Q-SOUND-002.
+
 ## Edge cases
 
 A later entry with the same byte `+0x12` does not replace the first. Each call that finds an entry
@@ -113,6 +123,7 @@ None known.
   helper `fn_5671_0075` caller, writer and record-admission contract is Q-ITEM-007;
   its local arithmetic and zero branches are recorded above.
 - Independent writers and admitted uses of the +0x12 rank and +0x16 signed
-  bonus remain Q-ITEM-006; hit-result admission and later consumers remain Q-ITEM-009.
+  bonus remain Q-ITEM-006; hit-result storage admission remains Q-ITEM-011,
+  feedback effects Q-ITEM-012, incoming coverage Q-ITEM-010 and later consumers Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

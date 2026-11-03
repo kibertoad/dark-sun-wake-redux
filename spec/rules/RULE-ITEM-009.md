@@ -4,7 +4,7 @@ title: A corroding hit destroys the first held item at position 0, 6 or 9 at onc
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017, FND-ITEM-018]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-PARTY-217, FND-PARTY-221, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -87,6 +87,16 @@ mask 0x01 at its recorded follow-up gate, and returns separate bookkeeping.
 These local paths do not establish complete caller coverage or whole-child
 preservation (FND-ITEM-018, Q-ITEM-009).
 
+The first request selects the sound effect numbered by DATA byte +0x16.
+Its routine applies sound-setting and driver gates, preferring a BVOC resource
+before the numbered loose SOUND file (FND-SOUND-007). The mode-one visual
+helper places and draws an object subject to its view and creation gates;
+the alternate helper requests frame 4 of BMP 19001 through its slot, resource
+and layout gates and recorded counter wait (FND-EXE-602). The visual number
+comes from DATA word +0x14 or the recorded fallback (FND-MAGIC-024). These
+requests do not guarantee audible or visible output. Remaining feedback
+admission/effects are Q-ITEM-012; lower-level audio is Q-SOUND-002.
+
 ## Edge cases
 
 A call draws once for each entry it reaches whose position matches and whose word is not 0, so it can
@@ -106,6 +116,7 @@ None known.
 - Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
 - Which admitted items have position values zero, six and nine and the
   writer/consumer contract of word +0x10 remain Q-ITEM-006 (FND-RNG-035).
-- Near-pointer admission, child effects and later result-flag consumers remain Q-ITEM-009.
+- Near-pointer/frame admission is Q-ITEM-011; feedback effects are Q-ITEM-012;
+  incoming coverage is Q-ITEM-010 and later result consumers are Q-ITEM-009.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
