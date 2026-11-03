@@ -16,3 +16,4 @@ Their own acceptance criteria and exits remain authoritative for their work.
 | Local-selector assignment research tooling | [Local selector paths](LOCAL-SELECTOR-PATHS.md) |
 | Nonliteral-first-operand selector census | [Script selector census](SCRIPT-SELECTOR-CENSUS.md) |
 | Typed offset-word candidate classification | [Offset-word classification](OFFSET-WORD-CLASSIFICATION.md) |
+| Kind-five first-word provenance census | [RDFF key census](RDFF-KEY-CENSUS.md) |

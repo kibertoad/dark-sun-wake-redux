@@ -1,5 +1,27 @@
 # Bounded evidence tools
 
+## Kind-five RDFF first-word census
+
+`dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-key-census ARCHIVE CONTROLS_JSON`
+uses the existing GFF reader and emits only source/config hashes, counts and
+sorted resource metadata. Controls require `sourceSha256` (64 lowercase hex
+digits) and explicit integer `kindOne`, `kindTwo`, `kindFive` first-chunk counts.
+The total must be at most 4096, and kindFive must be positive. Unknown control
+properties, a source mismatch or any missed count reject the census.
+
+The command bounds the source to 32 MiB, controls to 64 KiB, each RDFF to
+1 MiB, and resources to 4096. It checks first type-one chunks of kinds one,
+two and five at widths 23, 49 and 23. For kind five it checks the immediately
+following complete end header and reports trailing-byte extent without reading
+trailing bytes as additional chunks. Other kinds' later chains are not validated.
+
+The signed first word is compared separately with the full negated resource
+identifier and its low word. Low-word aliases are not exact matches. A match
+does not establish field meaning, native use or live admission. Synthetic tests
+cover these distinctions, boundary refusals, missed controls and source hashing.
+Keep all reports/configs derived from licensed sources in GAME_DIR and record
+game conclusions in a later research batch.
+
 ## Offset-word candidate diagnostics
 
 `python -I tools/research/exec-census/far_pointer_words.py DSUN_EXE SEG:OFF ...`
