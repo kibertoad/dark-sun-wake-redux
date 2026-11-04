@@ -514,7 +514,8 @@ Next ID: Q-COMBAT-067
   stable terminated inputs; admit the character tables, buffer extents and
   aliases required by normalization; bind DOS drive/directory state, distinct
   source/destination identity, source length/position and read/write/close outcomes.
-  Distinguish copy rejection from partial or complete destination changes.
+  Distinguish copy rejection from partial or complete destination changes,
+  beyond FND-COMBAT-138's admitted empty-source normalization rejection.
   Exit: path and file-state cases sufficient to identify which working contents
   can reach archive opening, with any unobserved external outcomes retained.
   Tried: split from Q-COMBAT-018. FND-COMBAT-113 gives the default 128-byte
@@ -546,6 +547,10 @@ Next ID: Q-COMBAT-067
   entry, with the declared null buffer/zero capacity and retained list pointer.
   Those initial inputs for this route are removed; normalization, DOS/file
   identity and I/O outcomes, other inputs and later lifetimes remain open.
+  Tried: FND-COMBAT-138 observes empty-source normalization returning FFFF,
+  copy returning zero before direct file opens, and equal bounded private
+  working-file state at entry/return. That rejection case is removed;
+  nonempty inputs, source-open failure, copying and later continuation stay open.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?

@@ -117,6 +117,11 @@ terminated-path reads. Enter delivery completed by this stop. Output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q063-copy-inputs-20261104/.
 The copy body is not executed; no normalization, file identity or I/O
 outcome is admitted by this attempt.
+The `copy-return` stage in FND-COMBAT-138 additionally admits this copy
+invocation's internal normalization stop and matched return, with bounded
+private working-file metadata at entry/return. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q063-copy-return-20261104/.
+It does not admit other copy outcomes or the wrapper's later continuation.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
