@@ -40,7 +40,8 @@ Next ID: Q-COMBAT-067
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
   local navigation of FND-COMBAT-085 and sentinel producer/own reset ordering
   of FND-COMBAT-131; actual DS:A103 count/target state at dispatch beyond
-  FND-CONFIG-221's branch exclusions and FND-CONFIG-222's count transitions;
+  FND-CONFIG-221's branch exclusions, FND-CONFIG-222's count transitions and
+  FND-COMBAT-133's single admitted F2 entry (action delivery remains open);
   event delivery, snapshot/slot producers and
   preservation and live window/handler identity beyond FND-COMBAT-098's three
   restoration-site orderings; window-path incoming transfers not covered by
@@ -80,6 +81,10 @@ Next ID: Q-COMBAT-067
   intersection/boundary controls. That payload-only writer family is removed
   under the stated pointer/length conditions; actual lengths, dynamic or
   aliased pointers, direct producers and child writes remain unadmitted.
+  Tried: FND-COMBAT-133 supplies one admitted map F2 entry, its count-one
+  null-target/global-hook state, and final Load count two/top zero/row one.
+  Initial values for this route are removed from the remaining admission
+  gap; action events, other routes, callback preservation and lifetimes stay open.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,

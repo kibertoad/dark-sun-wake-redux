@@ -88,7 +88,13 @@ passed new-process instruction/time, fields/frame, same-process roundtrip and
 sound-IRQ mismatch refusal. The final directory appends `-play-ready` to the
 verification prefix. These attempts admit the tested two-character map state,
 right click and the Esc/key-2 gestures under current pins. They do not admit
-other keys, Save/Load entry or capture of its dispatch fields.
+other keys or Save/Load entry by themselves. The subsequent fixed F2 attempt
+in FND-COMBAT-133 verifies delivery and Load-entry readiness from this map
+checkpoint, plus the named dispatch-field reads in load_entry.py. Its report
+and checked load-entry state remain under
+GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-entry-20261104/.
+This admits that entry observation, not a numbered load, Save action, every
+dispatch target or independent restore of the new Load checkpoint.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

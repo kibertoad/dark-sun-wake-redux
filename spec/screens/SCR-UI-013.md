@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, FND-COMBAT-132, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, FND-COMBAT-132, FND-COMBAT-133, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -77,6 +77,12 @@ The count is wrapped bookkeeping: registration and removal change it
 before later failure paths. Some window walks compare it signed, while
 dispatch tests zero only. Current count alone therefore does not establish
 a live or usable Load window (FND-CONFIG-222, Q-COMBAT-046).
+
+One recorded F2 entry from a verified two-character map state reached ready
+window 18500 with Load mode one, selected row one and top zero. Its incoming
+kind-six dispatch had count one and null current event-window target; final
+count was two. This admits that entry only, not a subsequent Load action or
+other initial values (FND-COMBAT-133, Q-COMBAT-046).
 
 ## Sounds
 
