@@ -30,12 +30,17 @@ balanced parser matches both counts and all three identities, while separately
 validating the top-level index hash, ownership and selector/error controls.
 
 Every one of the 374 nested opcode-22 instructions has four operands and a
-literal function selector. Five select exact function 49; all five have literal
-field selector 25. None selects field eight or ten. The scalar API binding is
+literal function selector, ranging from three through 50. Thus narrowing
+to a word adds no alternative function-49 aliases. Five select exact function
+49; all five have literal
+field selector 25. Their resource/offset identities are GPL/31 at 0360,
+GPL/40 at 00F5, and GPL/68 at 0A84, 0AA3 and 0AC2 (hexadecimal).
+None selects field eight or ten. The scalar API binding is
 FND-PARTY-156/FND-ITEM-039. Parent/depth identities describe source nesting,
 not native call histories or proof that a nested expression is evaluated.
 
-The private report SHA-256 is
+The report repeats byte-for-byte. Deliberately missed selected counts and
+listing hashes each return exit one with empty stdout. The private report SHA-256 is
 4165c2a588a3a7aa1f5f832e70999f7911905526d8aa2e7b5e986d9eab3934ea.
 Synthetic controls cover recursive identity, signed narrowing, unknown
 expressions, absent selected opcodes with unrelated positive controls,
@@ -80,6 +85,7 @@ Select report rows whose first operand literal equals 49 and count their
 third operand literals; retain nonliterals explicitly rather than as zero.
 
 Private configuration nested-scalar-controls.json and report
-nested-scalar-domain.json remain under
+nested-scalar-domain.json, nested-scalar-repeat.json and the
+nested-scalar-missed-count/hash configurations and refusal reports remain under
 GAME_DIR/analysis/item-removal-20261104/. No original-derived script text,
 fixture or payload is committed.

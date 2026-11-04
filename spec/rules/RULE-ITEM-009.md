@@ -142,7 +142,7 @@ None known.
   The 253 decoded literal scalar calls select neither position field ten nor
   word-field eight. Sixteen inspected literal caller setups of the dynamic
   helper also select other functions when their globals are preserved; other
-  entries and callee/alias effects, nested/gap/state alternatives remain open
+  entries and callee/alias effects, gap/state alternatives remain open
   (FND-ITEM-044, FND-ITEM-045, FND-ITEM-046).
   The printed nested selector gap is removed by FND-ITEM-047: five nested
   function-49 requests all select field 25; other entries, decoder gaps and
