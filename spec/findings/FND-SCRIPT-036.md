@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 2D40:207E..2D40:2196
-tool: tools/research/exec-census/resident_listing.py and direct_callers.py at e48a4e65; Python 3.12.10, Capstone module 5.0.7; composition with FND-SCRIPT-016/027, FND-COMBAT-062, FND-PARTY-098 and FND-CONFIG-144
+tool: tools/research/exec-census/resident_listing.py and direct_callers.py at e48a4e65; Python 3.12.10, Capstone module 5.0.7; composition with FND-SCRIPT-016/038, FND-COMBAT-062, FND-PARTY-098 and FND-CONFIG-144
 environment: null
 ---
 

@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-023
+Next ID: Q-SCRIPT-024
 
 ## Static
 
@@ -99,7 +99,7 @@ Next ID: Q-SCRIPT-023
   bounds and alias/storage admission. Reuse FND-COMBAT-062's map-sweep/idle gate,
   FND-PARTY-098's second-entry condition/radius gate and FND-RNG-068's target
   setup rather than treating these as unknown local field purposes.
-  Tried: FND-SCRIPT-016/018/027 supply the list, conversion/loader and entry
+  Tried: FND-SCRIPT-016/018/038 supply the list, conversion/loader and entry
   setters. Tried: FND-SCRIPT-036 and reconciliation of the above findings
   remove the three local runner gates, target/mode/threshold bindings and
   list-wide successor order: it rereads next after script/unlink calls and
@@ -114,7 +114,19 @@ Next ID: Q-SCRIPT-023
   condition 1/2 goes to +06; the full radius byte updates +10 after retaining
   old bit seven. This removes the contradictory parameter/field mapping;
   admitted DS/stack near-structure identity, signed index bounds, actual inputs
-  and other writers/preservation remain. Blocks: slices 3-6.
+  and other writers/preservation remain. Tried: FND-SCRIPT-039 removes high-bit
+  input uncertainty for 381 unchanged literal registrations. The single variable
+  fourth operand moves to Q-SCRIPT-023; inherited skip bits, other writers and
+  the pointer/phase/lifetime obligations remain. Blocks: slices 3-6.
+- Q-SCRIPT-023. FMT-SCRIPT-005: Can GPL/223's registration at 1E9C supply a
+  radius byte with bit seven set? Settles it: admitted entries reaching the
+  registration, local-word-zero producers and intervening state/operand effects,
+  and the actual low-byte value at that call, or a complete exclusion of the
+  high-bit case. Keep the nearby zero assignment and positive-value guard
+  distinct from proof of native value or feasibility. Tried: split from
+  Q-SCRIPT-017 after FND-SCRIPT-039 isolates the only nonliteral fourth operand
+  among 382 unchanged decoded registrations; the preceding fall-through alone
+  does not settle context preservation or other incoming routes. Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the

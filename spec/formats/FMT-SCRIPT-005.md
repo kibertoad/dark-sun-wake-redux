@@ -64,3 +64,7 @@ no record was observed in memory.
   use-time coordinate/grid bounds, aliases and live admission remain distinct from
   that local contract (FND-SCRIPT-037, FND-SCRIPT-036, FND-PARTY-098,
   FND-COMBAT-062, FND-RNG-068; Q-SCRIPT-017).
+- Whether the single nonliteral registration radius can set the sweep-skip high
+  bit. The other 381 decoded radius operands are small literals; the GPL/223
+  local-word operand still needs admitted value/preservation evidence
+  (FND-SCRIPT-039, Q-SCRIPT-023).
