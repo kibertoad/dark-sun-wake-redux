@@ -138,8 +138,15 @@ GAME_DIR/captures/rust-dos-native-save/v181-q063-native-save-input-20261104/ and
 GAME_DIR/captures/rust-dos-native-save/v181-q063-native-save-verify-20261104/.
 Instruction/time, named state, frame and native-file digest matched at
 restore and same-process roundtrip. The narrow saved return-segment watch
-actually handled ten relocations. Loading the new native save and its F2
-route are not yet admitted; no patched native save was used.
+actually handled ten relocations. Whole-game loading of the new native save
+remains unverified; its bounded F2/copy route is described below. No patched
+native save was used.
+The fixed saved-copy-return stage in FND-COMBAT-141 admits actual F2/Enter
+from that native candidate through the observed nonempty copy return, with
+bounded normalization/open/length and private-file-state checks. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q063-native-copy-truncate-20261104/.
+This extends the candidate's admission for that route only;
+archive restoration and other copy outcomes remain unverified.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

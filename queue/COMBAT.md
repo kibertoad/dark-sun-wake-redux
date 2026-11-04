@@ -515,11 +515,12 @@ Next ID: Q-COMBAT-067
   aliases required by normalization; bind DOS drive/directory state, distinct
   source/destination identity, source length/position and read/write/close outcomes.
   Distinguish copy rejection from partial or complete destination changes,
-  beyond FND-COMBAT-138's admitted empty-source normalization rejection.
+  beyond FND-COMBAT-138's empty-source rejection and FND-COMBAT-141's
+  admitted rooted native-source copy/truncation/repopulation case.
   FND-COMBAT-139 also admits that case's wrapper/settings/outer return;
   other resource provenance and later action effects remain separate.
-  Use FND-COMBAT-140's strictly restored native-file candidate for a
-  nonempty-source attempt; its actual F2 entry/path binding remains required.
+  FND-COMBAT-140's native-file candidate supplies FND-COMBAT-141's actual
+  F2 entry and nonempty path/copy binding; other path/state cases remain.
   Exit: path and file-state cases sufficient to identify which working contents
   can reach archive opening, with any unobserved external outcomes retained.
   Tried: split from Q-COMBAT-018. FND-COMBAT-113 gives the default 128-byte
@@ -559,6 +560,11 @@ Next ID: Q-COMBAT-067
   requests returning zero, and matched numbered-load return AX one after the
   admitted empty-source rejection. That continuation case is removed;
   other paths/outcomes, supplying resources and later action cleanup remain open.
+  Tried: FND-COMBAT-141 observes rooted native source/destination normalization,
+  distinct private files, direct open returns, length 49739, working-file
+  truncation then source-matching output and copy return one. That successful
+  rooted case is removed; other paths, failure outcomes and later archive
+  provenance remain open, without claiming unrecorded individual I/O returns.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
