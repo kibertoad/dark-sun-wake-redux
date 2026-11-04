@@ -113,6 +113,8 @@ None known.
   Remaining independent admission is Q-COMBAT-063 for copy inputs/outcomes,
   Q-COMBAT-064 for runtime supplying resources and lengths, Q-COMBAT-065
   for destination storage, and Q-COMBAT-066 for reached child effects.
+  FND-COMBAT-115 qualifies the selected-save producer's decimal-prefix
+  parser and DOS find-buffer pointer routing under Q-COMBAT-063.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries

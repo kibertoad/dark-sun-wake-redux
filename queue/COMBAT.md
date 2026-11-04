@@ -471,6 +471,11 @@ Next ID: Q-COMBAT-067
   FND-COMBAT-114 gives drive/directory and component normalization. Reuse
   FND-CONFIG-181/182 for the earlier string operations. Their local bodies
   need not be reread; actual inputs, runtime tables, storage and I/O remain.
+  Tried: FND-COMBAT-115 resolves FND-EXE-621's numeric-parser assumption
+  and the find wrappers' local buffer/return-register routing. Decimal-prefix
+  parsing and the saved versus queried transfer-pointer distinction are
+  removed from unread local helper work. Actual directory bytes, DS/SS and
+  ES/BX state, selected slot, table capacity and preservation remain.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
