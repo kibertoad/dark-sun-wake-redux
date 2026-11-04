@@ -38,7 +38,7 @@ from startup_segments import equipment_flag
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from disc_adv_envelopes import envelope as adv_envelope
 from resident_listing import span as resident_span
-from sound_ini_profile import profile as sound_ini_profile
+from sound_ini_profile import profile as sound_ini_profile, source_spans as sound_ini_spans
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
@@ -60,6 +60,27 @@ assert sound_ini_profile(source_labels(['']))['groups'][0]['joinedTextFootprint'
 for names in [['X']*22,['X'*41],['X'+chr(9)+'Y']]:
     assert not sound_ini_profile(source_labels(names))['groups'][0]['smallPositivePrintableProfile']
 assert sound_ini_profile(source_labels(['X']*256))['groups'][0]['records']==256
+def source_fields(extra):
+    return source_labels(['A']).replace('[EndRecord]',extra+chr(10)+'[EndRecord]',1)
+span_row=sound_ini_spans(source_fields('[RmDigitalDriverName] ['+'X'*14+']'+chr(10)+
+    '[RmDigitalDriverName] ['+'Y'*15+']'+chr(10)+'[NumberOfMidiAddresses] 0x000A'+chr(10)+
+    '[NumberOfMidiAddresses] -1'+chr(10)+'[MidiAddress] 0x330'+chr(10)+
+    '[MidiAltAddress] 0x300'+chr(10)+'[MidiAltAddress] 0x320'+chr(10)+'[UnknownKey] opaque'))['records'][0]
+assert span_row['strings'][1]['terminatedBytes']==[15,16]
+assert span_row['strings'][2]['nameBytes']==[]
+assert span_row['arrays'][0]=={'field':'NumberOfMidiAddresses','declaredValues':[10,-1],
+    'primaryOccurrences':1,'alternateOccurrences':2}
+assert span_row['arrays'][1]['declaredValues']==[] and span_row['sourceKeys']==9
+for length in [0,39,40,256]:
+    assert sound_ini_spans(source_labels(['X'*length]))['records'][0]['strings'][0]['terminatedBytes']==[length+1]
+for number in ['-32768','65535','0xffff']:
+    assert sound_ini_spans(source_fields('[NumberOfDmas] '+number))['records'][0]['arrays'][4]['declaredValues']
+for invalid in ['-32769','65536','0x10000','+1','1 trailing','999999']:
+    rejects(lambda:sound_ini_spans(source_fields('[NumberOfDmas] '+invalid)))
+rejects(lambda:sound_ini_spans(source_fields('[RmMidiDriverName] ['+'X'*257+']')))
+rejects(lambda:sound_ini_spans(source_fields('[RmMidiDriverName] nonbracketed')))
+assert sound_ini_spans(source_fields((('[Extra]'+chr(10))*511)))['records'][0]['sourceKeys']==512
+rejects(lambda:sound_ini_spans(source_fields((('[Extra]'+chr(10))*512))))
 for invalid in [source_labels(['A'],0),source_labels(['A'],-1),source_labels([],257),
                 labels.replace('[EndRecord]','',1),labels.replace('[CardName] [ALPHA]','[CardName] [A]'+chr(10)+'[CardName] [B]',1),
                 labels.replace('[CardName] [ALPHA]','[CardName] ALPHA',1),

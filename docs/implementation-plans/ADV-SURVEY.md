@@ -52,3 +52,17 @@ Synthetic controls cover boundaries, duplicates, count mismatch, negative
 groups, non-ASCII/control/long labels and caps. Commit tooling after Test.ps1,
 then measure the licensed source twice in a separate research batch. Source
 text conformance does not prove native parsing, vector state or child effects.
+
+For FND-SOUND-028's remaining source-span question, add an optional --spans
+mode to the existing SOUND.INI profiler. Keep its default output unchanged.
+Reuse its identity and structural admission, then measure the five string
+fields' byte lengths and terminator-inclusive lengths per source record,
+and each of the five alternate families' count values and primary/alternate
+key occurrences. Report duplicates, missing values and long strings as
+metadata, not as simulated native outcomes. Bound every numeric count token
+and the record-key census; reject unsupported numeric syntax explicitly.
+Never emit a source name or driver value. Synthetic fixtures cover empty,
+boundary and over-slot strings, repeated/missing keys, signed/hex counts,
+count-token limits and unknown keys. Exit: tooling gate passes, then a
+separate research batch measures all installed records twice and compares
+source spans against FND-SOUND-028, keeping native retention separate.
