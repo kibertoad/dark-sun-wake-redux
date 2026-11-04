@@ -30,7 +30,7 @@ For event first-word value 6, the callback instead searches four words at
 code offset `0x0928`, using the event word at argument offset 12. Value
 `0x1C0D` also selects code offset `0x0780`. Other values in either table
 select different branches or return an unhandled result. The resident
-dispatcher can call this callback for both first-word values (FND-CONFIG-079).
+dispatcher can call this callback for both first-word values (FND-CONFIG-221).
 
 ## Interpretation
 

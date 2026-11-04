@@ -77,8 +77,10 @@ Next ID: Q-CONFIG-011
   FND-CONFIG-077 traces overlay 204's two rest message sites to an overlay
   182 handler and script request one; their upstream live inputs remain open.
   FND-CONFIG-124 traces overlay 171's list messages to a choice branch and
-  the `WIND/18501` callback. FND-CONFIG-079 identifies the guarded resident
-  event-dispatch route into that callback. FND-CONFIG-080 identifies two
+  the `WIND/18501` callback. FND-CONFIG-221 corrects the guarded resident
+  dispatch: a window result has no own global fallthrough, and zero window
+  count rewrites the global event kind to three. Actual count/target state
+  and event admission remain. FND-CONFIG-080 identifies two
   event-record discriminators for the callback's message branch.
   FND-CONFIG-215 traces a conditional pointer-hit producer for the first;
   physical input mapping and live state remain open. FND-CONFIG-216 shows

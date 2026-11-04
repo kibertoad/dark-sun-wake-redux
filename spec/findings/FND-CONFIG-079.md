@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-079
 title: The resident event dispatcher calls a loaded window's callback at offset 0xF5
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-221]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

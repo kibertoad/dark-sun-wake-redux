@@ -45,7 +45,7 @@ Those handlers can store a window pointer at `DS:A0FD` and a control number
 at output offset 2. The fallback at `39D1:0B09` instead clears `DS:A0FD`
 and changes the output's first word to 6. The subsequent resident
 dispatcher can call global `DS:A0F1` when the window pointer is zero
-(FND-CONFIG-079); FND-CONFIG-083 traces the list callback's registration
+(FND-CONFIG-221); FND-CONFIG-083 traces the list callback's registration
 there.
 
 The shipped `WIND/18501` graph has no MENU or ACCL child (FND-UI-027),

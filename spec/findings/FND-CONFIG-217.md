@@ -37,7 +37,7 @@ offset 2; it also writes a separate word at offset 4, leaving the copied
 word at offset 18 intact (FND-CONFIG-215).
 
 The resident dispatcher copies the 24-byte event record to a window
-callback's arguments (FND-CONFIG-079). Its first event word appears at
+callback's arguments (FND-CONFIG-221). Its first event word appears at
 `[BP+6]` in overlay 213's `57CE:0048` callback, making `[BP+0x18]`
 the record word at offset 18. On the event-two, control-`0x3BC9` path,
 the comparison at file offset `0x000998A6` takes the route toward the
@@ -71,6 +71,6 @@ now gives the byte after the return. Its other observations are unchanged.
 Read the queued mouse packet in FND-INPUT-005. Disassemble the resident
 event builder at physical file offsets `0x0002F8AB..0x0002F8EE` and
 `0x0002FAAF..0x0002FADC` to follow the 14-byte copy and kind-two writes.
-Follow the 24-byte callback copy in FND-CONFIG-079, then disassemble
+Follow the 24-byte callback copy in FND-CONFIG-221, then disassemble
 overlay 213 at `0x000998A4..0x000998B3` for the unsigned threshold and
 branch target.

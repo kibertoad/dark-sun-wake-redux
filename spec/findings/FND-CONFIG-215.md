@@ -24,7 +24,7 @@ The resident event builder at `39D1:097D` initializes the 24-byte output
 record's first word to 2. When its input decoder returns class 2, it calls
 `3D72:0009` with the input record. A nonzero return is copied to the output
 record's word at offset 2; the next resident loop does not discard that
-record for having both offset-2 and offset-4 words zero (FND-CONFIG-079).
+record for having both offset-2 and offset-4 words zero (FND-CONFIG-221).
 
 `3D72:0009` searches the registered windows and children under the pointer,
 recording a selected child and its containing window. One input-bit branch
@@ -33,7 +33,7 @@ branch compares both with the current hit. For a `BUTN` child it requires
 the child's event-mask bit 2 to be clear, then passes a local control check
 and returns the word at button offset `0x5A`. Before returning it copies
 the containing window pointer to `DS:A0FD`, which the resident event
-dispatcher later uses for the window's `0xF5` callback (FND-CONFIG-079).
+dispatcher later uses for the window's `0xF5` callback (FND-CONFIG-221).
 
 Every shipped `BUTN` record stores its own resource number at `0x5A`
 (FND-UI-004), and `BUTN/18301` in `WIND/18501` has mask zero

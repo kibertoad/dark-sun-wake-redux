@@ -43,7 +43,7 @@ from resident code, the pointer-hit path can return a matched button's
 resource number as event word at offset 2 after a two-phase selection,
 provided its mask bit 2 is clear and a local control check passes. The
 resident dispatcher then calls the current window's callback at offset
-`0xF5` when present (FND-CONFIG-079). The callback's event-two branch for
+`0xF5` when present (FND-CONFIG-221). The callback's event-two branch for
 `0x3BC9` (15305) is the route toward the shared message call described in
 FND-CONFIG-088.
 
@@ -73,4 +73,4 @@ window offset `0x105`, then inspect the `BUTN/15305` and `/15304` records
 at `+0x00031FD8` and `+0x00031F66` for size and mask. Disassemble overlay
 213 around `0x000992C1..0x000992E4` and `0x0009A980..0x0009A9A5`
 for the window numbers and callback pointer. Follow the generic event path
-as in FND-CONFIG-215 and FND-CONFIG-079.
+as in FND-CONFIG-215 and FND-CONFIG-221.

@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -64,6 +64,14 @@ can produce it, and Save/Load has no own setup reset. In Load mode the
 navigation branches read the old indexed marker before their signed
 movement or wrap. Actual inherited values, buffer validity and native
 input remain unadmitted (FND-COMBAT-131, Q-COMBAT-046, Q-COMBAT-063).
+
+Global registration alone does not admit these event-six branches. On the
+resident dispatcher's zero registered-window-count route, it rewrites the
+forwarded kind to three, which this handler rejects before any action.
+The nonzero-count, absent-current-window route can instead retain kind
+six. Actual count, handler and event state remain Q-COMBAT-046; a zero
+window-callback result does not invoke a second global fallback
+(FND-CONFIG-221).
 
 ## Sounds
 

@@ -64,7 +64,7 @@ the shared routine's later window-acquisition gate (FND-CONFIG-018).
 
 ## Alternatives
 
-FND-CONFIG-079 identifies the resident event dispatcher that can invoke
+FND-CONFIG-221 identifies the resident event dispatcher that can invoke
 `5664:002F`, and FND-CONFIG-080 identifies the callback's two message-branch
 discriminators. The event's player-visible source, the full origin of the
 overlay 190 choice, and computed or unrelocated caller pointers remain
