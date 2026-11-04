@@ -443,6 +443,12 @@ Next ID: Q-COMBAT-063
   callers' continuations, neither of which checks the rows) answer the local routes; the archive
   selection and the restored state's validity remain. Blocks: established status-effect
   selection.
+  Tried: FND-COMBAT-110 connects the shared preparation helper's actual
+  newly-opened branch to resident active-record selection and distinguishes
+  its reuse branch, which performs no selection. That local open/selection
+  connection is removed from the unread archive question. Remaining archive
+  admission is the path and reuse flag, intervening selectors/closers and
+  mode-dependent fallback at each numbered request, plus restored state.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
