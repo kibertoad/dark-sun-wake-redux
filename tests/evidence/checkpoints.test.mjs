@@ -37,10 +37,18 @@ from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 from startup_segments import equipment_flag
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from disc_adv_envelopes import envelope as adv_envelope
+from resident_listing import span as resident_span
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+assert resident_span('1000:0000..1000:0004',4)==(0x1000,0,4,0)
+assert resident_span('1000:FFF0..1000:10000',65536)==(0x1000,65520,65536,0)
+for invalid in ['0FFF:0000..0FFF:0004','1000:0004..1000:0004',
+                '1000:0000..1001:0004','1000:0000..1000:0005',
+                '1000:0000..1000:10001','1000:0000..1000:-001',
+                '1000:0000..1000:0004extra','1001:0000..1001:0004']:
+    rejects(lambda:resident_span(invalid,4))
 adv=struct.pack('<H',6)+b'Copy'+struct.pack('<HHHHH',3,0,8,0,0xFFFF)
 parsed=adv_envelope(adv)
 assert parsed['functions']==2 and parsed['unique_targets']==1

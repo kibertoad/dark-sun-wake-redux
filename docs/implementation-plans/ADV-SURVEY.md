@@ -29,3 +29,11 @@ loader paths. A known signature or complete directory does not establish
 driver behavior, complete code mapping, hardware effects or successful load.
 Exit: every manifest driver has a classified bounded envelope, schema and
 format agree with the findings, and research/queue/parity checks pass.
+
+For the remaining setup-name producers shared with Q-CONFIG-006, extend the
+existing resident_listing.py to accept the independently fingerprinted
+SOUND_DS.EXE as well as DSUN.EXE. Keep the same load-at-1000 relocation
+model and output notation; no unknown-source fallback. Validate requested
+same-segment ranges against the actual load image before slicing, refusing
+negative/outside/wrapping spans. Synthetic range controls and the tooling
+gate precede any new setup reading. Original listings stay in GAME_DIR.
