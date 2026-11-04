@@ -661,6 +661,11 @@ Next ID: Q-COMBAT-067
   equality/clearing branch, stack-local pointer/result aliases and failure
   paths that retain earlier or partial writes. Exit: destination and retained
   state cases for both requests, distinct from a nominal shipped length.
+  Tried: FND-COMBAT-146 observes both admitted target spans equal to their
+  transfer-time references and source slots 23/25 equal to the destinations
+  at the matched selector-zero reader return. That one endpoint-retention
+  case is removed from unread work; continuous backing/lifetime, aliases,
+  intermediate writes and alternative destination/failure cases remain.
   Tried: split from Q-COMBAT-018. FND-COMBAT-034 gives source slots and
   shipped lengths, FND-COMBAT-035 gives pointer forwarding and transfer order,
   and FND-COMBAT-045 bounds resident row backing. The binding helper does
@@ -705,6 +710,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-146 admits the complete reader's matched return and
+  retained target-byte/binding endpoints for one native route, with AL one.
+  That returning-boundary case is removed; reached-child attribution,
+  intermediate mutations, failed/skipped transfers and later caller
+  continuations remain. The archive counter changed despite matching
+  active/head endpoint pointers, so it is not an unchanged-history proof.
   Tried: split from Q-COMBAT-018. FND-COMBAT-111 accounts for the full reader's
   own body, which has no explicit effect-count, ID or ordering validator.
   FND-COMBAT-043/044 account for the callers' own continuations. Reuse

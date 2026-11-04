@@ -172,6 +172,14 @@ unchanged copied-file rows. Output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q064-origin-20261104/.
 Continuous lifetime, full graph/directory identity and later loading remain
 unverified; the run still ends at SAVE/26's core return.
+The fixed saved-reader-return stage in FND-COMBAT-146 extends that route
+to the full selector-zero reader's matched caller return. Both bounded
+target spans match cached transfer-time references and their source-slot
+bindings match at return. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q065-reader-return-20261104/.
+No native reader return relocation occurred; trap handling has synthetic
+controls. Continuous lifetime, child attribution and completed loading
+remain unverified. The probe stops before the caller consumes AL.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
