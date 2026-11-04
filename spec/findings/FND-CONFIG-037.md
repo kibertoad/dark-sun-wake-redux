@@ -54,6 +54,11 @@ does not identify which startup path opens the file.
 
 ## Interpretation
 
+FND-COMBAT-127 subsequently reads the opener's complete own construction
+and failure ordering. Its failure-before-publication observation does not
+imply unchanged allocation accounting, file state or supplied storage;
+reuse that finding for the explicit gates, cleanup requests and limits.
+
 The pointer required by the message resource reader is stateful. An
 archive-open success can provide it, while close and list-update paths can
 replace or clear it. The present `WIND/10501` record in the installed

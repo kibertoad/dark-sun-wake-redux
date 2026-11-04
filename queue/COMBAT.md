@@ -323,6 +323,10 @@ Next ID: Q-COMBAT-067
   file-directory reload and conditional global/neighbor publication order.
   These local producer effects are removed from unread work; actual graph membership,
   valid allocations/links, input admission and external outcomes remain.
+  Tried: FND-COMBAT-127 resolves the opener's own header/allocation gates,
+  record construction, directory reload, accounting-before-I/O and cleanup
+  ordering. These local producer obligations are removed; actual caller
+  inputs, graph membership, bounds, aliases and external outcomes remain.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
@@ -526,6 +530,8 @@ Next ID: Q-COMBAT-067
   and external outcomes remain; a read route can flush dirty metadata.
   Reuse FND-COMBAT-126 under Q-COMBAT-054 for growth's local reload and
   publication order; shared graph/allocator admission remains there.
+  FND-COMBAT-127 supplies the corresponding local open construction and
+  failure contract under that shared item, including pre-publication effects.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
