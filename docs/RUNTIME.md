@@ -39,6 +39,10 @@ startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
 with host output recorded muted. The local run is
 GAME_DIR/captures/rust-dos-startup-segments/runtime-upgrade-20261104-v181/.
+The same fixed probe's named equipment-flag read was verified under these
+pins in v181-q118-main-flag-20261104, retained under the same capture root
+(FND-ITEM-071). It requires the exact main stop and relocated DS before
+reading one byte; no continuation, input or guest write is admitted.
 On the same date, startup_window.py regenerated the opener checkpoint under
 these pins, and restore_opener.py restored it in a second owned process at
 the declared opener call and reached its return. Both saves used file checks;

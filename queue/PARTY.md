@@ -295,6 +295,10 @@ Next ID: Q-PARTY-119
   nominal save spans from actual recorded-resource transfer lengths;
   initialization targets, actual pointer/length/segment state, other bulk
   and computed writers and later preservation remain.
+  Tried: FND-ITEM-071 measures zero at guarded main entry after startup
+  initialization on the fixed -W0 -L path. The initial endpoint is settled
+  for that path; continuous callback preservation, other paths, restored
+  state and immediate/queued consumer values remain unestablished.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
