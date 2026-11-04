@@ -510,6 +510,11 @@ Next ID: Q-COMBAT-067
   signature check can clear its error. Those local result combinations are
   removed from unread work; actual active-record/directory state and
   reservation/copy/flush/I/O effects remain.
+  Tried: FND-COMBAT-123 resolves candidate-position selection, freed-range
+  early gates and single-neighbour merging, and later selected-row consumption.
+  The known helpers' own bookkeeping is removed from unread work. Actual
+  record/list producers and bounds, pointer/copy/guard effects, directory
+  identity and flushing/I/O remain; candidate selection itself reserves nothing.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?

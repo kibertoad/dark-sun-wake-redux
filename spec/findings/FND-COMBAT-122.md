@@ -69,6 +69,8 @@ For a found entry it retains its file position at +4 and length at
 sets error eight and returns FFFF before the removal body's own shift.
 That helper's potential preceding mutations are not excluded by this
 return or independently read here.
+FND-COMBAT-123 subsequently resolves its own rejection-before-mutation
+branches; guard, pointer and copy effects still need separate admission.
 
 On a zero 0A9F result, the body derives the span after the twelve-byte
 entry and requests an in-place shift through 38DC:0066. It marks

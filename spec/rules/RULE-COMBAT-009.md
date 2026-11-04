@@ -131,6 +131,8 @@ None known.
   pre-payload directory stores, without admitting each runtime SAVE table.
   FND-COMBAT-122 resolves the paired removal and caller result handling;
   actual selection and completed SAVE contents remain Q-COMBAT-064.
+  FND-COMBAT-123 resolves local free-space selection and consumption,
+  retaining live list/extent and flush prerequisites under Q-COMBAT-064.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries
