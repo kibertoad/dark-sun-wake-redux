@@ -38,15 +38,15 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-049/048/047/046/045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-ITEM-050/049/048/047/046/045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
-- Item work: FND-ITEM-027 through FND-ITEM-049. Q-ITEM-009 closed;
+- Item work: FND-ITEM-027 through FND-ITEM-050. Q-ITEM-009 closed;
   Q-ITEM-011/013 remain separate. Reuse FND-COMBAT-032/033/046 censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 26a392cb -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince aa758a76 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -ChangedSince 216c9812 -NoRestore selected integration and passed
@@ -88,7 +88,9 @@ reports before matched-menu pairing are diagnostic only.
   placement-removal-gate.txt under item-removal-20261104/. Capacity reports:
   placement-capacity-children.txt, placement-aggregate-children.txt and
   placement-aggregate-seed/placement-strength-table configurations/reports/repeats.
-  FND-ITEM-049 names their accepted procedure. Reuse FND-PARTY-234 and
+  FND-ITEM-049 names their accepted procedure. Field-89 kind/source controls,
+  reports and repeats use placement-field89-kind-offsets and
+  placement-field89-source-values stems there (FND-ITEM-050). Reuse FND-PARTY-234 and
   FND-MAGIC-013 before further capacity reading.
   Tooling gate Test.ps1 -ChangedSince 29534f4e -NoRestore passed, including
   the 11 script-census synthetic tests. No tracked WIP or owned process remains.
@@ -104,9 +106,9 @@ reports before matched-menu pairing are diagnostic only.
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
 - Q-ITEM-003 placement caller/position, snapshot/removal and capacity admission;
-  reuse FND-ITEM-048/049 for local predicates and result/table selection.
+  reuse FND-ITEM-048/049/050 for local predicates and result/table/sample selection.
   Actual traversal/getter, near-state and native admission remain open;
-  spell/store obligations remain separate.
+  spell/store obligations are now Q-ITEM-014 and Q-ITEM-015.
 - Q-ITEM-006's other entries, decoder gaps and independent writers;
   Q-ITEM-005's other consumers. Reuse FND-ITEM-044/045/046 rather than repeat
   those placement/decoded-scalar/positive-caller readings; reuse FND-ITEM-047
