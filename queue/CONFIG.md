@@ -373,8 +373,9 @@ Next ID: Q-CONFIG-011
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
   Tried: FND-COMBAT-169 admits source-equal FNFO buffers, widths/selectors, scratch 520,
-  selected 523 and finite disjoint pools at one paused saved-map boundary. Provider identity,
-  incoming caller state and preservation through later calls remain open.
+  selected 523 and finite disjoint pools at one paused saved-map boundary. FND-COMBAT-171
+  adds exact equality of all 1530 live shared item-type bytes with canonical ALL/4 at that
+  boundary. Provider identity, use-time admission and preservation through later calls remain.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent

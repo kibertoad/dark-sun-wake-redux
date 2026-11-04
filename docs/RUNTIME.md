@@ -154,6 +154,11 @@ roundtrip equality. Known fixed table requests fit mutually separate described
 extents. Reproduce with the same verify command and a fresh output name;
 accepted run: v181-q067-record-headers-20261104 under the native-save root.
 No allocation history, whole-heap traversal or later lifetime is admitted.
+FND-COMBAT-171 adds the bounded 1530-byte shared item-type capture, exact
+canonical ALL/4 equality and roundtrip preservation. Accepted native-save
+run: v181-q067-item-types-20261104. Use the same verify command with a fresh
+name; compare its item_types report member with getter_metadata.compare_item_types.
+No getter/consumer invocation or later gameplay lifetime was observed.
 The fixed saved-copy-return stage in FND-COMBAT-141 admits actual F2/Enter
 from that native candidate through the observed nonempty copy return, with
 bounded normalization/open/length and private-file-state checks. Output is
