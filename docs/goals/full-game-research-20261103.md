@@ -46,10 +46,10 @@ reports before matched-menu pairing are diagnostic only.
   are separate. Reuse FND-COMBAT-032/033/046 rather than repeat their censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
-  The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 99e39995
+  Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince a970784e
   -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Q-ITEM-005 and Q-COMBAT-045/046/063/064/065/066 have attempt-count warnings; their
+  Q-ITEM-005 and Q-COMBAT-046/063/064/065/066 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
   192 Node and 745 .NET tests. Existing argument-count and scheduled-generation
@@ -120,7 +120,7 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-045's getter/map-value and zero-result admission; other runtime routes;
+- Next: Q-COMBAT-067's getter/map-value and zero-result admission; Q-COMBAT-045 retains save admission;
   reuse FND-COMBAT-159/160/161/162/163/164/165/166/167 for settled branches;
   Q-COMBAT-066's remaining caller/child cases, reusing FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
