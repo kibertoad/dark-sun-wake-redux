@@ -61,6 +61,11 @@ opened resource record does not pass this write-path gate.
 
 ## Interpretation
 
+FND-COMBAT-126 subsequently reads the full local growth body, including
+the release request before allocation, directory reload from the file,
+failure continuations and ordered reference publication. Reuse it for
+those effects; actual allocator, graph and I/O admission remains open.
+
 The literal active-pointer writers and its one literal address-taking
 call are bounded. Growing a writable archive can replace its selected
 record without closing the archive; the startup resource record's initial

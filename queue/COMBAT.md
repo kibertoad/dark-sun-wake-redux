@@ -319,6 +319,10 @@ Next ID: Q-COMBAT-067
   window request remain. Reuse FND-CONFIG-037, FND-CONFIG-041,
   FND-CONFIG-068, FND-CONFIG-069 and FND-PARTY-042 for the census and
   startup limits; a row marker does not establish archive cleanup success.
+  Tried: FND-COMBAT-126 resolves growth's local snapshot/release/allocation,
+  file-directory reload and conditional global/neighbor publication order.
+  These local producer effects are removed from unread work; actual graph membership,
+  valid allocations/links, input admission and external outcomes remain.
   Blocks: slice 4.
 - Q-COMBAT-052. RULE-COMBAT-007: Which state producers admit APFM modes that dispatch
   +5A or +5E during numbered loading? Settles it: producers and ordering of A13D,
@@ -520,6 +524,8 @@ Next ID: Q-COMBAT-067
   Those own helper footprints are removed from unread work. Actual record/
   list/directory inputs, lengths and capacities, guards, alias/preservation
   and external outcomes remain; a read route can flush dirty metadata.
+  Reuse FND-COMBAT-126 under Q-COMBAT-054 for growth's local reload and
+  publication order; shared graph/allocator admission remains there.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
