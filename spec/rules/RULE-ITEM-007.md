@@ -4,7 +4,7 @@ title: A corroding hit destroys a picked held item when a d20 falls below 8 less
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602, FND-ITEM-028, FND-ITEM-031, FND-ITEM-032, FND-COMBAT-032, FND-COMBAT-033]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-ITEM-009, FND-COMBAT-023, FND-CONFIG-143, FND-PARTY-051, FND-COMBAT-065, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602, FND-ITEM-028, FND-ITEM-031, FND-ITEM-032, FND-COMBAT-032, FND-COMBAT-033, FND-COMBAT-046]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-009]
@@ -102,6 +102,13 @@ do not establish that bound initially or validate restored rows. The known
 insertion route's conditional 1..127 bound still permits bitmap offset 15,
 so it does not establish a fifteen-byte output span (FND-ITEM-031/032).
 Other producers, copy admission and frame aliases remain Q-ITEM-013.
+
+The shipped RESOURCE.GFF also contains a concrete producer-field exception
+to a proposed 0..112 bound: DATA/313's signed byte +0x19 is positive 127
+(FND-COMBAT-046). Its reviewed handler-default continuation does not locally
+reject that value. This source and local-path evidence does not prove an
+admitted insertion of 127, a particular bitmap outcome or a native failure;
+selection, intervening state and restored rows remain Q-ITEM-013.
 
 The first request selects the sound effect numbered by DATA byte +0x16.
 Its routine applies sound-setting and driver gates, preferring a BVOC resource

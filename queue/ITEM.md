@@ -193,6 +193,14 @@ Next ID: Q-ITEM-014
   Other handler paths, child writes and aliases remain; no native overlap
   has been observed.
 
+  Tried: reconcile existing FND-COMBAT-046 with the item rules. It
+  already settles the shipped DATA-byte domain, the positive-127 source
+  and the reviewed handler-default continuation. Those source/local-path
+  obligations are removed from the unread producer set; actual acquired
+  DATA selection, admitted insertion across children and restored-row
+  contents remain. Do not repeat its census as a new finding or infer
+  a stored row or native outcome from the source byte alone.
+
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
   and visual effects? Settles it: visual number/table producers and lifetime,
