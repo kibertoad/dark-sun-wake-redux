@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -46,7 +46,11 @@ None known.
 ## Coverage
 
 Read from the code that sets up, walks, fills and converts the records [FND-SCRIPT-014,
-FND-SCRIPT-015, FND-SCRIPT-017]; no record was observed in memory.
+FND-SCRIPT-015, FND-SCRIPT-017]. FND-COMBAT-152 subsequently captures one native
+200-record trigger block around reverse conversion: 103 eligible pairs change
+as predicted, and the whole block matches the prediction before release and
+at reader return. This admits one sampled span and result, not general
+allocation lifetime, all trigger semantics or every restore/failure state.
 
 FND-CONFIG-156 locates allocation in the initializer reached through 565C:0020.
 On its nonpositive-status initialization path, the known caller supplies 200;

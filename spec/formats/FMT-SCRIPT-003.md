@@ -9,7 +9,7 @@ byte_order: little
 size: 6
 text: false
 definition: fmt_script_003.ksy
-evidence: [FND-SCRIPT-002, FND-SCRIPT-017, FND-SAVE-023]
+evidence: [FND-SCRIPT-002, FND-SCRIPT-017, FND-SAVE-023, FND-COMBAT-152]
 conflicting: []
 split_with: []
 related: []
@@ -41,6 +41,11 @@ None known.
 
 The 1,316 records of the installed `GPLDATA.GFF#GPLI/1` [FND-SCRIPT-002]. The disc's copy was not
 compared.
+
+FND-COMBAT-152 observes one native GPLI/1 size/data selection of 7896 bytes,
+retained scan bound 1316 and reverse-conversion results matching a prediction
+from the captured table. This runtime-buffer observation does not independently
+bind the selected I/O handle to GPLDATA.GFF or admit every incoming/lifetime case.
 
 FND-SAVE-023 connects the conversions to the save writer and reader. The writer
 calls the forward conversion before its resource writes and the reverse conversion

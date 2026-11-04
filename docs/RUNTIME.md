@@ -194,6 +194,14 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
 It reports only the fixed named child entries and retains map/effect endpoint
 checks. Temporary-slot allocation, other object/failure states, continuous
 lifetime and completed loading remain unverified.
+The fixed saved-script-conversion stage in FND-COMBAT-152 admits native
+GPLI size/data selection, retained scan inputs and DS/SS/chain/trigger
+bindings, with predicted conversion fields matching before release and
+at matched reader return. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-script-bound-20261104/;
+the earlier v181-q066-script-conversion-20261104 observation is retained.
+The stage still stops before the reader caller consumes AL; file provenance,
+continuous lifetime, other inputs/failures and completed loading remain open.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
