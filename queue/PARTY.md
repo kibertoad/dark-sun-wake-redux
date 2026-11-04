@@ -166,7 +166,12 @@ Next ID: Q-PARTY-116
   effects and DS:6174 producers/consumers, including high source-word
   admission. Tried: FND-PARTY-254 settles the complete local gates,
   call arguments/order and unreachable post-FFFF call without assigning
-  a native effect outcome. Blocks: complete interpretation of FMT-PARTY-006.
+  a native effect outcome.
+  Tried: FND-ITEM-056 removes canonical high signed-selector and repeated-
+  DATA alternatives: all 1931 source words are 0..327 and bonuses nonnegative;
+  1671/240/20 payloads occupy the zero/ordinary/special branches. Actual
+  selected values after child calls, record/flag lifetime and child effects
+  remain. Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their

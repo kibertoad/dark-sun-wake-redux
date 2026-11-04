@@ -100,6 +100,11 @@ Next ID: Q-ITEM-016
   bootstrap. Actual incoming target/source, child and generic move effects,
   free-list/temporary lifetime, record ownership and near-state admission
   remain; slot release is not an established rollback.
+  Tried: FND-ITEM-056 composes FND-PARTY-254's already-read hooks with the
+  complete canonical source domains, excluding negative DATA selectors and
+  repeated acquisition under retained source/bonus conditions. Actual
+  record reads after children, status/DATA results, flag and dispatched
+  effects remain; do not repeat the complete local hook bodies.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell
