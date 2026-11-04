@@ -38,7 +38,7 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-038/037/036 and FND-COMBAT-171/170 and corrected FND-PARTY-259/260.
+- Latest research: FND-ITEM-039/038/037/036 and FND-COMBAT-171/170 and corrected FND-PARTY-259/260.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
@@ -47,7 +47,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: Test.ps1 -Research -ChangedSince 7dbec36c -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince d1e39206 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
@@ -108,7 +108,7 @@ reports before matched-menu pairing are diagnostic only.
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
-  Latest item reports: name-field-domain.json and name-setter-callers.txt
+  Latest item reports: name-direct-producers.txt and name-scalar-keys.report.json
   under item-removal-20261104/.
   Earlier static report names and reproduction commands remain in their findings.
   temporary-presentation-candidates.txt there remains diagnostic; it is not a writer census.
@@ -122,7 +122,7 @@ reports before matched-menu pairing are diagnostic only.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
 - Next: Q-PARTY-115's direct/computed name stores, whole-record producers and decoder gap; Q-ITEM-005's other consumers/flags;
-  reuse FND-ITEM-038/037/036 and FND-COMBAT-159/160/161/162/163/164/165/166/167/168/169/170/171;
+  reuse FND-ITEM-039/038/037/036 and FND-COMBAT-159/160/161/162/163/164/165/166/167/168/169/170/171;
   Q-COMBAT-067 cleanup/lifetime and Q-COMBAT-045 save admission remain;
   Q-COMBAT-066 caller/child cases reuse FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
