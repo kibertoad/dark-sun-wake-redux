@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-024, FND-COMBAT-085, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -67,7 +67,11 @@ None known.
 
 | State | Entered when | Left when | Evidence |
 |---|---|---|---|
-| Rows show saved games `save_list_top` + 1 to `save_list_top` + 10 | The window opens, with `save_list_top` as the stored-character list last left it | The window closes | FND-SAVE-024 |
+| Row text and markers are requested from records indexed by current `save_list_top` + row | Setup visits rows 0..9 of a requested ten-record list; actual top and storage must be admitted | The window closes | FND-SAVE-026 |
+
+A nonzero inherited top does not establish valid later saved-game pages.
+The consumer can index beyond the requested ten records; actual contents
+and native paint remain unestablished (FND-SAVE-026).
 
 ## Timing
 
@@ -79,6 +83,9 @@ None known.
 
 ## Open questions
 
+- Actual shared top/selection and buffer lifetime remain Q-COMBAT-046 and
+  Q-COMBAT-063; native results when an index exceeds the requested list
+  remain part of Q-UI-005 (FND-SAVE-026).
 - How the ten rows paint descriptions or unavailable slots, which are selectable, how the window is positioned
   and painted, what physical input maps to callback event 6, and the later
   transition after EXIT remain open (FND-UI-036, FND-UI-037, FND-SAVE-006,

@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-024
 title: Only the stored-character list of overlay 171 writes save_list_top, leaving its page start there when it closes, so the Save and Load screens open at that page
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-026]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -4,7 +4,7 @@ title: The number and file name of a saved game
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008, FND-SAVE-009, FND-SAVE-015, FND-SAVE-020, FND-SAVE-021, FND-SAVE-022, FND-SAVE-023, FND-SAVE-024]
+evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008, FND-SAVE-009, FND-SAVE-015, FND-SAVE-020, FND-SAVE-021, FND-SAVE-022, FND-SAVE-023, FND-SAVE-026]
 conflicting: []
 split_with: []
 related: []
@@ -12,10 +12,11 @@ related: []
 
 ## Summary
 
-The game keeps at most ten saved games, numbered 1 to 10. Saved game n is the file `SAVEnn.SAV`
+The Save/Load screens request ten list records. Saved game n is the file `SAVEnn.SAV`
 in the game's directory, with n in two digits, and its game state is `GREQ` resource n
-(FMT-SAVE-002). The Load Game and Save Game screens list the saved games from a first shown one,
-and a slot on the screen gives the number by adding its position to that first one. The list
+(FMT-SAVE-002). A screen row indexes the requested records by adding its
+position to the shared list top. That index is not independently bounded
+to the ten-record request (FND-SAVE-026). The list
 reader requests `STXT/1` from an available `SAVEnn.SAV` archive for its description
 (FND-SAVE-007). Saving updates the working `DARKRUN.GFF` archive's `SAVE` resource group and
 `STXT/1` description, then copies it to the numbered file (FND-SAVE-008).
@@ -64,10 +65,13 @@ of more than two digits. The list search does not bound the number it reads from
 `SAVE11.SAV` or higher in the directory is stored past the ten list records (FND-SAVE-020). A load
 whose copy fails still applies the slot's `PREF` and `GREQ` (FND-SAVE-022).
 
-`save_list_top` is 0 at start and only the stored-character list writes it, leaving its last page
-start there (0, 10, 20 or 30, kept below the count of stored characters less 9). With 11 or more
-stored characters, paging down in that list and then opening Save or Load gives saved games
-numbered from 11, past the ten list records (FND-SAVE-024). The original's pattern is `SAVE%.2d.SAV`, which gives the same name as
+`save_list_top` is zero in the loaded image. Known stored-character-list
+writers can change it, including a count-minus-ten clamp that can store
+29 for count 39. Save/Load does not itself reset it or enlarge its requested
+ten-record array for that value. Under retained nonzero top and ordinary
+address arithmetic, a consumer can index beyond those ten records; valid
+later saved-game pages or particular native contents are not established
+(FND-SAVE-026). The original's pattern is `SAVE%.2d.SAV`, which gives the same name as
 `%02d` for any number that is not negative.
 
 ## What the sources say
@@ -81,4 +85,7 @@ None known.
 
 ## Open questions
 
-None known.
+- Actual shared top/selection and storage lifetime at a load remain
+  Q-COMBAT-046 and Q-COMBAT-063. Loaded zero and literal writer searches
+  do not establish every later value; nonzero top does not prove valid
+  saved-game contents beyond the requested ten records (FND-SAVE-026).

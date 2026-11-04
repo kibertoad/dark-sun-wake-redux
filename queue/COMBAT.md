@@ -35,7 +35,7 @@ Next ID: Q-COMBAT-067
   FND-COMBAT-079 excludes the region object-rebuild block; FND-COMBAT-080 reads cleanup
   ordering; FND-COMBAT-081 reads direct-caller result handling. Their independent remaining
   admission, producer and callback obligations now have separate items. Blocks: slice 4.
-- Q-COMBAT-046. RULE-COMBAT-007: Which admitted window events and state producers reach the
+- Q-COMBAT-046. RULE-COMBAT-007, RULE-SAVE-002, SCR-UI-013, SCR-UI-014: Which admitted window events and state producers reach the
   numbered-load call and reader roots? Settles it: remaining producers and lifetimes of
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
   local navigation of FND-COMBAT-085; event delivery, snapshot/slot producers and
@@ -46,7 +46,7 @@ Next ID: Q-COMBAT-067
   ignored load result, while FND-SAVE-022 gives reader order. FND-COMBAT-084 settles
   the wrapper's AL/AX tests, close-obligation byte and replacement of the reader result
   by the close result. FND-COMBAT-085 settles local navigation's asymmetric wrap and
-  empty-result selection; FND-UI-051, FND-SAVE-018 and FND-SAVE-024 supply existing
+  empty-result selection; FND-UI-051, FND-SAVE-018 and FND-SAVE-026 supply existing
   caller, exit-byte and shared-page producer evidence. The remaining admission and
   preservation obligations above are not settled by those local results. Blocks: slice 4.
   Tried: FND-COMBAT-098 binds the three restoration sources named by FND-UI-051:
@@ -465,7 +465,7 @@ Next ID: Q-COMBAT-067
   transformation uncertainty. None admits live storage or external outcomes.
   The remaining obligations are separated below; this assessment closes no
   question and promotes no status. Blocks: established status-effect selection.
-- Q-COMBAT-063. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+- Q-COMBAT-063. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-SAVE-002, SCR-UI-013:
   Which actual source and working paths and copy outcomes reach the numbered load?
   Settles it: bind the caller's selected save-record path and directory prefix
   to stable terminated inputs; admit the character tables, buffer extents and
@@ -489,6 +489,11 @@ Next ID: Q-COMBAT-067
   Those producer/lifetime operations are removed from unread work. Actual
   selected values, buffer/terminator bounds and child/alias preservation
   remain; the explicit list release follows loading, not window closure.
+  Tried: FND-SAVE-026 replaces the shared-page display/writer overclaim.
+  The known clamp can store a non-multiple-of-ten top, and Save/Load's
+  ten-record request is not enlarged by it. This removes an assumed valid
+  later-page contract; actual index/storage and child preservation remain,
+  with shared event/state producers in Q-COMBAT-046 and paint in Q-UI-005.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
