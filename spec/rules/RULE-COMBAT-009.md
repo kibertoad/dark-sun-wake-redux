@@ -100,6 +100,9 @@ None known.
   request. FND-SAVE-021 records the preceding writer's explicit archive
   selections; FND-COMBAT-096 and FND-COMBAT-110 bound selection effects,
   while intervening changes, fallback and prior state remain unadmitted.
+  FND-COMBAT-111 accounts for the full reader's own postprocessing without
+  finding an explicit effect-count, ID or ordering check; child effects and
+  storage aliases remain part of the admission question.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries

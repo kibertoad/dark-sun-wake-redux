@@ -457,6 +457,12 @@ Next ID: Q-COMBAT-063
   explicit working-handle selections in the preceding writer, and
   FND-COMBAT-096 supplies their conditional selection contract. Reuse those
   sites before tracing selection lifetime; later child effects remain open.
+  Tried: FND-COMBAT-111 accounts for the complete reader's own continuation,
+  reusing FND-SAVE-022/023 and FND-COMBAT-077. It contains no own explicit
+  effect-count, ID or ordering validator; its placed-entry recount and
+  object/item loops do not answer that admission. The unread remainder of
+  the enclosing reader is removed from local postprocessing work. Child
+  effects, aliases, selected-resource provenance and restored values remain.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
