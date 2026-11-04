@@ -16,6 +16,8 @@ from startup_window import wait_for_stop
 from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
 from load_entry import named_file
 from load_entry import private_span
+from load_entry import private_row
+import archive_origin as origin
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -159,6 +161,12 @@ with TemporaryDirectory() as temp:
     rejects(lambda: private_span(run,{'offset':2,'count':2},identity))
     rejects(lambda: private_span(run,{'offset':0,'count':3},identity))
     path.write_bytes(b'abd'); rejects(lambda: private_span(run,{'offset':1,'count':2},identity))
+    import struct
+    path.write_bytes(struct.pack('<III',24,40,12)); identity=working_file(run)
+    row={'file_row_offset':0,'number':24,'offset':40,'length':12}
+    assert private_row(run,row,identity)
+    assert not private_row(run,{**row,'number':26},identity)
+    rejects(lambda: private_row(run,{**row,'file_row_offset':1},identity))
     path.unlink(); path.mkdir(); rejects(lambda: working_file(run))
 class Linked:
     def __truediv__(self,other): return self
@@ -324,6 +332,44 @@ p.number=26; assert provider.request(p,regs,0x3000)['number']==26
 p.length=0; rejects(lambda: provider.selected(p,regs,entry)); p.length=12
 p.offset=0x80000000; rejects(lambda: provider.selected(p,regs,entry)); p.offset=40
 p.pointer=0x2000FFE0; rejects(lambda: provider.selected(p,regs,entry))
+class OriginMemory:
+    options=2; reserve=0x4D4; returned=0x42; io=11; count=30; length=512; row_number=24
+    row_off=0x177
+    def read_memory(self,address,size):
+        import struct
+        if address=='1000:0100' and size==18:
+            return NS(data=struct.pack('<HHIIHI',self.returned,0x2000,0x30000020,self.reserve,self.options,0x57E0144E))
+        if address=='2000:003D': return NS(data=struct.pack('<BHH',0x9A,0x66,0x38FF))
+        if address=='1000:00F4': return NS(data=struct.pack('<HH',0x20,0x2000))
+        if address=='2000:0024': return NS(data=self.io.to_bytes(2,'little'))
+        if address=='2000:0048': return NS(data=(14).to_bytes(4,'little'))
+        if address=='2000:003C': return NS(data=struct.pack('<II',1000,self.length))
+        if address=='1000:00F8': return NS(data=struct.pack('<HH',0x5B,0x2000))
+        if address=='1000:00FC': return NS(data=struct.pack('<HH',self.row_off,0x2000))
+        if address=='2000:005B': return NS(data=struct.pack('<4sI',b'SAVE',self.count))
+        if address=='2000:0177': return NS(data=struct.pack('<III',self.row_number,40,12))
+        raise AssertionError(address)
+def rooted(client,seg,off,bound):
+    assert (seg,off,bound)==(0x3000,0x20,82)
+    return {'bytes_hex':b'C:\\darkrun.GFF'.hex()}
+o=OriginMemory(); open_regs={'ss':'1000','sp':'0100'}
+assert origin.opening(o,open_regs,0,rooted)['reserve']==0x4D4
+o.options=4; rejects(lambda: origin.opening(o,open_regs,0,rooted)); o.options=2
+o.returned=0; rejects(lambda: origin.opening(o,open_regs,0,rooted)); o.returned=0x42
+assert origin.opening(o,open_regs,0,lambda *args:{'bytes_hex':b'C:\\other.GFF'.hex()}) is None
+original={'ss':0x1000,'bp':0x100,'number':24,'io_handle':11}
+regs={'ss':'1000','bp':'0100','ax':'0000'}
+archive={'working_handle':14,'active':{'pointer':'2000:0020','handle_field':14},'head':{'pointer':'2000:0020','handle_field':14}}
+published=origin.publication(o,regs,original,archive)
+rejects(lambda: origin.publication(o,{**regs,'ax':'FFFF'},original,archive))
+o.io=12; rejects(lambda: origin.publication(o,regs,original,archive)); o.io=11
+selection={**published,'offset':40,'length':12}
+assert origin.directory(o,regs,original,selection,published)['row_index']==23
+rejects(lambda: origin.directory(o,regs,original,{**selection,'io_handle':12},published))
+o.count=0x8000001E; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.count=30
+o.row_off=0x178; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_off=0x177
+o.row_number=26; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_number=24
+o.length=20; rejects(lambda: origin.directory(o,regs,original,selection,published))
 class PayloadMemory:
     short=False
     def read_memory(self,address,size):

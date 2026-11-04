@@ -19,6 +19,7 @@ from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checke
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop, checkpoint_summary
 import request_provider
+import archive_origin
 
 
 def fields(client, delta):
@@ -244,6 +245,18 @@ def private_span(run, selection, identity):
     return data
 
 
+def private_row(run, row, identity):
+    offset = row["file_row_offset"]
+    if working_file(run) != identity or offset < 0 or offset + 12 > identity["length"]:
+        raise ValueError("private directory row lies outside the unchanged working file")
+    with (run / "drive-c" / "darkrun.GFF").open("rb") as stream:
+        stream.seek(offset)
+        data = stream.read(12)
+    if len(data) != 12 or working_file(run) != identity:
+        raise ValueError("private directory row was short or file identity changed")
+    return struct.unpack("<III", data) == (row["number"], row["offset"], row["length"])
+
+
 def settings_request(client, registers, offset):
     if offset not in (0x66F, 0x743):
         raise ValueError("unsupported settings request")
@@ -288,13 +301,14 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads"))):
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin"))):
         raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers]")
     navigation = len(sys.argv) == 4
-    observe_payloads = navigation and sys.argv[3] == "saved-payloads"
-    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads")
-    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads")
-    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads")
+    observe_origin = navigation and sys.argv[3] == "saved-origin"
+    observe_payloads = navigation and sys.argv[3] in ("saved-payloads", "saved-origin")
+    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads", "saved-origin")
+    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin")
+    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin")
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -369,6 +383,10 @@ def main():
             provider_return = rng.address(0x38FF, 0x9D4)
             target_request = None
             report["resource_requests"] = []
+            open_entry = rng.address(0x38FF, 0x66)
+            open_io = rng.address(0x38FF, 0x96)
+            open_return = rng.address(0x38FF, 0x2B1)
+            opening = published = None
             report["region_relocations"] = []
             previous = None
             budget = 1024 if observe_load_return else 512
@@ -381,6 +399,29 @@ def main():
                 if exhausted:
                     raise RuntimeError("operation observation budget exhausted")
                 stop = observed.stop
+                if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_entry:
+                    opening = archive_origin.opening(session.client, stop["registers"], delta, terminated_path)
+                    if opening is not None:
+                        report["working_open"] = {"entry": stop, "arguments": opening}
+                        session.client.remove_breakpoints(open_entry)
+                        session.client.set_breakpoint(open_io, once=True)
+                        session.client.set_breakpoint(open_return, once=True)
+                    record()
+                    continue
+                if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_io:
+                    request_provider.frame(stop["registers"], opening)
+                    opening["io_handle"] = int(stop["registers"]["ax"], 16)
+                    report["working_open"]["io_return"] = stop
+                    if opening["io_handle"] == 0xFFFF:
+                        raise ValueError("fixed working-file I/O open failed")
+                    record()
+                    continue
+                if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_return:
+                    current = archive_fields(session.client, delta)
+                    published = archive_origin.publication(session.client, stop["registers"], opening, current)
+                    report["working_open"].update({"return": stop, "publication": published, "archive": current})
+                    record()
+                    continue
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_entry:
                     if target_request is not None:
                         raise ValueError("nested resource request while observing a target")
@@ -399,6 +440,15 @@ def main():
                     step["selected"] = request_provider.selected(session.client, stop["registers"], target_request)
                     step["selection_stop"] = stop
                     step["archive"] = archive_fields(session.client, delta)
+                    if observe_origin:
+                        if published is None:
+                            raise ValueError("target selection preceded admitted working publication")
+                        row = archive_origin.directory(session.client, stop["registers"], target_request, step["selected"], published)
+                        row["private_row_equal"] = private_row(run, row, report["copy_return"]["working_after"])
+                        step["directory"] = row
+                        record()
+                        if not row["private_row_equal"]:
+                            raise ValueError("selected directory row differs from its private-file row")
                     if target_request["number"] == 26 and not observe_payloads:
                         report["passed"] = True
                         break
@@ -569,6 +619,8 @@ def main():
                         if not int(stop["registers"]["ax"], 16) & 0xFF:
                             raise RuntimeError("only successful native copying admits reader preparation")
                         report["copy_archive_state"] = archive_fields(session.client, delta)
+                        if observe_origin:
+                            session.client.set_breakpoint(open_entry)
                         session.client.set_breakpoint(region_call, once=True)
                         copy_return = None
                         record()

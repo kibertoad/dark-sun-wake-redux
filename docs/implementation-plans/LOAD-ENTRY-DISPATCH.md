@@ -280,3 +280,33 @@ matches the copied private file, not DOS handle ownership, every directory
 entry, capacity/lifetime, all fallback paths or complete loading. Synthetic
 controls cover unequal bytes, exact size admission, short reads, segment
 wrapping and file-span bounds. Tooling and findings remain separate batches.
+
+## Open-to-provider and directory-row binding
+
+For Q-COMBAT-064, a fixed `saved-origin` stage extends saved-payloads.
+After successful native copying, observe resident 38FF:0066 for the fixed
+rooted working filename. FND-COMBAT-110/127 describe its wrapper and
+publication contract. Require return +0042 with the declared +003D call,
+option two, reserve 04D4 and output DS:144E. Match the opener frame at
+the +0096 I/O-open return and +02B1 success epilogue. Record its returned
+I/O handle and constructed record pointer/+28 handle; require publication
+as active/head and the working output handle at that stop. No arbitrary
+path, direct open or setup write is introduced.
+
+At both target selections require record/handle equality with that observed
+publication. Read only the selected type/entry pointers from the core locals,
+the provider's directory position/length and those bounded plain-table rows.
+Require SAVE type, plain flag, table and row extents within the provider's
+contiguous directory, aligned row index below count, and matching number,
+offset and length. Compare the selected twelve-byte row with its corresponding
+private-file span under unchanged whole-file identity. FMT-GFF-001/002/003
+and FND-CONFIG-038 describe the file/directory layout. Reject indexed or
+wrapping layouts; do not add an unbounded table or graph traversal.
+
+Acceptance: matched fixed-path open/publication, both provider/row bindings,
+and existing matched transfer/payload comparisons. Preserve diagnostics on
+failure. This is one observed open-to-request record/content chain, not proof
+against intervening close/reuse/aliasing, unique DOS handle ownership at all
+times, all graph/fallback paths or completed loading. Synthetic controls
+cover wrong open arguments/frames/results, record mismatch, indexed tables,
+out-of-directory/misaligned rows, wrong metadata and unequal private rows.
