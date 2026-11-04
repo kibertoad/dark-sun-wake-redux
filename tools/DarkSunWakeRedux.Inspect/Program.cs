@@ -5,6 +5,9 @@ using RefurbishedDinosaurs.Core.Assets;
 if (args.Length == 3 && args[0].Equals("rdff-key-census", StringComparison.OrdinalIgnoreCase))
     return RdffKeyInspection.Run(args[1], args[2]);
 
+if (args.Length == 3 && args[0].Equals("rdff-look-chain-census", StringComparison.OrdinalIgnoreCase))
+    return RdffKeyInspection.Run(args[1], args[2], chains: true);
+
 if (args.Length == 3 && args[0].Equals("rdff-look-census", StringComparison.OrdinalIgnoreCase))
     return RdffKeyInspection.Run(args[1], args[2], look: true);
 
@@ -855,6 +858,8 @@ if (args.Length != 1 || !Directory.Exists(args[0]))
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect gff <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-inventory <owned-original.gff>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect rdff-key-census <owned-original.gff> <controls.json>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect rdff-look-census <owned-original.gff> <controls.json>");
+    Console.Error.WriteLine("  DarkSunWakeRedux.Inspect rdff-look-chain-census <owned-original.gff> <controls.json>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect rdff-type-census <owned-original.gff> <controls.json>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect resource-pattern <owned-original.gff> <printable-ascii-pattern>");
     Console.Error.WriteLine("  DarkSunWakeRedux.Inspect object-pattern-overlap <owned-object.gff> <object-number> <tag; use _ for padded space> <printable-ascii-pattern>");

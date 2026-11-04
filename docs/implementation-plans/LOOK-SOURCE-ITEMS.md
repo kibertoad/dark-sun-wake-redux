@@ -24,3 +24,25 @@ batch and independently check the existing inline subset and other-size
 controls. Exit: committed bounded command and passing controls; the finding
 may exclude unchanged first-copy inputs but cannot exclude later name writes
 or prove global absence of the Look effect.
+
+## Full-chain extension for Q-PARTY-115
+
+Before implementation, extend the existing bounded Inspector with
+`rdff-look-chain-census ARCHIVE CONTROLS_JSON`. Reuse source identity,
+archive parsing and first-kind controls. FND-ACTOR-015 and FND-PARTY-259
+give ten-byte headers, type one first, later types two through four,
+backward chunk references, payload widths by kind and the end marker.
+Inspect every kind-one 23-byte payload before the first complete end
+header, selecting type 50 and reporting chunk index as well as resource.
+Do not parse bytes after the end marker. Report chunks, all item records,
+selected named/unnamed items and trailing-resource count deterministically.
+Require a nonempty type-50 domain. Bound each chain to 80 chunks; reject
+truncated headers/payloads, wrong widths/kinds/types and forward references.
+The existing first-only command retains its contract.
+
+Synthetic acceptance must distinguish first/later items, names 9998/9999,
+valid trailing bytes, excluded non-item kinds, malformed later chunks,
+missing end markers, forward references and excessive chains. Run the
+required tooling gate before committing. A separate research batch consumes
+the licensed-source report, compares independent known chunk counts and
+records remaining admission/mutation limits. No gameplay or pack changes.

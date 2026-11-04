@@ -116,6 +116,60 @@ public sealed class RdffKeyInspectionTests
             [new(10,data),five], Controls(1)));
     }
 
+    [Fact]
+    public void LookChainsIncludeLaterItemsAndStopBeforeTrailingDecoys()
+    {
+        var first = Record(10, 1, -10).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(30), 9998);
+        var later = first[..33].ToArray();
+        later[0] = 2;
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(30), 9999);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(12), 17);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(16), 19);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(26), 23);
+        byte[] chain = [..first[..33], ..later, ..first[33..], ..later];
+        var result = RdffKeyInspection.AnalyzeLookChains([new(10,chain), Record(20,5,-20)], Controls(1));
+        Assert.Equal(3, result.Chunks);
+        Assert.Equal(2, result.Items);
+        Assert.Equal(2, result.Type50);
+        Assert.Equal(1, result.NamedType50);
+        Assert.Equal(1, result.UnnamedType50);
+        Assert.Equal(1, result.TrailingResources);
+        Assert.Equal(new[] {0,1}, result.Rows.Select(row => row.ChunkIndex));
+        Assert.Equal((ushort)17, result.Rows[1].Quantity);
+        Assert.Equal((ushort)19, result.Rows[1].Value);
+        Assert.Equal((ushort)23, result.Rows[1].Word10);
+    }
+
+    [Theory]
+    [InlineData("forward")]
+    [InlineData("kind")]
+    [InlineData("width")]
+    [InlineData("type")]
+    [InlineData("payload")]
+    [InlineData("end")]
+    [InlineData("limit")]
+    public void LookChainsRejectMalformedLaterStateWithoutPartialSuccess(string fault)
+    {
+        var first = Record(10,1,-10).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(20), 50);
+        var later = first[..33].ToArray(); later[0] = 4;
+        switch (fault)
+        {
+            case "forward": later[1] = 1; break;
+            case "kind": later[2] = 9; break;
+            case "width": later[8] = 24; break;
+            case "type": later[0] = 1; break;
+        }
+        byte[] chain = [..first[..33], ..later, ..first[33..]];
+        if (fault == "payload") chain = chain[..65];
+        if (fault == "end") chain = chain[..75];
+        if (fault == "limit") chain = [..first[..33], ..Enumerable.Range(0,80).SelectMany(_ => later), ..first[33..]];
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLookChains(
+            [new(10,chain),Record(20,5,-20)], Controls(1)));
+    }
+
     [Theory]
     [InlineData("short-header")]
     [InlineData("short-data")]

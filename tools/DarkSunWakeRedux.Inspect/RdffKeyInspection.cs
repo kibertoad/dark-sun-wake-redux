@@ -35,6 +35,10 @@ internal static class RdffKeyInspection
         ushort Value, ushort Word10, ushort NameNumber, bool NameGate);
     internal sealed record LookCensus(int Resources, int FirstItems, int Type50,
         int NamedType50, int UnnamedType50, IReadOnlyList<LookRow> Rows);
+    internal sealed record ChainLookRow(uint ResourceNumber, int ChunkIndex, ushort NameNumber,
+        ushort Quantity, ushort Value, ushort Word10);
+    internal sealed record ChainLookCensus(int Resources, int Chunks, int Items, int Type50,
+        int NamedType50, int UnnamedType50, int TrailingResources, IReadOnlyList<ChainLookRow> Rows);
 
     internal static Controls ParseControls(ReadOnlySpan<byte> bytes)
     {
@@ -151,7 +155,55 @@ internal static class RdffKeyInspection
             named, rows.Count - named, rows);
     }
 
-    internal static int Run(string path, string controlsPath, bool look = false)
+    internal static ChainLookCensus AnalyzeLookChains(IEnumerable<Resource> input, Controls controls)
+    {
+        var resources = input.Take(ResourceLimit + 1).OrderBy(value => value.Number).ToArray();
+        var validated = Analyze(resources, controls);
+        int chunks = 0, items = 0, trailing = 0;
+        var rows = new List<ChainLookRow>();
+        foreach (var resource in resources)
+        {
+            var data = resource.Data.Span;
+            int offset = 0, index = 0;
+            while (true)
+            {
+                if (data.Length - offset < 10)
+                    throw new InvalidDataException($"RDFF/{resource.Number}: incomplete chain header.");
+                var header = data.Slice(offset, 10);
+                if (header[0] == 0xFF)
+                {
+                    if (data.Length - offset > 10) trailing++;
+                    break;
+                }
+                if (index >= 80 || (index == 0 ? header[0] != 1 : header[0] is < 2 or > 4))
+                    throw new InvalidDataException($"RDFF/{resource.Number}: unsupported chain type or chunk limit.");
+                if (index > 0 && header[1] >= index)
+                    throw new InvalidDataException($"RDFF/{resource.Number}: chunk reference is not backward.");
+                int width = header[2] switch { 1 => 23, 2 => 49, 3 => 66, 4 => 15, 5 => 23, _ => -1 };
+                int length = BinaryPrimitives.ReadUInt16LittleEndian(header[8..10]);
+                if (width < 0 || length != width || length > data.Length - offset - 10)
+                    throw new InvalidDataException($"RDFF/{resource.Number}: unsupported kind or invalid chain payload.");
+                var record = data.Slice(offset + 10, length);
+                if (header[2] == 1)
+                {
+                    items++;
+                    if (BinaryPrimitives.ReadUInt16LittleEndian(record[10..12]) == 50)
+                        rows.Add(new(resource.Number, index,
+                            BinaryPrimitives.ReadUInt16LittleEndian(record[20..22]),
+                            BinaryPrimitives.ReadUInt16LittleEndian(record[2..4]),
+                            BinaryPrimitives.ReadUInt16LittleEndian(record[6..8]),
+                            BinaryPrimitives.ReadUInt16LittleEndian(record[16..18])));
+                }
+                chunks++; index++; offset += 10 + length;
+            }
+        }
+        if (rows.Count == 0)
+            throw new InvalidDataException("No type-50 chain-item positive domain; no negative result reported.");
+        int named = rows.Count(value => value.NameNumber < 9999);
+        return new(validated.Resources, chunks, items, rows.Count, named, rows.Count - named, trailing, rows);
+    }
+
+    internal static int Run(string path, string controlsPath, bool look = false, bool chains = false)
     {
         try
         {
@@ -170,13 +222,16 @@ internal static class RdffKeyInspection
                 throw new InvalidDataException("RDFF resource limit exceeded.");
             var resources = entries.Select(value =>
                 new Resource(value.Number, archive.GetResource(value.Tag, value.Number)));
-            object census = look ? AnalyzeLook(resources, controls) : Analyze(resources, controls);
+            object census = chains ? AnalyzeLookChains(resources, controls)
+                : look ? AnalyzeLook(resources, controls) : Analyze(resources, controls);
             Console.WriteLine(JsonSerializer.Serialize(new
             {
                 schema = 1, sourceSha256,
                 controlsSha256 = Convert.ToHexStringLower(SHA256.HashData(controlsBytes)),
                 controls, census,
-                limits = look
+                limits = chains
+                    ? "All kind-one payloads before the first complete end header; bounded framing only. Mutation, provider and live Look admission remain unexamined."
+                    : look
                     ? "First kind-one records only; fixed type 50 and raw classifier input words. Later chunks/items, mutation, provider and live Look admission remain unexamined."
                     : "First chunks only; kind-five next end header and trailing extent. No native admission, semantic identity or full-chain claim."
             }, JsonOptions));
