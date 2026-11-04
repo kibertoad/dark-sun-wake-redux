@@ -154,6 +154,12 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q064-reader-trap-20261104/.
 Its narrowly watched return field is removed before interrupt-frame reuse.
 Only the named archive-state snapshots are admitted: no SAVE request,
 payload restoration, provider identity or completed loading was observed.
+The fixed saved-providers stage in FND-COMBAT-143 extends that route to
+actual SAVE/24 and SAVE/26 pre-preparation provider/length selection, with
+a matched successful SAVE/24 core result. SAVE/26 transfer, payload/file
+identity, all fallback paths and completed loading remain unverified.
+Output is GAME_DIR/captures/rust-dos-load-entry/v181-q064-providers-scoped-20261104/;
+the earlier v181-q064-providers-20261104 diagnostic remains under that parent.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

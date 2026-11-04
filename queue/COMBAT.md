@@ -572,13 +572,19 @@ Next ID: Q-COMBAT-067
   through the locally read selection/open/close/growth transitions. Admit the
   pre-read state beyond FND-COMBAT-142's admitted mode/reuse/handle tuple,
   DS:145A versus working-handle resolver identity,
-  current graph/mode and preservation to each selector-zero SAVE/24 and
-  SAVE/26 request, rather than rereading those helpers. Identify the
+  current graph/mode and preservation beyond FND-COMBAT-143's one observed
+  selector-zero SAVE/24 and SAVE/26 selection pair, rather than rereading
+  those helpers. Identify the
   supplying record, directory entry, payload identity and length on complete,
   missing-resource and fallback paths. Reuse Q-COMBAT-054 for shared archive
   graph/state producers and Q-COMBAT-063 for copy admission, rather than
   creating another census of those mechanisms. Exit: a source/length contract
   for each request path; live selection alone is insufficient under fallback.
+  Tried: FND-COMBAT-143 observes both native-route selected providers equal
+  to active/head with working handle 14, lengths 1920 and two, and SAVE/24's
+  matched successful core result/count. That pair's selection tuples are
+  removed from unread work. File/payload and directory identity, intervening
+  lifetime, SAVE/26 completion and missing/fallback paths remain open.
   Tried: FND-COMBAT-142 admits selector-zero reader entry after native copying,
   with current mode four, working handle matching active/head handle fields,
   zero region handle and the observed reuse/counter state. That entry tuple
