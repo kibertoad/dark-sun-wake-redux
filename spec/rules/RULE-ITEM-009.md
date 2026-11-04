@@ -144,6 +144,9 @@ None known.
   helper also select other functions when their globals are preserved; other
   entries and callee/alias effects, nested/gap/state alternatives remain open
   (FND-ITEM-044, FND-ITEM-045, FND-ITEM-046).
+  The printed nested selector gap is removed by FND-ITEM-047: five nested
+  function-49 requests all select field 25; other entries, decoder gaps and
+  runtime changes/aliases remain separate from this source exclusion.
 
 - Canonical RDFF source positions are -1 and zero, with no six or nine.
   Word +10 reaches 327 and 29 payloads exceed a byte. Later producers and

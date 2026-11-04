@@ -107,6 +107,11 @@ Next ID: Q-ITEM-014
   10/11/12/13 rather than 49, and a positive retained count is consumed.
   Other incoming entries and intervening global/function/dispatch effects
   remain; no unknown field-value trace is needed for those preserved routes.
+  Tried: FND-ITEM-047 removes the printed nested-selector gap: all 374
+  nested opcode-22 requests have literal functions; five select function 49,
+  all field 25. Neither position field ten nor word field eight is selected.
+  Remaining work is other entries, decoder gaps, changed streams/dispatch,
+  independent stores, aliases and actual selection/storage/lifetime admission.
 
 - Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
   item helper's local quantity operations? Settles it: complete caller
