@@ -336,3 +336,35 @@ Use a 1024-observation bound for this extended reconstruction route.
 Synthetic controls cover allowed return encodings, wrong header/offset/frames,
 trap watch removal, matched versus nested IRET and caller opcode rejection.
 Tooling is committed after its affected gate; native findings remain separate.
+
+## Actual map-child request and flag comparison
+
+For Q-COMBAT-066, `saved-map-request` extends saved-reader-return using
+FND-COMBAT-147 and FMT-REGION-003. After both admitted SAVE transfers,
+observe only the fixed region-50 opener and GMAP/50 request. Admit the rooted
+C:\RGN032.GFF open through the existing wrapper with option 0A, reserve 04D4
+and output DS:145A; retain matched I/O and record-publication checks. Record
+its counter state. GMAP must use 04AB's complete-transfer frame and the map
+helper's declared +1D30 caller, with in/out slot DS:0538. Compare its selected
+plain row against the corresponding row in the fixed private source file
+whose record/handle tuple matches an observed publication. Admit only the
+working archive or fixed region archive as candidates, never arbitrary paths.
+
+At the matched successful core return, compare the 12544 destination bytes
+with that file span under unchanged bounded whole-file identity. Read only
+the named map and two bitmap pointers, with two 1568-byte planes. Bound each
+memory request to 261 bytes, prohibit segment/real-mode wrapping, and record
+physical overlap among map, planes and the two effect spans. Compute the
+expected map from the transferred bytes and the two cached planes using
+FND-COMBAT-147's column-order bits and row-order destination bytes. Keep
+all bytes in local process memory; report only identities, digests, overlap
+and comparison results. A nonstandard resource length stops the probe.
+
+At the existing matched reader return, compare the same map span against
+that prediction and record its current pointer binding. A mismatch or binding
+change is evidence, not discarded output. Retain the existing effect-span
+checks and RNG guards. This observes one map-child transfer and resulting
+endpoint; it does not establish continuous lifetime, every child effect,
+all source/failure cases or completed loading. Synthetic controls cover
+GMAP frame/caller/slot rejection, region-open/publication contracts, fixed
+file names, map/plane bounds, bit ordering and physical-overlap arithmetic.

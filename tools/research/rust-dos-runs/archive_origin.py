@@ -12,22 +12,22 @@ def pointer(client, segment, offset):
     return seg, off
 
 
-def opening(client, registers, delta, read_path):
+def opening(client, registers, delta, read_path, region=False):
     ss, sp = (int(registers[key], 16) for key in ("ss", "sp"))
     ret, caller, path, reserve, options, output = struct.unpack(
         "<HHIIHI", checked_read(client, ss, sp, 18))
     name = read_path(client, path >> 16, path & 0xFFFF, 82)
-    if bytes.fromhex(name["bytes_hex"]).lower() != b"c:\\darkrun.gff":
+    if bytes.fromhex(name["bytes_hex"]).lower() != (b"c:\\rgn032.gff" if region else b"c:\\darkrun.gff"):
         return None
-    if (ret != 0x42 or reserve != 0x4D4 or options != 2 or
-            output != ((0x57E0 + delta) << 16 | 0x144E) or
+    if (ret != 0x42 or reserve != 0x4D4 or options != (0xA if region else 2) or
+            output != ((0x57E0 + delta) << 16 | (0x145A if region else 0x144E)) or
             checked_read(client, caller, 0x3D, 5) != struct.pack("<BHH", 0x9A, 0x66, 0x38FF + delta)):
         raise ValueError("working open differs from its declared wrapper contract")
     return {"ss": ss, "bp": sp - 2, "path": name, "output": output,
             "reserve": reserve, "options": options}
 
 
-def publication(client, registers, original, archive):
+def publication(client, registers, original, archive, region=False):
     frame(registers, original)
     if int(registers["ax"], 16) != 0:
         raise ValueError("working archive open did not succeed")
@@ -35,13 +35,13 @@ def publication(client, registers, original, archive):
     record = f"{seg:04X}:{off:04X}"
     io = int.from_bytes(checked_read(client, seg, off + 4, 2), "little")
     handle = int.from_bytes(checked_read(client, seg, off + 0x28, 4), "little")
-    if (io != original["io_handle"] or handle != archive["working_handle"] or
+    if (io != original["io_handle"] or handle != archive["region_handle" if region else "working_handle"] or
             any(archive[key]["pointer"] != record or archive[key]["handle_field"] != handle for key in ("active", "head"))):
         raise ValueError("working record publication differs from its observed open")
     return {"provider": record, "provider_handle": handle, "io_handle": io}
 
 
-def directory(client, registers, original, selection, published):
+def directory(client, registers, original, selection, published, expected_tag=b"SAVE"):
     frame(registers, original)
     if any(selection[key] != published[key] for key in ("provider", "provider_handle", "io_handle")):
         raise ValueError("selected provider differs from the observed working publication")
@@ -57,7 +57,7 @@ def directory(client, registers, original, selection, published):
     if not base <= type_at <= end - 8:
         raise ValueError("selected type lies outside the provider directory")
     tag, count = struct.unpack("<4sI", checked_read(client, type_seg, type_off, 8))
-    if tag != b"SAVE" or count & 0x80000000 or type_at + 8 + count * 12 > end:
+    if expected_tag not in (b"SAVE", b"GMAP") or tag != expected_tag or count & 0x80000000 or type_at + 8 + count * 12 > end:
         raise ValueError("selected type is not a bounded plain SAVE table")
     displacement = row_at - (type_at + 8)
     if displacement < 0 or displacement % 12 or displacement // 12 >= count:

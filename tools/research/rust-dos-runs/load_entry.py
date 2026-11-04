@@ -21,6 +21,7 @@ from startup_window import wait_for_stop, checkpoint_summary
 import request_provider
 import archive_origin
 from overlay_returns import region_target, region_iret, ReaderReturn
+import map_restore
 
 
 def fields(client, delta):
@@ -184,7 +185,7 @@ def copy_arguments(frame):
 
 
 def named_file(run, name):
-    if name not in ("darkrun.GFF", "SAVE02.SAV"):
+    if name not in ("darkrun.GFF", "SAVE02.SAV", "RGN032.GFF"):
         raise ValueError("unsupported private file name")
     drive = run / "drive-c"
     path = drive / name
@@ -210,27 +211,27 @@ def working_file(run):
     return named_file(run, "darkrun.GFF")
 
 
-def private_span(run, selection, identity):
+def private_span(run, selection, identity, name="darkrun.GFF"):
     offset, count = selection["offset"], selection["count"]
-    if (not identity.get("exists") or working_file(run) != identity or count not in (2, 1920)
+    if (not identity.get("exists") or named_file(run,name) != identity or count not in (2, 1920,12544)
             or offset < 0 or offset + count > identity["length"]):
         raise ValueError("private payload span or copied file identity differs")
-    with (run / "drive-c" / "darkrun.GFF").open("rb") as stream:
+    with (run / "drive-c" / name).open("rb") as stream:
         stream.seek(offset)
         data = stream.read(count)
-    if len(data) != count or working_file(run) != identity:
+    if len(data) != count or named_file(run,name) != identity:
         raise ValueError("private payload span changed or was short")
     return data
 
 
-def private_row(run, row, identity):
+def private_row(run, row, identity, name="darkrun.GFF"):
     offset = row["file_row_offset"]
-    if working_file(run) != identity or offset < 0 or offset + 12 > identity["length"]:
+    if not identity.get("exists") or named_file(run,name) != identity or offset < 0 or offset + 12 > identity["length"]:
         raise ValueError("private directory row lies outside the unchanged working file")
-    with (run / "drive-c" / "darkrun.GFF").open("rb") as stream:
+    with (run / "drive-c" / name).open("rb") as stream:
         stream.seek(offset)
         data = stream.read(12)
-    if len(data) != 12 or working_file(run) != identity:
+    if len(data) != 12 or named_file(run,name) != identity:
         raise ValueError("private directory row was short or file identity changed")
     return struct.unpack("<III", data) == (row["number"], row["offset"], row["length"])
 
@@ -279,15 +280,16 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return"))):
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request"))):
         raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return]")
     navigation = len(sys.argv) == 4
-    observe_reader_return = navigation and sys.argv[3] == "saved-reader-return"
-    observe_origin = navigation and sys.argv[3] in ("saved-origin", "saved-reader-return")
-    observe_payloads = navigation and sys.argv[3] in ("saved-payloads", "saved-origin", "saved-reader-return")
-    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
-    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
-    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
+    observe_map = navigation and sys.argv[3] == "saved-map-request"
+    observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
+    observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
+    observe_payloads = observe_origin or navigation and sys.argv[3] == "saved-payloads"
+    observe_providers = observe_payloads or navigation and sys.argv[3] == "saved-providers"
+    saved_source = observe_providers or navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry")
+    observe_reader = observe_providers or navigation and sys.argv[3] == "saved-reader-entry"
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -368,6 +370,8 @@ def main():
             opening = published = None
             reader_return = None
             reference_payloads = {}
+            open_report = "working_open"
+            map_prediction = None
             report["region_relocations"] = []
             previous = None
             budget = 1024 if observe_load_return or observe_reader_return else 512
@@ -384,6 +388,14 @@ def main():
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
                     if outcome == "returned":
+                        if observe_map:
+                            if map_prediction is None:
+                                raise ValueError("reader returned without an admitted GMAP transfer")
+                            current_map = map_restore.state(session.client,delta)
+                            map_step = report["map_request"]
+                            map_step["reader_return_comparison"] = map_restore.comparison(map_restore.read(session.client,map_step["selected"]["destination"],12544),map_prediction)
+                            map_step["reader_return_state"] = current_map
+                            map_step["same_binding"] = current_map["map"] == map_step["selected"]["destination"]
                         if set(reference_payloads) != {24,26}:
                             raise ValueError("reader returned without both admitted target transfers")
                         samples = []
@@ -403,9 +415,9 @@ def main():
                         record()
                         continue
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_entry:
-                    opening = archive_origin.opening(session.client, stop["registers"], delta, terminated_path)
+                    opening = archive_origin.opening(session.client, stop["registers"], delta, terminated_path,region=open_report=="region_open")
                     if opening is not None:
-                        report["working_open"] = {"entry": stop, "arguments": opening}
+                        report[open_report] = {"entry": stop, "arguments": opening}
                         session.client.remove_breakpoints(open_entry)
                         session.client.set_breakpoint(open_io, once=True)
                         session.client.set_breakpoint(open_return, once=True)
@@ -414,21 +426,31 @@ def main():
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_io:
                     request_provider.frame(stop["registers"], opening)
                     opening["io_handle"] = int(stop["registers"]["ax"], 16)
-                    report["working_open"]["io_return"] = stop
+                    report[open_report]["io_return"] = stop
                     if opening["io_handle"] == 0xFFFF:
                         raise ValueError("fixed working-file I/O open failed")
                     record()
                     continue
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_return:
                     current = archive_fields(session.client, delta)
-                    published = archive_origin.publication(session.client, stop["registers"], opening, current)
-                    report["working_open"].update({"return": stop, "publication": published, "archive": current})
+                    published = archive_origin.publication(session.client, stop["registers"], opening, current,region=open_report=="region_open")
+                    report[open_report].update({"return": stop, "publication": published, "archive": current})
                     record()
                     continue
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_entry:
                     if target_request is not None:
                         raise ValueError("nested resource request while observing a target")
                     target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta)
+                    if target_request is None and observe_map and open_report=="region_open":
+                        target_request = map_restore.request(session.client,stop["registers"],delta)
+                        if target_request is not None:
+                            if "map_request" in report:
+                                raise ValueError("duplicate GMAP request")
+                            report["map_request"] = {"request":target_request,"entry":stop,"state":map_restore.state(session.client,delta)}
+                            session.client.set_breakpoint(provider_selected,once=True)
+                            session.client.set_breakpoint(provider_return,once=True)
+                            record()
+                            continue
                     if target_request is not None:
                         expected_number = 24 if not report["resource_requests"] else 26
                         if target_request["number"] != expected_number:
@@ -436,6 +458,47 @@ def main():
                         report["resource_requests"].append({"request": target_request, "entry": stop})
                         session.client.set_breakpoint(provider_selected, once=True)
                         session.client.set_breakpoint(provider_return, once=True)
+                    record()
+                    continue
+                if target_request is not None and target_request.get("kind")=="map" and stop["reason"]=="breakpoint" and stop["cs_ip"]==provider_selected:
+                    step = report["map_request"]
+                    selection = request_provider.selected(session.client,stop["registers"],target_request)
+                    step.update({"selected":selection,"selection_stop":stop,"archive":archive_fields(session.client,delta)})
+                    source = next(((key,name) for key,name in (("region_open","RGN032.GFF"),("working_open","darkrun.GFF"))
+                                   if key in report and all(selection[k]==report[key]["publication"][k] for k in ("provider","provider_handle","io_handle"))),None)
+                    if source is None or selection["count"]!=12544:
+                        raise ValueError("GMAP source or length is outside the admitted candidates")
+                    key,name = source
+                    row = archive_origin.directory(session.client,stop["registers"],target_request,selection,report[key]["publication"],expected_tag=b"GMAP")
+                    identity = named_file(run,name)
+                    row["private_row_equal"] = private_row(run,row,identity,name)
+                    step.update({"directory":row,"source_file":name,"source_identity":identity})
+                    if not row["private_row_equal"]:
+                        raise ValueError("GMAP directory row differs from its private source")
+                    record()
+                    continue
+                if target_request is not None and target_request.get("kind")=="map" and stop["reason"]=="breakpoint" and stop["cs_ip"]==provider_return:
+                    request_provider.frame(stop["registers"],target_request)
+                    step = report["map_request"]
+                    step["return"] = stop
+                    step["reported_count"] = int.from_bytes(checked_read(session.client,0x57E0+delta,0x9D91,4),"little")
+                    if int(stop["registers"]["ax"],16) or step["reported_count"]!=12544:
+                        raise ValueError("GMAP transfer did not complete its admitted count")
+                    expected = private_span(run,step["selected"],step["source_identity"],step["source_file"])
+                    actual = map_restore.read(session.client,step["selected"]["destination"],12544)
+                    step["payload"] = map_restore.comparison(actual,expected)
+                    current = map_restore.state(session.client,delta)
+                    step["transfer_state"] = current
+                    if not step["payload"]["equal"] or current["map"]!=step["selected"]["destination"]:
+                        raise ValueError("GMAP payload or destination binding differs")
+                    first = map_restore.read(session.client,current["first_plane"],1568)
+                    second = map_restore.read(session.client,current["second_plane"],1568)
+                    map_prediction = map_restore.expected_flags(actual,first,second)
+                    spans = {"map":(current["map"],12544),"first_plane":(current["first_plane"],1568),"second_plane":(current["second_plane"],1568)}
+                    spans.update({f"SAVE/{s['request']['number']}":(s["selected"]["destination"],s["selected"]["count"]) for s in report["resource_requests"]})
+                    step["overlaps"] = map_restore.overlaps(spans)
+                    session.client.remove_breakpoints(provider_entry)
+                    target_request = None
                     record()
                     continue
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_selected:
@@ -476,7 +539,11 @@ def main():
                             if not observe_reader_return:
                                 report["passed"] = True
                                 break
-                            session.client.remove_breakpoints(provider_entry)
+                            if observe_map:
+                                open_report = "region_open"
+                                session.client.set_breakpoint(open_entry)
+                            else:
+                                session.client.remove_breakpoints(provider_entry)
                     target_request = None
                     record()
                     continue

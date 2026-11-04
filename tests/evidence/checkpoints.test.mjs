@@ -19,6 +19,7 @@ from load_entry import private_span
 from load_entry import private_row
 import archive_origin as origin
 from overlay_returns import ReaderReturn
+import map_restore
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -335,11 +336,12 @@ p.offset=0x80000000; rejects(lambda: provider.selected(p,regs,entry)); p.offset=
 p.pointer=0x2000FFE0; rejects(lambda: provider.selected(p,regs,entry))
 class OriginMemory:
     options=2; reserve=0x4D4; returned=0x42; io=11; count=30; length=512; row_number=24
+    output=0x57E0144E; tag=b'SAVE'
     row_off=0x177
     def read_memory(self,address,size):
         import struct
         if address=='1000:0100' and size==18:
-            return NS(data=struct.pack('<HHIIHI',self.returned,0x2000,0x30000020,self.reserve,self.options,0x57E0144E))
+            return NS(data=struct.pack('<HHIIHI',self.returned,0x2000,0x30000020,self.reserve,self.options,self.output))
         if address=='2000:003D': return NS(data=struct.pack('<BHH',0x9A,0x66,0x38FF))
         if address=='1000:00F4': return NS(data=struct.pack('<HH',0x20,0x2000))
         if address=='2000:0024': return NS(data=self.io.to_bytes(2,'little'))
@@ -347,7 +349,7 @@ class OriginMemory:
         if address=='2000:003C': return NS(data=struct.pack('<II',1000,self.length))
         if address=='1000:00F8': return NS(data=struct.pack('<HH',0x5B,0x2000))
         if address=='1000:00FC': return NS(data=struct.pack('<HH',self.row_off,0x2000))
-        if address=='2000:005B': return NS(data=struct.pack('<4sI',b'SAVE',self.count))
+        if address=='2000:005B': return NS(data=struct.pack('<4sI',self.tag,self.count))
         if address=='2000:0177': return NS(data=struct.pack('<III',self.row_number,40,12))
         raise AssertionError(address)
 def rooted(client,seg,off,bound):
@@ -370,7 +372,42 @@ rejects(lambda: origin.directory(o,regs,original,{**selection,'io_handle':12},pu
 o.count=0x8000001E; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.count=30
 o.row_off=0x178; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_off=0x177
 o.row_number=26; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_number=24
+o.options=10; o.output=0x57E0145A
+region_path=lambda *args:{'bytes_hex':b'C:\\RGN032.GFF'.hex()}
+assert origin.opening(o,open_regs,0,region_path,region=True)['output']==o.output
+rejects(lambda: origin.opening(o,open_regs,0,rooted))
+assert origin.publication(o,regs,original,{**archive,'region_handle':14,'working_handle':5},region=True)==published
+rejects(lambda: origin.publication(o,regs,original,{**archive,'region_handle':5},region=True))
+o.tag=b'GMAP'; assert origin.directory(o,regs,original,selection,published,expected_tag=b'GMAP')['number']==24
+rejects(lambda: origin.directory(o,regs,original,selection,published)); o.tag=b'SAVE'
 o.length=20; rejects(lambda: origin.directory(o,regs,original,selection,published))
+base=bytes([0x3F])*12544
+first=bytearray(1568); second=bytearray(1568)
+first[98//8] |= 1<<(98%8)
+second[97//8] |= 1<<(97%8)
+result=map_restore.expected_flags(base,first,second)
+assert result[1]==0x7F and result[128*97]==0xBF and result[128]==0x3F
+assert map_restore.comparison(result,result)['equal']
+assert map_restore.comparison(result,base)['different_bytes']==2
+rejects(lambda: map_restore.expected_flags(base,bytes(1567),second))
+assert map_restore.overlaps({'a':('2000:0020',2),'b':('2002:0001',2),'c':('2000:0022',2)})==[['a','b'],['b','c']]
+rejects(lambda: map_restore.bounds('2000:FF00',12544))
+rejects(lambda: map_restore.bounds('FFFF:0000',1568))
+rejects(lambda: map_restore.bounds('0000:0000',2))
+class MapRequestMemory:
+    slot=0x57E00538; caller=0x1D30; count=0xFFFFFFFF
+    def read_memory(self,address,size):
+        import struct
+        if address=='1000:0100': return NS(data=struct.pack('<HHIIIII',0x4D0,0x38FF,int.from_bytes(b'GMAP','little'),50,0,self.count,self.slot))
+        if address=='1000:011A': return NS(data=struct.pack('<HH',self.caller,0x2000))
+        if address=='56EF:0010': return NS(data=(0x2000).to_bytes(2,'little'))
+        if address=='2000:1D2B': return NS(data=struct.pack('<BHH',0x9A,0x4AB,0x38FF))
+        raise AssertionError(address)
+mr=MapRequestMemory(); regs={'ss':'1000','sp':'0100'}
+assert map_restore.request(mr,regs,0)['kind']=='map'
+mr.slot=0; rejects(lambda: map_restore.request(mr,regs,0)); mr.slot=0x57E00538
+mr.caller=0; rejects(lambda: map_restore.request(mr,regs,0)); mr.caller=0x1D30
+mr.count=12544; rejects(lambda: map_restore.request(mr,regs,0))
 class ReaderMemory:
     offset=0xF2F; segment=0x2000; saved=0xF2F; loaded=0x2000; code=bytes([0x59,0x88,0x46,0xFE])
     def __init__(self): self.operations=[]
@@ -422,6 +459,9 @@ rejects(lambda: provider.payload(memory,selection,25,b'x'*1920))
 rejects(lambda: provider.payload(memory,{**selection,'destination':'2000:FF00'},24,b'x'*1920))
 rejects(lambda: provider.payload(memory,{**selection,'destination':'FFFF:0000'},24,b'x'*1920))
 memory.short=True; rejects(lambda: provider.payload(memory,selection,24,b'x'*1920))
+rejects(lambda: map_restore.read(memory,'2000:0020',12544))
+memory.short=False; assert map_restore.read(memory,'2000:0020',12544)==b'x'*12544
+rejects(lambda: named_file(Path('.'),'RGN033.GFF'))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
