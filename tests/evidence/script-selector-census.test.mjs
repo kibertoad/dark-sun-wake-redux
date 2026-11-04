@@ -18,13 +18,13 @@ const source=[
   'GPL/1 0037: 5E var9[38], var9[36], 0, 0, 0',
 ].join('\n')+'\n';
 const baseline={total:6,sentinel:2,otherLiteral:1,nonliteral:3,sentinelLiteralSecond:1,sentinelNonliteralSecond:1,errors:0};
-function run(t,input=source,configChanges={}) {
+function run(t,input=source,configChanges={},selectedTool=tool,exactConfig=null) {
   const dir=mkdtempSync(join(tmpdir(),'dark-sun-selector-census-'));
   t.after(()=>{assert.ok(resolve(dir).startsWith(resolve(tmpdir())+sep));rmSync(dir,{recursive:true,force:true});});
   const bytes=Buffer.from(input), listing=join(dir,'synthetic.txt'), configPath=join(dir,'config.json');
   writeFileSync(listing,bytes);
-  writeFileSync(configPath,JSON.stringify({listingSha256:createHash('sha256').update(bytes).digest('hex'),controls:baseline,...configChanges}));
-  const result=spawnSync(enginePython(),['-I',tool,listing,configPath],{encoding:'utf8',maxBuffer:1024*1024,timeout:30000});
+  writeFileSync(configPath,JSON.stringify(exactConfig??{listingSha256:createHash('sha256').update(bytes).digest('hex'),controls:baseline,...configChanges}));
+  const result=spawnSync(enginePython(),['-I',selectedTool,listing,configPath],{encoding:'utf8',maxBuffer:1024*1024,timeout:30000});
   if(result.error)throw result.error;
   return {...result,report:result.status===0?JSON.parse(result.stdout):null};
 }
@@ -142,4 +142,55 @@ test('census input and output bounds reject oversized data without a partial rep
   assert.equal(output.status,1);
   assert.match(output.stderr,/report exceeds output limit/);
   assert.equal(output.stdout,'');
+});
+
+const nestedTool=fileURLToPath(new URL('../../tools/research/exec-census/script_nested_census.py',import.meta.url));
+const nestedSource='GPL/1 0000: 5E 32766, 0, 0, 0, 0\n'+
+  'GPL/1 000B: 18 ( {000D: 22 49, 2, 10, -1} )\n'+
+  'GPL/1 0020: 18 {0022: 22 48, 2, 0, {002B: 22 49, 3, 8, 65536}}\n';
+function nested(t,input=nestedSource,changes={}) {
+  const config={index:{listingSha256:createHash('sha256').update(input).digest('hex'),
+    controls:{total:1,sentinel:1,otherLiteral:0,nonliteral:0,sentinelLiteralSecond:1,sentinelNonliteralSecond:0,errors:0}},
+    opcode:34,arity:4,expectedNodes:3,expectedSelected:3,
+    positiveControls:[{resource:'GPL/1',offset:13,opcode:34}],...changes};
+  return run(t,input,{},nestedTool,config);
+}
+test('nested census separates recursive identities and preserves signed literal narrowing',t=>{
+  const result=nested(t); assert.equal(result.status,0,result.stderr);
+  const report=result.report;
+  assert.equal(report.nodes,3); assert.equal(report.selected,3);
+  assert.deepEqual(report.rows.map(r=>[r.offset,r.parent,r.depth]),[[13,11,1],[34,32,1],[43,34,2]]);
+  assert.deepEqual(report.rows.map(r=>r.operands[3].lowWord),[65535,null,0]);
+  assert.deepEqual(report.rows.map(r=>r.operands[3].literal),[-1,null,65536]);
+  assert.equal(report.rows[2].operands[2].literal,8);
+  for(const key of ['listingSha256','toolSha256','baseToolSha256','parserSha256','configSha256'])assert.match(report[key],/^[a-f0-9]{64}$/);
+  const absent=nested(t,nestedSource,{opcode:92,expectedSelected:0});
+  assert.equal(absent.status,0,absent.stderr); assert.deepEqual(absent.report.rows,[]);
+});
+test('nested census rejects malformed ownership, syntax and missed independent controls',t=>{
+  for(const input of [nestedSource.replace('000D:','000B:'),nestedSource.replace('000D:','0020:'),
+    nestedSource.replace('002B:','0022:'),nestedSource.replace('002B:','001F:'),
+    nestedSource.replace('000D: 22','000D: FF'),nestedSource.replace('000D:','oops:'),
+    nestedSource.replace('10, -1','10'),nestedSource.replace('10, -1','10, 2147483648'),
+    nestedSource.replace('} )',' )'),nestedSource+'GPL/1 0030: 18 }\n']) {
+    const result=nested(t,input); assert.equal(result.status,1,input); assert.equal(result.stdout,'');
+  }
+  for(const changes of [{expectedNodes:4},{expectedSelected:2},{expectedNodes:true},{arity:3},
+    {positiveControls:[]},{positiveControls:[{resource:'GPL/1',offset:14,opcode:34}]},
+    {index:{listingSha256:'0'.repeat(64),controls:baseline}}]) {
+    const result=nested(t,nestedSource,changes); assert.equal(result.status,1); assert.equal(result.stdout,'');
+  }
+});
+test('nested census admits depth 32 leaves and rejects depth 33',t=>{
+  function input(depth) {
+    let expression='1';
+    for(let i=depth;i>=1;i--)expression=`{${(i+1).toString(16).toUpperCase().padStart(4,'0')}: 22 49, 2, 8, ${expression}}`;
+    return 'GPL/1 0000: 5E 32766, 0, 0, 0, 0\nGPL/1 0001: 18 '+expression+'\n';
+  }
+  for(const depth of [32,33]) {
+    const result=nested(t,input(depth),{expectedNodes:depth,expectedSelected:depth,
+      positiveControls:[{resource:'GPL/1',offset:2,opcode:34}]});
+    assert.equal(result.status,depth===32?0:1,result.stderr);
+    if(depth===33)assert.equal(result.stdout,'');
+  }
 });
