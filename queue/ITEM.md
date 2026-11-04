@@ -185,6 +185,13 @@ Next ID: Q-ITEM-014
   These explicit stores are no longer unread code-alias candidates.
   Whole-handler effects, other aliases and argument/pointer lifetime remain;
   a word output must not be treated as a byte write.
+  Tried: FND-ITEM-035 settles the handler-local bitmap destination and
+  its ordering relative to the saved dispatch word and local result byte.
+  Its known builder footprint is no longer unread. Remaining admission
+  needs the preexisting slot rows' codes/count/owners/indices and preserved
+  DS/frame storage, not merely the current request's signed-code gate.
+  Other handler paths, child writes and aliases remain; no native overlap
+  has been observed.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
