@@ -1,9 +1,9 @@
 ---
 id: FND-SOUND-018
 title: The nineteen disc ADV files share a Copy header and bounded function directories containing 598 entries
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SOUND-019]
 recorded_by: codex
 reproduced_by: []
 method: static
