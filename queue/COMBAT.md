@@ -478,6 +478,11 @@ Next ID: Q-COMBAT-063
   results. The copy-loop/result-combination uncertainty is removed; path
   normalization and identity, source length/position, actual external
   outcomes and the subsequent archive/directory lifetime remain.
+  Tried: FND-COMBAT-114 resolves the copy's local pathname pipeline,
+  including drive/directory selection, dot components, character gates
+  and eight-plus-three emission. Actual input/table/buffer identity and
+  external directory/file outcomes remain; the local transformation
+  itself is removed from the unread path-helper obligation.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
