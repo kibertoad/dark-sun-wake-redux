@@ -94,3 +94,19 @@ spec records lengths/identity facts in its own words. Capture named fields
 after preparation; no file-copy success or filesystem identity is inferred.
 Controls cover early termination, unterminated/null/wrapping paths and
 argument layout; no arbitrary path reads or additional inputs are admitted.
+
+## Copy return and rejection
+
+The fixed `copy-return` stage may continue the declared copy invocation to
+its verified wrapper return, with SS/SP identity checked. Observe its source
+and destination normalization returns at 4544:004F/0067 and direct open-call
+sites at 0078/008C. Require the original copy BP/SS at internal stops.
+Capture AX and bounded normalized output; a missing destination-normalization
+stop is not itself proof of no filesystem effects in other helpers.
+Before/after, inspect only the owned run's drive-c/darkrun.GFF: refuse links,
+junctions, directories or files above 128 MiB and record existence, length
+and a bounded SHA-256. Do not modify the file or inspect the installed game.
+Stop at the copy return before wrapper cleanup/reader work. Compare net
+file state only; equal hashes do not exclude transient writes. Controls
+cover frame identity and file absence/content/link/size bounds. No synthetic
+game state or forced error is introduced.

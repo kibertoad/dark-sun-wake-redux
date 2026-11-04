@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -141,6 +141,25 @@ rejects(lambda: copy_arguments(bytes(19)))
 for index in range(6,10):
     wrong=args.copy(); wrong[index]=1
     rejects(lambda: copy_arguments(__import__('struct').pack('<10H',*wrong)))
+from tempfile import TemporaryDirectory
+from pathlib import Path
+with TemporaryDirectory() as temp:
+    run=Path(temp); (run/'drive-c').mkdir()
+    assert working_file(run)=={'exists':False}
+    path=run/'drive-c'/'darkrun.GFF'; path.write_bytes(b'abc')
+    assert working_file(run)=={'exists':True,'length':3,'sha256':hashlib.sha256(b'abc').hexdigest()}
+    path.unlink(); path.mkdir(); rejects(lambda: working_file(run))
+class Linked:
+    def __truediv__(self,other): return self
+    def is_symlink(self): return True
+    def is_junction(self): return False
+rejects(lambda: working_file(Linked()))
+class Oversized(Linked):
+    def is_symlink(self): return False
+    def exists(self): return True
+    def is_file(self): return True
+    def stat(self): return NS(st_size=128*1024*1024+1)
+rejects(lambda: working_file(Oversized()))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

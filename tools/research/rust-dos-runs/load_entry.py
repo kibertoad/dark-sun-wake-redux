@@ -1,4 +1,5 @@
 """Fixed F2 entry observation from an admitted map checkpoint; no guest writes."""
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -124,15 +125,37 @@ def copy_arguments(frame):
     return words[:6]
 
 
+def working_file(run):
+    drive = run / "drive-c"
+    path = drive / "darkrun.GFF"
+    if any(p.is_symlink() or p.is_junction() for p in (run, drive, path)):
+        raise ValueError("working file path contains a link")
+    if not path.exists():
+        return {"exists": False}
+    limit = 128 * 1024 * 1024
+    if not path.is_file() or path.stat().st_size > limit:
+        raise ValueError("unsupported working file")
+    digest = hashlib.sha256()
+    total = 0
+    with path.open("rb") as stream:
+        while block := stream.read(min(1024 * 1024, limit + 1 - total)):
+            total += len(block)
+            if total > limit:
+                raise ValueError("working file grew beyond bound")
+            digest.update(block)
+    return {"exists": True, "length": total, "sha256": digest.hexdigest()}
+
+
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs"))):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return"))):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return]")
     navigation = len(sys.argv) == 4
     observe_return = navigation and sys.argv[3] == "down-return"
-    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs")
-    observe_copy = navigation and sys.argv[3] == "copy-inputs"
+    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs", "copy-return")
+    observe_copy = navigation and sys.argv[3] in ("copy-inputs", "copy-return")
+    observe_copy_return = navigation and sys.argv[3] == "copy-return"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -178,6 +201,9 @@ def main():
             awaiting_return = False
             root = root_return = None
             copy_entry = rng.address(0x4544, 0)
+            copy_return = None
+            copy_stops = {rng.address(0x4544, off): off for off in (0x4F, 0x67, 0x78, 0x8C)}
+            report["copy_steps"] = []
             previous = None
             for index in range(512):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -263,6 +289,35 @@ def main():
                         "fields": fields(session.client, delta), "buffer_null": True, "capacity": 0}
                     delivery = session.observe(key, timeout=0)
                     report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
+                    if observe_copy_return:
+                        report["working_before"] = working_file(run)
+                        copy_return = f"{ret_seg:04X}:{ret_off:04X}"
+                        session.client.remove_breakpoints(copy_entry)
+                        for address in (*copy_stops, copy_return):
+                            session.client.set_breakpoint(address, once=True)
+                        record()
+                        continue
+                    report["passed"] = True
+                    break
+                elif observe_copy_return and stop["reason"] == "breakpoint" and stop["cs_ip"] in copy_stops:
+                    r = stop["registers"]
+                    original = report["copy_inputs"]["stop"]["registers"]
+                    if (r["ss"] != original["ss"] or
+                            int(r["bp"], 16) != int(original["sp"], 16) - 2):
+                        raise RuntimeError("internal stop belongs to another copy frame")
+                    at = copy_stops[stop["cs_ip"]]
+                    step = {"offset": at, "stop": stop, "ax": r["ax"]}
+                    if at in (0x4F, 0x67):
+                        output = int(r["bp"], 16) - (0xDA if at == 0x4F else 0x12A)
+                        step["normalized"] = terminated_path(session.client, int(r["ss"], 16), output, 80)
+                    report["copy_steps"].append(step)
+                    record()
+                    continue
+                elif copy_return is not None and stop["reason"] == "breakpoint" and stop["cs_ip"] == copy_return:
+                    if not returned_frame(report["copy_inputs"]["stop"]["registers"], stop["registers"]):
+                        raise RuntimeError("copy return belongs to another stack frame")
+                    report["copy_return"] = {"stop": stop, "ax": stop["registers"]["ax"],
+                        "fields": fields(session.client, delta), "working_after": working_file(run)}
                     report["passed"] = True
                     break
                 elif (awaiting_return and stop["reason"] == "breakpoint"
