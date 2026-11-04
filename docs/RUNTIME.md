@@ -39,9 +39,21 @@ startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
 with host output recorded muted. The local run is
 GAME_DIR/captures/rust-dos-startup-segments/runtime-upgrade-20261104-v181/.
-Input, frames, guarded writes and checkpoint restore were not reattempted
-under these new pins. Historical capabilities below retain their original
-version scope and do not by themselves admit a current-pin checkpoint run.
+On the same date, startup_window.py regenerated the opener checkpoint under
+these pins, and restore_opener.py restored it in a second owned process at
+the declared opener call and reached its return. Both saves used file checks;
+the return retained the restored RNG seed, with no inputs, setup writes or
+RNG draws. Reproduce with the project-local evidence Python:
+`startup_window.py v181-q046-opener-20261104`, then
+`restore_opener.py v181-q046-opener-20261104 v181-q046-opened-20261104`
+(scripts under tools/research/rust-dos-runs/; choose new run names on repeat).
+Reports and checkpoint sidecars are retained under
+GAME_DIR/captures/rust-dos-startup-window/v181-q046-opener-20261104/ and
+GAME_DIR/captures/rust-dos-restore-opener/v181-q046-opened-20261104/.
+This admits only that bounded restore/continuation, not menu readiness,
+frame matching, same-process roundtrip or hardware-mismatch refusal.
+Input, frames and guarded writes were not reattempted under these new pins.
+Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
 identities are retained, not rewritten to bypass strict matching.
 
