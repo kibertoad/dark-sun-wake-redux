@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -98,6 +98,23 @@ assert returned_frame({'ss':'1000','sp':'0020'},{'ss':'1000','sp':'0024'})
 assert not returned_frame({'ss':'1000','sp':'0020'},{'ss':'1001','sp':'0024'})
 assert not returned_frame({'ss':'1000','sp':'0020'},{'ss':'1000','sp':'0010'})
 assert not returned_frame({'ss':'1000','sp':'FFFE'},{'ss':'1000','sp':'0002'})
+class LoadCode:
+    jump=bytes([0xEA,0x85,7,0,32])
+    call=bytes([0xE8,0x0B,0xFA])
+    def read_memory(self,address,size):
+        data=self.call if address=='2000:0BDF' else self.jump
+        assert len(data)==size
+        return NS(data=data)
+code=LoadCode()
+assert load_root(code,'1000:002F')==('2000:05ED','2000:0BE2')
+code.jump=bytes([0x90,0x85,7,0,32]); rejects(lambda: load_root(code,'1000:002F'))
+code.jump=bytes([0xEA,0x86,7,0,32]); rejects(lambda: load_root(code,'1000:002F'))
+code.jump=LoadCode.jump; code.call=bytes([0xE8,0x0C,0xFA])
+rejects(lambda: load_root(code,'1000:002F'))
+enter=event.copy(); enter[6]=0x1C0D
+enter_call={**call,'event_words':enter.copy()}
+assert navigation_matches(enter_call,enter,'return','return','synthetic callback',0x1C0D)
+assert not navigation_matches(enter_call,enter,'return','return','synthetic callback')
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

@@ -63,3 +63,18 @@ at entry/return does not prove absence of intermediate writes. Synthetic
 controls cover marker stride, top/row admission, null and wrapping pointers.
 Require matching SS and SP equal to callback-entry SP plus four at the
 return stop; an inner call reaching the same instruction is not this return.
+
+## Numbered-load call admission
+
+The fixed `load-call` stage may deliver Enter after the admitted F2 entry.
+FND-UI-037 maps event-six/1C0D to the action branch; FND-COMBAT-081/129
+describes the subsequent +05ED call after window cleanup. Resolve only the
+declared callback trampoline's EA transfer to overlay 192 +0785; require
+the expected near-call instruction at +0BDF to target +05ED. Reject any
+different mapping. Observe Enter at the global-call/callback boundary, then
+stop at +05ED before its body runs. Verify far return +0BE2 in the same
+overlay segment and read the one row argument. Capture named fields and
+ten markers at callback entry and named fields at load entry; do not read
+paths, invoke the loader directly, execute its body or send mouse input.
+Pending release remains explicit and is never checkpointed. Controls cover
+wrong trampoline opcode/offset, call displacement and Enter-event mismatch.

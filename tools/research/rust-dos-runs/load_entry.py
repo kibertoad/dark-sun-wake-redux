@@ -69,9 +69,9 @@ def event_words(client, registers, bias):
     return list(struct.unpack("<12H", data))
 
 
-def navigation_matches(call, entry, return_frame, expected_return, callback):
+def navigation_matches(call, entry, return_frame, expected_return, callback, key_word=0x5000):
     return (call is not None and call["event_words"] == entry
-            and entry[0] == 6 and entry[6] == 0x5000
+            and entry[0] == 6 and entry[6] == key_word
             and call["fields"]["global_handler"] == callback
             and return_frame == expected_return)
 
@@ -91,13 +91,26 @@ def returned_frame(entry, returned):
             and int(returned["sp"], 16) == start + 4)
 
 
+def load_root(client, callback):
+    seg, off = (int(x, 16) for x in callback.split(":"))
+    jump = checked_read(client, seg, off, 5)
+    if jump[0] != 0xEA or struct.unpack_from("<H", jump, 1)[0] != 0x0785:
+        raise ValueError("Load trampoline differs from declared overlay entry")
+    target_seg = struct.unpack_from("<H", jump, 3)[0]
+    call = checked_read(client, target_seg, 0x0BDF, 3)
+    if call != struct.pack("<BH", 0xE8, (0x05ED - 0x0BE2) & 0xFFFF):
+        raise ValueError("numbered-load call differs from declared near call")
+    return f"{target_seg:04X}:05ED", f"{target_seg:04X}:0BE2"
+
+
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return"))):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call"))):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call]")
     navigation = len(sys.argv) == 4
     observe_return = navigation and sys.argv[3] == "down-return"
+    observe_load = navigation and sys.argv[3] == "load-call"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -141,6 +154,7 @@ def main():
             key = session.send_input("key", {"key": "f2", "hold_ms": 100})
             key_name = "f2"
             awaiting_return = False
+            root = root_return = None
             previous = None
             for index in range(512):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -159,7 +173,7 @@ def main():
                 elif stop["reason"] == "breakpoint" and stop["cs_ip"] == global_call:
                     report["calls"].append({"stop": stop, "event_words": event_words(session.client, stop["registers"], 0),
                                              "fields": fields(session.client, delta)})
-                elif stop["reason"] == "breakpoint" and stop["cs_ip"] == callback and key_name == "down":
+                elif stop["reason"] == "breakpoint" and stop["cs_ip"] == callback and key_name in ("down", "enter"):
                     r = stop["registers"]
                     entry = event_words(session.client, r, 4)
                     frame = checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16), 4)
@@ -168,10 +182,16 @@ def main():
                     report["callback_entry"] = {"stop": stop, "event_words": entry,
                         "return": ret, "fields": fields(session.client, delta)}
                     delivery = session.observe(key, timeout=0)
-                    report["navigation_input"] = {"key": "down", "state": delivery.state, "detail": delivery.detail}
+                    report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     if not navigation_matches(report["calls"][-1] if report["calls"] else None,
-                            entry, ret, rng.address(0x39D1, 0x083F), callback):
+                            entry, ret, rng.address(0x39D1, 0x083F), callback,
+                            0x1C0D if observe_load else 0x5000):
                         raise RuntimeError("navigation callback/frame differs from the observed global call")
+                    if observe_load:
+                        report["markers_before"] = list_markers(session.client, report["callback_entry"]["fields"])
+                        session.client.remove_breakpoints(callback)
+                        record()
+                        continue
                     if observe_return:
                         report["markers_before"] = list_markers(session.client, report["callback_entry"]["fields"])
                         session.client.remove_breakpoints(callback)
@@ -179,6 +199,20 @@ def main():
                         awaiting_return = True
                         record()
                         continue
+                    report["passed"] = True
+                    break
+                elif root is not None and stop["reason"] == "breakpoint" and stop["cs_ip"] == root:
+                    if "callback_entry" not in report:
+                        raise RuntimeError("numbered-load entry preceded admitted Enter callback")
+                    r = stop["registers"]
+                    frame = checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16), 6)
+                    off, seg, row = struct.unpack("<HHH", frame)
+                    if f"{seg:04X}:{off:04X}" != root_return:
+                        raise RuntimeError("numbered-load return does not identify the declared caller")
+                    report["load_call"] = {"stop": stop, "row_argument": row,
+                        "return": root_return, "fields": fields(session.client, delta)}
+                    delivery = session.observe(key, timeout=0)
+                    report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     report["passed"] = True
                     break
                 elif (awaiting_return and stop["reason"] == "breakpoint"
@@ -212,8 +246,11 @@ def main():
                         raise RuntimeError("Load hook differs from the declared callback")
                     session.client.remove_breakpoints(dispatch)
                     session.client.set_breakpoint(callback)
-                    key = session.send_input("key", {"key": "down", "hold_ms": 100})
-                    key_name = "down"
+                    if observe_load:
+                        root, root_return = load_root(session.client, callback)
+                        session.client.set_breakpoint(root)
+                    key_name = "enter" if observe_load else "down"
+                    key = session.send_input("key", {"key": key_name, "hold_ms": 100})
                     previous = None
                     record()
                     continue
