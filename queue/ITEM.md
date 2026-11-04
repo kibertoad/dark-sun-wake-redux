@@ -102,59 +102,9 @@ Next ID: Q-ITEM-013
   and shared type byte +6 equal to one. The remaining question is admitted
   input graphs/indices, not the same local predicate again.
 
-- Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What later
-  callers consume the forwarded hit result beyond the three known direct
-  continuations? Settles it: consumers of the result forwarded by overlay
-  179 +0C7F through the possible cleanup-skip return at overlay 193
-  +1054/+0DC7 and resident 371D:04CA, identifying result-dependent branches
-  and requests at that wrapper's consumers. FND-ITEM-027 accounts for the
-  other qualified direct outer-return routes. Count-shrink feasibility
-  and preservation remain Q-ITEM-011.
-  Do not infer a meaningful word return from an unnormalized AH. Complete
-  incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
-  feedback effects Q-ITEM-012. Blocks: slices 4-5.
-  Tried: split the independently answerable dependencies from this item.
-  FND-ITEM-010/017 settle the local flag store and hit feedback gate;
-  FND-ITEM-018 settles the three direct callers recorded by FND-PARTY-096.
-  Do not repeat their post-call reading or treat the casting bookkeeping
-  return as the aggregate hit flags.
-  Tried: FND-ITEM-021 settles the mask-01 follow-up at overlay 193 +1200,
-  forwarding epilogues +123D/+129E, independent one at overlay 195 +14C8,
-  and restored-mode return at overlay 204 +130E. Their immediate handling
-  is no longer an obligation; outer consumers and the named alternate paths
-  remain. Local BP-field tests are not tests of AL merely because their
-  masks match. Retain the bounded wrapper-window reports rather than
-  repeating those prefixes.
-  Tried: FND-ITEM-022 removes the register-consumer obligations at overlay
-  193 +1170/+11A0/+11D0/+145E, overlay 195 +0242 and overlay 173
-  +28A9: each overwrites the hit value or uses the separate effect-query
-  return before a register test. This does not remove memory-effect or
-  frame-admission obligations from Q-ITEM-011. The five remaining direct
-  continuations and the outer returns above still need their own reading.
-  Tried: FND-ITEM-023 settles the local-field tests and skipped-branch
-  overwrites after overlay 195 +05BC/+0615/+066E, the +0733 exit and
-  next-call preparation, and overlay 204 +150F's local-byte Boolean.
-  These direct tests are removed from Settles it. Child register inputs
-  remain explicitly qualified; do not assume any call overwrites AX.
-  Tried: FND-ITEM-024 resolves the remaining incidental AX inputs through
-  28C9:391D, the shared generator, overlay 173 +2A5D and +24C7.
-  The latter overwrites AX even after 31E0:05BB's preserving exit.
-  The sixteen known direct wrapper sites' local register handling is
-  accounted for; only outer-return consumers and the queue return remain
-  in this item. This is not whole incoming coverage or memory admission.
-  Tried: FND-ITEM-025 qualifies the two known direct +11DC callers and
-  settles both low-byte reloads. Their queue-return AL is overwritten;
-  this removes that direct consumer obligation. Any further incoming
-  mechanism still needs Q-ITEM-010's coverage, and no AH contract is proved.
-  Tried: FND-ITEM-027 qualifies both first-level outer calls, four +12A8
-  callers, the +1054 caller and four +0DC7 callers. It removes the three
-  immediate overwrite routes and two further parent overwrites plus the
-  independent lookup continuation. The cleanup's count-skip can forward
-  AX through 371D:04CA; only that later-consumer path remains here.
-
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
-  incoming mechanisms can reach the hit routine outside the qualified direct
-  calls? Settles it: the unresolved/computed transfers, unmapped edges and
+  incoming mechanisms can reach the hit routine or its forwarding wrappers
+  outside the qualified direct calls? Settles it: the unresolved/computed transfers, unmapped edges and
   undecoded paths retained by FND-ITEM-020, plus split or unrelocated target
   construction and runtime pointer copies/use. Qualify instruction ownership
   and native input domains rather than treating raw candidates as callers.
@@ -162,8 +112,10 @@ Next ID: Q-ITEM-013
   Tried: split from Q-ITEM-009. FND-ITEM-019 exhausts the source-declared
   adjacent relocated-pair representation for this target; FND-ITEM-020
   qualifies the three direct matches with complete declared byte scanning.
-  Its gap lists remain open. Reuse the retained controls and reports instead
-  of another direct-signature or adjacent-pair census.
+  FND-ITEM-028 also retains the nonexhaustive resident kind-dispatch table
+  assumption; its qualified local consumer does not close other incoming
+  routes. Its gap lists remain open. Reuse the retained controls and reports
+  instead of another direct-signature or adjacent-pair census.
 
 - Q-ITEM-011. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: When does the
   effect-switch near flags pointer identify the hit wrapper frame byte, and

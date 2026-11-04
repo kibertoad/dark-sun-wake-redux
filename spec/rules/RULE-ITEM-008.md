@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602, FND-ITEM-028]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -84,14 +84,18 @@ result mask 0x02 set with damage mask 0x01 clear to select presentation
 requests. Otherwise a zero combatant record word +0 also selects that path.
 Mode gates control its subsequent requests, and the wrapper returns the flags
 byte. These gates do not prove successful visible feedback or later caller
-behavior (FND-ITEM-017, Q-ITEM-009).
+behavior (FND-ITEM-017, Q-ITEM-010).
 
 Known hit-call continuations handle that byte differently: one wrapper saves
 and forwards it across queue processing; the queue continuation does not
 explicitly interpret it; casting zero-extends and aggregates it, tests only
 mask 0x01 at its recorded follow-up gate, and returns separate bookkeeping.
 These local paths do not establish complete caller coverage or whole-child
-preservation (FND-ITEM-018, Q-ITEM-009).
+preservation (FND-ITEM-018). The known direct outer continuations forward,
+replace or independently interpret the byte; the remaining resident kind
+dispatcher reloads its own bookkeeping byte (FND-ITEM-028). This settles
+local register handling, while other incoming routes and frame admission
+remain Q-ITEM-010 and Q-ITEM-011.
 
 The first request selects the sound effect numbered by DATA byte +0x16.
 Its routine applies sound-setting and driver gates, preferring a BVOC resource
@@ -124,6 +128,7 @@ None known.
   its local arithmetic and zero branches are recorded above.
 - Independent writers and admitted uses of the +0x12 rank and +0x16 signed
   bonus remain Q-ITEM-006; hit-result storage admission remains Q-ITEM-011,
-  feedback effects Q-ITEM-012, incoming coverage Q-ITEM-010 and later consumers Q-ITEM-009.
+  feedback effects Q-ITEM-012 and other incoming routes Q-ITEM-010. Known
+  direct local consumers are recorded by FND-ITEM-028.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).
