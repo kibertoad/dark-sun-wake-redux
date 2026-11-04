@@ -189,6 +189,33 @@ public sealed class RdffKeyInspectionTests
         Assert.All(result.ItemInputs, field => Assert.Equal(result.Items, field.Values.Sum(row => row.Count)));
     }
 
+    [Fact]
+    public void HookInputsPreserveJointFieldsAcrossLaterOtherTypesAndExcludeTrailingDecoy()
+    {
+        var first = Record(10,1,-10).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(12), 0x1234);
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(24), 0x5678);
+        BinaryPrimitives.WriteUInt16LittleEndian(first.AsSpan(26), 0x9ABC);
+        first[32] = 128;
+        var later = first[..33].ToArray(); later[0] = 2;
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(20), 17);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(12), 0x5678);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(24), 0x9ABC);
+        BinaryPrimitives.WriteUInt16LittleEndian(later.AsSpan(26), 0x1234);
+        later[32] = 127;
+        byte[] chain = [..first[..33], ..later, ..first[33..], ..first[..33]];
+        var result = RdffKeyInspection.AnalyzeLookChains(
+            [Record(20,5,-20),new(10,chain)], Controls(1));
+        Assert.Equal(new[] {
+            new RdffKeyInspection.ItemHookInput(10,0,50,0x1234,0x5678,0x9ABC,-128),
+            new RdffKeyInspection.ItemHookInput(10,1,17,0x5678,0x9ABC,0x1234,127)
+        }, result.ItemHookInputs);
+        Assert.Equal(result.Items, result.ItemHookInputs.Count);
+        Assert.Single(result.Rows);
+        Assert.Equal(1, result.TrailingResources);
+    }
+
     [Theory]
     [InlineData("forward")]
     [InlineData("kind")]

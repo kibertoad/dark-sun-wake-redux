@@ -75,3 +75,22 @@ minus one, signed minus 128 and 127, and a nonzero high word byte. Preserve
 the existing chain/end/trailing controls. Run the selected tooling gate;
 record licensed-source counts separately as research. Source absence never
 excludes later writes, restores, aliases or input domains outside OBJEX.GFF.
+
+## Joint reset inputs
+
+Q-PARTY-109 needs joint fields rather than marginal histograms to apply
+FND-ITEM-059's reset destination to FND-ITEM-056/057's source candidates.
+Add deterministic all-item `itemHookInputs` rows containing resource/chunk,
+type word +0A, quantity word +02, word +0E, selector word +10 and signed
+bonus byte +16. Read only the already validated 23-byte payloads. Keep
+type-50 `rows` and all existing domains unchanged. This additive private
+report metadata remains schema 1; consumers must select the new property
+explicitly, and no asset-pack contract changes.
+
+Synthetic acceptance must preserve pairings across first and later items,
+non-50 types, signed bonus edges and distinct full-width destination words,
+and exclude a trailing decoy after the end header. Run the selected tooling
+gate before commit. A separate research batch joins these rows to controlled
+type flags and DATA properties, verifies all-item/domain reconciliation and
+records conditional source counts. Source pairing does not prove runtime
+preservation, native reset invocation or successful effect dispatch.
