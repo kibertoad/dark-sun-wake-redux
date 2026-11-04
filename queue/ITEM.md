@@ -107,9 +107,8 @@ Next ID: Q-ITEM-013
   continuations? Settles it: consumers of the result forwarded by overlay
   179 +0C7F through the returns of overlay 193 +1119 and +1249 and any
   use of the queue runner +11DC return. Resolve remaining continuations at
-  overlay 173 +28A9, overlay 195 +05BC/+0615/+066E/+0733 and
-  overlay 204 +150F, and other known caller continuations not covered by
-  FND-ITEM-021, including loop and child register effects before an
+  overlay 195 +05BC/+0615/+066E/+0733 and overlay 204 +150F,
+  including loop and child register effects before an
   overwrite or result-dependent request. Complete
   incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
   feedback effects Q-ITEM-012. Blocks: slices 4-5.
@@ -125,6 +124,12 @@ Next ID: Q-ITEM-013
   remain. Local BP-field tests are not tests of AL merely because their
   masks match. Retain the bounded wrapper-window reports rather than
   repeating those prefixes.
+  Tried: FND-ITEM-022 removes the register-consumer obligations at overlay
+  193 +1170/+11A0/+11D0/+145E, overlay 195 +0242 and overlay 173
+  +28A9: each overwrites the hit value or uses the separate effect-query
+  return before a register test. This does not remove memory-effect or
+  frame-admission obligations from Q-ITEM-011. The five remaining direct
+  continuations and the outer returns above still need their own reading.
 
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
   incoming mechanisms can reach the hit routine outside the qualified direct
