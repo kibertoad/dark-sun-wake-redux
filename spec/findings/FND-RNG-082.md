@@ -110,7 +110,7 @@ What the timer's driver function `0067`, and function `0xC1`, write is: their ow
 their driver image (a block from `4AB9:001C`), the sequence blocks at `DS:3446` and `DS:344A`
 (also from `4AB9:001C`), and, through the callback `45CD:0390`, `4E71:0C1F..0C2D`, `DS:A3A4` and
 `DS:A423`. None of `4E71`'s words or `DS:A3A4`, `DS:A423` is in the clock conversion's windows
-(Q-RNG-005, which end at `DS:A4EC`). Where the blocks from `4AB9:001C` lie is FND-RNG-083.
+(Q-RNG-005, which end at `DS:A4EC`). Where the blocks from `4AB9:001C` lie is FND-RNG-093.
 
 ## Alternatives
 
@@ -118,8 +118,9 @@ The walk follows only immediate near transfers, so a jump table inside a driver 
 it found no indirect near jump. The other drivers' `DS` and `ES` loads were listed by the tool and
 match `ADV 11`'s pattern, but only `ADV 11`'s were read routine by routine. The calls through
 other drivers' `CS` words and `ADV 19`'s `int 0x65` were not followed. The stores' offsets were
-not checked against the block size of `0x208` bytes; FND-RNG-083 places every byte a block's
-segment reaches above the windows, so the offsets do not decide the question.
+not checked against the block size of `0x208` bytes; FND-RNG-093 places such segments above
+the windows under admitted startup, bounds and valid-heap conditions. Those conditions and
+pointer lifetimes remain prerequisites; the offsets alone do not settle them.
 
 ## How to reproduce
 

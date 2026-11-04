@@ -49,7 +49,7 @@ allocated and the timer never calls a driver's function `0067`: the only slot ca
 are `4654:09A9`, `31E0:31A7` and the chain to the old timer vector, and slot 2's state is 0. Of the
 driver slots of segment `4842` only the first was set up, and no timer slot was taken for it. The
 far heap's base is `DS` plus `0x1000` paragraphs, the first paragraph past the data segment, as
-FND-RNG-083's startup reading gives when `DS:37EC` is 0 and memory is ample; the `SOUND.CFG`
+FND-RNG-093's startup reading gives when `DS:37EC` is 0 and memory is ample; the `SOUND.CFG`
 buffer at `68D0:0004` lies above it.
 
 ## Alternatives

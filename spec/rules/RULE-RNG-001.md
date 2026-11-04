@@ -195,8 +195,9 @@ None known.
   copies of segment `2707` write only video memory (FND-RNG-079, FND-RNG-080), the timer
   callbacks in the program's own code write none of the windows (FND-RNG-081), and the sound
   drivers' timer function and function `0xC1` write only their frames, their own images, the
-  sequence blocks on the far heap and, through the game's callback, words outside the windows
-  (FND-RNG-082, FND-RNG-083, FND-RNG-084), apart from the calls of `ADV 17` and `ADV 19`, which
+  sequence blocks on the far heap under admitted heap-state conditions and,
+  through the game's callback, words outside the windows
+  (FND-RNG-082, FND-RNG-093, FND-RNG-084), apart from the calls of `ADV 17` and `ADV 19`, which
   the installed `SOUND.CFG` does not select, into code the game does not ship.
   One such write is found: with `DS:426D` holding 9999, a view click sends that slot to
   `2D40:2F34`, whose link store puts a record number over the July and August lengths at

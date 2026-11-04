@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-083
 title: Blocks from 4AB9:001C come from the far heap, whose base the startup code sets at least 0x200 bytes past DS:A4EC and which 1000:1831 never moves below that base
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-093]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

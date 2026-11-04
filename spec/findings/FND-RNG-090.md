@@ -45,8 +45,9 @@ The file offsets are those of the far call's opcode byte `0x9A`, as `direct_call
 
 The eight reads into fixed buffers and frame locals miss `DS:426D` and `4C13:0369`: the one
 below `DS:426D` is the 3-byte read at `DS:4252`, which ends at `DS:4255`, and the others lie at
-`DS:45AC` or above. The three reads into blocks the far heap has just allocated land above `DS`
-(FND-RNG-083), overlay 196's only while the count is below `0x10000`. The eight reads through
+`DS:45AC` or above. Under the admitted startup and valid-heap conditions, the three reads into
+blocks the far heap has just allocated land above `DS`
+(FND-RNG-093), overlay 196's only while the count is below `0x10000`. The eight reads through
 stored far pointers, the overlay manager's two reads, `15F3:0183` and the callers of `1000:2F0F` are not shown to miss either word.
 
 ## Alternatives

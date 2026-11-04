@@ -515,6 +515,12 @@ Next ID: Q-COMBAT-067
   Those fixed-table comparisons are removed from unread work; runtime
   bindings for fifteen null slots, other writers, actual lengths and
   storage/segment/transfer aliases remain.
+  Tried: FND-RNG-093 corrects the shared startup heap-base rounding before
+  that contract is reused for dynamic-buffer separation. Its corrected
+  bound remains above resident data, but current bounds, free-list/header
+  validity and pointer lifetime remain shared allocator admission, already
+  Q-CONFIG-008 and Q-SCRIPT-003. Do not infer those from allocation calls
+  alone or repeat the nominal table comparison in FND-COMBAT-116.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which reached child effects preserve or change restored effect rows and count?
