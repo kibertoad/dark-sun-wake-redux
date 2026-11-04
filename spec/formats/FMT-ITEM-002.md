@@ -171,3 +171,9 @@ not establish all other consumers or the live table's admission/lifetime.
   independent consumers and complete reader/writer coverage (Q-ITEM-005).
   The raw layout and local bindings above do not establish those meanings
   or a complete reading of every consumer.
+
+- FND-ITEM-048 adds guarded placement uses of byte-five categories, byte-four
+  masks 10/20 hex, byte-eleven masks 08/40 hex, byte-zero masks 01/04 hex,
+  byte-two unsigned threshold 30 and word +0C any-bit class overlap. These
+  consumer bindings do not close independent reader/writer or admission
+  coverage (Q-ITEM-005).

@@ -85,3 +85,8 @@ None known.
 - Which limit applies to a character with several classes, what "leather" and "small" cover among
   the game's items, and whether the game enforces the weapon lists, and through which item field
   it tells a weapon's kind or material (Q-ITEM-003).
+
+- FND-ITEM-048 records the inventory eligibility helper's any-bit class-mask
+  overlap and origin-code-eight category filter. Its carried-position bypass
+  and actual caller/storage admission remain distinct from the manual tables
+  and automatic equipment route (Q-ITEM-003).

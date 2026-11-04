@@ -53,6 +53,11 @@ Next ID: Q-ITEM-014
   and whether the game enforces the class weapon lists and by which item field? Settles it: the
   code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
   (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
+  Tried: FND-ITEM-048 removes the local placement gate order, signed capacity/
+  wrapped-count comparisons, hand thresholds and origin-category/class-overlap
+  predicates. Remaining placement work is actual callers/positions, snapshot/
+  removal and capacity children, graph/table/stack/current-character admission
+  and preservation; spell and store questions remain independent obligations.
 - Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Do the item-test
   callers admit the storage and state required for complete recursive removal?
   Settles it: remaining caller/global preservation and storage contracts of
