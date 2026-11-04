@@ -521,6 +521,11 @@ Next ID: Q-COMBAT-067
   validity and pointer lifetime remain shared allocator admission, already
   Q-CONFIG-008 and Q-SCRIPT-003. Do not infer those from allocation calls
   alone or repeat the nominal table comparison in FND-COMBAT-116.
+  Tried: FND-COMBAT-117 pairs every one of the fifteen dynamic bindings
+  with its known allocation family and matching nominal request. The local
+  binder/known-producer map is removed from unread work. Live field identity,
+  bypass/release lifetime, other writers, actual lengths and aliases remain;
+  shared heap admission stays with Q-CONFIG-008 and Q-SCRIPT-003.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which reached child effects preserve or change restored effect rows and count?
