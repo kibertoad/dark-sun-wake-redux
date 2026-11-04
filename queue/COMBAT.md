@@ -382,13 +382,13 @@ Next ID: Q-COMBAT-067
   Blocks: slice 4.
 - Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
   populated presentation slot 319, and what does loading that slot do to restored creatures?
-  Settles it: indexed and bulk producers of slot 319's presentation entry-index word, save
-  call admission relative to temporary-slot lifetime, and, if admitted, its free-list and
+  Settles it: remaining indexed/bulk producers of slot 319's presentation index and save-call admission relative to its lifetime; if admitted, its free-list and
   reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
   accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
   FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
-  Tried: FND-COMBAT-165 removes kind resurrection/reparenting/dispatch in admitted finite rooted deletion;
-  actual graph/pool admission, earlier enumeration, later release and save timing remain.
+  Tried: FND-COMBAT-166 removes preservation across admitted non-top/noncoalescing release, both head cases;
+  actual header/branch/separation admission, other heap routes and save timing remain.
+  Tried: FND-COMBAT-165 removes kind resurrection/reparenting/dispatch in admitted rooted deletion; actual graph/pool, enumeration/release and timing remain.
   Tried: FND-COMBAT-164 removes root kind ordering/childless cleanup; other state, presentation emptiness and timing remain.
   Tried: FND-COMBAT-163 removes RDFF status propagation/-2-only parent failure; actual replacement needs state/handler/provider admission.
   Tried: FND-COMBAT-162 removes canonical-source high selectors; actual provider/length, mutations/aliases and other lifetime classes remain.
