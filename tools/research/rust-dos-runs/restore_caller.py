@@ -60,7 +60,8 @@ class CallerTrace:
             frame(r,self.parent)
             if "post_setup" not in self.report or self.close is not None and "close_epilogue" not in self.report:
                 raise ValueError("parent epilogue lacks matched preparation/close")
-            self.client.remove_breakpoints(self.close_entry)
+            if self.close is None:
+                self.client.remove_breakpoints(self.close_entry)
             self.report["epilogue"] = {"stop":brief(stop),"al":int(r["ax"],16)&255,"state":self.state()}
             self.complete = True
             return True

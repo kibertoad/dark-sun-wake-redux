@@ -65,6 +65,11 @@ rejects(lambda:caller.handle({'reason':'breakpoint','cs_ip':caller.end,'register
 caller.report['post_setup']={}
 assert caller.handle({'reason':'breakpoint','cs_ip':caller.end,'emu_ns':0,'registers':{'ss':'57E0','bp':'8000','sp':'7F00','ax':'0001'}})
 assert caller.complete and caller.report['epilogue']['al']==1
+caller.close={'ss':0x57E0,'bp':0x7F00}
+caller.report['close_epilogue']={}
+def consumed_breakpoint(*args): raise AssertionError('deleted consumed one-shot breakpoint')
+caller.client.remove_breakpoints=consumed_breakpoint
+assert caller.handle({'reason':'breakpoint','cs_ip':caller.end,'emu_ns':0,'registers':{'ss':'57E0','bp':'8000','sp':'7F00','ax':'0001'}})
 admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop={}))
 rejects(lambda: admit_state(NS(emulator_sha256='0'*64, stop={})))
 rejects(lambda: admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop=None)))
