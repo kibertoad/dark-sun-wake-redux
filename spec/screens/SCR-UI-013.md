@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, FND-COMBAT-132, FND-COMBAT-133, FND-COMBAT-134, FND-COMBAT-135, FND-COMBAT-136, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, FND-COMBAT-132, FND-COMBAT-133, FND-COMBAT-134, FND-COMBAT-135, FND-COMBAT-136, FND-COMBAT-139, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -42,7 +42,7 @@ OKAY (FND-UI-036).
 
 | Key | Enabled when | Effect | Evidence |
 |---|---|---|---|
-| Enter | Observed after F2 entry with selected row one, top zero and ten empty markers | Produces callback event six/key word 1C0D and reaches numbered-load entry with argument one after window cleanup. The loader body was not executed; no load outcome is established. | FND-COMBAT-136 |
+| Enter | Observed after F2 entry with selected row one, top zero and ten empty markers | Produces callback event six/key word 1C0D and reaches numbered-load entry with argument one after window cleanup. One empty-source copy was rejected, but the routine continued through settings requests and returned one; restored-game and later UI outcomes remain unverified. | FND-COMBAT-136, FND-COMBAT-139 |
 | Down | One admitted row-one/top-zero Load state | Delivery and returned empty-list outcome are described below. | FND-COMBAT-134, FND-COMBAT-135 |
 
 ## Other input

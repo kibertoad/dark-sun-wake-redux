@@ -122,6 +122,13 @@ invocation's internal normalization stop and matched return, with bounded
 private working-file metadata at entry/return. Output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q063-copy-return-20261104/.
 It does not admit other copy outcomes or the wrapper's later continuation.
+The fixed `load-return` stage in FND-COMBAT-139 admits the observed rejected-copy
+wrapper/settings continuation and matched numbered-load return, using current
+caller-frame/loaded-code mappings. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q063-load-return-verified-20261104/.
+The extended bound is 1024 observations; this run used 534. A saved return-segment
+watch was armed but never triggered, so mutation delivery remains unverified.
+No successful save restoration or later action cleanup is admitted by this result.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

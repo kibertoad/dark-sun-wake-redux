@@ -516,6 +516,8 @@ Next ID: Q-COMBAT-067
   source/destination identity, source length/position and read/write/close outcomes.
   Distinguish copy rejection from partial or complete destination changes,
   beyond FND-COMBAT-138's admitted empty-source normalization rejection.
+  FND-COMBAT-139 also admits that case's wrapper/settings/outer return;
+  other resource provenance and later action effects remain separate.
   Exit: path and file-state cases sufficient to identify which working contents
   can reach archive opening, with any unobserved external outcomes retained.
   Tried: split from Q-COMBAT-018. FND-COMBAT-113 gives the default 128-byte
@@ -551,6 +553,10 @@ Next ID: Q-COMBAT-067
   copy returning zero before direct file opens, and equal bounded private
   working-file state at entry/return. That rejection case is removed;
   nonempty inputs, source-open failure, copying and later continuation stay open.
+  Tried: FND-COMBAT-139 observes the zero wrapper result, PREF/100 and GREQ/2
+  requests returning zero, and matched numbered-load return AX one after the
+  admitted empty-source rejection. That continuation case is removed;
+  other paths/outcomes, supplying resources and later action cleanup remain open.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
