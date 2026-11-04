@@ -387,10 +387,10 @@ Next ID: Q-COMBAT-067
   reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
   accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
   FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
-  Tried: FND-COMBAT-164 removes root kind-release ordering and an admitted childless cleanup outcome;
-  presentation emptiness, other graphs/aliases, reached RDFF/eviction and save timing remain.
-  Tried: FND-COMBAT-163 removes RDFF status propagation and parent's -2-only failure gate;
-  conditional status replacement still needs actual state, handler/reclamation and provider/alias admission.
+  Tried: FND-COMBAT-165 removes kind resurrection/reparenting/dispatch in admitted finite rooted deletion;
+  actual graph/pool admission, earlier enumeration, later release and save timing remain.
+  Tried: FND-COMBAT-164 removes root kind ordering/childless cleanup; other state, presentation emptiness and timing remain.
+  Tried: FND-COMBAT-163 removes RDFF status propagation/-2-only parent failure; actual replacement needs state/handler/provider admission.
   Tried: FND-COMBAT-162 removes canonical-source high selectors; actual provider/length, mutations/aliases and other lifetime classes remain.
   Tried: FND-COMBAT-161 removes synchronous save/input re-entry in admitted flags-zero success/low-image states; other lifetime cases remain.
   Tried: FND-COMBAT-160 removes per-record wrappers' extents/results and immediate slot sources; actual length/provider, slot/kind, aliases and timing remain.

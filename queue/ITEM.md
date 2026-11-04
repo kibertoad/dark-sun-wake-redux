@@ -67,6 +67,9 @@ Next ID: Q-ITEM-014
   for resolver/copy children. FND-PARTY-120 alone is not complete reclamation;
   superseded FND-PARTY-172 is not current graph evidence. Remaining work is
   admission/preservation, not another reading of those settled local bodies.
+  Tried: FND-COMBAT-165 removes reparenting, allocation and kind resurrection
+  in the admitted root-zero finite-graph deletion class. Actual caller/storage
+  admission, live-parent standalone deletion and other aliases remain open.
 
 - Q-ITEM-006. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What independent
   writers and admitted states give the item-test inputs their complete field
