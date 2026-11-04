@@ -179,6 +179,12 @@ Next ID: Q-ITEM-014
   preservation is no longer an unread obligation. Remaining code-domain
   work is initial/restored values, other producer mechanisms and actual
   copy/index/count/backing admission, not rereading these move bodies.
+  Tried: FND-ITEM-034 settles the two located handler output stores and
+  their API-wrapper frame mapping. Each writes the final word at BP+12, disjoint
+  from code byte BP+0C under intact nonwrapping frame/pointer admission.
+  These explicit stores are no longer unread code-alias candidates.
+  Whole-handler effects, other aliases and argument/pointer lifetime remain;
+  a word output must not be treated as a byte write.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
