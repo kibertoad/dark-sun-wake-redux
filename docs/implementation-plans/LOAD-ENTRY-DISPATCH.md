@@ -78,3 +78,19 @@ ten markers at callback entry and named fields at load entry; do not read
 paths, invoke the loader directly, execute its body or send mouse input.
 Pending release remains explicit and is never checkpointed. Controls cover
 wrong trampoline opcode/offset, call displacement and Enter-event mismatch.
+
+## Copy input binding
+
+The fixed `copy-inputs` stage may continue the admitted +05ED entry through
+its preparation children and working-path construction, stopping at resident
+4544:0000 before normalization or copy I/O. Verify its return at overlay
+187 +0EFC against the declared 56EF:0089 trampoline and +0EF7 far call.
+Read only the four declared arguments: source, destination, optional buffer
+and capacity. Require the known null buffer/zero capacity contract. Read
+source as a NUL-terminated path bounded to 80 bytes and destination to the
+wrapper's 82-byte local buffer, one byte at a time and rejecting missing
+terminators, wrapping or short reads. Record actual strings only locally;
+spec records lengths/identity facts in its own words. Capture named fields
+after preparation; no file-copy success or filesystem identity is inferred.
+Controls cover early termination, unterminated/null/wrapping paths and
+argument layout; no arbitrary path reads or additional inputs are admitted.

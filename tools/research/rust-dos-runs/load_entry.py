@@ -103,14 +103,36 @@ def load_root(client, callback):
     return f"{target_seg:04X}:05ED", f"{target_seg:04X}:0BE2"
 
 
+def terminated_path(client, segment, offset, bound):
+    if bound not in (80, 82) or not (segment or offset):
+        raise ValueError("unsupported path storage")
+    data = bytearray()
+    for index in range(bound):
+        value = checked_read(client, segment, offset + index, 1)[0]
+        if value == 0:
+            return {"length": len(data), "bytes_hex": data.hex()}
+        data.append(value)
+    raise ValueError("path lacks a terminator within its declared bound")
+
+
+def copy_arguments(frame):
+    if len(frame) != 20:
+        raise ValueError("short copy frame")
+    words = struct.unpack("<10H", frame)
+    if any(words[6:]):
+        raise ValueError("copy arguments differ from the internal-buffer contract")
+    return words[:6]
+
+
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call"))):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs"))):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs]")
     navigation = len(sys.argv) == 4
     observe_return = navigation and sys.argv[3] == "down-return"
-    observe_load = navigation and sys.argv[3] == "load-call"
+    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs")
+    observe_copy = navigation and sys.argv[3] == "copy-inputs"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -155,6 +177,7 @@ def main():
             key_name = "f2"
             awaiting_return = False
             root = root_return = None
+            copy_entry = rng.address(0x4544, 0)
             previous = None
             for index in range(512):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -211,6 +234,33 @@ def main():
                         raise RuntimeError("numbered-load return does not identify the declared caller")
                     report["load_call"] = {"stop": stop, "row_argument": row,
                         "return": root_return, "fields": fields(session.client, delta)}
+                    delivery = session.observe(key, timeout=0)
+                    report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
+                    if observe_copy:
+                        session.client.remove_breakpoints(root)
+                        session.client.set_breakpoint(copy_entry)
+                        record()
+                        continue
+                    report["passed"] = True
+                    break
+                elif (observe_copy and stop["reason"] == "breakpoint"
+                      and stop["cs_ip"] == copy_entry):
+                    if "load_call" not in report:
+                        raise RuntimeError("copy entry preceded the admitted numbered-load call")
+                    r = stop["registers"]
+                    frame = checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16), 20)
+                    ret_off, ret_seg, src_off, src_seg, dst_off, dst_seg = copy_arguments(frame)
+                    trampoline = checked_read(session.client, 0x56EF + delta, 0x89, 5)
+                    if trampoline != struct.pack("<BHH", 0xEA, 0x0EBE, ret_seg) or ret_off != 0x0EFC:
+                        raise RuntimeError("copy return/trampoline differs from declared wrapper")
+                    instruction = checked_read(session.client, ret_seg, 0x0EF7, 5)
+                    if instruction != struct.pack("<BHH", 0x9A, 0, 0x4544 + delta):
+                        raise RuntimeError("copy call instruction differs from declared resident target")
+                    report["copy_inputs"] = {"stop": stop, "source_pointer": f"{src_seg:04X}:{src_off:04X}",
+                        "destination_pointer": f"{dst_seg:04X}:{dst_off:04X}",
+                        "source": terminated_path(session.client, src_seg, src_off, 80),
+                        "destination": terminated_path(session.client, dst_seg, dst_off, 82),
+                        "fields": fields(session.client, delta), "buffer_null": True, "capacity": 0}
                     delivery = session.observe(key, timeout=0)
                     report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     report["passed"] = True

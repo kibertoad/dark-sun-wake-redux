@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -115,6 +115,32 @@ enter=event.copy(); enter[6]=0x1C0D
 enter_call={**call,'event_words':enter.copy()}
 assert navigation_matches(enter_call,enter,'return','return','synthetic callback',0x1C0D)
 assert not navigation_matches(enter_call,enter,'return','return','synthetic callback')
+class PathMemory:
+    data=b'abc'+bytes([0])
+    calls=0
+    def read_memory(self,address,size):
+        assert size==1
+        self.calls+=1
+        index=int(address.split(':')[1],16)-4
+        return NS(data=self.data[index:index+1])
+p=PathMemory(); assert terminated_path(p,0x1000,4,80)=={'length':3,'bytes_hex':'616263'}
+assert p.calls==4
+p=PathMemory(); p.data=bytes([0]); assert terminated_path(p,0x1000,4,80)['length']==0
+assert p.calls==1
+p=PathMemory(); p.data=b'x'*82
+rejects(lambda: terminated_path(p,0x1000,4,80))
+rejects(lambda: terminated_path(Memory(),0,0,80))
+rejects(lambda: terminated_path(Memory(),0x1000,4,100))
+rejects(lambda: terminated_path(ShortMemory(),0x1000,4,82))
+class NonzeroMemory:
+    def read_memory(self,address,size): return NS(data=b'x')
+rejects(lambda: terminated_path(NonzeroMemory(),0x1000,0xFFFF,80))
+args=[1,2,3,4,5,6,0,0,0,0]
+assert copy_arguments(__import__('struct').pack('<10H',*args))==tuple(args[:6])
+rejects(lambda: copy_arguments(bytes(19)))
+for index in range(6,10):
+    wrong=args.copy(); wrong[index]=1
+    rejects(lambda: copy_arguments(__import__('struct').pack('<10H',*wrong)))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
