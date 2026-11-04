@@ -444,3 +444,7 @@ behavior. Tooling and native findings remain separate validated batches.
 Send the accumulated Python synthetic controls through standard input to
 the existing isolated interpreter, preserving arguments and assertions;
 their inline command now exceeds Windows' command-line length limit.
+Also resample the retained queried length immediately after transfer and
+the queried length/word scan bound before release, requiring 7896/1316
+for this fixed case. This makes arithmetic-input retention explicit rather
+than inferring it from a matching prediction.

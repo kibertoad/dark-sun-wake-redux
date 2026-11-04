@@ -178,9 +178,10 @@ class ScriptTrace:
             self.check_converter(r)
             count = int.from_bytes(checked_read(client,0x57E0+self.delta,0x9D91,4),"little")
             self.report["data_result"] = {"stop":brief(stop),"count":count}
+            self.report["query_length_after_transfer"] = int.from_bytes(self.local(-8,4),"little")
             pointer = struct.unpack("<HH",self.local(-4,4))
             destination = f"{pointer[1]:04X}:{pointer[0]:04X}"
-            if int(r["ax"],16) or count!=7896 or destination!=self.report["selected"]["destination"]:
+            if int(r["ax"],16) or count!=7896 or self.report["query_length_after_transfer"]!=7896 or destination!=self.report["selected"]["destination"]:
                 raise ValueError("GPLI data result lacks the admitted successful span")
             table = blob(client,destination,7896)
             self.before,trigger = snapshot(client,self.delta)
@@ -201,6 +202,10 @@ class ScriptTrace:
         if at==self.release:
             frame(r,self.converter)
             self.check_converter(r)
+            self.report["release_arithmetic"] = {"length":int.from_bytes(self.local(-8,4),"little"),
+                                                 "scan_bound":int.from_bytes(self.local(-0xA,2),"little")}
+            if self.report["release_arithmetic"]!={"length":7896,"scan_bound":1316}:
+                raise ValueError("conversion scan inputs differ from the admitted table")
             off,seg,pointer = struct.unpack("<HHI",checked_read(client,int(r["ss"],16),int(r["sp"],16),8))
             if (off!=0x1A27 or seg!=self.converter["segment"] or pointer!=int.from_bytes(self.local(-4,4),"little")
                     or f"{pointer>>16:04X}:{pointer&0xFFFF:04X}"!=self.report["selected"]["destination"]):
