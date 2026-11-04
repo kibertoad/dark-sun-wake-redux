@@ -157,6 +157,13 @@ Next ID: Q-ITEM-014
   and codes bounded to the fifteen-byte span (at most 119), or account
   for the larger footprint; the second block can conditionally overlap
   the flags byte. No such native input or outcome has been observed.
+  Tried: FND-ITEM-032 settles the preserved-argument connection from the
+  general API's positive signed-code gate to the insertion code store and
+  qualifies its one direct incoming call. That producer's conditional
+  1..127 bound excludes codes 200..207, but does not prove the narrower
+  bitmap bound. Remaining code admission is other writers, moved/restored
+  rows and actual code sets, plus argument, row/index/count and alias
+  preservation; do not repeat this gate/store path as producer completeness.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
