@@ -31,9 +31,17 @@ Next ID: Q-SOUND-010
   of `4A32:0011`. Tried: searches of `DSUN.EXE` for the tags and for far calls to the playlist
   routines, which find none (FND-SOUND-014, FND-SOUND-015). Blocks: none.
 
-- Q-SOUND-007. FMT-SOUND-004: What structure do the disc's nineteen `.ADV` files share, and which
-  ones do the setup program or game load? Settles it: bounded file inspection and loader
-  references. Blocks: Survey format coverage.
+- Q-SOUND-007. FMT-SOUND-004: Which complete parser/selection paths populate
+  the setup device record's driver-name pointers, and which remaining loader
+  paths admit them? Settles it: the writers/producers of the name pointers
+  at current-record offsets sixteen and twenty-four, their connection to
+  actual setup selections and the remaining filename/resource loader paths.
+  Tried: FND-SOUND-018 validates all nineteen common directory envelopes;
+  their structure is removed from Settles it. FND-EXE-491/492 identify the
+  two filename consumers and setup batch; FND-EXE-585/590 bind the shipped
+  game selectors to ADV eleven/eight and their disc-file matches. Those
+  known consumers/default matches do not settle the remaining producers.
+  Blocks: complete loader interpretation of FMT-SOUND-004.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
   destination can fall in `DS:290A..291E`, with a positive control for each kind, or a reached
