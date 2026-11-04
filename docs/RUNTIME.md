@@ -180,6 +180,13 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q065-reader-return-20261104/.
 No native reader return relocation occurred; trap handling has synthetic
 controls. Continuous lifetime, child attribution and completed loading
 remain unverified. The probe stops before the caller consumes AL.
+The fixed saved-map-request stage in FND-COMBAT-148 admits a region-open
+publication, actual GMAP/50 selected row/transfer and full map comparison
+with the saved-plane prediction at matched reader return. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-map-request-20261104/.
+The sampled map, planes and effect spans do not overlap; continuous backing,
+other paths and completed loading remain unverified. No guest setup writes
+are introduced, and the probe still stops before the caller consumes AL.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

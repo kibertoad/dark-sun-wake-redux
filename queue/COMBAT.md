@@ -661,6 +661,11 @@ Next ID: Q-COMBAT-067
   equality/clearing branch, stack-local pointer/result aliases and failure
   paths that retain earlier or partial writes. Exit: destination and retained
   state cases for both requests, distinct from a nominal shipped length.
+  Tried: FND-COMBAT-148 observes pairwise physical separation of the actual
+  map, two bitmap planes and both effect spans at the GMAP transfer boundary.
+  That one five-span comparison is removed from unread work. Continuous
+  backing/lifetime, metadata/stack/other aliases and alternative cases remain;
+  the second-plane field's retained value after cleanup proves no liveness.
   Tried: FND-COMBAT-146 observes both admitted target spans equal to their
   transfer-time references and source slots 23/25 equal to the destinations
   at the matched selector-zero reader return. That one endpoint-retention
@@ -710,6 +715,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-148 admits one region-open publication, GMAP/50 plain
+  provider/row and complete transfer, actual five-span separation and a
+  full-map prediction match at reader return. Those native-route source,
+  extent and endpoint obligations are removed. Continuous lifetime and
+  intermediate mutations, other map states/failures, individual child
+  attribution and later caller work remain open.
   Tried: FND-COMBAT-147 reads the complete map-application child, region-open
   wrapper and four leaf setters: full-pointer gate, GMAP-result branches,
   bitmap traversal, byte-store footprints and ignored close/open results.
