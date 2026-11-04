@@ -68,7 +68,27 @@ Reports, frames and sidecars are under GAME_DIR/captures/rust-dos-regenerated/
 with those run names (verification directories append the state name).
 Current admission therefore includes these two states, their named memory
 reads, frame capture, strict restores and this mouse move/left-click route.
-It does not establish right click, keyboard, gameplay or Save/Load access.
+It does not by itself establish right click, keyboard or gameplay.
+The subsequent v181-q046-play-20261104 run used the existing `play` stage
+from v181-q046-opened-20261104. It confirmed the prescribed right/left mouse
+operations and Esc delivery, reached mode one with window 19501 and occupied
+slots 1 and 3, and stopped at the native input builder. The mode-zero interval
+eventually ended within the existing budget (571 total snapshots); intermediate
+registration and delivered Esc were not accepted as gameplay readiness.
+The run recorded three RULE-SCRIPT-006 draws and one RULE-SOUND-003 draw.
+The `play-resume` stage in v181-q046-play-ready-20261104 restored that run,
+delivered key 2 and verified leader 1 at the input builder, recording three
+more RULE-SCRIPT-006 draws. Neither run made setup writes. The existing RNG
+recorder checked every admitted draw's result and next seed; this is not a
+rebuild replay or parity comparison. Both run directories are under
+GAME_DIR/captures/rust-dos-regenerated/.
+verify_checkpoints.py arguments
+`v181-q046-play-ready-20261104 v181-q046-play-ready-verify-20261104 play-ready`
+passed new-process instruction/time, fields/frame, same-process roundtrip and
+sound-IRQ mismatch refusal. The final directory appends `-play-ready` to the
+verification prefix. These attempts admit the tested two-character map state,
+right click and the Esc/key-2 gestures under current pins. They do not admit
+other keys, Save/Load entry or capture of its dispatch fields.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
