@@ -40,10 +40,14 @@ reports before matched-menu pairing are diagnostic only.
 - Latest research: FND-ITEM-033/032/031/030/029/028/027; retain their
   predecessors and the corrected resident-boundary replacement. Q-ITEM-009
   is closed; Q-ITEM-011/013 are separate. Rules remain supported.
+- Reconciled FND-COMBAT-032/033 and FND-ITEM-032 into the item rules.
+  Reuse those copy contracts before further Q-ITEM-013 producer research.
 - Last full gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
+- Latest research gate: Test.ps1 -Research -ChangedSince 4bc67f62
+  -NoRestore passed with the project-local interpreter.
 - Owner-requested runtime tooling update is complete: session 1.0.0 and
   rust-dos v1.8.1 are pinned and installed. See
   docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
@@ -64,6 +68,9 @@ reports before matched-menu pairing are diagnostic only.
   FND-ITEM-033 identify the accepted queries, controls and exclusions.
   Hit-flags operand windows remain diagnostic, not a complete writer census.
   Retain source configurations and unresolved reports. No tracked WIP.
+- Unrecorded preparation there: effect-code-indexed-store-candidates.txt.
+  The field_stores.py raw pass uses an eight-byte candidate window; preserve
+  that exclusion. Its output is not an exhaustive writer census.
 - Reuse FND-PARTY-215/219, FND-RNG-053/061, FND-CONFIG-140/141/150/153/154/182/209,
   FND-PARTY-051/172/216/218/241 and FND-ACTOR-015/016 with their scope limits.
   Other retained research locations are named by the entries' reproduction
@@ -72,7 +79,7 @@ reports before matched-menu pairing are diagnostic only.
   uses Test.ps1 -Research -ChangedSince the pre-batch commit. Shared/uncertain
   inputs require integration; fresh staged documentation checks stay enabled.
   No new upstream rules refresh was requested or performed during this update.
-- Next: Q-ITEM-013's remaining effect-code writers/copies and restore admission;
+- Next: Q-ITEM-013's other producers, restore values and copy admission;
   Q-ITEM-011's segment entry producers and reached-child preservation;
   Q-ITEM-010's retained incoming gaps; Q-ITEM-012's feedback admission,
   reusing Q-SOUND-002; Q-ITEM-004's pool/index/copy admission.
