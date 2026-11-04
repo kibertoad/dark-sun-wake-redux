@@ -232,3 +232,30 @@ the stack-word watch before INT 3F reuses that storage. At manager
 segment/return +0F26; ignore nested IRET frames without admitting them.
 Then stop at the reloaded caller and retain the original frame/code checks.
 Controls cover trap/loaded encodings and wrong header/IRET offsets/segments.
+
+## Request-time provider observation
+
+For Q-COMBAT-064, extend the verified native-source route with a fixed
+`saved-providers` stage. After selector-zero reader admission, observe resident
+38FF:07B1 requests. FND-CONFIG-151 and FND-COMBAT-120 describe its complete
+transfer arguments and provider-local selection; FND-COMBAT-035 describes the
+selector-zero SAVE request order. Accept target requests only through the
+04AB wrapper's return +04D0, zero start, full-length sentinel and nonnull
+in/out pointer slot. No guest writes or direct calls are introduced.
+
+For SAVE/24 and SAVE/26, stop at +094A after destination selection but before
+archive preparation. Match SS/BP to the admitted core entry; retain provider,
+recorded length/offset, selected count and destination from the named locals,
+the provider's +28 handle and +4 I/O handle, and active/head fields. Bound all
+reads; no directory or graph traversal. Record SAVE/24's matched +09D4 return,
+AX/error/count and then continue to SAVE/26's pre-preparation stop. A rejected
+or failed SAVE/24 stops the experiment. Earlier ordinary requests may run;
+they do not prove their transfers or lifetime preservation. This stage proves
+only observed provider/length selection, not payload provenance, full loading,
+destination capacity or all fallback/missing-resource paths.
+
+Synthetic controls reject wrong wrapper frames, ranges/counts, target IDs,
+core stack frames, invalid selected lengths/offsets and wrapping field reads.
+Run the affected tooling gate before committing the probe, then record the
+native result in a separate research batch. Count every loop continuation
+independently of the legacy generic-observation `polls` field.

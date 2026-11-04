@@ -18,6 +18,7 @@ from restore_opener import verify_checkpoint_executable
 from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checked_read
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop, checkpoint_summary
+import request_provider
 
 
 def fields(client, delta):
@@ -274,11 +275,12 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry"))):
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers"))):
         raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry]")
     navigation = len(sys.argv) == 4
-    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry")
-    observe_reader = navigation and sys.argv[3] == "saved-reader-entry"
+    observe_providers = navigation and sys.argv[3] == "saved-providers"
+    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers")
+    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers")
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -348,6 +350,11 @@ def main():
             manager_iret = rng.address(0x4AE5, 0x559)
             region_return = region_watch = reader_entry = None
             awaiting_region_reload = False
+            provider_entry = rng.address(0x38FF, 0x7B1)
+            provider_selected = rng.address(0x38FF, 0x94A)
+            provider_return = rng.address(0x38FF, 0x9D4)
+            target_request = None
+            report["resource_requests"] = []
             report["region_relocations"] = []
             previous = None
             budget = 1024 if observe_load_return else 512
@@ -356,9 +363,44 @@ def main():
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
                 observed, exhausted = wait_for_stop(session, session.continue_(until_ms=target))
                 report["last_stop"] = observed.stop
+                report["continuations"] = index + 1
                 if exhausted:
                     raise RuntimeError("operation observation budget exhausted")
                 stop = observed.stop
+                if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_entry:
+                    if target_request is not None:
+                        raise ValueError("nested resource request while observing a target")
+                    target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta)
+                    if target_request is not None:
+                        expected_number = 24 if not report["resource_requests"] else 26
+                        if target_request["number"] != expected_number:
+                            raise ValueError("target SAVE requests differ from the admitted order")
+                        report["resource_requests"].append({"request": target_request, "entry": stop})
+                        session.client.set_breakpoint(provider_selected, once=True)
+                        session.client.set_breakpoint(provider_return, once=True)
+                    record()
+                    continue
+                if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_selected:
+                    step = report["resource_requests"][-1]
+                    step["selected"] = request_provider.selected(session.client, stop["registers"], target_request)
+                    step["selection_stop"] = stop
+                    step["archive"] = archive_fields(session.client, delta)
+                    if target_request["number"] == 26:
+                        report["passed"] = True
+                        break
+                    record()
+                    continue
+                if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_return:
+                    request_provider.frame(stop["registers"], target_request)
+                    step = report["resource_requests"][-1]
+                    step["return"] = stop
+                    step["error"] = int.from_bytes(checked_read(session.client, 0x57E0+delta, 0x9D99, 2), "little")
+                    step["reported_count"] = int.from_bytes(checked_read(session.client, 0x57E0+delta, 0x9D91, 4), "little")
+                    if "selected" not in step or int(stop["registers"]["ax"],16) != 0 or step["reported_count"] != step["selected"]["count"]:
+                        raise ValueError("SAVE/24 did not complete the matched full-length request")
+                    target_request = None
+                    record()
+                    continue
                 if stop["reason"] == "breakpoint" and stop["cs_ip"] == rng.address(0x1000, 0x0822):
                     report["draws"].append(rng.record(session, stop))
                     record()
@@ -593,6 +635,12 @@ def main():
                         raise ValueError("reader DS differs from the named resident data mapping")
                     selector = reader_frame(session.client, r, int(reader_entry.split(":")[0],16))
                     report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
+                    if observe_providers:
+                        session.client.remove_breakpoints(callback)
+                        session.client.remove_breakpoints(global_call)
+                        session.client.set_breakpoint(provider_entry)
+                        record()
+                        continue
                     report["passed"] = True
                     break
                 elif observe_load_return and stop["reason"] == "breakpoint" and stop["cs_ip"] in load_stops:

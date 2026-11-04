@@ -17,6 +17,7 @@ from load_entry import fields, map_ready, load_ready, event_words, navigation_ma
 from load_entry import named_file
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
+import request_provider as provider
 from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
@@ -294,6 +295,29 @@ t.segment=0x2000; t.offset=0xF26
 assert region_iret(t,{'ss':'1000','sp':'001E'},registers,0)=='2000:0F26'
 assert region_iret(t,{'ss':'1000','sp':'001C'},registers,0) is None
 t.offset=0; rejects(lambda: region_iret(t,{'ss':'1000','sp':'001E'},registers,0))
+class ProviderMemory:
+    returned=0x4D0; number=24; count=0xFFFFFFFF; start=0; slot=0x20000020
+    length=12; offset=40; pointer=0x20000020
+    def read_memory(self,address,size):
+        import struct
+        if address=='1000:0100':
+            return NS(data=struct.pack('<HHIIIII',self.returned,0x3000,int.from_bytes(b'SAVE','little'),self.number,self.start,self.count,self.slot))
+        values={'1000:00E2':self.length,'1000:00DE':self.offset,'1000:00E6':self.length,
+                '1000:00F2':self.pointer,'1000:00EA':0x20000080,'2000:0048':7,'2000:0024':3}
+        return NS(data=values[address].to_bytes(size,'little'))
+p=ProviderMemory(); regs={'ss':'1000','sp':'0100','bp':'00FE'}
+entry=provider.request(p,regs,0x3000)
+assert entry['number']==24 and provider.selected(p,regs,entry)['provider_handle']==7
+rejects(lambda: provider.selected(p,{**regs,'bp':'00FC'},entry))
+p.returned=0; rejects(lambda: provider.request(p,regs,0x3000)); p.returned=0x4D0
+p.count=12; rejects(lambda: provider.request(p,regs,0x3000)); p.count=0xFFFFFFFF
+p.start=1; rejects(lambda: provider.request(p,regs,0x3000)); p.start=0
+p.slot=0; rejects(lambda: provider.request(p,regs,0x3000)); p.slot=0x20000020
+p.number=25; assert provider.request(p,regs,0x3000) is None
+p.number=26; assert provider.request(p,regs,0x3000)['number']==26
+p.length=0; rejects(lambda: provider.selected(p,regs,entry)); p.length=12
+p.offset=0x80000000; rejects(lambda: provider.selected(p,regs,entry)); p.offset=40
+p.pointer=0x2000FFE0; rejects(lambda: provider.selected(p,regs,entry))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
