@@ -141,6 +141,14 @@ restore and same-process roundtrip. The narrow saved return-segment watch
 actually handled ten relocations. Whole-game loading of the new native save
 remains unverified; its bounded F2/copy route is described below. No patched
 native save was used.
+FND-COMBAT-169 extends paused saved-map verification with fixed getter metadata
+and free-list observations. Both FNFO buffers match the canonical source;
+scratch/selected are 520/523, temporary kind is zero, and sampled pools are
+finite and disjoint. Restore/roundtrip comparisons pass without gameplay
+continuation, input or guest writes. Reproduce with native_save.py
+v181-q063-native-save-input-20261104 <new-run> verify. Accepted output:
+GAME_DIR/captures/rust-dos-native-save/v181-q067-getter-metadata-20261104/.
+This admits one paused boundary, not later cleanup or continuous lifetime.
 The fixed saved-copy-return stage in FND-COMBAT-141 admits actual F2/Enter
 from that native candidate through the observed nonempty copy return, with
 bounded normalization/open/length and private-file-state checks. Output is

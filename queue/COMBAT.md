@@ -394,9 +394,10 @@ Next ID: Q-COMBAT-068
   Actual victim/free-list admission and child/alias effects remain. FND-COMBAT-163 settles RDFF status propagation;
   FND-COMBAT-164/165 settle admitted root ordering, finite deletion and kind preservation; FND-COMBAT-166 settles admitted
   non-top/noncoalescing release. Actual state/handler/pool/heap prerequisites remain. FND-COMBAT-167 settles positive-prefix
-  ordering and pending bounds, and identifies zero-result root reuse. Getter effects, map values, retained fields
-  and actual storage remain. Tried: FND-COMBAT-168 excludes both zero-result resets and preserves root index for admitted non-five roots;
-  actual root/storage/map/pool prerequisites and other root states remain. Blocks: slice 4.
+  ordering/pending bounds and zero-result root reuse. Getter effects, map values, retained fields and actual storage remain. Tried: FND-COMBAT-168 excludes both zero-result resets and preserves root index for admitted non-five roots;
+  actual root/storage/map/pool prerequisites and other root states remain.
+  Tried: FND-COMBAT-169 admits canonical metadata and finite disjoint pools at one paused checkpoint; temporary kind is zero.
+  Actual cleanup state and continuous preservation remain. Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate

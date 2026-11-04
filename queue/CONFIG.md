@@ -372,6 +372,9 @@ Next ID: Q-CONFIG-011
   state and runtime outcomes remain open.
   Runtime metadata,
   bound/slot writers and actual interrupt outcomes remain open.
+  Tried: FND-COMBAT-169 admits source-equal FNFO buffers, widths/selectors, scratch 520,
+  selected 523 and finite disjoint pools at one paused saved-map boundary. Provider identity,
+  incoming caller state and preservation through later calls remain open.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
