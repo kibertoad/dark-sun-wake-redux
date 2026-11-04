@@ -387,15 +387,16 @@ Next ID: Q-COMBAT-067
   reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
   accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
   FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
+  Tried: FND-COMBAT-160 removes per-record wrappers' own extents/results and immediate slot sources.
+  Reader length/provider, incoming slot/kind, other producers/aliases and save timing remain.
   Tried: FND-COMBAT-159 removes sorted insertion/removal adjustment's empty-index case: FFFF is
   preserved. Direct slot writes remain conditional on caller/free-list admission;
   other bulk/pointer producers, aliases and save-time temporary lifetime remain.
   Tried: FND-COMBAT-149 removes flags-zero allocation retries and eviction's own gates,
   composing the kind-two 0B4A owner-removal request. Populated-save admission, actual
   free-list/victim state and transitive child/alias effects remain open.
-  Tried: FND-COMBAT-150 samples empty slot 319 before reconstruction and at reader return,
-  with no allocation/eviction stop. This is no populated-slot positive control or universal
-  admission proof; do not repeat that empty baseline to seek its missing reclamation case.
+  Tried: FND-COMBAT-150's empty slot/no-eviction baseline is no populated-slot admission proof;
+  do not repeat that empty baseline to seek its missing reclamation case.
   Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
