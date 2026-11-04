@@ -38,13 +38,13 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices. Full research Audit remains unmet. Research side only;
   no gameplay implementation, parity validation or complete-reading promotion.
   Push only on an explicit owner request.
-- Latest research: FND-ITEM-070/069/068/067, with FND-ITEM-043 through FND-ITEM-066;
+- Latest research: FND-ITEM-071/072, with FND-ITEM-043 through FND-ITEM-070;
   active corrected DUAL evidence is FND-PARTY-262/263. Q-ITEM-009 is closed.
   FMT-ACTOR-001 retains its FND-COMBAT-162 Defect note.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince d1b4d0aa
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 5d4df111
   -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Latest tooling gate: Test.ps1 -ChangedSince d664ded5 -NoRestore passed,
-  including the paused placed-table synthetic controls. Last integration:
+  Latest tooling gate: Test.ps1 -ChangedSince 90212cd7 -NoRestore passed,
+  including the guarded main-entry flag observation controls. Last integration:
   Test.ps1 -ChangedSince e7d143bc -NoRestore passed all Node controls and
   758 .NET tests. Existing argument-count/generation skips and 59 uncompiled
   Kaitai definitions remain. Attempt-count warnings retain removed obligations;
@@ -65,6 +65,9 @@ reports before matched-menu pairing are diagnostic only.
   native-save.json retains the complete original-derived report privately.
   FND-ITEM-067 and CHECKPOINT-METADATA name its command, bounds and limits.
   No gameplay continuation, input or guest writes occurred in that observation.
+  The fixed startup flag observation is retained under
+  GAME_DIR/captures/rust-dos-startup-segments/v181-q118-main-flag-20261104/;
+  FND-ITEM-071 names its guarded endpoint and reproduction command.
 - Earlier paused getter/header/item-type observations are FND-COMBAT-169/170/171.
   FND-COMBAT-133 through FND-COMBAT-168 retain load/save/caller obligations.
   Session event_log is null; do not reconstruct unreported journals or bytes.
@@ -81,7 +84,8 @@ reports before matched-menu pairing are diagnostic only.
   FND-ITEM-066 names placement-table-allocation.txt; FND-ITEM-068 names
   placement-effect-samples.txt there. FND-ITEM-069 names the exact/overlap
   equipment-flag operand reports and census controls there. FND-ITEM-070
-  names equipment-flag-startup.txt there.
+  names equipment-flag-startup.txt there. FND-ITEM-072 names the new
+  equipment-sound-gates.txt and placement-sound-data/source-summary reports.
   Partial area-filter and generic-transfer-bindings listings remain diagnostic.
   placement-caller-incoming.txt, temporary-presentation-candidates.txt,
   effect-code-indexed-store-candidates.txt and hit-flags windows are candidate
@@ -94,7 +98,7 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-PARTY-109 retains action/owner/item/reset and other child admission.
   Independent obligations are Q-PARTY-116 counted row publication/lifetime,
   Q-PARTY-117 DATA coherence and Q-PARTY-118 flag producers/consumers.
-  Reuse FND-ITEM-056 through FND-ITEM-070 and the controlled flag reports;
+  Reuse FND-ITEM-056 through FND-ITEM-072 and the controlled flag reports;
   the paused endpoint is not a constructor observation. Next PARTY ID is 119.
 - Q-PARTY-077's DUAL slot lifetime, using FND-PARTY-262/263. Keep its actual
   action/target conditions separate from the equipment source composition.
