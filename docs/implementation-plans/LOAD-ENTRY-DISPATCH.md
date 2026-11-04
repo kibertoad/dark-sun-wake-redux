@@ -205,3 +205,30 @@ and separate research gates still apply.
 Also sample only the fixed working file at the direct destination-open
 return (+0091), before transfer. This distinguishes a net-equal copy from
 observed truncation/repopulation when source and destination initially match.
+
+## Successful-copy reader admission
+
+The fixed `saved-reader-entry` stage may continue only a nonzero native
+copy result. Observe the declared region-preparation call through resident
+56BD:00C0, requiring its caller +0F26, original wrapper frame, expected
+arguments and loaded +0F21 call. Watch only that call's saved return-segment
+word while overlays move. At return, validate cleanup and the near call
+to overlay 187 +0A6C, then stop at that reader entry before its body runs.
+Require return +0F2F and selector zero. Retain copy-return, region-entry,
+region-return and reader-entry snapshots of named DS fields: 167A, 144E,
+145A, 0DAB, 140C, 9D9B, 9D9F, 9DA3 and 9D8E. Read only each nonnull
+active/head record's evidenced +28 handle, with real-mode bounds; those
+snapshots alone do not establish allocation lifetime or resource provider.
+No graph traversal, direct reader invocation or setup write is admitted.
+Controls cover region/reader frame offsets, selector, near-call and record
+field bounds. Stop before any SAVE payload restoration or provider claim.
+FND-EXE-562's trap-form return must be handled explicitly: an unloaded
+overlay uses resident header 56EF:0000 and header word +2 retains +0F26.
+Accept only that declared encoding (or its documented loaded-segment
+transition with offset zero). At the header stop require the original
+post-far-return SS/SP, validate trap form and saved offset, then remove
+the stack-word watch before INT 3F reuses that storage. At manager
+4AE5:0559 require the corresponding interrupt frame and loaded header
+segment/return +0F26; ignore nested IRET frames without admitting them.
+Then stop at the reloaded caller and retain the original frame/code checks.
+Controls cover trap/loaded encodings and wrong header/IRET offsets/segments.

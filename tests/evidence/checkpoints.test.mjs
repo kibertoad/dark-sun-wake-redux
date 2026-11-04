@@ -16,6 +16,7 @@ from startup_window import wait_for_stop
 from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
 from load_entry import named_file
 from load_entry import native_path_pair
+from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
@@ -251,6 +252,48 @@ assert native_path_pair(path_value('C:\\SAVE02.SAV'),path_value('C:\\darkrun.GFF
 assert not native_path_pair(path_value('C:\\SAVE03.SAV'),path_value('C:\\darkrun.GFF'))
 assert not native_path_pair(path_value('C:\\SAVE02.SAV'),path_value('D:\\darkrun.GFF'))
 assert not native_path_pair(path_value(''),path_value('C:\\darkrun.GFF'))
+assert archive_fields(Memory(),0)['active']['handle_field'] is None
+class ArchiveMemory(Memory):
+    pointer=bytes([0x20,0,0,16])
+    def read_memory(self,address,size):
+        if address=='57E0:9D9F': return NS(data=self.pointer)
+        if address=='1000:0048': return NS(data=(5).to_bytes(4,'little'))
+        return super().read_memory(address,size)
+a=ArchiveMemory(); assert archive_fields(a,0)['active']['handle_field']==5
+a.pointer=bytes([0xE0,0xFF,0,16]); rejects(lambda: archive_fields(a,0))
+rejects(lambda: archive_fields(ShortMemory(),0))
+class RegionFrame:
+    offset=0xF26
+    def read_memory(self,address,size):
+        assert size==4
+        return NS(data=__import__('struct').pack('<HH',self.offset,0x2000))
+r=RegionFrame(); assert declared_return(r,registers,0xF26)=='2000:0F26'
+r.offset=0xF27; rejects(lambda: declared_return(r,registers,0xF26))
+r=SaveFrame(); r.offset=0xF2F; r.row=0
+assert reader_frame(r,registers,0x2000)==0
+r.row=1; rejects(lambda: reader_frame(r,registers,0x2000)); r.row=0
+rejects(lambda: reader_frame(r,registers,0x3000))
+class TrapMemory:
+    offset=0xF26
+    segment=0x2000
+    saved=0xF26
+    loaded=0x2000
+    def read_memory(self,address,size):
+        if address=='56EF:0002': return NS(data=self.saved.to_bytes(2,'little'))
+        if address=='56EF:0010': return NS(data=self.loaded.to_bytes(2,'little'))
+        if size==6: return NS(data=__import__('struct').pack('<HHH',self.offset,self.segment,0x202))
+        assert size==4
+        return NS(data=__import__('struct').pack('<HH',self.offset,self.segment))
+t=TrapMemory(); assert region_target(t,registers,0)==('2000:0F26',False)
+t.segment=0x56EF; assert region_target(t,registers,0)==('56EF:0F26',True)
+t.offset=0; assert region_target(t,registers,0)==('56EF:0F26',True)
+t.segment=0x2000; assert region_target(t,registers,0)==('2000:0F26',False)
+t.saved=1; rejects(lambda: region_target(t,registers,0)); t.saved=0xF26
+t.segment=0x3000; rejects(lambda: region_target(t,registers,0))
+t.segment=0x2000; t.offset=0xF26
+assert region_iret(t,{'ss':'1000','sp':'001E'},registers,0)=='2000:0F26'
+assert region_iret(t,{'ss':'1000','sp':'001C'},registers,0) is None
+t.offset=0; rejects(lambda: region_iret(t,{'ss':'1000','sp':'001E'},registers,0))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

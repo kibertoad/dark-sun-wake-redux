@@ -85,6 +85,57 @@ def native_path_pair(source, destination):
             and bytes.fromhex(destination["bytes_hex"]).lower() == b"c:\\darkrun.gff")
 
 
+def archive_fields(client, delta):
+    ds = 0x57E0 + delta
+    def value(offset, size):
+        return int.from_bytes(checked_read(client, ds, offset, size), "little")
+    def record(offset):
+        off, seg = struct.unpack("<HH", checked_read(client, ds, offset, 4))
+        handle = int.from_bytes(checked_read(client, seg, off + 0x28, 4), "little") if off or seg else None
+        return {"pointer": f"{seg:04X}:{off:04X}", "handle_field": handle}
+    return {"reuse": value(0x167A, 1), "working_handle": value(0x144E, 4),
+            "region_handle": value(0x145A, 4), "game_mode": value(0x0DAB, 2),
+            "region": value(0x140C, 2), "traversal_mode": value(0x9D9B, 2),
+            "counter": value(0x9D8E, 2), "active": record(0x9D9F), "head": record(0x9DA3)}
+
+
+def declared_return(client, registers, expected):
+    off, seg = struct.unpack("<HH", checked_read(client, int(registers["ss"], 16), int(registers["sp"], 16), 4))
+    if off != expected:
+        raise ValueError("return does not identify the declared reader-preparation caller")
+    return f"{seg:04X}:{off:04X}"
+
+
+def reader_frame(client, registers, segment):
+    off, seg, selector = struct.unpack("<HHH", checked_read(client, int(registers["ss"], 16), int(registers["sp"], 16), 6))
+    if off != 0xF2F or seg != segment or selector != 0:
+        raise ValueError("reader frame differs from the declared selector-zero call")
+    return selector
+
+
+def region_target(client, registers, delta):
+    off, seg = struct.unpack("<HH", checked_read(client, int(registers["ss"],16), int(registers["sp"],16), 4))
+    header = 0x56EF + delta
+    saved = int.from_bytes(checked_read(client, header, 2, 2), "little")
+    loaded = int.from_bytes(checked_read(client, header, 0x10, 2), "little")
+    if not seg or (seg != header and seg != loaded):
+        raise ValueError("region return segment is not the declared header or current load")
+    if off != 0xF26 and not (off == 0 and saved == 0xF26 and seg in (header, loaded) and seg != 0):
+        raise ValueError("unsupported encoded region return")
+    return f"{seg:04X}:0F26", seg == header
+
+
+def region_iret(client, registers, original, delta):
+    if (registers["ss"] != original["ss"] or
+            int(registers["sp"],16) != int(original["sp"],16)-2):
+        return None
+    off, seg, _ = struct.unpack("<HHH", checked_read(client, int(registers["ss"],16), int(registers["sp"],16), 6))
+    loaded = int.from_bytes(checked_read(client, 0x56EF+delta, 0x10, 2), "little")
+    if off != 0xF26 or not loaded or seg != loaded:
+        raise ValueError("overlay IRET does not identify the reloaded region caller")
+    return f"{seg:04X}:{off:04X}"
+
+
 def load_ready(state, ui):
     return ready(state, 18500) and ui["load_mode"] == 1
 
@@ -223,10 +274,11 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry]")
     navigation = len(sys.argv) == 4
-    saved_source = navigation and sys.argv[3] == "saved-copy-return"
+    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry")
+    observe_reader = navigation and sys.argv[3] == "saved-reader-entry"
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -291,6 +343,12 @@ def main():
             report["load_steps"] = []
             return_watch = None
             report["return_relocations"] = []
+            region_call = rng.address(0x56BD, 0xC0)
+            region_trap = rng.address(0x56EF, 0)
+            manager_iret = rng.address(0x4AE5, 0x559)
+            region_return = region_watch = reader_entry = None
+            awaiting_region_reload = False
+            report["region_relocations"] = []
             previous = None
             budget = 1024 if observe_load_return else 512
             report["observation_limit"] = budget
@@ -303,6 +361,18 @@ def main():
                 stop = observed.stop
                 if stop["reason"] == "breakpoint" and stop["cs_ip"] == rng.address(0x1000, 0x0822):
                     report["draws"].append(rng.record(session, stop))
+                    record()
+                    continue
+                if stop["reason"] == "watchpoint" and region_watch is not None:
+                    relocated, trapped = region_target(session.client, report["region_entry"]["stop"]["registers"], delta)
+                    report["region_relocations"].append({"before": region_return, "after": relocated, "stop": stop})
+                    if relocated != region_return:
+                        session.client.remove_breakpoints(region_return)
+                        region_return = relocated
+                        if not trapped:
+                            session.client.set_breakpoint(region_return, once=True)
+                    if trapped:
+                        session.client.set_breakpoint(region_trap, once=True)
                     record()
                     continue
                 if stop["reason"] == "watchpoint" and return_watch is not None:
@@ -430,6 +500,14 @@ def main():
                         "fields": fields(session.client, delta), "working_after": working_file(run)}
                     if saved_source:
                         report["copy_return"]["source_after"] = named_file(run, "SAVE02.SAV")
+                    if observe_reader:
+                        if not int(stop["registers"]["ax"], 16) & 0xFF:
+                            raise RuntimeError("only successful native copying admits reader preparation")
+                        report["copy_archive_state"] = archive_fields(session.client, delta)
+                        session.client.set_breakpoint(region_call, once=True)
+                        copy_return = None
+                        record()
+                        continue
                     if observe_load_return:
                         if int(stop["registers"]["ax"], 16) & 0xFF:
                             raise RuntimeError("only the observed copy-rejection branch may continue")
@@ -443,6 +521,78 @@ def main():
                         copy_return = None
                         record()
                         continue
+                    report["passed"] = True
+                    break
+                elif observe_reader and stop["reason"] == "breakpoint" and stop["cs_ip"] == region_call:
+                    r = stop["registers"]
+                    original = report["copy_inputs"]["stop"]["registers"]
+                    if r["ss"] != original["ss"] or r["bp"] != original["bp"]:
+                        raise ValueError("region call belongs to another wrapper frame")
+                    region_return = declared_return(session.client, r, 0xF26)
+                    seg = int(region_return.split(":")[0], 16)
+                    if checked_read(session.client, seg, 0xF21, 5) != struct.pack("<BHH", 0x9A, 0xC0, 0x56BD + delta):
+                        raise ValueError("region call instruction differs from the declared wrapper")
+                    args = list(struct.unpack("<4H", checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16)+4, 8)))
+                    current = archive_fields(session.client, delta)
+                    if args != [current["region"], 0, 1, 0]:
+                        raise ValueError("region-preparation arguments differ from declared call")
+                    report["region_entry"] = {"stop": stop, "arguments": args, "archive": current}
+                    region_watch = f"{r['ss']}:{int(r['sp'],16)+2:04X}"
+                    session.client.set_watchpoint(region_watch, 2)
+                    session.client.set_breakpoint(region_return, once=True)
+                    record()
+                    continue
+                elif observe_reader and stop["reason"] == "breakpoint" and stop["cs_ip"] == region_trap:
+                    original = report["region_entry"]["stop"]["registers"]
+                    if not returned_frame(original, stop["registers"]):
+                        raise ValueError("header trap belongs to another returned frame")
+                    header = 0x56EF + delta
+                    if (checked_read(session.client, header, 0, 2) != bytes([0xCD,0x3F]) or
+                            int.from_bytes(checked_read(session.client, header, 2, 2),"little") != 0xF26):
+                        raise ValueError("header trap differs from the declared saved region return")
+                    report["region_trap"] = stop
+                    session.client.remove_watchpoints(region_watch)
+                    region_watch = None
+                    if checked_read(session.client, 0x4AE5+delta, 0x559, 1) != bytes([0xCF]):
+                        raise ValueError("overlay handler IRET differs from declared code")
+                    session.client.set_breakpoint(manager_iret)
+                    awaiting_region_reload = True
+                    record()
+                    continue
+                elif awaiting_region_reload and stop["reason"] == "breakpoint" and stop["cs_ip"] == manager_iret:
+                    relocated = region_iret(session.client, stop["registers"], report["region_entry"]["stop"]["registers"], delta)
+                    if relocated is None:
+                        report["nested_overlay_returns"] = report.get("nested_overlay_returns",0)+1
+                        record()
+                        continue
+                    report["region_reload"] = {"stop": stop, "return": relocated}
+                    session.client.remove_breakpoints(manager_iret)
+                    region_return = relocated
+                    session.client.set_breakpoint(region_return, once=True)
+                    awaiting_region_reload = False
+                    record()
+                    continue
+                elif region_return is not None and stop["reason"] == "breakpoint" and stop["cs_ip"] == region_return:
+                    if not returned_frame(report["region_entry"]["stop"]["registers"], stop["registers"]):
+                        raise ValueError("region return belongs to another frame")
+                    seg = int(region_return.split(":")[0], 16)
+                    expected = bytes([0x83,0xC4,8,0x6A,0,0x0E]) + struct.pack("<BH",0xE8,(0xA6C-0xF2F)&0xFFFF)
+                    if checked_read(session.client, seg, 0xF26, len(expected)) != expected:
+                        raise ValueError("reader near call differs from declared wrapper")
+                    report["region_return"] = {"stop": stop, "archive": archive_fields(session.client, delta)}
+                    if region_watch is not None:
+                        session.client.remove_watchpoints(region_watch)
+                    region_watch = None
+                    reader_entry = f"{seg:04X}:0A6C"
+                    session.client.set_breakpoint(reader_entry, once=True)
+                    record()
+                    continue
+                elif reader_entry is not None and stop["reason"] == "breakpoint" and stop["cs_ip"] == reader_entry:
+                    r = stop["registers"]
+                    if int(r["ds"],16) != 0x57E0 + delta:
+                        raise ValueError("reader DS differs from the named resident data mapping")
+                    selector = reader_frame(session.client, r, int(reader_entry.split(":")[0],16))
+                    report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
                     report["passed"] = True
                     break
                 elif observe_load_return and stop["reason"] == "breakpoint" and stop["cs_ip"] in load_stops:
