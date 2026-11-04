@@ -211,6 +211,12 @@ Next ID: Q-PARTY-116
   Tried: FND-PARTY-262 corrects the area child's zero-argument exclusion:
   zero removals still request unloading its target slot. Actual target-list,
   object/entry/table lifetime, redraw/deferred work and child effects remain.
+  Tried: FND-ITEM-063 removes the canonical area-list family and count
+  alternatives: D=42 selects an effect-object scan capped at one before
+  filtering. Selection does not test the removal row's flag, so positive
+  removal count is not proved. Actual range/coordinate setup, predicate,
+  row/slot/frame preservation and child effects remain; the range helper's
+  FF-derived row-minus-one read needs separate memory admission.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
