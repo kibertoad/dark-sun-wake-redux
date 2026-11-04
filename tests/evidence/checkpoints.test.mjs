@@ -72,6 +72,31 @@ rejects(lambda:getter_metadata.fixed_read(memory,0xFFFF,0,32))
 rejects(lambda:getter_metadata.capture(memory,0xB000))
 memory.short=True
 rejects(lambda:getter_metadata.capture(memory,0))
+class AllocationMemory:
+    paragraphs=2
+    marker=0x77
+    short=False
+    def read_memory(self,address,size):
+        off=int(address.split(':')[1],16)
+        body=struct.pack('<HH',self.paragraphs,0x1234) if off==0 else bytes([self.marker])
+        return NS(data=body[:-1] if self.short else body)
+allocation_memory=AllocationMemory()
+base_words=bytes(4)+b''.join(struct.pack('<HH',4,0x1000+kind*0x10) for kind in range(5))
+captured_bases={'spans':{'record_bases':{'size':24,'hex':base_words.hex()}}}
+allocation=getter_metadata.record_allocations(allocation_memory,captured_bases)
+assert allocation['blocks'][1]['payload_bytes_before_marker']==27 and not allocation['overlaps']
+overlapping={'spans':{'record_bases':{'size':24,'hex':(bytes(4)+struct.pack('<HH',4,0x1000)*5).hex()}}}
+assert len(getter_metadata.record_allocations(allocation_memory,overlapping)['overlaps'])==10
+for pointer in [(0,0x1000),(4,0),(4,0xFFFF)]:
+    bad={'spans':{'record_bases':{'size':24,'hex':(bytes(4)+struct.pack('<HH',*pointer)*5).hex()}}}
+    rejects(lambda:getter_metadata.record_allocations(allocation_memory,bad))
+for count in (0,4096):
+    allocation_memory.paragraphs=count
+    rejects(lambda:getter_metadata.record_allocations(allocation_memory,captured_bases))
+allocation_memory.paragraphs=2; allocation_memory.marker=0
+rejects(lambda:getter_metadata.record_allocations(allocation_memory,captured_bases))
+allocation_memory.marker=0x77; allocation_memory.short=True
+rejects(lambda:getter_metadata.record_allocations(allocation_memory,captured_bases))
 
 table=bytes((i%251 for i in range(9200)))
 cleared=item_restore.prediction(table)

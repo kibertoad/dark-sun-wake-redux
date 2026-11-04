@@ -60,6 +60,34 @@ def pools(table, heads):
     return {"lists": result, "shared_indices": sorted(sharing)}
 
 
+def record_allocations(client, captured):
+    span = captured["spans"]["record_bases"]
+    if span["size"] != 24 or len(span["hex"]) != 48:
+        raise ValueError("record-base snapshot extent differs")
+    bases = bytes.fromhex(span["hex"])
+    result, intervals = {}, {}
+    for kind in range(1, 6):
+        offset, segment = struct.unpack_from("<HH", bases, kind * 4)
+        if offset != 4 or not segment:
+            raise ValueError("record base is outside the declared P:0004 contract")
+        paragraphs, predecessor = struct.unpack("<HH", fixed_read(client, segment, 0, 4))
+        if not 1 <= paragraphs <= 4095:
+            raise ValueError("record allocation header extent differs")
+        end = paragraphs * 16
+        if segment * 16 + end > 0x100000:
+            raise ValueError("record allocation extent crosses physical memory")
+        marker = fixed_read(client, segment, end - 1, 1)[0]
+        if marker != 0x77:
+            raise ValueError("record allocation marker differs")
+        intervals[kind] = (segment * 16, segment * 16 + end)
+        result[kind] = {"base": f"{segment:04X}:0004", "paragraphs": paragraphs,
+                        "predecessor": predecessor, "marker": marker,
+                        "payload_bytes_before_marker": end - 5}
+    overlaps = [[a, b] for a in intervals for b in intervals if a < b
+                and max(intervals[a][0], intervals[b][0]) < min(intervals[a][1], intervals[b][1])]
+    return {"blocks": result, "overlaps": overlaps}
+
+
 def capture(client, delta):
     if type(delta) is not int or not 0 <= 0x4F49 + delta <= 0xFFFF or not 0 <= 0x57E0 + delta <= 0xFFFF:
         raise ValueError("getter observation lacks a valid resident mapping")

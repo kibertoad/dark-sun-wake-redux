@@ -31,3 +31,18 @@ bounded capture and passing controls, followed by a separate research batch
 recording actual values and canonical-source comparisons. A snapshot alone
 establishes neither initial-resource provider identity nor continuous
 preservation, a populated temporary save, or cleanup correctness.
+
+## Record allocation headers
+
+Extend the same paused verification with the five captured kind-indexed
+record bases. FND-CONFIG-209/210 and FND-COMBAT-166 identify P:0004's
+header paragraph count at P:0000, predecessor word at P:0002 and marker
+at P:(16*count-1). Admit only nonnull P:0004 pointers, counts 1..4095,
+nonwrapping physical extents and marker 77 hex. Read four header bytes
+and one marker byte per base; never traverse heap links or dump a block.
+Record described payload extents and pairwise overlap diagnostics. Repeat
+the comparison after the existing roundtrip. Actual allocation history,
+later lifetime and unknown kind-four resource length remain open.
+Synthetic controls cover bad pointer offsets, null bases, zero/oversized
+counts, physical wrap, bad markers, short reads and overlapping blocks.
+Exit: passing selected tooling gate, then a separate native finding.
