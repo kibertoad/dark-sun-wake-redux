@@ -387,6 +387,11 @@ Next ID: Q-COMBAT-067
   reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
   accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
   FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
+  Tried: FND-COMBAT-149 resolves the flags-zero temporary allocation retries
+  and eviction helper's own gates, composing its 0B4A kind-two path with
+  the known owner-removal request. Those local consequence branches are
+  removed; populated-save admission, actual free-list/victim state and
+  transitive child/alias effects remain open.
   Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
@@ -715,6 +720,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-149 completes the flags-zero object-loader own body,
+  its no-call image-selector branch, chain-insertion/reset leaves and
+  temporary eviction helper's own gates. Those local obligations are
+  removed. Actual OJFF/stack and restored-table admission, allocation
+  state, lazy-animation/unload children and other transitive effects remain;
+  reuse Q-COMBAT-045 for populated temporary-slot admission.
   Tried: FND-COMBAT-148 admits one region-open publication, GMAP/50 plain
   provider/row and complete transfer, actual five-span separation and a
   full-map prediction match at reader return. Those native-route source,

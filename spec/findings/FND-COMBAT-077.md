@@ -54,6 +54,10 @@ restored current and maximum hit points.
 
 ## Alternatives
 
+FND-COMBAT-149 subsequently reads the remaining loader body and bounds
+its flags-zero image-selector and conditional eviction/chain paths. The
+skipped RDFF request does not exclude those other child effects.
+
 Q-COMBAT-044 retains SAVE/5 and SAVE/6 admission, the remaining children
 of 31E0:0EFF, the reader's other children and later load continuations,
 including failure paths. A global claim that a numbered load never resets

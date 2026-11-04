@@ -80,6 +80,10 @@ also has its `RDFF` resource of the same number requested.
 
 ## Alternatives
 
+FND-COMBAT-149 subsequently accounts for the complete loader's own body
+and flags-zero continuation dependencies; its temporary-slot and child
+effects remain conditional on admitted restored state.
+
 Nothing here shows that the table at `DS:67B7` is filled from a region's `ETAB`; that tag occurs
 only in overlay code (FND-REGION-007). The code after `31E0:1040` was read only for its calls, so
 what it does with the slot is not known. What `2D40:000A` does with the `RDFF` request and
