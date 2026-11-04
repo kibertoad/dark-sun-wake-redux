@@ -284,6 +284,16 @@ for root index zero it instead returns the root object number
   (FND-ITEM-042, Q-PARTY-115).
 - Admitted item-action dispatch and child effects of the overlay-189
   selector consumers (FND-PARTY-254, Q-PARTY-109).
+- Counted effect-row publication and flagged-row preservation through the
+  equipment area pass, beyond the local constructor/caller contracts and
+  paused endpoint (FND-ITEM-063, FND-ITEM-065, FND-ITEM-067,
+  FND-ITEM-068, Q-PARTY-116).
+- Equipment/cast DATA key/content coherence and snapshot lifetime beyond
+  the complete getter and source-domain reading (FND-ITEM-057,
+  FND-ITEM-062, Q-PARTY-117).
+- Equipment flag producers/consumers and use-time preservation across
+  immediate and queued effects (FND-ITEM-059, FND-ITEM-061,
+  FND-ITEM-062, Q-PARTY-118).
 - Admitted script inputs and child effects of the packed-field consumer
   (FND-PARTY-255, Q-PARTY-110), with its inventory gap retained separately.
 - Complete admitted item ability/movement rebuild and its effect-list

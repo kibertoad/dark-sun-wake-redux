@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-116
+Next ID: Q-PARTY-119
 
 ## Static
 
@@ -164,9 +164,11 @@ Next ID: Q-PARTY-116
 - Q-PARTY-109. FMT-PARTY-006: Which admitted item actions reach overlay
   189 `+326A` and `+332B`, and what effects do their child requests
   produce? Settles it: caller owner/index/value domains and record
-  preservation, actual effect-four membership and DATA cache/content/read results, reset/dispatch
-  effects and DS:6174 producers/consumers, including high source-word
-  admission. Tried: FND-PARTY-254 settles the complete local gates,
+  preservation, actual effect-four membership, reset rereads and special
+  rebuild/other dispatch-child effects, including high source-word admission.
+  DATA coherence is Q-PARTY-117, placed-row publication/lifetime is
+  Q-PARTY-116 and flag lifetime is Q-PARTY-118; do not repeat those as
+  unnamed dependencies here. Tried: FND-PARTY-254 settles the complete local gates,
   call arguments/order and unreachable post-FFFF call without assigning
   a native effect outcome.
   Tried: FND-ITEM-056 removes canonical high signed-selector and repeated-
@@ -242,6 +244,48 @@ Next ID: Q-PARTY-116
   are wrapping point translations behind named cell/geometry gates, and
   exact-not-FFFF acceptance adds no counted-index check before immediate
   consumers. Actual slot/sample/key/K, child preservation and lifetime remain.
+- Q-PARTY-116. FMT-PARTY-006: Does an admitted effect-row constructor
+  publish a counted flagged row that survives until the equipment area
+  removal uses its slot? Settles it: an actual admitted slot/sample/base/key,
+  count and extra-row state at 31E0:03CA entry, its returned K relative to
+  persistent count N and retained frame/header/table identity; other
+  creators/restores and intervening row flag/count/base/slot writers; the
+  selected scanner's range/coordinate and row-minus-one memory admission,
+  and the positive flagged-match condition at 371D:050F, including its
+  actual removal/redraw/deferred children. Q-PARTY-077 retains the distinct
+  DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: split from Q-PARTY-109 after FND-ITEM-063/064 settle the selected
+  list/filter and FND-ITEM-065/066/068 settle local constructor, allocation
+  and caller contracts. FND-ITEM-067 supplies a strict paused endpoint,
+  not a constructor call. The historical Q-PARTY-109 attempts retain the
+  removed alternatives; no reading or native result is discarded.
+  Blocks: complete interpretation of FMT-PARTY-006.
+- Q-PARTY-117. FMT-PARTY-006: Do the equipment and cast DATA reads obtain
+  coherent key/content and retain the snapshots actually used? Settles it:
+  actual getter key/buffer inputs, cache-hit versus accepted-miss results,
+  the lower reader's returned pointer and complete transferred content,
+  shared buffer/key writers and failures, repeated read identity across
+  hook/reset/cast children and the separate SS snapshots' lifetime.
+  Caller item/owner/index admission remains Q-PARTY-109, placed-table
+  publication Q-PARTY-116 and equipment flag lifetime Q-PARTY-118.
+  Tried: split from Q-PARTY-109 after FND-ITEM-057 settles the full local
+  getter/cache wrapper and canonical source properties, and FND-ITEM-062
+  identifies the main cast's separate local copy and later reread. Source
+  record existence is not successful transfer or use-time coherence.
+  Blocks: complete interpretation of FMT-PARTY-006.
+- Q-PARTY-118. FMT-PARTY-006: Is the equipment flag's published value
+  preserved to each immediate or queued effect consumer, and what decides
+  its later value? Settles it: a complete controlled census of direct and
+  indirect/aliased flag writers and consumers, with gaps and positive
+  controls; their admitted ordering across 193 +0000/+003C, sound, hit,
+  queued effects and callback/reentrant children; actual use-time values
+  and the outer caller's final clear. DATA coherence is Q-PARTY-117 and
+  placed-row lifetime Q-PARTY-116; other owner/item admission is Q-PARTY-109.
+  Tried: split from Q-PARTY-109 after FND-ITEM-059 settles the outer
+  publication/clear and FND-ITEM-061/062 settle selected local prefixes and
+  queue ordering. FND-MAGIC-018 and FND-PARTY-167 identify duration
+  consumers; their use-time value is not established by the outer store.
+  Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
