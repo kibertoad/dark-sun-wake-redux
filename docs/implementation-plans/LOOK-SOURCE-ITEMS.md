@@ -59,3 +59,19 @@ known chunk table. Synthetic controls must include an unnamed non-50 item,
 distinguish it from named and unnamed type-50 items, and preserve first/later
 and trailing exclusions. Exit: passing tooling gate followed by a separate
 source finding; source validity never proves later name preservation.
+
+## Attached item-test input domains
+
+For Q-ITEM-006, add all-kind-one payload histograms to the full-chain report:
+unsigned byte +12 hex, signed position byte +13, signed bonus byte +16,
+and unsigned word +10. FND-RNG-035 and FND-PARTY-217/248 describe these
+consumer widths. Reuse source/hash/first-kind/chain controls and read only
+the established 23-byte spans. Report sorted value/count rows named by field,
+without labels, assets or new gameplay semantics. Each histogram must account
+for the same item total, including later payloads and non-50 types.
+
+Synthetic acceptance distinguishes the four offsets, unsigned 255 from signed
+minus one, signed minus 128 and 127, and a nonzero high word byte. Preserve
+the existing chain/end/trailing controls. Run the selected tooling gate;
+record licensed-source counts separately as research. Source absence never
+excludes later writes, restores, aliases or input domains outside OBJEX.GFF.

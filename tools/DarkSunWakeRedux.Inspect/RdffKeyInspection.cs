@@ -39,10 +39,12 @@ internal static class RdffKeyInspection
         ushort Quantity, ushort Value, ushort Word10);
     internal sealed record ItemNameDomain(ushort Type, int Items, int Named, int Unnamed);
     internal sealed record UnnamedItem(uint ResourceNumber, int ChunkIndex, ushort Type, ushort NameNumber);
+    internal sealed record ItemValueCount(int Value, int Count);
+    internal sealed record ItemInputDomain(string Field, bool Signed, IReadOnlyList<ItemValueCount> Values);
     internal sealed record ChainLookCensus(int Resources, int Chunks, int Items, int Type50,
         int NamedType50, int UnnamedType50, int TrailingResources, IReadOnlyList<ChainLookRow> Rows,
         int NamedItems, int UnnamedItems, IReadOnlyList<ItemNameDomain> ItemTypes,
-        IReadOnlyList<UnnamedItem> UnnamedRows);
+        IReadOnlyList<UnnamedItem> UnnamedRows, IReadOnlyList<ItemInputDomain> ItemInputs);
 
     internal static Controls ParseControls(ReadOnlySpan<byte> bytes)
     {
@@ -167,6 +169,7 @@ internal static class RdffKeyInspection
         var rows = new List<ChainLookRow>();
         var types = new SortedDictionary<ushort, (int Items, int Named)>();
         var unnamed = new List<UnnamedItem>();
+        var inputs = Enumerable.Range(0, 4).Select(_ => new SortedDictionary<int, int>()).ToArray();
         foreach (var resource in resources)
         {
             var data = resource.Data.Span;
@@ -193,6 +196,13 @@ internal static class RdffKeyInspection
                 if (header[2] == 1)
                 {
                     items++;
+                    int[] inputValues = [record[0x12], unchecked((sbyte)record[0x13]),
+                        unchecked((sbyte)record[0x16]), BinaryPrimitives.ReadUInt16LittleEndian(record[0x10..0x12])];
+                    for (int field = 0; field < inputValues.Length; field++)
+                    {
+                        inputs[field].TryGetValue(inputValues[field], out int count);
+                        inputs[field][inputValues[field]] = count + 1;
+                    }
                     ushort type = BinaryPrimitives.ReadUInt16LittleEndian(record[10..12]);
                     ushort name = BinaryPrimitives.ReadUInt16LittleEndian(record[20..22]);
                     types.TryGetValue(type, out var counts);
@@ -213,7 +223,10 @@ internal static class RdffKeyInspection
         return new(validated.Resources, chunks, items, rows.Count, named, rows.Count - named, trailing, rows,
             items - unnamed.Count, unnamed.Count,
             types.Select(pair => new ItemNameDomain(pair.Key, pair.Value.Items, pair.Value.Named,
-                pair.Value.Items - pair.Value.Named)).ToArray(), unnamed);
+                pair.Value.Items - pair.Value.Named)).ToArray(), unnamed,
+            inputs.Select((values, index) => new ItemInputDomain(
+                new[] {"byte12", "position13", "bonus16", "word10"}[index], index is 1 or 2,
+                values.Select(pair => new ItemValueCount(pair.Key, pair.Value)).ToArray())).ToArray());
     }
 
     internal static int Run(string path, string controlsPath, bool look = false, bool chains = false)

@@ -168,6 +168,27 @@ public sealed class RdffKeyInspectionTests
         Assert.Equal(new RdffKeyInspection.UnnamedItem(30,0,17,65535), Assert.Single(result.UnnamedRows));
     }
 
+    [Fact]
+    public void ItemInputDomainsKeepSignedBytesDistinctAndCountAllItemTypes()
+    {
+        var selected = Record(10,1,-10).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(selected.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(selected.AsSpan(26), 0xFF01);
+        selected[28] = 255; selected[29] = 128; selected[32] = 255;
+        var other = Record(20,1,-20).Data.ToArray();
+        other[29] = 255; other[32] = 127;
+        var result = RdffKeyInspection.AnalyzeLookChains(
+            [new(10,selected),new(20,other),Record(30,5,-30)], Controls(2));
+        Assert.Equal(2, result.Items);
+        Assert.Equal(new[] {"byte12","position13","bonus16","word10"}, result.ItemInputs.Select(row => row.Field));
+        Assert.Equal(new[] {false,true,true,false}, result.ItemInputs.Select(row => row.Signed));
+        Assert.Equal(new[] {0,255}, result.ItemInputs[0].Values.Select(row => row.Value));
+        Assert.Equal(new[] {-128,-1}, result.ItemInputs[1].Values.Select(row => row.Value));
+        Assert.Equal(new[] {-1,127}, result.ItemInputs[2].Values.Select(row => row.Value));
+        Assert.Equal(new[] {0,0xFF01}, result.ItemInputs[3].Values.Select(row => row.Value));
+        Assert.All(result.ItemInputs, field => Assert.Equal(result.Items, field.Values.Sum(row => row.Count)));
+    }
+
     [Theory]
     [InlineData("forward")]
     [InlineData("kind")]
