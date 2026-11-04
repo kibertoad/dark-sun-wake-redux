@@ -38,15 +38,15 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-ITEM-046/045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
-- Item work: FND-ITEM-027 through FND-ITEM-045. Q-ITEM-009 closed;
+- Item work: FND-ITEM-027 through FND-ITEM-046. Q-ITEM-009 closed;
   Q-ITEM-011/013 remain separate. Reuse FND-COMBAT-032/033/046 censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: Test.ps1 -Research -ChangedSince a867719d -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince 6136ea1a -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -ChangedSince 216c9812 -NoRestore selected integration and passed
@@ -76,7 +76,8 @@ reports before matched-menu pairing are diagnostic only.
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
-  Latest item reports: position-admission-body.txt and position-script-field-domain.json
+  Latest item reports: dynamic-scalar-literal-leads.json, position-admission-body.txt
+  and position-script-field-domain.json
   under item-removal-20261104/. Script writer/runner/geometry listings remain
   under GAME_DIR/analysis/walk-script-20261104/.
   FND-ITEM-042 names retained gap listings; older script-instructions directory absent.
@@ -93,7 +94,9 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-SCRIPT-023's effective reset/preservation; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
-- Q-ITEM-005/006's remaining consumers/writers/admission; Q-ITEM-013's live-frame aliases,
+- Q-ITEM-006's nested opcode-22 requests, other entries and independent writers;
+  Q-ITEM-005's other consumers. Reuse FND-ITEM-044/045/046 rather than repeat
+  those placement/decoded-scalar/positive-caller readings. Q-ITEM-013's live-frame aliases,
   keeping Q-ITEM-011's segment prerequisite separate.
 - Q-COMBAT-067 cleanup/lifetime and Q-COMBAT-045 save admission; reuse
   FND-COMBAT-159 through FND-COMBAT-171.
