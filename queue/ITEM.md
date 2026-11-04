@@ -58,6 +58,11 @@ Next ID: Q-ITEM-014
   predicates. Remaining placement work is actual callers/positions, snapshot/
   removal and capacity children, graph/table/stack/current-character admission
   and preservation; spell and store questions remain independent obligations.
+  Tried: FND-ITEM-049 removes the capacity result-selector, comparison-width
+  and in-table Strength mapping obligations. The caller selects the minimum
+  aggregate rather than its separate sum, then compares only its signed low
+  word. Remaining capacity work is actual traversal/getter samples and
+  termination, table/slot/record/copy/near-state admission and preservation.
 - Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Do the item-test
   callers admit the storage and state required for complete recursive removal?
   Settles it: remaining caller/global preservation and storage contracts of

@@ -65,9 +65,9 @@ or every use of the bit.
 The gate then calls 1AA0:0321 with the current character and its recorded
 local/output and packed arguments, retaining AX as W. It calls 27E5:0236
 with the current character and one, obtaining K. Signed K below W rejects
-with the load message; equality passes. The full calculations and actual
-output/near-pointer admission of these children are not read here, so W/K
-are not replaced with an invented weight formula.
+with the load message; equality passes. FND-ITEM-049 subsequently binds W
+to the narrowed minimum aggregate and K to the second Strength-table column.
+Actual traversal/getter, output/near-pointer and table admission remain open.
 
 It constructs a graph for DS:1A32 at 5072:0040, keeps the returned AX, and
 constructs the current character graph using DS:6189 plus four times that
