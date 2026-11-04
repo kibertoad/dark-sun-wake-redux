@@ -34,10 +34,6 @@ Next ID: Q-SOUND-010
 - Q-SOUND-007. FMT-SOUND-004: What structure do the disc's nineteen `.ADV` files share, and which
   ones do the setup program or game load? Settles it: bounded file inspection and loader
   references. Blocks: Survey format coverage.
-- Q-SOUND-008. FMT-SOUND-005: What is the validated container of the forty `MUSIC/Track*.ogg`
-  files, how do their numbers map to disc tracks, and which part of the GOG runtime reads them?
-  Settles it: bounded file inspection, the `game.ins` mapping and the DOSBox configuration or
-  loader. Blocks: slice 7 audio work.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
   destination can fall in `DS:290A..291E`, with a positive control for each kind, or a reached
