@@ -186,7 +186,8 @@ Next ID: Q-PARTY-116
   type changes and name-invalidating writes outside FND-ITEM-038's selector exclusion
   and FND-ITEM-039's initializer/free-list/scalar kind-one exclusions,
   admitting name >=9999 outside preserved
-  canonical RDFF copies covered by FND-ITEM-040; retained value/quantity/word state,
+  canonical RDFF copies of every initial type covered by FND-ITEM-041;
+  retained value/quantity/word state,
   passing target and
   preliminary gates, zero fallback mask 0x1D and the later door-bit check; or complete
   producer/domain exclusion. Tried: split from Q-PARTY-108 after FND-ITEM-036 settles
@@ -203,7 +204,11 @@ Next ID: Q-PARTY-116
   previously named gap, alias and use-time obligations. Tried: FND-ITEM-040 removes
   nonfirst canonical RDFF type-50 payloads: all 633 selected items are named,
   including the two later chunks. Other input domains, type changes from other
-  initial types and runtime replacement/preservation remain. Blocks: slices 4-5.
+  initial types and runtime replacement/preservation remain. Tried: FND-ITEM-041
+  removes unnamed canonical RDFF inputs of other initial types: all 1931 item
+  payloads across 87 types are named, so a name-preserving type-only change cannot
+  supply the invalid-name prerequisite. Other input domains and runtime name
+  writes/copies/aliases, changed streams and the gap remain. Blocks: slices 4-5.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
