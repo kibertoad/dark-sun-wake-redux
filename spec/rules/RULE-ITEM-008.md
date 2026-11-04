@@ -142,6 +142,10 @@ None known.
 
 ## Open questions
 
+- Canonical RDFF byte +12 values are 0,3,4,5,6. The known initializer writes
+  one, so source values are not a universal runtime range; independent writers
+  and use-time admission remain Q-ITEM-006 (FND-ITEM-043).
+
 - Recursive removal/storage admission remains Q-ITEM-004. The quantity
   helper `fn_5671_0075` caller, writer and record-admission contract is Q-ITEM-007;
   its local arithmetic and zero branches are recorded above.

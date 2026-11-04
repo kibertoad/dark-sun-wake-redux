@@ -87,6 +87,13 @@ Next ID: Q-ITEM-014
   FND-PARTY-248 binds local signed bonus uses and FND-PARTY-217/221 bind
   signed inventory position. Their local purposes are already in the rules;
   neither those uses nor a field's name establish every writer/admitted state.
+  Tried: FND-ITEM-043 removes the canonical RDFF source-domain obligation:
+  all 1931 item payloads have position -1 or zero, bonus zero through four,
+  byte +12 in 0/3/4/5/6 and word +10 in zero through 327 (29 above 255).
+  Position six/nine and negative bonus require another producer/input or
+  changed copy. Initializer byte +12 equal to one already lies outside that
+  source domain. Remaining work is independent writers, other inputs and
+  admitted selection/lifetime, not another scan of these unchanged payloads.
 
 - Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
   item helper's local quantity operations? Settles it: complete caller

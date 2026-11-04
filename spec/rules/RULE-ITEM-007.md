@@ -135,6 +135,10 @@ None known.
 
 ## Open questions
 
+- Canonical RDFF item bonuses are zero through four; negative bonuses need
+  later writes, other inputs or changed copies. Use-time bonus/selection admission
+  remains Q-ITEM-006 (FND-ITEM-043).
+
 - Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
 - Independent selected-field writers and admitted bonus states remain
   Q-ITEM-006; `fn_5671_0084` list/index admission is Q-ITEM-008. The local selector

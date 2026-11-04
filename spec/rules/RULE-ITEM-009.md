@@ -136,6 +136,11 @@ None known.
 
 ## Open questions
 
+- Canonical RDFF source positions are -1 and zero, with no six or nine.
+  Word +10 reaches 327 and 29 payloads exceed a byte. Later producers and
+  selected-item/field correlation remain Q-ITEM-006; source marginals do not
+  prove their joint domain (FND-ITEM-043).
+
 - Complete recursive removal by `fn_2D40_2452` and storage admission remain Q-ITEM-004.
 - Which admitted items have position values zero, six and nine and the
   writer/consumer contract of word +0x10 remain Q-ITEM-006 (FND-RNG-035).
