@@ -994,7 +994,7 @@ loop limits, allocator effects, capacities and original input identity remain
 explicit. GAME_DIR profiles/reports stay local and skip missing licensed input.
 Exit: bounded installed controls, retained whole-fill gaps, Test.ps1, acceptance
 record and handover; no spec, parity, gameplay or native-runtime changes.
-
 Supporting tooling plans include [RDFF key census](implementation-plans/RDFF-KEY-CENSUS.md) and [type comparison](implementation-plans/RDFF-TYPE-COMPARISON.md).
+The [Load-entry dispatch probe](implementation-plans/LOAD-ENTRY-DISPATCH.md) defines the bounded current-checkpoint observation for Q-COMBAT-046.
 The [item-type structural specification](implementation-plans/ITEM-TYPE-STRUCTURE.md) defines its evidence, bounded layout and validation limits. Validation adoption follows [checker preflight](implementation-plans/CHECKER-PREFLIGHT.md) and [domain suites](implementation-plans/VALIDATION-SUITES.md).
 They are indexed in [implementation plans](implementation-plans/README.md); each defines its scope, acceptance and exit.
