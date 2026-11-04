@@ -50,9 +50,26 @@ RNG draws. Reproduce with the project-local evidence Python:
 Reports and checkpoint sidecars are retained under
 GAME_DIR/captures/rust-dos-startup-window/v181-q046-opener-20261104/ and
 GAME_DIR/captures/rust-dos-restore-opener/v181-q046-opened-20261104/.
-This admits only that bounded restore/continuation, not menu readiness,
-frame matching, same-process roundtrip or hardware-mismatch refusal.
-Input, frames and guarded writes were not reattempted under these new pins.
+The opener attempt alone admits only that bounded restore/continuation.
+Subsequent current-pin regeneration reached Start (window 19500), then a
+separate run delivered the declared mouse move and left click and reached
+Create (window 11500). Each readiness gate required matching successive
+named-field snapshots, ready flags and mouse enabled; neither run made setup
+writes or recorded RNG draws. Both saved states passed verify_checkpoints.py:
+new-process instruction/time, named fields and frame matched, same-process
+save/load matched, and a sound-IRQ mismatch was refused before launch.
+Reproduce with regenerate_checkpoints.py arguments
+`v181-q046-start-20261104 start v181-q046-opened-20261104` and
+`v181-q046-create-20261104 create v181-q046-opened-20261104`, then
+verify_checkpoints.py arguments
+`v181-q046-start-20261104 v181-q046-verify-20261104 start` and
+`v181-q046-create-20261104 v181-q046-create-verify-20261104 create`.
+Reports, frames and sidecars are under GAME_DIR/captures/rust-dos-regenerated/
+with those run names (verification directories append the state name).
+Current admission therefore includes these two states, their named memory
+reads, frame capture, strict restores and this mouse move/left-click route.
+It does not establish right click, keyboard, gameplay or Save/Load access.
+Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
 identities are retained, not rewritten to bypass strict matching.
@@ -68,7 +85,7 @@ are under GAME_DIR/captures/rust-dos-regenerated/, with exact successful
 names and commands in FND-UI-054. The historical gameplay states actually
 remain in ignored artifacts/runs/, as their findings name.
 
-Current admitted parts: agent launch/state setup for those six states;
+Historical v1.7.5 admitted parts: agent launch/state setup for those six states;
 left/right mouse, memory reads, breakpoints and frame capture. Movement
 and click are separate completed operations, and window/party predicates
 gate actions. The conversation gate also reaches its native event builder,
