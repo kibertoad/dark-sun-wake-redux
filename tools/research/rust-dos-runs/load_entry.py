@@ -25,6 +25,7 @@ import map_restore
 from object_restore import ObjectTrace
 from script_restore import ScriptTrace
 from item_restore import ItemTrace
+from restore_caller import CallerTrace
 
 
 def fields(client, delta):
@@ -283,11 +284,12 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items", "saved-caller-epilogue"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items|saved-caller-epilogue]")
     navigation = len(sys.argv) == 4
     observe_objects = navigation and sys.argv[3] == "saved-objects"
-    observe_items = navigation and sys.argv[3] == "saved-items"
+    observe_caller = navigation and sys.argv[3] == "saved-caller-epilogue"
+    observe_items = observe_caller or navigation and sys.argv[3] == "saved-items"
     observe_scripts = observe_items or navigation and sys.argv[3] == "saved-script-conversion"
     observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
     observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
@@ -381,6 +383,7 @@ def main():
             object_trace = None
             script_trace = None
             item_trace = None
+            caller_trace = None
             report["region_relocations"] = []
             previous = None
             budget = 4096 if observe_objects else 1024 if observe_load_return or observe_reader_return else 512
@@ -393,6 +396,19 @@ def main():
                 if exhausted:
                     raise RuntimeError("operation observation budget exhausted")
                 stop = observed.stop
+                if caller_trace is not None and caller_trace.handle(stop):
+                    if caller_trace.complete:
+                        report["caller_items"] = item_trace.finish("caller_epilogue")["caller_epilogue"]
+                        report["caller_scripts"] = script_trace.finish("caller_epilogue")["caller_epilogue"]
+                        report["caller_map"] = {"state":map_restore.state(session.client,delta),
+                            "comparison":map_restore.comparison(map_restore.read(session.client,report["map_request"]["selected"]["destination"],12544),map_prediction)}
+                        report["caller_targets"] = [request_provider.payload(session.client,step["selected"],step["request"]["number"],reference_payloads[step["request"]["number"]]) for step in report["resource_requests"]]
+                        report["caller_source_slots"] = {str(number):checked_read(session.client,0x57E0+delta,0x157E+4*(number-1),4).hex() for number in (24,26)}
+                        report["caller_archive"] = archive_fields(session.client,delta)
+                        report["passed"] = True
+                        break
+                    record()
+                    continue
                 if reader_return is not None:
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
@@ -424,6 +440,12 @@ def main():
                             samples.append(sample)
                         report["reader_return"] = {"stop": stop, "al": int(stop["registers"]["ax"],16)&0xFF,
                                                    "targets": samples, "archive": archive_fields(session.client, delta)}
+                        if observe_caller:
+                            caller_trace = CallerTrace(session.client,delta,stop["registers"])
+                            report["caller_trace"] = caller_trace.report
+                            reader_return = None
+                            record()
+                            continue
                         report["passed"] = True
                         break
                     if outcome == "continued":

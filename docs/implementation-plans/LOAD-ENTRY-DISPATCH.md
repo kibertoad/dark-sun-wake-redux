@@ -475,3 +475,23 @@ The native run records differences as evidence. This admits one normal
 boundary case, not helper termination for all inputs, continuous lifetime,
 failure paths or complete loading. Tooling and research remain separate
 validated commits; Exit is the matched reader return with retained guards.
+
+## Enclosing restore caller epilogue
+
+For Q-COMBAT-066, `saved-caller-epilogue` extends saved-items beyond the
+matched reader return. FND-COMBAT-043 supplies the static attempt. Preserve
+the existing reader-return comparisons, then match the parent SS/BP at its
++0FA1 post-region-setup boundary and +0FB5 epilogue. Capture saved reader
+and open-result bytes, current reuse/working-handle/archive fields and AL.
+At resident close 38FF:02B5 admit only the parent's +1C3A helper return,
+matching current DS:144E; match the resident close epilogue before recording
+its result at +0427. Confirm exact caller/epilogue offsets from the complete retained
+static bodies, not byte-pattern searches. Refuse unsupported overlay reloads.
+
+At parent +0FB5 repeat item/output, script, map and effect endpoint checks
+using the same cached references and report differences. This observes an
+epilogue, not a far return or completed visible loading. Do not infer every
+placed-record write, intermediate callback effect, handle lifetime or failed
+reader result from this normal case. Keep the existing RNG admission and
+1024-continuation bound. Synthetic controls reject mismatched frames and
+close arguments; Exit is the matched parent epilogue with retained report.

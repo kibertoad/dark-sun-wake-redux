@@ -216,9 +216,11 @@ class ScriptTrace:
             return True
         return False
 
-    def finish(self):
+    def finish(self, boundary="reader_return"):
+        if boundary not in ("reader_return","caller_epilogue"):
+            raise ValueError("undeclared conversion comparison boundary")
         if "before_release" not in self.report:
             raise ValueError("reader returned without the admitted conversion boundary")
         current,trigger = snapshot(self.client,self.delta)
-        self.report["reader_return"] = comparison(current,trigger,self.before,self.expected_nodes,self.expected_trigger)
+        self.report[boundary] = comparison(current,trigger,self.before,self.expected_nodes,self.expected_trigger)
         return self.report

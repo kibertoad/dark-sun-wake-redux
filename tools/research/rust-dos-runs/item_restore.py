@@ -120,10 +120,12 @@ class ItemTrace:
             return True
         return False
 
-    def finish(self):
+    def finish(self, boundary="reader_return"):
+        if boundary not in ("reader_return","caller_epilogue"):
+            raise ValueError("undeclared item comparison boundary")
         if self.active or "enumeration_epilogue" not in self.report:
             raise ValueError("reader returned without admitted item enumeration")
-        self.report["reader_return"] = {"same_table_binding":self.pointer(0x19C1)==self.table,
+        self.report[boundary] = {"same_table_binding":self.pointer(0x19C1)==self.table,
             "table_comparison":comparison(read(self.client,self.table,9200),self.expected),
             "output_comparison":comparison(read(self.client,self.output,792),self.cached_output)}
         return self.report

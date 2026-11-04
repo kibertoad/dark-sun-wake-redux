@@ -23,6 +23,7 @@ import map_restore
 import object_restore
 import script_restore
 import item_restore
+from restore_caller import CallerTrace
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -56,6 +57,14 @@ rejects(lambda:item.handle({'reason':'breakpoint','cs_ip':item.clear,'registers'
 assert item.handle({'reason':'breakpoint','cs_ip':item.clear,'emu_ns':0,'registers':{'ss':'57E0','bp':'7FFE','ds':'57E0','sp':'7F00','ax':'0000'}})
 assert item.expected==cleared and item.report['clear_entry']['nonzero_words']==400
 rejects(lambda:item.handle({'reason':'breakpoint','cs_ip':item.entry,'registers':{'ss':'57E0','sp':'7F00','ds':'57E0'}}))
+caller=CallerTrace(ItemClient(),0,{'ss':'57E0','bp':'8000','cs':'1234','ax':'0001'})
+assert caller.report['reader_al']==1 and not caller.complete
+rejects(lambda:caller.close_frame({'ss':'57E0','sp':'7F00','ds':'57E0'}))
+rejects(lambda:caller.handle({'reason':'breakpoint','cs_ip':caller.end,'registers':{'ss':'57E0','bp':'7FFF'}}))
+rejects(lambda:caller.handle({'reason':'breakpoint','cs_ip':caller.end,'registers':{'ss':'57E0','bp':'8000'}}))
+caller.report['post_setup']={}
+assert caller.handle({'reason':'breakpoint','cs_ip':caller.end,'emu_ns':0,'registers':{'ss':'57E0','bp':'8000','sp':'7F00','ax':'0001'}})
+assert caller.complete and caller.report['epilogue']['al']==1
 admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop={}))
 rejects(lambda: admit_state(NS(emulator_sha256='0'*64, stop={})))
 rejects(lambda: admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop=None)))
