@@ -37,8 +37,8 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-127 and FND-COMBAT-110's controlled flag
-  inventory. Retain FND-COMBAT-111 through FND-COMBAT-126 and FND-RNG-093;
+- Latest research: FND-COMBAT-128/129 and FND-COMBAT-110's controlled flag
+  inventory. Retain FND-COMBAT-111 through FND-COMBAT-127 and FND-RNG-093;
   use their reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince a86e6a60
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 7c8db0b3
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005, Q-COMBAT-064 and Q-COMBAT-065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -77,9 +77,9 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-054/064's caller order, record/list provenance and flag lifetime;
+- Next: Q-COMBAT-054/064's DS:145A/working-handle identity, graph and flag lifetime;
   Q-COMBAT-065's pointer identity/lifetime and other-helper writes; Q-COMBAT-066's reached child effects;
-  Q-COMBAT-063's selected-save input/state; Q-ITEM-013's live-frame aliases,
+  Q-COMBAT-063's actual selected values, path storage and child preservation; Q-ITEM-013's live-frame aliases,
   keeping Q-ITEM-011's segment prerequisite separate.
 - Push only on an explicit owner request. Goal remains active; independent
   static research is available. This checkpoint satisfies neither the full
