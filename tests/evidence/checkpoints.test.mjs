@@ -788,3 +788,57 @@ rejects(main)
     resolve('tools/research/rust-dos-runs')], {encoding: 'utf8', input: code});
   assert.equal(result.status, 0, result.stderr || result.stdout);
 });
+
+test('paused placed-table census separates its extra row and rejects unsupported storage', () => {
+  const code = `
+import sys,struct
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from getter_metadata import placed_table
+class Memory:
+    def __init__(self,count=2,offset=4,segment=0x1200,paragraphs=751,marker=0x77,short=False):
+        self.count,self.offset,self.segment=count,offset,segment
+        self.paragraphs,self.marker,self.short=paragraphs,marker,short
+        self.calls=0
+        self.body=bytearray((min(count,1500)+1)*8)
+    def read_memory(self,address,size):
+        assert 0<size<=261
+        prefix=[struct.pack('<H',self.count),struct.pack('<HH',self.offset,self.segment),
+                struct.pack('<HH',self.paragraphs,0),bytes([self.marker])]
+        if self.calls<4:
+            result=prefix[self.calls]
+            assert len(result)==size
+        else:
+            segment,offset=(int(x,16) for x in address.split(':'))
+            assert segment==self.segment and offset>=4
+            result=bytes(self.body[offset-4:offset-4+size])
+        self.calls+=1
+        return NS(data=result[:-1] if self.short else result)
+def rejected(memory,delta=0):
+    try: placed_table(memory,delta)
+    except ValueError: return
+    raise AssertionError('unsupported placed storage accepted')
+m=Memory()
+struct.pack_into('<HHbBh',m.body,0,5,6,-1,0x20,7)
+struct.pack_into('<HHbBh',m.body,8,5,6,127,0,7)
+struct.pack_into('<HHbBh',m.body,16,0,0,0,0,-1)
+r=placed_table(m,0)
+assert r['count']==2 and len(r['rows'])==2 and r['size']==24
+assert r['extra_row']['slot']==-1 and r['extra_row']['index']==2
+assert r['counted_ordered'] and not r['including_extra_ordered']
+assert r['flag20_rows']==1 and r['flag20_slots']==[7]
+m=Memory(); struct.pack_into('<b',m.body,4,127); struct.pack_into('<b',m.body,12,-1)
+assert not placed_table(m,0)['counted_ordered']
+r=placed_table(Memory(0),0)
+assert r['rows']==[] and r['size']==8 and r['extra_row']['index']==0
+r=placed_table(Memory(1500),0)
+assert len(r['rows'])==1500 and r['size']==12008 and r['extra_row']['index']==1500
+for m in [Memory(1501),Memory(offset=5),Memory(segment=0),Memory(segment=0xFFFF),
+          Memory(paragraphs=750),Memory(marker=0),Memory(short=True)]: rejected(m)
+rejected(Memory(),-0x5800)
+m=Memory(); m.body=m.body[:-1]; rejected(m)
+`;
+  const result = spawnSync(enginePython(), ['-I', '-',
+    resolve('tools/research/rust-dos-runs')], {encoding: 'utf8', input: code});
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});

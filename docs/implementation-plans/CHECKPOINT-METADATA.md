@@ -58,3 +58,24 @@ A separate bounded comparator verifies the canonical archive's full
 fingerprint before exact equality. Synthetic controls cover extent refusal,
 base mismatch, short reads and one-byte payload mismatch. This admits a
 source-equal endpoint, not provider identity, later lifetime or all consumers.
+
+## Placed-table prefix and extra row
+
+For Q-PARTY-109, FND-ITEM-065/066 require actual counted-prefix and
+extra-row contents, without inferring them from rounded capacity. Extend
+only the existing paused verify branch after all strict source/stop/frame
+checks. Read named DS:264E count and DS:67B7 pointer. Admit count 0..1500,
+nonzero P:0004, the modeled 751-paragraph header, marker 77 and nonwrapping
+physical span. Read exactly (count+1)*8 bytes in bounded chunks, at most
+12008, retaining the counted prefix and one following row locally. Report
+raw metadata fields, digest, sorted-key diagnostics (unsigned y/x then
+signed byte four), flag-20 counts and slot matches. Never traverse another
+pointer, write guest memory, continue execution or add arbitrary selectors.
+
+Compare the complete observation after the existing strict roundtrip.
+Synthetic controls cover distinct counted/extra rows, signed key ordering,
+zero and maximum counts, short reads, wrong headers/markers, invalid pointers
+and real-mode wrap. Run the selected tooling gate before commit. A separate
+native research batch uses a new owned muted pinned session/run name and
+records the actual endpoint; it does not prove a constructor call, a later
+publication/removal, preserved gameplay state or parity.

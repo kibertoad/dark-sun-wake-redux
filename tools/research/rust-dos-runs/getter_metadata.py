@@ -116,6 +116,40 @@ def item_types(client, captured, allocations):
             "sha256": hashlib.sha256(body).hexdigest()}
 
 
+def placed_table(client, delta):
+    if type(delta) is not int or not 0 <= 0x57E0 + delta <= 0xFFFF:
+        raise ValueError("placed observation lacks a valid resident mapping")
+    resident = 0x57E0 + delta
+    count = int.from_bytes(checked_read(client, resident, 0x264E, 2), "little")
+    offset, segment = struct.unpack("<HH", checked_read(client, resident, 0x67B7, 4))
+    if count > 1500 or offset != 4 or not segment:
+        raise ValueError("placed table count/base differs from declared contract")
+    paragraphs, predecessor = struct.unpack("<HH", fixed_read(client, segment, 0, 4))
+    if paragraphs != 751 or segment * 16 + paragraphs * 16 > 0x100000:
+        raise ValueError("placed allocation extent differs from declared contract")
+    marker = fixed_read(client, segment, paragraphs * 16 - 1, 1)[0]
+    size = (count + 1) * 8
+    if marker != 0x77 or offset + size > paragraphs * 16 - 1:
+        raise ValueError("placed table extra row lacks admitted marker/extent")
+    body = b"".join(fixed_read(client, segment, offset + at, min(1024, size - at))
+                    for at in range(0, size, 1024))
+    rows = []
+    for at in range(0, size, 8):
+        x, y, byte4, flags, slot = struct.unpack_from("<HHbBh", body, at)
+        rows.append({"index": at // 8, "x": x, "y": y, "byte4": byte4,
+                     "flags": flags, "slot": slot})
+    keys = [(row["y"], row["x"], row["byte4"]) for row in rows]
+    flagged = [row for row in rows[:count] if row["flags"] & 0x20]
+    return {"address": f"{segment:04X}:{offset:04X}", "count": count,
+            "paragraphs": paragraphs, "predecessor": predecessor, "marker": marker,
+            "size": size, "hex": body.hex(), "sha256": hashlib.sha256(body).hexdigest(),
+            "rows": rows[:count], "extra_row": rows[count],
+            "counted_ordered": keys[:count] == sorted(keys[:count]),
+            "including_extra_ordered": keys == sorted(keys),
+            "flag20_rows": len(flagged),
+            "flag20_slots": sorted({row["slot"] for row in flagged if row["slot"] >= 0})}
+
+
 def capture(client, delta):
     if type(delta) is not int or not 0 <= 0x4F49 + delta <= 0xFFFF or not 0 <= 0x57E0 + delta <= 0xFFFF:
         raise ValueError("getter observation lacks a valid resident mapping")
