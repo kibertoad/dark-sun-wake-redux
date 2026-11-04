@@ -40,7 +40,8 @@ Next ID: Q-COMBAT-067
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
   local navigation of FND-COMBAT-085 and sentinel producer/own reset ordering
   of FND-COMBAT-131; actual DS:A103 count/target state at dispatch beyond
-  FND-CONFIG-221's branch exclusions; event delivery, snapshot/slot producers and
+  FND-CONFIG-221's branch exclusions and FND-CONFIG-222's count transitions;
+  event delivery, snapshot/slot producers and
   preservation and live window/handler identity beyond FND-COMBAT-098's three
   restoration-site orderings; window-path incoming transfers not covered by
   FND-UI-051's direct caller census. Independent reader routes are Q-COMBAT-055.
@@ -69,6 +70,11 @@ Next ID: Q-COMBAT-067
   preserved count-zero global call supplies kind three and cannot take the
   Save/Load action branch. Those routing alternatives are settled. Actual
   count, targets, event fields and preservation on remaining routes stay open.
+  Tried: FND-CONFIG-222 resolves the three literal count writers, wrapped
+  mutation relation and signed-walk versus dispatch predicates. Those local
+  count-contract obligations are removed. Admit actual mutation/reset history
+  or current count and graph directly; failed operations and a nonzero count
+  do not independently establish live membership or an admitted target.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,

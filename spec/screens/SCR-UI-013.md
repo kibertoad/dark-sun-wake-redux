@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -72,6 +72,11 @@ The nonzero-count, absent-current-window route can instead retain kind
 six. Actual count, handler and event state remain Q-COMBAT-046; a zero
 window-callback result does not invoke a second global fallback
 (FND-CONFIG-221).
+
+The count is wrapped bookkeeping: registration and removal change it
+before later failure paths. Some window walks compare it signed, while
+dispatch tests zero only. Current count alone therefore does not establish
+a live or usable Load window (FND-CONFIG-222, Q-COMBAT-046).
 
 ## Sounds
 
