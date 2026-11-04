@@ -4,6 +4,63 @@ import { mkdtempSync, mkdirSync, writeFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { listDisc, listInstall, readList, reconcile } from "../../tools/evidence/build-listing.mjs";
+import {inspectOgg, oggCrc} from '../../tools/research/ogg-tracks.mjs';
+
+// Independent bit-at-a-time checksum; synthetic pages never use the production CRC writer.
+function bitCrc(bytes) {
+  let value=0;
+  for (let i=0;i<bytes.length;i++) {
+    value ^= (i>=22 && i<26 ? 0 : bytes[i]) << 24;
+    for (let j=0;j<8;j++) value=((value<<1)^((value>>>31)?0x04C11DB7:0))>>>0;
+  }
+  return value;
+}
+function oggPage(sequence,flags,lacing,body) {
+  const page=Buffer.alloc(27+lacing.length+body.length);
+  page.write('OggS'); page[5]=flags; page.writeBigUInt64LE(123n,6);
+  page.writeUInt32LE(17,14); page.writeUInt32LE(sequence,18); page[26]=lacing.length;
+  Buffer.from(lacing).copy(page,27); body.copy(page,27+lacing.length);
+  page.writeUInt32LE(bitCrc(page),22); return page;
+}
+test('Ogg survey validates page-spanning packets and rejects corrupt framing and identities',()=>{
+  const id=Buffer.alloc(30); id.write('\x01vorbis','ascii'); id[11]=2;
+  id.writeUInt32LE(44100,12); id[28]=0xB8; id[29]=1;
+  const comment=Buffer.concat([Buffer.from('\x03vorbis'),Buffer.alloc(248)]);
+  const setup=Buffer.from('\x05vorbisopaque'), audio=Buffer.from([0,4]);
+  const first=oggPage(0,2,[30],id);
+  const middle=oggPage(1,0,[255],comment);
+  const last=oggPage(2,5,[0,setup.length,audio.length],Buffer.concat([setup,audio]));
+  const valid=Buffer.concat([first,middle,last]);
+  assert.equal(oggCrc(first),bitCrc(first));
+  assert.deepEqual(inspectOgg(valid).identification,{version:0,channels:2,rate:44100,blockSizes:[256,2048]});
+  assert.equal(inspectOgg(valid).packets,4);
+  const bad=(source,mutate,reseal=true)=>{
+    const copy=Buffer.from(source); mutate(copy);
+    if(reseal) copy.writeUInt32LE(bitCrc(copy),22);
+    return copy;
+  };
+  const reject=parts=>assert.throws(()=>inspectOgg(Buffer.concat(parts)),/Ogg Survey:/);
+  reject([bad(first,p=>p[28]^=1,false),middle,last]); // independently corrupt CRC
+  reject([first,middle,last.subarray(0,last.length-1)]);
+  reject([first,middle.subarray(0,27)]);
+  reject([first,bad(middle,p=>p.writeUInt32LE(18,14)),last]);
+  reject([first,bad(middle,p=>p.writeUInt32LE(4,18)),last]);
+  reject([bad(first,p=>p[0]|=128),middle,last]);
+  reject([bad(first,p=>p[29]|=128),middle,last]);
+  reject([first,middle,bad(last,p=>p[5]=4)]); // missing continued packet
+  reject([first,middle,bad(last,p=>p[5]=1)]); // missing EOS
+  reject([bad(first,p=>p[5]=6),middle,last]); // premature EOS
+  reject([first,middle,last,Buffer.from([0])]);
+  reject([first,bad(middle,p=>p[28]=5),last]); // wrong second header kind
+  for (const [offset,value] of [[7,1],[11,0],[12,0],[28,0x68],[29,0]]) {
+    const invalid=Buffer.from(id); invalid[offset]=value;
+    if(offset===12) invalid.writeUInt32LE(0,12);
+    reject([oggPage(0,2,[30],invalid),middle,last]);
+  }
+  reject([first,middle,bad(last,p=>p[p.length-2]=1)]);
+  reject([first,middle,oggPage(2,5,[255],Buffer.alloc(255))]);
+  assert.throws(()=>inspectOgg(Buffer.alloc(16*1024*1024+1)),/file size/);
+});
 
 // One ISO 9660 directory record.
 function record(extent, size, flags, id) {
