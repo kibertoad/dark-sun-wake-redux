@@ -270,7 +270,9 @@ for root index zero it instead returns the root object number
 - Whether canonical type 50's item producers admit the value/name/quantity,
   word +0x10, fallback and later door conditions that can expose a Look-pointer
   change, or exclude them. The local predicate and single candidate are known;
-  actual use-time state is not (FND-ITEM-036, Q-PARTY-115).
+  actual use-time state is not. All 631 canonical type-50 first items have a valid
+  name, so preserved first copies cannot expose the independent gate; later name
+  writes and other producers remain (FND-ITEM-036, FND-ITEM-037, Q-PARTY-115).
 - Admitted item-action dispatch and child effects of the overlay-189
   selector consumers (FND-PARTY-254, Q-PARTY-109).
 - Admitted script inputs and child effects of the packed-field consumer

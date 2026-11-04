@@ -182,13 +182,15 @@ Next ID: Q-PARTY-116
   surviving Look admission moves to Q-PARTY-115.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-115. FMT-PARTY-006: Can admitted type-50 item state make word +0x10
-  independently change the Look pointer? Settles it: actual row-50 item producers
-  and retained value/name/quantity/word state at the classifier, passing target
-  and preliminary gates, zero fallback mask 0x1D, and the later door-bit check;
-  or a complete producer/domain exclusion of those conditions. Tried: split
-  from Q-PARTY-108 after FND-ITEM-036 narrows the canonical domain to row 50
-  and settles the local zero/nonzero and final-image conditions. FND-COMBAT-171
-  supplies one source-equal paused table, not a Look invocation. Blocks: slices 4-5.
+  independently change the Look pointer? Settles it: remaining creations/replacements,
+  type changes and name-invalidating writes admitting name >=9999 outside preserved
+  canonical first-copy inputs; retained value/quantity/word state, passing target and
+  preliminary gates, zero fallback mask 0x1D and the later door-bit check; or complete
+  producer/domain exclusion. Tried: split from Q-PARTY-108 after FND-ITEM-036 settles
+  the local predicate and single canonical candidate; FND-COMBAT-171 supplies a paused
+  source-equal table, not a Look call. Tried: FND-ITEM-037 removes unnamed canonical
+  type-50 first items: all 631 have a valid name, including two other-size resources.
+  Later chunks, nonfirst records, runtime writes and live admission remain. Blocks: slices 4-5.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
