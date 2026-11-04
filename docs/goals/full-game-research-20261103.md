@@ -41,7 +41,7 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 192 Node and 745 .NET tests, Release build and assetless smoke.
   Current documentation and queue checks pass; research mode passed without rebuild tests.
-- Latest completed research: FND-ITEM-021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-022/021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -132,9 +132,10 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince f8d8757e
+- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 3bfd0a99
   -NoRestore passed fresh checks; existing skips and Q-ITEM-005 warning remain.
-- Next: Q-ITEM-009's remaining consumers/branches; Q-ITEM-010's retained FND-ITEM-020 gaps
+- Next: Q-ITEM-009's five remaining direct continuations and outer returns;
+  Q-ITEM-010's retained FND-ITEM-020 gaps
   and other incoming mechanisms; Q-ITEM-011's near-pointer/frame preservation;
   Q-ITEM-012's feedback admission/effects, reusing Q-SOUND-002;
   Q-ITEM-004's admitted pool chains/indices, copy spans and other deletion
