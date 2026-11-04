@@ -38,7 +38,7 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-062 and FND-PARTY-262/263. Earlier item work
+- Latest research: FND-ITEM-063/062 and FND-PARTY-262/263. Earlier item work
   is FND-ITEM-027 through FND-ITEM-061; Q-ITEM-009 is closed.
   Active rule and glossary citations migrated to FND-PARTY-262/263;
   Q-PARTY-077 retains the corrected slot-lifetime obligation.
@@ -47,7 +47,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 29f1ce0a -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince a1904835 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -ChangedSince e7d143bc -NoRestore selected integration and passed
@@ -71,10 +71,9 @@ reports before matched-menu pairing are diagnostic only.
   reconstruct unreported bytes. Keep FND-EXE-562/FND-COMBAT-142's frame and
   trap guards; remove the return watch before interrupt-frame reuse.
   reader-return trap relocation remains unobserved, with synthetic controls.
-  load_entry.py/native_save.py remain committed; affected integration validation
-  passed with -ChangedSince 216c9812. The ordinary runtime contract still applies.
+  load_entry.py/native_save.py remain committed. The ordinary runtime contract applies.
 - Accepted item reports remain under GAME_DIR/analysis/item-removal-20261104/;
-  FND-ITEM-043 through FND-ITEM-062 name exact controls, source fingerprints,
+  FND-ITEM-043 through FND-ITEM-063 name exact controls, source fingerprints,
   reports and regeneration commands. Script listings remain under
   GAME_DIR/analysis/walk-script-20261104/. FND-ITEM-042 names its retained gap reports;
   the older script-instructions directory is absent. Keep canonical inputs.
@@ -99,7 +98,9 @@ reports before matched-menu pairing are diagnostic only.
   remain Q-PARTY-109 rather than another dispatcher-family reading.
   FND-ITEM-062 names placement-cast-prefix.txt and placement-cast-data
   controls/report/repeat there; FND-PARTY-262 names the complete
-  placement-area-target-child.txt. Q-PARTY-077 and Q-PARTY-109 remain open.
+  placement-area-target-child.txt. FND-ITEM-063 names area-list/range/object-scan
+  listings and data42 controls/report/repeat there. area-filter is diagnostic.
+  Q-PARTY-077 and Q-PARTY-109 remain open.
   placement-caller-incoming.txt remains
   candidate-only. The earlier partial
   placement-generic-transfer-bindings.txt is diagnostic; use the full
@@ -119,7 +120,7 @@ reports before matched-menu pairing are diagnostic only.
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
 - Q-ITEM-003 placement caller/position, snapshot/removal and capacity admission;
-  reuse FND-ITEM-048/049/050/051/052/053/054/055/056/057/058/059/060/061/062 for local predicates and input/caller bindings.
+  reuse FND-ITEM-048/049/050/051/052/053/054/055/056/057/058/059/060/061/062/063 for local predicates and input/caller bindings.
   Actual traversal/getter, producer-to-use class retention, named source-row
   meanings, near-state and native admission remain open;
   Q-PARTY-109 retains actual effect-four membership, row/count/boundary/frame
