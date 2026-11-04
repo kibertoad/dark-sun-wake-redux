@@ -725,6 +725,11 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-151 resolves the reverse converter's own narrowed signed
+  count, DS/SS match-flag dependency, exact pair/trigger writes, unmatched
+  behavior and failure cleanup order. Those local obligations are removed.
+  Actual GPLI size/data provider and spans, live chain/trigger/stack bindings,
+  values/aliases, failure/diagnostic effects and later caller work remain.
   Tried: FND-COMBAT-150 admits one ordered 125-slot native object loop,
   selected sixteen-byte OJFF local spans and matched core/loader epilogues,
   with scoped initializer/image-selector/chain child counts. Those ordinary

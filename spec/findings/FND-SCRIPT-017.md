@@ -59,6 +59,10 @@ on script offsets, is the likely purpose; the callers were not traced.
 
 ## Alternatives
 
+FND-COMBAT-151 subsequently reads the reverse body with explicit count-width,
+segment-default and failure-cleanup qualifications. Reuse those limits when
+applying this normal conversion summary to restored runtime state.
+
 In the reverse routine a converted 13-byte record keeps a script word that is not 0, so the test
 on word 2 does not tell a converted record from an unconverted one; an offset that equals some
 entry number would be converted again. What the byte argument selects was not traced beyond the

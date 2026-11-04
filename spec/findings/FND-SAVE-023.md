@@ -70,6 +70,11 @@ load and after a region change. The game state never uses the numbered form.
 
 ## Alternatives
 
+FND-COMBAT-151 subsequently qualifies the reverse routine's machine-width
+scan bound, near-local DS/SS relationship, size/data identity and failure
+cleanup paths. The normal shipped-table mapping is not a universal runtime
+admission or an aggregate success result.
+
 That the lookup reaches `GPLDATA.GFF` rests on its being the only archive with the table; the order
 of the archive chain was not read. Because the reverse runs after a failed read, a region change
 into a region with no saved resources applies it to the records already in memory, which are
