@@ -38,7 +38,7 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-COMBAT-170/169/168 and corrected FND-PARTY-259/260.
+- Latest research: FND-COMBAT-171/170/169 and corrected FND-PARTY-259/260.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
@@ -47,7 +47,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest batch gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince 61962e51 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
@@ -93,17 +93,17 @@ reports before matched-menu pairing are diagnostic only.
   in docs/RUNTIME.md and their findings. Session event_log is null: do not
   assume persistent request/reply journals or reconstruct unreported bytes.
   load_entry.py/native_save.py and their plan are committed. Affected tooling
-  validation passed with -ChangedSince 33a8fb4f; controls remain in the evidence suite.
+  validation passed with -ChangedSince e6b32586; controls remain in the evidence suite.
   Revalidate overlay mappings from declared frames/code. Use FND-EXE-562
   and FND-COMBAT-142's header-trap/IRET guards: remove the return-word watch
   before interrupt-frame reuse. Cache terminal input observations and
   remove broad dispatch stops after F2 readiness. Retain diagnostic reports.
   ReaderReturn in overlay_returns.py admits only the declared reader frame;
   native reader-return trap relocation remains unobserved, with synthetic controls.
-  Paused metadata/headers: FND-COMBAT-169/170; native-save runs
-  v181-q067-getter-metadata-20261104 and v181-q067-record-headers-20261104.
-  Source/roundtrip checks passed; fixed requests fit disjoint described blocks.
-  Closure: SAVE four/COMBAT five obligations open. All owned probes closed.
+  Paused metadata/headers/types: FND-COMBAT-169/170/171; native-save runs
+  v181-q067-getter-metadata-20261104, v181-q067-record-headers-20261104 and
+  v181-q067-item-types-20261104. Source/roundtrip checks pass; all shared
+  type bytes match canonical ALL/4. All owned probes closed.
 - Current reports/configurations remain under GAME_DIR/analysis/hit-incoming-20261104/
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
@@ -120,8 +120,8 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-067's cleanup root, preservation and map/pool admission; Q-COMBAT-045 retains save admission;
-  reuse FND-COMBAT-159/160/161/162/163/164/165/166/167/168/169/170 for settled branches;
+- Next: Q-ITEM-005's unread consumers/flags; Q-COMBAT-067 needs actual cleanup/lifetime; Q-COMBAT-045 save admission;
+  reuse FND-COMBAT-159/160/161/162/163/164/165/166/167/168/169/170/171 for settled branches;
   Q-COMBAT-066's remaining caller/child cases, reusing FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
   caller run v181-q066-caller-20261104 ended on consumed-breakpoint cleanup,
