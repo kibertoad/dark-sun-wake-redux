@@ -90,6 +90,11 @@ Next ID: Q-ITEM-016
   eligibility accepts any overlap. Canonical row 50 alone has mask 2000 hex
   outside producer union 1FFF. Producer-to-use retention, other writers,
   native record/table/near-state admission and named-row meanings remain.
+  Tried: FND-ITEM-054 removes the transfer wrapper's L-minus-four position
+  and target field/entry choices, plus its accepted empty-target entry path.
+  Old proposed-item selection and the rebuilt first-kind-one source are not
+  compared; actual identity/preservation, generic splice/store and post-call
+  admission remain rather than another local field-selection reading.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell
@@ -166,6 +171,10 @@ Next ID: Q-ITEM-016
   all field 25. Neither position field ten nor word field eight is selected.
   Remaining work is other entries, decoder gaps, changed streams/dispatch,
   independent stores, aliases and actual selection/storage/lifetime admission.
+  Tried: FND-ITEM-054 removes the need for arbitrary request words in the
+  position-six/nine route: UI identifiers 2BD6/2BD9 hex produce L=10/13,
+  then P=6/9 and target field 16 in the reviewed wrapper. Actual event,
+  selected source/target and graph/descriptor/width/store admission remain.
 
 - Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
   item helper's local quantity operations? Settles it: complete caller

@@ -148,6 +148,10 @@ None known.
   function-49 requests all select field 25; other entries, decoder gaps and
   runtime changes/aliases remain separate from this source exclusion.
 
+- FND-ITEM-054 connects identifiers 2BD6/2BD9 hex to requested positions
+  six/nine through the empty-target transfer wrapper. Native event, rebuilt
+  source identity, graph and final setter admission remain Q-ITEM-006.
+
 - Canonical RDFF source positions are -1 and zero, with no six or nine.
   Word +10 reaches 327 and 29 payloads exceed a byte. Later producers and
   selected-item/field correlation remain Q-ITEM-006; source marginals do not

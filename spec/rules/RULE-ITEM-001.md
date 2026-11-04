@@ -85,5 +85,8 @@ None known.
   immediate frame requests; actual event/item and state admission remain.
   FND-ITEM-052 binds the target-side snapshot gate; bitmap/record/near-state
   admission remains part of Q-ITEM-003.
+  FND-ITEM-054 binds the accepted empty-target wrapper, requested L-minus-four
+  position and target list-field/entry selection; source rebuild identity
+  and transfer/storage admission remain open.
 - What the screen shows while an item is placed, and the full list of the inventory screen's
   effects (Q-ITEM-002).
