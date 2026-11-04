@@ -145,3 +145,43 @@ admit success: the matched frame and caller stop remain required.
 The final opcode guard must check +0BE2's short jump to +0BF2, not an
 argument-cleanup instruction at +0BE2. Retain observed bytes locally before
 validation so a rejected guard remains diagnosable.
+
+## Native saved-game prerequisite
+
+For Q-COMBAT-063's nonempty-source case, native_save.py may restore only
+the verified two-character map checkpoint, deliver F1, admit Save window
+18500 with mode zero, selected row one and top zero, then deliver Enter.
+No text, mouse action or memory seed is supplied. FND-SAVE-004/008 and
+FND-UI-037 describe the native writer and action. Resolve the callback's
+declared +0785 trampoline and verify the +0BEF near call to +03FB; observe
+that Save entry with row argument one and return +0BF2. Track only that
+declared return-segment word as overlays move and verify original SS/SP
+and the caller's POP CX at return. The native game may write its owned
+private files; the probe never edits a save or the installed originals.
+
+Bound the route to 1024 observations with existing sound/script RNG guards.
+Compare only the fixed private SAVE02.SAV metadata, rejecting links and
+oversize files. A new nonempty file and matched Save return are evidence
+of this route, not proof of every save resource. After return, require
+confirmed Enter delivery and the admitted map state at the native input
+builder before saving a file-checked saved-map checkpoint. Preserve all
+failures locally. A separate new-process strict restore must match named
+state, frame and native-save digest before this checkpoint admits loading.
+Synthetic controls cover the Save call mapping, wrong mode/row/top, return
+offset, fixed-file names and bounded metadata. No proprietary fixture or
+rebuild behavior changes. Run affected tooling gates before its tooling
+commit; record runtime findings separately.
+
+The first post-Save attempt returned to mode one/global map handler with
+A11D null, so the earlier current-window predicate was not met. A revised
+attempt must retain that null value and independently read the bounded list
+head's WIND tag, number 19501 and ready flags. Require count one, null event
+target, map global hook, no Save/Load window/list, zero exit byte, expected
+party/leader and completed Enter delivery at the native input builder.
+This is a candidate keyboard-loop checkpoint, not proof of graph membership
+or F2 delivery. A later actual F2 entry is required before using it for the
+nonempty-source experiment. Reject unexpected tags, fields or live windows.
+Cache each terminal input-delivery observation. Do not keep querying a
+completed operation while later game work runs: old operations may leave
+the bounded debugger journal. Controls require pending handles to be polled
+and terminal handles to be reused locally without a second server query.

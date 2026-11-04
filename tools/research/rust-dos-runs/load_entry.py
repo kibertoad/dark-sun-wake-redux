@@ -125,9 +125,11 @@ def copy_arguments(frame):
     return words[:6]
 
 
-def working_file(run):
+def named_file(run, name):
+    if name not in ("darkrun.GFF", "SAVE02.SAV"):
+        raise ValueError("unsupported private file name")
     drive = run / "drive-c"
-    path = drive / "darkrun.GFF"
+    path = drive / name
     if any(p.is_symlink() or p.is_junction() for p in (run, drive, path)):
         raise ValueError("working file path contains a link")
     if not path.exists():
@@ -144,6 +146,10 @@ def working_file(run):
                 raise ValueError("working file grew beyond bound")
             digest.update(block)
     return {"exists": True, "length": total, "sha256": digest.hexdigest()}
+
+
+def working_file(run):
+    return named_file(run, "darkrun.GFF")
 
 
 def settings_request(client, registers, offset):

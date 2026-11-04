@@ -14,6 +14,8 @@ from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
 from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
+from load_entry import named_file
+from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -196,6 +198,53 @@ assert caller_cleanup_jump(bytes([0xEB,0x0E]))
 assert not caller_cleanup_jump(bytes([0xEB,0x0D]))
 assert not caller_cleanup_jump(bytes([0x83,0xC4,2]))
 assert not caller_cleanup_jump(bytes([0xEB]))
+assert save_ready(loaded,{'load_mode':0,'selected_row':1,'list_top':0,'exit_byte':0})
+for wrong in [{'load_mode':1},{'selected_row':0},{'list_top':10},{'exit_byte':1}]:
+    assert not save_ready(loaded,{'load_mode':0,'selected_row':1,'list_top':0,'exit_byte':0,**wrong})
+class SaveCode(LoadCode):
+    call=__import__('struct').pack('<BH',0xE8,(0x3FB-0xBF2)&65535)
+    def read_memory(self,address,size):
+        return NS(data=self.call if address=='2000:0BEF' else self.jump)
+s=SaveCode(); assert save_root(s,'1000:002F')=='2000:03FB'
+s.call=bytes(3); rejects(lambda: save_root(s,'1000:002F'))
+class SaveFrame:
+    row=1
+    offset=0xBF2
+    def read_memory(self,address,size):
+        assert size==6
+        return NS(data=__import__('struct').pack('<HHH',self.offset,0x2000,self.row))
+s=SaveFrame(); assert save_return(s,registers)=='2000:0BF2'
+s.row=0; rejects(lambda: save_return(s,registers)); s.row=1
+s.offset=0xBE2; rejects(lambda: save_return(s,registers))
+rejects(lambda: named_file(Path('.'),'../SAVE02.SAV'))
+class MapHead:
+    tag=b'WIND'
+    number=19501
+    def read_memory(self,address,size):
+        assert size==160
+        body=bytearray(size); body[:4]=self.tag
+        body[8:12]=self.number.to_bytes(4,'little'); body[158:160]=(8).to_bytes(2,'little')
+        return NS(data=bytes(body))
+postsave={**mapped,'window':None}
+ui={'count':1,'exit_byte':0,'global_handler':'28C9:0CFF','event_target':'0000:0000',
+    'save_load_window':'0000:0000','list_pointer':'0000:0000','head':'2000:0004'}
+h=MapHead(); assert input_map_ready(h,0,postsave,ui)
+assert not input_map_ready(h,0,postsave,{**ui,'count':0})
+assert not input_map_ready(h,0,{**postsave,'mode':2},ui)
+assert not input_map_ready(h,0,postsave,{**ui,'head':'0000:0000'})
+h.number=18500; assert not input_map_ready(h,0,postsave,ui)
+h.tag=b'FAIL'; rejects(lambda: input_map_ready(h,0,postsave,ui))
+class Delivery:
+    calls=0
+    def observe(self,operation,timeout):
+        assert operation is key_handle and timeout==0
+        self.calls+=1
+        assert self.calls<=2
+        return NS(pending=self.calls==1)
+key_handle=object(); session=Delivery()
+pending=observe_delivery(session,key_handle,None)
+done=observe_delivery(session,key_handle,pending)
+assert observe_delivery(session,key_handle,done) is done and session.calls==2
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
