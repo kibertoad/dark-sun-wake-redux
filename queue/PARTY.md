@@ -285,6 +285,11 @@ Next ID: Q-PARTY-119
   publication/clear and FND-ITEM-061/062 settle selected local prefixes and
   queue ordering. FND-MAGIC-018 and FND-PARTY-167 identify duration
   consumers; their use-time value is not established by the outer store.
+  Tried: FND-ITEM-069 supplies a controlled direct byte/word/doubleword
+  operand census with the independently known read and two store controls.
+  All additional raw/anchored numeric matches are classified; no other
+  overlap is found within those forms. Computed/aliased, bulk/wider and
+  startup producers, actual DS, callbacks and use-time preservation remain.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
