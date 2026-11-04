@@ -105,8 +105,12 @@ Next ID: Q-ITEM-013
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What later
   callers consume the forwarded hit result beyond the three known direct
   continuations? Settles it: consumers of the result forwarded by overlay
-  179 +0C7F and any use of the queue runner +11DC return, including the
-  branches and observable requests selected by each result mask. Complete
+  179 +0C7F through the returns of overlay 193 +1119 and +1249 and any
+  use of the queue runner +11DC return. Resolve remaining continuations at
+  overlay 173 +28A9, overlay 195 +05BC/+0615/+066E/+0733 and
+  overlay 204 +150F, and other known caller continuations not covered by
+  FND-ITEM-021, including loop and child register effects before an
+  overwrite or result-dependent request. Complete
   incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
   feedback effects Q-ITEM-012. Blocks: slices 4-5.
   Tried: split the independently answerable dependencies from this item.
@@ -114,6 +118,13 @@ Next ID: Q-ITEM-013
   FND-ITEM-018 settles the three direct callers recorded by FND-PARTY-096.
   Do not repeat their post-call reading or treat the casting bookkeeping
   return as the aggregate hit flags.
+  Tried: FND-ITEM-021 settles the mask-01 follow-up at overlay 193 +1200,
+  forwarding epilogues +123D/+129E, independent one at overlay 195 +14C8,
+  and restored-mode return at overlay 204 +130E. Their immediate handling
+  is no longer an obligation; outer consumers and the named alternate paths
+  remain. Local BP-field tests are not tests of AL merely because their
+  masks match. Retain the bounded wrapper-window reports rather than
+  repeating those prefixes.
 
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
   incoming mechanisms can reach the hit routine outside the qualified direct
