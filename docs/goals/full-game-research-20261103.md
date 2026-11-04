@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 5557905e
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ae4c7420
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -61,11 +61,16 @@ reports before matched-menu pairing are diagnostic only.
   require integration. Fresh staged hooks stay enabled.
 - Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
   See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
-  Current-pin startup, opener restore/return, Start/Create readiness, left
-  mouse move/click, frames and strict checkpoint checks are verified.
+  Current-pin startup, opener restore/return, Start/Create and two-character
+  Play readiness, left/right mouse, Esc/key-2 delivery, frames and strict
+  checkpoint checks are verified. Seven gameplay-route RNG draws were checked.
   docs/RUNTIME.md names retained v181-q046 runs and reproduction commands.
-  Save/Load, keyboard and gameplay remain unverified under current pins;
+  Save/Load and other keyboard gestures remain unverified under current pins;
   Q-COMBAT-046 still needs its dispatch-field snapshot and admitted route.
+  Use v181-q046-play-ready-20261104/play-ready as the verified map checkpoint;
+  its new-process verification prefix is v181-q046-play-ready-verify-20261104.
+  The preceding Play run reached its gate after 571 snapshots; do not interpret
+  its transient mode-zero sound-service polling as a failed route or restart it.
   Historical checkpoints retain their identities and require regeneration
   before current-pin restore; never relabel states. Previous runtime remains
   at artifacts/rust-dos-v1.7.5. All owned probe sessions closed cleanly.
