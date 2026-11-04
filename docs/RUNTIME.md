@@ -194,6 +194,17 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
 It reports only the fixed named child entries and retains map/effect endpoint
 checks. Temporary-slot allocation, other object/failure states, continuous
 lifetime and completed loading remain unverified.
+The fixed saved-caller-epilogue stage in FND-COMBAT-154 continues through
+the enclosing restore caller's post-setup, successful working-close and
+matched +0FB5 epilogue. Reader and final AL are one; cleanup clears reuse.
+Item/script/effect endpoints match, while one map byte and archive state
+change. This is not an observed far return or writer attribution. Accepted:
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-caller-complete-20261104/.
+Diagnostic v181-q066-caller-20261104 reached the epilogue but failed probe
+breakpoint cleanup before final comparisons; it is retained separately.
+Reproduce with load_entry.py v181-q063-native-save-input-20261104
+<fresh-output-name> saved-caller-epilogue and the pinned project interpreter.
+
 The fixed saved-items stage in FND-COMBAT-153 admits the before-clear,
 enumeration entry/epilogue and reader-return boundaries for one native
 400-record item table. Three nonzero cache words become zero; the complete

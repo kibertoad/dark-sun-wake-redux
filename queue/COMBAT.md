@@ -725,17 +725,18 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
-  Tried: FND-COMBAT-153 admits one native 400-record item clear with three
-  changed words, disjoint sampled item/output/effect/local spans and a
-  matched zero-result enumeration reaching neither traversal helper, retained
-  at reader return. Those boundary obligations are removed. Populated
-  traversal, metadata/slot aliases, continuous lifetime, failure states and
-  later enclosing caller work remain.
-  Tried: FND-COMBAT-152 admits one native reverse conversion's size/data
-  provider and 7896/1316 scan inputs, DS/SS and bounded chain/trigger bindings,
-  with prediction equality before release and at reader return. Those normal
-  case observations are removed. File/continuous lifetime and other aliases,
-  alternate lengths, failure/diagnostic states and later caller work remain.
+  Tried: FND-COMBAT-154 removes normal enclosing post-setup/working-close/epilogue observations,
+  retaining item/script/effect endpoints. One map byte and archive state change after reader return;
+  individual writers are unattributed. Other caller/selector, failed/skipped transfers,
+  populated children and continuous storage admission remain.
+  Tried: FND-COMBAT-153 removes one native 400-record clear's three changed words, disjoint
+  sampled item/output/effect/local spans and zero-result/no-traversal-helper enumeration
+  retained at reader return. Populated traversal, metadata/slot aliases, continuous lifetime,
+  failure states and later enclosing caller work remain.
+  Tried: FND-COMBAT-152 removes one native conversion's size/data provider, 7896/1316 scan inputs,
+  DS/SS and bounded chain/trigger bindings, with prediction equality before release and at
+  reader return. File/continuous lifetime, other aliases, alternate lengths,
+  failure/diagnostic states and later caller work remain.
   Tried: FND-COMBAT-151 resolves the reverse converter's own narrowed signed
   count, DS/SS match-flag dependency, exact pair/trigger writes, unmatched
   behavior and failure cleanup order. Those local obligations are removed.
