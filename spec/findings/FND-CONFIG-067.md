@@ -42,6 +42,11 @@ one literal reference to `DS:9E70`, that store.
 
 ## Interpretation
 
+FND-COMBAT-130 subsequently inventories literal saved-handle/counter
+operands and derives the conditional modular issuance relation. Reuse its
+reset, stale-handle, zero and collision qualifications rather than treating
+different output addresses as proof of runtime numeric uniqueness.
+
 The startup handle and the reader's active record pointer are separate
 state. A call that passes `DS:1442` passes an archive number, and a close
 of that number resolves the current record before unlinking it. The

@@ -544,6 +544,11 @@ Next ID: Q-COMBAT-067
   the numbered reader. Those local call-order/gate obligations are removed.
   Actual DS:145A/working-handle identity, graph membership and intervening
   preservation remain; the reuse flag is not a membership test.
+  Tried: FND-COMBAT-130 resolves literal handle-output producers, counter
+  reset/issuance and the conditional modular separation relation. Those
+  local generation obligations are removed. Admit actual values or a
+  preserved non-repeating issuance interval without reset, plus current
+  record +28 and graph identity; no uniqueness follows from field names.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
