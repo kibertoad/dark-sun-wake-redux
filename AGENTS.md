@@ -285,16 +285,12 @@ that page differ, the page wins.
   `tools/evidence/requirements.txt`), in an emulator process the package
   starts. Use `RustDosSession` with the pinned rust-dos release that
   `./tools/Install-RustDos.ps1` installs in `artifacts/rust-dos/`, and pass
-  `emulator_sha256=RUST_DOS_PINNED_SHA256`. Fall back to `DosboxSession` and
-  DOSBox-X only for work a known rust-dos incompatibility blocks: record the
-  incompatibility, the upstream rust-dos issue or fix PR, the emulator version
-  and the reason in the research notes, and return to rust-dos once a release
-  with the fix verifies. Either way, only the package's default host audio:
-  rust-dos runs on SDL's dummy audio driver, and DOSBox-X with its mixer's
-  master volume at 0 (`mixer master 0:0`) and MIDI output `none`. The emulated
+  `emulator_sha256=RUST_DOS_PINNED_SHA256`. Session 1.0 supports rust-dos only;
+  record a blocking incompatibility and its upstream issue or fix PR rather
+  than selecting an unsupported backend. Use only the package's default
+  muted host audio: rust-dos runs with `--audio-output null`. The emulated
   sound devices stay configured so the game runs as it does with sound. Never
-  pass `keep_host_sound`, never set `nosound` (the package refuses it, since
-  it broke DOSBox-X's debugger readiness), and never raise a volume during a
+  pass `keep_host_sound`, never set `nosound`, and never raise a volume during a
   run. The package takes and releases the machine's run lock; a run that
   cannot take it does not wait, and the session is closed when the run ends.
   Agents never launch, attach to, send input to, capture or stop GOG's DOSBox

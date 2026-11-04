@@ -5,6 +5,13 @@ Agent runs of the installed `DSUN.EXE` through `dinorefurb-dosbox-session`
 describes. Run them from the repository root with the evidence Python and
 `GAME_DIR` set to the installed BLD-GOG-EN-1.1:
 
+Current tooling is session 1.0.0 with rust-dos v1.8.1. The package mutes
+host audio with `--audio-output null` while retaining emulated sound devices.
+Use the project-local interpreter; an inherited `EVIDENCE_PYTHON` for another
+project must be overridden for dependency verification and validation.
+Historical checkpoint hashes remain unchanged; regenerate and verify states
+under the new executable before a current-pin restore can use them.
+
 ```sh
 artifacts/evidence-python/Scripts/python.exe -I tools/research/rust-dos-runs/run_plan.py <run-dir> <plan.json>
 ```

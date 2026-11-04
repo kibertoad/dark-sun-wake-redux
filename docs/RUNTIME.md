@@ -9,10 +9,9 @@ owner rule changes it. Findings from runs go in `spec/`, never here.
 Static analysis is the main source of evidence. The owner's rule
 (`AGENTS.md`, "Runs of the original") lets a coding agent run the original
 only through the toolkit's `dinorefurb-dosbox-session` package, in an
-emulator process the package starts: rust-dos v1.7.5 through `RustDosSession`,
-or DOSBox-X through `DosboxSession` as a recorded fallback for work a known
-rust-dos incompatibility blocks. Host sound stays muted (rust-dos on SDL's
-dummy audio driver; DOSBox-X with `mixer master 0:0` and MIDI output `none`),
+emulator process the package starts: rust-dos v1.8.1 through `RustDosSession`.
+Session 1.0.0 supports rust-dos only; DOSBox-X is no longer an available
+package backend. Host sound stays muted with `--audio-output null`,
 the emulated sound devices stay configured, `keep_host_sound` is never passed
 and `nosound` never set. Agents never operate GOG's DOSBox 0.74-2; runs of it
 are live sessions the owner plays and captures alone. The package takes the
@@ -22,18 +21,29 @@ path in `REFURBISHED_DINOSAURS_RUN_LOCK`) as the protocol's
 says.
 
 Setup: `./tools/Restore-ToolDependencies.ps1` installs
-`dinorefurb-dosbox-session` 0.11.0 into `artifacts/evidence-python`, and
-`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.7.5 Windows
+`dinorefurb-dosbox-session` 1.0.0 into `artifacts/evidence-python`, and
+`./tools/Install-RustDos.ps1` installs the pinned rust-dos v1.8.1 Windows
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
 The historical per-part attempts below retain their rust-dos v1.7.2 and
-session-version provenance. Current v1.7.5 attempts are listed separately;
+session-version provenance. The v1.7.5 attempts below remain historical;
 an untested part is not admitted by a historical success. A save state
 records the emulator SHA-256, and the approved session package refuses a
 different digest before starting restore. Native cross-release format
 compatibility has not been tested: the package guard alone does not prove
 the old state format incompatible. Historical checkpoints are preserved.
+
+On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
+startup_segments.py startup-to-main attempt with its RNG guard. This verifies
+owned process startup, declared breakpoint stops and the probe's memory reads,
+with host output recorded muted. The local run is
+GAME_DIR/captures/rust-dos-startup-segments/runtime-upgrade-20261104-v181/.
+Input, frames, guarded writes and checkpoint restore were not reattempted
+under these new pins. Historical capabilities below retain their original
+version scope and do not by themselves admit a current-pin checkpoint run.
+The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
+identities are retained, not rewritten to bypass strict matching.
 
 On 2026-10-19 the pinned v1.7.5/session 0.11.0 probes regenerated opener,
 opened and all six retained gameplay routes (FND-UI-054). Start,
@@ -127,6 +137,10 @@ MZ resident image and source relocations. A declared far, no-argument root can
 be called without a game process or run lock. Raw memory and argument seeding
 wait for supported layout/parameter bindings; FBOV code stays out of reach.
 
+The matrix below records the previous runtime attempts. For current pins,
+only the bounded startup/breakpoint/memory attempt above is newly verified.
+Revalidate any further required part before admitting a new run.
+
 | Capability | Who | Tried | What would change it |
 |---|---|---|---|
 | Start it and bring it to a given state without a person | agent, tested states only | 2026-10-19, pinned v1.7.5/session 0.11.0: fresh Start, Added, Drop confirmation, After Drop, Talk and two-character Play; all independently restored (FND-UI-054). | A required state outside the verified routes. |
@@ -140,7 +154,7 @@ wait for supported layout/parameter bindings; FBOV code stays out of reach.
 | Call a single function in the emulator harness (no run lock) | agent, resident far roots within the current no-argument contract | Unicorn 2.1.4 loads the hash-verified GOG resident MZ and applies its relocations. FND-CONFIG-193 initializer controls return with source-written roots/free flags, unchanged loaded high bytes and restored registers. | Supported named parameter/layout bindings extend input cases. Overlay code, native hardware and timing remain outside this harness. |
 
 
-Current state-gated probe: regenerate_checkpoints.py and verify_checkpoints.py,
+Checkpoint-regeneration probes: regenerate_checkpoints.py and verify_checkpoints.py,
 with exact commands and capture paths in FND-UI-054. The latter compares
 native restore fields and frames; this is not rebuild parity validation.
 

@@ -6,15 +6,16 @@ param([string] $Destination)
 $ErrorActionPreference = 'Stop'
 $root = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 if (-not $Destination) { $Destination = Join-Path $root 'artifacts/rust-dos' }
-$tag = 'v1.7.5'
+$tag = 'v1.8.1'
 $archiveName = "rust-dos-$tag-windows-x86_64.zip"
-$archiveSha256 = 'f4767c17a166ae1331bc7736a7877e5428c88c413471ec16e04d6decafd11201'
-$executableSha256 = '1635427ad8eaddd08e11ca31c9fc81cabff5c264bfaa708a1eca477d54184830'
+$archiveSha256 = 'd6d02f5e771d8a176593de1a7f549fb748c0871bdd5e074eb350d900de026c1a'
+$executableSha256 = 'e880ecf0d76dbb2f77e4d1d7568d90cb53f3d1cf798679cd24f025955bf85da0'
+$requiredDlls = @('SDL2.dll', 'mt32emu-2.dll', 'openxr_loader.dll')
 $executable = Join-Path $Destination 'rust-dos.exe'
 
 if ((Test-Path -LiteralPath $executable -PathType Leaf) -and
     (Get-FileHash -LiteralPath $executable -Algorithm SHA256).Hash.ToLowerInvariant() -eq $executableSha256 -and
-    (Test-Path -LiteralPath (Join-Path $Destination 'SDL2.dll') -PathType Leaf)) {
+    @($requiredDlls | Where-Object { -not (Test-Path -LiteralPath (Join-Path $Destination $_) -PathType Leaf) }).Count -eq 0) {
     Write-Output "rust-dos $tag is already installed at $executable."
     return
 }
@@ -32,8 +33,10 @@ try {
     if ($found.Count -ne 1) { throw "$archiveName holds $($found.Count) rust-dos.exe files, expected 1." }
     $actual = (Get-FileHash -LiteralPath $found[0].FullName -Algorithm SHA256).Hash.ToLowerInvariant()
     if ($actual -ne $executableSha256) { throw "rust-dos.exe has SHA-256 $actual, expected $executableSha256." }
-    if (-not (Test-Path -LiteralPath (Join-Path $found[0].DirectoryName 'SDL2.dll') -PathType Leaf)) {
-        throw "$archiveName has no SDL2.dll beside rust-dos.exe."
+    foreach ($dll in $requiredDlls) {
+        if (-not (Test-Path -LiteralPath (Join-Path $found[0].DirectoryName $dll) -PathType Leaf)) {
+            throw "$archiveName has no $dll beside rust-dos.exe."
+        }
     }
     if (Test-Path -LiteralPath $Destination) { Remove-Item -LiteralPath $Destination -Recurse -Force }
     New-Item -ItemType Directory -Path (Split-Path -Parent $Destination) -Force | Out-Null
