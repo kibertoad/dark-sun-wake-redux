@@ -1,6 +1,6 @@
 # ITEM
 
-Next ID: Q-ITEM-013
+Next ID: Q-ITEM-014
 
 ## Static
 
@@ -118,21 +118,40 @@ Next ID: Q-ITEM-013
   instead of another direct-signature or adjacent-pair census.
 
 - Q-ITEM-011. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: When does the
-  effect-switch near flags pointer identify the hit wrapper frame byte, and
-  which admitted calls preserve the live result/frame state? Settles it:
-  segment producers and preservation on the item-test paths, valid frame and
-  record spans, and aliases or reached writes that can change the flags byte
-  or saved result before its reload. Startup equality alone is insufficient.
+  effect-switch near flags pointer identify the hit wrapper's SS-local byte?
+  Settles it: segment producers at the admitted hit entries and DS/SS
+  preservation through the reached item-test children, interrupts and
+  overlay transitions. Reuse startup FND-PARTY-215/219 and the qualified
+  FND-RNG-053/061 evidence; startup equality alone is insufficient.
+  Frame spans, byte writers and aliases are independently Q-ITEM-013.
   Blocks: slices 4-5.
   Tried: split from Q-ITEM-009. FND-ITEM-017 records the near offset producer
   and SS-local reload, and FND-ITEM-018 the forwarding wrapper save/reload.
   Neither establishes arbitrary DS/SS identity or whole-child preservation.
+  Tried: FND-ITEM-029 refreshes the inventory-range segment output with
+  known startup, temporary-SS and timer controls and retains its decoding,
+  trampoline and child-effect exclusions. No segment assignment is reported
+  in the three item root rows; do not repeat that local scan as a proof of
+  the entry or child contract. Saved-frame admission is split to Q-ITEM-013.
+
+- Q-ITEM-013. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which admitted
+  item calls preserve the flags byte and saved result until their reloads?
+  Settles it: valid nonwrapping frame and record spans, all direct or
+  aliased writes to the flags and saved bytes, and child copy/output
+  destinations and lifetimes that can overlap those bytes. Treat segment
+  identity as Q-ITEM-011, not a substitute for disjoint storage. Blocks:
+  slices 4-5.
+  Tried: split from Q-ITEM-011. FND-ITEM-017/018 record the near producer,
+  SS-local reads and save/reload continuations; FND-ITEM-029 separates the
+  segment-register census from preservation of memory. Neither a saved
+  byte nor a child returning proves that byte remained unchanged.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
   and visual effects? Settles it: visual number/table producers and lifetime,
   view/slot/resource/layout admission for overlay 206 +1073 and +1121, and
-  their reached drawing/timer effects. Frame preservation is Q-ITEM-011;
+  their reached drawing/timer effects. Frame preservation is Q-ITEM-013
+  and segment identity Q-ITEM-011;
   reuse Q-SOUND-002 for the sound library/driver dependency rather than
   duplicating its question. Blocks: slices 4-5.
   Tried: split from Q-ITEM-009. FND-MAGIC-024 binds DATA sound byte +0x16

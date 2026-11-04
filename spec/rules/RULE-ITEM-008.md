@@ -95,7 +95,7 @@ preservation (FND-ITEM-018). The known direct outer continuations forward,
 replace or independently interpret the byte; the remaining resident kind
 dispatcher reloads its own bookkeeping byte (FND-ITEM-028). This settles
 local register handling, while other incoming routes and frame admission
-remain Q-ITEM-010 and Q-ITEM-011.
+remain Q-ITEM-010, Q-ITEM-011 and Q-ITEM-013.
 
 The first request selects the sound effect numbered by DATA byte +0x16.
 Its routine applies sound-setting and driver gates, preferring a BVOC resource
@@ -127,7 +127,8 @@ None known.
   helper `fn_5671_0075` caller, writer and record-admission contract is Q-ITEM-007;
   its local arithmetic and zero branches are recorded above.
 - Independent writers and admitted uses of the +0x12 rank and +0x16 signed
-  bonus remain Q-ITEM-006; hit-result storage admission remains Q-ITEM-011,
+  bonus remain Q-ITEM-006; hit-result segment identity remains Q-ITEM-011
+  and frame/alias admission Q-ITEM-013,
   feedback effects Q-ITEM-012 and other incoming routes Q-ITEM-010. Known
   direct local consumers are recorded by FND-ITEM-028.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
