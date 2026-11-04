@@ -38,18 +38,18 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-ITEM-045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
-- Item work: FND-ITEM-027 through FND-ITEM-043. Q-ITEM-009 closed;
+- Item work: FND-ITEM-027 through FND-ITEM-045. Q-ITEM-009 closed;
   Q-ITEM-011/013 remain separate. Reuse FND-COMBAT-032/033/046 censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: Test.ps1 -Research -ChangedSince 723e1335 -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince a867719d -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
-- Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
+- Last integration gate: 2026-11-04, Test.ps1 -ChangedSince 216c9812 -NoRestore selected integration and passed
   all Node controls and 757 .NET tests. Existing argument-count/generation
   skips and 59 uncompiled Kaitai definitions remain. Revalidated for item-domain Inspector.
 - Select the project-local EVIDENCE_PYTHON explicitly. The inherited override
@@ -57,57 +57,26 @@ reports before matched-menu pairing are diagnostic only.
   Use UTF-8; select matching paths before Git reads.
   Research uses -ChangedSince the pre-batch commit; shared/uncertain inputs
   require integration. Fresh staged hooks stay enabled.
-- Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
-  See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
-  Current-pin startup, opener restore/return, Start/Create and two-character
-  Play readiness, left/right mouse, Esc/key-2 delivery, frames and strict
-  checkpoint checks are verified. F2 delivery and Load entry now have the
-  bounded admission of FND-COMBAT-133; FND-COMBAT-134/135 admit one Down
-  call/entry/return case. Release remained pending; no post-return replay.
-  docs/RUNTIME.md names retained v181-q046 runs and reproduction commands.
-  FND-COMBAT-136/137/138/139 admit Enter through numbered-load/copy entry,
-  rejection and one matched outer return. Later action cleanup is unobserved.
-  FND-COMBAT-140 admits native F1/Enter Save and a strictly restored candidate
-  keyboard-loop checkpoint. Completed loading remains unverified;
-  Q-COMBAT-046 retains other states/routes and later preservation.
-  Use v181-q046-play-ready-20261104/play-ready as the verified map checkpoint;
-  its new-process verification prefix is v181-q046-play-ready-verify-20261104.
-  The new candidate is saved-map in native-save run v181-q063-native-save-input-20261104;
-  verification run v181-q063-native-save-verify-20261104 passed. Both are under
-  GAME_DIR/captures/rust-dos-native-save/. A11D remains null: retain the
-  independent head/input-loop predicate. FND-COMBAT-141 admits its F2/copy
-  route; FND-COMBAT-142 admits reader entry. FND-COMBAT-143 admits bounded
-  SAVE/24/26 selection; FND-COMBAT-144 admits both core results and bounded
-  private-file payload comparison. FND-COMBAT-145 admits working-open
-  publication and selected plain-row bindings. FND-COMBAT-146 admits reader
-  return and target endpoint retention. FND-COMBAT-148 admits the bounded
-  map-child request and prediction comparison. FND-COMBAT-150 admits the
-  ordinary object/OJFF census. FND-COMBAT-152/155 admit conversion and item
-  boundaries; FND-COMBAT-156 admits the enclosing epilogue. Other obligations remain.
-  Load-entry and navigation reports are under GAME_DIR/captures/rust-dos-load-entry/;
-  accepted writer run: v181-q066-map-writer-20261104; cell diagnostic:
-  v181-q066-map-difference-20261104; caller: v181-q066-caller-complete-20261104;
-  item: v181-q066-items-20261104; script: v181-q066-script-bound-20261104;
-  objects: v181-q066-objects-20261104. Earlier run names and commands remain
-  in docs/RUNTIME.md and their findings. Session event_log is null: do not
-  assume persistent request/reply journals or reconstruct unreported bytes.
-  load_entry.py/native_save.py and their plan are committed. Affected tooling
-  validation passed with -ChangedSince 216c9812; controls remain in the evidence suite.
-  Revalidate overlay mappings from declared frames/code. Use FND-EXE-562
-  and FND-COMBAT-142's header-trap/IRET guards: remove the return-word watch
-  before interrupt-frame reuse. Cache terminal input observations and
-  remove broad dispatch stops after F2 readiness. Retain diagnostic reports.
-  ReaderReturn in overlay_returns.py admits only the declared reader frame;
-  native reader-return trap relocation remains unobserved, with synthetic controls.
-  Paused metadata/headers/types: FND-COMBAT-169/170/171; native-save runs
-  v181-q067-getter-metadata-20261104, v181-q067-record-headers-20261104 and
-  v181-q067-item-types-20261104. Source/roundtrip checks pass; all shared
-  type bytes match canonical ALL/4. All owned probes closed.
+- Runtime: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
+  docs/RUNTIME.md and docs/implementation-plans/RUNTIME-TOOL-UPDATE.md hold
+  capabilities, commands and retained runs. Use the project-local evidence Python.
+  The accepted map checkpoints are play-ready under
+  GAME_DIR/captures/rust-dos-load-entry/ and saved-map under
+  GAME_DIR/captures/rust-dos-native-save/; exact run names remain in docs/RUNTIME.md.
+  FND-COMBAT-133 through FND-COMBAT-156 hold the bounded load/save admissions;
+  completed loading and later action cleanup remain unverified. Paused metadata,
+  headers and type comparisons are FND-COMBAT-169/170/171. All owned probes closed.
+  Session event_log is null: do not assume persistent debugger journals or
+  reconstruct unreported bytes. Keep FND-EXE-562/FND-COMBAT-142's frame and
+  trap guards; remove the return watch before interrupt-frame reuse.
+  reader-return trap relocation remains unobserved, with synthetic controls.
+  load_entry.py/native_save.py remain committed; affected integration validation
+  passed with -ChangedSince 216c9812. The ordinary runtime contract still applies.
 - Current reports/configurations remain under GAME_DIR/analysis/hit-incoming-20261104/
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
-  Latest item reports: item-input-domains.json and item-input-domains-repeat.json
+  Latest item reports: position-admission-body.txt and position-script-field-domain.json
   under item-removal-20261104/. Script writer/runner/geometry listings remain
   under GAME_DIR/analysis/walk-script-20261104/.
   FND-ITEM-042 names retained gap listings; older script-instructions directory absent.
@@ -124,7 +93,7 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-SCRIPT-023's effective reset/preservation; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
-- Q-ITEM-005/006's other consumers/writers; Q-ITEM-013's live-frame aliases,
+- Q-ITEM-005/006's remaining consumers/writers/admission; Q-ITEM-013's live-frame aliases,
   keeping Q-ITEM-011's segment prerequisite separate.
 - Q-COMBAT-067 cleanup/lifetime and Q-COMBAT-045 save admission; reuse
   FND-COMBAT-159 through FND-COMBAT-171.
