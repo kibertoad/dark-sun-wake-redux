@@ -82,9 +82,11 @@ None known.
 
 ## Open questions
 
-- Which limit applies to a character with several classes, what "leather" and "small" cover among
-  the game's items, and whether the game enforces the weapon lists, and through which item field
-  it tells a weapon's kind or material (Q-ITEM-003).
+- Actual retention/admission of the rebuilt class flags, what "leather" and
+  "small" cover among the game's rows, and how the named manual weapon and
+  material limits map to those rows remain Q-ITEM-003. FND-ITEM-053 settles
+  the conditional local combination: any admitted class flag may overlap
+  the item mask; origin/level admission and other placement gates still apply.
 
 - FND-ITEM-048 records the inventory eligibility helper's any-bit class-mask
   overlap and origin-code-eight category filter. Its carried-position bypass

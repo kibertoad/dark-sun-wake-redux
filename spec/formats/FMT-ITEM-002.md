@@ -182,3 +182,7 @@ not establish all other consumers or the live table's admission/lifetime.
   signed-byte field-89 samples. Runtime width/table/row preservation and
   independent semantic consumers remain Q-ITEM-005; this source bound is
   not a bound on every live shared record.
+
+- FND-ITEM-053 records all 102 source class masks and their bounded producer
+  composition. Runtime retention and independent reader/writer contracts
+  remain Q-ITEM-005; a source mask is not an immutable live eligibility rule.

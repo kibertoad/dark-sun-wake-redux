@@ -53,9 +53,9 @@ Next ID: Q-ITEM-016
   for overlay 189 +2C6B/+2B64, item/type and current-character selection,
   DS/SS near-state identity, snapshot/removal child effects, and actual
   traversal/getter samples/termination with retained descriptors, widths,
-  shared rows and disjoint graph/map/frame storage. Relate the class-mask
-  bits to character class combinations and the manual's limits without
-  replacing the recorded any-bit predicate. Local category/hand/container
+  shared rows and disjoint graph/map/frame storage. Establish producer-to-use
+  retention and the relation between named manual weapon/material limits
+  and individual source rows; class combination is FND-ITEM-053. Local category/hand/container
   checks and capacity arithmetic are already FND-ITEM-048/049/050; do not
   repeat those readings. Spell use is Q-ITEM-014; stores are Q-ITEM-015.
   Blocks: slice 5.
@@ -85,6 +85,11 @@ Next ID: Q-ITEM-016
   with effect 106 unconditional and six existing-item magnitude pairs.
   Remaining snapshot work is actual current-character/table/boundary and
   near-frame admission, map/graph/record lifetime and child preservation.
+  Tried: FND-ITEM-053 removes the local class-combination and source flag/mask
+  domains: the producer replaces the class word with admitted flags' OR;
+  eligibility accepts any overlap. Canonical row 50 alone has mask 2000 hex
+  outside producer union 1FFF. Producer-to-use retention, other writers,
+  native record/table/near-state admission and named-row meanings remain.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell
