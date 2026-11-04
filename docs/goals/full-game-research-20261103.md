@@ -37,8 +37,8 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-CONFIG-221/222, FND-SAVE-026 and FND-COMBAT-110's controlled flag
-  inventory. Retain FND-COMBAT-111 through FND-COMBAT-131 and FND-RNG-093;
+- Latest research: FND-COMBAT-132 and FND-CONFIG-221/222. Retain FND-SAVE-026,
+  FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-131 and FND-RNG-093;
   use their reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince af3b3388
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 8c52bf0f
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -62,6 +62,7 @@ reports before matched-menu pairing are diagnostic only.
 - Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
   See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
   Only the bounded muted startup probe verifies current-pin capabilities.
+  Its retained report has registers/RNG, not a UI-memory snapshot for Q-COMBAT-046.
   Historical checkpoints retain their identities and require regeneration
   before current-pin restore; never relabel states. Previous runtime remains
   at artifacts/rust-dos-v1.7.5. No original runtime was run this batch.
