@@ -152,10 +152,21 @@
       "id": "temporary-slot-admission",
       "area": "COMBAT",
       "kind": "state-producers",
-      "question": "Can original save-call admission include populated presentation slot 319 after indexed or bulk writes, and which reclamation effects follow if it can?",
+      "question": "Can original save-call admission include populated presentation slot 319 after indexed or bulk writes across its lifetime?",
       "state": "open",
       "queue": [
         "Q-COMBAT-045"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "temporary-cleanup-effects",
+      "area": "COMBAT",
+      "kind": "remaining-evidence",
+      "question": "Which actual root/getter/map/pool and release states admit temporary-object cleanup, and what does it leave in restored creatures and presentation?",
+      "state": "open",
+      "queue": [
+        "Q-COMBAT-067"
       ],
       "evidence": []
     },
@@ -184,7 +195,8 @@
         "Q-COMBAT-047",
         "Q-COMBAT-048",
         "Q-COMBAT-049",
-        "Q-COMBAT-055"
+        "Q-COMBAT-055",
+        "Q-COMBAT-067"
       ],
       "evidence": []
     }

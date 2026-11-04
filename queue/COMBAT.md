@@ -397,7 +397,7 @@ Next ID: Q-COMBAT-068
   ordering/pending bounds and zero-result root reuse. Getter effects, map values, retained fields and actual storage remain. Tried: FND-COMBAT-168 excludes both zero-result resets and preserves root index for admitted non-five roots;
   actual root/storage/map/pool prerequisites and other root states remain.
   Tried: FND-COMBAT-169 admits canonical metadata and finite disjoint pools at one paused checkpoint; temporary kind is zero.
-  Actual cleanup state and continuous preservation remain. Blocks: slice 4.
+  Tried: FND-COMBAT-170 admits fixed-table header extents and mutual separation at that paused state; actual cleanup/lifetime remain. Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate

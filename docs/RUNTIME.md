@@ -149,6 +149,11 @@ continuation, input or guest writes. Reproduce with native_save.py
 v181-q063-native-save-input-20261104 <new-run> verify. Accepted output:
 GAME_DIR/captures/rust-dos-native-save/v181-q067-getter-metadata-20261104/.
 This admits one paused boundary, not later cleanup or continuous lifetime.
+FND-COMBAT-170 adds five fixed record-base header/marker observations and
+roundtrip equality. Known fixed table requests fit mutually separate described
+extents. Reproduce with the same verify command and a fresh output name;
+accepted run: v181-q067-record-headers-20261104 under the native-save root.
+No allocation history, whole-heap traversal or later lifetime is admitted.
 The fixed saved-copy-return stage in FND-COMBAT-141 admits actual F2/Enter
 from that native candidate through the observed nonempty copy return, with
 bounded normalization/open/length and private-file-state checks. Output is
