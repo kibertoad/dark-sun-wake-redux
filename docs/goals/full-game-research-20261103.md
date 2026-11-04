@@ -38,20 +38,20 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-ITEM-043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
-- Item work: FND-ITEM-027 through FND-ITEM-042. Q-ITEM-009 closed;
+- Item work: FND-ITEM-027 through FND-ITEM-043. Q-ITEM-009 closed;
   Q-ITEM-011/013 remain separate. Reuse FND-COMBAT-032/033/046 censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: Test.ps1 -Research -ChangedSince 6a464ec5 -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince 723e1335 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
-  192 Node and 756 .NET tests. Existing argument-count/generation
-  skips and 59 uncompiled Kaitai definitions remain. Revalidated for full-chain Inspector.
+  all Node controls and 757 .NET tests. Existing argument-count/generation
+  skips and 59 uncompiled Kaitai definitions remain. Revalidated for item-domain Inspector.
 - Select the project-local EVIDENCE_PYTHON explicitly. The inherited override
   selects another project's interpreter and is not this checkout's tooling.
   Use UTF-8; select matching paths before Git reads.
@@ -92,7 +92,7 @@ reports before matched-menu pairing are diagnostic only.
   in docs/RUNTIME.md and their findings. Session event_log is null: do not
   assume persistent request/reply journals or reconstruct unreported bytes.
   load_entry.py/native_save.py and their plan are committed. Affected tooling
-  validation passed with -ChangedSince 08032590; controls remain in the evidence suite.
+  validation passed with -ChangedSince 216c9812; controls remain in the evidence suite.
   Revalidate overlay mappings from declared frames/code. Use FND-EXE-562
   and FND-COMBAT-142's header-trap/IRET guards: remove the return-word watch
   before interrupt-frame reuse. Cache terminal input observations and
@@ -107,9 +107,10 @@ reports before matched-menu pairing are diagnostic only.
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
-  Latest script reports: registration-radius-controls.json and registration-radius-domain.json
-  under GAME_DIR/analysis/walk-script-20261104/. Writer/runner/geometry listings remain.
-  FND-ITEM-042 names retained gap listings; the older script-instructions directory is absent.
+  Latest item reports: item-input-domains.json and item-input-domains-repeat.json
+  under item-removal-20261104/. Script writer/runner/geometry listings remain
+  under GAME_DIR/analysis/walk-script-20261104/.
+  FND-ITEM-042 names retained gap listings; older script-instructions directory absent.
   temporary-presentation-candidates.txt there remains diagnostic; it is not a writer census.
   No tracked WIP or session-owned analysis/test process remains.
 - Unrecorded effect-code-indexed-store-candidates.txt remains diagnostic:
@@ -123,7 +124,7 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-SCRIPT-023's effective reset/preservation; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
-- Q-ITEM-005's other consumers; Q-ITEM-013's live-frame aliases,
+- Q-ITEM-005/006's other consumers/writers; Q-ITEM-013's live-frame aliases,
   keeping Q-ITEM-011's segment prerequisite separate.
 - Q-COMBAT-067 cleanup/lifetime and Q-COMBAT-045 save admission; reuse
   FND-COMBAT-159 through FND-COMBAT-171.
