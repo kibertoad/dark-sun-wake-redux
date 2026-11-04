@@ -194,6 +194,13 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
 It reports only the fixed named child entries and retains map/effect endpoint
 checks. Temporary-slot allocation, other object/failure states, continuous
 lifetime and completed loading remain unverified.
+The fixed saved-map-writer stage in FND-COMBAT-158 admits a one-byte change
+watch on cell (107,36) after reader return. Its one observed write matches
+the occupancy setter's post-store instruction, target, coordinates and
+placement-wrapper return; initiating slot and earlier caller remain open.
+Accepted: GAME_DIR/captures/rust-dos-load-entry/v181-q066-map-writer-20261104/.
+The finding records its fresh-output command and endpoint/lifetime limits.
+
 FND-COMBAT-157's bounded diagnostic repeat locates that later caller's sole
 map change at cell (107,36), 00 to 60, without writer attribution. Accepted:
 GAME_DIR/captures/rust-dos-load-entry/v181-q066-map-difference-20261104/.
