@@ -18,6 +18,9 @@ Next ID: Q-ACTOR-009
   and answers its local object-number/image-word resolver; that local
   reader is removed from Settles it. Its resource/buffer and cache admission
   remain Q-PARTY-087. Blocks: nothing yet.
+  Tried: FND-COMBAT-162 removes the loader's local +0E selector flow and canonical
+  temporary-slot flags-zero image bound. Other consumers/flag modes and the
+  reason for the zero-preserving exception remain open.
 - Q-ACTOR-003. FMT-ACTOR-002: What are the remaining fields of the 23-byte
   kind-one and kind-five records beyond their documented fields?
   Settles it: native readers/writers of the remaining record bytes through

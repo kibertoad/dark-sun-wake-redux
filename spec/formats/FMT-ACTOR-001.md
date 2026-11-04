@@ -9,7 +9,7 @@ byte_order: little
 size: 16
 text: false
 definition: fmt_actor_001.ksy
-evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-012, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927, FND-PARTY-225]
+evidence: [FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-012, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010, SRC-DSUN-MUSIC-79B6927, FND-PARTY-225, FND-COMBAT-162]
 conflicting: []
 split_with: []
 related: [RULE-ACTOR-001]
@@ -33,7 +33,7 @@ region entity or a placed-object entry carries, and `31E0:0E1B` reads the fields
 | `0xA` | 1 | `INT8` | `vertical_offset` | Further pixels the object's image is drawn above its position, sign-extended and subtracted from y with `y_offset`. 0, 10, 24, 30, 32, 64 or 85 in the shipped records, and equal to byte 4 of every `ETAB` record that names the object. | supported | FND-ACTOR-001, FND-ACTOR-003, FND-IMAGE-010 |
 | `0xB` | 1 | `UINT8` | `unk_0B` | Purpose unknown. 0 in every shipped record but one, where it is 5. `31E0:0E1B` copies it into the object's slot record. | supported | FND-ACTOR-001, FND-ACTOR-003 |
 | `0xC` | 2 | `UINT16LE` | `image` | Number of the object's image, a `BMP ` resource of `OBJEX.GFF`, 1 to 3,953 in the shipped records. `31E0:0EFF` replaces it for seven object numbers, and `31E0:426E` returns it. | supported | FND-ACTOR-001, FND-ACTOR-002, FND-ACTOR-003, FND-ACTOR-004, FND-IMAGE-010 |
-| `0xE` | 2 | `UINT16LE` | `unk_0E` | Purpose unknown. 0 in every shipped record. `31E0:0EFF` overwrites it with `image` in its copy of the record in most cases. | supported | FND-ACTOR-001, FND-ACTOR-003 |
+| `0xE` | 2 | `UINT16LE` | `unk_0E` | 0 in every shipped record. The loader overwrites its local copy with `image` in most cases, then passes that local word to `31E0:2670` as the image argument. Canonical temporary-slot flags-zero loading produces a negative presentation image word and skips lazy animation under the conditions of FND-COMBAT-162. Other consumers and flag modes remain open. | supported | FND-ACTOR-001, FND-ACTOR-003, FND-COMBAT-162 |
 | `0x10` | | | | Total size 16 bytes | | |
 
 The value file `FMT-ACTOR-001.objects.csv` gives every field of all 4,479 `OJFF` resources of
@@ -60,9 +60,13 @@ gameplay frame of the opening region matches `x_offset`, `y_offset` and `vertica
 
 ## Open questions
 
-- What `unk_00`, `unk_01`, `unk_06`, `unk_08`, `unk_0B` and `unk_0E` do. `unk_00` uses only bits
+- What `unk_00`, `unk_01`, `unk_06`, `unk_08` and `unk_0B` do. `unk_00` uses only bits
   1 and 4, and `unk_06` and `unk_08` may each be two bytes, since their low bytes take only 10 and
   8 values (FND-ACTOR-001). SRC-DSUN-MUSIC-79B6927 reads them as raw words. (Q-ACTOR-002)
+
+- Other consumers/flag modes of `unk_0E` and why the loader preserves its zero
+  for the named exception. FND-COMBAT-162 resolves the local selector flow
+  and canonical temporary-slot branch condition, not those other uses. (Q-ACTOR-002)
 
 - What the image numbers 11,001 to 11,008 and 13,009 that `31E0:0EFF` puts in place of `image`
   for some objects and slots name, and what the object numbers 430, 5,879, 415, 561, 541, 547
