@@ -70,6 +70,9 @@ Next ID: Q-ITEM-014
   Tried: FND-COMBAT-165 removes reparenting, allocation and kind resurrection
   in the admitted root-zero finite-graph deletion class. Actual caller/storage
   admission, live-parent standalone deletion and other aliases remain open.
+  Tried: FND-COMBAT-167 removes initialized pending bounds and positive-prefix
+  earlier-parent ordering. Getter/storage admission, map values and zero-result
+  retained root fields remain; zero count is not a no-operation guarantee.
 
 - Q-ITEM-006. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What independent
   writers and admitted states give the item-test inputs their complete field
