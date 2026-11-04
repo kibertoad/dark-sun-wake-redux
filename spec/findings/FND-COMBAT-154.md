@@ -1,9 +1,9 @@
 ---
 id: FND-COMBAT-154
 title: One native restore caller closes its working archive and retains item script and effect endpoints while one map byte changes
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-COMBAT-156]
 recorded_by: codex
 reproduced_by: []
 method: dynamic

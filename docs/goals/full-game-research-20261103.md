@@ -37,7 +37,7 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-154/153/152, FND-COMBAT-148/147 and corrected inventory entries
+- Latest research: FND-COMBAT-156/155/152, FND-COMBAT-148/147 and corrected inventory entries
   FND-EXE-639/640. Retain FND-COMBAT-146, FND-CONFIG-221/222, FND-SAVE-026,
   FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-141 and FND-RNG-093;
   use their reproduction limits.
@@ -85,8 +85,8 @@ reports before matched-menu pairing are diagnostic only.
   publication and selected plain-row bindings. FND-COMBAT-146 admits reader
   return and target endpoint retention. FND-COMBAT-148 admits the bounded
   map-child request and prediction comparison. FND-COMBAT-150 admits the
-  ordinary object/OJFF census. FND-COMBAT-152/153 admit conversion and item
-  boundaries; FND-COMBAT-154 admits the enclosing epilogue. Other obligations remain.
+  ordinary object/OJFF census. FND-COMBAT-152/155 admit conversion and item
+  boundaries; FND-COMBAT-156 admits the enclosing epilogue. Other obligations remain.
   Load-entry and navigation reports are under GAME_DIR/captures/rust-dos-load-entry/;
   accepted caller run: v181-q066-caller-complete-20261104; item run:
   v181-q066-items-20261104; script run:
@@ -124,7 +124,7 @@ reports before matched-menu pairing are diagnostic only.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
 - Next: Q-COMBAT-066's remaining caller/child cases and map-change attribution;
-  reuse FND-COMBAT-152/153/154 for settled endpoints. The retained diagnostic
+  reuse FND-COMBAT-152/155/156 for settled endpoints. The retained diagnostic
   caller run v181-q066-caller-20261104 ended on consumed-breakpoint cleanup,
   fixed by restore_caller.py and its synthetic control; do not repeat that deletion;
   Q-COMBAT-045's populated temporary-save admission, requiring different evidence;

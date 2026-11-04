@@ -1,9 +1,9 @@
 ---
 id: FND-COMBAT-153
 title: One native restore clears three nonzero item-cache words and reaches a zero-result enumeration without either traversal helper
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-COMBAT-155]
 recorded_by: codex
 reproduced_by: []
 method: dynamic

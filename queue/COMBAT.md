@@ -725,11 +725,11 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
-  Tried: FND-COMBAT-154 removes normal enclosing post-setup/working-close/epilogue observations,
+  Tried: FND-COMBAT-156 removes normal enclosing post-setup/working-close/epilogue observations,
   retaining item/script/effect endpoints. One map byte and archive state change after reader return;
   individual writers are unattributed. Other caller/selector, failed/skipped transfers,
   populated children and continuous storage admission remain.
-  Tried: FND-COMBAT-153 removes one native 400-record clear's three changed words, disjoint
+  Tried: FND-COMBAT-155 removes one native 400-record clear's three changed words, disjoint
   sampled item/output/effect/local spans and zero-result/no-traversal-helper enumeration
   retained at reader return. Populated traversal, metadata/slot aliases, continuous lifetime,
   failure states and later enclosing caller work remain.
