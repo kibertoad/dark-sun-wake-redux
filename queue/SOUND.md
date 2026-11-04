@@ -55,10 +55,13 @@ Next ID: Q-SOUND-011
   Blocks: complete loader interpretation of FMT-SOUND-004.
 - Q-SOUND-010. FMT-SOUND-004, FMT-CONFIG-002: What actual row/index,
   storage and continuation contract admits setup's list-choice result?
-  Settles it: cardinality and index correspondence through 19CF:000D/009A,
-  label/buffer/source spans, the row comparison's far-zero storage binding,
-  initial index and navigation/completion return paths, and preservation
-  across reached children. Tried: split from Q-SOUND-007 after FND-SOUND-021
+  Settles it: actual record/source spans and heap/break/state admission;
+  retained far-zero vector storage; chooser child/frame preservation and
+  native reachability; and nonpositive, larger or other-label profiles
+  outside FND-SOUND-022's conditional local proof. Local cardinality/index,
+  installed source profile, count conversion, allocation rounding/clearing
+  and plain formatter are FND-SOUND-022 through FND-SOUND-027.
+  Tried: split from Q-SOUND-007 after FND-SOUND-021
   identifies the wrapper's unconditional first-label read, entry-only negative
   index clamp, layout FFFF path and normal current-index return. A source
   record count or the callers' exact FFFF checks do not settle those bounds.
@@ -88,6 +91,10 @@ Next ID: Q-SOUND-011
   the bounded short-label profile: its nonnull valid string is copied
   unchanged with one NUL and no padding. Actual record production/spans,
   heap/state retention, vector and chooser children remain in Settles it.
+  Tried: FND-SOUND-028 completes the local record-arm mapping, exposing
+  source capacity obligations for five alternate arrays and five NUL copies.
+  Actual source bounds and native spans remain; this is not label-retention
+  or successful chooser evidence.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

@@ -412,10 +412,12 @@ Next ID: Q-CONFIG-011
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and complete malformed/file-error behavior,
   and the full consumer effects of `CardGroup` and chunk numbers?
-  Settles it: the remaining parser callers/arms around the line reader
-  `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-213, FND-SOUND-020) and their
-  field/count/read-result consumers. The file layout alone does not
-  determine parser behavior (FND-CONFIG-007).
+  Settles it: file-byte delivery/read-result and complete error contracts;
+  token/value/numeric bounds and other inputs beyond FND-SOUND-025's two
+  short counts; actual source/nested/repeated-tag span admission; and
+  remaining CardGroup, chunk-number and SamplePlaybackMode consumers.
+  The local outer/nested record dispatch is FND-SOUND-028, not remaining
+  arm mapping. The file layout alone does not determine native admission.
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
   paths and their mode-controlled output copies, plus the chunk-field
   destinations. Those local bindings are removed from the remaining parser
@@ -440,6 +442,10 @@ Next ID: Q-CONFIG-011
   for the installed count products, removing those local child operations
   from Settles it. Native heap/break/service and malformed-input behavior
   remain separate from the conditional normal continuation.
+  Tried: FND-SOUND-028 removes all fifty local outer record targets, five
+  alternate loops and nested flag/jumper actions from Settles it. It records
+  rejection, no-op, early EndRecord and no-rollback paths. Source capacity,
+  helper/file contracts and wider field consumers remain independent.
   Blocks: completing the named entry readings.
 
 ## Emulated call

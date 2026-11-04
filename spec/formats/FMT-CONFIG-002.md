@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028]
 conflicting: []
 split_with: []
 related: []
@@ -25,8 +25,12 @@ integer, which may be -1, a hexadecimal integer written with `0x`, or a string i
 The keys come in a fixed order: a header from `[Header]` to `[EndOfHeader]`, three groups that
 each open with the group's key and `[NumberOfRecords]` and end with `[EndOfGroup]`, and
 `[EndOfFile]`. Each record of a group runs from `[StartRecord]` to `[EndRecord]`. A count key
-gives how many of the keys after it follow. Whether case matters, and what the setup program
-does with a missing key, an unknown key or a malformed line, are not known [FND-CONFIG-007].
+gives how many of the keys after it follow [FND-CONFIG-007]. The recorded
+ASCII tag path is case-insensitive (FND-SOUND-020). The native outer record
+dispatch does not enforce source field order or required-field completeness;
+nested alternate, flag and jumper contexts have distinct consumption and
+rejection rules (FND-SOUND-028). Complete malformed/file-error admission
+remains open.
 
 | Key | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|
@@ -50,6 +54,7 @@ does with a missing key, an unknown key or a malformed line, are not known [FND-
 | `PmDigitalDriverName` | `char[]` | `pm_digital_driver` | The protected-mode digital sound driver's file name. | supported | FND-CONFIG-007 |
 | `MidiDriverChunkNumber` | `INT16` | `midi_chunk` | Purpose unknown; `SOUND.CFG` repeats it. | supported | FND-CONFIG-003, FND-CONFIG-007 |
 | `DigitalDriverChunkNumber` | `INT16` | `digital_chunk` | Purpose unknown; `SOUND.CFG` repeats it. | supported | FND-CONFIG-003, FND-CONFIG-007 |
+| `SamplePlaybackMode` | `INT16` | `sample_playback_mode` | Native record parser accepts zero or one into its local field; wider consumer effect remains open. | supported | FND-SOUND-028 |
 | `NumberOfMidiAddresses` | `INT16` | `midi_address_count` | How many of `MidiAddress` and `MidiAltAddress` follow. | supported | FND-CONFIG-007 |
 | `MidiAddress` | `INT16` | `midi_address` | The music port address to try first. | supported | FND-CONFIG-007 |
 | `MidiAltAddress` | `INT16` | `midi_alt_address` | Another music port address. | supported | FND-CONFIG-007 |
