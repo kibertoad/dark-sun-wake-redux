@@ -76,6 +76,6 @@ reports before matched-menu pairing are diagnostic only.
   Q-ITEM-011's segment entry producers and reached-child preservation;
   Q-ITEM-010's retained incoming gaps; Q-ITEM-012's feedback admission,
   reusing Q-SOUND-002; Q-ITEM-004's pool/index/copy admission.
-- Root commits remain local; push only on an explicit owner request.
+- Push only on an explicit owner request.
   Goal remains active. Independent static research is available; this
   checkpoint satisfies neither the full Audit nor an out-of-reach decision.
