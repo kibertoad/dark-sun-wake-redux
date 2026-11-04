@@ -113,6 +113,14 @@ Entries by area.
 | [FND-COMBAT-099](../../findings/FND-COMBAT-099.md) | The script region-change route forwards three low words after a full-width sentinel test | recorded |
 | [FND-COMBAT-100](../../findings/FND-COMBAT-100.md) | Decoded literal region-change selectors are nonzero while eleven variable-selector sites remain | recorded |
 | [FND-COMBAT-101](../../findings/FND-COMBAT-101.md) | Declared literal script entries reach the four local-selector sites whose direct assignments are nonzero | recorded |
+| [FND-COMBAT-102](../../findings/FND-COMBAT-102.md) | The named context setter stores its argument before its state gate and its known callers use different argument sources | recorded |
+| [FND-COMBAT-103](../../findings/FND-COMBAT-103.md) | GPL 37's rejected expression byte has a local continuation after its native error call | recorded |
+| [FND-COMBAT-104](../../findings/FND-COMBAT-104.md) | Matched local-call histories narrow selector assignments while GPL 4's default prevents a simple bypass inference | recorded |
+| [FND-COMBAT-105](../../findings/FND-COMBAT-105.md) | Ninety-eight nonliteral-first sites have nonzero literal selectors and eight retain a named context selector | recorded |
+| [FND-COMBAT-106](../../findings/FND-COMBAT-106.md) | The named-44 setter narrows after a full-width gate and its indexed inputs are mostly other named words | recorded |
+| [FND-COMBAT-107](../../findings/FND-COMBAT-107.md) | GPL 119's request 9 has a conditional trigger-to-script-reset route before its local selector | recorded |
+| [FND-COMBAT-108](../../findings/FND-COMBAT-108.md) | MAS 65's eighteen encoded box triggers cannot accept an unchanged category-two replacement event | recorded |
+| [FND-COMBAT-109](../../findings/FND-COMBAT-109.md) | The unchanged GPL 37 rejected span contains no relocation opcode byte but native fetch and dispatch preservation remain open | recorded |
 | [RULE-COMBAT-001](../../rules/RULE-COMBAT-001.md) | All four party members are drawn during combat, and only the leader again after it when the party is collapsed | sourced |
 | [RULE-COMBAT-002](../../rules/RULE-COMBAT-002.md) | An attack hits on a 20, misses on a 1, and otherwise hits when a d20 is at least the attacker's THAC0, lowered by its terms, less the target's Armor Class | supported |
 | [RULE-COMBAT-003](../../rules/RULE-COMBAT-003.md) | A blow that leaves a combatant at 0 hit points or fewer knocks it out at 0, and one at least 10 more than its hit points kills it | supported |

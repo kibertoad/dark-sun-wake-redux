@@ -42,7 +42,7 @@ Entries by status.
 
 ## recorded
 
-493 entries.
+494 entries.
 
 | ID | Title |
 |---|---|
@@ -539,6 +539,7 @@ Entries by status.
 | [FND-EXE-635](../../findings/FND-EXE-635.md) | Explicit tail decodes recover the three overlay 204 bodies in an isolated regenerated snapshot |
 | [FND-EXE-636](../../findings/FND-EXE-636.md) | Overlay tail census distinguishes shared-frame continuations from interior decode gaps |
 | [FND-EXE-637](../../findings/FND-EXE-637.md) | Canonical ownership and decode declarations reproduce a bounded repaired overlay view |
+| [FND-EXE-638](../../findings/FND-EXE-638.md) | Regenerated resident metadata admits the repaired joined function inventory |
 
 ## Open questions
 

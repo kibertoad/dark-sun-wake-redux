@@ -51,7 +51,7 @@ Entries by status.
 
 ## recorded
 
-99 entries.
+107 entries.
 
 | ID | Title |
 |---|---|
@@ -154,6 +154,14 @@ Entries by status.
 | [FND-COMBAT-099](../../findings/FND-COMBAT-099.md) | The script region-change route forwards three low words after a full-width sentinel test |
 | [FND-COMBAT-100](../../findings/FND-COMBAT-100.md) | Decoded literal region-change selectors are nonzero while eleven variable-selector sites remain |
 | [FND-COMBAT-101](../../findings/FND-COMBAT-101.md) | Declared literal script entries reach the four local-selector sites whose direct assignments are nonzero |
+| [FND-COMBAT-102](../../findings/FND-COMBAT-102.md) | The named context setter stores its argument before its state gate and its known callers use different argument sources |
+| [FND-COMBAT-103](../../findings/FND-COMBAT-103.md) | GPL 37's rejected expression byte has a local continuation after its native error call |
+| [FND-COMBAT-104](../../findings/FND-COMBAT-104.md) | Matched local-call histories narrow selector assignments while GPL 4's default prevents a simple bypass inference |
+| [FND-COMBAT-105](../../findings/FND-COMBAT-105.md) | Ninety-eight nonliteral-first sites have nonzero literal selectors and eight retain a named context selector |
+| [FND-COMBAT-106](../../findings/FND-COMBAT-106.md) | The named-44 setter narrows after a full-width gate and its indexed inputs are mostly other named words |
+| [FND-COMBAT-107](../../findings/FND-COMBAT-107.md) | GPL 119's request 9 has a conditional trigger-to-script-reset route before its local selector |
+| [FND-COMBAT-108](../../findings/FND-COMBAT-108.md) | MAS 65's eighteen encoded box triggers cannot accept an unchanged category-two replacement event |
+| [FND-COMBAT-109](../../findings/FND-COMBAT-109.md) | The unchanged GPL 37 rejected span contains no relocation opcode byte but native fetch and dispatch preservation remain open |
 
 ## Open questions
 
