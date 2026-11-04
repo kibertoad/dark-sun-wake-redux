@@ -102,6 +102,11 @@ Next ID: Q-ITEM-014
   ten and word-field eight selection from 253 unchanged top-level literal
   scalar-function calls; the dynamic GPL/27 request, nested calls, gap,
   other incoming routes, changed state and aliases remain.
+  Tried: FND-ITEM-046 removes the dynamic helper's local loop and sixteen
+  inspected literal caller function inputs: preserved setups select functions
+  10/11/12/13 rather than 49, and a positive retained count is consumed.
+  Other incoming entries and intervening global/function/dispatch effects
+  remain; no unknown field-value trace is needed for those preserved routes.
 
 - Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
   item helper's local quantity operations? Settles it: complete caller

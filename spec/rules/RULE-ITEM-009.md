@@ -140,8 +140,10 @@ None known.
   a continuing transfer can request their byte through field ten. Actual
   caller/graph/near-storage and setter-width admission remain Q-ITEM-006.
   The 253 decoded literal scalar calls select neither position field ten nor
-  word-field eight; dynamic/nested/gap/state alternatives remain open
-  (FND-ITEM-044, FND-ITEM-045).
+  word-field eight. Sixteen inspected literal caller setups of the dynamic
+  helper also select other functions when their globals are preserved; other
+  entries and callee/alias effects, nested/gap/state alternatives remain open
+  (FND-ITEM-044, FND-ITEM-045, FND-ITEM-046).
 
 - Canonical RDFF source positions are -1 and zero, with no six or nine.
   Word +10 reaches 327 and 29 payloads exceed a byte. Later producers and
