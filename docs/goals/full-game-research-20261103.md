@@ -37,6 +37,8 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
+- Shared storage prerequisite: FND-RNG-093 is current; active
+  citations moved. Reuse FND-CONFIG-209/210/211/212 and FND-PARTY-215.
 - Latest archive research: FND-COMBAT-116/115/114/113/112/111/110; Q-COMBAT-018 remains open.
   RULE-COMBAT-009 and the queue now reuse FND-COMBAT-035/044,
   FND-SAVE-021 and FND-COMBAT-096 for selector and selection prerequisites.
@@ -54,7 +56,7 @@ reports before matched-menu pairing are diagnostic only.
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince 9e3da2e5
+- Latest research gate: Test.ps1 -Research -ChangedSince 3406d564
   -NoRestore passed with the project-local interpreter.
   Q-COMBAT-018 now composes Q-COMBAT-063/064/065/066; the split retains
   copy, source-resource, destination and child-effect obligations. No closure.
@@ -94,7 +96,9 @@ reports before matched-menu pairing are diagnostic only.
   inputs require integration; fresh staged documentation checks stay enabled.
   No new upstream rules refresh was requested or performed during this update.
 - Next: Q-COMBAT-065's runtime-bound destinations and aliases, reusing
-  FND-COMBAT-116 for fixed-table spans; Q-COMBAT-063/064/066 retain
+  FND-COMBAT-116 and FND-RNG-093. Reuse FND-PARTY-047/236,
+  FND-SCRIPT-026, FND-CONFIG-156 and FND-ACTOR-016 for known producers;
+  Q-COMBAT-063/064/066 retain
   independent copy, source and child obligations;
   Q-ITEM-013's live-frame writes, destinations and aliases;
   Q-ITEM-011's segment entry producers and reached-child preservation;
