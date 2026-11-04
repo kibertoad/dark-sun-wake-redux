@@ -38,10 +38,8 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-COMBAT-162/161/160/159/158, FND-COMBAT-148/147 and corrected inventory entries
-  FND-EXE-639/640. Retain FND-COMBAT-146, FND-CONFIG-221/222, FND-SAVE-026,
-  FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-141 and FND-RNG-093;
-  use their reproduction limits.
+- Latest research: FND-COMBAT-163/162/161 and corrected FND-PARTY-259/260.
+  Retain FND-COMBAT-159/160/158 and earlier findings' reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
@@ -50,15 +48,16 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince df4c62bb
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 60dda268
   -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Q-ITEM-005 and Q-COMBAT-046/063/064/065/066 have attempt-count warnings; their
+  Q-ITEM-005 and Q-COMBAT-045/046/063/064/065/066 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
   192 Node and 745 .NET tests. Existing argument-count and scheduled-generation
   skips and 59 uncompiled Kaitai definitions remain. No newer rebuild test run.
 - Select the project-local EVIDENCE_PYTHON explicitly. The inherited override
   selects another project's interpreter and is not this checkout's tooling.
+  Write citation scripts explicitly as UTF-8; select matching paths before Git reads.
   Research uses -ChangedSince the pre-batch commit; shared/uncertain inputs
   require integration. Fresh staged hooks stay enabled.
 - Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
@@ -112,6 +111,7 @@ reports before matched-menu pairing are diagnostic only.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
   FND-COMBAT-159/160/161 listings: temporary-index-insertion.txt,
   temporary-record-resources.txt and temporary-normal-callset.txt there.
+  FND-COMBAT-163 uses temporary-rdff-reader.txt in that same directory.
   temporary-presentation-candidates.txt there remains diagnostic; it is not a writer census.
   No tracked WIP or session-owned analysis/test process remains.
 - Unrecorded effect-code-indexed-store-candidates.txt remains diagnostic:
@@ -122,8 +122,8 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-045's RDFF/eviction lifetime, live provider and other producer cases;
-  reuse FND-COMBAT-159/160/161/162 for settled branches;
+- Next: Q-COMBAT-045's reached RDFF handlers/reclamation, live provider and other producer cases;
+  reuse FND-COMBAT-159/160/161/162/163 for settled branches;
   Q-COMBAT-066's remaining caller/child cases, reusing FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
   caller run v181-q066-caller-20261104 ended on consumed-breakpoint cleanup,
