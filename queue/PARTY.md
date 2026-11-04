@@ -227,6 +227,11 @@ Next ID: Q-PARTY-116
   insertion child and supplies a separate local count copy. Actual counted
   insertion index, spare row/order/capacity, other producers and retained
   flagged-row identity remain; a prepared flag is not a publication proof.
+  Tried: FND-ITEM-066 removes insufficient nominal capacity on the admitted
+  ordinary allocation: plus-one and paragraph rounding cover the extra
+  insertion row before the marker. Extra-row contents/order, actual
+  header/lifetime, counted publication and row preservation remain; rounded
+  capacity is not initialized data or a native heap admission.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
