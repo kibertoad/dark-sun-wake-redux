@@ -1,5 +1,16 @@
 # Bounded evidence tools
 
+## Type-50 first-item Look inputs
+
+`dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-look-census ARCHIVE CONTROLS_JSON`
+reuses the first-header/source controls of rdff-key-census below. It selects
+type 50 only from validated first kind-one records and reports numerical
+quantity/value/word-0x10/name inputs, resource sizes and named/unnamed totals.
+The selection must be nonempty. The named predicate is unsigned name below
+9999; it is not a complete Look or item-interaction simulation. Existing
+bounds and source verification apply. Later chunks/items, runtime mutation,
+provider identity and live classifier admission remain outside the model.
+
 ## Kind-four inline/shared-row comparison
 
 `dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-type-census ARCHIVE CONTROLS_JSON`

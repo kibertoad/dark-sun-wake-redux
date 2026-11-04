@@ -5,6 +5,9 @@ using RefurbishedDinosaurs.Core.Assets;
 if (args.Length == 3 && args[0].Equals("rdff-key-census", StringComparison.OrdinalIgnoreCase))
     return RdffKeyInspection.Run(args[1], args[2]);
 
+if (args.Length == 3 && args[0].Equals("rdff-look-census", StringComparison.OrdinalIgnoreCase))
+    return RdffKeyInspection.Run(args[1], args[2], look: true);
+
 if (args.Length == 3 && args[0].Equals("rdff-type-census", StringComparison.OrdinalIgnoreCase))
     return RdffTypeInspection.Run(args[1], args[2]);
 

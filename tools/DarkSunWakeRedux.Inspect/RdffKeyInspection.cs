@@ -31,6 +31,10 @@ internal static class RdffKeyInspection
         bool ExactNegatedNumber, bool NegatedLowWord, int TrailingBytes);
     internal sealed record Census(int Resources, int KindOne, int KindTwo, int KindFive,
         int ExactMatches, int LowWordMatches, IReadOnlyList<Row> Rows);
+    internal sealed record LookRow(uint ResourceNumber, int ResourceBytes, ushort Quantity,
+        ushort Value, ushort Word10, ushort NameNumber, bool NameGate);
+    internal sealed record LookCensus(int Resources, int FirstItems, int Type50,
+        int NamedType50, int UnnamedType50, IReadOnlyList<LookRow> Rows);
 
     internal static Controls ParseControls(ReadOnlySpan<byte> bytes)
     {
@@ -123,7 +127,31 @@ internal static class RdffKeyInspection
             rows.Count(value => value.ExactNegatedNumber), rows.Count(value => value.NegatedLowWord), rows);
     }
 
-    internal static int Run(string path, string controlsPath)
+    internal static LookCensus AnalyzeLook(IEnumerable<Resource> input, Controls controls)
+    {
+        var resources = input.Take(ResourceLimit + 1).ToArray();
+        var validated = Analyze(resources, controls);
+        var rows = new List<LookRow>();
+        foreach (var resource in resources.OrderBy(value => value.Number))
+        {
+            var data = resource.Data.Span;
+            if (data[2] != 1) continue;
+            var record = data.Slice(10, 23);
+            if (BinaryPrimitives.ReadUInt16LittleEndian(record[10..12]) != 50) continue;
+            ushort name = BinaryPrimitives.ReadUInt16LittleEndian(record[20..22]);
+            rows.Add(new LookRow(resource.Number, data.Length,
+                BinaryPrimitives.ReadUInt16LittleEndian(record[2..4]),
+                BinaryPrimitives.ReadUInt16LittleEndian(record[6..8]),
+                BinaryPrimitives.ReadUInt16LittleEndian(record[16..18]), name, name < 9999));
+        }
+        if (rows.Count == 0)
+            throw new InvalidDataException("No type-50 first-item positive domain; no negative result reported.");
+        int named = rows.Count(value => value.NameGate);
+        return new LookCensus(validated.Resources, validated.KindOne, rows.Count,
+            named, rows.Count - named, rows);
+    }
+
+    internal static int Run(string path, string controlsPath, bool look = false)
     {
         try
         {
@@ -140,14 +168,17 @@ internal static class RdffKeyInspection
                 .Take(ResourceLimit + 1).ToArray();
             if (entries.Length > ResourceLimit)
                 throw new InvalidDataException("RDFF resource limit exceeded.");
-            var census = Analyze(entries.Select(value =>
-                new Resource(value.Number, archive.GetResource(value.Tag, value.Number))), controls);
+            var resources = entries.Select(value =>
+                new Resource(value.Number, archive.GetResource(value.Tag, value.Number)));
+            object census = look ? AnalyzeLook(resources, controls) : Analyze(resources, controls);
             Console.WriteLine(JsonSerializer.Serialize(new
             {
                 schema = 1, sourceSha256,
                 controlsSha256 = Convert.ToHexStringLower(SHA256.HashData(controlsBytes)),
                 controls, census,
-                limits = "First chunks only; kind-five next end header and trailing extent. No native admission, semantic identity or full-chain claim."
+                limits = look
+                    ? "First kind-one records only; fixed type 50 and raw classifier input words. Later chunks/items, mutation, provider and live Look admission remain unexamined."
+                    : "First chunks only; kind-five next end header and trailing extent. No native admission, semantic identity or full-chain claim."
             }, JsonOptions));
             return 0;
         }

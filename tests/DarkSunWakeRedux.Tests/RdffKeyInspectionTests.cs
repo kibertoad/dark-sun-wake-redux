@@ -62,6 +62,60 @@ public sealed class RdffKeyInspectionTests
         Assert.Throws<InvalidDataException>(() => RdffKeyInspection.Analyze([Record(1,5,-1)], Controls(five:2)));
     }
 
+    [Fact]
+    public void LookInputsKeepDistinctWordsNamedBoundaryAndOtherSizeResources()
+    {
+        var named = Record(20, 1, -20).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(named.AsSpan(12), 0x1234);
+        BinaryPrimitives.WriteUInt16LittleEndian(named.AsSpan(16), 0x5678);
+        BinaryPrimitives.WriteUInt16LittleEndian(named.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(named.AsSpan(26), 0x9ABC);
+        BinaryPrimitives.WriteUInt16LittleEndian(named.AsSpan(30), 9998);
+        var unnamed = Record(10, 1, -10, 165).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(unnamed.AsSpan(16), 1);
+        BinaryPrimitives.WriteUInt16LittleEndian(unnamed.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(unnamed.AsSpan(30), 9999);
+        var excluded = Record(30, 1, -30);
+        var result = RdffKeyInspection.AnalyzeLook(
+            [new(20,named), excluded, Record(40,2,-40), Record(50,5,-50), new(10,unnamed)],
+            Controls(3,1,1));
+        Assert.Equal(5, result.Resources);
+        Assert.Equal(3, result.FirstItems);
+        Assert.Equal(2, result.Type50);
+        Assert.Equal(1, result.NamedType50);
+        Assert.Equal(1, result.UnnamedType50);
+        Assert.Equal(new uint[] {10,20}, result.Rows.Select(row => row.ResourceNumber));
+        Assert.Equal(208, result.Rows[0].ResourceBytes);
+        Assert.False(result.Rows[0].NameGate);
+        Assert.Equal((ushort)1, result.Rows[0].Value);
+        Assert.Equal((ushort)0, result.Rows[0].Word10);
+        Assert.Equal(43, result.Rows[1].ResourceBytes);
+        Assert.True(result.Rows[1].NameGate);
+        Assert.Equal((ushort)0x1234, result.Rows[1].Quantity);
+        Assert.Equal((ushort)0x5678, result.Rows[1].Value);
+        Assert.Equal((ushort)0x9ABC, result.Rows[1].Word10);
+        Assert.Equal((ushort)9998, result.Rows[1].NameNumber);
+    }
+
+    [Fact]
+    public void LookInputsRejectVacuousDomainsAndInheritedFramingFailures()
+    {
+        var data = Record(10,1,-10).Data.ToArray();
+        var five = Record(50,5,-50);
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLook(
+            [new(10,data),five], Controls(1)));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(20), 50);
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLook(
+            [new(10,data),five], Controls(2)));
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLook(
+            [new(10,data[..32]),five], Controls(1)));
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLook(
+            [new(10,data),new(10,data),five], Controls(2)));
+        BinaryPrimitives.WriteUInt16LittleEndian(data.AsSpan(8), 22);
+        Assert.Throws<InvalidDataException>(() => RdffKeyInspection.AnalyzeLook(
+            [new(10,data),five], Controls(1)));
+    }
+
     [Theory]
     [InlineData("short-header")]
     [InlineData("short-data")]
