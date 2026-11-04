@@ -42,11 +42,13 @@ reports before matched-menu pairing are diagnostic only.
   is closed; Q-ITEM-011/013 are separate. Rules remain supported.
 - Reconciled FND-COMBAT-032/033 and FND-ITEM-032 into the item rules.
   Reuse those copy contracts before further Q-ITEM-013 producer research.
+- Reconciled existing FND-COMBAT-046 into the same rules. Its DATA domain
+  and local handler reading are already recorded; do not repeat that census.
 - Last full gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince d08a0fa2
+- Latest research gate: Test.ps1 -Research -ChangedSince aad2982d
   -NoRestore passed with the project-local interpreter.
 - Owner-requested runtime tooling update is complete: session 1.0.0 and
   rust-dos v1.8.1 are pinned and installed. See
