@@ -151,6 +151,12 @@ Next ID: Q-ITEM-014
   output stores. Other direct/aliased writes, copied or computed pointers
   and child destinations/lifetimes remain; do not infer a whole read-only
   switch from the operand scan.
+  Tried: FND-ITEM-031 settles the two near block destinations, the
+  fifteen-byte clear and the builder's full byte-code write arithmetic.
+  Remaining producer admission must establish row/index/owner lifetimes
+  and codes bounded to the fifteen-byte span (at most 119), or account
+  for the larger footprint; the second block can conditionally overlap
+  the flags byte. No such native input or outcome has been observed.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
