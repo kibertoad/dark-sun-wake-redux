@@ -95,8 +95,8 @@ Next ID: Q-SCRIPT-023
   Settles it: remaining target/mode/condition/threshold readers and writers,
   slot/record/position identity and preservation across helper/script/restore
   calls; phase/order and actual invocation of the list-wide runner 2D40:0EF1,
-  including computed and other incoming representations; geometry-helper and
-  alias/storage admission. Reuse FND-COMBAT-062's map-sweep/idle gate,
+  including computed and other incoming representations; use-time coordinate/grid
+  bounds and alias/storage admission. Reuse FND-COMBAT-062's map-sweep/idle gate,
   FND-PARTY-098's second-entry condition/radius gate and FND-RNG-068's target
   setup rather than treating these as unknown local field purposes.
   Tried: FND-SCRIPT-016/018/027 supply the list, conversion/loader and entry
@@ -104,7 +104,12 @@ Next ID: Q-SCRIPT-023
   remove the three local runner gates, target/mode/threshold bindings and
   list-wide successor order: it rereads next after script/unlink calls and
   conditionally ends after unlinking. Actual incoming/phase, state lifetime,
-  independent writers and geometry effects remain above. Blocks: slices 3-6.
+  independent writers and geometry effects remain above. Tried: FND-SCRIPT-037
+  removes the zero-height helper's local cell/return contract: it samples only
+  interior raster cells for bit seven, returns zero for equal/adjacent cells
+  without sampling, and otherwise returns zero or FFFF. Caller coordinate/grid
+  bounds, phase, identity and lifetime remain above; nonzero heights belong to
+  other callers rather than this runner's literal-zero arguments. Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the

@@ -55,6 +55,8 @@ no record was observed in memory.
   storage lifetime for the target, mode, condition and threshold fields. Existing
   findings give the map-sweep idle and condition/radius entry gates; the list-wide
   idle runner's own continuation reads next after mutation and its independent
-  invocation remains open. Geometry-helper effects, aliases and live admission
-  remain distinct from those local contracts (FND-SCRIPT-036, FND-PARTY-098,
+  invocation remains open. For admitted zero-height cell coordinates, the geometry
+  helper checks only interior raster cells for bit seven and skips both endpoints;
+  use-time coordinate/grid bounds, aliases and live admission remain distinct from
+  that local contract (FND-SCRIPT-037, FND-SCRIPT-036, FND-PARTY-098,
   FND-COMBAT-062, FND-RNG-068; Q-SCRIPT-017).
