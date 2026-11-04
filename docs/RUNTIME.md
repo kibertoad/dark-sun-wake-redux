@@ -187,6 +187,13 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-map-request-20261104/.
 The sampled map, planes and effect spans do not overlap; continuous backing,
 other paths and completed loading remain unverified. No guest setup writes
 are introduced, and the probe still stops before the caller consumes AL.
+The fixed saved-objects stage in FND-COMBAT-150 admits a pre-loop marker
+census, 125 matching flags-zero loader entries/epilogues and selected
+sixteen-byte OJFF local spans with matched core results. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
+It reports only the fixed named child entries and retains map/effect endpoint
+checks. Temporary-slot allocation, other object/failure states, continuous
+lifetime and completed loading remain unverified.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

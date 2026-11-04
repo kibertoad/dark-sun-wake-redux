@@ -392,6 +392,11 @@ Next ID: Q-COMBAT-067
   the known owner-removal request. Those local consequence branches are
   removed; populated-save admission, actual free-list/victim state and
   transitive child/alias effects remain open.
+  Tried: FND-COMBAT-150's one native baseline has an empty slot 319 at the
+  pre-object-loop and reader-return samples and no temporary allocation or
+  eviction stop. This is not a positive control for the populated-slot
+  question and settles no universal save admission; do not repeat the same
+  empty baseline to seek its missing reclamation case.
   Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
@@ -720,6 +725,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-150 admits one ordered 125-slot native object loop,
+  selected sixteen-byte OJFF local spans and matched core/loader epilogues,
+  with scoped initializer/image-selector/chain child counts. Those ordinary
+  route observations are removed from unread work. OJFF source/content and
+  live aliases, individual child writes, populated temporary/allocation/
+  failure states and later caller continuations remain open.
   Tried: FND-COMBAT-149 completes the flags-zero object-loader own body,
   its no-call image-selector branch, chain-insertion/reset leaves and
   temporary eviction helper's own gates. Those local obligations are
