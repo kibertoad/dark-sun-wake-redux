@@ -68,4 +68,4 @@ None known.
 ## Open questions
 
 - What makes a character able to cast an item's spell, what learning from a scroll requires,
-  and when a sword casts its spell (Q-ITEM-003).
+  and when a sword casts its spell (Q-ITEM-014).

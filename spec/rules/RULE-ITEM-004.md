@@ -76,7 +76,7 @@ None known.
 
 ## Open questions
 
-- What a shopkeeper pays for an item sold and whether a store takes every item (Q-ITEM-003).
-- Where and as what type the game keeps `party_money` (Q-ITEM-003).
+- What a shopkeeper pays for an item sold and whether a store takes every item (Q-ITEM-015).
+- Where and as what type the game keeps `party_money` (Q-ITEM-015).
 - The store screen has no screen entry: the two unexplained buttons of the inventory window may be
   SELL and MORE (SCR-UI-008, Q-ITEM-002).

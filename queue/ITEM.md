@@ -1,6 +1,6 @@
 # ITEM
 
-Next ID: Q-ITEM-014
+Next ID: Q-ITEM-016
 
 ## Static
 
@@ -47,12 +47,18 @@ Next ID: Q-ITEM-014
   code that fills the records it translates, read with the Dark Sun 1 save format, and a search of
   DSUN.EXE for a file name built at run time. Tried: case-insensitive searches for the name in
   DSUN.EXE and SVIEW.EXE, which find none (FND-ITEM-004, FND-ITEM-007). Blocks: slice 5.
-- Q-ITEM-003. RULE-ITEM-001, RULE-ITEM-003, RULE-ITEM-004, RULE-ITEM-005: Which slots each kind of
-  item may go in, how weight and item count limit what a character carries, when an item's spell
-  can be cast, what a store pays, which class limits apply to a character with several classes,
-  and whether the game enforces the class weapon lists and by which item field? Settles it: the
-  code of overlay 189 around the placement messages and of overlay 191 around the pick-up messages
-  (FND-ITEM-009), read with the item records it indexes. Blocks: slice 5.
+- Q-ITEM-003. RULE-ITEM-001, RULE-ITEM-005: Which caller and live-state
+  contracts admit the recorded inventory placement and character-eligibility
+  predicates? Settles it: incoming event/caller and logical-position producers
+  for overlay 189 +2C6B/+2B64, item/type and current-character selection,
+  DS/SS near-state identity, snapshot/removal child effects, and actual
+  traversal/getter samples/termination with retained descriptors, widths,
+  shared rows and disjoint graph/map/frame storage. Relate the class-mask
+  bits to character class combinations and the manual's limits without
+  replacing the recorded any-bit predicate. Local category/hand/container
+  checks and capacity arithmetic are already FND-ITEM-048/049/050; do not
+  repeat those readings. Spell use is Q-ITEM-014; stores are Q-ITEM-015.
+  Blocks: slice 5.
   Tried: FND-ITEM-048 removes the local placement gate order, signed capacity/
   wrapped-count comparisons, hand thresholds and origin-category/class-overlap
   predicates. Remaining placement work is actual callers/positions, snapshot/
@@ -68,6 +74,23 @@ Next ID: Q-ITEM-014
   canonical bytes are 0..100, and this comparison cannot reject Strength
   3..25 under retained-source conditions. Actual sample selection, runtime
   mutations, width/table lifetime and traversal/storage admission remain.
+- Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
+  activation paths implement the manual's item-use restrictions? Settles it:
+  the item-summary action and underlying use/learning paths, their item/spell
+  and character inputs, combat-turn restrictions, acceptance/rejection,
+  charges or other persisted changes, and automatic readied-item effects,
+  with actual dispatch/caller and state admission. The manual alone does
+  not establish these branches. Split from Q-ITEM-003; the placement/class
+  gate readings do not answer spell activation. Blocks: slice 5.
+
+- Q-ITEM-015. RULE-ITEM-004: What transaction and money-state contract does
+  the original store use? Settles it: buy/sell action dispatch and accepted
+  item classes, price calculations and rejection conditions, party-money
+  storage/width and debit/credit ordering, and item ownership transfer or
+  failure effects, including the manual's party-wide balance. Split from
+  Q-ITEM-003; inventory placement admission remains there and screen layout
+  remains Q-ITEM-002. Blocks: slice 5.
+
 - Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Do the item-test
   callers admit the storage and state required for complete recursive removal?
   Settles it: remaining caller/global preservation and storage contracts of

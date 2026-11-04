@@ -77,8 +77,9 @@ None known.
 
 ## Open questions
 
-- Which slots each kind of item may go in, what makes a slot valid, and how weight and item
-  count limit what a character carries. `DSUN.EXE` has messages for each of these checks in
-  overlay 189 and for items picked up in overlay 191 (FND-ITEM-009, Q-ITEM-003).
+- Actual caller/position, snapshot/removal, traversal and live-state admission
+  of the local placement predicates remains Q-ITEM-003. Reuse FND-ITEM-048
+  for the order/thresholds and FND-ITEM-049/050 for the selected capacity
+  result and canonical sample domain; a load message does not prove a sum.
 - What the screen shows while an item is placed, and the full list of the inventory screen's
   effects (Q-ITEM-002).

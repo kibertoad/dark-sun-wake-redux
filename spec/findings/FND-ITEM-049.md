@@ -152,8 +152,8 @@ and actual use-time admission remain open.
 
 Q-ITEM-003 no longer needs the aggregate result selector, final comparison
 width or admitted Strength-table mapping. It still needs native caller,
-copy/table/near-state and traversal/getter admission, snapshot/removal effects
-and independent spell/store work. No confidence, parity or complete-reading
+copy/table/near-state and traversal/getter admission, and snapshot/removal effects. Spell/store work is Q-ITEM-014/015.
+No confidence, parity or complete-reading
 promotion follows from this local composition.
 
 ## Alternatives

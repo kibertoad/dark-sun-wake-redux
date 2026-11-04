@@ -24,7 +24,8 @@ environment: null
 ## Observation
 
 This reading answers the local placement and class predicates in Q-ITEM-003,
-not its spell/store questions or universal native admission. Overlay 189 starts
+not the separate spell/store questions Q-ITEM-014/015 or universal native
+admission. Overlay 189 starts
 at file 749B0 hex. Its +2C6B takes an attached-item index, logical position L
 and message-enable byte. Assume valid nonwrapping attached/type/details/map/
 graph spans, L in 4..47, stable table pointers and current-character binding,
