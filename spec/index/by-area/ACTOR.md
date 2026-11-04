@@ -27,4 +27,7 @@ Entries by area.
 | [FND-ACTOR-013](../../findings/FND-ACTOR-013.md) | Split at 81 bytes, no column of the MONR resource is constant | recorded |
 | [FND-ACTOR-014](../../findings/FND-ACTOR-014.md) | Script request 8 reads MONR resource 1 as 42-byte records of a key and ten pairs of words, and picks a pair by the party's levels or divides by a pair's second word | recorded |
 | [FND-ACTOR-015](../../findings/FND-ACTOR-015.md) | Every RDFF resource of OBJEX.GFF is a chain of the CHAR load's chunks, which the object load walks with the same routine, and one has bytes after its end header | recorded |
+| [FND-ACTOR-016](../../findings/FND-ACTOR-016.md) | Kind-five source records carry a negated resource key and their first word selects free logical slots | recorded |
+| [FND-ACTOR-017](../../findings/FND-ACTOR-017.md) | Kind-four references select the shared ALL/4 type table and one inline payload matches its indexed row | recorded |
+| [FND-ACTOR-018](../../findings/FND-ACTOR-018.md) | Every known shipped inline kind-four payload equals its referenced shared type row | recorded |
 | [RULE-ACTOR-001](../../rules/RULE-ACTOR-001.md) | Drawing a region's placed objects | supported |

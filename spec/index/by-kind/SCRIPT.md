@@ -38,7 +38,7 @@ Entries by kind.
 
 ## findings
 
-29 entries.
+35 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -71,3 +71,9 @@ Entries by kind.
 | [FND-SCRIPT-027](../../findings/FND-SCRIPT-027.md) | Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead | recorded |
 | [FND-SCRIPT-028](../../findings/FND-SCRIPT-028.md) | The trigger walkers of segment 1695 run the first record of a list whose cell, box, key or key pair matches, after storing the trigger's actors and cell in the script variables, only while the script state 4C0E:000B is 2; a region change frees the cell and box triggers and those not registered by MAS 99 | recorded |
 | [FND-SCRIPT-029](../../findings/FND-SCRIPT-029.md) | The game runs cell and box triggers when an object enters a cell, and the one-key and key-pair triggers when the player picks an item up, talks to, attacks, looks at or uses an object, or uses one item on another, and at the end of a fight and a creature's death | recorded |
+| [FND-SCRIPT-030](../../findings/FND-SCRIPT-030.md) | No source-declared adjacent relocated pointer pair names either GPLI conversion | recorded |
+| [FND-SCRIPT-031](../../findings/FND-SCRIPT-031.md) | The conditional resident trigger reset has an index-200 tail distinct from allocation's terminal link | recorded |
+| [FND-SCRIPT-032](../../findings/FND-SCRIPT-032.md) | Six immediate-offset candidates resolve to callbacks outside the GPLI conversions | recorded |
+| [FND-SCRIPT-033](../../findings/FND-SCRIPT-033.md) | The object-context setter repeats a negative selector until its cursor reaches 320 | recorded |
+| [FND-SCRIPT-034](../../findings/FND-SCRIPT-034.md) | Trigger keys use kind-specific field-zero words and kind four has no shipped mapping | recorded |
+| [FND-SCRIPT-035](../../findings/FND-SCRIPT-035.md) | The cursor target finder returns a freshly read placement word rather than a normalized metadata index | recorded |

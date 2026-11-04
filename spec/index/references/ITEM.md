@@ -7,6 +7,7 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 | ID | Cited by |
 |---|---|
 | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) | [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) (body, related) |
+| [FMT-ITEM-002](../../formats/FMT-ITEM-002.md) | [FMT-ACTOR-002](../../formats/FMT-ACTOR-002.md) (body), [FND-ACTOR-017](../../findings/FND-ACTOR-017.md) (body), [FND-ACTOR-018](../../findings/FND-ACTOR-018.md) (body) |
 | [FND-ITEM-001](../../findings/FND-ITEM-001.md) | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) (body, evidence), [FND-ITEM-002](../../findings/FND-ITEM-002.md) (body), [FND-ITEM-003](../../findings/FND-ITEM-003.md) (body), [FND-ITEM-006](../../findings/FND-ITEM-006.md) (body), [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) (evidence) |
 | [FND-ITEM-002](../../findings/FND-ITEM-002.md) | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) (body, evidence), [FND-ITEM-003](../../findings/FND-ITEM-003.md) (body) |
 | [FND-ITEM-003](../../findings/FND-ITEM-003.md) | None |
@@ -16,7 +17,30 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 | [FND-ITEM-007](../../findings/FND-ITEM-007.md) | None |
 | [FND-ITEM-008](../../findings/FND-ITEM-008.md) | None |
 | [FND-ITEM-009](../../findings/FND-ITEM-009.md) | [FND-CONFIG-045](../../findings/FND-CONFIG-045.md) (body), [FND-CONFIG-053](../../findings/FND-CONFIG-053.md) (body), [FND-CONFIG-057](../../findings/FND-CONFIG-057.md) (body), [FND-CONFIG-122](../../findings/FND-CONFIG-122.md) (body), [FND-ITEM-004](../../findings/FND-ITEM-004.md) (body), [FND-ITEM-010](../../findings/FND-ITEM-010.md) (body), [RULE-ITEM-001](../../rules/RULE-ITEM-001.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (evidence) |
-| [FND-ITEM-010](../../findings/FND-ITEM-010.md) | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-010](../../findings/FND-ITEM-010.md) | [FND-ITEM-017](../../findings/FND-ITEM-017.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-011](../../findings/FND-ITEM-011.md) | [FMT-ITEM-002](../../formats/FMT-ITEM-002.md) (body, evidence), [FND-ITEM-012](../../findings/FND-ITEM-012.md) (body) |
+| [FND-ITEM-012](../../findings/FND-ITEM-012.md) | [FMT-ITEM-002](../../formats/FMT-ITEM-002.md) (body, evidence), [FND-COMBAT-066](../../findings/FND-COMBAT-066.md) (body) |
+| [FND-ITEM-013](../../findings/FND-ITEM-013.md) | [FND-ITEM-014](../../findings/FND-ITEM-014.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-014](../../findings/FND-ITEM-014.md) | [FND-ITEM-015](../../findings/FND-ITEM-015.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-015](../../findings/FND-ITEM-015.md) | None |
+| [FND-ITEM-016](../../findings/FND-ITEM-016.md) | [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence) |
+| [FND-ITEM-017](../../findings/FND-ITEM-017.md) | [FND-ITEM-018](../../findings/FND-ITEM-018.md) (body), [FND-ITEM-030](../../findings/FND-ITEM-030.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-018](../../findings/FND-ITEM-018.md) | [FND-ITEM-019](../../findings/FND-ITEM-019.md) (body), [FND-ITEM-020](../../findings/FND-ITEM-020.md) (body), [FND-ITEM-021](../../findings/FND-ITEM-021.md) (body), [FND-ITEM-025](../../findings/FND-ITEM-025.md) (body), [FND-ITEM-028](../../findings/FND-ITEM-028.md) (body), [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-019](../../findings/FND-ITEM-019.md) | [FND-ITEM-020](../../findings/FND-ITEM-020.md) (body) |
+| [FND-ITEM-020](../../findings/FND-ITEM-020.md) | [FND-ITEM-025](../../findings/FND-ITEM-025.md) (body), [FND-ITEM-026](../../findings/FND-ITEM-026.md) (body), [FND-ITEM-027](../../findings/FND-ITEM-027.md) (body), [FND-ITEM-029](../../findings/FND-ITEM-029.md) (body) |
+| [FND-ITEM-021](../../findings/FND-ITEM-021.md) | [FND-ITEM-022](../../findings/FND-ITEM-022.md) (body), [FND-ITEM-023](../../findings/FND-ITEM-023.md) (body), [FND-ITEM-024](../../findings/FND-ITEM-024.md) (body), [FND-ITEM-026](../../findings/FND-ITEM-026.md) (body), [FND-ITEM-027](../../findings/FND-ITEM-027.md) (body) |
+| [FND-ITEM-022](../../findings/FND-ITEM-022.md) | None |
+| [FND-ITEM-023](../../findings/FND-ITEM-023.md) | [FND-ITEM-024](../../findings/FND-ITEM-024.md) (body), [FND-ITEM-026](../../findings/FND-ITEM-026.md) (body), [FND-ITEM-027](../../findings/FND-ITEM-027.md) (body) |
+| [FND-ITEM-024](../../findings/FND-ITEM-024.md) | None |
+| [FND-ITEM-025](../../findings/FND-ITEM-025.md) | [FND-ITEM-026](../../findings/FND-ITEM-026.md) (body), [FND-ITEM-027](../../findings/FND-ITEM-027.md) (body) |
+| [FND-ITEM-026](../../findings/FND-ITEM-026.md) | [FND-ITEM-027](../../findings/FND-ITEM-027.md) (body) |
+| [FND-ITEM-027](../../findings/FND-ITEM-027.md) | [FND-ITEM-026](../../findings/FND-ITEM-026.md) (superseded_by), [FND-ITEM-028](../../findings/FND-ITEM-028.md) (body), [FND-ITEM-032](../../findings/FND-ITEM-032.md) (body) |
+| [FND-ITEM-028](../../findings/FND-ITEM-028.md) | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (body, evidence), [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (body, evidence), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (body, evidence) |
+| [FND-ITEM-029](../../findings/FND-ITEM-029.md) | None |
+| [FND-ITEM-030](../../findings/FND-ITEM-030.md) | [FND-ITEM-031](../../findings/FND-ITEM-031.md) (body) |
+| [FND-ITEM-031](../../findings/FND-ITEM-031.md) | [FND-ITEM-032](../../findings/FND-ITEM-032.md) (body) |
+| [FND-ITEM-032](../../findings/FND-ITEM-032.md) | [FND-ITEM-033](../../findings/FND-ITEM-033.md) (body) |
+| [FND-ITEM-033](../../findings/FND-ITEM-033.md) | None |
 | [RULE-ITEM-001](../../rules/RULE-ITEM-001.md) | [FND-ITEM-009](../../findings/FND-ITEM-009.md) (body), [RULE-ITEM-002](../../rules/RULE-ITEM-002.md) (body, related), [SCR-UI-008](../../screens/SCR-UI-008.md) (body, related), [backpack_has_room](../../glossary/backpack_has_room.md) (glossary), [container_accepts](../../glossary/container_accepts.md) (glossary) |
 | [RULE-ITEM-002](../../rules/RULE-ITEM-002.md) | [SCR-UI-008](../../screens/SCR-UI-008.md) (body, related), [split_bundle](../../glossary/split_bundle.md) (glossary) |
 | [RULE-ITEM-003](../../rules/RULE-ITEM-003.md) | [SCR-UI-008](../../screens/SCR-UI-008.md) (body, related), [can_cast_from_item](../../glossary/can_cast_from_item.md) (glossary) |
@@ -24,5 +48,5 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 | [RULE-ITEM-005](../../rules/RULE-ITEM-005.md) | [armour_permitted](../../glossary/armour_permitted.md) (glossary), [shield_permitted](../../glossary/shield_permitted.md) (glossary) |
 | [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) (related), [translate_item](../../glossary/translate_item.md) (glossary) |
 | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) | [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) (related), [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) (related), [RULE-RNG-001](../../rules/RULE-RNG-001.md) (body, related), [weapon_corrodes](../../glossary/weapon_corrodes.md) (glossary) |
-| [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) | [RULE-RNG-001](../../rules/RULE-RNG-001.md) (body, related), [lowest_item_test](../../glossary/lowest_item_test.md) (glossary) |
+| [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) | [FND-ITEM-016](../../findings/FND-ITEM-016.md) (body), [RULE-RNG-001](../../rules/RULE-RNG-001.md) (body, related), [lowest_item_test](../../glossary/lowest_item_test.md) (glossary) |
 | [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) (related), [RULE-RNG-001](../../rules/RULE-RNG-001.md) (body, related), [armour_corrodes](../../glossary/armour_corrodes.md) (glossary) |

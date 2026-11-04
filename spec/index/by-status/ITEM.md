@@ -18,19 +18,28 @@ Entries by status.
 
 ## supported
 
-5 entries.
+6 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) | Item translation pair in ITEMS.BIN |
+| [FMT-ITEM-002](../../formats/FMT-ITEM-002.md) | Shared item-type record in ALL/4 |
 | [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item |
 | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) | A corroding hit destroys a picked held item when a d20 falls below 8 less the item's byte 0x16 |
 | [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) | DATA 235 hands the target's first held item of the lowest byte 0x12 below 6 to overlay 173 +2B88 when a d20 falls below 15 less the item's byte 0x16 |
-| [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | A corroding hit destroys the first held item of type 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word |
+| [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | A corroding hit destroys the first held item at position 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word |
+
+## superseded
+
+1 entries.
+
+| ID | Title |
+|---|---|
+| [FND-ITEM-026](../../findings/FND-ITEM-026.md) | Outer hit returns are overwritten on several direct routes but can pass through a cleanup skip and resident forwarding wrapper |
 
 ## recorded
 
-10 entries.
+32 entries.
 
 | ID | Title |
 |---|---|
@@ -44,6 +53,28 @@ Entries by status.
 | [FND-ITEM-008](../../findings/FND-ITEM-008.md) | The item names Longsword and Dagger seen on the inventory screen occur once each, in TEXT 1000 of RESOURCE.GFF |
 | [FND-ITEM-009](../../findings/FND-ITEM-009.md) | DSUN.EXE holds the item placement and pick-up messages, pushed by overlays 179, 189 and 191 |
 | [FND-ITEM-010](../../findings/FND-ITEM-010.md) | The hit routine's cases for DATA 103, 235, 275, 283 and 284 run overlay 191's item tests on the target and set bit 0x02 of the hit's flags byte when a test returns 1 |
+| [FND-ITEM-011](../../findings/FND-ITEM-011.md) | Shipped kind-four descriptors cover every shared type-record byte with fourteen fields |
+| [FND-ITEM-012](../../findings/FND-ITEM-012.md) | Item details bind six material indices and guarded hand, heavy and armor-bonus text to shared type fields |
+| [FND-ITEM-013](../../findings/FND-ITEM-013.md) | Item-record release links the record at the free-list head and clears its identifier, while allocation pops the same link |
+| [FND-ITEM-014](../../findings/FND-ITEM-014.md) | Recursive deletion releases before child passes, conditionally reparents type-eight references, and contains a non-returning failure branch |
+| [FND-ITEM-015](../../findings/FND-ITEM-015.md) | Deletion pool helpers have bounded conditional writes while the generic setter retains a computed-destination alias obligation |
+| [FND-ITEM-016](../../findings/FND-ITEM-016.md) | Counted-item consumption bypasses initial zero and retains every nonzero wrapped subtraction result |
+| [FND-ITEM-017](../../findings/FND-ITEM-017.md) | The hit wrapper tests effect mask 02 against damage mask 01 before presentation requests and returns the flags byte |
+| [FND-ITEM-018](../../findings/FND-ITEM-018.md) | Known hit callers save and forward the result byte, leave it untested at queue exit, or aggregate it before a separate bookkeeping return |
+| [FND-ITEM-019](../../findings/FND-ITEM-019.md) | The hit entry's source-declared adjacent relocated pairs enumerate the already-known casting call |
+| [FND-ITEM-020](../../findings/FND-ITEM-020.md) | Inventory-rooted direct incoming coverage confirms the three known hit calls while retaining unresolved transfers and undecoded ranges |
+| [FND-ITEM-021](../../findings/FND-ITEM-021.md) | Forwarding hit callers distinguish a mask-one follow-up from forwarded and overwritten returns |
+| [FND-ITEM-022](../../findings/FND-ITEM-022.md) | Five wrapper continuations and the swing branches overwrite the returned hit register value |
+| [FND-ITEM-023](../../findings/FND-ITEM-023.md) | Four overlay-195 continuations replace the hit register value while overlay 204 retains a child-input gap |
+| [FND-ITEM-024](../../findings/FND-ITEM-024.md) | Random and refresh child entries replace incidental hit AX before consuming it |
+| [FND-ITEM-025](../../findings/FND-ITEM-025.md) | The two qualified direct queue callers restore saved low-byte results |
+| [FND-ITEM-027](../../findings/FND-ITEM-027.md) | Outer hit returns are overwritten on several direct routes but can pass through a cleanup skip and resident forwarding wrapper |
+| [FND-ITEM-028](../../findings/FND-ITEM-028.md) | The bounded resident kind dispatcher replaces its kind-five child's low byte with local bookkeeping |
+| [FND-ITEM-029](../../findings/FND-ITEM-029.md) | Current inventory-range segment-write output leaves item entry identity and child preservation separate |
+| [FND-ITEM-030](../../findings/FND-ITEM-030.md) | Six explicit effect-block dereferences read caller bytes rather than writing the adjacent hit flags |
+| [FND-ITEM-031](../../findings/FND-ITEM-031.md) | The effect-block builder clears fifteen bytes but its code-byte bit store needs a separate destination bound |
+| [FND-ITEM-032](../../findings/FND-ITEM-032.md) | The qualified direct effect-insertion path admits positive signed codes but does not enforce the bitmap's fifteen-byte bound |
+| [FND-ITEM-033](../../findings/FND-ITEM-033.md) | Same-offset stores target another segment while numbered-save loading requests the effect table independently of insertion |
 
 ## Open questions
 
@@ -52,6 +83,7 @@ Entries whose Open questions section says more than None known.
 | ID | Title | Status |
 |---|---|---|
 | [FMT-ITEM-001](../../formats/FMT-ITEM-001.md) | Item translation pair in ITEMS.BIN | supported |
+| [FMT-ITEM-002](../../formats/FMT-ITEM-002.md) | Shared item-type record in ALL/4 | supported |
 | [RULE-ITEM-001](../../rules/RULE-ITEM-001.md) | What a character's backpack and a pouch or chest can hold | sourced |
 | [RULE-ITEM-002](../../rules/RULE-ITEM-002.md) | Splitting a bundle of grouped items | sourced |
 | [RULE-ITEM-003](../../rules/RULE-ITEM-003.md) | Casting a spell from an item | sourced |
@@ -60,4 +92,4 @@ Entries whose Open questions section says more than None known.
 | [RULE-ITEM-006](../../rules/RULE-ITEM-006.md) | The transfer utility's translation of a Dark Sun 1 item | supported |
 | [RULE-ITEM-007](../../rules/RULE-ITEM-007.md) | A corroding hit destroys a picked held item when a d20 falls below 8 less the item's byte 0x16 | supported |
 | [RULE-ITEM-008](../../rules/RULE-ITEM-008.md) | DATA 235 hands the target's first held item of the lowest byte 0x12 below 6 to overlay 173 +2B88 when a d20 falls below 15 less the item's byte 0x16 | supported |
-| [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | A corroding hit destroys the first held item of type 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word | supported |
+| [RULE-ITEM-009](../../rules/RULE-ITEM-009.md) | A corroding hit destroys the first held item at position 0, 6 or 9 at once when its word 0x10 is 0, and otherwise on a d20 below 10 less that word | supported |
