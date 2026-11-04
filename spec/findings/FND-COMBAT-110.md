@@ -65,6 +65,31 @@ DS:167A being nonzero only skips the local open, and does not reselect
 the saved handle. The flag's producers and active-pointer lifetime still
 need evidence at the later numbered request.
 
+### Literal reuse-flag inventory
+
+A subsequent window_operands.py search at a86e6a60 uses the committed
+coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv and window 167A..167B. It reports
+five operands at listed instruction starts: the four DS-relative byte
+accesses in the already-read open/close helpers, plus a CS-relative indexed
+table read at 1425:1431 (FND-EXE-406). The two known direct writer controls
+are overlay 187 +1C19 (store one) and +1C4E (store zero); the two helper
+tests are +1BEA and +1C29. All four controls are present. The CS table
+operand is not another DS flag access.
+
+Its separate every-byte pass reports one additional overlapping candidate,
+1568:0002, classified inside a listed instruction. That candidate is not
+an established flag-reading instruction or producer. The three hit-bearing
+routines contain no decoded string stores. This is not a whole-program
+bulk-write or alias exclusion: register-computed addresses, writes spanning
+the byte from a different starting displacement, changed segment identities,
+runtime code and unresolved boundaries remain outside that direct-writer
+conclusion. No initialized or later live flag value is established here.
+
+The literal search therefore adds no new direct writer to trace before
+Q-COMBAT-064's actual flag lifetime and intervening state obligations.
+FND-COMBAT-084 already supplies the close helper's result-dependent clear;
+those local branches need not be rediscovered from the operand matches.
+
 ## Interpretation
 
 The shared preparation helper's two selection effects are now explicit.
@@ -112,3 +137,11 @@ restore-working-archive-helpers.txt, restore-open-wrapper.txt and
 restore-resident-open.txt. The first also includes the already-read close
 helper; the claimed preparation ends at 71A56. No original listing, bytes
 or save-resource content is committed.
+
+For the later flag inventory, run window_operands.py with the same verified
+DSUN.EXE, coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv at a86e6a60 and window
+167A..167B. Retain restore-reuse-flag-operands.txt in that same local store.
+Use the four actual helper accesses as controls and keep the CS-relative
+table hit and overlapping candidate separate from DS flag writers. The
+scanner uses full fifteen-byte candidate windows; its linear inventory
+pass and candidate pass do not establish reachability or alias absence.
