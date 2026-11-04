@@ -68,6 +68,10 @@ Next ID: Q-SOUND-011
   computations are removed from Settles it for that profile. Actual profile
   producers/retention, vector state, formatter/allocator and child/frame
   admission remain; nonpositive, larger and other-label profiles stay open.
+  Tried: FND-SOUND-023 removes installed-source count/length/printability
+  uncertainty: MainGroup and DigitalGroup satisfy the source profile;
+  MusicOnlyGroup is empty with declared count -1 and remains outside it.
+  Native producers/retention and the empty-group route remain in Settles it.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
