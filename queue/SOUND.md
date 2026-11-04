@@ -31,16 +31,22 @@ Next ID: Q-SOUND-010
   of `4A32:0011`. Tried: searches of `DSUN.EXE` for the tags and for far calls to the playlist
   routines, which find none (FND-SOUND-014, FND-SOUND-015). Blocks: none.
 
-- Q-SOUND-007. FMT-SOUND-004: Which complete parser/selection paths populate
-  the setup device record's inline driver names, and which remaining loader
-  paths admit them? Settles it: the writers/producers of the inline names
-  at current-settings offsets 0x16 and 0x24, their connection to
-  actual setup selections and the remaining filename/resource loader paths.
+- Q-SOUND-007. FMT-SOUND-004: Which selected record and mode supply the
+  actual setup loader names, and what binds its current-settings pointer?
+  Settles it: the selected-record argument reaching 1429:042D, the mode
+  producers, other incoming pointer-setter paths and current-record
+  lifetime/aliases through later driver children/digital use, and remaining
+  filename/resource loader paths.
   Tried: FND-SOUND-019 validates all nineteen common directory envelopes;
   their structure is removed from Settles it. FND-EXE-491/492 identify the
   two filename consumers and setup batch; FND-EXE-585/590 bind the shipped
   game selectors to ADV eleven/eight and their disc-file matches. Those
   known consumers/default matches do not settle the remaining producers.
+  Tried: FND-SOUND-020 binds all four name tags to inline parsed fields
+  and the complete local real/protected-mode output-copy alternatives.
+  It also binds DS:E01B through the initial pointer setter to the conditional
+  first name helper. These local producers are removed from Settles it;
+  actual record/mode selection, other setters and later preservation remain.
   Blocks: complete loader interpretation of FMT-SOUND-004.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

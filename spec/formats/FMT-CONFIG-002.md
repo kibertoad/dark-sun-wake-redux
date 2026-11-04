@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020]
 conflicting: []
 split_with: []
 related: []
@@ -82,6 +82,14 @@ does with a missing key, an unknown key or a malformed line, are not known [FND-
 | `EndOfGroup` | none | `end_of_group` | Closes a group. | supported | FND-CONFIG-007 |
 | `EndOfFile` | none | `end_of_file` | Closes the file. | supported | FND-CONFIG-007 |
 
+The recorded name paths match ordinary ASCII tags without case distinction
+using the shipped character table. Real-mode and protected-mode name tags
+write separate inline record fields; the selected-record routine copies
+real-mode names to the output when its mode word is one and protected-mode
+names otherwise. The chunk-number tags populate record words later copied
+to output offsets 0x38 and 0x36, respectively (FND-SOUND-020). This does not
+establish every parser arm, count/error path or actual setup selection.
+
 ## Enumerations and flags
 
 None.
@@ -97,5 +105,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 
 ## Open questions
 
-- How the setup program parses the file and what it does with keys it does not expect, and what
-  `CardGroup` and the chunk numbers mean (FND-CONFIG-213, FND-CONFIG-007, Q-CONFIG-006).
+- Remaining group/numeric/count and complete file/error parsing, and full
+  consumer effects of `CardGroup` and the chunk numbers beyond the recorded
+  local tag/field/output bindings (FND-SOUND-020, FND-CONFIG-213,
+  FND-CONFIG-007, Q-CONFIG-006).

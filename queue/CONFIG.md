@@ -409,10 +409,18 @@ Next ID: Q-CONFIG-011
   field meanings remain open.
   Blocks: completing the named entry readings.
 
-- Q-CONFIG-006. FMT-CONFIG-002: How does the setup program parse `SOUND.INI`, including unknown
-  or malformed keys, and what do `CardGroup` and the chunk numbers mean? Settles it: the parser
-  at `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004) and its consumers. The file layout alone does
-  not determine parser behavior (FND-CONFIG-007).
+- Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
+  group/numeric/count parsing and complete malformed/file-error behavior,
+  and the full consumer effects of `CardGroup` and chunk numbers?
+  Settles it: the remaining parser callers/arms around the line reader
+  `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004, FND-SOUND-020) and their
+  field/count/read-result consumers. The file layout alone does not
+  determine parser behavior (FND-CONFIG-007).
+  Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
+  paths and their mode-controlled output copies, plus the chunk-field
+  destinations. Those local bindings are removed from the remaining parser
+  work; numeric/group/count arms, complete file/error handling and field
+  consumers remain. Actual loader-record/mode/pointer admission is Q-SOUND-007.
   Blocks: completing the named entry readings.
 
 ## Emulated call

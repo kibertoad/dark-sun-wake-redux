@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-585, FND-EXE-590, FND-SOUND-019]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-585, FND-EXE-590, FND-SOUND-019, FND-SOUND-020]
 conflicting: []
 split_with: []
 related: []
@@ -66,7 +66,8 @@ selection or successful driver initialization.
 
 ## Open questions
 
-- Which parser/selection paths populate the setup device record's two
-  inline driver names and which remaining loader paths admit them, beyond
-  the recorded filename consumers and shipped game-resource matches
-  (FND-SOUND-019, Q-SOUND-007)?
+- Which actual selected record and mode supply the setup names and how the
+  current-settings pointer is preserved through later driver use, beyond
+  the local tag/name/output copies, initial setter/first-name binding and
+  shipped game-resource matches
+  (FND-SOUND-019, FND-SOUND-020, Q-SOUND-007)?
