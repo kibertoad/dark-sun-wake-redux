@@ -154,5 +154,8 @@ None known.
   for counts, Q-COMBAT-018 for restored rows/count, Q-COMBAT-020 for mutation
   callers and Q-COMBAT-024 for rows retained across games. These are
   prerequisites of the bitmap/frame reading, not separate item-table copies.
+  The restore prerequisite separates copy admission (Q-COMBAT-063), runtime
+  supplying resources (Q-COMBAT-064), destination storage (Q-COMBAT-065)
+  and reached child effects (Q-COMBAT-066).
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-063
+Next ID: Q-COMBAT-067
 
 ## Static
 
@@ -439,50 +439,88 @@ Next ID: Q-COMBAT-063
   removal decrements), FND-COMBAT-033 (the transfer pair) and FND-COMBAT-045 (resident backing of
   the boundary row for counts 0 to 192) read each writer locally; no bound over all of them
   follows. Blocks: established status-effect selection.
-- Q-COMBAT-018. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What does loading a saved game put in the effect rows and their
-  count? Settles it: which archive supplies `SAVE/24` and `SAVE/26` when the
-  first caller requests selector zero or the second caller reaches the reader with selector zero,
-  the destination extent against the shipped lengths, and
-  any check or postprocessing of the restored count, IDs and order. Tried: split from
-  Q-COMBAT-009. FND-COMBAT-034 (the save sources and shipped lengths), FND-COMBAT-035 (the
-  complete-resource reads, rows before count), FND-COMBAT-043 and FND-COMBAT-044 (both restore
-  callers' continuations, neither of which checks the rows) answer the local routes; the archive
-  selection and the restored state's validity remain. Blocks: established status-effect
-  selection.
-  Tried: FND-COMBAT-110 connects the shared preparation helper's actual
-  newly-opened branch to resident active-record selection and distinguishes
-  its reuse branch, which performs no selection. That local open/selection
-  connection is removed from the unread archive question. Remaining archive
-  admission is the path and reuse flag, intervening selectors/closers and
-  mode-dependent fallback at each numbered request, plus restored state.
-  Existing evidence reused: FND-COMBAT-035/044 limit a nonzero-selector read to
-  indices 0..16; it makes neither effect-state request at indices 23 and 25.
-  Such a branch retains prior effect state unless other writes change it; it is
-  not another SAVE/24 or SAVE/26 source to identify. FND-SAVE-021 records
-  explicit working-handle selections in the preceding writer, and
-  FND-COMBAT-096 supplies their conditional selection contract. Reuse those
-  sites before tracing selection lifetime; later child effects remain open.
-  Tried: FND-COMBAT-111 accounts for the complete reader's own continuation,
-  reusing FND-SAVE-022/023 and FND-COMBAT-077. It contains no own explicit
-  effect-count, ID or ordering validator; its placed-entry recount and
-  object/item loops do not answer that admission. The unread remainder of
-  the enclosing reader is removed from local postprocessing work. Child
-  effects, aliases, selected-resource provenance and restored values remain.
-  Tried: FND-COMBAT-112 excludes the 26 unchanged shipped top-level GFF
-  files as SAVE providers, including initial DARKRUN.GFF and DARKSAVE.GFF.
-  Runtime-written/copied archives and inputs outside that census remain;
-  do not repeat the shipped-provider search or assume the shipped working
-  filename admits the later saved directory.
-  Tried: FND-COMBAT-113 reads the resident copy's default 128-byte loop,
-  destination-open ordering, transfer mismatches and ignored final close
-  results. The copy-loop/result-combination uncertainty is removed; path
-  normalization and identity, source length/position, actual external
-  outcomes and the subsequent archive/directory lifetime remain.
-  Tried: FND-COMBAT-114 resolves the copy's local pathname pipeline,
-  including drive/directory selection, dot components, character gates
-  and eight-plus-three emission. Actual input/table/buffer identity and
-  external directory/file outcomes remain; the local transformation
-  itself is removed from the unread path-helper obligation.
+- Q-COMBAT-018. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+  What effect rows and count does an admitted numbered load leave behind?
+  Settles it: combine the independently evidenced copy inputs/outcomes
+  (Q-COMBAT-063), selected resources and lengths (Q-COMBAT-064), destination
+  storage (Q-COMBAT-065), and child/postprocessing effects (Q-COMBAT-066).
+  Account for successful, skipped and failed requests and the prior state
+  each leaves, without assuming atomic replacement. Use Q-COMBAT-009/017/020
+  for the saved values' effect-code/count and mutation-producer domains.
+  Tried: split from Q-COMBAT-009. FND-COMBAT-034/035 read source slots,
+  shipped lengths and whole-resource transfer order; FND-COMBAT-043/044
+  read both local callers. The second caller's nonzero selector requests
+  only indices 0..16, not effect-state slots 23 and 25.
+  Tried: FND-COMBAT-110/111 remove local open/selection and full reader
+  continuation uncertainty; FND-COMBAT-112 excludes unchanged shipped
+  providers; FND-COMBAT-113/114 remove local copy-loop/result and pathname
+  transformation uncertainty. None admits live storage or external outcomes.
+  The remaining obligations are separated below; this assessment closes no
+  question and promotes no status. Blocks: established status-effect selection.
+- Q-COMBAT-063. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+  Which actual source and working paths and copy outcomes reach the numbered load?
+  Settles it: bind the caller's selected save-record path and directory prefix
+  to stable terminated inputs; admit the character tables, buffer extents and
+  aliases required by normalization; bind DOS drive/directory state, distinct
+  source/destination identity, source length/position and read/write/close outcomes.
+  Distinguish copy rejection from partial or complete destination changes.
+  Exit: path and file-state cases sufficient to identify which working contents
+  can reach archive opening, with any unobserved external outcomes retained.
+  Tried: split from Q-COMBAT-018. FND-COMBAT-113 gives the default 128-byte
+  copy, destination-open ordering, count tests and ignored final close results;
+  FND-COMBAT-114 gives drive/directory and component normalization. Reuse
+  FND-CONFIG-181/182 for the earlier string operations. Their local bodies
+  need not be reread; actual inputs, runtime tables, storage and I/O remain.
+  Blocks: Q-COMBAT-018.
+- Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+  Which runtime archive resources and recorded lengths supply effect rows and count?
+  Settles it: bind the path/reuse flag and saved handle to a live record, then
+  follow selection, open/close/growth and traversal-mode changes to each
+  SAVE/24 and SAVE/26 request reached with selector zero. Identify the
+  supplying record, directory entry, payload identity and length on complete,
+  missing-resource and fallback paths. Reuse Q-COMBAT-054 for shared archive
+  graph/state producers and Q-COMBAT-063 for copy admission, rather than
+  creating another census of those mechanisms. Exit: a source/length contract
+  for each request path; live selection alone is insufficient under fallback.
+  Tried: split from Q-COMBAT-018. FND-COMBAT-110 distinguishes new-open
+  selection from reuse; FND-SAVE-021 records the preceding writer's explicit
+  selections; FND-COMBAT-096 bounds selection/close results. FND-COMBAT-112
+  excludes all 26 unchanged shipped top-level files as SAVE providers. Reuse
+  FND-CONFIG-037/038/040/068 and FND-CONFIG-151 for lookup, fallback and
+  complete-resource requests. Runtime directory and state admission remain.
+  Blocks: Q-COMBAT-018.
+- Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+  Which storage and pointer lifetimes admit the effect restore destinations?
+  Settles it: admit source-table slots 23 and 25, their segment mappings and
+  backing extents through transfer and return; compare each selected length
+  from Q-COMBAT-064 with the actual writable span. Account for overlapping
+  earlier resource destinations, bulk/aliased pointer writes, the placed-buffer
+  equality/clearing branch, stack-local pointer/result aliases and failure
+  paths that retain earlier or partial writes. Exit: destination and retained
+  state cases for both requests, distinct from a nominal shipped length.
+  Tried: split from Q-COMBAT-018. FND-COMBAT-034 gives source slots and
+  shipped lengths, FND-COMBAT-035 gives pointer forwarding and transfer order,
+  and FND-COMBAT-045 bounds resident row backing. The binding helper does
+  not itself replace these slots. None proves every runtime pointer, alias
+  or transferred length. Reuse Q-ITEM-011/013 for shared segment/frame
+  prerequisites without transferring their independent obligations here.
+  Blocks: Q-COMBAT-018.
+- Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
+  Which reached child effects preserve or change restored effect rows and count?
+  Settles it: follow the actual preparation and continuation routes of both
+  callers and the numbered reader, including diagnostics, map reconstruction,
+  release, object initialization, script conversion and item enumeration.
+  Identify effects on effect rows/count and required aliases or saved locals,
+  including paths after a failed or skipped transfer. Reuse Q-COMBAT-048 for
+  shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
+  Exit: child effects sufficient to determine the rows/count at each returning
+  continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: split from Q-COMBAT-018. FND-COMBAT-111 accounts for the full reader's
+  own body, which has no explicit effect-count, ID or ordering validator.
+  FND-COMBAT-043/044 account for the callers' own continuations. Reuse
+  FND-COMBAT-077, FND-SAVE-022/023 and FND-PARTY-236 for their bounded
+  reconstruction and item-write contracts; their existence is not complete
+  child/storage admission. Blocks: Q-COMBAT-018.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
