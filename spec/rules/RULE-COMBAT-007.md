@@ -92,7 +92,11 @@ None known.
 - Whether saved creatures' current and maximum hit points are scaled or reset again
   on loading a numbered saved game (FND-COMBAT-075, FND-SAVE-022, Q-COMBAT-044).
 - Whether a numbered save can contain a populated temporary presentation slot 319 and
-  what its restoration changes (FND-COMBAT-078, Q-COMBAT-045).
+  its save-call lifetime admits it (FND-COMBAT-078, Q-COMBAT-045).
+- Whether admitted temporary-object cleanup preserves restored creatures and presentation,
+  including getter/map effects and retained zero-result fields; conditional structural and
+  release proofs do not admit their runtime prerequisites (FND-COMBAT-163,
+  FND-COMBAT-164, FND-COMBAT-165, FND-COMBAT-166, FND-COMBAT-167, Q-COMBAT-067).
 
 - Which event and field producers admit the numbered-load caller and reader paths
   (FND-COMBAT-081, FND-COMBAT-098, Q-COMBAT-046).

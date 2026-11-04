@@ -1,6 +1,6 @@
 # COMBAT
 
-Next ID: Q-COMBAT-067
+Next ID: Q-COMBAT-068
 
 ## Static
 
@@ -380,24 +380,22 @@ Next ID: Q-COMBAT-067
   transitions; FND-CONFIG-189 supplies distinct pre/post replacement service checks
   and ordering, without native input or complete caller/producer admission.
   Blocks: slice 4.
-- Q-COMBAT-045. RULE-COMBAT-007: Can a numbered saved game made by the original hold a
-  populated presentation slot 319, and what does loading that slot do to restored creatures?
-  Settles it: remaining indexed/bulk producers of slot 319's presentation index and save-call admission relative to its lifetime; if admitted, its free-list and
-  reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078 covers three fixed copy/clear sites, excluding indexed/restored writes.
-  FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
-  Tried: FND-COMBAT-167 removes positive-prefix structure/pending bounds and locates zero-result root reuse;
-  actual getter/storage/map/retained-field admission and save timing remain.
-  Tried: FND-COMBAT-166 removes admitted non-top/noncoalescing release preservation; actual metadata/separation, other routes and timing remain.
-  Tried: FND-COMBAT-165 removes kind resurrection/reparenting/dispatch in admitted rooted deletion; actual graph/pool, enumeration/release and timing remain.
-  Tried: FND-COMBAT-164 removes root kind ordering/childless cleanup; other state, presentation emptiness and timing remain.
-  Tried: FND-COMBAT-163 removes RDFF status propagation/-2-only parent failure; actual replacement needs state/handler/provider admission.
-  Tried: FND-COMBAT-162 removes canonical-source high selectors; actual provider/length, mutations/aliases and other lifetime classes remain.
-  Tried: FND-COMBAT-161 removes synchronous save/input re-entry in admitted flags-zero success/low-image states; other lifetime cases remain.
-  Tried: FND-COMBAT-160 removes per-record wrappers' extents/results and immediate slot sources; actual length/provider, slot/kind, aliases and timing remain.
-  Tried: FND-COMBAT-159 removes sorted adjustment's FFFF case; direct writes require caller/free-list admission and other producers/aliases/timing remain.
-  Tried: FND-COMBAT-149 removes retries/eviction own gates including 0B4A owner removal; actual admission, free-list/victim and child/alias effects remain.
-  Tried: FND-COMBAT-150's empty/no-eviction baseline proves no populated-slot admission; do not repeat it for reclamation.
-  Blocks: slice 4.
+- Q-COMBAT-045. RULE-COMBAT-007: Can a numbered save made by the original hold populated presentation slot 319?
+  Settles it: indexed/bulk producers, source/provider extents, slot/free-list admission, aliases and save-call lifetime.
+  Cleanup effects are independently Q-COMBAT-067. Tried: split from Q-COMBAT-044; FND-COMBAT-078 covers fixed copy/clear sites,
+  FND-PARTY-119 free-list setup, FND-COMBAT-159 sorted adjustment's FFFF case, and FND-COMBAT-160 record wrapper extents/results.
+  Direct writes need actual caller/free-list/provider admission. FND-COMBAT-161 excludes synchronous save/input re-entry in
+  admitted flags-zero success/low-image states; FND-COMBAT-162 bounds canonical-source selectors. Other states and mutations remain.
+  FND-COMBAT-150's empty/no-eviction baseline admits no populated slot; do not repeat it for reclamation. Blocks: slice 4.
+- Q-COMBAT-067. RULE-COMBAT-007: What does admitted temporary-object cleanup during loading leave in restored creatures and presentation?
+  Settles it: actual getter/storage/map-value, retained zero-result root-field and pool admission;
+  RDFF handler/provider effects and release metadata/separation across reached branches. Keep presentation distinct from kind.
+  Tried: split from Q-COMBAT-045. FND-COMBAT-149 covers retry/eviction gates; FND-COMBAT-054 covers the effect route.
+  Actual victim/free-list admission and child/alias effects remain. FND-COMBAT-163 settles RDFF status propagation;
+  FND-COMBAT-164/165 settle admitted root ordering, finite deletion and kind preservation; FND-COMBAT-166 settles admitted
+  non-top/noncoalescing release. Actual state/handler/pool/heap prerequisites remain. FND-COMBAT-167 settles positive-prefix
+  ordering and pending bounds, and identifies zero-result root reuse. Getter effects, map values, retained fields
+  and actual storage remain; do not repeat settled structural proofs. Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
