@@ -76,6 +76,9 @@ Next ID: Q-SOUND-011
   alternative: both record and label callers pass low-word products, while
   the signed music-only label loop skips negative counts. Numeric conversion,
   allocator outcomes, state retention and actual chooser reachability remain.
+  Tried: FND-SOUND-025 removes the zero/absent-sentinel conversion alternative
+  for the delivered installed -1 count line. The decimal path assigns FFFF;
+  allocator, retention, vector and dialog/child admission remain unsettled.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

@@ -413,7 +413,7 @@ Next ID: Q-CONFIG-011
   group/numeric/count parsing and complete malformed/file-error behavior,
   and the full consumer effects of `CardGroup` and chunk numbers?
   Settles it: the remaining parser callers/arms around the line reader
-  `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-004, FND-SOUND-020) and their
+  `SOUND_DS.EXE` `1AF6:0BF9` (FND-CONFIG-213, FND-SOUND-020) and their
   field/count/read-result consumers. The file layout alone does not
   determine parser behavior (FND-CONFIG-007).
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
@@ -431,6 +431,11 @@ Next ID: Q-CONFIG-011
   Remove those local branches from Settles it; numeric conversion, child
   contracts, malformed/repeated-tag admission and complete file/error
   handling remain. The conditional -1 path is not a native observation.
+  Tried: FND-SOUND-025 removes conversion of the delivered installed 13
+  and -1 count lines from Settles it, under retained tables and valid spans:
+  the decimal scanner assigns 000D and FFFF. Its local line/comment/token
+  path is recorded too. Remaining numeric work is other tokens, bounds and
+  failure cases; full byte-delivery/file and child contracts remain open.
   Blocks: completing the named entry readings.
 
 ## Emulated call
