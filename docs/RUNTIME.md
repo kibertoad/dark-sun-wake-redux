@@ -159,6 +159,12 @@ canonical ALL/4 equality and roundtrip preservation. Accepted native-save
 run: v181-q067-item-types-20261104. Use the same verify command with a fresh
 name; compare its item_types report member with getter_metadata.compare_item_types.
 No getter/consumer invocation or later gameplay lifetime was observed.
+FND-ITEM-067 extends the same paused verify command with the bounded placed
+table and one following row after modeled header/marker checks. The complete
+observation matches after strict roundtrip, without continuation, input or
+guest writes. Accepted native-save run: v181-q109-placed-table-20261104.
+This admits a paused read of these fields, not a constructor/removal call
+or their later lifetime; CHECKPOINT-METADATA defines the fixed bounds.
 The fixed saved-copy-return stage in FND-COMBAT-141 admits actual F2/Enter
 from that native candidate through the observed nonempty copy return, with
 bounded normalization/open/length and private-file-state checks. Output is

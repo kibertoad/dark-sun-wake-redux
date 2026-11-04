@@ -232,6 +232,11 @@ Next ID: Q-PARTY-116
   insertion row before the marker. Extra-row contents/order, actual
   header/lifetime, counted publication and row preservation remain; rounded
   capacity is not initialized data or a native heap admission.
+  Tried: FND-ITEM-067 supplies one strict paused endpoint: 873 ordered
+  counted rows and an all-zero extra row, which breaks extended ordering;
+  header/marker and exact roundtrip checks pass. Constructor/use-time state,
+  actual inserted key/K, later writers, selection and removal remain; no
+  constructor was executed and endpoint equality is not continuous lifetime.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
