@@ -26,6 +26,7 @@ from object_restore import ObjectTrace
 from script_restore import ScriptTrace
 from item_restore import ItemTrace
 from restore_caller import CallerTrace
+from map_writer import MapWriter
 
 
 def fields(client, delta):
@@ -284,11 +285,12 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items", "saved-caller-epilogue"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items|saved-caller-epilogue]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items", "saved-caller-epilogue", "saved-map-writer"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items|saved-caller-epilogue|saved-map-writer]")
     navigation = len(sys.argv) == 4
     observe_objects = navigation and sys.argv[3] == "saved-objects"
-    observe_caller = navigation and sys.argv[3] == "saved-caller-epilogue"
+    observe_writer = navigation and sys.argv[3] == "saved-map-writer"
+    observe_caller = observe_writer or navigation and sys.argv[3] == "saved-caller-epilogue"
     observe_items = observe_caller or navigation and sys.argv[3] == "saved-items"
     observe_scripts = observe_items or navigation and sys.argv[3] == "saved-script-conversion"
     observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
@@ -384,6 +386,7 @@ def main():
             script_trace = None
             item_trace = None
             caller_trace = None
+            map_writer = None
             report["region_relocations"] = []
             previous = None
             budget = 4096 if observe_objects else 1024 if observe_load_return or observe_reader_return else 512
@@ -396,8 +399,13 @@ def main():
                 if exhausted:
                     raise RuntimeError("operation observation budget exhausted")
                 stop = observed.stop
+                if map_writer is not None and map_writer.handle(stop):
+                    record()
+                    continue
                 if caller_trace is not None and caller_trace.handle(stop):
                     if caller_trace.complete:
+                        if map_writer is not None:
+                            report["map_writer"] = map_writer.finish()
                         report["caller_items"] = item_trace.finish("caller_epilogue")["caller_epilogue"]
                         report["caller_scripts"] = script_trace.finish("caller_epilogue")["caller_epilogue"]
                         report["caller_map"] = {"state":map_restore.state(session.client,delta),
@@ -441,6 +449,9 @@ def main():
                         report["reader_return"] = {"stop": stop, "al": int(stop["registers"]["ax"],16)&0xFF,
                                                    "targets": samples, "archive": archive_fields(session.client, delta)}
                         if observe_caller:
+                            if observe_writer:
+                                map_writer = MapWriter(session.client,delta,report["map_request"]["selected"]["destination"])
+                                report["map_writer"] = map_writer.report
                             caller_trace = CallerTrace(session.client,delta,stop["registers"])
                             report["caller_trace"] = caller_trace.report
                             reader_return = None

@@ -509,3 +509,21 @@ Synthetic controls cover coordinates, masks, ordering, zero differences,
 truncation and fixed-length rejection. Repeat the admitted caller stage
 under a fresh name. Exit: record the observed cell/mask in a research
 finding; attribution still requires static evidence and a reached writer.
+
+## Named occupancy-cell writer observation
+
+For Q-COMBAT-066, `saved-map-writer` extends the admitted caller stage.
+FND-COMBAT-157 identifies cell (107,36); FND-EXPLORE-001 describes its
+candidate setter. After matched reader return require the same bounded map
+binding and zero cell byte, then watch only that cell's one-byte change.
+Accept attribution only at resident 25AF:05F9, the instruction immediately
+after the complete setter's OR 60 store at +05F5, with resident DS,
+ES:BX naming the watched byte, coordinates DX/CX = 107/36, matching named
+stack x/y and observed byte 60. Record the setter's saved far return without
+claiming its caller's full contract. An unexpected change remains diagnostic
+and stops the fixed probe. Keep the watch through the enclosing epilogue
+to record any additional changes; remove it there and require the same map
+binding. Synthetic controls reject wrong writer, coordinates, target,
+arguments and changed bindings. Existing endpoint/RNG guards remain.
+Exit: a separately committed native finding with a reached-writer result,
+not an exhaustive writer census or continuous allocation-lifetime claim.

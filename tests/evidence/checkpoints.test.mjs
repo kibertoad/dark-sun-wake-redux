@@ -6,7 +6,7 @@ import {enginePython} from '../../tools/tool-dependencies.mjs';
 
 test('checkpoint probes reject stale identities, unready states and wrapping named reads', () => {
   const code = `
-import sys, hashlib
+import sys, hashlib, struct
 from types import SimpleNamespace as NS
 sys.path.insert(0, sys.argv[1])
 from regenerate_checkpoints import admit_state, ready, checked_read, main
@@ -24,6 +24,7 @@ import object_restore
 import script_restore
 import item_restore
 from restore_caller import CallerTrace
+from map_writer import MapWriter
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -64,6 +65,30 @@ rejects(lambda:caller.handle({'reason':'breakpoint','cs_ip':caller.end,'register
 rejects(lambda:caller.handle({'reason':'breakpoint','cs_ip':caller.end,'registers':{'ss':'57E0','bp':'8000'}}))
 caller.report['post_setup']={}
 assert caller.handle({'reason':'breakpoint','cs_ip':caller.end,'emu_ns':0,'registers':{'ss':'57E0','bp':'8000','sp':'7F00','ax':'0001'}})
+class MapClient:
+    value=0
+    binding=struct.pack('<HH',4,0x6000)
+    def set_watchpoint(self,address,size): assert address=='6000:126F' and size==1
+    def remove_watchpoints(self,address): assert address=='6000:126F'
+    def read_memory(self,address,size):
+        values={'57E0:0538':self.binding,'6000:126F':bytes([self.value]),
+                '57E0:8002':struct.pack('<4H',0x2222,0x4444,107,36)}
+        return NS(data=values[address])
+mc=MapClient()
+mw=MapWriter(mc,0,'6000:0004')
+rejects(mw.finish)
+mc.value=0x60
+ms={'reason':'watchpoint','cs_ip':'25AF:05F9','emu_ns':0,'registers':{
+    'ss':'57E0','bp':'8000','sp':'7FFE','ax':'1200','ds':'57E0','es':'6000','bx':'126F','dx':'006B','cx':'0024'}}
+assert mw.handle(ms) and mw.report['changes'][-1]['caller']=='4444:2222'
+assert mw.finish()['final_value']==0x60
+for field,value in [('dx','006A'),('cx','0023'),('bx','126E'),('ds','57DF')]:
+    wrong={**ms,'registers':{**ms['registers'],field:value}}
+    rejects(lambda:mw.handle(wrong))
+rejects(lambda:mw.handle({**ms,'cs_ip':'25AF:05F5'}))
+mc.binding=struct.pack('<HH',5,0x6000)
+rejects(lambda:mw.handle(ms))
+rejects(mw.finish)
 assert caller.complete and caller.report['epilogue']['al']==1
 caller.close={'ss':0x57E0,'bp':0x7F00}
 caller.report['close_epilogue']={}
