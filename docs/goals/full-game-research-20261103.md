@@ -61,7 +61,7 @@ reports before matched-menu pairing are diagnostic only.
   docs/RUNTIME.md and docs/implementation-plans/RUNTIME-TOOL-UPDATE.md hold
   capabilities, commands and retained runs. Use the project-local evidence Python.
   The accepted map checkpoints are play-ready under
-  GAME_DIR/captures/rust-dos-load-entry/ and saved-map under
+  GAME_DIR/captures/rust-dos-regenerated/ and saved-map under
   GAME_DIR/captures/rust-dos-native-save/; exact run names remain in docs/RUNTIME.md.
   FND-COMBAT-133 through FND-COMBAT-156 hold the bounded load/save admissions;
   completed loading and later action cleanup remain unverified. Paused metadata,
