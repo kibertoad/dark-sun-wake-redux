@@ -105,6 +105,12 @@ navigation case, with matching far-call stack identity and bounded marker
 reads. Output is GAME_DIR/captures/rust-dos-load-entry/v181-q046-down-return-frame-20261104/.
 It stops before dispatcher cleanup; key release remains pending and no
 pending-input checkpoint is saved. Other navigation cases remain unverified.
+The `load-call` stage in FND-COMBAT-136 admits Enter key-down through the
+Load callback to numbered-load +05ED, with a verified loaded call/return
+frame and row argument. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-call-20261104/.
+The loader body is not executed and Enter release remains pending; this
+does not admit reading or loading a saved game.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
