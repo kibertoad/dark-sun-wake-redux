@@ -23,9 +23,9 @@ handle: its word at `+0x04` is the handle's record number and its word at `+0x06
 itself, and the record copied after it is the slot's FMT-COMBAT-001 record (FND-PARTY-054). For a
 slot of 4 or less, `2D40:2C87` keeps the slot as the number of the details record a type-3 chunk
 fills, and a load stores that number in the combatant record's `details_index`, the word that
-CHAR word `0x0E` loads (FND-PARTY-049, FND-PARTY-051). A load replaces the words that CHAR words
+CHAR word `0x0E` loads (FND-PARTY-049, FND-PARTY-259). A load replaces the words that CHAR words
 `0x12`, `0x14` and `0x16` load with 9,999, and the type-2 chunks of `field` 16, 17 and 4 store
-their records' numbers there (FND-PARTY-050, FND-PARTY-051).
+their records' numbers there (FND-PARTY-050, FND-PARTY-259).
 
 Walking the chunk chain of each of the 19 `CHAR` resources of the installed `CHARSAVE.GFF`:
 

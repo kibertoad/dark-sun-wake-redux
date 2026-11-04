@@ -84,7 +84,7 @@ Next ID: Q-PARTY-115
   FND-PARTY-094)? Settles it: what moves objects 430 and 541 out of the region `Limbo`, where
   their only `ETAB` records are, read to show whether the party can fight them. Blocks: nothing
   yet. Tried: FND-PARTY-094 finds `RDFF` 430 (107,000) and 541 (33,000), of kind 7, with CHAR
-  chunk headers; FND-PARTY-153 shows `RDFF` resources load through the CHAR chunk walk and finds
+  chunk headers; FND-PARTY-260 shows `RDFF` resources load through the CHAR chunk walk and finds
   both objects only in `RGN0FF.GFF`. Scripts that move objects are the SCRIPT area's, outside
   this goal's claim.
 - Q-PARTY-062. BUG-PARTY-006: Does anything other than a block copy, or a copy FND-PARTY-115's
@@ -100,7 +100,7 @@ Next ID: Q-PARTY-115
   routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
   generation code that sets the scores. Tried: a search of the first 79 bytes of records 40 and 42
   for the label positions of their gender, origin, alignment and class (FND-PARTY-061);
-  FND-PARTY-063 and FND-PARTY-066 show the four codes of Cleric, Druid and Ranger are the spheres; FND-PARTY-049, FND-PARTY-051 and FND-PARTY-055 to
+  FND-PARTY-063 and FND-PARTY-066 show the four codes of Cleric, Druid and Ranger are the spheres; FND-PARTY-049, FND-PARTY-259 and FND-PARTY-055 to
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
   greatest hit points, origin, gender, alignment, class codes with their names, and levels, and
   FND-PARTY-058 and FND-PARTY-059 place experience at `0x45` and the current and greatest
@@ -233,12 +233,12 @@ Next ID: Q-PARTY-115
   duplication on quantity splits, and block copies covering +0C, with the
   zero and 9999 values each can leave for the drawing resolver and opener
   refresh.
-  Tried: split from Q-PARTY-087. FND-PARTY-051 records overlay 187 +04F8
+  Tried: split from Q-PARTY-087. FND-PARTY-259 records overlay 187 +04F8
   copying 23 bytes and then storing zero at +0C; FND-PARTY-196 gives the
   shipped +0C values; FND-PARTY-228 reads the opener's 9999 refresh
   without naming a producer of 9999.
   Tried: FND-PARTY-235 reads the CHAR chain writer: it saves each 23-byte
-  record whole, +0C included, and the load's kind-1 copy (FND-PARTY-051)
+  record whole, +0C included, and the load's kind-1 copy (FND-PARTY-259)
   replaces that word with zero, so the CHAR chunk copy and CHAR save
   serialization are removed from Settles it.
   Tried: FND-PARTY-236 reads the numbered save and restore: SAVE block
@@ -282,7 +282,7 @@ Next ID: Q-PARTY-115
   number, or offset `0x08` or `0x0A` through the combatant table, apart from the generic graph
   walk, with what selects each list and what the player sees of it. Generic enumeration order
   does not assign inventory or equipment labels. Field 4 is Q-PARTY-097, head mutations
-  Q-PARTY-086, graph and root storage Q-PARTY-099. Tried: FND-PARTY-051 and FND-PARTY-052 map
+  Q-PARTY-086, graph and root storage Q-PARTY-099. Tried: FND-PARTY-259 and FND-PARTY-052 map
   the three words to handles attached by CHAR chunks, FND-PARTY-054 and FND-PARTY-218 give the
   walk order 15, 16, 17, 4 and its field provenance, and FND-PARTY-217 shows the inventory redraw
   reads the merged graph by position byte rather than any head; no reader tells fields 16 and 17

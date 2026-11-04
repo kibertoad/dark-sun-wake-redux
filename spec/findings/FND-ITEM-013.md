@@ -63,7 +63,7 @@ An exact value 9999 returns that value with no record read. Otherwise it
 selects the 23-byte record, copies its word +4 to DS:5AF3, then stores 9999
 in that record word +4, retaining ES when it reloads the base offset.
 It returns the original head index in AX and does not initialize the
-record's identifier. FND-PARTY-051 separately records a caller's later setup.
+record's identifier. FND-PARTY-259 separately records a caller's later setup.
 
 The two local bodies therefore use the same head and record link with
 opposite push/pop ordering. Their offset arithmetic is 16-bit and neither

@@ -81,7 +81,7 @@ On the character sheet, for the selected slot, the combatant details record's by
 the origin, `0x13` the gender and `0x14` the alignment, each counted from 1 in the order of the
 name tables. The bytes at `0x1B` to `0x1D` hold up to three classes, 0 meaning none, and `0x1E` to
 `0x20` the level in each. A `CHAR` record's type-3 chunk carries these bytes at `0x57`, `0x58`,
-`0x59`, `0x60` to `0x62` and `0x63` to `0x65` (FND-PARTY-051).
+`0x59`, `0x60` to `0x62` and `0x63` to `0x65` (FND-PARTY-259).
 
 ## Alternatives
 

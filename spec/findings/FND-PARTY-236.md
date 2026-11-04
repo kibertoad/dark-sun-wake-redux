@@ -51,7 +51,7 @@ records 0 to 398 it stores record + 1 in the word at +04 of each
 23-byte record (+0176..+018F), and 9999 (0x270F) in the word at
 +04 of record 399, at byte 0x23DD (+0195). It writes no other
 record word. It then copies the pointer to DS:6153 (+01A2), where
-kind 1 finds its records (FND-PARTY-051). Overlay 188 +0449
+kind 1 finds its records (FND-PARTY-259). Overlay 188 +0449
 releases it through 444C:0092 when nonzero and stores the result
 there. An operand search for 0x19C1 and 0x19C3 finds no other store
 to the pointer: every other hit reads it.
@@ -101,7 +101,7 @@ cached bitmap number at +0C travels in that block but never survives
 the restore: the restore sets it to zero in every record, used or
 free, whether the block was read or the loop stopped early. After a
 numbered load every record's +0C is zero, as after the CHAR load's
-kind-1 copy (FND-PARTY-051, FND-PARTY-235), and the drawing path
+kind-1 copy (FND-PARTY-259, FND-PARTY-235), and the drawing path
 resolves the picture again (FND-PARTY-224).
 
 ## Alternatives

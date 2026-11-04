@@ -43,7 +43,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE` (634,416 bytes, XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`). A kind-1 record is the
-23-byte record at the far pointer `DS:19C1` plus 23 times its number (FND-PARTY-051).
+23-byte record at the far pointer `DS:19C1` plus 23 times its number (FND-PARTY-259).
 
 ### Field descriptors
 

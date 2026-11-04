@@ -387,15 +387,15 @@ Next ID: Q-COMBAT-067
   reclamation children on the load path. Tried: split from Q-COMBAT-044; FND-COMBAT-078
   accounts for three fixed-address copy/clear sites but excludes indexed and restored writes.
   FND-PARTY-119 covers the free-list setup and FND-COMBAT-054 the reclamation effect route.
+  Tried: FND-COMBAT-163 removes RDFF own status propagation and parent's final -2-only failure gate.
+  Common metadata can replace -2 with -1 conditionally; actual state, handlers/reclamation,
+  providers/aliases and save-time admission remain open.
   Tried: FND-COMBAT-162 removes the high-selector case for an intact canonical OBJEX temporary record;
   actual provider/length, mutations/aliases and other lifetime classes remain.
-  Tried: FND-COMBAT-161 removes synchronous save/input re-entry in the admitted flags-zero,
-  successful-allocation/low-image interval; RDFF, eviction, other inputs/aliases/timing remain.
+  Tried: FND-COMBAT-161 removes synchronous save/input re-entry in admitted flags-zero success/low-image states; other lifetime cases remain.
   Tried: FND-COMBAT-160 removes per-record wrappers' extents/results and immediate slot sources; actual length/provider, slot/kind, aliases and timing remain.
-  Tried: FND-COMBAT-159 removes sorted adjustment's empty-index case: FFFF is preserved.
-  Direct writes require caller/free-list admission; other producers/aliases and timing remain.
-  Tried: FND-COMBAT-149 removes allocation retries and eviction's own gates, including 0B4A owner removal.
-  Populated-save admission, actual free-list/victim state and transitive child/alias effects remain.
+  Tried: FND-COMBAT-159 removes sorted adjustment's FFFF case; direct writes require caller/free-list admission and other producers/aliases/timing remain.
+  Tried: FND-COMBAT-149 removes retries/eviction own gates including 0B4A owner removal; actual admission, free-list/victim and child/alias effects remain.
   Tried: FND-COMBAT-150's empty/no-eviction baseline proves no populated-slot admission; do not repeat it for reclamation.
   Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,

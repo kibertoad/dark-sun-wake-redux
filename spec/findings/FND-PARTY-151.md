@@ -19,7 +19,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A load copies a CHAR record's bytes `0x7B` to `0x7D` to `+0x36` to `+0x38` of the
-character's FMT-COMBAT-002 record (FND-PARTY-051), whose byte `+0x37` is the object's footprint
+character's FMT-COMBAT-002 record (FND-PARTY-259), whose byte `+0x37` is the object's footprint
 (FND-EXPLORE-002).
 
 `field_reads.py <dsun> <inventory> --es --table 19c5 36 37 38` finds, after a multiplication by

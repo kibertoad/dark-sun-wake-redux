@@ -9,7 +9,7 @@ doc: |
   An RDFF resource of OBJEX.GFF: a chain of chunks (fmt_party_006) ending at one whose type
   is 0xFF, which the object load walks as it walks a CHAR resource. The bytes after the end
   header are not read; one shipped resource has any.
-doc-ref: FMT-ACTOR-002, FND-ACTOR-015, FND-PARTY-051
+doc-ref: FMT-ACTOR-002, FND-ACTOR-015, FND-PARTY-259
 seq:
   - id: chunks
     type: fmt_party_006

@@ -74,7 +74,7 @@ ends. Scripts can set the whole byte, and so both bits, for any combatant.
 The removal handler's callers (overlay 193 `+1873` and the other removal paths) and the
 application wrapper (overlay 193 `+166F`) were not read here; FND-COMBAT-031, FND-COMBAT-032 and
 FND-COMBAT-053 place them. `1AA0:012A` was not disassembled here; that field 25 reaches `+0x18`
-rests on FND-PARTY-051 and the `FNFO` tables. Which objects the 81 calls and 117 stores name was
+rests on FND-PARTY-259 and the `FNFO` tables. Which objects the 81 calls and 117 stores name was
 not read. A writer that loads a combatant pointer more than six instructions before the store,
 or keeps it in memory, escapes the census, as would one of the six excluded resident stores if
 its routine received a combatant pointer as an argument.

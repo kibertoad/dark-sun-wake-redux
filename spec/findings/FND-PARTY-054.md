@@ -32,7 +32,7 @@ environment: null
 
 ## Observation
 
-Overlay offsets are written `descriptor +offset`; handles are those of FND-PARTY-051.
+Overlay offsets are written `descriptor +offset`; handles are those of FND-PARTY-259.
 
 **The caller.** Overlay 184 `+1527..+1538` calls overlay 187 `+018F` (trampoline `56EF:0020`)
 with a slot, the far value at `DS:144A`, the byte 0, a resource number and the tag `CHAR`. A
@@ -92,13 +92,13 @@ field 0. `FNFO` 2 gives field 2 the type byte 8, field 5 the type byte 13 and fi
 and 17 the bytes 7, 12, 7 and 7 (FND-PARTY-052); `1AA0:0009` turns a value of type 10 or more into
 the handle in `DS:60EB` with the kind of the type less 9 (FND-CONFIG-140).
 
-**The load's last test.** After the walk of FND-PARTY-051, when the slot's kind is 2,
+**The load's last test.** After the walk of FND-PARTY-259, when the slot's kind is 2,
 `2D40:0328..+035C` returns -1 if the word at `+0x04` of the slot's combatant record is 9,999 or
 more.
 
 ## Interpretation
 
-The game writes a `CHAR` resource as the chain FND-PARTY-051 reads. The first chunk is the
+The game writes a `CHAR` resource as the chain FND-PARTY-259 reads. The first chunk is the
 character's combatant record. Because the stack hands back the last field pushed first, a
 character's children come out in the order 15, 16, 17, 4: the details record (field 15, type 12,
 so kind 3 and chunk type 3) whenever `details_index` is set, then the records in the words at

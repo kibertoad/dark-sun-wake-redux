@@ -96,7 +96,7 @@ callers, +108C and +13E8, pass the doubleword 3. None of these other
 sites builds a chunk header.
 
 The chain writer copies each 23-byte record whole, its word at +0C
-included. The load's kind-1 copy (overlay 187 +04F8, FND-PARTY-051)
+included. The load's kind-1 copy (overlay 187 +04F8, FND-PARTY-259)
 stores zero at +0C after copying, so the +0C word a CHAR resource holds
 never reaches the loaded record.
 

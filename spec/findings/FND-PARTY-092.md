@@ -29,7 +29,7 @@ environment: null
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. The details records are the 66-byte records through the far pointer `DS:19C5`, and a
 load copies the FMT-PARTY-001 bytes `0x69` to `0x7A` to their bytes `0x24` to `0x35`
-(FND-PARTY-051). Overlay 210 sets the bytes at `0x24`, `0x25`, `0x27` and `0x31..0x35`
+(FND-PARTY-259). Overlay 210 sets the bytes at `0x24`, `0x25`, `0x27` and `0x31..0x35`
 (FND-PARTY-085).
 
 **The searches.** `field_reads.py <dsun> <inventory> --es --table 19c5` lists these reads for the

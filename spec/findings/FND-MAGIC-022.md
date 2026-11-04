@@ -95,7 +95,7 @@ The word stores at `+0x12` (`2D40:1452`, `2D40:1853`, `3BA6:00D1`, `3EBE:0008`, 
 through argument or local pointers and write words.
 
 `block_copies.py <dsun> <inventory> 24` adds three copies of 0x42 bytes into the details table:
-the load's (overlay 187, FND-PARTY-051) and overlay 184's two copies from `4E4F:0029` into the
+the load's (overlay 187, FND-PARTY-259) and overlay 184's two copies from `4E4F:0029` into the
 record of `DS:112E` or of slot `si` (`+167B..+1699`, `+16D0..+16ED`).
 
 **The loaded records.** `gff_tag_numbers.py <install> CHAR` finds `CHAR` resources only in
@@ -138,7 +138,7 @@ number or does nothing.
 
 ## Alternatives
 
-- `1AA0:012A` writes a record field at an offset from the `FNFO` tables (FND-PARTY-051); a script
+- `1AA0:012A` writes a record field at an offset from the `FNFO` tables (FND-PARTY-259); a script
   or `CHAR` chunk storing a kind-3 field that maps to `+0x12` would be a writer the census cannot
   see. Which kind-3 field number maps to offset 0x12 was not read.
 - The `SAVE` resource restores the tables as saved (FND-SAVE-021), so a saved game keeps the values

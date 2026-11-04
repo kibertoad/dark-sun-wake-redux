@@ -41,7 +41,7 @@ environment: null
 FND-PARTY-230 binds shipped kind-1 field six to attached-record word
 +0C, the bitmap-number cache. This finding classifies the field
 argument at every direct call of the generic setter 1AA0:012A and
-getter 1AA0:0009. FND-PARTY-051 and FND-PARTY-216 describe both
+getter 1AA0:0009. FND-PARTY-259 and FND-PARTY-216 describe both
 accessors: the handle is the word at BP+6 and the field the word at
 BP+8. The setter takes the field's type from DS:60ED plus the whole
 field word and its offset from 2D40:06C4.
@@ -50,7 +50,7 @@ field word and its offset from 2D40:06C4.
 
 The direct-call search finds 14 setter sites and 14 getter sites.
 Positive controls located by earlier findings are among them: the
-CHAR loader's setter call at 2D40:01F5 (FND-PARTY-051) and overlay
+CHAR loader's setter call at 2D40:01F5 (FND-PARTY-259) and overlay
 188's field-one calls at +0764 and +079D (FND-PARTY-216). The
 far-pointer word search finds no relocated or fixed-up segment word
 that forms 1AA0:012A or 1AA0:0009 with a stored offset; its 32 far

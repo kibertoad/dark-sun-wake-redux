@@ -126,7 +126,7 @@ arrays of six words, a current and a raised array (`+1EC2..+1EF4`). It then:
 Byte `+0x1D` of the combatant record is the character's Wisdom. The load fills `+0x19` to `+0x1E`
 from the `CHAR` record's Strength, Dexterity, Constitution, Intelligence, Wisdom and Charisma at
 `0x23` to `0x28` (FMT-PARTY-001), and every later rewrite of those bytes, overlay 197 `+1E7B`,
-takes them from `base_scores` (details bytes `+0x15..+0x1A`, FND-PARTY-051) in the same order, so
+takes them from `base_scores` (details bytes `+0x15..+0x1A`, FND-PARTY-259) in the same order, so
 index 4 stays Wisdom. `+0x1F` is the facing and `+0x20` the `CHAR` byte `unk_2a`.
 
 `27E5:04A0(slot, k)` returns ability score `k` in the order Strength, Dexterity, Constitution,

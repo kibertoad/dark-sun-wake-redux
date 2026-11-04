@@ -31,7 +31,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A load copies a CHAR record's word at `0x53` to the word at `+0x0E` of the
-character's FMT-COMBAT-002 record (FND-PARTY-051), and the word at `0x10` to the FMT-COMBAT-001
+character's FMT-COMBAT-002 record (FND-PARTY-259), and the word at `0x10` to the FMT-COMBAT-001
 record's word at `+6` (FND-PARTY-049, FND-PARTY-050).
 
 **Generation.** Overlay 184 `+1CED`, which the generation finish calls (`+10E4`), counts a word
@@ -46,7 +46,7 @@ inventory, all `cmp word ptr es:[bx + 0xe], 0` after a load of `DS:19C5` and a m
 by 0x42, in overlays 176, 189, 190, 191, 207, 210 and 213. At overlay 189 `+0109..+0137` the
 slot in `4E71:0B44` is printed by the name of the record at `DS:142D` when the word is not 0 and as
 `INACTIVE CHARACTER` (`DS:1AB2`) when it is 0. Outside the inventory, `2D40:2D38` and
-`2D40:2D3F` are the search FND-PARTY-051 reads in `2D40:2C87`: for a slot above 4, the details
+`2D40:2D3F` are the search FND-PARTY-259 reads in `2D40:2C87`: for a slot above 4, the details
 records 5 to 16 are searched for one whose word at `+0x0E` equals the word at `+0x0E` of the data
 being loaded, and else the last one whose word is 0 is taken (`2D40:2D1C..2D40:2D78`). Overlay 179
 `+1952` reads the word for a struck combatant's details record and compares it with the six words

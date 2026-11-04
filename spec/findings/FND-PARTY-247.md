@@ -21,7 +21,7 @@ environment: null
 ## Observation
 
 A kind-1 record is the 23-byte record at the far pointer `DS:19C1` plus 23 times its number
-(FND-PARTY-051). The shipped `FNFO` 1 word for kind-1 field 4 (`OBJEX.GFF` `0x1FF50`) is 8, and
+(FND-PARTY-259). The shipped `FNFO` 1 word for kind-1 field 4 (`OBJEX.GFF` `0x1FF50`) is 8, and
 the `FNFO` 2 type bytes, which the game reads to `DS:60ED` (FND-CONFIG-153), are 7 for field 4
 and 8 for field 2 (`0x20320`, `0x2031E`), so field 4 is the word at `0x08` and field 2 the chain
 link at `0x04` (FND-PARTY-052, FND-PARTY-216).

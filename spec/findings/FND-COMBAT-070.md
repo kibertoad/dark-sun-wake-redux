@@ -56,7 +56,7 @@ file `0x5C9C9` (FND-COMBAT-065) and the writes of FND-CONFIG-026, the reads are 
 
 **Overlay 187 `+039A`, state 3** (`+054C..+05AE`, file `0x7037C..0x703DE`). This is the copy of a
 chunk into the details table for a slot whose state byte at `4F49:0C33 + 3 * slot` is 3
-(FND-PARTY-051, FND-ACTOR-015). After copying the 0x42 data bytes to record `r`, the number
+(FND-PARTY-259, FND-ACTOR-015). After copying the 0x42 data bytes to record `r`, the number
 `2D40:2C87` returned, it skips the rest when `r` is 4 or less (signed, `+056A..+056D`). Otherwise
 it zero-extends the record's word `+0x08` to 32 bits, sign-extends `DS:143A` to `d`, multiplies
 the word by `(d - 1) * 50 + 100` as signed 32-bit numbers, divides by 100 with `idiv` after

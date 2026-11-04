@@ -87,15 +87,15 @@ and 102 at `0x14`. The negated words at `0x00` name 86 different objects, from 6
 
 The game stores 9999 in the link word at `0x04` of the last record of each chain, and a record
 number in the others, so 9999 is the end marker of a chain that type-4 chunks link through
-`0x04` (FND-PARTY-051). The kind-1 load of overlay 187 `+04F8`, which sets the words at `0x04`
-and `0x08` of a new record to 9999 (FND-PARTY-051), fits a second link or reference at `0x08`
+`0x04` (FND-PARTY-259). The kind-1 load of overlay 187 `+04F8`, which sets the words at `0x04`
+and `0x08` of a new record to 9999 (FND-PARTY-259), fits a second link or reference at `0x08`
 that is empty in most records. The other fields vary from item to item and are not named by
 this reading.
 
 ## Alternatives
 
 - The record numbers in the words at `0x04` are those of the game that saved the characters; the
-  load replaces the links with its own (FND-PARTY-051), so their values say nothing beyond
+  load replaces the links with its own (FND-PARTY-259), so their values say nothing beyond
   "not 9999".
 - That `0x08` is a link is a guess from its 9999 and the three records' shared values; no code
   that reads it is cited here.

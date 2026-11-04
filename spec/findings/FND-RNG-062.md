@@ -25,7 +25,7 @@ the installed `DSUN.EXE`. `OBJEX.GFF` is the installed one (6,816,516 bytes, XXH
 `e08d3cac153c547f6804ca27b155915d`).
 
 **The copy.** The object load requests an object's `RDFF` resource through `2D40:000A`, which
-walks its chunks exactly as it walks a `CHAR` record's (FND-ACTOR-015, FND-PARTY-051). A type-1
+walks its chunks exactly as it walks a `CHAR` record's (FND-ACTOR-015, FND-PARTY-259). A type-1
 chunk of kind 2 reaches overlay 187 `+039A`'s kind-2 case `+045E`, which copies 0x31 bytes from
 the chunk's data to the record of the returned number in the table of FMT-COMBAT-001 records at
 the far pointer `DS:19C9` through `1000:3F5A` (`+045E..+047D`). It then stores 9,999 in the

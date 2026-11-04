@@ -102,7 +102,7 @@ generation record, and the other hits write other records.
 - When overlay 195 `+0BC9` runs, and with which slot, was not read; it may be unreachable, or
   reachable only for characters with several classes.
 - Stores through an index register only, or block copies into a details record such as the load
-  of FND-PARTY-051 and the copies of overlay 184 `+1648` and `+1DCE`, are not in this search.
+  of FND-PARTY-259 and the copies of overlay 184 `+1648` and `+1DCE`, are not in this search.
 - Overlay 190 `+06B4`'s argument was taken to be a string because of the length test; its callers
   were not read.
 

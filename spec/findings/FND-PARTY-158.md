@@ -25,7 +25,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A `CHAR` load copies bytes `0x85` and `0x86` to bytes `+0x40` and `+0x41` of a details
-record (FND-PARTY-051), whose table is at the far pointer `DS:19C5` with records of 0x42 bytes.
+record (FND-PARTY-259), whose table is at the far pointer `DS:19C5` with records of 0x42 bytes.
 `field_reads.py <dsun> <inventory> --es --table 19c5 40 41` finds two reads of `+0x40`, at overlay
 174 `+064A` and overlay 198 `+02F0`, and none of `+0x41` (FND-PARTY-149); `field_stores.py <dsun>
 <inventory> --es 40 41` finds no store after a load of `DS:19C5`.

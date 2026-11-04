@@ -25,7 +25,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A load copies a CHAR record's bytes `0x81` to `0x86` to `+0x3C` to `+0x41` of the
-character's FMT-COMBAT-002 record (FND-PARTY-051). `2C5F:0A22` takes a byte `n` and plays the
+character's FMT-COMBAT-002 record (FND-PARTY-259). `2C5F:0A22` takes a byte `n` and plays the
 `BVOC` resource `n`, or else the installed file `SOUND` `n` `.VOC` (FND-SOUND-007).
 
 `field_reads.py <dsun> <inventory> --es --table 19c5 3c 3d 3e 3f 40 41` finds, after a

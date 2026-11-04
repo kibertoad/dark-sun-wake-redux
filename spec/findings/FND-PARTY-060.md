@@ -76,7 +76,7 @@ dword stores at those displacements in the resident code and in overlays 182 and
 
 In play the class bytes hold the 17-code numbering FND-PARTY-057 names through `DS:1487`: the
 class change of overlay 209 tests the new code against 12 (Psionic) and 11 (Preserver), and the
-load copies the stored codes unchanged (FND-PARTY-051). Byte 0 of the table at `4E4F:009D` is the
+load copies the stored codes unchanged (FND-PARTY-259). Byte 0 of the table at `4E4F:009D` is the
 class's position in the 8-name table at `DS:1164` (Cleric 1 to Thief 8), which is the
 `DATA` 1000 row plus 1, so overlay 210 reads the thresholds of the code's class, as the shipped
 experience values match (FND-PARTY-058). Overlay 186 reads row code less 1 instead: for codes 1 to

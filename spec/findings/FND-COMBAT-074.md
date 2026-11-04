@@ -88,7 +88,7 @@ also with 0, 1, 4, 8 and 9.
 ## Interpretation
 
 Every byte of both records belongs to a field the generic accessor `1AA0:012A` can reach, and the
-offsets agree with the `CHAR` copy of FND-PARTY-049 and FND-PARTY-051: combatant offset `n` is
+offsets agree with the `CHAR` copy of FND-PARTY-049 and FND-PARTY-259: combatant offset `n` is
 `CHAR` offset `0x0A + n` and details offset `n` is `CHAR` offset `0x45 + n`, so FMT-PARTY-001
 names them. What remains without a meaning is combatant `+0x12` (field 20, signed, set from
 `base_armor_class` at the end of generation), combatant `+0x17` (field 9, the field number the

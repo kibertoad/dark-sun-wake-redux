@@ -36,7 +36,7 @@ Overlay offsets are written `descriptor +offset`; file offsets are those of the 
 `DSUN.EXE`, whose data segment starts at file `0x4D000` (FND-PARTY-144). A load copies a CHAR
 record's bytes `0x1C` and `0x1D` to `+0x12` and `+0x13` of the character's FMT-COMBAT-001 record
 (FND-PARTY-049) and bytes `0x66` to `0x68` to `+0x21` to `+0x23` of its FMT-COMBAT-002 record
-(FND-PARTY-051).
+(FND-PARTY-259).
 
 **Generation.** Overlay 184 `+1764..+183D` tests the origin byte at `+0x12` of the details record:
 for origin 8, thri-kreen, it stores 15 at details `+0x22` and at combatant `+0x13`, and for any other

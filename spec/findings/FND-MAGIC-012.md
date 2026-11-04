@@ -42,7 +42,7 @@ Overlay offsets `+x` are at file `0x62100 + x` for overlay 177, `0x6D090 + x` fo
 `0x6FE30 + x` for 187. The combatant table is the far pointer `DS:19C9`, 49-byte records
 (FMT-COMBAT-001), and the details table `DS:19C5`, 66-byte records (FMT-COMBAT-002). A handle is
 an entry of the 3-byte table at `4F49:0C33`: a kind byte and, at `4F49:0C34`, a record number
-(FND-PARTY-051).
+(FND-PARTY-259).
 
 **What `+0B00` reads.** Overlay 177 `+0B00(n, slot)` takes the combatant record numbered by the
 handle word `4F49:0C34 + 3 * slot`, not by the slot itself, reads its word `+0x04`, and reads
@@ -62,7 +62,7 @@ undecided.
 copies with `0x31` bytes or the pointer `DS:19C9` in context: overlay 187 `+0478` and overlay 184
 `+1708`, both into a combatant record, and overlay 184 `+1DF7`, out of one into `4E4F:006B`.
 
-**The `CHAR` load.** FND-PARTY-049 and FND-PARTY-051 read the load of a `CHAR` resource into
+**The `CHAR` load.** FND-PARTY-049 and FND-PARTY-259 read the load of a `CHAR` resource into
 slot `s`; FND-PARTY-052 finds every installed `CHAR` resource to hold a first chunk of byte 0 = 1,
 kind 2 and 49 bytes, then a chunk of byte 0 = 3, byte 1 = 0, kind 3, word `+0x06` = 15 and 66
 bytes. In the listings:
@@ -82,7 +82,7 @@ bytes. In the listings:
    `1AA0:012A` with the handle that the header's byte 1 names (the first chunk's), the header's
    word `+0x06` and the header's word `+0x04` (`2D40:01CA..+01F5`).
 4. `1AA0:012A` stores the value into a field of the handle's record; `OBJEX.GFF`'s `FNFO` gives
-   kind 2 field 15 the offset 4 and a 2-byte type (FND-PARTY-051, FND-PARTY-052).
+   kind 2 field 15 the offset 4 and a 2-byte type (FND-PARTY-259, FND-PARTY-052).
 
 **Character generation.** Overlay 184 `+07D8` points `DS:1429` at `4E4F:0029` and `DS:142D` at
 `4E4F:006B`, the working details and combatant records (file `0x6D885`, `0x6D88B`, from

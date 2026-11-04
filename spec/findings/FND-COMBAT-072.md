@@ -38,7 +38,7 @@ environment: null
 ## Observation
 
 Overlay 188's code starts at file `0x72EA0`. An object is an entry of the 3-byte table at
-`4F49:0C33`: a kind byte and, at `4F49:0C34`, a record number (FND-PARTY-051). Combatant records
+`4F49:0C33`: a kind byte and, at `4F49:0C34`, a record number (FND-PARTY-259). Combatant records
 are the 49-byte records under the far pointer `DS:19C9` (FMT-COMBAT-001) and details records the
 66-byte records under `DS:19C5` (FMT-COMBAT-002).
 
@@ -58,7 +58,7 @@ returns 1 only when `d` is below 17. The two bounds are the record counts above.
 overlays 173, 176, 179, 188, 195, 197, 198, 206 and 211, and three near calls in `2D40`.
 
 **`2D40:2C87(object, tries, kind, data)`** picks the record for a chunk of `kind` (FND-PARTY-049,
-FND-PARTY-051). It jumps through the five words at `cs:2E0A` (file `0x2540A`): kind 1 to
+FND-PARTY-259). It jumps through the five words at `cs:2E0A` (file `0x2540A`): kind 1 to
 `+2D78`, 2 to `+2CAC`, 3 to `+2D1C`, 4 to `+2DDB` and 5 to `+2DB2`.
 
 - Kind 2 (`+2CAC..+2D19`): an object of 4 or less (signed) gets the record of its own number.

@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-153
 title: RDFF resources load through the same chunk walk as CHAR records, and the objects 430 and 541 whose kill experience would overflow a share are placed only in the region Limbo
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-260]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
@@ -31,7 +31,7 @@ a number of 0 or less and -1 for a number from 9,000 to 13,998, requests the res
 tag and number through `38FF:05B5` and `38FF:04AB`, returning -1 when either fails, and then walks
 the chunks (`2D40:000A..2D40:00D2`). Nothing in it compares the tag. The walk copies a type-1
 chunk's data into the slot's FMT-COMBAT-001 record and a type-3 chunk's 66 bytes into a details
-record (FND-PARTY-051).
+record (FND-PARTY-259).
 
 **The data.** `RDFF` 430 and 541 of `OBJEX.GFF` start with a type-1 chunk header and hold a
 details chunk at `0x3B`; read as a CHAR record, their byte at `0x1F` is 7 and their dword at

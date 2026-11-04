@@ -22,7 +22,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A load copies a CHAR record's byte `0x68` to `+0x23` of the character's
-FMT-COMBAT-002 record (FND-PARTY-051).
+FMT-COMBAT-002 record (FND-PARTY-259).
 
 `field_reads.py <dsun> <inventory> --es --table 19c5 23` finds one read of `+0x23` after a
 multiplication by 0x42, at overlay 197 `+16E7`; `field_stores.py <dsun> <inventory> --es 23`

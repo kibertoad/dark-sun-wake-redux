@@ -81,7 +81,7 @@ copy, register-restoration and overlap limits.
 The complete 2D40:2C87 body gates kind minus one as unsigned at most four
 and jumps through five words at 2E0A. Their targets are 2D78, 2CAC, 2D1C,
 2DDB and 2DB2. The kind-two and kind-three targets agree with
-FND-COMBAT-072 and FND-PARTY-051; the fifth target selects kind five.
+FND-COMBAT-072 and FND-PARTY-259; the fifth target selects kind five.
 
 SI starts at -1. At 2DB2 the kind-five branch initializes DX to zero, then
 scans while signed DX is below 20 and SI is still -1. It compares the first

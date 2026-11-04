@@ -54,7 +54,7 @@ environment: null
 ## Observation
 
 Each of the 19 `CHAR` resources of the installed `CHARSAVE.GFF` (29 to 43 and 50 to 53) was
-read as FND-PARTY-051 says the load reads one: a 10-byte header, then as many data bytes as
+read as FND-PARTY-259 says the load reads one: a 10-byte header, then as many data bytes as
 the header's word at `0x08`, repeated until a header whose byte 0 is 0xFF. In every resource:
 
 - The walk ends on a byte 0xFF exactly 10 bytes before the end of the resource, so no byte is
@@ -104,7 +104,7 @@ and `0x4D418`).
 
 ## Interpretation
 
-Through `1AA0:012A` (FND-PARTY-051), a type-3 chunk of a stored record stores the number of the
+Through `1AA0:012A` (FND-PARTY-259), a type-3 chunk of a stored record stores the number of the
 combatant details record it filled in the word at `+0x04` of the character's combatant record,
 the `details_index` of FMT-COMBAT-001, since its byte 1 is 0 and indexes the type-1 chunk. Each
 type-2 chunk with byte 1 = 0 stores the handle of its 23-byte record in the character's word at
@@ -115,7 +115,7 @@ add records to the chains those start. The 23-byte records go into the table at 
 ## Alternatives
 
 - FND-PARTY-004 interprets the same sizes as a 79-byte header and `byte1` records of 33 bytes.
-  The load code reads the chunks of this finding instead (FND-PARTY-051), and the 33-byte
+  The load code reads the chunks of this finding instead (FND-PARTY-259), and the 33-byte
   records it describes from `0x4F` do not start where the chunks do; this was found while
   locating the code that reads bytes after `0x3A`. This finding repeats its sizes.
 - The `FNFO` buffers hold other values at the time of a load: they are read once at start-up by

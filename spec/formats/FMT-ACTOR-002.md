@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_actor_002.ksy
-evidence: [FND-ACTOR-015, FND-ACTOR-016, FND-ACTOR-017, FND-ACTOR-018, FND-PARTY-051, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
+evidence: [FND-ACTOR-015, FND-ACTOR-016, FND-ACTOR-017, FND-ACTOR-018, FND-PARTY-259, FND-ACTOR-003, FND-ACTOR-005, FND-ACTOR-007]
 conflicting: []
 split_with: []
 related: []
@@ -20,12 +20,12 @@ related: []
 An `RDFF` resource of `OBJEX.GFF`, 1,643 of them, numbered as the objects outside 9,000 to 13,998
 (FND-ACTOR-007). The object load reads it with the routine that reads a `CHAR` record, as a chain
 of FMT-PARTY-006 chunks from offset 0 up to and including the first chunk whose `chunk_type` is
-0xFF (FND-ACTOR-015, FND-PARTY-051). `size` is the resource's size from the GFF directory, and
+0xFF (FND-ACTOR-015, FND-PARTY-259). `size` is the resource's size from the GFF directory, and
 `m` the offset of the end header.
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | `m + 10` | FMT-PARTY-006 chunks | `chunks` | The chain, ending with a 10-byte header whose `chunk_type` is 0xFF; 1 to 20 chunks before it in the shipped resources. | supported | FND-ACTOR-015, FND-PARTY-051 |
+| `0x00` | `m + 10` | FMT-PARTY-006 chunks | `chunks` | The chain, ending with a 10-byte header whose `chunk_type` is 0xFF; 1 to 20 chunks before it in the shipped resources. | supported | FND-ACTOR-015, FND-PARTY-259 |
 | `m + 10` | `size - m - 10` | `BYTE[]` | `unread` | Not read. Empty in every shipped resource but `RDFF/500`, which has 102 bytes here. | supported | FND-ACTOR-015 |
 | | | | | Total size `size` | | |
 

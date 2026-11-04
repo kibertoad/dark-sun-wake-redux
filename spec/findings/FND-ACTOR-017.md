@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: OBJEX.GFF
     offset: 0x0039986A..0x003998AE
-tool: Inspector gff and tools/evidence/report.mjs table at 34fbedad; retained overlay_listing.py initializer reading; FND-PARTY-051/248 for importer and field bindings
+tool: Inspector gff and tools/evidence/report.mjs table at 34fbedad; retained overlay_listing.py initializer reading; FND-PARTY-259/248 for importer and field bindings
 environment: null
 ---
 
@@ -57,7 +57,7 @@ It therefore selects the fifteen-byte base above. The direct type consumers
 in FND-PARTY-248 likewise multiply the item word +0A by fifteen and add it
 to DS:19CD.
 
-FND-PARTY-051 reads the type-three chunk import: kind three copies details;
+FND-PARTY-259 reads the type-three chunk import: kind three copies details;
 the other branch, used by kind four, retains header record_ref as the paired
 record number and does not copy the payload. The subsequent setter writes
 header record_ref to the earlier target object's field numbered by the
@@ -115,7 +115,7 @@ Use DSUN.EXE size 634416, XXH3 e296af55ba2ecde7e77f555c90f33d0b,
 and OBJEX.GFF size 6816516, XXH3 e08d3cac153c547f6804ca27b155915d.
 Reuse FND-ACTOR-016's complete overlay-188 initializer listing and inspect
 +01F8..0256, preserving both failure branches and the ALL/4 arguments.
-Reuse FND-PARTY-051/248 and FND-CONFIG-140/150 for the separate importer,
+Reuse FND-PARTY-259/248 and FND-CONFIG-140/150 for the separate importer,
 type descriptor, stride and accessor claims.
 
 Run Inspector gff on the approved object archive. Select ALL/4's directory

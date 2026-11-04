@@ -34,13 +34,13 @@ installed one (634,416 bytes, XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`).
 `38FF:05B5` and `38FF:04AB` (`2D40:0062..+00B3`) and from then on reads the bytes the same way
 whatever the tag: from offset 0 it walks 10-byte headers, handling each by its byte 0 through
 the four words at `2D40:03B9` and stepping on by 10 plus the header's word at 8, until a header
-whose byte 0 is 0xFF (FND-PARTY-051, which reads this walk for `CHAR`). The listing of
+whose byte 0 is 0xFF (FND-PARTY-259, which reads this walk for `CHAR`). The listing of
 `2D40:000A..2D40:03C1` shows no comparison with the tag.
 
 **The kinds.** Overlay 187 `+039A` copies a chunk's data by the kind in the slot's entry at
 `4F49:0C33` through the five words at `+05FB` (file `0x7042B`), `0x04F8`, `0x045E`, `0x054C`,
 `0x05CE` and `0x05B0` for kinds 1 to 5. Kinds 1, 2 and 3 copy 23, 49 and 66 bytes as
-FND-PARTY-051 gives. Kind 4 (`+05CE`) copies nothing. Kind 5 (`+05B0..+05CB`) copies 23 bytes into
+FND-PARTY-259 gives. Kind 4 (`+05CE`) copies nothing. Kind 5 (`+05B0..+05CB`) copies 23 bytes into
 the record of the returned number in the table of 23-byte records at the far pointer `DS:19D1`.
 
 **The resources.** `rdff_chunks.py` walks each of the 1,643 `RDFF` resources the same way:
@@ -78,7 +78,7 @@ An `RDFF` resource is a chain of FMT-PARTY-006 chunks. Its first chunk is the ob
 FMT-COMBAT-001 with its 66-byte FMT-COMBAT-002 details as a type-3 chunk, followed by the items
 it carries as type-2 and type-4 chunks. The second chunk of a 68-byte resource has kind 4, whose
 15 data bytes are not copied; the load stores its word at 4 as the record number instead
-(FND-PARTY-051). The label at offset 43 of the 23 resources of FND-ACTOR-007 is at offset 0x21 of
+(FND-PARTY-259). The label at offset 43 of the 23 resources of FND-ACTOR-007 is at offset 0x21 of
 the combatant record, its `name`. The 102 bytes after `RDFF/500`'s end header are never read; they
 look like the rest of an older chain of the 145-byte shape.
 

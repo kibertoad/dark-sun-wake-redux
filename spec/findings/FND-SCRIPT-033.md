@@ -74,7 +74,7 @@ remain separate; this does not claim the final live globals are immutable
 after the last local assignment or establish a player's observed trigger.
 
 The field-table producer is also already known rather than an unanswered
-writer search: FND-PARTY-051 and FND-CONFIG-150 identify the initializer's
+writer search: FND-PARTY-259 and FND-CONFIG-150 identify the initializer's
 FNFO/1 load into DS:5AF7, the kind-1 base of the 196-byte rows selected
 relative to DS:5A33. FND-CONFIG-153 supplies the source spans and sizes;
 FND-PARTY-216 gives kind-1 field zero's offset zero and metadata nine.
@@ -114,7 +114,7 @@ Check no match, one match before 319, multiple matches, match at 319,
 nonnegative direct input and 9999 paths against those local branches.
 Do not substitute synthetic return values for admitted native getter state.
 
-Reuse FND-CONFIG-140/141/150/153, FND-PARTY-051/216/241 and
+Reuse FND-CONFIG-140/141/150/153, FND-PARTY-259/216/241 and
 FND-SCRIPT-028 for their separate accessor, metadata, table and caller
 claims. Retained bounded listings are context-setter.txt and selector.txt
 under GAME_DIR/analysis/trigger-object-context-20261103/. The preliminary

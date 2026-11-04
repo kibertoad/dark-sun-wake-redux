@@ -18,7 +18,7 @@ locations:
     file: DSUN.EXE
     kind: file-data
     offset: 0x0004D40E..0x0004D40F
-tool: tools/evidence/report.mjs table; hash-checked numeric source queries and the accessor readings in FND-PARTY-051, FND-PARTY-214 and FND-PARTY-216
+tool: tools/evidence/report.mjs table; hash-checked numeric source queries and the accessor readings in FND-PARTY-259, FND-PARTY-214 and FND-PARTY-216
 environment: null
 ---
 
@@ -43,7 +43,7 @@ These are source descriptor and initial-data values, not a native
 capture of the current tables.
 
 Under those descriptor bindings, an admitted kind-1 field-six
-request to 1AA0:012A selects record +0C. FND-PARTY-051 describes
+request to 1AA0:012A selects record +0C. FND-PARTY-259 describes
 its record/field lookup, invalid-object and missing-field statuses,
 and copy request. Type two takes the ordinary value-copy path,
 whose byte count comes from the current width table. With width
@@ -84,7 +84,7 @@ offset scan into a complete writer census.
 Use tools/evidence/report.mjs table with the locked source identities
 above. Read the kind-one offset row at file 1FF48, 98 little-endian
 words of stride two, the 196-byte per-kind row described in
-FND-PARTY-051 and FND-PARTY-216; inspect row index six. The positive
+FND-PARTY-259 and FND-PARTY-216; inspect row index six. The positive
 controls at fields one, four and ten match the prior findings.
 Read one type byte at 20322 and one executable width byte at
 4D40E. Retained query definitions are under

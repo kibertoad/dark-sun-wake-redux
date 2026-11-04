@@ -60,7 +60,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE` (634,416 bytes, XXH3-128 `e296af55ba2ecde7e77f555c90f33d0b`). A kind-1 record is the
-23-byte record at the far pointer `DS:19C1` plus 23 times its number (FND-PARTY-051); FND-PARTY-216
+23-byte record at the far pointer `DS:19C1` plus 23 times its number (FND-PARTY-259); FND-PARTY-216
 binds kind-1 field 3 to its word at `0x06` with type 3. The 15-byte records at the far pointer
 `DS:19CD` are numbered by the kind-1 word at `0x0A`; this finding uses only bit 1 of their byte
 `0x0B`, called the stack bit below.
@@ -192,7 +192,7 @@ only the low 16 bits of value times quantity, both in the money added and in the
   names were not read from their resources.
 - The census misses an access through a far pointer loaded more than six instructions before,
   through a pointer kept in memory, and block copies; the CHAR load copies whole records
-  (FND-PARTY-051) and the numbered save and restore whole tables (FND-PARTY-236).
+  (FND-PARTY-259) and the numbered save and restore whole tables (FND-PARTY-236).
 
 ## How to reproduce
 

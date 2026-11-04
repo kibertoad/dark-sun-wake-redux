@@ -104,7 +104,7 @@ differs in 31, 33, 50, 51 and 53, where the word at `0x10` is 33,534, 33,536, 33
 ## Interpretation
 
 For a party slot the load copies the type-3 chunk unchanged into the slot's combatant details
-record (FND-PARTY-051), so the word at `0x4D` is the character's greatest hit points, which the
+record (FND-PARTY-259), so the word at `0x4D` is the character's greatest hit points, which the
 status panel shows second (FND-COMBAT-022). The word at `0x0A` that lands on the combatant
 record's `hit_points` is therefore the current hit points: it never exceeds the word at `0x4D`
 and is below it in records 50, 51 and 53.
@@ -114,7 +114,7 @@ and is below it in records 50, 51 and 53.
 - The word at `0x0A` is the greatest hit points rather than the current (FND-PARTY-050): ruled
   against by this finding, which places the greatest hit points at `0x4D`.
 - The word at `0x4D` is changed before it is shown: for a slot above 4 the load scales it by the
-  difficulty (FND-PARTY-051), but not for the party slots 0 to 3; later writes were not searched
+  difficulty (FND-PARTY-259), but not for the party slots 0 to 3; later writes were not searched
   for.
 
 ## How to reproduce

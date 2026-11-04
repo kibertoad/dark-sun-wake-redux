@@ -54,7 +54,7 @@ the shipped FNFO 1 first row and FNFO 2 type bytes give:
 | 3 | 6 | 3 | 2 |
 | 4 | 8 | 7 | 2 |
 
-FND-PARTY-051 describes the kind-1 table's 23-byte records and their copied
+FND-PARTY-259 describes the kind-1 table's 23-byte records and their copied
 CHAR payloads. 1AA0:0009 uses the returned descriptor as an offset into the
 kind's record. For type 3 and width 2 it reads a signed word, sign-extends
 it to a dword, and returns the low word in AX and high word in DX. No

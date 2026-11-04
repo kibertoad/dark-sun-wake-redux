@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: One 66-byte combatant details record of the table the game keeps in memory.
-doc-ref: FMT-COMBAT-002, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-072, FND-COMBAT-074, FND-PARTY-051
+doc-ref: FMT-COMBAT-002, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-072, FND-COMBAT-074, FND-PARTY-259
 seq:
   - id: experience
     type: u4

@@ -9,7 +9,7 @@ doc: |
   A CHAR resource of the character archive, one per character: a chain of chunks
   (fmt_party_006) ending at one whose type is 0xFF. Every shipped record starts with a
   type-1 chunk at 0x00 and a type-3 chunk at 0x3B, given here field by field.
-doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-051, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056, FND-PARTY-058, FND-PARTY-059
+doc-ref: FMT-PARTY-001, FND-PARTY-001, FND-PARTY-003, FND-PARTY-020, FND-PARTY-049, FND-PARTY-050, FND-PARTY-259, FND-PARTY-052, FND-PARTY-053, FND-PARTY-055, FND-PARTY-056, FND-PARTY-058, FND-PARTY-059
 seq:
   - id: type
     type: u1

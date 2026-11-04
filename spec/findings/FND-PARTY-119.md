@@ -91,7 +91,7 @@ environment: null
 
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. The object table at `4F49:0C33` has three bytes per object: a kind byte (2 for a
-combatant, FND-PARTY-051) and a word at `+1` that holds the record number of a used object and
+combatant, FND-PARTY-259) and a word at `+1` that holds the record number of a used object and
 the next object of a free list for a free one. Objects 0 to 3 are the party slots.
 
 **Adding to a list.** `2D40:0CC2` takes an object and the address of a list head. It does

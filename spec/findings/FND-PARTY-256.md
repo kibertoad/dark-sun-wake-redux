@@ -30,7 +30,7 @@ environment: null
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. A load copies a CHAR record's bytes `0x23` to `0x28` to `+0x19` of the character's
 FMT-COMBAT-001 record and bytes `0x5A` to `0x5F` to `+0x15` of its FMT-COMBAT-002 record
-(FND-PARTY-049, FND-PARTY-051). The generation finish copies the six score bytes at `+0x19` of
+(FND-PARTY-049, FND-PARTY-259). The generation finish copies the six score bytes at `+0x19` of
 the combatant record to `+0x15` of the details record (FND-PARTY-070), and the scores it copies
 are the rolled ones with the origin modifiers added (FND-PARTY-071).
 

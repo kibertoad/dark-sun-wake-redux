@@ -20,7 +20,7 @@ environment: null
 Overlay 187's code starts at file offset `0x6FE30`; `+x` is file offset `0x6FE30 + x`. Segment word
 `0x0388` resolves through the overlay's fixups to `4F49`.
 
-FND-PARTY-051 reads overlay 187 `+039A`, the copy of one chunk's data into the record
+FND-PARTY-259 reads overlay 187 `+039A`, the copy of one chunk's data into the record
 `2D40:2C87` returns. It dispatches through the five-word table at `+05FB` (`0x04F8`, `0x045E`,
 `0x054C`, `0x05CE`, `0x05B0`) on the `object_slot_kinds` byte of the handle `di`, less 1. Kind 2,
 the combatant (`+045E..+04F8`), with `si` the record number:
@@ -30,7 +30,7 @@ the combatant (`+045E..+04F8`), with `si` the record number:
 2. stores 9,999 to the record's words at `+0x04`, `+0x0A`, `+0x08` and `+0x0C` (`+0480..+04BE`);
 3. when the record's byte at `+0x14`, `combat_mark`, is 0, stores 1 there (`+04C4..+04E1`);
 4. stores `si` to the handle's word at `4F49:0C34 + 3 * di`, its `object_slot_combatants` entry
-   (`+04E6..+04F0`), and goes on at `+05CE` (`+04F5`), which FND-PARTY-051 reads.
+   (`+04E6..+04F0`), and goes on at `+05CE` (`+04F5`), which FND-PARTY-259 reads.
 
 ## Interpretation
 

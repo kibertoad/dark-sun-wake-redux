@@ -71,7 +71,7 @@ game's own table (RULE-PARTY-009) and, for a later class, by the DUAL list (Q-PA
 - A limit stored in another form, such as a table of per-origin words or a computed bound, would
   not match the byte search; no routine that sets a level reads such a table.
 - A level set through a copy of the details record, or a block copy, is outside the store search;
-  the `CHAR` load is such a copy and sets whatever the record holds (FND-PARTY-051).
+  the `CHAR` load is such a copy and sets whatever the record holds (FND-PARTY-259).
 
 ## How to reproduce
 

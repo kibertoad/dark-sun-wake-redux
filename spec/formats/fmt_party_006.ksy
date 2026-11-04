@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: One chunk of a CHAR resource, a 10-byte header and the data its length gives.
-doc-ref: FMT-PARTY-006, FND-PARTY-051, FND-PARTY-052
+doc-ref: FMT-PARTY-006, FND-PARTY-259, FND-PARTY-052
 seq:
   - id: chunk_type
     type: u1

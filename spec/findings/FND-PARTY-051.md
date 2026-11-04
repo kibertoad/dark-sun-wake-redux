@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-051
 title: The CHAR load reads a resource as a chain of chunks, each a 10-byte header and the number of bytes its word at 8 gives, until a chunk whose first byte is 0xFF, and handles each chunk by its first byte
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-259]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

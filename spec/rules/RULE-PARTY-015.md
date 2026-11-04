@@ -4,7 +4,7 @@ title: How experience is given to party members
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-089, FND-PARTY-095, FND-SCRIPT-005, FND-PARTY-094, FND-PARTY-153]
+evidence: [FND-PARTY-081, FND-PARTY-086, FND-PARTY-089, FND-PARTY-095, FND-SCRIPT-005, FND-PARTY-094, FND-PARTY-260]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -107,4 +107,4 @@ None known.
   that a kill lowers the party's experience: `RDFF` 430 and 541 of `OBJEX.GFF`, of kind 7, load
   as CHAR records do with 107,000 and 33,000, which would do so with three filled slots or fewer
   and with one, but both objects are placed only in the region `Limbo`, and what brings them out
-  of it was not read (FND-PARTY-094, FND-PARTY-153, Q-PARTY-045).
+  of it was not read (FND-PARTY-094, FND-PARTY-260, Q-PARTY-045).

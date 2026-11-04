@@ -28,7 +28,7 @@ checking its error word. It has no local table write or further conversion.
 
 FND-CONFIG-153 locates FNFO/1 at OBJEX.GFF file 0x1FF48, length 980.
 Its 196-byte rows select the per-kind field offsets after loading into
-DS:5AF7 (FND-PARTY-051/216). Reading only the first word of each row gives:
+DS:5AF7 (FND-PARTY-259/216). Reading only the first word of each row gives:
 
 | Kind | Field-zero descriptor | Previously documented field |
 |---|---|---|
