@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince aac2858c
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 5557905e
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -61,12 +61,14 @@ reports before matched-menu pairing are diagnostic only.
   require integration. Fresh staged hooks stay enabled.
 - Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
   See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
-  Current-pin startup and new-process opener restore/return are verified;
-  docs/RUNTIME.md names the retained v181-q046 opener/opened runs.
-  They do not admit menu readiness or provide Q-COMBAT-046's UI-field snapshot.
+  Current-pin startup, opener restore/return, Start/Create readiness, left
+  mouse move/click, frames and strict checkpoint checks are verified.
+  docs/RUNTIME.md names retained v181-q046 runs and reproduction commands.
+  Save/Load, keyboard and gameplay remain unverified under current pins;
+  Q-COMBAT-046 still needs its dispatch-field snapshot and admitted route.
   Historical checkpoints retain their identities and require regeneration
   before current-pin restore; never relabel states. Previous runtime remains
-  at artifacts/rust-dos-v1.7.5. Both owned probe sessions closed cleanly.
+  at artifacts/rust-dos-v1.7.5. All owned probe sessions closed cleanly.
 - Current reports/configurations remain under GAME_DIR/analysis/hit-incoming-20261104/
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
