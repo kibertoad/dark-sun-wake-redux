@@ -106,10 +106,11 @@ Next ID: Q-ITEM-013
   callers consume the forwarded hit result beyond the three known direct
   continuations? Settles it: consumers of the result forwarded by overlay
   179 +0C7F through the returns of overlay 193 +1119 and +1249 and any
-  use of the queue runner +11DC return. Resolve remaining continuations at
-  overlay 195 +05BC/+0615/+066E/+0733 and overlay 204 +150F,
-  including loop and child register effects before an
-  overwrite or result-dependent request. Complete
+  use of the queue runner +11DC return. Resolve child register-input
+  contracts on overlay 195 +0733's loop-back through 28C9:391D and
+  overlay 204 +150F's loop/exit through overlay 173 +2A5D/+24C7 and
+  31E0:05BB, especially the latter's invalid-index AX-preserving exit.
+  Complete
   incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
   feedback effects Q-ITEM-012. Blocks: slices 4-5.
   Tried: split the independently answerable dependencies from this item.
@@ -130,6 +131,11 @@ Next ID: Q-ITEM-013
   return before a register test. This does not remove memory-effect or
   frame-admission obligations from Q-ITEM-011. The five remaining direct
   continuations and the outer returns above still need their own reading.
+  Tried: FND-ITEM-023 settles the local-field tests and skipped-branch
+  overwrites after overlay 195 +05BC/+0615/+066E, the +0733 exit and
+  next-call preparation, and overlay 204 +150F's local-byte Boolean.
+  These direct tests are removed from Settles it. Child register inputs
+  remain explicitly qualified; do not assume any call overwrites AX.
 
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
   incoming mechanisms can reach the hit routine outside the qualified direct
