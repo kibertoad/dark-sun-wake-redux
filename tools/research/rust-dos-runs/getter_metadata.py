@@ -1,8 +1,30 @@
 """Fixed paused getter inputs; FND-CONFIG-140/150, FND-PARTY-119."""
 import hashlib
 import struct
+import xxhash
 
 from regenerate_checkpoints import checked_read
+
+
+def compare_buffers(captured, reference):
+    if len(reference) != 1078:
+        raise ValueError("FNFO reference extent differs")
+    result = {}
+    for name, start, size in (("field_offsets", 0, 980), ("field_metadata", 980, 98)):
+        span = captured["spans"][name]
+        if span["size"] != size or not isinstance(span["hex"], str) or len(span["hex"]) != size * 2:
+            raise ValueError("FNFO captured extent differs")
+        body = bytes.fromhex(span["hex"])
+        result[name] = {"size": size, "equal": body == reference[start:start + size]}
+    return result
+
+
+def compare_archive(captured, path):
+    with open(path, "rb") as stream:
+        body = stream.read(6816517)
+    if len(body) != 6816516 or xxhash.xxh3_128_hexdigest(body) != "e08d3cac153c547f6804ca27b155915d":
+        raise ValueError("FNFO source differs from the approved OBJEX archive")
+    return compare_buffers(captured, body[0x1FF48:0x2037E])
 
 
 def fixed_read(client, segment, offset, size):

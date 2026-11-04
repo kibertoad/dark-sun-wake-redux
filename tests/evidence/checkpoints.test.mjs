@@ -59,6 +59,12 @@ memory=GetterMemory()
 captured=getter_metadata.capture(memory,0)
 assert captured['spans']['objects']['size']==1572
 assert captured['spans']['field_offsets']['size']==980
+assert all(x['equal'] for x in getter_metadata.compare_buffers(captured,bytes(1078)).values())
+reference=bytearray(1078); reference[980]=1
+compared=getter_metadata.compare_buffers(captured,reference)
+assert compared['field_offsets']['equal'] and not compared['field_metadata']['equal']
+rejects(lambda:getter_metadata.compare_buffers(captured,bytes(1077)))
+rejects(lambda:getter_metadata.compare_buffers({'spans':{'field_offsets':{'size':980,'hex':''}}},bytes(1078)))
 assert captured['pool_analysis']['lists']['56ED']['cycle_at']==0
 assert getter_metadata.fixed_read(memory,0x1000,0xFFE0,32)==bytes(32)
 rejects(lambda:getter_metadata.fixed_read(memory,0x1000,0xFFE0,33))
