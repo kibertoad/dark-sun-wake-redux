@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-240
 title: A trigger record's second entry point is set only by script instructions 0x1B and 0x1C, and of the 382 shipped registrations only GPL/144's for object 161 reaches opcode 0x24, inside a dialog branch
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-261]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

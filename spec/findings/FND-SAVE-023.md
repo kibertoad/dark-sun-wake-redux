@@ -64,7 +64,7 @@ otherwise; every path after `+1615` reaches `+0A61`. The reader `+0A6C(n)` calls
 ## Interpretation
 
 Words `+8`, `+0x0A` of a 19-byte record and word `+0` of a trigger record are offsets into the
-`GPL ` resource named by the word beside them (FND-SCRIPT-027, FND-SCRIPT-028). A saved file holds
+`GPL ` resource named by the word beside them (FND-SCRIPT-038, FND-SCRIPT-028). A saved file holds
 these offsets as `GPLI/1` numbers, and memory holds them as offsets again after the save, after a
 load and after a region change. The game state never uses the numbered form.
 

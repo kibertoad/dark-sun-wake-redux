@@ -9,7 +9,7 @@ byte_order: little
 size: 19
 text: false
 definition: fmt_script_005.ksy
-evidence: [FND-SCRIPT-016, FND-SCRIPT-017, FND-SCRIPT-027, FND-RNG-068, FND-COMBAT-062, FND-PARTY-098, FND-SCRIPT-036]
+evidence: [FND-SCRIPT-016, FND-SCRIPT-017, FND-SCRIPT-038, FND-RNG-068, FND-COMBAT-062, FND-PARTY-098, FND-SCRIPT-036]
 conflicting: []
 split_with: []
 related: []
@@ -38,7 +38,11 @@ entry points name.
 
 The second-entry condition word at +06 admits the recorded helper/threshold
 gates for values one and two. Other nonzero values still perform the helper
-calculations but do not run the second entry on this route. See FND-PARTY-098.
+calculations but do not run the second entry on this route. See FND-PARTY-098. Registration
+opcodes 1B/1C write that condition word, not walk mode. Their radius-byte
+update is `(old & 0x80) | UINT8(p3)`: the old high bit cannot be cleared,
+and the incoming high bit can set it. The consumer separately masks the
+radius to seven bits (FND-SCRIPT-038, FND-PARTY-261).
 
 ## Differences between builds
 

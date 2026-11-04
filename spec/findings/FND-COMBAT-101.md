@@ -42,7 +42,7 @@ as script_reach.py accepts them; selector instruction offsets are hexadecimal.
 | GPL/163 | 1, 646, 1091, 1800, 4287 | Only 1 reaches 0x027A |
 
 These controls come from opcode 0x14's calls and the registration
-forms in FND-SCRIPT-027 and FND-PARTY-240: offset/script are operands
+forms in FND-SCRIPT-038 and FND-PARTY-261: offset/script are operands
 0/1 for 0x1B, 0x1C, 0x65, 0x66 and 0x6C..0x6F; operands 2/3 for
 0x68, 0x69 and 0x70; operands 4/5 for 0x6A and 0x6B.
 Examples providing positive controls include MAS/66's call of GPL/4
@@ -112,5 +112,5 @@ check all four positive selector hits and every PROBLEM line.
 Read each direct assignment in the decoded index, selecting opcode 16
 whose destination is the table's exact local-number expression; retain
 the 22-count control. Cross-check the root operand positions with
-FND-SCRIPT-027 and FND-PARTY-240. No decoded scripts or route listings
+FND-SCRIPT-038 and FND-PARTY-261. No decoded scripts or route listings
 are committed.

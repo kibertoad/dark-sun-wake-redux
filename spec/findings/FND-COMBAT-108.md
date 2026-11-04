@@ -45,11 +45,11 @@ name offset 531. These entry offsets are decimal, matching the controls
 in FND-COMBAT-101. The four first entries are its selector-reaching roots;
 the other fourteen registrations do not add fourteen new distinct roots.
 
-Global top-level controls reproduce FND-SCRIPT-027's 150 opcode-0x68
+Global top-level controls reproduce FND-SCRIPT-038's 150 opcode-0x68
 and 321 opcode-0x6A instructions, including 63 cell and 26 box instructions
 whose final operand is literal two. These nonzero-category controls distinguish
 MAS/65's local zero result from a selection that never admits category two.
-FND-SCRIPT-027 independently maps
+FND-SCRIPT-038 independently maps
 0x6A's seventh operand to byte +0x0A of the box record. These are counts
 of decoded instructions, not proof of which registrations execute or remain
 in the live list. The GPL/37 gap and changed/native entry streams remain
@@ -138,7 +138,7 @@ Use resident_listing.py at the stated tool commit for both half-open ranges
 in Locations, with the fingerprinted DSUN.EXE and locked evidence Python.
 Trace the loader's signed slot branch and actual category push, then the
 wrapper's category store and the walker's zero-extension, signed comparison
-and reject continuation. Reuse FND-SCRIPT-027/028 for record construction
+and reject continuation. Reuse FND-SCRIPT-038/028 for record construction
 and FND-PARTY-119 for the qualified allocation context. Do not replace those
 children or their preservation obligations with stubs.
 

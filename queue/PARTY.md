@@ -493,12 +493,12 @@ None.
 
 - Q-PARTY-104. RULE-PARTY-013: Can `GPL/144`'s trigger for object 161, registered at `0x0023`
   with entry offset 281, run its dialog branch to the opcode `0x24` at `0x0F14` during a fight
-  (FND-PARTY-240)? Settles it: an owner capture, from a new game in region 50, of a fight in which
+  (FND-PARTY-261)? Settles it: an owner capture, from a new game in region 50, of a fight in which
   the object placed at x 168, y 239 of region 50 (object 161) takes part, with a party member
   within 5 of it, showing whether its conversation menu opens during the fight, and if it does,
   whether choosing the row whose target is 3510 brings up a character screen (FND-PARTY-244).
   Required parts: Send it input and Capture frames and sound (frames), the owner's. Tried: split
-  from Q-PARTY-050, which FND-PARTY-240 closed. Tried: FND-PARTY-244 finds the fight runs a
+  from Q-PARTY-050, which FND-PARTY-261 closed. Tried: FND-PARTY-244 finds the fight runs a
   trigger only for a slot whose combatant has `combat_mark` 1 and byte `+0x15` other than 1, and
   object 161 placed only in region 50; whether object 161 fights there and what the kind-9
   variable 32, `varD[374]`, `varD[331]`, `varE[7]` and the row's condition then hold depend on

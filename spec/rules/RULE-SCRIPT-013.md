@@ -4,7 +4,7 @@ title: The game runs the first script trigger whose cell, box, key or key pair m
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034, FND-ACTOR-016, FND-SCRIPT-035]
+evidence: [FND-SCRIPT-007, FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028, FND-SCRIPT-029, FND-EXPLORE-014, FND-CONFIG-156, FND-SCRIPT-005, FND-SCRIPT-033, FND-SCRIPT-034, FND-ACTOR-016, FND-SCRIPT-035]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-008, FMT-SCRIPT-004]
@@ -223,7 +223,7 @@ region's script.
 ## Edge cases
 
 - A tile or box trigger's byte decides who sets it off: 0 the leader only, 1 any party member, 2
-  anyone. Shipped tile triggers use 0 and 2, box triggers 0, 1 and 2 (FND-SCRIPT-027).
+  anyone. Shipped tile triggers use 0 and 2, box triggers 0, 1 and 2 (FND-SCRIPT-038).
 - Only the first matching record of a list runs, and a box trigger is tested only when no tile
   trigger ran. The tile and box tests compare signed words.
 - `trigger_keyed` tests the second key only on the record at the head of the use-with list, so a later

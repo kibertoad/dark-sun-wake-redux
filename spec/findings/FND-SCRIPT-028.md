@@ -27,7 +27,7 @@ environment: null
 ## Observation
 
 Addresses are static, load image at segment 1000. A record is FMT-SCRIPT-004, at the far pointer
-`57E0:40C0`; the list heads are the words `4C10:0005` to `4C10:0017` (FND-SCRIPT-027). "Run"
+`57E0:40C0`; the list heads are the words `4C10:0005` to `4C10:0017` (FND-SCRIPT-038). "Run"
 means `172C:000C(word +2, word +0, 1)`, the interpreter's entry. `number(x)` is `2D40:0AE5(x)`:
 `x` itself when negative, otherwise field 0 of object `x` through `1AA0:0009(x, 0)`.
 `2D40:06E6(id)` stores the cell of the object `id` names (its pixel words `+0x0A`, `+0x0C` shifted
@@ -67,7 +67,7 @@ record that passes and returns 1, or 0 when none does.
 
 `direct_callers.py` finds no direct call of `1695:0235`, and neither a far pointer to it nor its
 offset pushed was found. `172C:000C` clears `4C13:0325` at `172C:0049` on every run; only `0x47`
-sets it (FND-SCRIPT-027). `segment_offset_refs.py <dsun> 4C0E B` finds the stores to `4C0E:000B`
+sets it (FND-SCRIPT-038). `segment_offset_refs.py <dsun> 4C0E B` finds the stores to `4C0E:000B`
 only in overlay 169: -1 at `+0028` and `+015C`, 1 at `+0113`, `+0260` and
 `+0521`, the inner set-up's result at `+0136`, 0 at `+0226` and 2 at `+040F`, the end of the inner
 set-up `+023B`. Outside overlay 169 it is only compared with 2, by `172C:000C` and by `1695:000B`,

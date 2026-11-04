@@ -7,7 +7,7 @@ LISTING is the output of `script_decode.py GPLDATA.GFF OBJEX.GFF --all`. OPCODE 
 hexadecimal. ENTRY is TAG/NUMBER@OFFSET with a decimal offset (`GPL/142@95`). With
 `--registrations 1B,1C` the entries are the code offsets (operand 0) in the `GPL ` resources
 (operand 1) that every instruction of those opcodes names, as the trigger registrations of opcodes
-0x1B and 0x1C take them (FND-PARTY-240); an instruction whose two operands are not both literal
+0x1B and 0x1C take them (FND-PARTY-261); an instruction whose two operands are not both literal
 is reported and not followed.
 
 From each entry the walk takes every instruction it can reach under RULE-SCRIPT-003: the next

@@ -4,7 +4,7 @@ title: The script instructions that register triggers
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028, FND-SCRIPT-029]
+evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028, FND-SCRIPT-029]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-013, FMT-SCRIPT-004]
@@ -205,7 +205,7 @@ other one-key lists, and for byte `unk_08` of a `0x70` record (FND-SCRIPT-028).
 
 The box lists are walked like the cell lists and copy 11 bytes. `0x70` compares its keys as signed
 numbers and always takes a new record, so the same pair registered twice is on the list twice, and
-when the free list is empty the record at its place is overwritten (FND-SCRIPT-027). Opcodes `0x69`
+when the free list is empty the record at its place is overwritten (FND-SCRIPT-038). Opcodes `0x69`
 and `0x6B` fill lists no event found runs, and no shipped script uses them.
 
 ## What the sources say

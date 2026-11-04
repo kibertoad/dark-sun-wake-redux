@@ -109,7 +109,12 @@ Next ID: Q-SCRIPT-023
   interior raster cells for bit seven, returns zero for equal/adjacent cells
   without sampling, and otherwise returns zero or FFFF. Caller coordinate/grid
   bounds, phase, identity and lifetime remain above; nonzero heights belong to
-  other callers rather than this runner's literal-zero arguments. Blocks: slices 3-6.
+  other callers rather than this runner's literal-zero arguments. Tried:
+  FND-SCRIPT-038 and FND-PARTY-261 correct the known 1B/1C writer binding:
+  condition 1/2 goes to +06; the full radius byte updates +10 after retaining
+  old bit seven. This removes the contradictory parameter/field mapping;
+  admitted DS/stack near-structure identity, signed index bounds, actual inputs
+  and other writers/preservation remain. Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the

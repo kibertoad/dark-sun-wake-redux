@@ -48,7 +48,7 @@ scores, 0 to 25; `screen_wisdom`, the wisdom in the combatant record the far poi
 points to when the psionic points are recomputed: the character whose new Psionicist level came
 last, in this member's gain or an earlier one, and otherwise the slot the game last made current,
 a record another screen was given, or the generation screen's working record (FND-PARTY-076,
-FND-PARTY-084, FND-PARTY-088, FND-PARTY-090, FND-PARTY-097, FND-PARTY-240, Q-PARTY-104); `hit_points` and `max_hit_points`; `psionic_points` and
+FND-PARTY-084, FND-PARTY-088, FND-PARTY-090, FND-PARTY-097, FND-PARTY-261, Q-PARTY-104); `hit_points` and `max_hit_points`; `psionic_points` and
 `max_psionic_points`; `class_flags`, `class_attack_rate`, `attack_rate`, `natural_attack_rates`, `thac0` and
 `saving_throws`, the FMT-PARTY-001 fields RULE-PARTY-014 sets; `name`, the character's name; `combat_mark`, FMT-PARTY-001 `combat_mark` as the combatant record holds it; `unknown_spells`, for each spell level `k` from 1 to 15, the number of spells of the range FND-PARTY-104 gives for `k` whose bit in the character's FMT-PARTY-005 known spells is clear, the bits from spell 120 being read from the next slot's entry; `one_each`, true when each class gains one
 level without the experience test.
@@ -247,8 +247,10 @@ None known.
   to change it, and the fight routine changes it only inside the gain (FND-PARTY-088,
   FND-PARTY-090); during a fight an object's trigger script that runs opcode `0x24` makes the
   slot in `4C13:0369` current when that slot meets the trigger's distance test (FND-PARTY-097,
-  FND-PARTY-098). Of the shipped trigger registrations only `GPL/144`'s for object 161 reaches
-  that opcode, inside a dialog branch (FND-PARTY-240). The fight runs it only while object 161,
+  FND-PARTY-098). Within the unchanged decoded registration domain, `GPL/144`'s for object 161
+  is the sole recorded route to that opcode, inside a dialog branch
+  (FND-PARTY-261). Other transfers and changed input/state remain outside that
+  census. The fight runs it only while object 161,
   placed only in region 50, takes part in the fight as a combatant with `combat_mark` 1
   (FND-PARTY-244); whether that happens with the dialog's conditions met depends on the course of
   play, and a capture of such a fight would show it (Q-PARTY-104).

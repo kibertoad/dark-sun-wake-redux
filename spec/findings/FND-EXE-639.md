@@ -83,7 +83,7 @@ the file offset is `0x6FE30` plus it, and `DS` is `57E0`. Every routine has a tr
 FND-INPUT-009 calls the routine at `0x71659` dispatcher-shaped with a fourth case that requests
 `GPLI/1`. In this inventory that address starts `+1829`, a single routine with no case table whose
 first request is `GPLI/1`; the routines that call it (`+0A61`, `+0CBD`) are outside this batch.
-FND-PARTY-240's conversions at `0x7154A`, `0x71738` and `0x7175C` lie in `+1615` and `+1829`.
+FND-PARTY-261's conversions at `0x7154A`, `0x71738` and `0x7175C` lie in `+1615` and `+1829`.
 
 ## Interpretation
 

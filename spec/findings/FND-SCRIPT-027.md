@@ -1,9 +1,9 @@
 ---
 id: FND-SCRIPT-027
 title: Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SCRIPT-038]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

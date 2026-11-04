@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-027, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -27,11 +27,11 @@ FND-SCRIPT-015]. The tests read the key fields in different ways for different l
 |---|---|---|---|---|---|---|
 | `0x00` | 2 | `UINT16LE` | `entry_offset` | Offset of the entry point in the script, or its `GPLI` entry number while overlay 187 has converted it. | supported | FND-SCRIPT-013, FND-SCRIPT-015, FND-SCRIPT-017 |
 | `0x02` | 2 | `UINT16LE` | `entry_script` | Number of the `GPL ` resource that holds the entry point. | supported | FND-SCRIPT-013, FND-SCRIPT-015, FND-SCRIPT-017 |
-| `0x04` | 2 | `INT16LE` | `key_1` | The object number of a one-key trigger, the first number of a key-pair trigger, or the cell column of a tile trigger or of a box trigger's first column. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028 |
-| `0x06` | 2 | `INT16LE` | `key_2` | The cell row of a tile trigger or of a box trigger's first row, or the second number of a key-pair trigger. In a one-key trigger only the low byte is written: 1 when `MAS ` resource 99 registered it, which keeps it at a region change. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028 |
-| `0x08` | 1 | `UINT8` | `unk_08` | Who may set off a tile trigger (0 the leader, 1 the party, 2 anyone), the width of a box trigger's box, or, in a key-pair trigger, 1 when `MAS ` resource 99 registered it. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-027, FND-SCRIPT-028 |
-| `0x09` | 1 | `UINT8` | `unk_09` | The height of a box trigger's box. | supported | FND-SCRIPT-014, FND-SCRIPT-027, FND-SCRIPT-028 |
-| `0x0A` | 1 | `UINT8` | `unk_0A` | Who may set off a box trigger (0 the leader, 1 the party, 2 anyone). | supported | FND-SCRIPT-014, FND-SCRIPT-027, FND-SCRIPT-028 |
+| `0x04` | 2 | `INT16LE` | `key_1` | The object number of a one-key trigger, the first number of a key-pair trigger, or the cell column of a tile trigger or of a box trigger's first column. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028 |
+| `0x06` | 2 | `INT16LE` | `key_2` | The cell row of a tile trigger or of a box trigger's first row, or the second number of a key-pair trigger. In a one-key trigger only the low byte is written: 1 when `MAS ` resource 99 registered it, which keeps it at a region change. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028 |
+| `0x08` | 1 | `UINT8` | `unk_08` | Who may set off a tile trigger (0 the leader, 1 the party, 2 anyone), the width of a box trigger's box, or, in a key-pair trigger, 1 when `MAS ` resource 99 registered it. | supported | FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028 |
+| `0x09` | 1 | `UINT8` | `unk_09` | The height of a box trigger's box. | supported | FND-SCRIPT-014, FND-SCRIPT-038, FND-SCRIPT-028 |
+| `0x0A` | 1 | `UINT8` | `unk_0A` | Who may set off a box trigger (0 the leader, 1 the party, 2 anyone). | supported | FND-SCRIPT-014, FND-SCRIPT-038, FND-SCRIPT-028 |
 | `0x0B` | 2 | `INT16LE` | `next` | Index of the next record on the same list, or -1 at its end. | supported | FND-SCRIPT-014, FND-SCRIPT-015 |
 | `0x0D` | | | | Total size 13 | | |
 
