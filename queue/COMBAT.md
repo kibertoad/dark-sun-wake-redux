@@ -473,6 +473,11 @@ Next ID: Q-COMBAT-063
   Runtime-written/copied archives and inputs outside that census remain;
   do not repeat the shipped-provider search or assume the shipped working
   filename admits the later saved directory.
+  Tried: FND-COMBAT-113 reads the resident copy's default 128-byte loop,
+  destination-open ordering, transfer mismatches and ignored final close
+  results. The copy-loop/result-combination uncertainty is removed; path
+  normalization and identity, source length/position, actual external
+  outcomes and the subsequent archive/directory lifetime remain.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
