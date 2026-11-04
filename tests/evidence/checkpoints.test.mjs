@@ -38,10 +38,35 @@ from startup_segments import equipment_flag
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from disc_adv_envelopes import envelope as adv_envelope
 from resident_listing import span as resident_span
+from sound_ini_profile import profile as sound_ini_profile
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+def source_labels(names,declared=None):
+    rows=['[MainGroup]','[NumberOfRecords] '+str(len(names) if declared is None else declared)]
+    for name in names:
+        rows+=['[StartRecord]','[CardName] ['+name+']','[EndRecord]']
+    rows+=['[EndOfGroup]','[DigitalGroup]','[NumberOfRecords] 0','[EndOfGroup]',
+           '[MusicOnlyGroup]','[NumberOfRecords] -1','[EndOfGroup]','[EndOfFile]']
+    return (chr(13)+chr(10)).join(rows)
+labels=source_labels(['ALPHA','BETA'])
+measured=sound_ini_profile(labels)['groups']
+assert measured[0]['joinedTextFootprint']==12 and measured[0]['textLabelSlotsBytes']==160
+assert measured[0]['maxNameBytes']==5 and measured[0]['smallPositivePrintableProfile']
+assert measured[2]['declaredCount']==-1 and not measured[2]['smallPositivePrintableProfile']
+assert measured[2]['joinedTextFootprint'] is None
+assert sound_ini_profile(source_labels(['']))['groups'][0]['joinedTextFootprint']==2
+for names in [['X']*22,['X'*41],['X'+chr(9)+'Y']]:
+    assert not sound_ini_profile(source_labels(names))['groups'][0]['smallPositivePrintableProfile']
+assert sound_ini_profile(source_labels(['X']*256))['groups'][0]['records']==256
+for invalid in [source_labels(['A'],0),source_labels(['A'],-1),source_labels([],257),
+                labels.replace('[EndRecord]','',1),labels.replace('[CardName] [ALPHA]','[CardName] [A]'+chr(10)+'[CardName] [B]',1),
+                labels.replace('[CardName] [ALPHA]','[CardName] ALPHA',1),
+                labels.replace('[MainGroup]','[MainGroup]'+chr(10)+'[MainGroup]',1),
+                labels.replace('[EndOfFile]',''),labels+chr(10)+'[Extra]',
+                source_labels(['X'*257]),source_labels([chr(955)]),'X'*4097,'X'*131073]:
+    rejects(lambda:sound_ini_profile(invalid))
 assert resident_span('1000:0000..1000:0004',4)==(0x1000,0,4,0)
 assert resident_span('1000:FFF0..1000:10000',65536)==(0x1000,65520,65536,0)
 for invalid in ['0FFF:0000..0FFF:0004','1000:0004..1000:0004',

@@ -37,3 +37,18 @@ model and output notation; no unknown-source fallback. Validate requested
 same-segment ranges against the actual load image before slicing, refusing
 negative/outside/wrapping spans. Synthetic range controls and the tooling
 gate precede any new setup reading. Original listings stay in GAME_DIR.
+
+For Q-SOUND-010's actual source-label conditions, add a metadata-only
+SOUND.INI profile reader from FMT-CONFIG-002's supported text layout.
+Check the installed file's exact size/hash before reporting. Bound text to
+128 KiB, lines to 4096 bytes, each group to 256 records and each label to
+256 bytes. Validate the three group/record boundaries, declared counts
+(including the empty -1 group), one CardName per record and bracketed values;
+do not interpret other keys or model the original parser's failure behavior.
+Report counts, label length/printability and derived text footprints only,
+never names. Classify the FND-SOUND-022 positive small-list profile separately
+from empty, larger or other labels; those inputs are not silently admitted.
+Synthetic controls cover boundaries, duplicates, count mismatch, negative
+groups, non-ASCII/control/long labels and caps. Commit tooling after Test.ps1,
+then measure the licensed source twice in a separate research batch. Source
+text conformance does not prove native parsing, vector state or child effects.
