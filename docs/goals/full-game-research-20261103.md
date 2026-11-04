@@ -38,7 +38,7 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-COMBAT-167/166/165 and corrected FND-PARTY-259/260.
+- Latest research: FND-COMBAT-168/167/166 and corrected FND-PARTY-259/260.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
@@ -47,7 +47,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince a970784e
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 15b98f5f
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -120,8 +120,8 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-067's getter/map-value and zero-result admission; Q-COMBAT-045 retains save admission;
-  reuse FND-COMBAT-159/160/161/162/163/164/165/166/167 for settled branches;
+- Next: Q-COMBAT-067's actual root/storage/getter/map/pool admission; Q-COMBAT-045 retains save admission;
+  reuse FND-COMBAT-159/160/161/162/163/164/165/166/167/168 for settled branches;
   Q-COMBAT-066's remaining caller/child cases, reusing FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
   caller run v181-q066-caller-20261104 ended on consumed-breakpoint cleanup,
