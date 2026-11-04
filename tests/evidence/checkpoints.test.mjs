@@ -20,6 +20,7 @@ from load_entry import private_row
 import archive_origin as origin
 from overlay_returns import ReaderReturn
 import map_restore
+import object_restore
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -408,6 +409,53 @@ assert map_restore.request(mr,regs,0)['kind']=='map'
 mr.slot=0; rejects(lambda: map_restore.request(mr,regs,0)); mr.slot=0x57E00538
 mr.caller=0; rejects(lambda: map_restore.request(mr,regs,0)); mr.caller=0x1D30
 mr.count=12544; rejects(lambda: map_restore.request(mr,regs,0))
+class ObjectMemory:
+    flags=0; slot=4; ret=0xC3F; count=16; out_slot=0x100000F2
+    def __init__(self): self.operations=[]
+    def read_memory(self,address,size):
+        import struct
+        if address=='1000:0100': return NS(data=struct.pack('<7H',self.ret,0x2000,6,5,self.slot,1,self.flags))
+        if address=='56EF:0010': return NS(data=(0x2000).to_bytes(2,'little'))
+        if address=='2000:0C3A': return NS(data=struct.pack('<BHH',0x9A,0xEFF,0x31E0))
+        if address=='1000:0080': return NS(data=struct.pack('<HHIIIII',0x4D0,0x38FF,int.from_bytes(b'OJFF','little'),6,0,0xFFFFFFFF,self.out_slot))
+        if address=='1000:009A': return NS(data=struct.pack('<HH',0xF40,0x31E0))
+        if address=='1000:00F2': return NS(data=struct.pack('<HH',0xDA,0x1000))
+        if address=='1000:00B4': return NS(data=struct.pack('<H',4))
+        values={'1000:0062':self.count,'1000:005E':40,'1000:0066':self.count,
+                '1000:0072':0x30000020,'1000:006A':0x100000DA,'3000:0048':4,'3000:0024':5,'57E0:9D91':self.count}
+        if address in values: return NS(data=values[address].to_bytes(size,'little'))
+        seg,off=(int(x,16) for x in address.split(':'))
+        if seg==0x57E0 and size==2 and off>=0x67BC and (off-0x67BC)%37==0:
+            return NS(data=(5 if (off-0x67BC)//37==4 else 0xFFFF).to_bytes(2,'little'))
+        raise AssertionError((address,size))
+    def set_breakpoint(self,*args,**kwargs): self.operations.append(('break',args))
+    def remove_breakpoints(self,*args): self.operations.append(('unbreak',args))
+om=ObjectMemory(); root_regs={'ss':'1000','sp':'0100','bp':'0200','ax':'0000','ds':'57E0'}
+of=object_restore.loader_frame(om,root_regs,0); assert of['slot']==4
+om.flags=4; rejects(lambda: object_restore.loader_frame(om,root_regs,0)); om.flags=0
+om.slot=320; rejects(lambda: object_restore.loader_frame(om,root_regs,0)); om.slot=4
+om.ret=0; rejects(lambda: object_restore.loader_frame(om,root_regs,0)); om.ret=0xC3F
+core_regs={**root_regs,'sp':'0080','bp':'007E'}
+assert object_restore.ojff_frame(om,core_regs,0,of)['bp']==0x7E
+om.out_slot=0; rejects(lambda: object_restore.ojff_frame(om,core_regs,0,of)); om.out_slot=0x100000F2
+trace=object_restore.ObjectTrace(om,0); trace.capture_before()
+def os_stop(at,regs): return {'reason':'breakpoint','cs_ip':at,'registers':regs,'emu_ns':0}
+assert trace.handle(os_stop('31E0:0EFF',root_regs))
+rejects(lambda: trace.handle(os_stop('31E0:0EFF',root_regs)))
+rejects(trace.finish)
+assert trace.handle(os_stop('38FF:07B1',core_regs))
+om.count=17; rejects(lambda: trace.handle(os_stop('38FF:094A',core_regs))); om.count=16
+assert trace.handle(os_stop('38FF:094A',core_regs))
+assert trace.handle(os_stop('38FF:09D4',core_regs))
+loader_regs={**root_regs,'bp':'00FE','sp':'00B0'}
+assert trace.handle(os_stop('31E0:0F40',loader_regs))
+assert trace.handle(os_stop('2D40:0B54',loader_regs))
+rejects(lambda: trace.handle(os_stop('31E0:1288',{**loader_regs,'bp':'00FC'})))
+assert trace.handle(os_stop('31E0:1288',{**loader_regs,'ax':'0004'}))
+finished=trace.finish()
+assert finished['census_matches_calls'] and finished['slot_319_entry_at_return']==0xFFFF
+assert finished['child_counts']=={'script-chain':1}
+assert finished['objects'][0]['selected']['count']==16
 class ReaderMemory:
     offset=0xF2F; segment=0x2000; saved=0xF2F; loaded=0x2000; code=bytes([0x59,0x88,0x46,0xFE])
     def __init__(self): self.operations=[]

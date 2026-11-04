@@ -368,3 +368,38 @@ endpoint; it does not establish continuous lifetime, every child effect,
 all source/failure cases or completed loading. Synthetic controls cover
 GMAP frame/caller/slot rejection, region-open/publication contracts, fixed
 file names, map/plane bounds, bit ordering and physical-overlap arithmetic.
+
+## Actual object re-placement census
+
+For Q-COMBAT-066/045, `saved-objects` extends saved-map-request through
+the same matched reader return. FND-COMBAT-077/149 identify the flags-zero
+loader caller, OJFF slot and resident children. After the matched GMAP
+transfer and before object reconstruction, sample only the entry-index
+words of all 320 resident presentation records. Record active slot indices
+and slot 319's marker; do not infer universal save admission from one state.
+
+Observe resident 31E0:0EFF entries only from overlay 187 +0C3F with its
+declared +0C3A call, slot below 320, zero flags and resident DS. Match each
+resident +1288 epilogue by original SS/BP, without interpreting it as an
+observed far return. Match OJFF through the 04AB wrapper and loader +0F40
+caller; require the local in/out slot and its stack destination. Observe
+selected provider/length at core +094A and matched core +09D4. Admit the
+documented sixteen-byte OJFF span; retain failures diagnostically.
+
+Count only the declared child entries while a loader frame is active:
+record initializer, replacement allocator, eviction helper, release helper,
+script-chain insertion, image selector and animation setter. Record minimal
+stop/frame metadata and bounded named arguments, not full repeated debugger
+state or resource bytes. Reject nested loaders/unmatched core frames rather
+than inventing an unrestricted tracing fallback. Compare the pre-loop slot
+census with actual ordered loader calls at reader return and sample slot
+319 again. A difference is evidence, not discarded output.
+
+Use a 4096-observation cap: it covers the fixed 320-slot loop's ordinary
+monitored paths with the admitted entry route while retaining a bound on
+extra child activity. Keep existing RNG, source, map and effect checks.
+This establishes one reached-call census and OJFF stack-span case, not all
+free-list, allocation, alias, animation, save or failure paths. Synthetic
+controls reject wrong callers/flags/slots/frames and OJFF bindings/lengths,
+exercise matched epilogues and verify census/child-count reporting. Tooling
+and native findings remain separate validated batches.

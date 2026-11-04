@@ -22,6 +22,7 @@ import request_provider
 import archive_origin
 from overlay_returns import region_target, region_iret, ReaderReturn
 import map_restore
+from object_restore import ObjectTrace
 
 
 def fields(client, delta):
@@ -280,10 +281,11 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects]")
     navigation = len(sys.argv) == 4
-    observe_map = navigation and sys.argv[3] == "saved-map-request"
+    observe_objects = navigation and sys.argv[3] == "saved-objects"
+    observe_map = observe_objects or navigation and sys.argv[3] == "saved-map-request"
     observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
     observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
     observe_payloads = observe_origin or navigation and sys.argv[3] == "saved-payloads"
@@ -372,9 +374,10 @@ def main():
             reference_payloads = {}
             open_report = "working_open"
             map_prediction = None
+            object_trace = None
             report["region_relocations"] = []
             previous = None
-            budget = 1024 if observe_load_return or observe_reader_return else 512
+            budget = 4096 if observe_objects else 1024 if observe_load_return or observe_reader_return else 512
             report["observation_limit"] = budget
             for index in range(budget):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -388,6 +391,8 @@ def main():
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
                     if outcome == "returned":
+                        if object_trace is not None:
+                            report["object_trace"] = object_trace.finish()
                         if observe_map:
                             if map_prediction is None:
                                 raise ValueError("reader returned without an admitted GMAP transfer")
@@ -414,6 +419,9 @@ def main():
                     if outcome == "continued":
                         record()
                         continue
+                if object_trace is not None and object_trace.handle(stop):
+                    record()
+                    continue
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_entry:
                     opening = archive_origin.opening(session.client, stop["registers"], delta, terminated_path,region=open_report=="region_open")
                     if opening is not None:
@@ -498,6 +506,8 @@ def main():
                     spans.update({f"SAVE/{s['request']['number']}":(s["selected"]["destination"],s["selected"]["count"]) for s in report["resource_requests"]})
                     step["overlaps"] = map_restore.overlaps(spans)
                     session.client.remove_breakpoints(provider_entry)
+                    if object_trace is not None:
+                        object_trace.capture_before()
                     target_request = None
                     record()
                     continue
@@ -785,6 +795,9 @@ def main():
                     report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
                     if observe_reader_return:
                         reader_return = ReaderReturn(session.client, r, delta)
+                    if observe_objects:
+                        object_trace = ObjectTrace(session.client,delta)
+                        report["object_trace"] = object_trace.report
                     if observe_providers:
                         session.client.remove_breakpoints(global_call)
                         session.client.set_breakpoint(provider_entry)
