@@ -38,17 +38,17 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices. Full research Audit remains unmet. Research side only;
   no gameplay implementation, parity validation or complete-reading promotion.
   Push only on an explicit owner request.
-- Latest research: FND-SOUND-017 and FND-ITEM-071/072,
+- Latest research: FND-SOUND-019/020 and FND-SOUND-017, with FND-ITEM-071/072,
   with FND-ITEM-043 through FND-ITEM-070;
   active corrected DUAL evidence is FND-PARTY-262/263. Q-ITEM-009 is closed.
   FMT-ACTOR-001 retains its FND-COMBAT-162 Defect note.
-  Q-SOUND-008 is closed; FMT-SOUND-005 is supported, code still missing.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 8cd7457e
+  Q-SOUND-008 is closed; FMT-SOUND-004/005 are supported, code still missing.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 395ee36c
   -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Latest tooling gate: Test.ps1 -ChangedSince 15a9a0b5 -NoRestore passed,
-  including bounded Ogg framing controls. Last integration:
+  Latest tooling gate: Test.ps1 -ChangedSince a6a53095 -NoRestore passed,
+  including approved SOUND_DS listing/range controls. Last integration:
   Test.ps1 -ChangedSince e7d143bc -NoRestore passed all Node controls and
-  758 .NET tests. Existing argument-count/generation skips and 60 uncompiled
+  758 .NET tests. Existing argument-count/generation skips and 61 uncompiled
   Kaitai definitions remain. Attempt-count warnings retain removed obligations;
   review the remaining question before another reading.
 - Select artifacts/evidence-python/Scripts/python.exe explicitly through
@@ -73,8 +73,14 @@ reports before matched-menu pairing are diagnostic only.
 - Disc-audio Survey reports and exact repeats are retained under
   GAME_DIR/analysis/disc-audio-survey-20261104/. FND-SOUND-017 and
   DISC-AUDIO-SURVEY name the committed inspector, source controls and limits.
-  No decoder or GOG runtime execution was attempted. Q-SOUND-007 retains
-  the separate disc ADV format and loader question.
+  No decoder or GOG runtime execution was attempted.
+- ADV reports/repeats and setup listings are retained under
+  GAME_DIR/analysis/disc-adv-survey-20261104/. FND-SOUND-019/020 name the
+  envelope, tag/dispatch/case controls and initial-binding listings.
+  Keep the +0A00..0A74 linear decoder output diagnostic: it is table data.
+  Q-SOUND-007 retains actual selected-record/mode admission, other setters
+  and later driver-child/digital-use preservation; Q-CONFIG-006 retains
+  remaining group/numeric/count and complete file/error parsing.
 - Earlier paused getter/header/item-type observations are FND-COMBAT-169/170/171.
   FND-COMBAT-133 through FND-COMBAT-168 retain load/save/caller obligations.
   Session event_log is null; do not reconstruct unreported journals or bytes.
