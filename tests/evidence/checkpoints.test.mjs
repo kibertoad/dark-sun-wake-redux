@@ -430,6 +430,14 @@ result=map_restore.expected_flags(base,first,second)
 assert result[1]==0x7F and result[128*97]==0xBF and result[128]==0x3F
 assert map_restore.comparison(result,result)['equal']
 assert map_restore.comparison(result,base)['different_bytes']==2
+assert map_restore.comparison(result,result)['differing_cells']==[]
+changed=bytearray(12544)
+changed[129]=0x81
+assert map_restore.comparison(changed,bytes(12544))['differing_cells']==[{'offset':129,'x':1,'y':1,'actual':129,'expected':0,'xor':129}]
+many=map_restore.comparison(bytes([1])*12544,bytes(12544))
+assert len(many['differing_cells'])==32 and many['omitted_cells']==12512
+assert [c['offset'] for c in many['differing_cells']]==list(range(32))
+rejects(lambda:map_restore.comparison(bytes(12543),bytes(12544)))
 rejects(lambda: map_restore.expected_flags(base,bytes(1567),second))
 assert map_restore.overlaps({'a':('2000:0020',2),'b':('2002:0001',2),'c':('2000:0022',2)})==[['a','b'],['b','c']]
 rejects(lambda: map_restore.bounds('2000:FF00',12544))

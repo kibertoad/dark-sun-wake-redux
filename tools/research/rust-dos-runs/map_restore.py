@@ -60,7 +60,11 @@ def expected_flags(base, first, second):
 def comparison(actual, expected):
     if len(actual) != 12544 or len(expected) != 12544:
         raise ValueError("map comparison length differs from the fixed grid")
-    return {"equal":actual==expected,"different_bytes":sum(a!=b for a,b in zip(actual,expected)),
+    differing = [at for at,(a,b) in enumerate(zip(actual,expected)) if a!=b]
+    cells = [{"offset":at,"x":at%128,"y":at//128,"actual":actual[at],"expected":expected[at],
+              "xor":actual[at]^expected[at]} for at in differing[:32]]
+    return {"equal":actual==expected,"different_bytes":len(differing),"differing_cells":cells,
+            "omitted_cells":max(0,len(differing)-32),
             "actual_sha256":hashlib.sha256(actual).hexdigest(),"expected_sha256":hashlib.sha256(expected).hexdigest()}
 
 

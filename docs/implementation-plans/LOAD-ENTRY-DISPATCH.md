@@ -495,3 +495,17 @@ placed-record write, intermediate callback effect, handle lifetime or failed
 reader result from this normal case. Keep the existing RNG admission and
 1024-continuation bound. Synthetic controls reject mismatched frames and
 close arguments; Exit is the matched parent epilogue with retained report.
+
+## Bounded map-difference diagnostics
+
+For Q-COMBAT-066 and FND-COMBAT-156's changed map endpoint, extend the
+existing fixed 12544-byte comparison report with at most 32 differing
+cells: offset, x/y under the established 128-byte row layout, expected and
+actual byte, and XOR mask. Keep the exact difference count and an explicit
+omitted count so truncation cannot suggest complete writer coverage.
+Original-derived values remain only in GAME_DIR reports. No new guest
+writes, arbitrary memory interface or additional emulator stops are added.
+Synthetic controls cover coordinates, masks, ordering, zero differences,
+truncation and fixed-length rejection. Repeat the admitted caller stage
+under a fresh name. Exit: record the observed cell/mask in a research
+finding; attribution still requires static evidence and a reached writer.
