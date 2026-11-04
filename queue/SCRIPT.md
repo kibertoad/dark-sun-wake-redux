@@ -119,14 +119,19 @@ Next ID: Q-SCRIPT-024
   fourth operand moves to Q-SCRIPT-023; inherited skip bits, other writers and
   the pointer/phase/lifetime obligations remain. Blocks: slices 3-6.
 - Q-SCRIPT-023. FMT-SCRIPT-005: Can GPL/223's registration at 1E9C supply a
-  radius byte with bit seven set? Settles it: admitted entries reaching the
-  registration, local-word-zero producers and intervening state/operand effects,
-  and the actual low-byte value at that call, or a complete exclusion of the
-  high-bit case. Keep the nearby zero assignment and positive-value guard
-  distinct from proof of native value or feasibility. Tried: split from
-  Q-SCRIPT-017 after FND-SCRIPT-039 isolates the only nonliteral fourth operand
-  among 382 unchanged decoded registrations; the preceding fall-through alone
-  does not settle context preservation or other incoming routes. Blocks: slices 3-6.
+  radius byte with bit seven set? Settles it: admitted counter values outside
+  zero through three and retained-local producers, independent entries into
+  the cases/guard/registration, and intervening state/operand effects or changed
+  streams that can depart from FND-SCRIPT-040's preserved callback class;
+  actual low-byte admission or complete exclusion of the high-bit case.
+  Tried: split from Q-SCRIPT-017 after FND-SCRIPT-039 isolates the only
+  nonliteral fourth operand among 382 unchanged decoded registrations.
+  Tried: FND-SCRIPT-040 removes the C=0..3 case/guard uncertainty and the
+  reset-preserving body class: setup six falls through to radius five, then
+  callbacks supply four/two and no re-registration for case three. Other counter values have no default
+  local assignment, and the setup registration precedes its reset. Native
+  preservation, other entries/writers and changed context remain above.
+  Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,
   the slot choice `fn_172C_07BB`, the buffer allocation `fn_172C_0698`, the
