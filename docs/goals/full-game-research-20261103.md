@@ -37,7 +37,7 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-ITEM-034/033/032/031/030/029/028/027; retain their
+- Latest research: FND-ITEM-035/034/033/032/031/030/029/028/027; retain their
   predecessors and the corrected resident-boundary replacement. Q-ITEM-009
   is closed; Q-ITEM-011/013 are separate. Rules remain supported.
 - Reconciled FND-COMBAT-032/033 and FND-ITEM-032 into the item rules.
@@ -46,7 +46,7 @@ reports before matched-menu pairing are diagnostic only.
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince e2f31b41
+- Latest research gate: Test.ps1 -Research -ChangedSince d08a0fa2
   -NoRestore passed with the project-local interpreter.
 - Owner-requested runtime tooling update is complete: session 1.0.0 and
   rust-dos v1.8.1 are pinned and installed. See
@@ -73,6 +73,8 @@ reports before matched-menu pairing are diagnostic only.
   that exclusion. Its output is not an exhaustive writer census.
 - FND-ITEM-034 names the retained handler output listings and local
   metadata-only effect-handler-row.tsv. Reuse their frame/pointer limits.
+- FND-ITEM-035 names the handler-local bitmap/result reports in that store.
+  Reuse its existing-row admission distinction before another builder reading.
 - Reuse FND-PARTY-215/219, FND-RNG-053/061, FND-CONFIG-140/141/150/153/154/182/209,
   FND-PARTY-051/172/216/218/241 and FND-ACTOR-015/016 with their scope limits.
   Other retained research locations are named by the entries' reproduction
