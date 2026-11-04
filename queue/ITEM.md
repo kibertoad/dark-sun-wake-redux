@@ -17,6 +17,8 @@ Next ID: Q-ITEM-014
   and classifier consumers, FND-RNG-043's byte-three removal threshold,
   FND-COMBAT-065/066/067/068 and FND-PARTY-100's combat consumers, and
   FND-EXE-616's equipment/class-mask consumer rather than repeating them.
+  FND-ITEM-036 settles the Look consumer's local nonzero/type-domain restriction;
+  actual row-50 word-gate admission is Q-PARTY-115 and other property consumers Q-PARTY-108.
   Higher material-index states remain outside the observed source domain.
   Archive/pointer lifetime and trigger getter admission remain Q-CONFIG-008
   and Q-SCRIPT-022. Blocks: slices 4-5.

@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-115
+Next ID: Q-PARTY-116
 
 ## Static
 
@@ -168,9 +168,8 @@ Next ID: Q-PARTY-115
   call arguments/order and unreachable post-FFFF call without assigning
   a native effect outcome. Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
-  classification bytes returned by `28C9:28E3` and `178 +0C6B`, and
-  which admitted name/type/item inputs make the word-0x10 nonzero test
-  survive later replacements? Settles it: reached consumers and their
+  classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
+  the recorded Look gate? Settles it: other reached consumers and their
   tested widths/bits, original input producers and capacities, and the
   name and door replacement branches on those routes. Tried:
   FND-PARTY-252 settles the local classifier and direct caller, including
@@ -178,8 +177,18 @@ Next ID: Q-PARTY-115
   Tried: FND-PARTY-253 identifies the mode-two pointer's reached consumer
   as any-nonzero AL, with zero falling back to a separate word-mask gate;
   that consumer's local width/test is removed from Settles it. Other
-  consumers and admitted inputs remain.
+  consumers and admitted inputs remain. FND-ITEM-036 removes the complete pointer
+  body's own consumer width and canonical type-domain predicate; the independent
+  surviving Look admission moves to Q-PARTY-115.
   Blocks: complete interpretation of FMT-PARTY-006.
+- Q-PARTY-115. FMT-PARTY-006: Can admitted type-50 item state make word +0x10
+  independently change the Look pointer? Settles it: actual row-50 item producers
+  and retained value/name/quantity/word state at the classifier, passing target
+  and preliminary gates, zero fallback mask 0x1D, and the later door-bit check;
+  or a complete producer/domain exclusion of those conditions. Tried: split
+  from Q-PARTY-108 after FND-ITEM-036 narrows the canonical domain to row 50
+  and settles the local zero/nonzero and final-image conditions. FND-COMBAT-171
+  supplies one source-equal paused table, not a Look invocation. Blocks: slices 4-5.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller

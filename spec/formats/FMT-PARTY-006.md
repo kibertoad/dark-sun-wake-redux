@@ -265,7 +265,12 @@ for root index zero it instead returns the root object number
 - Gameplay meaning, admitted inputs and later consumption of the packed
   bytes written by overlay 197 (FND-PARTY-249, Q-PARTY-106).
 - Admitted consumers and player-visible meaning of the property
-  classification and its replacement branches (FND-PARTY-252, Q-PARTY-108).
+  classification and its replacement branches beyond the recorded Look gate
+  (FND-PARTY-252, FND-ITEM-036, Q-PARTY-108).
+- Whether canonical type 50's item producers admit the value/name/quantity,
+  word +0x10, fallback and later door conditions that can expose a Look-pointer
+  change, or exclude them. The local predicate and single candidate are known;
+  actual use-time state is not (FND-ITEM-036, Q-PARTY-115).
 - Admitted item-action dispatch and child effects of the overlay-189
   selector consumers (FND-PARTY-254, Q-PARTY-109).
 - Admitted script inputs and child effects of the packed-field consumer
