@@ -119,11 +119,14 @@ Next ID: Q-SCRIPT-024
   fourth operand moves to Q-SCRIPT-023; inherited skip bits, other writers and
   the pointer/phase/lifetime obligations remain. Blocks: slices 3-6.
 - Q-SCRIPT-023. FMT-SCRIPT-005: Can GPL/223's registration at 1E9C supply a
-  radius byte with bit seven set? Settles it: admitted counter values outside
-  zero through three and retained-local producers, independent entries into
-  the cases/guard/registration, and intervening state/operand effects or changed
-  streams that can depart from FND-SCRIPT-040's preserved callback class;
-  actual low-byte admission or complete exclusion of the high-bit case.
+  radius byte with bit seven set? Settles it: admitted routes that bypass or
+  change FND-SCRIPT-041's effective public-entry local reset/preservation:
+  reset flag, pointer/capacity/identity, local restores/aliases, independent
+  incoming entries and changed streams or intervening handler/callback effects;
+  actual low-byte bit-seven admission or complete exclusion. Shared reset/state
+  prerequisites remain Q-SCRIPT-003 and Q-CONFIG-008, record/caller lifetime
+  Q-SCRIPT-017. Counter range alone is not an outstanding obligation on the
+  reset-preserving route.
   Tried: split from Q-SCRIPT-017 after FND-SCRIPT-039 isolates the only
   nonliteral fourth operand among 382 unchanged decoded registrations.
   Tried: FND-SCRIPT-040 removes the C=0..3 case/guard uncertainty and the
@@ -131,6 +134,10 @@ Next ID: Q-SCRIPT-024
   callbacks supply four/two and no re-registration for case three. Other counter values have no default
   local assignment, and the setup registration precedes its reset. Native
   preservation, other entries/writers and changed context remain above.
+  Tried: FND-SCRIPT-041 removes every counter value from the public-reset-
+  preserving route: local zero is either overwritten by five/four/two or
+  retained and the call skipped. Effective reset and intervening state
+  preservation, other entries and altered inputs remain above.
   Blocks: slices 3-6.
 - Q-SCRIPT-003. RULE-SCRIPT-010, RULE-SCRIPT-002, RULE-SCRIPT-003,
   RULE-SCRIPT-004, RULE-SCRIPT-009, RULE-VIDEO-003: What do the helpers of the interpreter do: `fn_172C_31ED`,

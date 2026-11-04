@@ -67,6 +67,7 @@ no record was observed in memory.
 - Whether the single nonliteral registration radius can set the sweep-skip high
   bit. The other 381 decoded radius operands are small literals; the GPL/223
   local-word operand has a conditional small-radius sequence for counter zero
-  through three; other counter values have no default assignment. Admitted
-  values outside that class, other entries and preservation remain open
-  (FND-SCRIPT-039, FND-SCRIPT-040, Q-SCRIPT-023).
+  through three; other counter values have no default assignment. An effective
+  preserved public-entry reset makes the local zero for all unmatched counters.
+  Reset/pointer/lifetime admission, other entries and intervening effects remain
+  open (FND-SCRIPT-039, FND-SCRIPT-040, FND-SCRIPT-041, Q-SCRIPT-023).
