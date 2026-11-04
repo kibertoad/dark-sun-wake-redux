@@ -18,6 +18,7 @@ from load_entry import named_file
 from load_entry import private_span
 from load_entry import private_row
 import archive_origin as origin
+from overlay_returns import ReaderReturn
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -370,6 +371,43 @@ o.count=0x8000001E; rejects(lambda: origin.directory(o,regs,original,selection,p
 o.row_off=0x178; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_off=0x177
 o.row_number=26; rejects(lambda: origin.directory(o,regs,original,selection,published)); o.row_number=24
 o.length=20; rejects(lambda: origin.directory(o,regs,original,selection,published))
+class ReaderMemory:
+    offset=0xF2F; segment=0x2000; saved=0xF2F; loaded=0x2000; code=bytes([0x59,0x88,0x46,0xFE])
+    def __init__(self): self.operations=[]
+    def read_memory(self,address,size):
+        import struct
+        if address=='1000:0020': return NS(data=struct.pack('<HH',self.offset,self.segment))
+        if address=='56EF:0002': return NS(data=self.saved.to_bytes(2,'little'))
+        if address=='56EF:0010': return NS(data=self.loaded.to_bytes(2,'little'))
+        if address=='56EF:0000': return NS(data=bytes([0xCD,0x3F]))
+        if address=='4AE5:0559': return NS(data=bytes([0xCF]))
+        if address=='1000:001E': return NS(data=struct.pack('<HHH',0xF2F,self.loaded,0))
+        if address=='2000:0F2F': return NS(data=self.code)
+        raise AssertionError(address)
+    def set_watchpoint(self,*args,**kwargs): self.operations.append(('watch',args))
+    def remove_watchpoints(self,*args): self.operations.append(('unwatch',args))
+    def set_breakpoint(self,*args,**kwargs): self.operations.append(('break',args))
+    def remove_breakpoints(self,*args): self.operations.append(('unbreak',args))
+def reader_stop(address,sp='0024',reason='breakpoint'):
+    return {'cs_ip':address,'reason':reason,'registers':{'ss':'1000','sp':sp}}
+m=ReaderMemory(); original={'ss':'1000','sp':'0020'}
+rr=ReaderReturn(m,original,0)
+assert rr.handle(reader_stop('2000:0F2F'))=='returned'
+assert rr.watch is None
+m=ReaderMemory(); rr=ReaderReturn(m,original,0)
+rejects(lambda: rr.handle(reader_stop('2000:0F2F','0022')))
+m.code=bytes(4); rejects(lambda: rr.handle(reader_stop('2000:0F2F')))
+m=ReaderMemory(); rr=ReaderReturn(m,original,0)
+m.offset=0; m.segment=0x56EF
+assert rr.handle(reader_stop('3000:0000','0010','watchpoint'))=='continued'
+assert rr.handle(reader_stop('56EF:0000'))=='continued'
+assert rr.watch is None and rr.awaiting_iret
+assert rr.handle(reader_stop('4AE5:0559','001C'))=='continued'
+assert rr.handle(reader_stop('4AE5:0559','001E'))=='continued'
+assert rr.handle(reader_stop('2000:0F2F'))=='returned'
+assert [e['kind'] for e in rr.events]==['relocation','trap','nested-iret','reload']
+rejects(lambda: region_target(m,original,0,0x1234))
+rejects(lambda: region_iret(m,{'ss':'1000','sp':'001E'},original,0,0x1234))
 class PayloadMemory:
     short=False
     def read_memory(self,address,size):

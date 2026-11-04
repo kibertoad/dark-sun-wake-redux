@@ -20,6 +20,7 @@ from checkpoint_rng import Recorder
 from startup_window import wait_for_stop, checkpoint_summary
 import request_provider
 import archive_origin
+from overlay_returns import region_target, region_iret, ReaderReturn
 
 
 def fields(client, delta):
@@ -113,29 +114,6 @@ def reader_frame(client, registers, segment):
     if off != 0xF2F or seg != segment or selector != 0:
         raise ValueError("reader frame differs from the declared selector-zero call")
     return selector
-
-
-def region_target(client, registers, delta):
-    off, seg = struct.unpack("<HH", checked_read(client, int(registers["ss"],16), int(registers["sp"],16), 4))
-    header = 0x56EF + delta
-    saved = int.from_bytes(checked_read(client, header, 2, 2), "little")
-    loaded = int.from_bytes(checked_read(client, header, 0x10, 2), "little")
-    if not seg or (seg != header and seg != loaded):
-        raise ValueError("region return segment is not the declared header or current load")
-    if off != 0xF26 and not (off == 0 and saved == 0xF26 and seg in (header, loaded) and seg != 0):
-        raise ValueError("unsupported encoded region return")
-    return f"{seg:04X}:0F26", seg == header
-
-
-def region_iret(client, registers, original, delta):
-    if (registers["ss"] != original["ss"] or
-            int(registers["sp"],16) != int(original["sp"],16)-2):
-        return None
-    off, seg, _ = struct.unpack("<HHH", checked_read(client, int(registers["ss"],16), int(registers["sp"],16), 6))
-    loaded = int.from_bytes(checked_read(client, 0x56EF+delta, 0x10, 2), "little")
-    if off != 0xF26 or not loaded or seg != loaded:
-        raise ValueError("overlay IRET does not identify the reloaded region caller")
-    return f"{seg:04X}:{off:04X}"
 
 
 def load_ready(state, ui):
@@ -301,14 +279,15 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return]")
     navigation = len(sys.argv) == 4
-    observe_origin = navigation and sys.argv[3] == "saved-origin"
-    observe_payloads = navigation and sys.argv[3] in ("saved-payloads", "saved-origin")
-    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads", "saved-origin")
-    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin")
-    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin")
+    observe_reader_return = navigation and sys.argv[3] == "saved-reader-return"
+    observe_origin = navigation and sys.argv[3] in ("saved-origin", "saved-reader-return")
+    observe_payloads = navigation and sys.argv[3] in ("saved-payloads", "saved-origin", "saved-reader-return")
+    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
+    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
+    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return")
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -387,9 +366,11 @@ def main():
             open_io = rng.address(0x38FF, 0x96)
             open_return = rng.address(0x38FF, 0x2B1)
             opening = published = None
+            reader_return = None
+            reference_payloads = {}
             report["region_relocations"] = []
             previous = None
-            budget = 1024 if observe_load_return else 512
+            budget = 1024 if observe_load_return or observe_reader_return else 512
             report["observation_limit"] = budget
             for index in range(budget):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -399,6 +380,28 @@ def main():
                 if exhausted:
                     raise RuntimeError("operation observation budget exhausted")
                 stop = observed.stop
+                if reader_return is not None:
+                    outcome = reader_return.handle(stop)
+                    report["reader_return_events"] = reader_return.events
+                    if outcome == "returned":
+                        if set(reference_payloads) != {24,26}:
+                            raise ValueError("reader returned without both admitted target transfers")
+                        samples = []
+                        for step in report["resource_requests"]:
+                            number = step["request"]["number"]
+                            sample = request_provider.payload(session.client, step["selected"], number, reference_payloads[number])
+                            slot = checked_read(session.client, 0x57E0+delta, 0x157E+4*(number-1), 4)
+                            off, seg = struct.unpack("<HH", slot)
+                            sample.update({"number": number, "source_slot": f"{seg:04X}:{off:04X}",
+                                           "same_binding": f"{seg:04X}:{off:04X}" == step["selected"]["destination"]})
+                            samples.append(sample)
+                        report["reader_return"] = {"stop": stop, "al": int(stop["registers"]["ax"],16)&0xFF,
+                                                   "targets": samples, "archive": archive_fields(session.client, delta)}
+                        report["passed"] = True
+                        break
+                    if outcome == "continued":
+                        record()
+                        continue
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_entry:
                     opening = archive_origin.opening(session.client, stop["registers"], delta, terminated_path)
                     if opening is not None:
@@ -464,13 +467,16 @@ def main():
                         raise ValueError("target SAVE did not complete the matched full-length request")
                     if observe_payloads:
                         expected = private_span(run, step["selected"], report["copy_return"]["working_after"])
+                        reference_payloads[target_request["number"]] = expected
                         step["payload"] = request_provider.payload(session.client, step["selected"], target_request["number"], expected)
                         record()
                         if not step["payload"]["equal"]:
                             raise ValueError("target payload differs from the selected private-file span")
                         if target_request["number"] == 26:
-                            report["passed"] = True
-                            break
+                            if not observe_reader_return:
+                                report["passed"] = True
+                                break
+                            session.client.remove_breakpoints(provider_entry)
                     target_request = None
                     record()
                     continue
@@ -710,6 +716,8 @@ def main():
                         raise ValueError("reader DS differs from the named resident data mapping")
                     selector = reader_frame(session.client, r, int(reader_entry.split(":")[0],16))
                     report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
+                    if observe_reader_return:
+                        reader_return = ReaderReturn(session.client, r, delta)
                     if observe_providers:
                         session.client.remove_breakpoints(global_call)
                         session.client.set_breakpoint(provider_entry)

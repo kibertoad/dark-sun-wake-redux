@@ -310,3 +310,29 @@ against intervening close/reuse/aliasing, unique DOS handle ownership at all
 times, all graph/fallback paths or completed loading. Synthetic controls
 cover wrong open arguments/frames/results, record mismatch, indexed tables,
 out-of-directory/misaligned rows, wrong metadata and unequal private rows.
+
+## Reader-return preservation boundary
+
+For Q-COMBAT-065/066, `saved-reader-return` extends saved-origin through
+the full selector-zero reader's matched caller return +0F2F. FND-COMBAT-035/111
+describe the loop and reconstruction; FND-EXE-562 and FND-COMBAT-142 describe
+the overlay trap-return contract. Arm only that reader's saved return-segment
+word after validating its selector-zero entry. Admit only the declared header,
+loaded segment and return offset; remove the watch before trap interrupt-frame
+reuse, and match the corresponding manager IRET before accepting relocation.
+Require the original post-far-return SS/SP and caller POP CX / saved-AL store.
+Record AL as the transfer-loop result, not proof every child succeeded.
+
+Retain each already-compared target's reference bytes only in process memory.
+At reader return, resample the same bounded destination spans against those
+references and record equality or change. Also sample the two declared source
+pointer slots for equality with the transfer destinations. Changes are evidence,
+not a reason to discard the run. This establishes endpoint retention or change
+for one route, not continuous nonaliasing, allocator capacity, absence of writes,
+every child effect or completed loading. Stop before the caller consumes AL.
+Keep existing sound/script RNG guards; any other draw rejects continuation.
+Use a 1024-observation bound for this extended reconstruction route.
+
+Synthetic controls cover allowed return encodings, wrong header/offset/frames,
+trap watch removal, matched versus nested IRET and caller opcode rejection.
+Tooling is committed after its affected gate; native findings remain separate.
