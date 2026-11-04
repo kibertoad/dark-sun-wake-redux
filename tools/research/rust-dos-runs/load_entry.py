@@ -231,6 +231,19 @@ def working_file(run):
     return named_file(run, "darkrun.GFF")
 
 
+def private_span(run, selection, identity):
+    offset, count = selection["offset"], selection["count"]
+    if (not identity.get("exists") or working_file(run) != identity or count not in (2, 1920)
+            or offset < 0 or offset + count > identity["length"]):
+        raise ValueError("private payload span or copied file identity differs")
+    with (run / "drive-c" / "darkrun.GFF").open("rb") as stream:
+        stream.seek(offset)
+        data = stream.read(count)
+    if len(data) != count or working_file(run) != identity:
+        raise ValueError("private payload span changed or was short")
+    return data
+
+
 def settings_request(client, registers, offset):
     if offset not in (0x66F, 0x743):
         raise ValueError("unsupported settings request")
@@ -275,12 +288,13 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers"))):
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads"))):
         raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers]")
     navigation = len(sys.argv) == 4
-    observe_providers = navigation and sys.argv[3] == "saved-providers"
-    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers")
-    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers")
+    observe_payloads = navigation and sys.argv[3] == "saved-payloads"
+    observe_providers = navigation and sys.argv[3] in ("saved-providers", "saved-payloads")
+    saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads")
+    observe_reader = navigation and sys.argv[3] in ("saved-reader-entry", "saved-providers", "saved-payloads")
     stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
     observe_return = stage == "down-return"
     observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
@@ -385,7 +399,7 @@ def main():
                     step["selected"] = request_provider.selected(session.client, stop["registers"], target_request)
                     step["selection_stop"] = stop
                     step["archive"] = archive_fields(session.client, delta)
-                    if target_request["number"] == 26:
+                    if target_request["number"] == 26 and not observe_payloads:
                         report["passed"] = True
                         break
                     record()
@@ -397,7 +411,16 @@ def main():
                     step["error"] = int.from_bytes(checked_read(session.client, 0x57E0+delta, 0x9D99, 2), "little")
                     step["reported_count"] = int.from_bytes(checked_read(session.client, 0x57E0+delta, 0x9D91, 4), "little")
                     if "selected" not in step or int(stop["registers"]["ax"],16) != 0 or step["reported_count"] != step["selected"]["count"]:
-                        raise ValueError("SAVE/24 did not complete the matched full-length request")
+                        raise ValueError("target SAVE did not complete the matched full-length request")
+                    if observe_payloads:
+                        expected = private_span(run, step["selected"], report["copy_return"]["working_after"])
+                        step["payload"] = request_provider.payload(session.client, step["selected"], target_request["number"], expected)
+                        record()
+                        if not step["payload"]["equal"]:
+                            raise ValueError("target payload differs from the selected private-file span")
+                        if target_request["number"] == 26:
+                            report["passed"] = True
+                            break
                     target_request = None
                     record()
                     continue

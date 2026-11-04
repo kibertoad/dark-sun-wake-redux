@@ -15,6 +15,7 @@ from checkpoint_rng import remainder
 from startup_window import wait_for_stop
 from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
 from load_entry import named_file
+from load_entry import private_span
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -153,6 +154,11 @@ with TemporaryDirectory() as temp:
     assert working_file(run)=={'exists':False}
     path=run/'drive-c'/'darkrun.GFF'; path.write_bytes(b'abc')
     assert working_file(run)=={'exists':True,'length':3,'sha256':hashlib.sha256(b'abc').hexdigest()}
+    identity=working_file(run)
+    assert private_span(run,{'offset':1,'count':2},identity)==b'bc'
+    rejects(lambda: private_span(run,{'offset':2,'count':2},identity))
+    rejects(lambda: private_span(run,{'offset':0,'count':3},identity))
+    path.write_bytes(b'abd'); rejects(lambda: private_span(run,{'offset':1,'count':2},identity))
     path.unlink(); path.mkdir(); rejects(lambda: working_file(run))
 class Linked:
     def __truediv__(self,other): return self
@@ -318,6 +324,20 @@ p.number=26; assert provider.request(p,regs,0x3000)['number']==26
 p.length=0; rejects(lambda: provider.selected(p,regs,entry)); p.length=12
 p.offset=0x80000000; rejects(lambda: provider.selected(p,regs,entry)); p.offset=40
 p.pointer=0x2000FFE0; rejects(lambda: provider.selected(p,regs,entry))
+class PayloadMemory:
+    short=False
+    def read_memory(self,address,size):
+        assert 0<size<=261
+        return NS(data=b'x'*(size-1 if self.short else size))
+memory=PayloadMemory(); selection={'count':1920,'destination':'2000:0020'}
+assert provider.payload(memory,selection,24,b'x'*1920)['equal']
+assert not provider.payload(memory,selection,24,b'y'*1920)['equal']
+assert provider.payload(memory,{'count':2,'destination':'2000:0020'},26,b'xx')['equal']
+rejects(lambda: provider.payload(memory,selection,26,b'x'*1920))
+rejects(lambda: provider.payload(memory,selection,25,b'x'*1920))
+rejects(lambda: provider.payload(memory,{**selection,'destination':'2000:FF00'},24,b'x'*1920))
+rejects(lambda: provider.payload(memory,{**selection,'destination':'FFFF:0000'},24,b'x'*1920))
+memory.short=True; rejects(lambda: provider.payload(memory,selection,24,b'x'*1920))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

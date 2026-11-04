@@ -1,5 +1,6 @@
 """Bounded SAVE/24 and SAVE/26 observations; FND-CONFIG-151/FND-COMBAT-120."""
 import struct
+import hashlib
 
 from regenerate_checkpoints import checked_read
 
@@ -37,3 +38,17 @@ def selected(client, registers, original):
             "provider_handle": int.from_bytes(checked_read(client, seg, off + 0x28, 4), "little"),
             "io_handle": int.from_bytes(checked_read(client, seg, off + 4, 2), "little"),
             "destination": f"{destination >> 16:04X}:{destination & 0xFFFF:04X}"}
+
+
+def payload(client, selection, number, expected):
+    count = selection["count"]
+    if number not in (24, 26) or count != {24: 1920, 26: 2}[number] or len(expected) != count:
+        raise ValueError("payload comparison is outside the admitted target spans")
+    seg, off = (int(x, 16) for x in selection["destination"].split(":"))
+    if off + count > 0x10000 or seg * 16 + off + count > 0x100000:
+        raise ValueError("target payload crosses the declared destination bounds")
+    actual = b"".join(checked_read(client, seg, off + at, min(261, count - at))
+                      for at in range(0, count, 261))
+    return {"equal": actual == expected, "count": count,
+            "destination_sha256": hashlib.sha256(actual).hexdigest(),
+            "private_span_sha256": hashlib.sha256(expected).hexdigest()}

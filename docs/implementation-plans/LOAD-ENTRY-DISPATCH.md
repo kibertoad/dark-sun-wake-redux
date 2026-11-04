@@ -259,3 +259,24 @@ core stack frames, invalid selected lengths/offsets and wrapping field reads.
 Run the affected tooling gate before committing the probe, then record the
 native result in a separate research batch. Count every loop continuation
 independently of the legacy generic-observation `polls` field.
+
+## Matched target payload comparison
+
+For the same Q-COMBAT-064 route, `saved-payloads` may continue each target
+to its matched successful core +09D4 stop, including SAVE/26. Retain the
+provider selection/frame guards. Compare only the selected destination span
+with the selected offset/count in the fixed private darkrun.GFF. Admit lengths
+1920 for SAVE/24 and two for SAVE/26, as observed in FND-COMBAT-143; reject
+other sizes rather than introducing an arbitrary memory/file reader. Bound
+each memory read to 261 bytes and prohibit segment/real-mode wrapping. Verify
+the regular, bounded, link-free private file's whole-file identity still
+matches copy return before and after each comparison. Persist only comparison
+results and digests in the local report, never payload bytes in Git.
+
+Acceptance: both matched core results/counts and both byte comparisons pass;
+stop at SAVE/26's return before subsequent reader work. A mismatch remains
+diagnostic and ends the run. Byte equality proves this observed span's content
+matches the copied private file, not DOS handle ownership, every directory
+entry, capacity/lifetime, all fallback paths or complete loading. Synthetic
+controls cover unequal bytes, exact size admission, short reads, segment
+wrapping and file-span bounds. Tooling and findings remain separate batches.
