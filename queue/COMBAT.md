@@ -575,11 +575,18 @@ Next ID: Q-COMBAT-067
   current graph/mode and preservation beyond FND-COMBAT-143's one observed
   selector-zero SAVE/24 and SAVE/26 selection pair, rather than rereading
   those helpers. Identify the
-  supplying record, directory entry, payload identity and length on complete,
-  missing-resource and fallback paths. Reuse Q-COMBAT-054 for shared archive
+  supplying record/file-handle and directory identity beyond
+  FND-COMBAT-144's one copied-file payload comparison, and source/length
+  contracts on other complete, missing-resource and fallback paths.
+  Reuse Q-COMBAT-054 for shared archive
   graph/state producers and Q-COMBAT-063 for copy admission, rather than
   creating another census of those mechanisms. Exit: a source/length contract
   for each request path; live selection alone is insufficient under fallback.
+  Tried: FND-COMBAT-144 reaches both target core returns with success/counts
+  and byte-equal destination/private-file spans under unchanged copied-file
+  identity. That route's SAVE/26 completion and bounded payload equality
+  are removed from unread work. I/O-handle/file and directory identity,
+  intervening lifetime, later preservation and other paths remain open.
   Tried: FND-COMBAT-143 observes both native-route selected providers equal
   to active/head with working handle 14, lengths 1920 and two, and SAVE/24's
   matched successful core result/count. That pair's selection tuples are

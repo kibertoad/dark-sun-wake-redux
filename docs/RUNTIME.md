@@ -160,6 +160,11 @@ a matched successful SAVE/24 core result. SAVE/26 transfer, payload/file
 identity, all fallback paths and completed loading remain unverified.
 Output is GAME_DIR/captures/rust-dos-load-entry/v181-q064-providers-scoped-20261104/;
 the earlier v181-q064-providers-20261104 diagnostic remains under that parent.
+The fixed saved-payloads stage in FND-COMBAT-144 observes both target core
+returns and byte equality with their selected private working-file spans.
+Output is GAME_DIR/captures/rust-dos-load-entry/v181-q064-payloads-20261104/.
+It stops at SAVE/26's core return: later preservation, unique file-handle
+ownership, other paths and completed loading remain unverified.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
