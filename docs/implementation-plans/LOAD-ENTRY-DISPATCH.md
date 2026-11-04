@@ -185,3 +185,23 @@ Cache each terminal input-delivery observation. Do not keep querying a
 completed operation while later game work runs: old operations may leave
 the bounded debugger journal. Controls require pending handles to be polled
 and terminal handles to be reused locally without a second server query.
+
+## Native nonempty-source copy
+
+The fixed `saved-copy-return` stage may use FND-COMBAT-140's independently
+verified saved-map checkpoint and native SAVE02.SAV. Verify its pinned state,
+executable, named post-Save keyboard-loop predicate and native-file digest.
+Require actual F2 delivery and ready Load window before Enter, then retain
+the existing event, caller, copy-frame and terminated-input guards. Accept
+only the fixed rooted source SAVE02.SAV and working darkrun.GFF on C:,
+with distinct private host files; no file is injected or edited by the probe.
+Record source/working metadata before/after, both normalization returns,
+direct open returns and length-helper DX:AX. Stop at the matched copy return
+before archive restoration. Matching file hashes establish observed output,
+not every I/O call or later resource provenance. Reuse bounded named-file
+and terminal-delivery helpers. Controls cover source-kind admission, fixed
+path-pair rejection and preserved legacy source admission. Required tooling
+and separate research gates still apply.
+Also sample only the fixed working file at the direct destination-open
+return (+0091), before transfer. This distinguishes a net-equal copy from
+observed truncation/repopulation when source and destination initially match.

@@ -15,6 +15,7 @@ from checkpoint_rng import remainder
 from startup_window import wait_for_stop
 from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
 from load_entry import named_file
+from load_entry import native_path_pair
 from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
@@ -245,6 +246,11 @@ key_handle=object(); session=Delivery()
 pending=observe_delivery(session,key_handle,None)
 done=observe_delivery(session,key_handle,pending)
 assert observe_delivery(session,key_handle,done) is done and session.calls==2
+def path_value(value): return {'bytes_hex':value.encode('ascii').hex()}
+assert native_path_pair(path_value('C:\\SAVE02.SAV'),path_value('C:\\darkrun.GFF'))
+assert not native_path_pair(path_value('C:\\SAVE03.SAV'),path_value('C:\\darkrun.GFF'))
+assert not native_path_pair(path_value('C:\\SAVE02.SAV'),path_value('D:\\darkrun.GFF'))
+assert not native_path_pair(path_value(''),path_value('C:\\darkrun.GFF'))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

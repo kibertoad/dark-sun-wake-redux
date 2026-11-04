@@ -58,6 +58,33 @@ def map_ready(state):
             and state["slot_kinds"] == [0, 2, 0, 2] and state["leader"] == 1)
 
 
+def input_map_ready(client, delta, state, ui):
+    if (state["mode"] != 1 or state["leader"] != 1 or state["slot_kinds"] != [0, 2, 0, 2]
+            or state["mouse_enabled"] != 1 or ui["count"] != 1 or ui["exit_byte"] != 0
+            or ui["global_handler"] != f"{0x28C9 + delta:04X}:0CFF"
+            or any(ui[name] != "0000:0000" for name in ("event_target", "save_load_window", "list_pointer"))):
+        return False
+    seg, off = (int(x, 16) for x in ui["head"].split(":"))
+    if not (seg or off):
+        return False
+    body = checked_read(client, seg, off, 0xA0)
+    if body[:4] != b"WIND":
+        raise ValueError("map head lacks the declared window tag")
+    head = {"number": struct.unpack_from("<I", body, 8)[0],
+            "flags": struct.unpack_from("<H", body, 0x9E)[0]}
+    return (head["number"] == 19501 and head["flags"] & 0x1F == 8
+            and (state["window"] is None or state["window"] == head))
+
+
+def observe_delivery(session, operation, previous):
+    return previous if previous is not None and not previous.pending else session.observe(operation, timeout=0)
+
+
+def native_path_pair(source, destination):
+    return (bytes.fromhex(source["bytes_hex"]).lower() == b"c:\\save02.sav"
+            and bytes.fromhex(destination["bytes_hex"]).lower() == b"c:\\darkrun.gff")
+
+
 def load_ready(state, ui):
     return ready(state, 18500) and ui["load_mode"] == 1
 
@@ -196,20 +223,22 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return"))):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return]")
     navigation = len(sys.argv) == 4
-    observe_return = navigation and sys.argv[3] == "down-return"
-    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs", "copy-return", "load-return")
-    observe_copy = navigation and sys.argv[3] in ("copy-inputs", "copy-return", "load-return")
-    observe_copy_return = navigation and sys.argv[3] in ("copy-return", "load-return")
-    observe_load_return = navigation and sys.argv[3] == "load-return"
+    saved_source = navigation and sys.argv[3] == "saved-copy-return"
+    stage = "copy-return" if saved_source else sys.argv[3] if navigation else "entry"
+    observe_return = stage == "down-return"
+    observe_load = stage in ("load-call", "copy-inputs", "copy-return", "load-return")
+    observe_copy = stage in ("copy-inputs", "copy-return", "load-return")
+    observe_copy_return = stage in ("copy-return", "load-return")
+    observe_load_return = stage == "load-return"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    source = game / "captures/rust-dos-regenerated" / sys.argv[1]
-    meta = json.loads((source / "regeneration.json").read_text(encoding="utf-8"))
-    state = read_saved_state(source, "play-ready")
+    source = game / ("captures/rust-dos-native-save" if saved_source else "captures/rust-dos-regenerated") / sys.argv[1]
+    meta = json.loads((source / ("native-save.json" if saved_source else "regeneration.json")).read_text(encoding="utf-8"))
+    state = read_saved_state(source, "saved-map" if saved_source else "play-ready")
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
@@ -237,7 +266,12 @@ def main():
                 raise ValueError("restored instruction/time differs")
             initial = snapshot(session.client, delta)
             report["initial"] = {"state": initial, "fields": fields(session.client, delta)}
-            if not map_ready(initial):
+            if saved_source:
+                if (not meta.get("passed") or initial != meta["saved_state"]
+                        or named_file(run, "SAVE02.SAV") != meta["save_after"]
+                        or not input_map_ready(session.client, delta, initial, report["initial"]["fields"])):
+                    raise ValueError("native saved-source checkpoint differs from its verified candidate")
+            elif not map_ready(initial):
                 raise ValueError("source is not the admitted two-character map state")
             dispatch = rng.address(0x39D1, 0x0752)
             global_call = rng.address(0x39D1, 0x083B)
@@ -245,12 +279,13 @@ def main():
             for address in (dispatch, global_call, rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)):
                 session.client.set_breakpoint(address)
             key = session.send_input("key", {"key": "f2", "hold_ms": 100})
+            delivery = None
             key_name = "f2"
             awaiting_return = False
             root = root_return = None
             copy_entry = rng.address(0x4544, 0)
             copy_return = None
-            copy_stops = {rng.address(0x4544, off): off for off in (0x4F, 0x67, 0x78, 0x8C)}
+            copy_stops = {rng.address(0x4544, off): off for off in (0x4F, 0x67, 0x78, 0x7D, 0x8C, 0x91, 0xA6)}
             report["copy_steps"] = []
             load_stops = {}
             report["load_steps"] = []
@@ -293,7 +328,7 @@ def main():
                     ret = f"{seg:04X}:{off:04X}"
                     report["callback_entry"] = {"stop": stop, "event_words": entry,
                         "return": ret, "fields": fields(session.client, delta)}
-                    delivery = session.observe(key, timeout=0)
+                    delivery = observe_delivery(session, key, delivery)
                     report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     if not navigation_matches(report["calls"][-1] if report["calls"] else None,
                             entry, ret, rng.address(0x39D1, 0x083F), callback,
@@ -323,7 +358,7 @@ def main():
                         raise RuntimeError("numbered-load return does not identify the declared caller")
                     report["load_call"] = {"stop": stop, "row_argument": row,
                         "return": root_return, "fields": fields(session.client, delta)}
-                    delivery = session.observe(key, timeout=0)
+                    delivery = observe_delivery(session, key, delivery)
                     report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     if observe_copy:
                         session.client.remove_breakpoints(root)
@@ -350,10 +385,18 @@ def main():
                         "source": terminated_path(session.client, src_seg, src_off, 80),
                         "destination": terminated_path(session.client, dst_seg, dst_off, 82),
                         "fields": fields(session.client, delta), "buffer_null": True, "capacity": 0}
-                    delivery = session.observe(key, timeout=0)
+                    delivery = observe_delivery(session, key, delivery)
                     report["navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                     if observe_copy_return:
                         report["working_before"] = working_file(run)
+                        if saved_source:
+                            if not native_path_pair(report["copy_inputs"]["source"], report["copy_inputs"]["destination"]):
+                                raise ValueError("native source/destination differ from the fixed path pair")
+                            report["source_before"] = named_file(run, "SAVE02.SAV")
+                            if report["source_before"] != meta["save_after"]:
+                                raise ValueError("native source file changed before copying")
+                            if (run / "drive-c/SAVE02.SAV").samefile(run / "drive-c/darkrun.GFF"):
+                                raise ValueError("native source and working file alias")
                         copy_return = f"{ret_seg:04X}:{ret_off:04X}"
                         session.client.remove_breakpoints(copy_entry)
                         for address in (*copy_stops, copy_return):
@@ -373,6 +416,10 @@ def main():
                     if at in (0x4F, 0x67):
                         output = int(r["bp"], 16) - (0xDA if at == 0x4F else 0x12A)
                         step["normalized"] = terminated_path(session.client, int(r["ss"], 16), output, 80)
+                    if at == 0xA6:
+                        step["length_result"] = (int(r["dx"], 16) << 16) | int(r["ax"], 16)
+                    if saved_source and at == 0x91:
+                        step["working_after_open"] = working_file(run)
                     report["copy_steps"].append(step)
                     record()
                     continue
@@ -381,6 +428,8 @@ def main():
                         raise RuntimeError("copy return belongs to another stack frame")
                     report["copy_return"] = {"stop": stop, "ax": stop["registers"]["ax"],
                         "fields": fields(session.client, delta), "working_after": working_file(run)}
+                    if saved_source:
+                        report["copy_return"]["source_after"] = named_file(run, "SAVE02.SAV")
                     if observe_load_return:
                         if int(stop["registers"]["ax"], 16) & 0xFF:
                             raise RuntimeError("only the observed copy-rejection branch may continue")
@@ -438,13 +487,13 @@ def main():
                     report["callback_return"] = {"stop": stop, "fields": ui,
                         "markers": list_markers(session.client, ui),
                         "state": snapshot(session.client, delta), "ax": stop["registers"]["ax"]}
-                    delivery = session.observe(key, timeout=0)
+                    delivery = observe_delivery(session, key, delivery)
                     report["navigation_input"] = {"key": "down", "state": delivery.state, "detail": delivery.detail}
                     report["passed"] = True
                     break
                 elif stop["reason"] != "time":
                     raise RuntimeError("unexpected stop; no continuation admitted")
-                delivery = session.observe(key, timeout=0)
+                delivery = observe_delivery(session, key, delivery)
                 report["input" if key_name == "f2" else "navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                 current = {"state": snapshot(session.client, delta), "fields": fields(session.client, delta)}
                 if current != previous:
@@ -466,6 +515,7 @@ def main():
                         session.client.set_breakpoint(root)
                     key_name = "enter" if observe_load else "down"
                     key = session.send_input("key", {"key": key_name, "hold_ms": 100})
+                    delivery = None
                     previous = None
                     record()
                     continue

@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from probe_drive import ROOT
 from restore_opener import verify_checkpoint_executable
 from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checked_read
-from load_entry import fields, map_ready, named_file, returned_frame
+from load_entry import fields, map_ready, named_file, returned_frame, input_map_ready, observe_delivery
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop, checkpoint_summary
 
@@ -44,28 +44,6 @@ def save_return(client, registers):
     if off != 0xBF2 or row != 1:
         raise ValueError("Save frame differs from the declared row-one caller")
     return f"{seg:04X}:{off:04X}"
-
-
-def input_map_ready(client, delta, state, ui):
-    if (state["mode"] != 1 or state["leader"] != 1 or state["slot_kinds"] != [0, 2, 0, 2]
-            or state["mouse_enabled"] != 1 or ui["count"] != 1 or ui["exit_byte"] != 0
-            or ui["global_handler"] != f"{0x28C9 + delta:04X}:0CFF"
-            or any(ui[name] != "0000:0000" for name in ("event_target", "save_load_window", "list_pointer"))):
-        return False
-    seg, off = (int(x, 16) for x in ui["head"].split(":"))
-    if not (seg or off):
-        return False
-    body = checked_read(client, seg, off, 0xA0)
-    if body[:4] != b"WIND":
-        raise ValueError("map head lacks the declared window tag")
-    head = {"number": struct.unpack_from("<I", body, 8)[0],
-            "flags": struct.unpack_from("<H", body, 0x9E)[0]}
-    return (head["number"] == 19501 and head["flags"] & 0x1F == 8
-            and (state["window"] is None or state["window"] == head))
-
-
-def observe_delivery(session, operation, previous):
-    return previous if previous is not None and not previous.pending else session.observe(operation, timeout=0)
 
 
 def main():
