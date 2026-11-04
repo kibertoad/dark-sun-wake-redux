@@ -194,6 +194,11 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
 It reports only the fixed named child entries and retains map/effect endpoint
 checks. Temporary-slot allocation, other object/failure states, continuous
 lifetime and completed loading remain unverified.
+FND-COMBAT-157's bounded diagnostic repeat locates that later caller's sole
+map change at cell (107,36), 00 to 60, without writer attribution. Accepted:
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-map-difference-20261104/.
+Its saved-caller-epilogue command and limits are recorded in the finding.
+
 The fixed saved-caller-epilogue stage in FND-COMBAT-156 continues through
 the enclosing restore caller's post-setup, successful working-close and
 matched +0FB5 epilogue. Reader and final AL are one; cleanup clears reuse.

@@ -725,6 +725,8 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-157 locates the later caller's sole map difference at cell (107,36),
+  00 to 60. Cell/mask identification is removed; reached writer/caller attribution remains.
   Tried: FND-COMBAT-156 removes normal enclosing post-setup/working-close/epilogue observations,
   retaining item/script/effect endpoints. One map byte and archive state change after reader return;
   individual writers are unattributed. Other caller/selector, failed/skipped transfers,
@@ -737,11 +739,9 @@ Next ID: Q-COMBAT-067
   DS/SS and bounded chain/trigger bindings, with prediction equality before release and at
   reader return. File/continuous lifetime, other aliases, alternate lengths,
   failure/diagnostic states and later caller work remain.
-  Tried: FND-COMBAT-151 resolves the reverse converter's own narrowed signed
-  count, DS/SS match-flag dependency, exact pair/trigger writes, unmatched
-  behavior and failure cleanup order. Those local obligations are removed.
-  Actual GPLI size/data provider and spans, live chain/trigger/stack bindings,
-  values/aliases, failure/diagnostic effects and later caller work remain.
+  Tried: FND-COMBAT-151 removes the converter's own narrowed signed count, DS/SS match flags,
+  exact pair/trigger writes, unmatched behavior and failure cleanup order. Actual provider/spans,
+  live chain/trigger/stack values/aliases and failure/diagnostic/later effects remained; FND-COMBAT-152 admits the normal case.
   Tried: FND-COMBAT-150 admits one ordered 125-slot native object loop,
   selected sixteen-byte OJFF local spans and matched core/loader epilogues,
   with scoped initializer/image-selector/chain child counts. Those ordinary
