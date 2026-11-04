@@ -199,6 +199,13 @@ Next ID: Q-PARTY-116
   canonical candidates, including fifteen psionic-range payloads. Its local
   store-free prefix carries the flag to that entry; downstream child effects,
   use-time flag preservation and native input/frame admission remain.
+  Tried: FND-ITEM-062 removes the selected main-cast target and return
+  ambiguities: it begins with one owner target, copies DATA locally and
+  requests two sounds before the hit. One canonical candidate selects the
+  separate post-hit area gate. The return is a continuation counter, and
+  the wrapper drains queued effects before the equipment flag clear.
+  Actual child/queue effects, cache/snapshot/list/frame/output preservation
+  and use-time flag values remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
