@@ -177,3 +177,8 @@ not establish all other consumers or the live table's admission/lifetime.
   byte-two unsigned threshold 30 and word +0C any-bit class overlap. These
   consumer bindings do not close independent reader/writer or admission
   coverage (Q-ITEM-005).
+
+- FND-ITEM-050 bounds the canonical byte-two distribution and conditional
+  signed-byte field-89 samples. Runtime width/table/row preservation and
+  independent semantic consumers remain Q-ITEM-005; this source bound is
+  not a bound on every live shared record.

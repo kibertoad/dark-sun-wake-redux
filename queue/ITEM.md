@@ -63,6 +63,11 @@ Next ID: Q-ITEM-014
   aggregate rather than its separate sum, then compares only its signed low
   word. Remaining capacity work is actual traversal/getter samples and
   termination, table/slot/record/copy/near-state admission and preservation.
+  Tried: FND-ITEM-050 removes the canonical descriptor/byte-width/sample-domain
+  alternative: only kind four supplies successful field-89 samples, all
+  canonical bytes are 0..100, and this comparison cannot reject Strength
+  3..25 under retained-source conditions. Actual sample selection, runtime
+  mutations, width/table lifetime and traversal/storage admission remain.
 - Q-ITEM-004. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Do the item-test
   callers admit the storage and state required for complete recursive removal?
   Settles it: remaining caller/global preservation and storage contracts of

@@ -146,6 +146,9 @@ samples. It is not justified to replace it with a carried-weight sum merely
 because member two exists or because the rejection message mentions load.
 FMT-ITEM-002 separately binds kind-four field 89 to byte two; actual sample
 kinds, signed getter widths and graph selection still determine values.
+FND-ITEM-050 subsequently bounds the preserved canonical byte-width sample
+class and its complete Strength-row rejection domain. Other native classes
+and actual use-time admission remain open.
 
 Q-ITEM-003 no longer needs the aggregate result selector, final comparison
 width or admitted Strength-table mapping. It still needs native caller,
