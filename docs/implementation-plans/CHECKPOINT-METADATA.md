@@ -1,0 +1,33 @@
+# Paused checkpoint metadata observation
+
+Research tooling for Q-CONFIG-008 and Q-COMBAT-067. Resolve their remaining
+native getter-input question at the already verified saved-map boundary;
+this does not admit later cleanup or replace its storage/lifetime obligations.
+
+Evidence: FND-CONFIG-140/145/150/153/154 name the getter tables, scratch
+index and canonical FNFO spans; FND-PARTY-119 and FND-ITEM-015 name the
+object table, free-list heads and counter fields. FND-COMBAT-140 and
+docs/RUNTIME.md admit strict current-pin saved-map restoration.
+
+Extend native_save.py's existing `verify` branch only, after its source,
+instruction/time, map, native-save and frame checks pass. Capture fixed
+resident scratch/selected words, heads/counters, FNFO buffers, width bytes,
+selector positions, record bases/strides and the 524 three-byte object rows.
+Reject segment/offset/physical wrapping and short reads; chunk reads through
+the existing checked reader. Retain original-derived bytes only in the
+owned run's native-save.json. Summarize each pool with bounded visited-index
+tracking, preserving cycle, invalid-link and overlapping-pool diagnostics.
+Those diagnostics describe the snapshot and do not execute a game function.
+
+No gameplay input, continuation, guest memory write or new checkpoint is
+required for this observation. Keep the existing strict roundtrip check,
+muted pinned owned-session settings, private drive and run lock. The normal
+native-save path is unchanged. A new run name preserves earlier evidence.
+
+Synthetic acceptance covers empty/valid chains, cycles, invalid links,
+nonzero free kinds, cross-pool sharing, short metadata reads and wrapping
+addresses. Test.ps1 selects the affected evidence controls. Exit: committed
+bounded capture and passing controls, followed by a separate research batch
+recording actual values and canonical-source comparisons. A snapshot alone
+establishes neither initial-resource provider identity nor continuous
+preservation, a populated temporary save, or cleanup correctness.

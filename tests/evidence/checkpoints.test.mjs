@@ -23,6 +23,7 @@ import map_restore
 import object_restore
 import script_restore
 import item_restore
+import getter_metadata
 from restore_caller import CallerTrace
 from map_writer import MapWriter
 from load_entry import native_path_pair
@@ -34,6 +35,38 @@ def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+pool_table=bytearray(1572)
+struct.pack_into('<H',pool_table,3*7+1,12)
+struct.pack_into('<H',pool_table,3*12+1,9999)
+pool_table[3*12]=2
+analysis=getter_metadata.pools(pool_table,[7,9999,12])
+assert analysis['lists']['56ED']['indices']==[7,12]
+assert analysis['lists']['56ED']['terminated']
+assert analysis['lists']['56ED']['nonzero_kind_indices']==[12]
+assert analysis['shared_indices']==[12]
+struct.pack_into('<H',pool_table,3*12+1,7)
+assert getter_metadata.pools(pool_table,[7,9999,9999])['lists']['56ED']['cycle_at']==7
+assert getter_metadata.pools(pool_table,[524,9999,9999])['lists']['56ED']['invalid_index']==524
+assert getter_metadata.pools(pool_table,[9999]*3)['lists']['56ED']['indices']==[]
+rejects(lambda:getter_metadata.pools(pool_table[:-1],[9999]*3))
+rejects(lambda:getter_metadata.pools(pool_table,[9999,-1,9999]))
+class GetterMemory:
+    short=False
+    def read_memory(self,address,size):
+        assert size<=261
+        return NS(data=bytes(size-1 if self.short else size))
+memory=GetterMemory()
+captured=getter_metadata.capture(memory,0)
+assert captured['spans']['objects']['size']==1572
+assert captured['spans']['field_offsets']['size']==980
+assert captured['pool_analysis']['lists']['56ED']['cycle_at']==0
+assert getter_metadata.fixed_read(memory,0x1000,0xFFE0,32)==bytes(32)
+rejects(lambda:getter_metadata.fixed_read(memory,0x1000,0xFFE0,33))
+rejects(lambda:getter_metadata.fixed_read(memory,0xFFFF,0,32))
+rejects(lambda:getter_metadata.capture(memory,0xB000))
+memory.short=True
+rejects(lambda:getter_metadata.capture(memory,0))
+
 table=bytes((i%251 for i in range(9200)))
 cleared=item_restore.prediction(table)
 assert all(cleared[at:at+2]==bytes(2) for at in range(12,9200,23))
