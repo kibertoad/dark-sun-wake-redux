@@ -531,6 +531,11 @@ Next ID: Q-COMBAT-067
   separation for admitted dynamic blocks. That payload-versus-metadata
   comparison is removed from unread work; actual values/lengths/lifetimes,
   aliases and stores by other helpers remain unadmitted.
+  Tried: FND-COMBAT-119 resolves the placed clear's complete local
+  footprint, DS/SI/DI preservation and the caller's pointer reloads.
+  That explicit child-call uncertainty is removed. Actual buffer identity,
+  extent and metadata/stack aliases, along with the other helpers' effects,
+  remain; the null skip does not guard the preceding clear.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which reached child effects preserve or change restored effect rows and count?
