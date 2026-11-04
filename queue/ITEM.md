@@ -95,6 +95,11 @@ Next ID: Q-ITEM-016
   Old proposed-item selection and the rebuilt first-kind-one source are not
   compared; actual identity/preservation, generic splice/store and post-call
   admission remain rather than another local field-selection reading.
+  Tried: FND-ITEM-055 removes the outer occupied-target exchange sequence,
+  direct-transfer result branching and retained-kind-zero temporary-slot
+  bootstrap. Actual incoming target/source, child and generic move effects,
+  free-list/temporary lifetime, record ownership and near-state admission
+  remain; slot release is not an established rollback.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell

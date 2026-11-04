@@ -88,5 +88,8 @@ None known.
   FND-ITEM-054 binds the accepted empty-target wrapper, requested L-minus-four
   position and target list-field/entry selection; source rebuild identity
   and transfer/storage admission remain open.
+  FND-ITEM-055 records the occupied-target exchange's attempted-move order
+  and temporary-slot bootstrap. Atomic success, child effects and ownership
+  admission are not established (Q-ITEM-003).
 - What the screen shows while an item is placed, and the full list of the inventory screen's
   effects (Q-ITEM-002).

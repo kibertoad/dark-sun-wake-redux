@@ -164,6 +164,6 @@ placement-success-continuation.txt and placement-generic-transfer-full.txt
 remain under GAME_DIR/analysis/item-removal-20261104/.
 placement-generic-transfer-bindings.txt is the earlier partial-boundary
 diagnostic; the full entry-based report replaces it for accepted boundaries.
-placement-list-transfer.txt is a separate exchange-helper reading, retained
-without a complete accepted exchange contract here. No original code,
+FND-ITEM-055 subsequently records placement-list-transfer.txt's local exchange
+sequence and conditional temporary-slot bootstrap; native admission remains. No original code,
 script, resource or fixture is committed or executed.
