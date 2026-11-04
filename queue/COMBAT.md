@@ -418,7 +418,7 @@ Next ID: Q-COMBAT-063
   callback/result sequence. Those local ordering/result obligations are
   removed from Settles it; actual inputs, children, targets and preservation
   remain. Blocks: slice 4.
-- Q-COMBAT-009. RULE-COMBAT-009: Which effect IDs can the effect rows hold when the status
+- Q-COMBAT-009. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect IDs can the effect rows hold when the status
   selector collects category zero, and can a stored ID exceed 112, the last index of
   `effect_names`? Settles it: for every admitted insertion caller, the effect byte it passes and
   where that byte comes from (shipped `DATA` effect bytes, the handler default for code 127), and
@@ -426,7 +426,7 @@ Next ID: Q-COMBAT-063
   filter and row order, FND-COMBAT-031 the common insertion's field writes, and FND-COMBAT-046
   the shipped `DATA` effect-byte domain, its one code 127 and that code's handler-default route;
   which IDs the admitted callers store remains. Blocks: established status-effect selection.
-- Q-COMBAT-017. RULE-COMBAT-009: Can the effect-row count leave 0 to 192? Settles it: the bound
+- Q-COMBAT-017. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Can the effect-row count leave 0 to 192? Settles it: the bound
   each count writer keeps: the checked insertion wrapper's exact-192 test against the exported
   insertion entry that skips it, the removal decrements, the owner transfer's decrement and
   increment pair, and the numbered restore that writes the count whole. Tried: split from
@@ -434,7 +434,7 @@ Next ID: Q-COMBAT-063
   removal decrements), FND-COMBAT-033 (the transfer pair) and FND-COMBAT-045 (resident backing of
   the boundary row for counts 0 to 192) read each writer locally; no bound over all of them
   follows. Blocks: established status-effect selection.
-- Q-COMBAT-018. RULE-COMBAT-009: What does loading a saved game put in the effect rows and their
+- Q-COMBAT-018. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What does loading a saved game put in the effect rows and their
   count? Settles it: which archive and numbered resources the restore reads for `SAVE/24` and
   `SAVE/26` on each of its two callers, the destination extent against the shipped lengths, and
   any check or postprocessing of the restored count, IDs and order. Tried: split from
@@ -443,7 +443,7 @@ Next ID: Q-COMBAT-063
   callers' continuations, neither of which checks the rows) answer the local routes; the archive
   selection and the restored state's validity remain. Blocks: established status-effect
   selection.
-- Q-COMBAT-024. RULE-COMBAT-009: Which effect rows does a game begun after an earlier one in the
+- Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
   Game Menu's new game, a load) remove, and what removes the rows of owners that are not party
@@ -452,7 +452,7 @@ Next ID: Q-COMBAT-063
   take out, and reads the owner removal +1DB0 and its call from the object unload;
   FND-COMBAT-054 finds the removal entries inert only while the count is 0. Blocks: established
   status-effect selection.
-- Q-COMBAT-020. RULE-COMBAT-009: Which routines insert, remove and transfer effect rows, and with
+- Q-COMBAT-020. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which routines insert, remove and transfer effect rows, and with
   which owners, keys and codes? Settles it: the admitted callers of the insertion wrapper and the
   exported insertion entry, of the key, index and code removal entries and of the owner transfer,
   with the arguments each passes and the handler or request effects those operations trigger.

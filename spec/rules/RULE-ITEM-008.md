@@ -150,5 +150,9 @@ None known.
   and frame/alias admission Q-ITEM-013,
   feedback effects Q-ITEM-012 and other incoming routes Q-ITEM-010. Known
   direct local consumers are recorded by FND-ITEM-028.
+- Shared effect-row admission uses Q-COMBAT-009 for codes, Q-COMBAT-017
+  for counts, Q-COMBAT-018 for restored rows/count, Q-COMBAT-020 for mutation
+  callers and Q-COMBAT-024 for rows retained across games. These are
+  prerequisites of the bitmap/frame reading, not separate item-table copies.
 - Which entries `fn_2D40_2196` lists for a slot beyond their kind and item words, and what the
   other fields of `item_records` hold (FND-CONFIG-143, Q-ITEM-004).

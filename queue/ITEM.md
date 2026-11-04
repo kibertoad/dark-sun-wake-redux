@@ -136,70 +136,27 @@ Next ID: Q-ITEM-014
 
 - Q-ITEM-013. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which admitted
   item calls preserve the flags byte and saved result until their reloads?
-  Settles it: valid nonwrapping frame and record spans, all direct or
-  aliased writes to the flags and saved bytes, and child copy/output
-  destinations and lifetimes that can overlap those bytes. Treat segment
-  identity as Q-ITEM-011, not a substitute for disjoint storage. Blocks:
-  slices 4-5.
-  Tried: split from Q-ITEM-011. FND-ITEM-017/018 record the near producer,
-  SS-local reads and save/reload continuations; FND-ITEM-029 separates the
-  segment-register census from preservation of memory. Neither a saved
-  byte nor a child returning proves that byte remained unchanged.
-  Tried: FND-ITEM-030 classifies the six explicit far-block dereferences
-  in the effect switch as reads and bounds their stable-counter read span
-  away from the caller's flags byte. Those six uses are no longer unread
-  output stores. Other direct/aliased writes, copied or computed pointers
-  and child destinations/lifetimes remain; do not infer a whole read-only
-  switch from the operand scan.
-  Tried: FND-ITEM-031 settles the two near block destinations, the
-  fifteen-byte clear and the builder's full byte-code write arithmetic.
-  Remaining producer admission must establish row/index/owner lifetimes
-  and codes bounded to the fifteen-byte span (at most 119), or account
-  for the larger footprint; the second block can conditionally overlap
-  the flags byte. No such native input or outcome has been observed.
-  Tried: FND-ITEM-032 settles the preserved-argument connection from the
-  general API's positive signed-code gate to the insertion code store and
-  qualifies its one direct incoming call. That producer's conditional
-  1..127 bound excludes codes 200..207, but does not prove the narrower
-  bitmap bound. Remaining code admission is other writers, moved/restored
-  rows and actual code sets, plus argument, row/index/count and alias
-  preservation; do not repeat this gate/store path as producer completeness.
-  Tried: FND-ITEM-033 excludes overlay 169's two same-offset word stores
-  by segment provenance and settles the numbered loader's effect-table
-  request and result gate. Remaining restore admission is actual resource
-  length/content, destination backing and consistency with the separately
-  restored count, not whether that loop calls the signed-code API. Other
-  writer/copy mechanisms and frame aliases remain outside this reading.
-
-  Tried: reconcile the already-recorded FND-COMBAT-032/033 and
-  FND-ITEM-032 copy contracts with the three item rules. Under their
-  admitted indices/counts/spans and preserved storage, insertion adds only
-  its supplied code, removal's boundary copy is inactive after decrement,
-  and transfer retains the saved code. The known moves' active-code
-  preservation is no longer an unread obligation. Remaining code-domain
-  work is initial/restored values, other producer mechanisms and actual
-  copy/index/count/backing admission, not rereading these move bodies.
-  Tried: FND-ITEM-034 settles the two located handler output stores and
-  their API-wrapper frame mapping. Each writes the final word at BP+12, disjoint
-  from code byte BP+0C under intact nonwrapping frame/pointer admission.
-  These explicit stores are no longer unread code-alias candidates.
-  Whole-handler effects, other aliases and argument/pointer lifetime remain;
-  a word output must not be treated as a byte write.
-  Tried: FND-ITEM-035 settles the handler-local bitmap destination and
-  its ordering relative to the saved dispatch word and local result byte.
-  Its known builder footprint is no longer unread. Remaining admission
-  needs the preexisting slot rows' codes/count/owners/indices and preserved
-  DS/frame storage, not merely the current request's signed-code gate.
-  Other handler paths, child writes and aliases remain; no native overlap
-  has been observed.
-
-  Tried: reconcile existing FND-COMBAT-046 with the item rules. It
-  already settles the shipped DATA-byte domain, the positive-127 source
-  and the reviewed handler-default continuation. Those source/local-path
-  obligations are removed from the unread producer set; actual acquired
-  DATA selection, admitted insertion across children and restored-row
-  contents remain. Do not repeat its census as a new finding or infer
-  a stored row or native outcome from the source byte alone.
+  Settles it: live nonwrapping frame spans, remaining direct or aliased
+  writes to those bytes, and child output/copy destinations and lifetimes
+  that can overlap the frame. Segment identity is Q-ITEM-011. Reuse the
+  canonical table prerequisites: code admission Q-COMBAT-009, count bounds
+  Q-COMBAT-017, restored rows/count Q-COMBAT-018, mutation caller admission
+  Q-COMBAT-020 and retained rows across games Q-COMBAT-024. Do not repeat
+  their table-domain investigation here. Blocks: slices 4-5.
+  Tried: split from Q-ITEM-011. FND-ITEM-017/018/029 record the near
+  producer, save/reload continuations and qualified segment output. None
+  proves arbitrary frame preservation.
+  Tried: FND-ITEM-030/031/034/035 settle the explicit block reads,
+  builder write arithmetic and caller destinations, two disjoint word
+  outputs, and handler-local bitmap ordering. Those footprints are read;
+  remaining frame aliases and pointer/argument lifetimes stay here.
+  Tried: separate previously combined table prerequisites into their
+  already-authoritative COMBAT questions above. FND-ITEM-032/033 and
+  FND-COMBAT-031/032/033/034/035/043/044/045/046/053/054 retain the local
+  insertion/copy/restore, source-domain, backing and reinitialization
+  evidence. The earlier item attempts removed local obligations; this
+  reconciliation does not establish a global row invariant or close any
+  prerequisite. Reuse those findings rather than repeat the same bodies.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
