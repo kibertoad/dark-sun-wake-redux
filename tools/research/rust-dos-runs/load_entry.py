@@ -146,16 +146,58 @@ def working_file(run):
     return {"exists": True, "length": total, "sha256": digest.hexdigest()}
 
 
+def settings_request(client, registers, offset):
+    if offset not in (0x66F, 0x743):
+        raise ValueError("unsupported settings request")
+    data = checked_read(client, int(registers["ss"], 16), int(registers["sp"], 16), 12)
+    tag, number, out_off, out_seg = struct.unpack("<IIHH", data)
+    expected = 0x46455250 if offset == 0x66F else 0x51455247
+    if tag != expected or (offset == 0x66F and number != 100):
+        raise ValueError("settings request differs from the declared tag/ID")
+    return {"tag": "PREF" if offset == 0x66F else "GREQ", "id": number,
+            "output": f"{out_seg:04X}:{out_off:04X}"}
+
+
+def parent_mapping(client, delta, copy_entry_registers, load_entry_registers):
+    ss = int(copy_entry_registers["ss"], 16)
+    wrapper_bp = int(copy_entry_registers["bp"], 16)
+    child = checked_read(client, ss, wrapper_bp + 2, 4)
+    parent = checked_read(client, int(load_entry_registers["ss"], 16),
+                          int(load_entry_registers["sp"], 16), 4)
+    child_off, child_seg = struct.unpack("<HH", child)
+    parent_off, parent_seg = struct.unpack("<HH", parent)
+    if child_off != 0x659 or parent_off != 0xBE2 or child_seg != parent_seg:
+        raise ValueError(f"unexpected parent frames {child_seg:04X}:{child_off:04X}, {parent_seg:04X}:{parent_off:04X}")
+    code = checked_read(client, child_seg, child_off, 8)
+    expected = bytes([0x83, 0xC4, 4]) + struct.pack("<BHH", 0x9A, 0x52, 0x56E9 + delta)
+    if code != expected:
+        raise ValueError("parent loaded code differs from declared continuation")
+    return f"{child_seg:04X}", f"{parent_seg:04X}:{parent_off:04X}"
+
+
+def saved_load_return(client, registers):
+    data = checked_read(client, int(registers["ss"], 16), int(registers["sp"], 16), 4)
+    offset, segment = struct.unpack("<HH", data)
+    if offset != 0xBE2:
+        raise ValueError("saved return no longer names the declared load caller")
+    return f"{segment:04X}:{offset:04X}"
+
+
+def caller_cleanup_jump(code):
+    return code == bytes([0xEB, (0xBF2 - 0xBE4) & 0xFF])
+
+
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return"))):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return"))):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return]")
     navigation = len(sys.argv) == 4
     observe_return = navigation and sys.argv[3] == "down-return"
-    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs", "copy-return")
-    observe_copy = navigation and sys.argv[3] in ("copy-inputs", "copy-return")
-    observe_copy_return = navigation and sys.argv[3] == "copy-return"
+    observe_load = navigation and sys.argv[3] in ("load-call", "copy-inputs", "copy-return", "load-return")
+    observe_copy = navigation and sys.argv[3] in ("copy-inputs", "copy-return", "load-return")
+    observe_copy_return = navigation and sys.argv[3] in ("copy-return", "load-return")
+    observe_load_return = navigation and sys.argv[3] == "load-return"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -204,8 +246,14 @@ def main():
             copy_return = None
             copy_stops = {rng.address(0x4544, off): off for off in (0x4F, 0x67, 0x78, 0x8C)}
             report["copy_steps"] = []
+            load_stops = {}
+            report["load_steps"] = []
+            return_watch = None
+            report["return_relocations"] = []
             previous = None
-            for index in range(512):
+            budget = 1024 if observe_load_return else 512
+            report["observation_limit"] = budget
+            for index in range(budget):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
                 observed, exhausted = wait_for_stop(session, session.continue_(until_ms=target))
                 report["last_stop"] = observed.stop
@@ -214,6 +262,15 @@ def main():
                 stop = observed.stop
                 if stop["reason"] == "breakpoint" and stop["cs_ip"] == rng.address(0x1000, 0x0822):
                     report["draws"].append(rng.record(session, stop))
+                    record()
+                    continue
+                if stop["reason"] == "watchpoint" and return_watch is not None:
+                    relocated = saved_load_return(session.client, report["load_call"]["stop"]["registers"])
+                    report["return_relocations"].append({"stop": stop, "before": root_return, "after": relocated})
+                    if relocated != root_return:
+                        session.client.remove_breakpoints(root_return)
+                        root_return = relocated
+                        session.client.set_breakpoint(root_return, once=True)
                     record()
                     continue
                 if stop["reason"] == "breakpoint" and stop["cs_ip"] == dispatch:
@@ -318,6 +375,53 @@ def main():
                         raise RuntimeError("copy return belongs to another stack frame")
                     report["copy_return"] = {"stop": stop, "ax": stop["registers"]["ax"],
                         "fields": fields(session.client, delta), "working_after": working_file(run)}
+                    if observe_load_return:
+                        if int(stop["registers"]["ax"], 16) & 0xFF:
+                            raise RuntimeError("only the observed copy-rejection branch may continue")
+                        segment, root_return = parent_mapping(session.client, delta,
+                            report["copy_inputs"]["stop"]["registers"], report["load_call"]["stop"]["registers"])
+                        report["parent_mapping"] = {"segment": segment, "return": root_return}
+                        load_stops = {f"{segment}:{off:04X}": off for off in
+                                      (0x659, 0x661, 0x66F, 0x674, 0x743, 0x748, 0x77D)}
+                        for address in (*load_stops, root_return):
+                            session.client.set_breakpoint(address, once=True)
+                        copy_return = None
+                        record()
+                        continue
+                    report["passed"] = True
+                    break
+                elif observe_load_return and stop["reason"] == "breakpoint" and stop["cs_ip"] in load_stops:
+                    r = stop["registers"]
+                    original = report["load_call"]["stop"]["registers"]
+                    if (r["ss"] != original["ss"] or
+                            int(r["bp"], 16) != int(original["sp"], 16) - 2):
+                        raise RuntimeError("internal stop belongs to another numbered-load frame")
+                    at = load_stops[stop["cs_ip"]]
+                    step = {"offset": at, "stop": stop, "ax": r["ax"]}
+                    if at in (0x66F, 0x743):
+                        step["request"] = settings_request(session.client, r, at)
+                    report["load_steps"].append(step)
+                    if at == 0x77D:
+                        if saved_load_return(session.client, original) != root_return:
+                            raise RuntimeError("saved return changed before final-helper watch admission")
+                        watched_offset = int(original["sp"], 16) + 2
+                        checked_read(session.client, int(original["ss"], 16), watched_offset, 2)
+                        return_watch = f"{int(original['ss'], 16):04X}:{watched_offset:04X}"
+                        session.client.set_watchpoint(return_watch, 2)
+                        report["return_watch"] = return_watch
+                    record()
+                    continue
+                elif (observe_load_return and load_stops and stop["reason"] == "breakpoint"
+                      and stop["cs_ip"] == root_return):
+                    if not returned_frame(report["load_call"]["stop"]["registers"], stop["registers"]):
+                        raise RuntimeError("numbered-load return belongs to another stack frame")
+                    seg, off = (int(x, 16) for x in root_return.split(":"))
+                    code = checked_read(session.client, seg, off, 2)
+                    report["returned_caller_instruction"] = code.hex()
+                    if not caller_cleanup_jump(code):
+                        raise RuntimeError("returned caller instruction differs from the declared cleanup jump")
+                    report["load_return"] = {"stop": stop, "ax": stop["registers"]["ax"],
+                        "fields": fields(session.client, delta), "state": snapshot(session.client, delta)}
                     report["passed"] = True
                     break
                 elif (awaiting_return and stop["reason"] == "breakpoint"

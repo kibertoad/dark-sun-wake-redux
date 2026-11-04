@@ -110,3 +110,38 @@ Stop at the copy return before wrapper cleanup/reader work. Compare net
 file state only; equal hashes do not exclude transient writes. Controls
 cover frame identity and file absence/content/link/size bounds. No synthetic
 game state or forced error is introduced.
+
+## Rejected-copy outer continuation
+
+The fixed `load-return` stage may continue only an observed copy AL-zero
+return. Record the wrapper return at overlay 192 +0659, CHARSAVE open
+continuation +0661, PREF request/return +066F/+0674, GREQ request/return
++0743/+0748 and close continuation +077D. Verify original numbered-load
+SS/BP for internal stops, capture only the declared outgoing tag/ID/output
+pointer and AX at returns, and stop at its verified caller +0BE2 with
+matching SS/SP. Do not continue outer action cleanup or infer settings
+application from resource requests alone. No raw resource payload is read.
+Unknown RNG/entry/frame paths fail closed; only the admitted failed-copy
+branch may continue. Synthetic controls cover resource request layout and
+tag/ID mismatch; reused stack controls reject nested return confusion.
+Before resuming the wrapper after copy return, reread its declared caller
+return at wrapper BP+2 and numbered-load's saved return frame. Require
+offsets 0659 and 0BE2 in one current overlay segment, and verify the loaded
+0659 argument-cleanup/CHARSAVE-call instructions. Use this validated mapping
+for continuation stops; a segment observed before preparation is insufficient.
+Controls reject mismatched frames, offsets and loaded instructions.
+At the final-helper call, a capability attempt may watch only the two-byte
+saved segment of the declared numbered-load return frame. A change requires
+rereading that same far return, retaining offset 0BE2 and updating only its
+breakpoint. Never write the frame or generalize this to arbitrary watches.
+Validate the loaded caller's jump to the shared cleanup and original SS/SP at the eventual
+return. Record each relocation and retain failed attempts; a settings-return
+observation does not establish completion of the later helper.
+Bound this extended stage to 1024 observations, retaining the 512 bound
+for earlier stages. The prior mapped attempt reached the settings stops
+but exhausted 512 observations in the later helper; the current-pin startup
+route also required more than 512 observations. More time alone does not
+admit success: the matched frame and caller stop remain required.
+The final opcode guard must check +0BE2's short jump to +0BF2, not an
+argument-cleanup instruction at +0BE2. Retain observed bytes locally before
+validation so a rejected guard remains diagnosable.

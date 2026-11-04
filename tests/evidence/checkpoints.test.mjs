@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame, load_root, terminated_path, copy_arguments, working_file, settings_request, parent_mapping, saved_load_return, caller_cleanup_jump
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -160,6 +160,42 @@ class Oversized(Linked):
     def is_file(self): return True
     def stat(self): return NS(st_size=128*1024*1024+1)
 rejects(lambda: working_file(Oversized()))
+class SettingsMemory:
+    tag=0x46455250
+    number=100
+    def read_memory(self,address,size):
+        assert size==12
+        return NS(data=__import__('struct').pack('<IIHH',self.tag,self.number,4,0x1000))
+s=SettingsMemory()
+assert settings_request(s,registers,0x66F)=={'tag':'PREF','id':100,'output':'1000:0004'}
+s.number=101; rejects(lambda: settings_request(s,registers,0x66F))
+s.tag=0x51455247; s.number=2
+assert settings_request(s,registers,0x743)['id']==2
+rejects(lambda: settings_request(s,registers,0x66F))
+rejects(lambda: settings_request(s,registers,0))
+rejects(lambda: settings_request(ShortMemory(),registers,0x743))
+class ParentMemory:
+    segment=0x2000
+    child_offset=0x659
+    code=bytes([0x83,0xC4,4,0x9A,0x52,0,0xE9,0x56])
+    def read_memory(self,address,size):
+        if address=='1000:0102': return NS(data=__import__('struct').pack('<HH',self.child_offset,0x2000))
+        if address=='1000:0200': return NS(data=__import__('struct').pack('<HH',0xBE2,self.segment))
+        assert address=='2000:0659' and size==8
+        return NS(data=self.code)
+copy_regs={'ss':'1000','bp':'0100'}; load_regs={'ss':'1000','sp':'0200'}
+p=ParentMemory(); assert parent_mapping(p,0,copy_regs,load_regs)==('2000','2000:0BE2')
+p.child_offset=0x660; rejects(lambda: parent_mapping(p,0,copy_regs,load_regs)); p.child_offset=0x659
+p.segment=0x3000; rejects(lambda: parent_mapping(p,0,copy_regs,load_regs))
+p.segment=0x2000; p.code=bytes(8); rejects(lambda: parent_mapping(p,0,copy_regs,load_regs))
+p=ParentMemory(); assert saved_load_return(p,load_regs)=='2000:0BE2'
+p.segment=0x3000; assert saved_load_return(p,load_regs)=='3000:0BE2'
+rejects(lambda: saved_load_return(ShortMemory(),load_regs))
+rejects(lambda: saved_load_return(Memory(),load_regs))
+assert caller_cleanup_jump(bytes([0xEB,0x0E]))
+assert not caller_cleanup_jump(bytes([0xEB,0x0D]))
+assert not caller_cleanup_jump(bytes([0x83,0xC4,2]))
+assert not caller_cleanup_jump(bytes([0xEB]))
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
