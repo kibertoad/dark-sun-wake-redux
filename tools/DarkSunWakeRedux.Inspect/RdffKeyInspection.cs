@@ -37,8 +37,12 @@ internal static class RdffKeyInspection
         int NamedType50, int UnnamedType50, IReadOnlyList<LookRow> Rows);
     internal sealed record ChainLookRow(uint ResourceNumber, int ChunkIndex, ushort NameNumber,
         ushort Quantity, ushort Value, ushort Word10);
+    internal sealed record ItemNameDomain(ushort Type, int Items, int Named, int Unnamed);
+    internal sealed record UnnamedItem(uint ResourceNumber, int ChunkIndex, ushort Type, ushort NameNumber);
     internal sealed record ChainLookCensus(int Resources, int Chunks, int Items, int Type50,
-        int NamedType50, int UnnamedType50, int TrailingResources, IReadOnlyList<ChainLookRow> Rows);
+        int NamedType50, int UnnamedType50, int TrailingResources, IReadOnlyList<ChainLookRow> Rows,
+        int NamedItems, int UnnamedItems, IReadOnlyList<ItemNameDomain> ItemTypes,
+        IReadOnlyList<UnnamedItem> UnnamedRows);
 
     internal static Controls ParseControls(ReadOnlySpan<byte> bytes)
     {
@@ -161,6 +165,8 @@ internal static class RdffKeyInspection
         var validated = Analyze(resources, controls);
         int chunks = 0, items = 0, trailing = 0;
         var rows = new List<ChainLookRow>();
+        var types = new SortedDictionary<ushort, (int Items, int Named)>();
+        var unnamed = new List<UnnamedItem>();
         foreach (var resource in resources)
         {
             var data = resource.Data.Span;
@@ -187,9 +193,13 @@ internal static class RdffKeyInspection
                 if (header[2] == 1)
                 {
                     items++;
-                    if (BinaryPrimitives.ReadUInt16LittleEndian(record[10..12]) == 50)
-                        rows.Add(new(resource.Number, index,
-                            BinaryPrimitives.ReadUInt16LittleEndian(record[20..22]),
+                    ushort type = BinaryPrimitives.ReadUInt16LittleEndian(record[10..12]);
+                    ushort name = BinaryPrimitives.ReadUInt16LittleEndian(record[20..22]);
+                    types.TryGetValue(type, out var counts);
+                    types[type] = (counts.Items + 1, counts.Named + (name < 9999 ? 1 : 0));
+                    if (name >= 9999) unnamed.Add(new(resource.Number, index, type, name));
+                    if (type == 50)
+                        rows.Add(new(resource.Number, index, name,
                             BinaryPrimitives.ReadUInt16LittleEndian(record[2..4]),
                             BinaryPrimitives.ReadUInt16LittleEndian(record[6..8]),
                             BinaryPrimitives.ReadUInt16LittleEndian(record[16..18])));
@@ -200,7 +210,10 @@ internal static class RdffKeyInspection
         if (rows.Count == 0)
             throw new InvalidDataException("No type-50 chain-item positive domain; no negative result reported.");
         int named = rows.Count(value => value.NameNumber < 9999);
-        return new(validated.Resources, chunks, items, rows.Count, named, rows.Count - named, trailing, rows);
+        return new(validated.Resources, chunks, items, rows.Count, named, rows.Count - named, trailing, rows,
+            items - unnamed.Count, unnamed.Count,
+            types.Select(pair => new ItemNameDomain(pair.Key, pair.Value.Items, pair.Value.Named,
+                pair.Value.Items - pair.Value.Named)).ToArray(), unnamed);
     }
 
     internal static int Run(string path, string controlsPath, bool look = false, bool chains = false)

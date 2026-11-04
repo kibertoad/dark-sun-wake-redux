@@ -46,3 +46,16 @@ missing end markers, forward references and excessive chains. Run the
 required tooling gate before committing. A separate research batch consumes
 the licensed-source report, compares independent known chunk counts and
 records remaining admission/mutation limits. No gameplay or pack changes.
+
+## Initial types before a later type change
+
+Q-PARTY-115 also needs the name domain for items initially outside type 50.
+Extend the full-chain report with deterministic counts by original type,
+named/unnamed totals for all item payloads, and metadata-only locations of
+unnamed items (resource, chunk index, type and name number). Keep the existing
+type-50 rows and limits. Read no new payload fields. The source-domain check
+must reconcile summed type counts and all-item totals with the independently
+known chunk table. Synthetic controls must include an unnamed non-50 item,
+distinguish it from named and unnamed type-50 items, and preserve first/later
+and trailing exclusions. Exit: passing tooling gate followed by a separate
+source finding; source validity never proves later name preservation.

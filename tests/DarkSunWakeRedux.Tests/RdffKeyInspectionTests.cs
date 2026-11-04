@@ -140,6 +140,32 @@ public sealed class RdffKeyInspectionTests
         Assert.Equal((ushort)17, result.Rows[1].Quantity);
         Assert.Equal((ushort)19, result.Rows[1].Value);
         Assert.Equal((ushort)23, result.Rows[1].Word10);
+        Assert.Equal(1, result.NamedItems);
+        Assert.Equal(1, result.UnnamedItems);
+        Assert.Equal(new RdffKeyInspection.ItemNameDomain(50,2,1,1), Assert.Single(result.ItemTypes));
+        Assert.Equal(new RdffKeyInspection.UnnamedItem(10,1,50,9999), Assert.Single(result.UnnamedRows));
+    }
+
+    [Fact]
+    public void LookChainNameDomainKeepsUnnamedOtherTypesSeparateAndSorted()
+    {
+        var other = Record(30,1,-30).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(other.AsSpan(20), 17);
+        BinaryPrimitives.WriteUInt16LittleEndian(other.AsSpan(30), 65535);
+        var selected = Record(10,1,-10).Data.ToArray();
+        BinaryPrimitives.WriteUInt16LittleEndian(selected.AsSpan(20), 50);
+        BinaryPrimitives.WriteUInt16LittleEndian(selected.AsSpan(30), 9998);
+        var result = RdffKeyInspection.AnalyzeLookChains(
+            [new(30,other), Record(40,5,-40), new(10,selected)], Controls(2));
+        Assert.Equal(2, result.Items);
+        Assert.Equal(1, result.NamedItems);
+        Assert.Equal(1, result.UnnamedItems);
+        Assert.Equal(1, result.Type50);
+        Assert.Equal(0, result.UnnamedType50);
+        Assert.Equal(new ushort[] {17,50}, result.ItemTypes.Select(row => row.Type));
+        Assert.Equal(new[] {1,1}, result.ItemTypes.Select(row => row.Items));
+        Assert.Equal(new[] {0,1}, result.ItemTypes.Select(row => row.Named));
+        Assert.Equal(new RdffKeyInspection.UnnamedItem(30,0,17,65535), Assert.Single(result.UnnamedRows));
     }
 
     [Theory]
