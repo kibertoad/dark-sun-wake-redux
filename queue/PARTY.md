@@ -237,6 +237,11 @@ Next ID: Q-PARTY-116
   header/marker and exact roundtrip checks pass. Constructor/use-time state,
   actual inserted key/K, later writers, selection and removal remain; no
   constructor was executed and endpoint equality is not continuous lifetime.
+  Tried: FND-ITEM-068 removes the sample caller's local key/result-binding
+  alternatives: byte four and low flag inputs are retained zeros, coordinates
+  are wrapping point translations behind named cell/geometry gates, and
+  exact-not-FFFF acceptance adds no counted-index check before immediate
+  consumers. Actual slot/sample/key/K, child preservation and lifetime remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
