@@ -105,9 +105,9 @@ Next ID: Q-ITEM-013
 - Q-ITEM-009. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What later
   callers consume the forwarded hit result beyond the three known direct
   continuations? Settles it: consumers of the result forwarded by overlay
-  179 +0C7F through the returns of overlay 193 +1119 and +1249 and any
-  use of the queue runner +11DC return, identifying result-dependent
-  branches and requests at their consumers. Complete
+  179 +0C7F through the returns of overlay 193 +1119 and +1249,
+  identifying result-dependent branches and requests at their consumers.
+  Do not infer a meaningful word return from an unnormalized AH. Complete
   incoming coverage is Q-ITEM-010; frame identity/preservation Q-ITEM-011;
   feedback effects Q-ITEM-012. Blocks: slices 4-5.
   Tried: split the independently answerable dependencies from this item.
@@ -139,6 +139,10 @@ Next ID: Q-ITEM-013
   The sixteen known direct wrapper sites' local register handling is
   accounted for; only outer-return consumers and the queue return remain
   in this item. This is not whole incoming coverage or memory admission.
+  Tried: FND-ITEM-025 qualifies the two known direct +11DC callers and
+  settles both low-byte reloads. Their queue-return AL is overwritten;
+  this removes that direct consumer obligation. Any further incoming
+  mechanism still needs Q-ITEM-010's coverage, and no AH contract is proved.
 
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
   incoming mechanisms can reach the hit routine outside the qualified direct
