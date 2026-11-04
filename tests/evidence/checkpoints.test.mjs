@@ -24,6 +24,8 @@ import object_restore
 import script_restore
 import item_restore
 import getter_metadata
+sys.path.insert(0,sys.argv[1]+'/../exec-census')
+from look_property_domain import candidates as look_candidates
 from restore_caller import CallerTrace
 from map_writer import MapWriter
 from load_entry import native_path_pair
@@ -109,6 +111,24 @@ item_blocks['blocks'][4]={'base':'1000:0004','payload_bytes_before_marker':1530}
 rejects(lambda:getter_metadata.item_types(memory,captured_bases,item_blocks))
 item_blocks['blocks'][4]['base']='1030:0004'; memory.short=True
 rejects(lambda:getter_metadata.item_types(memory,captured_bases,item_blocks))
+
+look_table=bytearray(1530)
+assert look_candidates(look_table)==[]
+look_table[4]=0x20
+assert look_candidates(look_table)==[0]
+for field,bits in ((0,(1,2,0x10)),(11,(1,8,0x80))):
+    for bit in bits:
+        look_table[field]=bit
+        assert look_candidates(look_table)==[]
+    look_table[field]=0
+for field,bits in ((0,(4,8,0x20,0x40,0x80)),(11,(2,4,0x10,0x20,0x40))):
+    for bit in bits:
+        look_table[field]=bit
+        assert look_candidates(look_table)==[0]
+    look_table[field]=0
+look_table[0]=0x13; look_table[11]=0x89
+assert look_candidates(look_table)==[]
+rejects(lambda:look_candidates(look_table[:-1]))
 
 table=bytes((i%251 for i in range(9200)))
 cleared=item_restore.prediction(table)
