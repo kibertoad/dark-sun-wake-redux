@@ -37,7 +37,7 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-144 and FND-CONFIG-221/222. Retain FND-SAVE-026,
+- Latest research: FND-COMBAT-145 and FND-CONFIG-221/222. Retain FND-SAVE-026,
   FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-141 and FND-RNG-093;
   use their reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 9f774a43
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ad047ec8
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -80,14 +80,16 @@ reports before matched-menu pairing are diagnostic only.
   independent head/input-loop predicate. FND-COMBAT-141 admits its F2/copy
   route; FND-COMBAT-142 admits reader entry. FND-COMBAT-143 admits bounded
   SAVE/24/26 selection; FND-COMBAT-144 admits both core results and bounded
-  private-file payload comparison. Other load obligations remain.
+  private-file payload comparison. FND-COMBAT-145 admits working-open
+  publication and selected plain-row bindings. Other load obligations remain.
   Load-entry and navigation reports are under GAME_DIR/captures/rust-dos-load-entry/;
-  accepted payload run: v181-q064-payloads-20261104; provider run:
+  accepted origin run: v181-q064-origin-20261104; payload run:
+  v181-q064-payloads-20261104; provider run:
   v181-q064-providers-scoped-20261104; reader run:
   v181-q064-reader-trap-20261104; diagnostic v181-q064-providers-20261104
-  in FND-COMBAT-133 through FND-COMBAT-141 and docs/RUNTIME.md.
+  remain with their reproduction commands in docs/RUNTIME.md and findings.
   load_entry.py/native_save.py and their plan are committed. Affected tooling
-  validation passed with -ChangedSince 88a6edb9; controls remain in the evidence suite.
+  validation passed with -ChangedSince 50737158; controls remain in the evidence suite.
   Revalidate overlay mappings from declared frames/code. Use FND-EXE-562
   and FND-COMBAT-142's header-trap/IRET guards: remove the return-word watch
   before interrupt-frame reuse. Cache terminal input observations and
@@ -107,7 +109,7 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-064's file-handle/directory identity and alternative paths
+- Next: Q-COMBAT-064's intervening record/handle lifetime and alternative paths
   beyond the admitted pair; Q-COMBAT-063's other paths and failure outcomes;
   Q-COMBAT-054's current handles or preserved issuance interval,
   graph and flag lifetime;
