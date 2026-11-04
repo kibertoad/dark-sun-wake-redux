@@ -526,6 +526,11 @@ Next ID: Q-COMBAT-067
   binder/known-producer map is removed from unread work. Live field identity,
   bypass/release lifetime, other writers, actual lengths and aliases remain;
   shared heap admission stays with Q-CONFIG-008 and Q-SCRIPT-003.
+  Tried: FND-COMBAT-118 excludes nominal fixed payload writes into the
+  source table and all fifteen supplier-pointer fields, with conditional
+  separation for admitted dynamic blocks. That payload-versus-metadata
+  comparison is removed from unread work; actual values/lengths/lifetimes,
+  aliases and stores by other helpers remain unadmitted.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which reached child effects preserve or change restored effect rows and count?
