@@ -95,6 +95,10 @@ Next ID: Q-SOUND-011
   source capacity obligations for five alternate arrays and five NUL copies.
   Actual source bounds and native spans remain; this is not label-retention
   or successful chooser evidence.
+  Tried: FND-SOUND-029 removes installed-source string/count-span and
+  primary-key occurrence uncertainty across all 26 records. It preserves
+  the first MainGroup record's missing DigitalAddress and duplicate Dma;
+  actual context/order, heap spans, alias/retention and chooser state remain.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

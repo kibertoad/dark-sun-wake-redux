@@ -446,6 +446,10 @@ Next ID: Q-CONFIG-011
   alternate loops and nested flag/jumper actions from Settles it. It records
   rejection, no-op, early EndRecord and no-rollback paths. Source capacity,
   helper/file contracts and wider field consumers remain independent.
+  Tried: FND-SOUND-029 removes installed-source string lengths and setting
+  count/primary/alternate occurrences from Settles it. Native context/order
+  and field/value admission remain; the measured missing DigitalAddress and
+  duplicate Dma are source evidence, not proof of native failure or repair.
   Blocks: completing the named entry readings.
 
 ## Emulated call
