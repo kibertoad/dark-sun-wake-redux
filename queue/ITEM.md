@@ -109,6 +109,10 @@ Next ID: Q-ITEM-016
   and reads the complete getter/cache wrapper. The 93 property-one ordinary
   payloads remain conditional dispatch candidates; actual cache/content,
   reader/buffer and effect/record/flag admission remain Q-PARTY-109.
+  Tried: FND-ITEM-058 binds the after-hook's status argument to effect-four
+  membership and proves local SI/DI preservation and no persistent stores.
+  Actual owner/row/count/boundary and frame admission, use-time membership,
+  DATA and reset/dispatch effects remain; the before-hook has a distinct gate.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell

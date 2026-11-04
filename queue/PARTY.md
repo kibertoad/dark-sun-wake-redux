@@ -162,7 +162,7 @@ Next ID: Q-PARTY-116
 - Q-PARTY-109. FMT-PARTY-006: Which admitted item actions reach overlay
   189 `+326A` and `+332B`, and what effects do their child requests
   produce? Settles it: caller owner/index/value domains and record
-  preservation, the status gate and DATA-pointer results, reset/dispatch
+  preservation, actual effect-four membership and DATA cache/content/read results, reset/dispatch
   effects and DS:6174 producers/consumers, including high source-word
   admission. Tried: FND-PARTY-254 settles the complete local gates,
   call arguments/order and unreachable post-FFFF call without assigning
@@ -178,6 +178,11 @@ Next ID: Q-PARTY-116
   hits, accepted misses and FFFF failures without local cache invalidation.
   Actual key/content coherence, reader result, owner/record/flag retention
   and reset/dispatch effects remain.
+  Tried: FND-ITEM-058 removes the opaque status-child/register alternative:
+  the closed local graph preserves SI/DI and has no persistent data stores.
+  Its admitted result is counted effect-four membership; boundary-word
+  storage is required, but its value is irrelevant at index N. Actual
+  owner/rows/count/frames, membership lifetime and other child effects remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
