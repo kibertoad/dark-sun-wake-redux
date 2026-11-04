@@ -570,7 +570,8 @@ Next ID: Q-COMBAT-067
   Which runtime archive resources and recorded lengths supply effect rows and count?
   Settles it: bind the actual path/reuse flag and saved handle to a live record
   through the locally read selection/open/close/growth transitions. Admit the
-  pre-read DS:0DAB branch, DS:145A versus working-handle resolver identity,
+  pre-read state beyond FND-COMBAT-142's admitted mode/reuse/handle tuple,
+  DS:145A versus working-handle resolver identity,
   current graph/mode and preservation to each selector-zero SAVE/24 and
   SAVE/26 request, rather than rereading those helpers. Identify the
   supplying record, directory entry, payload identity and length on complete,
@@ -578,6 +579,11 @@ Next ID: Q-COMBAT-067
   graph/state producers and Q-COMBAT-063 for copy admission, rather than
   creating another census of those mechanisms. Exit: a source/length contract
   for each request path; live selection alone is insufficient under fallback.
+  Tried: FND-COMBAT-142 admits selector-zero reader entry after native copying,
+  with current mode four, working handle matching active/head handle fields,
+  zero region handle and the observed reuse/counter state. That entry tuple
+  is removed; live record/file identity, intervening lifetime, request-time
+  preservation and SAVE/24/26 provider/length remain open.
   Tried: split from Q-COMBAT-018. FND-COMBAT-110 distinguishes new-open
   selection from reuse; FND-SAVE-021 records the preceding writer's explicit
   selections; FND-COMBAT-096 bounds selection/close results. FND-COMBAT-112

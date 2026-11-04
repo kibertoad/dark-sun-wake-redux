@@ -147,6 +147,13 @@ bounded normalization/open/length and private-file-state checks. Output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q063-native-copy-truncate-20261104/.
 This extends the candidate's admission for that route only;
 archive restoration and other copy outcomes remain unverified.
+The fixed saved-reader-entry stage in FND-COMBAT-142 admits continuation
+through the declared region-preparation call and Borland header-trap/IRET
+return to the selector-zero reader's first instruction. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q064-reader-trap-20261104/.
+Its narrowly watched return field is removed before interrupt-frame reuse.
+Only the named archive-state snapshots are admitted: no SAVE request,
+payload restoration, provider identity or completed loading was observed.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
