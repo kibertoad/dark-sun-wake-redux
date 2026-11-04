@@ -84,6 +84,10 @@ Next ID: Q-SOUND-011
   is zero-extended; normal pointers have offset four and clearing covers
   the requested span. Heap links/break state, DOS resize outcome and later
   chooser/child admission remain; arithmetic does not prove native success.
+  Tried: FND-SOUND-027 removes the plain percent-s formatter dependency for
+  the bounded short-label profile: its nonnull valid string is copied
+  unchanged with one NUL and no padding. Actual record production/spans,
+  heap/state retention, vector and chooser children remain in Settles it.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
