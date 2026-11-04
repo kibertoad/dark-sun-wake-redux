@@ -509,8 +509,9 @@ Next ID: Q-COMBAT-067
   question and promotes no status. Blocks: established status-effect selection.
 - Q-COMBAT-063. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009, RULE-SAVE-002, SCR-UI-013:
   Which actual source and working paths and copy outcomes reach the numbered load?
-  Settles it: bind the caller's selected save-record path and directory prefix
-  to stable terminated inputs; admit the character tables, buffer extents and
+  Settles it: beyond FND-COMBAT-137's admitted empty-source/terminated-working
+  pair, bind other selected save-record paths and directory prefixes to
+  stable terminated inputs; admit the character tables, buffer extents and
   aliases required by normalization; bind DOS drive/directory state, distinct
   source/destination identity, source length/position and read/write/close outcomes.
   Distinguish copy rejection from partial or complete destination changes.
@@ -540,6 +541,11 @@ Next ID: Q-COMBAT-067
   inherited-FFFF pointer arithmetic. Those local input cases are removed
   from unread work, but actual selection/top and retained storage still
   require admission through the intervening UI/preparation children.
+  Tried: FND-COMBAT-137 binds row one/top zero after preparation to an
+  empty terminated source and a terminated working destination at the copy
+  entry, with the declared null buffer/zero capacity and retained list pointer.
+  Those initial inputs for this route are removed; normalization, DOS/file
+  identity and I/O outcomes, other inputs and later lifetimes remain open.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
