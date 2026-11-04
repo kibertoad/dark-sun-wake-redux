@@ -46,6 +46,37 @@ test('selector census retains all first/second categories and handles nested ope
   assert.equal(variable.selectorLowWord,null);
 });
 
+test('count-controlled operand domains preserve byte narrowing and unknown expressions',t=>{
+  const extra=['GPL/2 0000: 1B 1, 2, 3, 127','GPL/2 0001: 1B 1, 2, 3, 128',
+    'GPL/2 0002: 1B 1, 2, 3, -1','GPL/2 0003: 1B 1, 2, 3, 65536',
+    'GPL/2 0004: 1B 1, 2, 3, {0005: 22 1, 2, 3, 4}',
+    'GPL/2 0006: 1C 1, 2, 3, var7[0]'].join('\n')+'\n';
+  const report=good(t,source+extra,{operandQueries:[{opcode:27,arity:4,operand:3,count:5},{opcode:28,arity:4,operand:3,count:1}]});
+  const [first,second]=report.operandDomains;
+  assert.deepEqual(first.counts,{literal:4,nonliteral:1,literalLowByteHighBitSet:2});
+  assert.deepEqual(first.rows.map(row=>row.lowByte),[127,128,255,0,null]);
+  assert.deepEqual(first.rows.map(row=>row.lowWord),[127,128,65535,0,null]);
+  assert.deepEqual(first.literalRange,[-1,65536]);
+  assert.deepEqual(second.counts,{literal:0,nonliteral:1,literalLowByteHighBitSet:0});
+  assert.equal(second.literalRange,null);
+  assert.equal(first.rows[4].expression,'{0005: 22 1, 2, 3, 4}');
+});
+
+test('operand queries reject missed controls, invalid schemas and malformed selected records',t=>{
+  const query={opcode:27,arity:4,operand:3,count:1};
+  const extra='GPL/2 0000: 1B 1, 2, 3, 128\n';
+  for(const queries of [[],{},Array(17).fill(query),[query,query],[{...query,count:0}],
+    [{...query,count:2}],[{...query,arity:9}],[{...query,operand:4}],
+    [{...query,opcode:129}],[{...query,count:true}],[{...query,extra:1}]]) {
+    const result=run(t,source+extra,{operandQueries:queries});
+    assert.equal(result.status,1); assert.equal(result.stdout,'');
+  }
+  for(const extra of ['GPL/2 0000: 1B 1, 2, 3\n','GPL/2 0000: 1B 1, 2, 3, 2147483648\n']) {
+    const result=run(t,source+extra,{operandQueries:[query]});
+    assert.equal(result.status,1); assert.equal(result.stdout,'');
+  }
+});
+
 test('word narrowing distinguishes explicit zero, high-word-only values and signed literals',t=>{
   const selectors=[65536,-65536,0,65537,-1,32768];
   const text=selectors.map((value,i)=>`GPL/2 ${i.toString(16).toUpperCase().padStart(4,'0')}: 5E var9[44], ${value}, 0, 0, 0`).join('\n')+'\n';

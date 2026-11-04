@@ -34,3 +34,21 @@ Exit: synthetic controls and Test.ps1 pass, and the tooling is committed
 separately from findings. Research may exclude a site's encoded zero selector
 only under FND-COMBAT-099's argument-preservation conditions. It must retain
 remaining first-operand and context domains, not declare native unreachability.
+
+## Count-controlled operand queries
+
+For Q-SCRIPT-017, reuse the same fingerprinted index parser and positive
+selector/error controls to classify the fourth operand of opcodes 1B and 1C.
+FND-SCRIPT-038/FND-PARTY-261 give the low-byte writer; the independently
+recorded top-level counts are 347 and 35. Add optional operandQueries with
+opcode, arity, zero-based operand index and positive expected count. Bound
+queries to sixteen unique opcodes and arity to eight. Each matching record
+must have exactly that arity. Retain literal/nonliteral distinctions, full
+signed 32-bit values, low words/bytes and count of literal bytes with bit
+seven set. Preserve decoder gaps and the original selector report.
+
+Synthetic controls cover negative and high-word values, bit-seven boundaries,
+nonliteral/nested operands, exact counts, malformed arity, duplicate/vacuous
+queries and unsupported keys. Require the selected tooling gate before a
+separate source-domain finding. This query never proves runtime admission,
+operand immutability or nonliteral values, and adds no game implementation.

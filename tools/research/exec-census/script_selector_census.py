@@ -40,8 +40,9 @@ def resource_name(text):
 
 
 def census(raw, config):
-    if not isinstance(config, dict) or set(config) != {"listingSha256", "controls"}:
-        raise ValueError("Expected listingSha256 and controls only")
+    if (not isinstance(config, dict) or not {"listingSha256", "controls"} <= set(config)
+            or set(config) - {"listingSha256", "controls", "operandQueries"}):
+        raise ValueError("Expected listingSha256, controls and optional operandQueries only")
     sha = hashlib.sha256(raw).hexdigest()
     if config["listingSha256"] != sha:
         raise ValueError("Listing SHA-256 mismatch")
@@ -52,6 +53,20 @@ def census(raw, config):
         HELPERS["integer"](value, 0, 262144, name)
     if controls["total"] == 0:
         raise ValueError("Empty census control is not admitted")
+    queries = config.get("operandQueries", [])
+    if not isinstance(queries, list) or len(queries) > 16 or ("operandQueries" in config and not queries):
+        raise ValueError("operandQueries must contain one to sixteen queries")
+    domains = {}
+    for query in queries:
+        if not isinstance(query, dict) or set(query) != {"opcode", "arity", "operand", "count"}:
+            raise ValueError("Operand query needs opcode, arity, operand and count only")
+        opcode = HELPERS["integer"](query["opcode"], 0, 128, "opcode")
+        arity = HELPERS["integer"](query["arity"], 1, 8, "arity")
+        HELPERS["integer"](query["operand"], 0, arity - 1, "operand")
+        HELPERS["integer"](query["count"], 1, 262144, "count")
+        if opcode in domains:
+            raise ValueError("Duplicate operand query opcode")
+        domains[opcode] = {"query": query, "rows": []}
     groups = {name: {"literalNonzeroLowWord": [], "literalZeroLowWord": [], "nonliteral": []}
               for name in ("sentinel", "otherLiteral", "nonliteral")}
     errors, error_keys, inline_keys, previous, instructions = [], set(), set(), {}, 0
@@ -94,6 +109,18 @@ def census(raw, config):
         instructions += 1
         if instructions > 262144:
             raise ValueError("Instruction count exceeds limit")
+        domain = domains.get(int(match[3], 16))
+        if domain is not None:
+            query = domain["query"]
+            selected = HELPERS["operands"](match[4] or "")
+            if len(selected) != query["arity"]:
+                raise ValueError("Operand query encountered wrong instruction arity")
+            expression = selected[query["operand"]]
+            value = literal(expression)
+            domain["rows"].append({"resource": resource, "offset": at,
+                                   "expression": expression, "literal": value,
+                                   "lowWord": None if value is None else value & 65535,
+                                   "lowByte": None if value is None else value & 255})
         if match[3] != "5E":
             continue
         operands = HELPERS["operands"](match[4] or "")
@@ -115,7 +142,15 @@ def census(raw, config):
     actual["errors"] = len(errors)
     if actual != controls:
         raise ValueError(f"Census positive controls differ from the explicit baseline: {actual}")
-    return {"version": 1, "listingSha256": sha,
+    for domain in domains.values():
+        rows = domain["rows"]
+        if len(rows) != domain["query"]["count"]:
+            raise ValueError("Operand query positive count missed")
+        values = [row["literal"] for row in rows if row["literal"] is not None]
+        domain["counts"] = {"literal": len(values), "nonliteral": len(rows) - len(values),
+                            "literalLowByteHighBitSet": sum(bool(value & 128) for value in values)}
+        domain["literalRange"] = [min(values), max(values)] if values else None
+    result = {"version": 1, "listingSha256": sha,
             "toolSha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
             "parserSha256": hashlib.sha256(PARSER.read_bytes()).hexdigest(),
             "controls": actual, "indexedInstructions": instructions, "decoderErrors": errors,
@@ -128,6 +163,10 @@ def census(raw, config):
                        "Runtime entry, decoder/parameter preservation, callbacks and native effects remain unproved.",
                        "A nonliteral operand is unknown, never an implicit zero or sentinel.",
                        "Matching source-index controls does not establish a complete reading or native absence."]}
+    if queries:
+        result["operandDomains"] = list(domains.values())
+        result["scope"] += " Count-controlled operand queries cover only their indexed top-level starts."
+    return result
 
 
 def main():
