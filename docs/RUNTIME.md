@@ -194,6 +194,17 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q066-objects-20261104/.
 It reports only the fixed named child entries and retains map/effect endpoint
 checks. Temporary-slot allocation, other object/failure states, continuous
 lifetime and completed loading remain unverified.
+The fixed saved-items stage in FND-COMBAT-153 admits the before-clear,
+enumeration entry/epilogue and reader-return boundaries for one native
+400-record item table. Three nonzero cache words become zero; the complete
+9200-byte clear prediction matches at all later boundaries. Enumeration
+returns zero without reaching either monitored traversal helper. The
+sampled item/output/effect/local spans are disjoint; populated traversal,
+continuous lifetime and other aliases remain open. Its accepted report is
+GAME_DIR/captures/rust-dos-load-entry/v181-q066-items-20261104/.
+Reproduce with load_entry.py v181-q063-native-save-input-20261104
+<fresh-output-name> saved-items using the pinned project interpreter.
+
 The fixed saved-script-conversion stage in FND-COMBAT-152 admits native
 GPLI size/data selection, retained scan inputs and DS/SS/chain/trigger
 bindings, with predicted conversion fields matching before release and

@@ -725,6 +725,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-153 admits one native 400-record item clear with three
+  changed words, disjoint sampled item/output/effect/local spans and a
+  matched zero-result enumeration reaching neither traversal helper, retained
+  at reader return. Those boundary obligations are removed. Populated
+  traversal, metadata/slot aliases, continuous lifetime, failure states and
+  later enclosing caller work remain.
   Tried: FND-COMBAT-152 admits one native reverse conversion's size/data
   provider and 7896/1316 scan inputs, DS/SS and bounded chain/trigger bindings,
   with prediction equality before release and at reader return. Those normal
