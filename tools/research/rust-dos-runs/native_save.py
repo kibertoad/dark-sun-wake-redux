@@ -20,7 +20,7 @@ from load_entry import fields, map_ready, named_file, returned_frame, input_map_
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop, checkpoint_summary
 from getter_metadata import capture as capture_getter_metadata
-from getter_metadata import record_allocations
+from getter_metadata import record_allocations, item_types
 
 
 def save_ready(state, ui):
@@ -96,6 +96,7 @@ def main():
                 saved = session.save_state("roundtrip", check_files=True)
                 report["getter_metadata"] = capture_getter_metadata(session.client, delta)
                 report["record_allocations"] = record_allocations(session.client, report["getter_metadata"])
+                report["item_types"] = item_types(session.client, report["getter_metadata"], report["record_allocations"])
                 session.load_state(saved)
                 if (snapshot(session.client, delta) != current or named_file(run, "SAVE02.SAV") != meta["save_after"]
                         or hashlib.sha256(session.client.screenshot()).hexdigest() != meta["frame_sha256"]):
@@ -108,6 +109,9 @@ def main():
                 if record_allocations(session.client, report["getter_metadata"]) != report["record_allocations"]:
                     report["passed"] = False
                     raise ValueError("same-process record allocation headers differ")
+                if item_types(session.client, report["getter_metadata"], report["record_allocations"]) != report["item_types"]:
+                    report["passed"] = False
+                    raise ValueError("same-process shared item-type bytes differ")
                 print(json.dumps({"verified": True}), flush=True)
                 return
             if report["save_before"]["exists"]:

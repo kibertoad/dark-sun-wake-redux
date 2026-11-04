@@ -20,11 +20,25 @@ def compare_buffers(captured, reference):
 
 
 def compare_archive(captured, path):
+    return compare_buffers(captured, canonical_archive(path)[0x1FF48:0x2037E])
+
+
+def canonical_archive(path):
     with open(path, "rb") as stream:
         body = stream.read(6816517)
     if len(body) != 6816516 or xxhash.xxh3_128_hexdigest(body) != "e08d3cac153c547f6804ca27b155915d":
         raise ValueError("FNFO source differs from the approved OBJEX archive")
-    return compare_buffers(captured, body[0x1FF48:0x2037E])
+    return body
+
+
+def compare_item_type_buffers(captured, reference):
+    if len(reference) != 1530 or captured["size"] != 1530 or len(captured["hex"]) != 3060:
+        raise ValueError("shared item-type comparison extent differs")
+    return {"size": 1530, "equal": bytes.fromhex(captured["hex"]) == reference}
+
+
+def compare_item_types(captured, path):
+    return compare_item_type_buffers(captured, canonical_archive(path)[0x1F291:0x1F88B])
 
 
 def fixed_read(client, segment, offset, size):
@@ -86,6 +100,20 @@ def record_allocations(client, captured):
     overlaps = [[a, b] for a in intervals for b in intervals if a < b
                 and max(intervals[a][0], intervals[b][0]) < min(intervals[a][1], intervals[b][1])]
     return {"blocks": result, "overlaps": overlaps}
+
+
+def item_types(client, captured, allocations):
+    base_span = captured["spans"]["record_bases"]
+    if base_span["size"] != 24 or len(base_span["hex"]) != 48:
+        raise ValueError("item-type base snapshot extent differs")
+    offset, segment = struct.unpack_from("<HH", bytes.fromhex(base_span["hex"]), 16)
+    allocation = allocations["blocks"][4]
+    address = f"{segment:04X}:{offset:04X}"
+    if offset != 4 or address != allocation["base"] or allocation["payload_bytes_before_marker"] < 1530:
+        raise ValueError("shared item-type span lacks admitted header extent")
+    body = fixed_read(client, segment, offset, 1530)
+    return {"address": address, "size": 1530, "hex": body.hex(),
+            "sha256": hashlib.sha256(body).hexdigest()}
 
 
 def capture(client, delta):

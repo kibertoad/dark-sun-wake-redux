@@ -97,6 +97,18 @@ allocation_memory.paragraphs=2; allocation_memory.marker=0
 rejects(lambda:getter_metadata.record_allocations(allocation_memory,captured_bases))
 allocation_memory.marker=0x77; allocation_memory.short=True
 rejects(lambda:getter_metadata.record_allocations(allocation_memory,captured_bases))
+item_blocks={'blocks':{4:{'base':'1030:0004','payload_bytes_before_marker':1530}}}
+memory=GetterMemory()
+item_snapshot=getter_metadata.item_types(memory,captured_bases,item_blocks)
+assert getter_metadata.compare_item_type_buffers(item_snapshot,bytes(1530))['equal']
+assert not getter_metadata.compare_item_type_buffers(item_snapshot,bytes(1529)+bytes([1]))['equal']
+rejects(lambda:getter_metadata.compare_item_type_buffers(item_snapshot,bytes(1529)))
+item_blocks['blocks'][4]['payload_bytes_before_marker']=1529
+rejects(lambda:getter_metadata.item_types(memory,captured_bases,item_blocks))
+item_blocks['blocks'][4]={'base':'1000:0004','payload_bytes_before_marker':1530}
+rejects(lambda:getter_metadata.item_types(memory,captured_bases,item_blocks))
+item_blocks['blocks'][4]['base']='1030:0004'; memory.short=True
+rejects(lambda:getter_metadata.item_types(memory,captured_bases,item_blocks))
 
 table=bytes((i%251 for i in range(9200)))
 cleared=item_restore.prediction(table)

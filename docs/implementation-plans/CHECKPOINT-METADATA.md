@@ -46,3 +46,15 @@ later lifetime and unknown kind-four resource length remain open.
 Synthetic controls cover bad pointer offsets, null bases, zero/oversized
 counts, physical wrap, bad markers, short reads and overlapping blocks.
 Exit: passing selected tooling gate, then a separate native finding.
+
+## Shared item-type payload
+
+FND-ACTOR-017/018 and FMT-ITEM-002 already establish canonical ALL/4's
+1530-byte, 102-row span at OBJEX.GFF 1F291..1F88B. After the five named
+header checks, read exactly those 1530 bytes from the captured kind-four
+base only when its described payload admits the span. Retain address,
+size, digest and bytes locally, and compare after the existing roundtrip.
+A separate bounded comparator verifies the canonical archive's full
+fingerprint before exact equality. Synthetic controls cover extent refusal,
+base mismatch, short reads and one-byte payload mismatch. This admits a
+source-equal endpoint, not provider identity, later lifetime or all consumers.
