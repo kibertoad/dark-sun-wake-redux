@@ -100,6 +100,11 @@ actual global call and Load callback entry (FND-COMBAT-134), then stops.
 Its pending release is not admitted as completed delivery. Scoped output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-down-scoped-20261104/;
 this does not admit navigation outcome or a numbered load.
+The `down-return` stage in FND-COMBAT-135 admits one returned empty-list
+navigation case, with matching far-call stack identity and bounded marker
+reads. Output is GAME_DIR/captures/rust-dos-load-entry/v181-q046-down-return-frame-20261104/.
+It stops before dispatcher cleanup; key release remains pending and no
+pending-input checkpoint is saved. Other navigation cases remain unverified.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

@@ -42,7 +42,8 @@ Next ID: Q-COMBAT-067
   of FND-COMBAT-131; actual DS:A103 count/target state at dispatch beyond
   FND-CONFIG-221's branch exclusions, FND-CONFIG-222's count transitions and
   FND-COMBAT-133's single admitted F2 entry and FND-COMBAT-134's Down
-  call-to-callback delivery (numbered-load action delivery remains open);
+  call-to-callback delivery and FND-COMBAT-135's returned empty-list Down
+  case (numbered-load action delivery remains open);
   event delivery, snapshot/slot producers and
   preservation and live window/handler identity beyond FND-COMBAT-098's three
   restoration-site orderings; window-path incoming transfers not covered by
@@ -90,6 +91,10 @@ Next ID: Q-COMBAT-067
   return frame at the actual call and Load callback entry. That navigation
   delivery boundary for row one/top zero is removed; branch execution,
   numbered-load actions, child preservation and other histories remain open.
+  Tried: FND-COMBAT-135 observes the matched Down callback return with ten
+  empty markers, row one becoming zero, top zero and the named entry/return
+  fields. That execution case is removed; other markers/rows/tops, later
+  dispatch preservation and numbered-load action admission remain open.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,
