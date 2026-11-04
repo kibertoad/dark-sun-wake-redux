@@ -110,6 +110,8 @@ while walking. Its guards, address wrap, exact helper effects and
 supplied copy spans remain prerequisites; this finding claims the
 writer's own field stores and ordering rather than unconditional
 correctness of every directory move.
+FND-COMBAT-124/125 subsequently supply the local preparation and copy
+footprints, retaining those input, guard and runtime prerequisites.
 
 ## Interpretation
 

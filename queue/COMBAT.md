@@ -515,6 +515,11 @@ Next ID: Q-COMBAT-067
   The known helpers' own bookkeeping is removed from unread work. Actual
   record/list producers and bounds, pointer/copy/guard effects, directory
   identity and flushing/I/O remain; candidate selection itself reserves nothing.
+  Tried: FND-COMBAT-124/125 resolve the final AH-68 wrapper and dirty
+  clearing order, plus directional directory copying and its cursor steps.
+  Those own helper footprints are removed from unread work. Actual record/
+  list/directory inputs, lengths and capacities, guards, alias/preservation
+  and external outcomes remain; a read route can flush dirty metadata.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
