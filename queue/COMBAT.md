@@ -504,6 +504,12 @@ Next ID: Q-COMBAT-067
   Actual copied/written input, directory identity/count bounds, helper and
   external outcomes and later preservation remain; no universal plain-SAVE
   or complete-payload invariant follows from this branch alone.
+  Tried: FND-COMBAT-122 resolves plain-resource removal and its actual
+  result handling in the numbered writer. Selection failure still reaches
+  the current pair, removal does not branch the caller, and the write's
+  signature check can clear its error. Those local result combinations are
+  removed from unread work; actual active-record/directory state and
+  reservation/copy/flush/I/O effects remain.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
