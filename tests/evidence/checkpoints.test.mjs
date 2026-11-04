@@ -26,6 +26,7 @@ import item_restore
 import getter_metadata
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from look_property_domain import candidates as look_candidates
+from script_field_paths import census as field_path_census
 from restore_caller import CallerTrace
 from map_writer import MapWriter
 from load_entry import native_path_pair
@@ -129,6 +130,24 @@ for field,bits in ((0,(4,8,0x20,0x40,0x80)),(11,(2,4,0x10,0x20,0x40))):
 look_table[0]=0x13; look_table[11]=0x89
 assert look_candidates(look_table)==[]
 rejects(lambda:look_candidates(look_table[:-1]))
+
+field_listing=b'''GPL/1 0000: 16 9999 -> path(8026; 15,11)
+GPL/1 0001: 18 path(8026; 77)
+GPL/1 0002: 18 path(FFFF)
+GPL/1 0003: 18 path(8026; )
+GPL/1 stopped at 0x0004: expression byte B3
+GPL/1 ERROR stopped at 0x0004: expression byte B3
+'''
+field_controls={'listingSha256':hashlib.sha256(field_listing).hexdigest(),'paths':4,'emptyLists':1,'omittedLists':1,'gaps':1,'targetField':11,'positiveFields':{'15':1,'77':1}}
+field_result=field_path_census(field_listing,field_controls)
+assert field_result['targetOccurrences']==1 and field_result['gaps']==1
+assert field_result['decoderGaps']==[{'resource':'GPL/1','stoppedAt':4,'resumedAt':None}]
+rejects(lambda:field_path_census(field_listing,{**field_controls,'paths':5}))
+rejects(lambda:field_path_census(field_listing,{**field_controls,'positiveFields':{'15':2}}))
+rejects(lambda:field_path_census(field_listing,{**field_controls,'listingSha256':'0'*64}))
+for old,new in [(b'15,11',b'15,011'),(b'15,11',b'15,256'),(b'path(FFFF)',b'path(8026)'),(b'0001: 18',b'0000: 18'),(b'GPL/1',b'GPL/01'),(b'15,11',b','.join([b'11']*256))]:
+    malformed=field_listing.replace(old,new)
+    rejects(lambda:field_path_census(malformed,{**field_controls,'listingSha256':hashlib.sha256(malformed).hexdigest()}))
 
 table=bytes((i%251 for i in range(9200)))
 cleared=item_restore.prediction(table)
