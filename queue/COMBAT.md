@@ -75,6 +75,11 @@ Next ID: Q-COMBAT-067
   count-contract obligations are removed. Admit actual mutation/reset history
   or current count and graph directly; failed operations and a nonzero count
   do not independently establish live membership or an admitted target.
+  Tried: FND-COMBAT-132 excludes all 46 fixed nominal SAVE payload spans
+  from eight named UI admission regions, with fresh table checks and
+  intersection/boundary controls. That payload-only writer family is removed
+  under the stated pointer/length conditions; actual lengths, dynamic or
+  aliased pointers, direct producers and child writes remain unadmitted.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,

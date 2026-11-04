@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, FND-CONFIG-221, FND-CONFIG-222, FND-COMBAT-132, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -102,6 +102,9 @@ None known.
 
 ## Open questions
 
+- Nominal fixed restore payloads miss eight relevant UI state regions,
+  but actual transfer bounds, pointer lifetime and other state writers
+  remain unadmitted (FND-COMBAT-132, Q-COMBAT-046).
 - Actual shared top/selection and buffer lifetime remain Q-COMBAT-046 and
   Q-COMBAT-063; native results when an index exceeds the requested list
   remain part of Q-UI-005 (FND-SAVE-026).
