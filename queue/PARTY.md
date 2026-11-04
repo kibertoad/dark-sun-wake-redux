@@ -183,6 +183,12 @@ Next ID: Q-PARTY-116
   Its admitted result is counted effect-four membership; boundary-word
   storage is required, but its value is irrelevant at index N. Actual
   owner/rows/count/frames, membership lifetime and other child effects remain.
+  Tried: FND-ITEM-059 removes reset's opaque register/write alternative:
+  the closed body preserves SI/DI and copies a live word only to quantity or
+  word +0E. Reset precedes publication/dispatch, with no local rollback or
+  saved flag restoration. Actual reread/type/frame/record admission, child
+  effects and independent flag writers/consumers remain; source reset-
+  destination frequencies require a per-item join absent from the marginals.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their

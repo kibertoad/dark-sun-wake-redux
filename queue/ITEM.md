@@ -113,6 +113,10 @@ Next ID: Q-ITEM-016
   membership and proves local SI/DI preservation and no persistent stores.
   Actual owner/row/count/boundary and frame admission, use-time membership,
   DATA and reset/dispatch effects remain; the before-hook has a distinct gate.
+  Tried: FND-ITEM-059 bounds reset's own register/write effects and the live
+  copied value versus captured selector. Actual source/type and frame
+  identity across children, dispatch/flag and ownership admission remain;
+  the existing marginal census does not supply joint destination counts.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell
