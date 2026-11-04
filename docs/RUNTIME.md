@@ -165,6 +165,13 @@ returns and byte equality with their selected private working-file spans.
 Output is GAME_DIR/captures/rust-dos-load-entry/v181-q064-payloads-20261104/.
 It stops at SAVE/26's core return: later preservation, unique file-handle
 ownership, other paths and completed loading remain unverified.
+The fixed saved-origin stage in FND-COMBAT-145 observes the working-path
+archive-open entry, I/O result and publication, then matches both selected
+provider/handle tuples and plain directory rows to that publication and
+unchanged copied-file rows. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q064-origin-20261104/.
+Continuous lifetime, full graph/directory identity and later loading remain
+unverified; the run still ends at SAVE/26's core return.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
