@@ -172,6 +172,12 @@ Next ID: Q-PARTY-116
   1671/240/20 payloads occupy the zero/ordinary/special branches. Actual
   selected values after child calls, record/flag lifetime and child effects
   remain. Blocks: complete interpretation of FMT-PARTY-006.
+  Tried: FND-ITEM-057 removes canonical DATA absence/property ambiguity:
+  all ordinary IDs have 73-byte source records; 93 of 240 ordinary item
+  payloads select property one. The complete getter distinguishes cache
+  hits, accepted misses and FFFF failures without local cache invalidation.
+  Actual key/content coherence, reader result, owner/record/flag retention
+  and reset/dispatch effects remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their

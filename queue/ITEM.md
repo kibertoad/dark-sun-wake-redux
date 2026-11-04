@@ -105,6 +105,10 @@ Next ID: Q-ITEM-016
   repeated acquisition under retained source/bonus conditions. Actual
   record reads after children, status/DATA results, flag and dispatched
   effects remain; do not repeat the complete local hook bodies.
+  Tried: FND-ITEM-057 removes the canonical DATA existence/property cases
+  and reads the complete getter/cache wrapper. The 93 property-one ordinary
+  payloads remain conditional dispatch candidates; actual cache/content,
+  reader/buffer and effect/record/flag admission remain Q-PARTY-109.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell
