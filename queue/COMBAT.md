@@ -233,6 +233,11 @@ Next ID: Q-COMBAT-063
   stores and unchanged release aliases. FND-COMBAT-086 binds startup failure to the
   termination wrapper and the known release route to exit registration, distinguishing
   returning runtime wrappers. The remaining obligations above stay open. Blocks: slice 4.
+  Tried: FND-COMBAT-112 excludes all 26 unchanged fingerprinted top-level
+  shipped GFF files as SAVE providers. The remaining resource provenance is
+  runtime-written/copied or other admitted archives, not a search for a
+  shipped SAVE table in those files. Handle/list, directory/length lifetime,
+  transfer and destination admission remain.
 - Q-COMBAT-048. RULE-COMBAT-007: Which other callbacks reached during numbered loading can
   change restored creature health or select a different continuation? Settles it: admitted
   targets and effects of input/window callbacks reached by cleanup, region setup and caller
@@ -463,6 +468,11 @@ Next ID: Q-COMBAT-063
   object/item loops do not answer that admission. The unread remainder of
   the enclosing reader is removed from local postprocessing work. Child
   effects, aliases, selected-resource provenance and restored values remain.
+  Tried: FND-COMBAT-112 excludes the 26 unchanged shipped top-level GFF
+  files as SAVE providers, including initial DARKRUN.GFF and DARKSAVE.GFF.
+  Runtime-written/copied archives and inputs outside that census remain;
+  do not repeat the shipped-provider search or assume the shipped working
+  filename admits the later saved directory.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the

@@ -103,6 +103,9 @@ None known.
   FND-COMBAT-111 accounts for the full reader's own postprocessing without
   finding an explicit effect-count, ID or ordering check; child effects and
   storage aliases remain part of the admission question.
+  FND-COMBAT-112 excludes the unchanged 26 shipped top-level GFF files
+  as SAVE providers; runtime-written/copied or other inputs still need
+  provenance at the actual request.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries
