@@ -38,7 +38,7 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-SCRIPT-039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work: FND-ITEM-027 through FND-ITEM-042. Q-ITEM-009 closed;
@@ -46,7 +46,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: Test.ps1 -Research -ChangedSince a6e8815b -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: Test.ps1 -Research -ChangedSince 6a464ec5 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
@@ -120,9 +120,9 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-SCRIPT-023's local radius input; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
+- Next: Q-SCRIPT-023's effective reset/preservation; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
-  Reuse FND-SCRIPT-036/037/038/039, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
+  Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
 - Q-ITEM-005's other consumers; Q-ITEM-013's live-frame aliases,
   keeping Q-ITEM-011's segment prerequisite separate.
 - Q-COMBAT-067 cleanup/lifetime and Q-COMBAT-045 save admission; reuse
