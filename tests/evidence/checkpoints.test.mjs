@@ -35,10 +35,24 @@ import request_provider as provider
 from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 from startup_segments import equipment_flag
+sys.path.insert(0,sys.argv[1]+'/../exec-census')
+from disc_adv_envelopes import envelope as adv_envelope
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+adv=struct.pack('<H',6)+b'Copy'+struct.pack('<HHHHH',3,0,8,0,0xFFFF)
+parsed=adv_envelope(adv)
+assert parsed['functions']==2 and parsed['unique_targets']==1
+assert parsed['directory_bytes']==10 and parsed['terminal']==len(adv)-2
+for bad in [b'',adv[:7],adv[:-1],adv[:-3],struct.pack('<H',5)+adv[2:],
+            struct.pack('<H',len(adv))+adv[2:],adv[:2]+b'copy'+adv[6:],
+            adv[:10]+struct.pack('<H',3)+adv[12:],
+            adv[:8]+struct.pack('<H',len(adv))+adv[10:],bytes(65537)]:
+    rejects(lambda:adv_envelope(bad))
+full=struct.pack('<H',6)+b'Copy'+b''.join(struct.pack('<HH',i,0) for i in range(256))+bytes([255,255])
+assert adv_envelope(full)['functions']==256
+rejects(lambda:adv_envelope(full[:-2]+struct.pack('<HHH',256,0,0xFFFF)))
 class FlagMemory:
     short=False
     calls=0
