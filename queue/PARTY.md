@@ -183,14 +183,18 @@ Next ID: Q-PARTY-116
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-115. FMT-PARTY-006: Can admitted type-50 item state make word +0x10
   independently change the Look pointer? Settles it: remaining creations/replacements,
-  type changes and name-invalidating writes admitting name >=9999 outside preserved
+  type changes and name-invalidating writes outside FND-ITEM-038's selector exclusion,
+  admitting name >=9999 outside preserved
   canonical first-copy inputs; retained value/quantity/word state, passing target and
   preliminary gates, zero fallback mask 0x1D and the later door-bit check; or complete
   producer/domain exclusion. Tried: split from Q-PARTY-108 after FND-ITEM-036 settles
   the local predicate and single canonical candidate; FND-COMBAT-171 supplies a paused
   source-equal table, not a Look call. Tried: FND-ITEM-037 removes unnamed canonical
   type-50 first items: all 631 have a valid name, including two other-size resources.
-  Later chunks, nonfirst records, runtime writes and live admission remain. Blocks: slices 4-5.
+  Tried: FND-ITEM-038 removes field-eleven selection from recorded fixed/type/list/transfer
+  setter families, canonical chunk headers and 2235 unchanged decoded script paths.
+  The GPL/37 gap, changed/other paths, direct/computed stores, whole-record copies,
+  nonfirst records, aliases and live admission remain. Blocks: slices 4-5.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
