@@ -388,14 +388,15 @@ Next ID: Q-COMBAT-068
   admitted flags-zero success/low-image states; FND-COMBAT-162 bounds canonical-source selectors. Other states and mutations remain.
   FND-COMBAT-150's empty/no-eviction baseline admits no populated slot; do not repeat it for reclamation. Blocks: slice 4.
 - Q-COMBAT-067. RULE-COMBAT-007: What does admitted temporary-object cleanup during loading leave in restored creatures and presentation?
-  Settles it: actual getter/storage/map-value, retained zero-result root-field and pool admission;
+  Settles it: actual root/getter/storage/map-value and pool admission; retained zero-result fields outside preserved non-five roots;
   RDFF handler/provider effects and release metadata/separation across reached branches. Keep presentation distinct from kind.
   Tried: split from Q-COMBAT-045. FND-COMBAT-149 covers retry/eviction gates; FND-COMBAT-054 covers the effect route.
   Actual victim/free-list admission and child/alias effects remain. FND-COMBAT-163 settles RDFF status propagation;
   FND-COMBAT-164/165 settle admitted root ordering, finite deletion and kind preservation; FND-COMBAT-166 settles admitted
   non-top/noncoalescing release. Actual state/handler/pool/heap prerequisites remain. FND-COMBAT-167 settles positive-prefix
   ordering and pending bounds, and identifies zero-result root reuse. Getter effects, map values, retained fields
-  and actual storage remain; do not repeat settled structural proofs. Blocks: slice 4.
+  and actual storage remain. Tried: FND-COMBAT-168 excludes both zero-result resets and preserves root index for admitted non-five roots;
+  actual root/storage/map/pool prerequisites and other root states remain. Blocks: slice 4.
 - Q-COMBAT-003. RULE-COMBAT-008, SCR-UI-022, RULE-INPUT-003: Which values do `combat_state` and the word at `57E0:0DAB` take,
   and which code sets each? Settles it: the seven direct stores to `combat_state` of
   FND-COMBAT-023, read in their routines, and the writers of `57E0:0DAB`. Tried: an immediate
