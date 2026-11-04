@@ -493,6 +493,11 @@ Next ID: Q-COMBAT-067
   excludes all 26 unchanged shipped top-level files as SAVE providers. Reuse
   FND-CONFIG-037/038/040/068 and FND-CONFIG-151 for lookup, fallback and
   complete-resource requests. Runtime directory and state admission remain.
+  Tried: FND-COMBAT-120 resolves the local fallback cursor, fresh active
+  starting point on each read, failure paths without further fallback and
+  traversal's current global anchor. Those local selection/retry questions
+  are removed from unread work. Actual graph/mode/directory, per-resource
+  provider/length and callee/global preservation remain.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
