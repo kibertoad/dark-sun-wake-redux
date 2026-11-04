@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021]
 conflicting: []
 split_with: []
 related: []
@@ -92,7 +92,14 @@ establish every parser arm, count/error path or actual setup selection.
 
 ## Enumerations and flags
 
-None.
+The header's CdEnabled, MultipleInstallDisabled and MidiNotEnabled tags OR
+flags 0x02, 0x10 and 0x08 respectively into setup's header state. Retained
+0x10 forces combined-card selection from MainGroup. Without it, the prompt
+chooses the combined route or separate MusicOnlyGroup/DigitalGroup records.
+The recognized ProtectedMode and RealMode tags make no assignment in this
+binary's local header parser; its file-opening routine initializes the
+separate mode word to one. This is not a complete writer/preservation census
+(FND-SOUND-021).
 
 ## Differences between builds
 
@@ -109,3 +116,5 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   consumer effects of `CardGroup` and the chunk numbers beyond the recorded
   local tag/field/output bindings (FND-SOUND-020, FND-CONFIG-213,
   FND-CONFIG-007, Q-CONFIG-006).
+- Actual list-choice row/index, storage and continuation admission between
+  parsed card records and the settings writers (FND-SOUND-021, Q-SOUND-010).

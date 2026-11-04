@@ -421,6 +421,11 @@ Next ID: Q-CONFIG-011
   destinations. Those local bindings are removed from the remaining parser
   work; numeric/group/count arms, complete file/error handling and field
   consumers remain. Actual loader-record/mode/pointer admission is Q-SOUND-007.
+  Tried: FND-SOUND-021 settles the eight local header actions, including
+  mode-tag no-ops and flag-controlled combined/separate routing. Those
+  local header actions are removed from Settles it; reader/storage/callee,
+  group/numeric/count and complete file/error conditions remain. Dialog
+  row/index admission is the independent Q-SOUND-010.
   Blocks: completing the named entry readings.
 
 ## Emulated call

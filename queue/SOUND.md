@@ -1,6 +1,6 @@
 # SOUND
 
-Next ID: Q-SOUND-010
+Next ID: Q-SOUND-011
 
 ## Static
 
@@ -31,10 +31,10 @@ Next ID: Q-SOUND-010
   of `4A32:0011`. Tried: searches of `DSUN.EXE` for the tags and for far calls to the playlist
   routines, which find none (FND-SOUND-014, FND-SOUND-015). Blocks: none.
 
-- Q-SOUND-007. FMT-SOUND-004: Which selected record and mode supply the
-  actual setup loader names, and what binds its current-settings pointer?
-  Settles it: the selected-record argument reaching 1429:042D, the mode
-  producers, other incoming pointer-setter paths and current-record
+- Q-SOUND-007. FMT-SOUND-004: Which remaining setters/callers and state
+  changes affect mode/current settings through actual driver use?
+  Settles it: remaining mode writers and incoming settings-copy/pointer-setter
+  paths beyond the recorded combined/separate/fallback routes, and current-record
   lifetime/aliases through later driver children/digital use, and remaining
   filename/resource loader paths.
   Tried: FND-SOUND-019 validates all nineteen common directory envelopes;
@@ -47,7 +47,22 @@ Next ID: Q-SOUND-010
   It also binds DS:E01B through the initial pointer setter to the conditional
   first name helper. These local producers are removed from Settles it;
   actual record/mode selection, other setters and later preservation remain.
+  Tried: FND-SOUND-021 settles local header actions, combined/separate
+  group-to-writer and fallback-index routes, label/record stride separation
+  and exact FFFF caller gates. These local producers are removed from
+  Settles it. Independently answerable dialog row/index/storage admission
+  moves to Q-SOUND-010; preserve later state/callee and other-caller gaps here.
   Blocks: complete loader interpretation of FMT-SOUND-004.
+- Q-SOUND-010. FMT-SOUND-004, FMT-CONFIG-002: What actual row/index,
+  storage and continuation contract admits setup's list-choice result?
+  Settles it: cardinality and index correspondence through 19CF:000D/009A,
+  label/buffer/source spans, the row comparison's far-zero storage binding,
+  initial index and navigation/completion return paths, and preservation
+  across reached children. Tried: split from Q-SOUND-007 after FND-SOUND-021
+  identifies the wrapper's unconditional first-label read, entry-only negative
+  index clamp, layout FFFF path and normal current-index return. A source
+  record count or the callers' exact FFFF checks do not settle those bounds.
+  Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
   destination can fall in `DS:290A..291E`, with a positive control for each kind, or a reached
