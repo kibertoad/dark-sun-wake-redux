@@ -426,6 +426,11 @@ Next ID: Q-CONFIG-011
   local header actions are removed from Settles it; reader/storage/callee,
   group/numeric/count and complete file/error conditions remain. Dialog
   row/index admission is the independent Q-SOUND-010.
+  Tried: FND-SOUND-024 settles the group reader's local tag/count,
+  low-word allocation, separate record counter and pointer-return branches.
+  Remove those local branches from Settles it; numeric conversion, child
+  contracts, malformed/repeated-tag admission and complete file/error
+  handling remain. The conditional -1 path is not a native observation.
   Blocks: completing the named entry readings.
 
 ## Emulated call

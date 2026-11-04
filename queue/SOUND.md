@@ -72,6 +72,10 @@ Next ID: Q-SOUND-011
   uncertainty: MainGroup and DigitalGroup satisfy the source profile;
   MusicOnlyGroup is empty with declared count -1 and remains outside it.
   Native producers/retention and the empty-group route remain in Settles it.
+  Tried: FND-SOUND-024 removes the local special -1 allocation-bypass
+  alternative: both record and label callers pass low-word products, while
+  the signed music-only label loop skips negative counts. Numeric conversion,
+  allocator outcomes, state retention and actual chooser reachability remain.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
