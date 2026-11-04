@@ -222,6 +222,11 @@ Next ID: Q-PARTY-116
   path with no children or persistent stores and preserves the capped
   zero-or-one list. Prefix metadata reads, actual range/scanner/row flags,
   removal children, frame/list storage and flag admission remain.
+  Tried: FND-ITEM-065 resolves one flag producer and its publication order:
+  31E0:03CA prepares bit 20, increments the persistent count before its
+  insertion child and supplies a separate local count copy. Actual counted
+  insertion index, spare row/order/capacity, other producers and retained
+  flagged-row identity remain; a prepared flag is not a publication proof.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
