@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-005, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-085, FND-COMBAT-131, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -58,6 +58,12 @@ row five and only row two nonempty, `0x4800` reaches row two but `0x5000`
 stops at empty row zero. These are conditional static results; native paint
 and whether a subsequent LOAD action is delivered remain open
 (FND-COMBAT-085, Q-COMBAT-046, Q-UI-005).
+
+An inherited FFFF selection is a separate case: the character-list scan
+can produce it, and Save/Load has no own setup reset. In Load mode the
+navigation branches read the old indexed marker before their signed
+movement or wrap. Actual inherited values, buffer validity and native
+input remain unadmitted (FND-COMBAT-131, Q-COMBAT-046, Q-COMBAT-063).
 
 ## Sounds
 

@@ -38,7 +38,8 @@ Next ID: Q-COMBAT-067
 - Q-COMBAT-046. RULE-COMBAT-007, RULE-SAVE-002, SCR-UI-013, SCR-UI-014: Which admitted window events and state producers reach the
   numbered-load call and reader roots? Settles it: remaining producers and lifetimes of
   50AF:0004, 4C4C:0000, 4C4C:0002 and DS:627C beyond the explicit mode entries and
-  local navigation of FND-COMBAT-085; event delivery, snapshot/slot producers and
+  local navigation of FND-COMBAT-085 and sentinel producer/own reset ordering
+  of FND-COMBAT-131; event delivery, snapshot/slot producers and
   preservation and live window/handler identity beyond FND-COMBAT-098's three
   restoration-site orderings; window-path incoming transfers not covered by
   FND-UI-051's direct caller census. Independent reader routes are Q-COMBAT-055.
@@ -57,6 +58,11 @@ Next ID: Q-COMBAT-067
   Tried: FND-COMBAT-099 resolves the script sentinel/argument widths and the
   current-region equality gate. Its independent reader admission is split into
   Q-COMBAT-055; this item retains the window/event producer question.
+  Tried: FND-COMBAT-131 connects the character-list FFFF producer and own
+  cleanup behavior to Save/Load's absent own reset and marker-before-movement
+  ordering. Those local sentinel/reset obligations are removed. Actual scan
+  outcome, returning children, field lifetime and event admission remain;
+  ten controls do not alone admit an initial row in 0..9.
 - Q-COMBAT-055. RULE-COMBAT-007: Which actual script states and other incoming routes
   admit the independent numbered reader +0A6C, including selector zero?
   Settles it: execution admission and parameter preservation at instruction 0x5E,
@@ -494,6 +500,10 @@ Next ID: Q-COMBAT-067
   ten-record request is not enlarged by it. This removes an assumed valid
   later-page contract; actual index/storage and child preservation remain,
   with shared event/state producers in Q-COMBAT-046 and paint in Q-UI-005.
+  Tried: FND-COMBAT-131 bounds the explicit no-selection producer and
+  inherited-FFFF pointer arithmetic. Those local input cases are removed
+  from unread work, but actual selection/top and retained storage still
+  require admission through the intervening UI/preparation children.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?

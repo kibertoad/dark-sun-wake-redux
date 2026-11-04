@@ -89,3 +89,6 @@ None known.
   Q-COMBAT-046 and Q-COMBAT-063. Loaded zero and literal writer searches
   do not establish every later value; nonzero top does not prove valid
   saved-game contents beyond the requested ten records (FND-SAVE-026).
+  FND-COMBAT-131 identifies an explicit shared no-selection value FFFF;
+  selection normalization in Load navigation follows an earlier indexed
+  marker read. Its actual lifetime and the resulting path remain unadmitted.
