@@ -24,6 +24,7 @@ from overlay_returns import region_target, region_iret, ReaderReturn
 import map_restore
 from object_restore import ObjectTrace
 from script_restore import ScriptTrace
+from item_restore import ItemTrace
 
 
 def fields(client, delta):
@@ -282,11 +283,12 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items]")
     navigation = len(sys.argv) == 4
     observe_objects = navigation and sys.argv[3] == "saved-objects"
-    observe_scripts = navigation and sys.argv[3] == "saved-script-conversion"
+    observe_items = navigation and sys.argv[3] == "saved-items"
+    observe_scripts = observe_items or navigation and sys.argv[3] == "saved-script-conversion"
     observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
     observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
     observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
@@ -378,6 +380,7 @@ def main():
             map_prediction = None
             object_trace = None
             script_trace = None
+            item_trace = None
             report["region_relocations"] = []
             previous = None
             budget = 4096 if observe_objects else 1024 if observe_load_return or observe_reader_return else 512
@@ -394,6 +397,8 @@ def main():
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
                     if outcome == "returned":
+                        if item_trace is not None:
+                            report["item_trace"] = item_trace.finish()
                         if script_trace is not None:
                             report["script_trace"] = script_trace.finish()
                         if object_trace is not None:
@@ -424,6 +429,9 @@ def main():
                     if outcome == "continued":
                         record()
                         continue
+                if item_trace is not None and item_trace.handle(stop):
+                    record()
+                    continue
                 if object_trace is not None and object_trace.handle(stop):
                     record()
                     continue
@@ -803,6 +811,9 @@ def main():
                     report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
                     if observe_reader_return:
                         reader_return = ReaderReturn(session.client, r, delta)
+                    if observe_items:
+                        item_trace = ItemTrace(session.client,delta,r)
+                        report["item_trace"] = item_trace.report
                     if observe_objects:
                         object_trace = ObjectTrace(session.client,delta)
                         report["object_trace"] = object_trace.report

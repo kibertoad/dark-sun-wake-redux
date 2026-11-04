@@ -22,6 +22,7 @@ from overlay_returns import ReaderReturn
 import map_restore
 import object_restore
 import script_restore
+import item_restore
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -31,6 +32,30 @@ def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+table=bytes((i%251 for i in range(9200)))
+cleared=item_restore.prediction(table)
+assert all(cleared[at:at+2]==bytes(2) for at in range(12,9200,23))
+assert all(cleared[i]==table[i] for i in range(9200) if i%23 not in (12,13))
+assert item_restore.comparison(cleared,cleared)['equal']
+assert not item_restore.comparison(table,cleared)['equal']
+rejects(lambda:item_restore.prediction(table[:-1]))
+for address,size in [('0000:0000',9200),('FFFF:0010',792),('1000:FFFF',2),('1000:0000',3)]:
+    rejects(lambda:item_restore.bounds(address,size))
+assert item_restore.bounds('1000:0000',9200)==(65536,74736)
+class ItemClient:
+    def set_breakpoint(self,*args,**kwargs): pass
+    def remove_breakpoints(self,*args): pass
+    def read_memory(self,address,size):
+        seg,off=(int(x,16) for x in address.split(':'))
+        if (seg,off)==(0x57E0,0x19C1): return NS(data=bytes([0,0,0,0x60]))
+        if seg==0x6000: return NS(data=table[off:off+size])
+        return NS(data=bytes(size))
+item=item_restore.ItemTrace(ItemClient(),0,{'ss':'57E0','sp':'8000','cs':'1234'})
+rejects(item.finish)
+rejects(lambda:item.handle({'reason':'breakpoint','cs_ip':item.clear,'registers':{'ss':'57E0','bp':'7FFC','ds':'57E0'}}))
+assert item.handle({'reason':'breakpoint','cs_ip':item.clear,'emu_ns':0,'registers':{'ss':'57E0','bp':'7FFE','ds':'57E0','sp':'7F00','ax':'0000'}})
+assert item.expected==cleared and item.report['clear_entry']['nonzero_words']==400
+rejects(lambda:item.handle({'reason':'breakpoint','cs_ip':item.entry,'registers':{'ss':'57E0','sp':'7F00','ds':'57E0'}}))
 admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop={}))
 rejects(lambda: admit_state(NS(emulator_sha256='0'*64, stop={})))
 rejects(lambda: admit_state(NS(emulator_sha256=RUST_DOS_PINNED_SHA256, stop=None)))

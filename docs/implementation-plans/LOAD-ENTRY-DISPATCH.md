@@ -448,3 +448,30 @@ Also resample the retained queried length immediately after transfer and
 the queried length/word scan bound before release, requiring 7896/1316
 for this fixed case. This makes arithmetic-input retention explicit rather
 than inferring it from a matching prediction.
+
+## Native item clear and enumeration boundaries
+
+For Q-COMBAT-066, `saved-items` extends saved-script-conversion, without
+the object census. FND-PARTY-236 and FND-CONFIG-143/145 supply the static
+attempt. At loaded reader +0CC1 match its original SS/BP and resident DS,
+then cache the bounded 9200-byte kind-1 table. At resident 2D40:2196
+require reader +0CEA, index equal to current DS:1A32, and fixed output
+5072:0040 (relocated). Compare the table against a prediction clearing
+only each of 400 words +0C. Record endpoint pointer identity, changed and
+nonzero word counts; equality does not prove continuous pointer lifetime.
+
+At matched enumeration +240D record AX, bounded output through ordinal 79
+plus its sentinel/count bytes, and DS/SS relationship. Count reached
+1AA0:0566/051C entries only while enumeration is active, without claiming
+their individual writes or every internal path. Compare table and output
+again at matched reader return. Record physical overlap with the existing
+effect targets, output, item table and enumeration local frame. Reject
+wrapping/null spans and wrong caller/frame/arguments. Keep bytes only in
+process memory and licensed local reports; commit metadata and findings.
+
+Acceptance: synthetic controls reject invalid bounds, wrong frames and
+arguments, and distinguish exact clear prediction from unrelated writes.
+The native run records differences as evidence. This admits one normal
+boundary case, not helper termination for all inputs, continuous lifetime,
+failure paths or complete loading. Tooling and research remain separate
+validated commits; Exit is the matched reader return with retained guards.
