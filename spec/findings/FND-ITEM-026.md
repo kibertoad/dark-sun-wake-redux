@@ -1,9 +1,9 @@
 ---
 id: FND-ITEM-026
 title: Outer hit returns are overwritten on several direct routes but can pass through a cleanup skip and resident forwarding wrapper
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-ITEM-027]
 recorded_by: codex
 reproduced_by: []
 method: static

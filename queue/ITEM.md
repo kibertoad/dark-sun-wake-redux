@@ -106,8 +106,8 @@ Next ID: Q-ITEM-013
   callers consume the forwarded hit result beyond the three known direct
   continuations? Settles it: consumers of the result forwarded by overlay
   179 +0C7F through the possible cleanup-skip return at overlay 193
-  +1054/+0DC7 and resident 371D:04B3, identifying result-dependent branches
-  and requests at that wrapper's consumers. FND-ITEM-026 accounts for the
+  +1054/+0DC7 and resident 371D:04CA, identifying result-dependent branches
+  and requests at that wrapper's consumers. FND-ITEM-027 accounts for the
   other qualified direct outer-return routes. Count-shrink feasibility
   and preservation remain Q-ITEM-011.
   Do not infer a meaningful word return from an unnormalized AH. Complete
@@ -146,11 +146,11 @@ Next ID: Q-ITEM-013
   settles both low-byte reloads. Their queue-return AL is overwritten;
   this removes that direct consumer obligation. Any further incoming
   mechanism still needs Q-ITEM-010's coverage, and no AH contract is proved.
-  Tried: FND-ITEM-026 qualifies both first-level outer calls, four +12A8
+  Tried: FND-ITEM-027 qualifies both first-level outer calls, four +12A8
   callers, the +1054 caller and four +0DC7 callers. It removes the three
   immediate overwrite routes and two further parent overwrites plus the
   independent lookup continuation. The cleanup's count-skip can forward
-  AX through 371D:04B3; only that later-consumer path remains here.
+  AX through 371D:04CA; only that later-consumer path remains here.
 
 - Q-ITEM-010. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What unresolved
   incoming mechanisms can reach the hit routine outside the qualified direct
