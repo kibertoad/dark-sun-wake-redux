@@ -129,6 +129,17 @@ GAME_DIR/captures/rust-dos-load-entry/v181-q063-load-return-verified-20261104/.
 The extended bound is 1024 observations; this run used 534. A saved return-segment
 watch was armed but never triggered, so mutation delivery remains unverified.
 No successful save restoration or later action cleanup is admitted by this result.
+The fixed native_save.py F1/Enter route in FND-COMBAT-140 admits one Save
+entry/return, private native-file creation and post-Save keyboard-loop
+checkpoint. A11D may be null there; the bounded tagged map head, global
+hook and native input builder are independently checked. Native saved-map
+creation and new-process verification runs are
+GAME_DIR/captures/rust-dos-native-save/v181-q063-native-save-input-20261104/ and
+GAME_DIR/captures/rust-dos-native-save/v181-q063-native-save-verify-20261104/.
+Instruction/time, named state, frame and native-file digest matched at
+restore and same-process roundtrip. The narrow saved return-segment watch
+actually handled ten relocations. Loading the new native save and its F2
+route are not yet admitted; no patched native save was used.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state

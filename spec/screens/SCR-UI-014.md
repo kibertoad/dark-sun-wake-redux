@@ -5,7 +5,7 @@ status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
 resolution: 320x200
-evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-004, FND-SAVE-007, FND-SAVE-026, SRC-MANUAL-1994]
+evidence: [FND-UI-036, FND-UI-037, FND-UI-038, FND-SAVE-004, FND-SAVE-007, FND-SAVE-026, FND-COMBAT-140, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-SAVE-001, RULE-SAVE-002, SCR-UI-006]
@@ -43,6 +43,7 @@ button art reads SAVE, rather than OKAY (FND-UI-036).
 | Key | Enabled when | Effect | Evidence |
 |---|---|---|---|
 | Printable keys | A slot is chosen | Type the description of the saved game. | SRC-MANUAL-1994 |
+| Enter | One recorded F1 entry with row one, top zero and Save mode | Reaches Save with argument one and creates a private native SAVE02.SAV; the routine returns and reaches the checked keyboard loop. Incoming callback event kind and subsequent loading remain unverified. | FND-COMBAT-140 |
 
 ## Other input
 

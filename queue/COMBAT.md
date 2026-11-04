@@ -518,6 +518,8 @@ Next ID: Q-COMBAT-067
   beyond FND-COMBAT-138's admitted empty-source normalization rejection.
   FND-COMBAT-139 also admits that case's wrapper/settings/outer return;
   other resource provenance and later action effects remain separate.
+  Use FND-COMBAT-140's strictly restored native-file candidate for a
+  nonempty-source attempt; its actual F2 entry/path binding remains required.
   Exit: path and file-state cases sufficient to identify which working contents
   can reach archive opening, with any unobserved external outcomes retained.
   Tried: split from Q-COMBAT-018. FND-COMBAT-113 gives the default 128-byte
