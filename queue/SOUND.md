@@ -79,6 +79,11 @@ Next ID: Q-SOUND-011
   Tried: FND-SOUND-025 removes the zero/absent-sentinel conversion alternative
   for the delivered installed -1 count line. The decimal path assigns FFFF;
   allocator, retention, vector and dialog/child admission remain unsettled.
+  Tried: FND-SOUND-026 removes local allocator signedness/rounding and
+  exact group-clearing uncertainty for those requests. The word request
+  is zero-extended; normal pointers have offset four and clearing covers
+  the requested span. Heap links/break state, DOS resize outcome and later
+  chooser/child admission remain; arithmetic does not prove native success.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

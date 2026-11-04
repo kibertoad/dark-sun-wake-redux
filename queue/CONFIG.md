@@ -436,6 +436,10 @@ Next ID: Q-CONFIG-011
   the decimal scanner assigns 000D and FFFF. Its local line/comment/token
   path is recorded too. Remaining numeric work is other tokens, bounds and
   failure cases; full byte-delivery/file and child contracts remain open.
+  Tried: FND-SOUND-026 records ordinary request rounding and exact clearing
+  for the installed count products, removing those local child operations
+  from Settles it. Native heap/break/service and malformed-input behavior
+  remain separate from the conditional normal continuation.
   Blocks: completing the named entry readings.
 
 ## Emulated call
