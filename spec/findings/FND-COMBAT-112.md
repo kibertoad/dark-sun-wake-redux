@@ -27,6 +27,9 @@ with requested tag SAVE, using the same 26 top-level installed GFF files.
 Every file's size and XXH3-128 matches its entry in
 BLD-GOG-EN-1.1.files.yaml. No changed working archive was included as
 though it were the shipped input.
+FND-SAVE-015 already records the absence of shipped SAVE tables; this
+finding is a controlled fingerprinted reproduction of that source result,
+not the first discovery of it.
 
 The inspected names are CHARSAVE.GFF, DARKRUN.GFF, DARKSAVE.GFF,
 GPLDATA.GFF, OBJEX.GFF and RESOURCE.GFF, plus the twenty RGN archives

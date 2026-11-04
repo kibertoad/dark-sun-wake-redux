@@ -115,6 +115,8 @@ None known.
   for destination storage, and Q-COMBAT-066 for reached child effects.
   FND-COMBAT-115 qualifies the selected-save producer's decimal-prefix
   parser and DOS find-buffer pointer routing under Q-COMBAT-063.
+  FND-COMBAT-116 gives the fixed table's nominal destination separation
+  and SAVE/21 boundary-row source; runtime storage remains Q-COMBAT-065.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries

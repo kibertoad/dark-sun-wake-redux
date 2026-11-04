@@ -509,6 +509,12 @@ Next ID: Q-COMBAT-067
   not itself replace these slots. None proves every runtime pointer, alias
   or transferred length. Reuse Q-ITEM-011/013 for shared segment/frame
   prerequisites without transferring their independent obligations here.
+  Tried: FND-COMBAT-116 resolves all 46 nonnull shipped pointer relocations,
+  their nominal nonoverlap with saved effect rows/count, and count-word
+  resident backing. SAVE/21 contains the helpers' nominal boundary row.
+  Those fixed-table comparisons are removed from unread work; runtime
+  bindings for fifteen null slots, other writers, actual lengths and
+  storage/segment/transfer aliases remain.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-066. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which reached child effects preserve or change restored effect rows and count?
