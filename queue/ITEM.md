@@ -80,6 +80,11 @@ Next ID: Q-ITEM-016
   complete enumeration and immediate frame consumers are read; remaining
   work is actual dispatch/identifier and source-item admission, complete
   actions/transfers, snapshot/removal and shared state/storage preservation.
+  Tried: FND-ITEM-052 removes the removal gate's local snapshot/target-item
+  interpretation: seven initialized bits decide occupied positions 6/7/14,
+  with effect 106 unconditional and six existing-item magnitude pairs.
+  Remaining snapshot work is actual current-character/table/boundary and
+  near-frame admission, map/graph/record lifetime and child preservation.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell

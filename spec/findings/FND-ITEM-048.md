@@ -45,8 +45,9 @@ When DS:617D is nonnull, map words at byte offsets 1C and 0E select entries
 of the current character graph. Non-FFFF entries supply attached-record type
 words as the two other-hand candidates; absent entries retain 9999. The
 local +3376 gate is then called with L and message-enable. AL zero rejects
-before category matching. Its separate snapshot/record dependencies remain
-conditions, not evidence that every source slot may be removed.
+before category matching. FND-ITEM-052 subsequently binds its initialized
+bitmap tests to the existing target item at positions 6/7/14. Actual snapshot/
+record admission remains separate from that local predicate.
 
 For L below 18, compare C with byte L-4 of 506F:0000. FND-EXE-616 records
 the fourteen category bytes as 3,11,12,5,9,2,10,6,7,1,5,9,8,4. Equality passes
