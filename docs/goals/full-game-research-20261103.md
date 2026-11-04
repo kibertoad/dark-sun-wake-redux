@@ -39,7 +39,6 @@ reports before matched-menu pairing are diagnostic only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
 - Latest research: FND-COMBAT-163/162/161 and corrected FND-PARTY-259/260.
-  Retain FND-COMBAT-159/160/158 and earlier findings' reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
 - Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
