@@ -19,6 +19,8 @@ Next ID: Q-PARTY-116
   overlay 209 `+123E` was called with when it calls overlay 184 `+1DCE` at `+14FF`, so that the
   sheet at `+151E` prints that character's own classes? Settles it: the routes from overlay 172
   `+05DB` through overlays 173, 188 and 210 to the overlay 209 routines that store `4E71:0B44`,
+  including 371D:050F zero-count unload target admission and free-list/slot
+  lifetime after FND-PARTY-262/263 withdraw the earlier exclusion,
   given `DS:0DAB` 0 (FND-PARTY-191 reads 0 on the Create Characters route; whether the in-play
   route can offer `DUAL` with another value), and what those routines store (FND-PARTY-080).
   Tried: FND-PARTY-080 reads the calls before `+1DCE` on this path and FND-PARTY-188 finds the
@@ -206,6 +208,9 @@ Next ID: Q-PARTY-116
   the wrapper drains queued effects before the equipment flag clear.
   Actual child/queue effects, cache/snapshot/list/frame/output preservation
   and use-time flag values remain.
+  Tried: FND-PARTY-262 corrects the area child's zero-argument exclusion:
+  zero removals still request unloading its target slot. Actual target-list,
+  object/entry/table lifetime, redraw/deferred work and child effects remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their

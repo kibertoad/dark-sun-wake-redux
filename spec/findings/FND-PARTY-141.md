@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-141
 title: The four unloaders left on the DUAL window's routes free only a slot of 4 or above or the slot of an object they placed themselves, which comes from the free lists, so no routine the DUAL path reaches frees a party member's slot
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-263]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
