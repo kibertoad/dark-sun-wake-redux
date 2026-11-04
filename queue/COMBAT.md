@@ -484,6 +484,11 @@ Next ID: Q-COMBAT-067
   parsing and the saved versus queried transfer-pointer distinction are
   removed from unread local helper work. Actual directory bytes, DS/SS and
   ES/BX state, selected slot, table capacity and preservation remain.
+  Tried: FND-COMBAT-129 resolves the action-to-load row/top/base reread
+  timing, exact word-arithmetic source pointer and own list-release order.
+  Those producer/lifetime operations are removed from unread work. Actual
+  selected values, buffer/terminator bounds and child/alias preservation
+  remain; the explicit list release follows loading, not window closure.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?

@@ -65,6 +65,11 @@ still applies the settings and subregion of the chosen slot to the game in memor
 
 ## Alternatives
 
+FND-COMBAT-129 subsequently bounds the selected source path's exact
+word arithmetic, fresh global reads after preparation, window-versus-list
+release order and remaining input/child preservation conditions. Reuse
+that finding rather than assuming a displayed row freezes its path.
+
 This replaces FND-SAVE-017, which read the reader only to `+0B78` and so left out its steps from
 `+0B78` to its return. `31E0:0EFF`, `31E0:444A` and `2D40:2196` were read only at their calls.
 `204 +284D`, `187 +2424`, `187 +206E`, `182 +1856`, `182 +15D7` and `187 +2496` were read only at

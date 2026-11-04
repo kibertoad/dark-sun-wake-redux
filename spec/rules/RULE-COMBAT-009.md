@@ -115,6 +115,8 @@ None known.
   for destination storage, and Q-COMBAT-066 for reached child effects.
   FND-COMBAT-115 qualifies the selected-save producer's decimal-prefix
   parser and DOS find-buffer pointer routing under Q-COMBAT-063.
+  FND-COMBAT-129 bounds selected-path formation and explicit save-list
+  lifetime; actual selected values, contents and child preservation remain open.
   FND-COMBAT-116 gives the fixed table's nominal destination separation
   and SAVE/21 boundary-row source; runtime storage remains Q-COMBAT-065.
   FND-RNG-093 corrects the heap-base rounding prerequisite for conditional
