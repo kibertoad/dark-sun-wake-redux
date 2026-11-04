@@ -95,6 +95,11 @@ and checked load-entry state remain under
 GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-entry-20261104/.
 This admits that entry observation, not a numbered load, Save action, every
 dispatch target or independent restore of the new Load checkpoint.
+The fixed `down` stage additionally observes Down's key-down event at the
+actual global call and Load callback entry (FND-COMBAT-134), then stops.
+Its pending release is not admitted as completed delivery. Scoped output is
+GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-down-scoped-20261104/;
+this does not admit navigation outcome or a numbered load.
 Guarded writes were not reattempted under these new pins.
 Historical capabilities below retain their original version scope.
 The previous emulator is preserved at artifacts/rust-dos-v1.7.5; old state
