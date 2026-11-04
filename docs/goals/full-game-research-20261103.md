@@ -38,15 +38,15 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
   FMT-ACTOR-001 retains a Defect note for FND-COMBAT-162.
-- Latest research: FND-ITEM-047/046/045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
+- Latest research: FND-ITEM-048/047/046/045/044/043, FND-SCRIPT-041/040/039/038/037/036 and FND-PARTY-261.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
-- Item work: FND-ITEM-027 through FND-ITEM-047. Q-ITEM-009 closed;
+- Item work: FND-ITEM-027 through FND-ITEM-048. Q-ITEM-009 closed;
   Q-ITEM-011/013 remain separate. Reuse FND-COMBAT-032/033/046 censuses.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   Q-COMBAT-067 separates cleanup from Q-COMBAT-045; neither is closed.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 620ffb3b -NoRestore passed. Documentation, queue, policy and package checks passed.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince e289b4e2 -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066/067 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
 - Last integration gate: 2026-11-04, Test.ps1 -ChangedSince 216c9812 -NoRestore selected integration and passed
@@ -84,6 +84,10 @@ reports before matched-menu pairing are diagnostic only.
   temporary-presentation-candidates.txt there remains diagnostic; it is not a writer census.
   Nested reports/configurations: nested-scalar-controls.json, nested-scalar-domain.json
   and nested-scalar-repeat.json under item-removal-20261104/.
+  Placement reports: placement-prefix.txt, placement-checks.txt and
+  placement-removal-gate.txt under item-removal-20261104/. Unrecorded
+  placement-capacity-children.txt is diagnostic; reuse FND-PARTY-234 and
+  FND-MAGIC-013 before further capacity reading.
   Tooling gate Test.ps1 -ChangedSince 29534f4e -NoRestore passed, including
   the 11 script-census synthetic tests. No tracked WIP or owned process remains.
 - Unrecorded effect-code-indexed-store-candidates.txt remains diagnostic:
@@ -97,6 +101,8 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-SCRIPT-023's effective reset/preservation; Q-SCRIPT-017's DS/stack and coordinate/grid admission;
   Q-PARTY-115's runtime stores/copies, other sources and error-context preservation.
   Reuse FND-SCRIPT-036/037/038/039/040/041, FND-PARTY-261 and FND-ITEM-036 through FND-ITEM-042.
+- Q-ITEM-003 placement caller/position, snapshot/removal and capacity admission;
+  reuse FND-ITEM-048. Spell/store obligations remain separate.
 - Q-ITEM-006's other entries, decoder gaps and independent writers;
   Q-ITEM-005's other consumers. Reuse FND-ITEM-044/045/046 rather than repeat
   those placement/decoded-scalar/positive-caller readings; reuse FND-ITEM-047
