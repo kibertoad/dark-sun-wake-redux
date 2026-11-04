@@ -37,7 +37,7 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-159/158/157/156/155, FND-COMBAT-148/147 and corrected inventory entries
+- Latest research: FND-COMBAT-160/159/158/157/156, FND-COMBAT-148/147 and corrected inventory entries
   FND-EXE-639/640. Retain FND-COMBAT-146, FND-CONFIG-221/222, FND-SAVE-026,
   FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-141 and FND-RNG-093;
   use their reproduction limits.
@@ -49,7 +49,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince daf5d83e
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince c273a716
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065/066 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -109,7 +109,8 @@ reports before matched-menu pairing are diagnostic only.
   and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
   controls and exclusions. Retain canonical inputs and unresolved reports.
   FND-COMBAT-149's listing is restore-object-children.txt under hit-incoming-20261104/.
-  FND-COMBAT-159's listing is temporary-index-insertion.txt under that directory.
+  FND-COMBAT-159/160 listings: temporary-index-insertion.txt and
+  temporary-record-resources.txt under that directory.
   temporary-presentation-candidates.txt there remains diagnostic; it is not a writer census.
   No tracked WIP or session-owned analysis/test process remains.
 - Unrecorded effect-code-indexed-store-candidates.txt remains diagnostic:
@@ -120,8 +121,8 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-045's remaining pointer/resource producers and save admission;
-  reuse FND-COMBAT-159 for the sorted-index adjustment branch;
+- Next: Q-COMBAT-045's remaining bulk/indirect producers and save-call timing;
+  reuse FND-COMBAT-159/160 for sorted-index and per-record resource branches;
   Q-COMBAT-066's remaining caller/child cases, reusing FND-COMBAT-157/158
   for settled map endpoints/writer. The retained diagnostic
   caller run v181-q066-caller-20261104 ended on consumed-breakpoint cleanup,
