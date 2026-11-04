@@ -94,6 +94,14 @@ Next ID: Q-ITEM-014
   changed copy. Initializer byte +12 equal to one already lies outside that
   source domain. Remaining work is independent writers, other inputs and
   admitted selection/lifetime, not another scan of these unchanged payloads.
+  Tried: FND-ITEM-044 removes the placement helper's local range/collision/output
+  uncertainty: a kind-two root without a same-position collision returns six
+  or nine unchanged, and the recorded continuing field-ten request can write
+  their byte under its binding/width conditions. Actual request/caller/graph,
+  near DS/SS and setter admission remain. FND-ITEM-045 removes position-field
+  ten and word-field eight selection from 253 unchanged top-level literal
+  scalar-function calls; the dynamic GPL/27 request, nested calls, gap,
+  other incoming routes, changed state and aliases remain.
 
 - Q-ITEM-007. RULE-ITEM-008: Which caller and record states admit the counted
   item helper's local quantity operations? Settles it: complete caller
