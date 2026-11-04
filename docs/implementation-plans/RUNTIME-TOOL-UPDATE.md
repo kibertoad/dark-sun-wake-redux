@@ -42,3 +42,20 @@ the project-local EVIDENCE_PYTHON selected explicitly. Existing argument-count,
 59 uncompiled Kaitai definitions and scheduled-generation skips remain.
 Official release metadata: [PyPI session 1.0.0](https://pypi.org/project/dinorefurb-dosbox-session/1.0.0/)
 and [rust-dos v1.8.1](https://github.com/dividebysandwich/rust-dos/releases/tag/v1.8.1).
+
+## Post-initialization equipment flag observation
+
+Q-PARTY-118 and FND-ITEM-070 require the value after initialization callbacks,
+rather than inference from the earlier zero fill. Extend startup_segments.py
+with one named byte observation at main's first instruction. Verify the exact
+main breakpoint and relocated DS before reading DS:6174; reject invalid
+relocations, real-mode physical overflow and short reads. Retain the existing
+RNG trap, owned muted session, source fingerprint and no-input/no-write bounds.
+Record the byte and its address in the private report. This establishes only
+the observed endpoint, never continuous preservation or later gameplay values.
+
+Synthetic controls must reject a wrong stop, wrong DS, short read and invalid
+mapping before admitting evidence, and verify an exact one-byte observation.
+Run Test.ps1 for the tooling batch, then record any native result in a separate
+research batch. Exit: guarded observation and controls pass; native evidence
+and remaining limits are documented without promoting complete reading.

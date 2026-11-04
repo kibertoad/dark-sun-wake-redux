@@ -34,10 +34,29 @@ from load_entry import archive_fields, declared_return, reader_frame, region_tar
 import request_provider as provider
 from native_save import save_ready, save_root, save_return, input_map_ready, observe_delivery
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
+from startup_segments import equipment_flag
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
     raise AssertionError('accepted unsupported state')
+class FlagMemory:
+    short=False
+    calls=0
+    def read_memory(self,address,size):
+        self.calls+=1
+        assert size==1
+        return NS(data=b'' if self.short else bytes([7]))
+flag_memory=FlagMemory()
+flag_stop={'reason':'breakpoint','cs_ip':'277B:0024','registers':{'ds':'57E0'}}
+assert equipment_flag(flag_memory,flag_stop,0x1000)['value']==7
+for bad in [dict(flag_stop,reason='trap'),dict(flag_stop,cs_ip='277B:0025'),
+            dict(flag_stop,registers={'ds':'57E1'})]:
+    rejects(lambda:equipment_flag(flag_memory,bad,0x1000))
+for loaded in [-1,True,0xFFFF,0xB000]:
+    rejects(lambda:equipment_flag(flag_memory,flag_stop,loaded))
+assert flag_memory.calls==1
+flag_memory.short=True
+rejects(lambda:equipment_flag(flag_memory,flag_stop,0x1000))
 pool_table=bytearray(1572)
 struct.pack_into('<H',pool_table,3*7+1,12)
 struct.pack_into('<H',pool_table,3*12+1,9999)

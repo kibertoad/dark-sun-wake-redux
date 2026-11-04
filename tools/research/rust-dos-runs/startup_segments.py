@@ -22,6 +22,26 @@ from dinorefurb_dosbox_session import (
 ROOT = Path(__file__).resolve().parents[3]
 
 
+def equipment_flag(client, stop, loaded):
+    """Read only FND-ITEM-070's named field at the verified main endpoint."""
+    if type(loaded) is not int or not 0 <= loaded <= 0xFFFF:
+        raise ValueError("invalid startup relocation")
+    main_segment = loaded + 0x277B - 0x1000
+    data_segment = loaded + 0x57E0 - 0x1000
+    if (not 0 <= main_segment <= 0xFFFF or not 0 <= data_segment <= 0xFFFF
+            or data_segment * 16 + 0x6174 + 1 > 0x100000):
+        raise ValueError("equipment flag mapping crosses real-mode bounds")
+    if (stop.get("reason") != "breakpoint"
+            or stop.get("cs_ip") != f"{main_segment:04X}:0024"
+            or int(stop.get("registers", {}).get("ds", "-1"), 16) != data_segment):
+        raise ValueError("equipment flag requires main entry and its declared DS")
+    address = f"{data_segment:04X}:6174"
+    body = client.read_memory(address, 1).data
+    if len(body) != 1:
+        raise ValueError("short equipment flag observation")
+    return {"address": address, "size": 1, "value": body[0]}
+
+
 def main():
     if len(sys.argv) != 2 or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1]):
         raise SystemExit("usage: startup_segments.py <new-run-name: letters/digits/_/->")
@@ -90,6 +110,8 @@ def main():
         (run / "startup-segments.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         if observed.stop.get("reason") != "breakpoint" or observed.stop.get("cs_ip") != main_entry:
             raise RuntimeError("main not reached; no draw or different stop may be continued by this probe")
+        report["equipment_flag"] = equipment_flag(session.client, observed.stop, loaded)
+        (run / "startup-segments.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         registers = observed.stop["registers"]
         print(json.dumps({"entry_cs_ip": entry["cs_ip"],
                           "entry_ds": entry["registers"]["ds"],
@@ -97,7 +119,8 @@ def main():
                           "main_cs_ip": main_entry, "main_ds": registers["ds"],
                           "main_ss": registers["ss"], "main_sp": registers["sp"],
                           "rng_initial": report["initial_rng_state"],
-                          "rng_main": report["main_rng_state"], "draws": []}), flush=True)
+                          "rng_main": report["main_rng_state"], "draws": [],
+                          "equipment_flag": report["equipment_flag"]}), flush=True)
 
 
 if __name__ == "__main__":
