@@ -278,7 +278,10 @@ for root index zero it instead returns the root object number
   paths and the decoder gap do not. The known initializer, free-list leaves and
   independent scalar kind-one setter also exclude direct name/type invalidation
   under separated valid storage (FND-ITEM-036, FND-ITEM-037, FND-ITEM-038,
-  FND-ITEM-039, FND-ITEM-040, FND-ITEM-041, Q-PARTY-115).
+  FND-ITEM-039, FND-ITEM-040, FND-ITEM-041, Q-PARTY-115). The malformed
+  GPL/37 route's own store targets the accumulator under preserved returning-error
+  context; error-child effects, aliases and other incoming entries remain
+  (FND-ITEM-042, Q-PARTY-115).
 - Admitted item-action dispatch and child effects of the overlay-189
   selector consumers (FND-PARTY-254, Q-PARTY-109).
 - Admitted script inputs and child effects of the packed-field consumer

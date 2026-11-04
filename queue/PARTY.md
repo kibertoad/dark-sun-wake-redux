@@ -208,7 +208,12 @@ Next ID: Q-PARTY-116
   removes unnamed canonical RDFF inputs of other initial types: all 1931 item
   payloads across 87 types are named, so a name-preserving type-only change cannot
   supply the invalid-name prerequisite. Other input domains and runtime name
-  writes/copies/aliases, changed streams and the gap remain. Blocks: slices 4-5.
+  writes/copies/aliases and changed streams remain. Tried: FND-ITEM-042 removes
+  the unchanged GPL/37 0D37 route's local target uncertainty: preserved returning-error
+  context leaves an accumulator-byte store and stops before another opcode.
+  The gap now retains error-child effects (Q-SCRIPT-003, Q-CONFIG-008), context
+  preservation/aliases, other incoming offsets and changed dispatch/stream state,
+  rather than another guessed decoding of that route. Blocks: slices 4-5.
 - Q-PARTY-107. FMT-PARTY-006: Which admitted door actions preserve the
   source/partner record identity and realize overlay 182's flag and
   presentation requests? Settles it: the `+0C23` and `+0DE6` caller
