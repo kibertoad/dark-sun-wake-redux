@@ -217,6 +217,11 @@ Next ID: Q-PARTY-116
   removal count is not proved. Actual range/coordinate setup, predicate,
   row/slot/frame preservation and child effects remain; the range helper's
   FF-derived row-minus-one read needs separate memory admission.
+  Tried: FND-ITEM-064 removes the canonical D=42 final predicate and
+  compaction alternatives: it takes the complete table's default accept
+  path with no children or persistent stores and preserves the capped
+  zero-or-one list. Prefix metadata reads, actual range/scanner/row flags,
+  removal children, frame/list storage and flag admission remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
