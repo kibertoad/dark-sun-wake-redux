@@ -74,6 +74,12 @@ Next ID: Q-ITEM-016
   canonical bytes are 0..100, and this comparison cannot reject Strength
   3..25 under retained-source conditions. Actual sample selection, runtime
   mutations, width/table lifetime and traversal/storage admission remain.
+  Tried: FND-ITEM-051 removes the local argument ambiguity for six encoded
+  placement calls: five message-disabled queries and one enabled action
+  prefix, with fixed loop ranges or identifier-minus-2BCC positions. The
+  complete enumeration and immediate frame consumers are read; remaining
+  work is actual dispatch/identifier and source-item admission, complete
+  actions/transfers, snapshot/removal and shared state/storage preservation.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell

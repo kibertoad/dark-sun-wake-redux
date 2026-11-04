@@ -81,5 +81,7 @@ None known.
   of the local placement predicates remains Q-ITEM-003. Reuse FND-ITEM-048
   for the order/thresholds and FND-ITEM-049/050 for the selected capacity
   result and canonical sample domain; a load message does not prove a sum.
+  FND-ITEM-051 binds the six encoded call arguments, loop positions and
+  immediate frame requests; actual event/item and state admission remain.
 - What the screen shows while an item is placed, and the full list of the inventory screen's
   effects (Q-ITEM-002).
