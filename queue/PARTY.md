@@ -290,6 +290,11 @@ Next ID: Q-PARTY-119
   All additional raw/anchored numeric matches are classified; no other
   overlap is found within those forms. Computed/aliased, bulk/wider and
   startup producers, actual DS, callbacks and use-time preservation remain.
+  Tried: FND-ITEM-070 identifies startup's explicit forward zero fill as
+  a bulk flag producer before initialization callbacks. It also separates
+  nominal save spans from actual recorded-resource transfer lengths;
+  initialization targets, actual pointer/length/segment state, other bulk
+  and computed writers and later preservation remain.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
