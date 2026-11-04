@@ -487,9 +487,11 @@ Next ID: Q-COMBAT-067
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-064. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which runtime archive resources and recorded lengths supply effect rows and count?
-  Settles it: bind the path/reuse flag and saved handle to a live record, then
-  follow selection, open/close/growth and traversal-mode changes to each
-  SAVE/24 and SAVE/26 request reached with selector zero. Identify the
+  Settles it: bind the actual path/reuse flag and saved handle to a live record
+  through the locally read selection/open/close/growth transitions. Admit the
+  pre-read DS:0DAB branch, DS:145A versus working-handle resolver identity,
+  current graph/mode and preservation to each selector-zero SAVE/24 and
+  SAVE/26 request, rather than rereading those helpers. Identify the
   supplying record, directory entry, payload identity and length on complete,
   missing-resource and fallback paths. Reuse Q-COMBAT-054 for shared archive
   graph/state producers and Q-COMBAT-063 for copy admission, rather than
@@ -532,6 +534,11 @@ Next ID: Q-COMBAT-067
   publication order; shared graph/allocator admission remains there.
   FND-COMBAT-127 supplies the corresponding local open construction and
   failure contract under that shared item, including pre-publication effects.
+  Tried: FND-COMBAT-128 resolves the concrete post-open region-close site,
+  state-zero/two/other cleanup composition and ignored close result before
+  the numbered reader. Those local call-order/gate obligations are removed.
+  Actual DS:145A/working-handle identity, graph membership and intervening
+  preservation remain; the reuse flag is not a membership test.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
