@@ -37,73 +37,49 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Shared storage prerequisite: FND-RNG-093 is current; active
-  citations moved. Reuse FND-CONFIG-209/210/211/212 and FND-PARTY-215.
-- Latest archive research: FND-COMBAT-116/115/114/113/112/111/110; Q-COMBAT-018 remains open.
-  RULE-COMBAT-009 and the queue now reuse FND-COMBAT-035/044,
-  FND-SAVE-021 and FND-COMBAT-096 for selector and selection prerequisites.
-- Latest item research: FND-ITEM-035/034/033/032/031/030/029/028/027; retain their
-  predecessors and the corrected resident-boundary replacement. Q-ITEM-009
-  is closed; Q-ITEM-011/013 are separate. Rules remain supported.
-- Reconciled FND-COMBAT-032/033 and FND-ITEM-032 into the item rules.
-  Reuse those copy contracts before further Q-ITEM-013 producer research.
-- Reconciled existing FND-COMBAT-046 into the same rules. Its DATA domain
-  and local handler reading are already recorded; do not repeat that census.
-- Item rules now share Q-COMBAT-009/017/018/020/024 for effect-table
-  admission. Q-ITEM-013 retains live-frame writes/aliases only. Reuse
-  FND-COMBAT-035/043/044/045/053/054 before another restore/backing reading.
-- Last full gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
-  192 Node and 745 .NET tests. Documentation, queue and pinned-package
-  checks passed. Existing argument-count and scheduled-generation skips,
-  59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince 3406d564
-  -NoRestore passed with the project-local interpreter.
-  Q-COMBAT-018 now composes Q-COMBAT-063/064/065/066; the split retains
-  copy, source-resource, destination and child-effect obligations. No closure.
-- Owner-requested runtime tooling update is complete: session 1.0.0 and
-  rust-dos v1.8.1 are pinned and installed. See
-  docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
-  All 118 session imports resolve; ZIP/executable integrity, required DLLs,
-  installer idempotency and the fixed muted startup probe passed.
-  The preceding session's no-runtime statement no longer describes this
-  checkpoint. Only the bounded startup probe was run for this update.
-- Select the repository-local EVIDENCE_PYTHON explicitly for gates and
-  evidence commands. The inherited override selects another project's
-  interpreter and must not be treated as this checkout's installed tooling.
-- Historical checkpoints retain their emulator identities. Their gameplay,
-  input and capture capabilities are version-specific; regenerate and
-  verify before a current-pin restore. The previous emulator is preserved
-  at artifacts/rust-dos-v1.7.5. Never relabel states to pass strict matching.
-- Current item inputs and reports remain under
-  GAME_DIR/analysis/hit-incoming-20261104/ and
-  GAME_DIR/analysis/item-removal-20261104/. FND-ITEM-017 through
-  FND-ITEM-033 identify the accepted queries, controls and exclusions.
-  Hit-flags operand windows remain diagnostic, not a complete writer census.
-  Retain source configurations and unresolved reports. No tracked WIP.
-- Unrecorded preparation there: effect-code-indexed-store-candidates.txt.
-  The field_stores.py raw pass uses an eight-byte candidate window; preserve
-  that exclusion. Its output is not an exhaustive writer census.
-- FND-ITEM-034 names the retained handler output listings and local
-  metadata-only effect-handler-row.tsv. Reuse their frame/pointer limits.
-- FND-ITEM-035 names the handler-local bitmap/result reports in that store.
-  Reuse its existing-row admission distinction before another builder reading.
-- Reuse FND-PARTY-215/219, FND-RNG-053/061, FND-CONFIG-140/141/150/153/154/182/209,
-  FND-PARTY-051/172/216/218/241 and FND-ACTOR-015/016 with their scope limits.
-  Other retained research locations are named by the entries' reproduction
-  sections; do not repeat their root scans as new evidence.
-- Process PR128 and template PR146/147 adoption remain in place. Research
-  uses Test.ps1 -Research -ChangedSince the pre-batch commit. Shared/uncertain
-  inputs require integration; fresh staged documentation checks stay enabled.
-  No new upstream rules refresh was requested or performed during this update.
-- Next: Q-COMBAT-065's runtime-bound destinations and aliases, reusing
-  FND-COMBAT-116 and FND-RNG-093. Reuse FND-PARTY-047/236,
-  FND-SCRIPT-026, FND-CONFIG-156 and FND-ACTOR-016 for known producers;
-  Q-COMBAT-063/064/066 retain
-  independent copy, source and child obligations;
-  Q-ITEM-013's live-frame writes, destinations and aliases;
-  Q-ITEM-011's segment entry producers and reached-child preservation;
-  Q-ITEM-010's retained incoming gaps; Q-ITEM-012's feedback admission,
-  reusing Q-SOUND-002.
-- Push only on an explicit owner request.
-  Goal remains active. Independent static research is available; this
-  checkpoint satisfies neither the full Audit nor an out-of-reach decision.
+- Latest research: FND-COMBAT-117/116/115/114/113/112/111/110 and
+  FND-RNG-093. Use their reproduction sections and explicit scope limits.
+  The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
+  and FND-PARTY-215; active citations use the current finding.
+- Item work remains FND-ITEM-035 through FND-ITEM-027, with the corrected
+  resident-boundary predecessor chain. Q-ITEM-009 is closed; Q-ITEM-011/013
+  are separate. Reuse FND-COMBAT-032/033/046 rather than repeat their censuses.
+- Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
+  Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
+  The latest mapping and correction closed no queue item or parity obligation.
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ac4c81ee
+  -NoRestore passed. Documentation, queue, policy and package checks passed.
+  Q-ITEM-005 and Q-COMBAT-065 have attempt-count warnings; the latter's
+  notes identify removed obligations. Review remaining scope before more reading.
+- Last integration gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
+  192 Node and 745 .NET tests. Existing argument-count and scheduled-generation
+  skips and 59 uncompiled Kaitai definitions remain. No newer rebuild test run.
+- Select the project-local EVIDENCE_PYTHON explicitly. The inherited override
+  selects another project's interpreter and is not this checkout's tooling.
+  Research uses -ChangedSince the pre-batch commit; shared/uncertain inputs
+  require integration. Fresh staged hooks stay enabled.
+- Runtime tools: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
+  See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
+  Only the bounded muted startup probe verifies current-pin capabilities.
+  Historical checkpoints retain their identities and require regeneration
+  before current-pin restore; never relabel states. Previous runtime remains
+  at artifacts/rust-dos-v1.7.5. No original runtime was run this batch.
+- Current reports/configurations remain under GAME_DIR/analysis/hit-incoming-20261104/
+  and GAME_DIR/analysis/item-removal-20261104/. Findings name accepted queries,
+  controls and exclusions. Retain canonical inputs and unresolved reports.
+  No tracked WIP or session-owned analysis/test process remains.
+- Unrecorded effect-code-indexed-store-candidates.txt remains diagnostic:
+  field_stores.py has an eight-byte raw candidate window. Hit-flags operand
+  windows also remain diagnostic. Neither report is an exhaustive writer census.
+- Producer reuse for Q-COMBAT-065: FND-COMBAT-117, FND-PARTY-047/236,
+  FND-SCRIPT-026, FND-CONFIG-156 and FND-ACTOR-016. Shared heap admission
+  remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
+- Process PR128 and template PR146/147 adoption remain in place.
+  No upstream rules refresh was requested or performed during this work.
+- Next: Q-COMBAT-065's actual pointer identity/lifetime and aliases;
+  Q-COMBAT-064's runtime source/length; Q-COMBAT-066's reached child effects;
+  Q-COMBAT-063's selected-save input/state; Q-ITEM-013's live-frame aliases,
+  keeping Q-ITEM-011's segment prerequisite separate.
+- Push only on an explicit owner request. Goal remains active; independent
+  static research is available. This checkpoint satisfies neither the full
+  Audit nor an owner acceptance of out-of-reach evidence.
