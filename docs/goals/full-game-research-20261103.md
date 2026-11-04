@@ -37,7 +37,8 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-ITEM-035/034/033/032/031/030/029/028/027; retain their
+- Latest archive research: FND-COMBAT-110; Q-COMBAT-018 remains open.
+- Latest item research: FND-ITEM-035/034/033/032/031/030/029/028/027; retain their
   predecessors and the corrected resident-boundary replacement. Q-ITEM-009
   is closed; Q-ITEM-011/013 are separate. Rules remain supported.
 - Reconciled FND-COMBAT-032/033 and FND-ITEM-032 into the item rules.
@@ -51,7 +52,7 @@ reports before matched-menu pairing are diagnostic only.
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince ddd04d0a
+- Latest research gate: Test.ps1 -Research -ChangedSince 7981aadc
   -NoRestore passed with the project-local interpreter.
 - Owner-requested runtime tooling update is complete: session 1.0.0 and
   rust-dos v1.8.1 are pinned and installed. See
