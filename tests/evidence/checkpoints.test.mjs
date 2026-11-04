@@ -21,6 +21,7 @@ import archive_origin as origin
 from overlay_returns import ReaderReturn
 import map_restore
 import object_restore
+import script_restore
 from load_entry import native_path_pair
 from load_entry import archive_fields, declared_return, reader_frame, region_target, region_iret
 import request_provider as provider
@@ -456,6 +457,72 @@ finished=trace.finish()
 assert finished['census_matches_calls'] and finished['slot_319_entry_at_return']==0xFFFF
 assert finished['child_counts']=={'script-chain':1}
 assert finished['objects'][0]['selected']['count']==16
+import struct
+table=b''.join(struct.pack('<3H',0 if i<2 else i,10+i,7+i%2) for i in range(1316))
+trigger=bytearray(2600)
+struct.pack_into('<2H',trigger,0,0,5)
+struct.pack_into('<2H',trigger,13,2,0)
+struct.pack_into('<2H',trigger,26,65535,7)
+nodes=[{'slot':3,'pairs':[0,2,9,9],'next':1},{'slot':1,'pairs':[1,65535,9,9],'next':-1}]
+en,et,stats=script_restore.prediction(table,nodes,trigger)
+assert en[0]['pairs']==[10,12,7,7] and en[1]==nodes[1]
+assert struct.unpack_from('<2H',et,0)==(10,7) and et[13:]==trigger[13:]
+assert stats['pairs_matched']==2 and stats['pairs_unmatched']==2 and stats['triggers_matched']==1
+before={'head':3,'trigger_pointer':'2000:0020','nodes':nodes}
+after={**before,'nodes':en}
+assert script_restore.comparison(after,et,before,en,et)['chain_equal']
+assert not script_restore.comparison(before,trigger,before,en,et)['trigger_equal']
+rejects(lambda: script_restore.prediction(table[:-1],nodes,trigger))
+rejects(lambda: script_restore.address_range('2000:FF00',2600))
+class ConversionMemory:
+    head=3; link=1
+    def read_memory(self,address,size):
+        seg,off=(int(x,16) for x in address.split(':'))
+        if address=='57E0:5AF5': return NS(data=self.head.to_bytes(2,'little'))
+        if address=='57E0:40C0': return NS(data=struct.pack('<HH',0x20,0x2000))
+        for node in nodes:
+            if seg==0x4F49 and off==0x8AB+19*node['slot']: return NS(data=struct.pack('<4H',*node['pairs']))
+            if seg==0x4F49 and off==0x8B5+19*node['slot']: return NS(data=bytes([self.link if node['slot']==3 else 255]))
+        if seg==0x2000: return NS(data=bytes(trigger[off-0x20:off-0x20+size]))
+        raise AssertionError((address,size))
+cm=ConversionMemory(); captured,raw=script_restore.snapshot(cm,0)
+assert captured==before and raw==trigger
+cm.head=48; rejects(lambda: script_restore.snapshot(cm,0)); cm.head=3
+cm.link=3; rejects(lambda: script_restore.snapshot(cm,0)); cm.link=254; rejects(lambda: script_restore.snapshot(cm,0))
+class ConversionFrames:
+    size=7896; data_slot=0x57E0023C
+    def __init__(self): self.operations=[]
+    def read_memory(self,address,size):
+        if address=='57E0:0200': return NS(data=struct.pack('<HHIII',0x184C,0x2000,int.from_bytes(b'GPLI','little'),1,0x57E00238))
+        if address=='56EF:0010': return NS(data=(0x2000).to_bytes(2,'little'))
+        if address=='57E0:0242': return NS(data=struct.pack('<HH',0xCC0,0x2000))
+        if address=='57E0:0246': return NS(data=bytes([1]))
+        if address=='57E0:023C': return NS(data=bytes(4))
+        if address=='2000:1847': return NS(data=struct.pack('<BHH',0x9A,0x5B5,0x38FF))
+        if address=='57E0:01E2': return NS(data=struct.pack('<HH',0x20,0x3000))
+        if address=='57E0:01DE': return NS(data=struct.pack('<HH',0x80,0x3000))
+        if address=='3000:0080': return NS(data=struct.pack('<4sI',b'GPLI',0x80000001))
+        if address=='3000:0048': return NS(data=(7).to_bytes(4,'little'))
+        if address=='3000:0024': return NS(data=(4).to_bytes(2,'little'))
+        if address=='57E0:0238': return NS(data=self.size.to_bytes(4,'little'))
+        if address=='57E0:0180': return NS(data=struct.pack('<HHIIIII',0x4D0,0x38FF,int.from_bytes(b'GPLI','little'),1,0,0xFFFFFFFF,self.data_slot))
+        if address=='57E0:019A': return NS(data=struct.pack('<HH',0x1879,0x2000))
+        raise AssertionError((address,size))
+    def set_breakpoint(self,*args,**kwargs): self.operations.append(('break',args))
+    def remove_breakpoints(self,*args): self.operations.append(('unbreak',args))
+cf=ConversionFrames(); st=script_restore.ScriptTrace(cf,0)
+qregs={'ss':'57E0','ds':'57E0','sp':'0200','bp':'0240','ax':'0000'}
+rejects(lambda: st.handle(os_stop('38FF:05B5',{**qregs,'ds':'1000'})))
+assert st.handle(os_stop('38FF:05B5',qregs))
+sregs={**qregs,'bp':'01E8','es':'57E0','bx':'0238','eax':'00001ED8'}
+rejects(lambda: st.handle(os_stop('38FF:0548',{**sregs,'eax':'00000001'})))
+assert st.handle(os_stop('38FF:0548',sregs)) and st.report['size_selected']['indexed']
+cf.size=7895; rejects(lambda: st.handle(os_stop('38FF:0613',{**qregs,'bp':'01FE'}))); cf.size=7896
+assert st.handle(os_stop('38FF:0613',{**qregs,'bp':'01FE'}))
+cf.data_slot=0; rejects(lambda: st.handle(os_stop('38FF:07B1',{**qregs,'sp':'0180'}))); cf.data_slot=0x57E0023C
+assert st.handle(os_stop('38FF:07B1',{**qregs,'sp':'0180'}))
+rejects(lambda: st.handle(os_stop('444C:0092',{**qregs,'bp':'023E'})))
+rejects(st.finish)
 class ReaderMemory:
     offset=0xF2F; segment=0x2000; saved=0xF2F; loaded=0x2000; code=bytes([0x59,0x88,0x46,0xFE])
     def __init__(self): self.operations=[]
@@ -530,7 +597,7 @@ assert p.calls==3 and not exhausted
 sys.argv=['probe','synthetic','unsupported']
 rejects(main)
 `;
-  const result = spawnSync(enginePython(), ['-I', '-c', code,
-    resolve('tools/research/rust-dos-runs')], {encoding: 'utf8'});
+  const result = spawnSync(enginePython(), ['-I', '-',
+    resolve('tools/research/rust-dos-runs')], {encoding: 'utf8', input: code});
   assert.equal(result.status, 0, result.stderr || result.stdout);
 });

@@ -403,3 +403,44 @@ free-list, allocation, alias, animation, save or failure paths. Synthetic
 controls reject wrong callers/flags/slots/frames and OJFF bindings/lengths,
 exercise matched epilogues and verify census/child-count reporting. Tooling
 and native findings remain separate validated batches.
+
+## Native reverse script-conversion comparison
+
+For Q-COMBAT-066, `saved-script-conversion` extends saved-map-request.
+FND-COMBAT-151 defines the converter's local prerequisites. Observe only
+GPLI/1's resident size-wrapper entry with the declared converter +184C
+caller, output SS:BP-08, initial null table slot and reader +0CC0 return.
+Require the selector-zero low flag and DS=SS=relocated resident data.
+At the common size-lookup +0548 stop match its nested frame and capture
+selected provider/type/length, then match wrapper +0613. Capture the actual
+data request through the converter +1879 caller and slot SS:BP-04, selected
+provider/length at core +094A and matched successful +09D4 result/count.
+Admit the nominal 7896-byte table; preserve refused other cases diagnostically.
+
+After transfer and before remapping, cache that bounded table, the named
+chain head and each node's four pair words/link, and the 2600-byte trigger
+table. Bound the chain to the 48-record resident pool identified by
+FND-PARTY-119, reject cycles/out-of-range links, and require nonwrapping
+reads of at most 261 bytes each. Compute first-match reverse conversion
+from actual captured table order, retaining unmatched pairs, trigger gates
+and untouched fields. Cache raw bytes only in process memory; reports retain
+metadata, counts, digests and comparisons.
+
+At 444C:0092 entry from converter +1A27, match the original converter
+frame and selected buffer argument, compare chain/trigger state with that
+prediction before release, then continue to the existing matched reader
+return and compare again. Matching queried/selected providers and lengths
+is an endpoint observation, not continuous identity or file provenance.
+Record sampled physical overlap of table, trigger, script fields and locals;
+reject unsupported near-local segment relationships. A comparison difference
+is evidence, not discarded output. Keep existing map/effect/RNG checks and
+the 1024-observation bound; do not repeat the expensive object-entry census.
+
+Synthetic controls cover caller/slot/frame and chain-range/cycle rejection,
+first-match order, unmatched values, zero-script gates, unchanged bytes,
+size narrowing and prediction comparisons. This admits one normal conversion
+case, not every incoming route, alias, allocation, failure or diagnostic
+behavior. Tooling and native findings remain separate validated batches.
+Send the accumulated Python synthetic controls through standard input to
+the existing isolated interpreter, preserving arguments and assertions;
+their inline command now exceeds Windows' command-line length limit.

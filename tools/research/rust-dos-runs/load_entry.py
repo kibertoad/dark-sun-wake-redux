@@ -23,6 +23,7 @@ import archive_origin
 from overlay_returns import region_target, region_iret, ReaderReturn
 import map_restore
 from object_restore import ObjectTrace
+from script_restore import ScriptTrace
 
 
 def fields(client, delta):
@@ -281,11 +282,12 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion]")
     navigation = len(sys.argv) == 4
     observe_objects = navigation and sys.argv[3] == "saved-objects"
-    observe_map = observe_objects or navigation and sys.argv[3] == "saved-map-request"
+    observe_scripts = navigation and sys.argv[3] == "saved-script-conversion"
+    observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
     observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
     observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
     observe_payloads = observe_origin or navigation and sys.argv[3] == "saved-payloads"
@@ -375,6 +377,7 @@ def main():
             open_report = "working_open"
             map_prediction = None
             object_trace = None
+            script_trace = None
             report["region_relocations"] = []
             previous = None
             budget = 4096 if observe_objects else 1024 if observe_load_return or observe_reader_return else 512
@@ -391,6 +394,8 @@ def main():
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
                     if outcome == "returned":
+                        if script_trace is not None:
+                            report["script_trace"] = script_trace.finish()
                         if object_trace is not None:
                             report["object_trace"] = object_trace.finish()
                         if observe_map:
@@ -420,6 +425,9 @@ def main():
                         record()
                         continue
                 if object_trace is not None and object_trace.handle(stop):
+                    record()
+                    continue
+                if script_trace is not None and script_trace.handle(stop):
                     record()
                     continue
                 if observe_origin and stop["reason"] == "breakpoint" and stop["cs_ip"] == open_entry:
@@ -798,6 +806,9 @@ def main():
                     if observe_objects:
                         object_trace = ObjectTrace(session.client,delta)
                         report["object_trace"] = object_trace.report
+                    if observe_scripts:
+                        script_trace = ScriptTrace(session.client,delta)
+                        report["script_trace"] = script_trace.report
                     if observe_providers:
                         session.client.remove_breakpoints(global_call)
                         session.client.set_breakpoint(provider_entry)
