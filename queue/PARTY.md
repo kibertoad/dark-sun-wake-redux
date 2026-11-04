@@ -277,7 +277,8 @@ Next ID: Q-PARTY-119
   preserved to each immediate or queued effect consumer, and what decides
   its later value? Settles it: a complete controlled census of direct and
   indirect/aliased flag writers and consumers, with gaps and positive
-  controls; their admitted ordering across 193 +0000/+003C, sound, hit,
+  controls; their admitted ordering across 193 +0000/+003C, nonsentinel
+  sound requests not excluded by the guest gates, hit,
   queued effects and callback/reentrant children; actual use-time values
   and the outer caller's final clear. DATA coherence is Q-PARTY-117 and
   placed-row lifetime Q-PARTY-116; other owner/item admission is Q-PARTY-109.
@@ -299,6 +300,11 @@ Next ID: Q-PARTY-119
   initialization on the fixed -W0 -L path. The initial endpoint is settled
   for that path; continuous callback preservation, other paths, restored
   state and immediate/queued consumer values remain unestablished.
+  Tried: FND-ITEM-072 excludes sound children for the 85 correctly bound
+  sentinel requests among the canonical 186 requests. Every one of the
+  93 candidates still has a nonsentinel request, so actual guest gate state
+  or reached sound-child preservation remains required; host muting does
+  not exclude guest sound logic.
   Blocks: complete interpretation of FMT-PARTY-006.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
