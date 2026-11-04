@@ -498,6 +498,12 @@ Next ID: Q-COMBAT-067
   traversal's current global anchor. Those local selection/retry questions
   are removed from unread work. Actual graph/mode/directory, per-resource
   provider/length and callee/global preservation remain.
+  Tried: FND-COMBAT-121 resolves the writer's own missing-type plain
+  constructor, existing-indexed rejection, growth relookup and metadata-before-
+  payload ordering. Those local directory-producer questions are removed.
+  Actual copied/written input, directory identity/count bounds, helper and
+  external outcomes and later preservation remain; no universal plain-SAVE
+  or complete-payload invariant follows from this branch alone.
   Blocks: Q-COMBAT-018.
 - Q-COMBAT-065. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009:
   Which storage and pointer lifetimes admit the effect restore destinations?
