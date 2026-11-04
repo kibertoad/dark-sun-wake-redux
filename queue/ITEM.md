@@ -117,6 +117,10 @@ Next ID: Q-ITEM-016
   copied value versus captured selector. Actual source/type and frame
   identity across children, dispatch/flag and ownership admission remain;
   the existing marginal census does not supply joint destination counts.
+  Tried: FND-ITEM-060 supplies the missing all-item source join: 92/1 ordinary
+  property-one candidates select quantity/word +0E, and twenty special
+  candidates select quantity. Actual caller and child preservation, reset
+  rereads, record/type/frame ownership and dispatched effects remain.
 - Q-ITEM-014. RULE-ITEM-003: Which original item-spell eligibility and
   activation paths implement the manual's item-use restrictions? Settles it:
   the item-summary action and underlying use/learning paths, their item/spell

@@ -189,6 +189,11 @@ Next ID: Q-PARTY-116
   saved flag restoration. Actual reread/type/frame/record admission, child
   effects and independent flag writers/consumers remain; source reset-
   destination frequencies require a per-item join absent from the marginals.
+  Tried: FND-ITEM-060 removes that source-pairing obligation: the 93 ordinary
+  property-one candidates select 92 quantity destinations and one word +0E;
+  all twenty special candidates select quantity. Of these 113 destinations,
+  81 initially equal W and 32 differ. Actual invocation, child preservation,
+  reset rereads and record/type/frame/flag admission remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
