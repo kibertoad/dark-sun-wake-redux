@@ -37,7 +37,7 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-145 and FND-CONFIG-221/222. Retain FND-SAVE-026,
+- Latest research: FND-COMBAT-146 and FND-CONFIG-221/222. Retain FND-SAVE-026,
   FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-141 and FND-RNG-093;
   use their reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ad047ec8
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 8ddfe305
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -81,19 +81,23 @@ reports before matched-menu pairing are diagnostic only.
   route; FND-COMBAT-142 admits reader entry. FND-COMBAT-143 admits bounded
   SAVE/24/26 selection; FND-COMBAT-144 admits both core results and bounded
   private-file payload comparison. FND-COMBAT-145 admits working-open
-  publication and selected plain-row bindings. Other load obligations remain.
+  publication and selected plain-row bindings. FND-COMBAT-146 admits reader
+  return and target endpoint retention. Other load obligations remain.
   Load-entry and navigation reports are under GAME_DIR/captures/rust-dos-load-entry/;
-  accepted origin run: v181-q064-origin-20261104; payload run:
+  accepted reader-return run: v181-q065-reader-return-20261104; origin run:
+  v181-q064-origin-20261104; payload run:
   v181-q064-payloads-20261104; provider run:
   v181-q064-providers-scoped-20261104; reader run:
   v181-q064-reader-trap-20261104; diagnostic v181-q064-providers-20261104
   remain with their reproduction commands in docs/RUNTIME.md and findings.
   load_entry.py/native_save.py and their plan are committed. Affected tooling
-  validation passed with -ChangedSince 50737158; controls remain in the evidence suite.
+  validation passed with -ChangedSince d9f3fa1f; controls remain in the evidence suite.
   Revalidate overlay mappings from declared frames/code. Use FND-EXE-562
   and FND-COMBAT-142's header-trap/IRET guards: remove the return-word watch
   before interrupt-frame reuse. Cache terminal input observations and
   remove broad dispatch stops after F2 readiness. Retain diagnostic reports.
+  ReaderReturn in overlay_returns.py admits only the declared reader frame;
+  native reader-return trap relocation remains unobserved, with synthetic controls.
   Historical checkpoints retain their identities and require regeneration
   before current-pin restore; never relabel states. Previous runtime remains
   at artifacts/rust-dos-v1.7.5. All owned probe sessions closed cleanly.
@@ -109,13 +113,11 @@ reports before matched-menu pairing are diagnostic only.
   remains Q-CONFIG-008 and Q-SCRIPT-003; avoid creating duplicate questions.
 - Process PR128 and template PR146/147 adoption remain in place.
   No upstream rules refresh was requested or performed during this work.
-- Next: Q-COMBAT-064's intervening record/handle lifetime and alternative paths
-  beyond the admitted pair; Q-COMBAT-063's other paths and failure outcomes;
-  Q-COMBAT-054's current handles or preserved issuance interval,
-  graph and flag lifetime;
-  Q-COMBAT-065's pointer identity/lifetime and other-helper writes; Q-COMBAT-066's reached child effects;
-  Q-COMBAT-046/063's remaining state histories, source/copy admission and child preservation; Q-ITEM-013's live-frame aliases,
-  keeping Q-ITEM-011's segment prerequisite separate.
+- Next: Q-COMBAT-066's reached child effects and later caller preservation;
+  Q-COMBAT-065's continuous pointer/backing lifetime and alternative cases;
+  Q-COMBAT-064/054's shared record/handle, graph and flag lifetime;
+  Q-COMBAT-046/063's other state histories, source paths and failure outcomes;
+  Q-ITEM-013's live-frame aliases, keeping Q-ITEM-011's segment prerequisite separate.
 - Push only on an explicit owner request. Goal remains active; independent
   static research is available. This checkpoint satisfies neither the full
   Audit nor an owner acceptance of out-of-reach evidence.
