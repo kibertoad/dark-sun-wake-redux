@@ -164,6 +164,12 @@ Next ID: Q-ITEM-014
   bitmap bound. Remaining code admission is other writers, moved/restored
   rows and actual code sets, plus argument, row/index/count and alias
   preservation; do not repeat this gate/store path as producer completeness.
+  Tried: FND-ITEM-033 excludes overlay 169's two same-offset word stores
+  by segment provenance and settles the numbered loader's effect-table
+  request and result gate. Remaining restore admission is actual resource
+  length/content, destination backing and consistency with the separately
+  restored count, not whether that loop calls the signed-code API. Other
+  writer/copy mechanisms and frame aliases remain outside this reading.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
