@@ -194,6 +194,11 @@ Next ID: Q-PARTY-116
   all twenty special candidates select quantity. Of these 113 destinations,
   81 initially equal W and 32 differ. Actual invocation, child preservation,
   reset rereads and record/type/frame/flag admission remain.
+  Tried: FND-ITEM-061 removes the dispatcher's child-family and level choice:
+  the explicit byte one forces 193 +0000 at level six for all retained
+  canonical candidates, including fifteen psionic-range payloads. Its local
+  store-free prefix carries the flag to that entry; downstream child effects,
+  use-time flag preservation and native input/frame admission remain.
 - Q-PARTY-108. FMT-PARTY-006: Which player-visible decisions consume
   classification bytes returned by `28C9:28E3` and `178 +0C6B`, beyond
   the recorded Look gate? Settles it: other reached consumers and their
