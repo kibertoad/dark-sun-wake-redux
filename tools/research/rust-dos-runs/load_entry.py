@@ -276,7 +276,7 @@ def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
             (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry]")
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers]")
     navigation = len(sys.argv) == 4
     observe_providers = navigation and sys.argv[3] == "saved-providers"
     saved_source = navigation and sys.argv[3] in ("saved-copy-return", "saved-reader-entry", "saved-providers")
@@ -636,7 +636,6 @@ def main():
                     selector = reader_frame(session.client, r, int(reader_entry.split(":")[0],16))
                     report["reader_entry"] = {"stop": stop, "selector": selector, "archive": archive_fields(session.client, delta)}
                     if observe_providers:
-                        session.client.remove_breakpoints(callback)
                         session.client.remove_breakpoints(global_call)
                         session.client.set_breakpoint(provider_entry)
                         record()
