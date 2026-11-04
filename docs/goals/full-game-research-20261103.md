@@ -37,8 +37,8 @@ reports before matched-menu pairing are diagnostic only.
 
 - Stage: Slices; the full research Audit remains unmet. Research side only.
   No gameplay implementation or complete-reading promotion this session.
-- Latest research: FND-COMBAT-132 and FND-CONFIG-221/222. Retain FND-SAVE-026,
-  FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-131 and FND-RNG-093;
+- Latest research: FND-COMBAT-133 and FND-CONFIG-221/222. Retain FND-SAVE-026,
+  FND-COMBAT-110's controlled flag inventory, FND-COMBAT-111 through FND-COMBAT-132 and FND-RNG-093;
   use their reproduction limits.
   The shared heap prerequisite is FND-RNG-093 with FND-CONFIG-209/210/211/212
   and FND-PARTY-215; active citations use the current finding.
@@ -48,7 +48,7 @@ reports before matched-menu pairing are diagnostic only.
 - Q-COMBAT-018 composes Q-COMBAT-063/064/065/066. Item rules share
   Q-COMBAT-009/017/018/020/024; Q-ITEM-013 retains live-frame writes/aliases.
   The latest mapping and correction closed no queue item or parity obligation.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ae4c7420
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 89e49739
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Q-ITEM-005 and Q-COMBAT-046/063/064/065 have attempt-count warnings; their
   notes identify removed obligations. Review remaining scope before more reading.
@@ -63,14 +63,18 @@ reports before matched-menu pairing are diagnostic only.
   See docs/implementation-plans/RUNTIME-TOOL-UPDATE.md and docs/RUNTIME.md.
   Current-pin startup, opener restore/return, Start/Create and two-character
   Play readiness, left/right mouse, Esc/key-2 delivery, frames and strict
-  checkpoint checks are verified. Seven gameplay-route RNG draws were checked.
+  checkpoint checks are verified. F2 delivery and Load entry now have the
+  bounded admission of FND-COMBAT-133; the Load state has no independent restore.
   docs/RUNTIME.md names retained v181-q046 runs and reproduction commands.
-  Save/Load and other keyboard gestures remain unverified under current pins;
-  Q-COMBAT-046 still needs its dispatch-field snapshot and admitted route.
+  Save, numbered Load and other keyboard gestures remain unverified;
+  Q-COMBAT-046 retains action admission and preservation beyond the entry.
   Use v181-q046-play-ready-20261104/play-ready as the verified map checkpoint;
   its new-process verification prefix is v181-q046-play-ready-verify-20261104.
-  The preceding Play run reached its gate after 571 snapshots; do not interpret
-  its transient mode-zero sound-service polling as a failed route or restart it.
+  Its preceding mode-zero interval ended within the existing probe budget.
+  Load-entry reports/checkpoint are in
+  GAME_DIR/captures/rust-dos-load-entry/v181-q046-load-entry-20261104/;
+  load_entry.py and its plan are committed. Affected tooling validation
+  passed with -ChangedSince 9900ee19; synthetic controls remain in the evidence suite.
   Historical checkpoints retain their identities and require regeneration
   before current-pin restore; never relabel states. Previous runtime remains
   at artifacts/rust-dos-v1.7.5. All owned probe sessions closed cleanly.
