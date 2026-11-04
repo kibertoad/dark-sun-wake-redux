@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -64,6 +64,25 @@ loaded={**mapped,'window':{'number':18500,'flags':8}}
 assert load_ready(loaded,{'load_mode':1})
 assert not load_ready(loaded,{'load_mode':0})
 assert not load_ready(mapped,{'load_mode':1})
+class FrameMemory:
+    def read_memory(self,address,size):
+        assert size==24
+        off=int(address.split(':')[1],16)
+        return NS(data=b''.join((off+i).to_bytes(2,'little') for i in range(12)))
+registers={'ss':'1000','sp':'0020'}
+assert event_words(FrameMemory(),registers,0)[0]==32
+assert event_words(FrameMemory(),registers,4)[0]==36
+rejects(lambda: event_words(FrameMemory(),registers,2))
+rejects(lambda: event_words(ShortMemory(),registers,4))
+rejects(lambda: event_words(FrameMemory(),{'ss':'1000','sp':'FFF0'},4))
+event=[0]*12; event[0]=6; event[6]=0x5000
+call={'event_words':event.copy(),'fields':{'global_handler':'synthetic callback'}}
+assert navigation_matches(call,event,'return','return','synthetic callback')
+assert not navigation_matches(call,event,'other','return','synthetic callback')
+assert not navigation_matches(call,event,'return','return','other callback')
+assert not navigation_matches(None,event,'return','return','synthetic callback')
+wrong=event.copy(); wrong[6]=0x4800
+assert not navigation_matches(call,wrong,'return','return','synthetic callback')
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)

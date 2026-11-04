@@ -33,3 +33,19 @@ Exit: committed bounded probe and controls passing, with actual runtime
 outcome retained locally. No queue closure, evidence promotion, native-saved
 game capability, callback preservation or graph-membership proof follows
 merely from a snapshot.
+
+## Navigation delivery boundary
+
+An optional fixed `down` stage may follow the admitted F2 entry. Capture
+the outgoing 24-byte event at 39D1:083B (before the global far call), then
+stop at the evidenced Load callback trampoline 5736:002F. Compare the event,
+actual hook and far return frame to 39D1:083F. The callback-entry stop must
+carry kind six and key word 5000, as FND-COMBAT-085 describes. This stage
+stops before the callback executes navigation; it sends no confirmation.
+Record whether the key operation is still pending; do not save a checkpoint
+with pending input. Synthetic controls check the different entry/outgoing
+stack offsets, equality checks and wrapping/short reads. No claim about
+navigation outcome or the callback's later preservation follows from entry.
+Remove the broad dispatch-entry breakpoint once F2 entry is admitted, keeping
+the global-call/callback and RNG stops. Repeated kind-three idle dispatches
+must not consume the Down observation budget before scheduled delivery.

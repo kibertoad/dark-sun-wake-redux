@@ -61,9 +61,27 @@ def load_ready(state, ui):
     return ready(state, 18500) and ui["load_mode"] == 1
 
 
+def event_words(client, registers, bias):
+    if bias not in (0, 4):
+        raise ValueError("unsupported event frame")
+    data = checked_read(client, int(registers["ss"], 16),
+                        int(registers["sp"], 16) + bias, 24)
+    return list(struct.unpack("<12H", data))
+
+
+def navigation_matches(call, entry, return_frame, expected_return, callback):
+    return (call is not None and call["event_words"] == entry
+            and entry[0] == 6 and entry[6] == 0x5000
+            and call["fields"]["global_handler"] == callback
+            and return_frame == expected_return)
+
+
 def main():
-    if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name>")
+    if (len(sys.argv) not in (3, 4) or
+            any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
+            (len(sys.argv) == 4 and sys.argv[3] != "down")):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down]")
+    navigation = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -86,7 +104,7 @@ def main():
             sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1), ultrasound=None),
         readiness_timeout=60.0)
     report = {"source": sys.argv[1], "writes": [], "draws": [],
-              "dispatches": [], "observations": [], "passed": False}
+              "dispatches": [], "calls": [], "observations": [], "passed": False}
     with RustDosSession(settings) as session:
         def record():
             (run / "load-entry.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -100,9 +118,12 @@ def main():
             if not map_ready(initial):
                 raise ValueError("source is not the admitted two-character map state")
             dispatch = rng.address(0x39D1, 0x0752)
-            for address in (dispatch, rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)):
+            global_call = rng.address(0x39D1, 0x083B)
+            callback = rng.address(0x5736, 0x002F)
+            for address in (dispatch, global_call, rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)):
                 session.client.set_breakpoint(address)
             key = session.send_input("key", {"key": "f2", "hold_ms": 100})
+            key_name = "f2"
             previous = None
             for index in range(512):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -116,27 +137,52 @@ def main():
                     record()
                     continue
                 if stop["reason"] == "breakpoint" and stop["cs_ip"] == dispatch:
-                    registers = stop["registers"]
-                    event = checked_read(session.client, int(registers["ss"], 16),
-                                         int(registers["sp"], 16) + 4, 24)
-                    report["dispatches"].append({"stop": stop, "event_words": list(struct.unpack("<12H", event)),
+                    report["dispatches"].append({"stop": stop, "event_words": event_words(session.client, stop["registers"], 4),
                                                   "fields": fields(session.client, delta)})
+                elif stop["reason"] == "breakpoint" and stop["cs_ip"] == global_call:
+                    report["calls"].append({"stop": stop, "event_words": event_words(session.client, stop["registers"], 0),
+                                             "fields": fields(session.client, delta)})
+                elif stop["reason"] == "breakpoint" and stop["cs_ip"] == callback and key_name == "down":
+                    r = stop["registers"]
+                    entry = event_words(session.client, r, 4)
+                    frame = checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16), 4)
+                    off, seg = struct.unpack("<HH", frame)
+                    ret = f"{seg:04X}:{off:04X}"
+                    report["callback_entry"] = {"stop": stop, "event_words": entry,
+                        "return": ret, "fields": fields(session.client, delta)}
+                    delivery = session.observe(key, timeout=0)
+                    report["navigation_input"] = {"key": "down", "state": delivery.state, "detail": delivery.detail}
+                    if not navigation_matches(report["calls"][-1] if report["calls"] else None,
+                            entry, ret, rng.address(0x39D1, 0x083F), callback):
+                        raise RuntimeError("navigation callback/frame differs from the observed global call")
+                    report["passed"] = True
+                    break
                 elif stop["reason"] != "time":
                     raise RuntimeError("unexpected stop; no continuation admitted")
                 delivery = session.observe(key, timeout=0)
-                report["input"] = {"key": "f2", "state": delivery.state, "detail": delivery.detail}
+                report["input" if key_name == "f2" else "navigation_input"] = {"key": key_name, "state": delivery.state, "detail": delivery.detail}
                 current = {"state": snapshot(session.client, delta), "fields": fields(session.client, delta)}
                 if current != previous:
                     report["observations"].append(current)
                 report["polls"] = index + 1
                 record()
-                if delivery.state == "done" and current == previous and load_ready(current["state"], current["fields"]):
+                if key_name == "f2" and delivery.state == "done" and current == previous and load_ready(current["state"], current["fields"]):
                     (run / "load.png").write_bytes(session.client.screenshot())
                     report["checkpoint"] = checkpoint_summary(session.save_state("load-entry", check_files=True))
-                    report["passed"] = True
-                    break
+                    if not navigation:
+                        report["passed"] = True
+                        break
+                    if current["fields"]["global_handler"] != callback:
+                        raise RuntimeError("Load hook differs from the declared callback")
+                    session.client.remove_breakpoints(dispatch)
+                    session.client.set_breakpoint(callback)
+                    key = session.send_input("key", {"key": "down", "hold_ms": 100})
+                    key_name = "down"
+                    previous = None
+                    record()
+                    continue
                 if not delivery.pending and delivery.state != "done":
-                    raise RuntimeError("F2 delivery failed")
+                    raise RuntimeError("key delivery failed")
                 previous = current
             else:
                 raise RuntimeError("Load-entry state budget exhausted")
