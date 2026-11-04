@@ -39,7 +39,7 @@ nor checks a buffer's nullness, size, ownership or lifetime.
 | 6 | DS:19C5 | 462 | FND-COMBAT-072/083 |
 | 7 | DS:19C1 | 23F0 | FND-PARTY-236 |
 | 8 | DS:67B7 | 2EE0 | FND-PARTY-047 |
-| 9 | DS:55B8 | C40 | FND-EXE-596, FND-SAVE-021 |
+| 9 | DS:55B8 | C40 | FND-EXE-639, FND-SAVE-021 |
 | 10 | DS:19D1 | 1CC | FND-ACTOR-016 |
 | 30 | 4C13:034B | 65 | FND-SCRIPT-026 |
 | 31 | 4C13:0347 | 190 | FND-SCRIPT-026, FND-PARTY-241 |

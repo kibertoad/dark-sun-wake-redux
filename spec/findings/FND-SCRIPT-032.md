@@ -46,7 +46,7 @@ offset candidates in one diagnostic query; it is not a complete split-target
 or incoming-transfer census.
 
 The queried conversion selectors are 56EF:00A7 and 56EF:00AC, whose canonical
-entries are file 0x71445 and 0x71659 respectively (FND-EXE-596). The corrected
+entries are file 0x71445 and 0x71659 respectively (FND-EXE-639). The corrected
 typed-immediate query also includes 38FF:05B5 as the retained comparison target.
 The repeated reports have 93 lines including their three headings and are
 byte-identical. Among the conversion offset matches, six words qualify as
@@ -116,7 +116,7 @@ For each table row run `node tools/evidence/report.mjs operand CONFIG` with
 source, the above xxh3, loadSegment 4096, site equal to its segment-operand
 file offset and targetOffset 0xA7 or 0xAC as appropriate. Require relocated
 true, FBOV fixup, and the listed loaded/canonical targets. Compare against
-FND-EXE-596's independently known conversion targets.
+FND-EXE-639's independently known conversion targets.
 
 Use overlay_listing.py on these descriptor/file ranges to retain context:
 190 / 0x7BA12..0x7BE16; 202 / 0x8A727..0x8A9E7;

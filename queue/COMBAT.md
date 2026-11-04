@@ -710,6 +710,12 @@ Next ID: Q-COMBAT-067
   shared window/input callbacks and Q-COMBAT-020 for admitted mutation APIs.
   Exit: child effects sufficient to determine the rows/count at each returning
   continuation; unresolved callback targets cannot be assumed to preserve them.
+  Tried: FND-COMBAT-147 reads the complete map-application child, region-open
+  wrapper and four leaf setters: full-pointer gate, GMAP-result branches,
+  bitmap traversal, byte-store footprints and ignored close/open results.
+  Those own-body obligations are removed. Actual reached path/state, GMAP
+  provider/length, storage lifetime/aliases, runtime/diagnostic effects and
+  attribution of the observed archive-counter change remain open.
   Tried: FND-COMBAT-146 admits the complete reader's matched return and
   retained target-byte/binding endpoints for one native route, with AL one.
   That returning-boundary case is removed; reached-child attribution,

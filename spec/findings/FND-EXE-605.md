@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-605
 title: The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-640]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

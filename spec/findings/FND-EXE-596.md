@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-596
 title: The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-639]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -25,7 +25,7 @@ direct-call encoding search or a runtime incoming-call proof.
 
 ### Both target selectors resolve to the independently known entries
 
-FND-EXE-596 maps forward conversion to overlay 187 +1615, file 0x71445,
+FND-EXE-639 maps forward conversion to overlay 187 +1615, file 0x71445,
 through resident trampoline 56EF:00A7. Reverse conversion is +1829,
 file 0x71659, through 56EF:00AC. The two queries independently supply
 those canonical file targets and loaded addresses, so disagreement in
@@ -123,7 +123,7 @@ FND-COMBAT-105 independently supplies the data binding; FND-CONFIG-136
 supplies the MZ call. For the FBOV call, read descriptor 187 file
 0x71445..0x714A8 with overlay_listing.py: the declared entry's call at
 0x71463 has its segment operand at 0x71466 and resolved target 38FF:05B5.
-Use FND-EXE-596 for the two conversion trampoline/body mappings. Do not
+Use FND-EXE-639 for the two conversion trampoline/body mappings. Do not
 derive target identities solely from the empty-query results.
 
 For refusal, replace the forward controls with 0x71467 and require failure.

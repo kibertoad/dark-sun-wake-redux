@@ -26,7 +26,7 @@ trampoline `56EF:00AC`. Decoded from `+1829` to its `retf` at `+1A38`, it has no
 and no table of cases. It asks `38FF:05B5` for the size of `GPLI/1` (it pushes `1` and the tag
 `0x494C5047`, "GPLI") and reads the resource through `38FF:04AB`, calling overlay 180's `+0867`
 through trampoline `56B2:0034` when either fails. It divides the size by 6 and walks the same
-records as `+1615` (FND-EXE-596), replacing each word equal to an entry's first word with the
+records as `+1615` (FND-EXE-639), replacing each word equal to an entry's first word with the
 entry's second and third words, and frees the table through `444C:0092`.
 
 `direct_callers.py` finds two calls to `+1829`, both `push cs` and a near call inside overlay

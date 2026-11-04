@@ -56,7 +56,7 @@ full-screen reservation. Overlay 182 `+0128` is the window close (FND-PARTY-045)
 close the start window, and the press loop blinks the button three times (FND-PARTY-077,
 FND-PARTY-180).
 
-Start Game shows the loading picture (FND-EXE-596, FND-PARTY-022), enters the game through the
+Start Game shows the loading picture (FND-EXE-639, FND-PARTY-022), enters the game through the
 gate routine (FND-UI-049, FND-PARTY-170), sets each member's spells per level (FND-PARTY-111),
 and sets the party's money (FND-EXE-607) to 5000; the main loop keeps running with `DS:0D9C` now
 1. Create Characters opens `WIND/11500` (SCR-UI-002, FND-PARTY-084). Load Saved Game opens the

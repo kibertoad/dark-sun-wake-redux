@@ -68,7 +68,7 @@ Step 1 indexes `4C4F:01D8` by the slot, while overlay 197 `+1DC6` and overlay 17
 (FND-EXE-600) index it by the record index `m`; the two agree only when the slot equals its
 record index, which was not checked for party slots. What the bits of `4C4F:01D8` and the flag
 block stand for, and what overlay 173 `+1CC1`, `+059A` and `+306B`, `2D40:3D4C`, `5699:0043`,
-`2C5F:097E` and `56BD:0025` do in full, were not read here; FND-EXE-600, FND-EXE-624, FND-EXE-605,
+`2C5F:097E` and `56BD:0025` do in full, were not read here; FND-EXE-600, FND-EXE-624, FND-EXE-640,
 FND-COMBAT-047 and FND-RNG-074 describe parts of them.
 
 ## How to reproduce
