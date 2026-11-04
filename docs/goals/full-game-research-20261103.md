@@ -41,7 +41,7 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 192 Node and 745 .NET tests, Release build and assetless smoke.
   Current documentation and queue checks pass; research mode passed without rebuild tests.
-- Latest completed research: FND-ITEM-024/023/022/021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-025/024/023/022/021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -132,10 +132,15 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince ea793d60
+- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince e5bbccc2
   -NoRestore passed fresh checks; existing skips remain. Q-ITEM-005/009
   attempt-count warnings remain; Q-ITEM-009's notes identify removed obligations.
-- Next: Q-ITEM-009's two outer-return consumers and queue-runner return;
+- Unfinished preparation: GAME_DIR/analysis/hit-incoming-20261104/ retains
+  outer-193-1119.json/report.json and outer-193-1249.json/report.json
+  (each suffix names an existing file), outer-1119-consumer.txt and
+  outer-shared-return.txt. These outer-return readings remain unrecorded;
+  reuse their controls and exclusions before following overlay 193 +12A8.
+- Next: Q-ITEM-009's outer-return consumers;
   Q-ITEM-010's retained FND-ITEM-020 gaps
   and other incoming mechanisms; Q-ITEM-011's near-pointer/frame preservation;
   Q-ITEM-012's feedback admission/effects, reusing Q-SOUND-002;
