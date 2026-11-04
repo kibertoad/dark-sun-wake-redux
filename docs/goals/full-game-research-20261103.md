@@ -38,15 +38,15 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices. Full research Audit remains unmet. Research side only;
   no gameplay implementation, parity validation or complete-reading promotion.
   Push only on an explicit owner request.
-- Latest research: FND-SOUND-019/020/021 and FND-SOUND-017, with FND-ITEM-071/072,
+- Latest research: FND-SOUND-019/020/021/022/023 and FND-SOUND-017, with FND-ITEM-071/072,
   with FND-ITEM-043 through FND-ITEM-070;
   active corrected DUAL evidence is FND-PARTY-262/263. Q-ITEM-009 is closed.
   FMT-ACTOR-001 retains its FND-COMBAT-162 Defect note.
   Q-SOUND-008 is closed; FMT-SOUND-004/005 are supported, code still missing.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince b34c5870
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince b5bd8e13
   -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Latest tooling gate: Test.ps1 -ChangedSince a6a53095 -NoRestore passed,
-  including approved SOUND_DS listing/range controls. Last integration:
+  Latest tooling gate: Test.ps1 -ChangedSince ae6ee32b -NoRestore passed,
+  including setup source-label profile controls. Last integration:
   Test.ps1 -ChangedSince e7d143bc -NoRestore passed all Node controls and
   758 .NET tests. Existing argument-count/generation skips and 61 uncompiled
   Kaitai definitions remain. Attempt-count warnings retain removed obligations;
@@ -75,7 +75,7 @@ reports before matched-menu pairing are diagnostic only.
   DISC-AUDIO-SURVEY name the committed inspector, source controls and limits.
   No decoder or GOG runtime execution was attempted.
 - ADV reports/repeats and setup listings are retained under
-  GAME_DIR/analysis/disc-adv-survey-20261104/. FND-SOUND-019/020/021 name the
+  GAME_DIR/analysis/disc-adv-survey-20261104/. FND-SOUND-019/020/021/022/023 name the
   envelope, tag/dispatch/case controls and initial-binding listings.
   Keep the +0A00..0A74 linear decoder output diagnostic: it is table data.
   FND-SOUND-021 names the header/top dispatch and incoming controls plus
@@ -83,6 +83,11 @@ reports before matched-menu pairing are diagnostic only.
   named setup-choice-labels listing is not the label builder.
   Q-SOUND-007 retains other setters/callers and later state preservation;
   Q-SOUND-010 owns dialog row/index, storage and child-state admission.
+  Source profile reports/repeats are setup-source-label-profile.json and
+  setup-source-label-profile-repeat.json in that directory. FND-SOUND-022
+  names startup/concat and vector listings; retain its conditional bounds.
+  Next inspect the count reader and group allocation for Q-CONFIG-006 and
+  Q-SOUND-010, including the empty group; source counts are not native state.
   Next SOUND ID is 011. Q-CONFIG-006 retains
   remaining group/numeric/count and complete file/error parsing.
 - Earlier paused getter/header/item-type observations are FND-COMBAT-169/170/171.
