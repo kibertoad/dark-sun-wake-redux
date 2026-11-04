@@ -94,7 +94,12 @@ None known.
   shows resident backing for the boundary row at counts 0 to 192 (Q-COMBAT-017).
 - What loading a saved game puts in the rows and count. FND-COMBAT-034, FND-COMBAT-035,
   FND-COMBAT-043 and FND-COMBAT-044 read the save sources and both restore callers' local routes
-  (Q-COMBAT-018).
+  (Q-COMBAT-018). The first caller requests selector zero; the second only
+  requests these effect slots when its incoming selector is zero. Its nonzero
+  selector branch reads 17 slots and supplies neither effect-row nor count
+  request. FND-SAVE-021 records the preceding writer's explicit archive
+  selections; FND-COMBAT-096 and FND-COMBAT-110 bound selection effects,
+  while intervening changes, fallback and prior state remain unadmitted.
 - Which rows and count a new game begins with. At program start the count is the load image's
   zero and nothing before START GAME's party load writes the count or a row; no writer sets the
   count to a constant (FND-COMBAT-053). With the count at 0 the removal and transfer entries

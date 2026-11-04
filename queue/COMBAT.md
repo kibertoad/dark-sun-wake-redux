@@ -435,8 +435,9 @@ Next ID: Q-COMBAT-063
   the boundary row for counts 0 to 192) read each writer locally; no bound over all of them
   follows. Blocks: established status-effect selection.
 - Q-COMBAT-018. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What does loading a saved game put in the effect rows and their
-  count? Settles it: which archive and numbered resources the restore reads for `SAVE/24` and
-  `SAVE/26` on each of its two callers, the destination extent against the shipped lengths, and
+  count? Settles it: which archive supplies `SAVE/24` and `SAVE/26` when the
+  first caller requests selector zero or the second caller reaches the reader with selector zero,
+  the destination extent against the shipped lengths, and
   any check or postprocessing of the restored count, IDs and order. Tried: split from
   Q-COMBAT-009. FND-COMBAT-034 (the save sources and shipped lengths), FND-COMBAT-035 (the
   complete-resource reads, rows before count), FND-COMBAT-043 and FND-COMBAT-044 (both restore
@@ -449,6 +450,13 @@ Next ID: Q-COMBAT-063
   connection is removed from the unread archive question. Remaining archive
   admission is the path and reuse flag, intervening selectors/closers and
   mode-dependent fallback at each numbered request, plus restored state.
+  Existing evidence reused: FND-COMBAT-035/044 limit a nonzero-selector read to
+  indices 0..16; it makes neither effect-state request at indices 23 and 25.
+  Such a branch retains prior effect state unless other writes change it; it is
+  not another SAVE/24 or SAVE/26 source to identify. FND-SAVE-021 records
+  explicit working-handle selections in the preceding writer, and
+  FND-COMBAT-096 supplies their conditional selection contract. Reuse those
+  sites before tracing selection lifetime; later child effects remain open.
 - Q-COMBAT-024. RULE-COMBAT-009, RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: Which effect rows does a game begun after an earlier one in the
   same run start with? Settles it: whether the defeat cleanup's unload reaches the owner removal
   at 31E0:0AC9 with `DS:265B` nonzero, which owners' rows the earlier game's other exits (the
