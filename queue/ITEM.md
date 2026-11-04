@@ -145,6 +145,12 @@ Next ID: Q-ITEM-014
   SS-local reads and save/reload continuations; FND-ITEM-029 separates the
   segment-register census from preservation of memory. Neither a saved
   byte nor a child returning proves that byte remained unchanged.
+  Tried: FND-ITEM-030 classifies the six explicit far-block dereferences
+  in the effect switch as reads and bounds their stable-counter read span
+  away from the caller's flags byte. Those six uses are no longer unread
+  output stores. Other direct/aliased writes, copied or computed pointers
+  and child destinations/lifetimes remain; do not infer a whole read-only
+  switch from the operand scan.
 
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
