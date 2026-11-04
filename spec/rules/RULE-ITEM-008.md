@@ -4,7 +4,7 @@ title: DATA 235 hands the target's first held item of the lowest byte 0x12 below
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602, FND-ITEM-028]
+evidence: [FND-RNG-035, FND-ITEM-010, FND-CONFIG-143, FND-PARTY-051, FND-EXE-600, FND-PARTY-248, FND-ITEM-013, FND-PARTY-214, FND-PARTY-218, FND-ITEM-014, FND-ITEM-016, FND-ITEM-017, FND-ITEM-018, FND-MAGIC-024, FND-SOUND-007, FND-EXE-602, FND-ITEM-028, FND-ITEM-031, FND-ITEM-032, FND-COMBAT-032, FND-COMBAT-033]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-ITEM-007]
@@ -96,6 +96,18 @@ replace or independently interpret the byte; the remaining resident kind
 dispatcher reloads its own bookkeeping byte (FND-ITEM-028). This settles
 local register handling, while other incoming routes and frame admission
 remain Q-ITEM-010, Q-ITEM-011 and Q-ITEM-013.
+
+For admitted aligned effect rows, valid counts/indices, complete source
+spans and preserved copy storage, the known row moves do not introduce new
+active code values. Insertion retains the old active codes and adds its
+supplied code (FND-ITEM-032). Removal's extra boundary-row copy lands outside
+the reduced active count (FND-COMBAT-032). Owner transfer preserves the
+saved row's code and replaces only its owner (FND-COMBAT-033). Thus these
+moves preserve an existing active-code bound under those assumptions; they
+do not establish that bound initially or validate restored rows. The known
+insertion route's conditional 1..127 bound still permits bitmap offset 15,
+so it does not establish a fifteen-byte output span (FND-ITEM-031/032).
+Other producers, copy admission and frame aliases remain Q-ITEM-013.
 
 The first request selects the sound effect numbered by DATA byte +0x16.
 Its routine applies sound-setting and driver gates, preferring a BVOC resource

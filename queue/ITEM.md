@@ -171,6 +171,15 @@ Next ID: Q-ITEM-014
   restored count, not whether that loop calls the signed-code API. Other
   writer/copy mechanisms and frame aliases remain outside this reading.
 
+  Tried: reconcile the already-recorded FND-COMBAT-032/033 and
+  FND-ITEM-032 copy contracts with the three item rules. Under their
+  admitted indices/counts/spans and preserved storage, insertion adds only
+  its supplied code, removal's boundary copy is inactive after decrement,
+  and transfer retains the saved code. The known moves' active-code
+  preservation is no longer an unread obligation. Remaining code-domain
+  work is initial/restored values, other producer mechanisms and actual
+  copy/index/count/backing admission, not rereading these move bodies.
+
 - Q-ITEM-012. RULE-ITEM-007, RULE-ITEM-008, RULE-ITEM-009: What admitted
   feedback state makes the hit requests return with their documented sound
   and visual effects? Settles it: visual number/table producers and lifetime,
