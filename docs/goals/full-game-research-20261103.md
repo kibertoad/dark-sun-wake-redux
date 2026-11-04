@@ -41,7 +41,7 @@ reports before matched-menu pairing are diagnostic only.
 - Last full gate: 2026-11-04, Test.ps1 -NoRestore passed all checks,
   including 192 Node and 745 .NET tests, Release build and assetless smoke.
   Current documentation and queue checks pass; research mode passed without rebuild tests.
-- Latest completed research: FND-ITEM-031/030/029/028/027/025/024/023/022/021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
+- Latest completed research: FND-ITEM-032/031/030/029/028/027/025/024/023/022/021/020/019/018/017/016/015/014/013, FND-ACTOR-018 and FND-SCRIPT-035; FND-ACTOR-016/017
   and FND-SCRIPT-030/031/032/033/034
   remain current. Type-comparison tooling is at 24bc2788; key census at 34fbedad;
   typed-immediate tooling at
@@ -132,8 +132,9 @@ reports before matched-menu pairing are diagnostic only.
   Fresh integration passed 192 Node/745 .NET, zero-warning Release build and
   assetless smoke. Clean-checkout research acceptance took 15.458 seconds,
   without rebuild tests. Kaitai remains absent. Root changes remain unpushed.
-- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 3a3e8b5e
-  -NoRestore passed fresh checks; existing skips and Q-ITEM-005 warning remain.
+- Research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 16b73ac4
+  -NoRestore passed fresh checks; existing skips remain. Q-ITEM-005/013
+  attempt-count warnings remain; later Q-ITEM-013 notes remove stated obligations.
 - Q-ITEM-009 is closed. Item-rule statuses remain supported.
 - Use FND-ITEM-027 for the corrected resident boundary.
 - GAME_DIR/analysis/hit-incoming-20261104/ retains FND-ITEM-028's table,
@@ -144,10 +145,11 @@ reports before matched-menu pairing are diagnostic only.
   Reuse FND-PARTY-215/219 and FND-RNG-053/061 with their scope limits.
 - FND-ITEM-030 names the retained block operand/read reports and local
   metadata-only effect-switch-row.tsv. Reuse their candidate/alias limits.
-- FND-ITEM-031 names the builder and caller reports in the same store.
-  Unfinished preparation there: effect-admission-prefix.txt and
-  effect-row-insert-prefix.txt. These producer readings remain unrecorded.
-  The hit flags operand windows are diagnostic, not a complete writer census.
+- FND-ITEM-031/032 name the retained builder, producer and incoming reports.
+  Unfinished preparation in the same store: effect-row-field-operands.txt,
+  code-field-candidate-169-first.txt and code-field-candidate-169-second.txt.
+  Their candidate classifications remain unrecorded. The hit flags operand
+  windows are diagnostic, not a complete writer census.
 - Next: Q-ITEM-013's effect-code/row producer admission and other aliases;
   Q-ITEM-011's segment entry producers and reached-child preservation;
   Q-ITEM-010's retained FND-ITEM-020 gaps and other incoming mechanisms;
