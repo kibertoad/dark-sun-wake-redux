@@ -38,10 +38,10 @@ reports before matched-menu pairing are diagnostic only.
 - Stage: Slices. Full research Audit remains unmet. Research side only;
   no gameplay implementation, parity validation or complete-reading promotion.
   Push only on an explicit owner request.
-- Latest research: FND-ITEM-069/068/067, with FND-ITEM-043 through FND-ITEM-066;
+- Latest research: FND-ITEM-070/069/068/067, with FND-ITEM-043 through FND-ITEM-066;
   active corrected DUAL evidence is FND-PARTY-262/263. Q-ITEM-009 is closed.
   FMT-ACTOR-001 retains its FND-COMBAT-162 Defect note.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince 91d4600f
+- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince d1b4d0aa
   -NoRestore passed. Documentation, queue, policy and package checks passed.
   Latest tooling gate: Test.ps1 -ChangedSince d664ded5 -NoRestore passed,
   including the paused placed-table synthetic controls. Last integration:
@@ -80,7 +80,8 @@ reports before matched-menu pairing are diagnostic only.
   FND-ITEM-065 names effect-row constructor/insert/search/insert-leaf listings;
   FND-ITEM-066 names placement-table-allocation.txt; FND-ITEM-068 names
   placement-effect-samples.txt there. FND-ITEM-069 names the exact/overlap
-  equipment-flag operand reports and census controls there.
+  equipment-flag operand reports and census controls there. FND-ITEM-070
+  names equipment-flag-startup.txt there.
   Partial area-filter and generic-transfer-bindings listings remain diagnostic.
   placement-caller-incoming.txt, temporary-presentation-candidates.txt,
   effect-code-indexed-store-candidates.txt and hit-flags windows are candidate
@@ -93,7 +94,7 @@ reports before matched-menu pairing are diagnostic only.
 - Next: Q-PARTY-109 retains action/owner/item/reset and other child admission.
   Independent obligations are Q-PARTY-116 counted row publication/lifetime,
   Q-PARTY-117 DATA coherence and Q-PARTY-118 flag producers/consumers.
-  Reuse FND-ITEM-056 through FND-ITEM-069 and the controlled flag reports;
+  Reuse FND-ITEM-056 through FND-ITEM-070 and the controlled flag reports;
   the paused endpoint is not a constructor observation. Next PARTY ID is 119.
 - Q-PARTY-077's DUAL slot lifetime, using FND-PARTY-262/263. Keep its actual
   action/target conditions separate from the equipment source composition.
