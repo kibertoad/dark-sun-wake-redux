@@ -62,6 +62,12 @@ Next ID: Q-SOUND-011
   identifies the wrapper's unconditional first-label read, entry-only negative
   index clamp, layout FFFF path and normal current-index return. A source
   record count or the callers' exact FFFF checks do not settle those bounds.
+  Tried: FND-SOUND-022 settles local cardinality/index arithmetic for the
+  explicit small printable-label profile, including the real LF separators,
+  rounded row storage and conditional retained-vector prefix. Those local
+  computations are removed from Settles it for that profile. Actual profile
+  producers/retention, vector state, formatter/allocator and child/frame
+  admission remain; nonpositive, larger and other-label profiles stay open.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

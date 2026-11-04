@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-585, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-585, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022]
 conflicting: []
 split_with: []
 related: []
@@ -71,4 +71,8 @@ selection or successful driver initialization.
   group-to-writer and initial pointer bindings (FND-SOUND-019,
   FND-SOUND-020, FND-SOUND-021, Q-SOUND-007)?
 - Which actual list-choice row/index and storage/continuation contracts admit
-  the record used by those writers (FND-SOUND-021, Q-SOUND-010)?
+  the record used by those writers? One reading preserves correspondence
+  under the small printable-label, vector and child conditions of
+  FND-SOUND-022; other input/state profiles are not established. Actual
+  producer/retention evidence must distinguish those cases before native
+  admission (FND-SOUND-021, FND-SOUND-022, Q-SOUND-010).

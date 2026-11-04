@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022]
 conflicting: []
 split_with: []
 related: []
@@ -117,4 +117,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   local tag/field/output bindings (FND-SOUND-020, FND-CONFIG-213,
   FND-CONFIG-007, Q-CONFIG-006).
 - Actual list-choice row/index, storage and continuation admission between
-  parsed card records and the settings writers (FND-SOUND-021, Q-SOUND-010).
+  parsed card records and the settings writers, beyond the conditional local
+  small-label profile. Its producers, retained vector and child/frame state
+  remain distinct from the local arithmetic (FND-SOUND-021, FND-SOUND-022,
+  Q-SOUND-010).
