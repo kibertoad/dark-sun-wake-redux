@@ -44,11 +44,14 @@ reports before matched-menu pairing are diagnostic only.
   Reuse those copy contracts before further Q-ITEM-013 producer research.
 - Reconciled existing FND-COMBAT-046 into the same rules. Its DATA domain
   and local handler reading are already recorded; do not repeat that census.
+- Item rules now share Q-COMBAT-009/017/018/020/024 for effect-table
+  admission. Q-ITEM-013 retains live-frame writes/aliases only. Reuse
+  FND-COMBAT-035/043/044/045/053/054 before another restore/backing reading.
 - Last full gate: 2026-11-04, Test.ps1 -Integration -NoRestore passed
   192 Node and 745 .NET tests. Documentation, queue and pinned-package
   checks passed. Existing argument-count and scheduled-generation skips,
   59 uncompiled Kaitai definitions and Q-ITEM-005/013 warnings remain.
-- Latest research gate: Test.ps1 -Research -ChangedSince aad2982d
+- Latest research gate: Test.ps1 -Research -ChangedSince ddd04d0a
   -NoRestore passed with the project-local interpreter.
 - Owner-requested runtime tooling update is complete: session 1.0.0 and
   rust-dos v1.8.1 are pinned and installed. See
@@ -85,10 +88,11 @@ reports before matched-menu pairing are diagnostic only.
   uses Test.ps1 -Research -ChangedSince the pre-batch commit. Shared/uncertain
   inputs require integration; fresh staged documentation checks stay enabled.
   No new upstream rules refresh was requested or performed during this update.
-- Next: Q-ITEM-013's other producers, restore values and copy admission;
+- Next: Q-COMBAT-018's remaining archive selection and restored-state admission;
+  Q-ITEM-013's live-frame writes, destinations and aliases;
   Q-ITEM-011's segment entry producers and reached-child preservation;
   Q-ITEM-010's retained incoming gaps; Q-ITEM-012's feedback admission,
-  reusing Q-SOUND-002; Q-ITEM-004's pool/index/copy admission.
+  reusing Q-SOUND-002.
 - Push only on an explicit owner request.
   Goal remains active. Independent static research is available; this
   checkpoint satisfies neither the full Audit nor an out-of-reach decision.
