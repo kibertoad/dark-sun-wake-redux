@@ -76,12 +76,28 @@ def navigation_matches(call, entry, return_frame, expected_return, callback):
             and return_frame == expected_return)
 
 
+def list_markers(client, ui):
+    if ui["list_top"] != 0 or not 0 <= ui["selected_row"] < 10:
+        raise ValueError("marker observation requires an admitted first-page row")
+    seg, off = (int(x, 16) for x in ui["list_pointer"].split(":"))
+    if not (seg or off) or off + 1250 > 0x10000:
+        raise ValueError("null or wrapping ten-record list")
+    return [checked_read(client, seg, off + 125 * row, 1)[0] for row in range(10)]
+
+
+def returned_frame(entry, returned):
+    start = int(entry["sp"], 16)
+    return (start + 4 <= 0xFFFF and int(returned["ss"], 16) == int(entry["ss"], 16)
+            and int(returned["sp"], 16) == start + 4)
+
+
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] != "down")):
-        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return"))):
+        raise SystemExit("usage: load_entry.py <play-ready-source-run> <new-run-name> [down|down-return]")
     navigation = len(sys.argv) == 4
+    observe_return = navigation and sys.argv[3] == "down-return"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -124,6 +140,7 @@ def main():
                 session.client.set_breakpoint(address)
             key = session.send_input("key", {"key": "f2", "hold_ms": 100})
             key_name = "f2"
+            awaiting_return = False
             previous = None
             for index in range(512):
                 target = int(session.stop["emu_ns"]) // 1000000 + 100
@@ -155,6 +172,25 @@ def main():
                     if not navigation_matches(report["calls"][-1] if report["calls"] else None,
                             entry, ret, rng.address(0x39D1, 0x083F), callback):
                         raise RuntimeError("navigation callback/frame differs from the observed global call")
+                    if observe_return:
+                        report["markers_before"] = list_markers(session.client, report["callback_entry"]["fields"])
+                        session.client.remove_breakpoints(callback)
+                        session.client.set_breakpoint(ret, once=True)
+                        awaiting_return = True
+                        record()
+                        continue
+                    report["passed"] = True
+                    break
+                elif (awaiting_return and stop["reason"] == "breakpoint"
+                      and stop["cs_ip"] == rng.address(0x39D1, 0x083F)):
+                    if not returned_frame(report["callback_entry"]["stop"]["registers"], stop["registers"]):
+                        raise RuntimeError("return belongs to a different callback stack frame")
+                    ui = fields(session.client, delta)
+                    report["callback_return"] = {"stop": stop, "fields": ui,
+                        "markers": list_markers(session.client, ui),
+                        "state": snapshot(session.client, delta), "ax": stop["registers"]["ax"]}
+                    delivery = session.observe(key, timeout=0)
+                    report["navigation_input"] = {"key": "down", "state": delivery.state, "detail": delivery.detail}
                     report["passed"] = True
                     break
                 elif stop["reason"] != "time":

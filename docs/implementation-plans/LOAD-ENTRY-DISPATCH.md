@@ -49,3 +49,17 @@ navigation outcome or the callback's later preservation follows from entry.
 Remove the broad dispatch-entry breakpoint once F2 entry is admitted, keeping
 the global-call/callback and RNG stops. Repeated kind-three idle dispatches
 must not consume the Down observation budget before scheduled delivery.
+
+## Navigation return
+
+The fixed `down-return` stage may continue the matched callback to its
+verified return at 39D1:083F. Before continuation, require top zero and row
+0..9 and read only byte-zero markers of the ten requested 125-byte records
+through the observed list pointer. Reject null, short or wrapping storage;
+do not read names or descriptions. At return record AX, named UI fields
+and the same ten markers, plus current input-operation state. Stop there:
+do not confirm a load or claim completed key release. Snapshot equality
+at entry/return does not prove absence of intermediate writes. Synthetic
+controls cover marker stride, top/row admission, null and wrapping pointers.
+Require matching SS and SP equal to callback-entry SP plus four at the
+return stop; an inner call reaching the same instruction is not this return.

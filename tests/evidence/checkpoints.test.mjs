@@ -13,7 +13,7 @@ from regenerate_checkpoints import admit_state, ready, checked_read, main
 from verify_checkpoints import compare
 from checkpoint_rng import remainder
 from startup_window import wait_for_stop
-from load_entry import fields, map_ready, load_ready, event_words, navigation_matches
+from load_entry import fields, map_ready, load_ready, event_words, navigation_matches, list_markers, returned_frame
 from dinorefurb_dosbox_session import RUST_DOS_PINNED_SHA256
 def rejects(fn):
     try: fn()
@@ -83,6 +83,21 @@ assert not navigation_matches(call,event,'return','return','other callback')
 assert not navigation_matches(None,event,'return','return','synthetic callback')
 wrong=event.copy(); wrong[6]=0x4800
 assert not navigation_matches(call,wrong,'return','return','synthetic callback')
+class Markers:
+    def read_memory(self,address,size):
+        off=int(address.split(':')[1],16)
+        assert size==1 and off>=4 and (off-4)%125==0
+        return NS(data=bytes([(off-4)//125]))
+ui={'list_top':0,'selected_row':1,'list_pointer':'1000:0004'}
+assert list_markers(Markers(),ui)==list(range(10))
+for override in [{'list_top':10},{'selected_row':65535},{'list_pointer':'0000:0000'},
+                 {'list_pointer':'1000:FFF0'},{'list_pointer':'FFFF:0004'}]:
+    rejects(lambda: list_markers(Memory(),{**ui,**override}))
+rejects(lambda: list_markers(ShortMemory(),ui))
+assert returned_frame({'ss':'1000','sp':'0020'},{'ss':'1000','sp':'0024'})
+assert not returned_frame({'ss':'1000','sp':'0020'},{'ss':'1001','sp':'0024'})
+assert not returned_frame({'ss':'1000','sp':'0020'},{'ss':'1000','sp':'0010'})
+assert not returned_frame({'ss':'1000','sp':'FFFE'},{'ss':'1000','sp':'0002'})
 png=b'synthetic frame'
 expected={'state':{'mode':0},'frame_sha256':hashlib.sha256(png).hexdigest()}
 compare(expected,{'mode':0},png)
