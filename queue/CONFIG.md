@@ -412,8 +412,9 @@ Next ID: Q-CONFIG-013
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and malformed token/value behavior?
   Settles it: 0B26's source/destination length and classification admission
-  outside FND-SOUND-034's installed spelling set, 0C4D's overflow path and
-  remaining bounded malformed tokens; 0AC1's remaining value/span cases;
+  outside FND-SOUND-034's installed spelling set and FND-SOUND-036's
+  bounded ASCII/token/span conditions, including high-byte classification
+  and signed-index wrap admission;
   exact source consumption by 038E's nested flag/jumper/alternate loops
   and 026F's tag counter; retained line/tag/value/record spans and aliases;
   and outer 0001's error/close child continuation beyond the local returns
@@ -426,6 +427,14 @@ Next ID: Q-CONFIG-013
   repeated-count/failure continuation are FND-SOUND-035, not remaining
   cases; retain other malformed/overflow inputs and complete nested/state
   admission rather than retrying those bounded paths.
+  FND-SOUND-036 additionally removes the bounded numeric overflow and
+  bracketed-value branch/copy-failure paths; its declared span conditions
+  are not native storage admission.
+  Tried: FND-SOUND-036 settles unsigned 32-bit magnitude overflow,
+  positive-status low-word assignment and the complete local 0AC1
+  first-close/next-open/value-copy branches under its explicit bounds.
+  Native classification/spans, nested source context and aliases, and
+  outer error/close children remain; do not repeat those local branches.
   Tried: FND-SOUND-035 removes those representative numeric failure
   channels and repeated-count publish/allocation/counter ordering from
   Settles it. The ignored scanner count can propagate an unassigned local
