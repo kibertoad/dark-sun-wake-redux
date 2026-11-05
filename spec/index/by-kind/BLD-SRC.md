@@ -14,7 +14,7 @@ Entries by kind.
 
 ## sources
 
-13 entries.
+14 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -30,4 +30,5 @@ Entries by kind.
 | [SRC-RUSTDOS-172](../../sources/SRC-RUSTDOS-172.md) | rust-dos v1.7.2 clock service source snapshot | None |
 | [SRC-WIN32-ATOMS](../../sources/SRC-WIN32-ATOMS.md) | Microsoft Win32 local atom API contracts | None |
 | [SRC-WIN32-X86-ABI](../../sources/SRC-WIN32-X86-ABI.md) | Microsoft Win32 x86 flat-mode and calling-convention contract | None |
+| [SRC-XIPH-OGG-VORBIS](../../sources/SRC-XIPH-OGG-VORBIS.md) | Xiph Ogg framing and Vorbis I specifications | None |
 | [SRC-YOUTUBE-FLOMVOSHEOM](../../sources/SRC-YOUTUBE-FLOMVOSHEOM.md) | Dark Sun: Wake of the Ravager playthrough, YouTube video FLoMVOSHeOM | None |

@@ -4,32 +4,33 @@
 
 Entries by status.
 
-## unknown
-
-2 entries.
-
-| ID | Title |
-|---|---|
-| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc |
-| [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
-
 ## supported
 
-7 entries.
+9 entries.
 
 | ID | Title |
 |---|---|
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT |
 | [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files |
+| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc |
+| [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks |
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource |
 | [RULE-SOUND-002](../../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up |
 | [RULE-SOUND-003](../../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track |
 | [RULE-SOUND-004](../../rules/RULE-SOUND-004.md) | A combatant's cry is its own sound, a fixed sound or a random one of its gender's voice sounds |
 
+## superseded
+
+1 entries.
+
+| ID | Title |
+|---|---|
+| [FND-SOUND-018](../../findings/FND-SOUND-018.md) | The nineteen disc ADV files share a Copy header and bounded function directories containing 598 entries |
+
 ## recorded
 
-16 entries.
+28 entries.
 
 | ID | Title |
 |---|---|
@@ -49,6 +50,18 @@ Entries by status.
 | [FND-SOUND-014](../../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads |
 | [FND-SOUND-015](../../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note |
 | [FND-SOUND-016](../../findings/FND-SOUND-016.md) | The installed STDPATCH.AD is a directory of 233 six-byte timbre entries ending in two 0xFF bytes and 233 fourteen-byte timbres, and the sound library opens it at setup and reads one timbre by bank and patch number on request |
+| [FND-SOUND-017](../../findings/FND-SOUND-017.md) | All forty GOG audio tracks have complete checksum-valid Ogg page framing and stereo 44100 Hz Vorbis identification |
+| [FND-SOUND-019](../../findings/FND-SOUND-019.md) | Corrected disc ADV envelope and inline loader-name binding |
+| [FND-SOUND-020](../../findings/FND-SOUND-020.md) | Setup driver-name tags populate inline fields and the selected names have a concrete first-loader pointer binding |
+| [FND-SOUND-021](../../findings/FND-SOUND-021.md) | Setup header flags select combined or separate card records while list-choice admission remains a distinct dependency |
+| [FND-SOUND-022](../../findings/FND-SOUND-022.md) | Setup's small printable-label profile preserves row cardinality and local index bounds under explicit vector and callee conditions |
+| [FND-SOUND-023](../../findings/FND-SOUND-023.md) | Installed setup source has two small printable label groups and an empty music-only group |
+| [FND-SOUND-024](../../findings/FND-SOUND-024.md) | Setup group counts drive low-word allocations and a tag counter rather than a parsed-record equality check |
+| [FND-SOUND-025](../../findings/FND-SOUND-025.md) | Setup's decimal count path converts the installed 13 and minus-one tokens without a sentinel shortcut |
+| [FND-SOUND-026](../../findings/FND-SOUND-026.md) | Setup count allocations zero-extend and round requests, and group clearing covers the requested span |
+| [FND-SOUND-027](../../findings/FND-SOUND-027.md) | Setup's plain string formatter preserves short label bytes and appends one terminator |
+| [FND-SOUND-028](../../findings/FND-SOUND-028.md) | Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists |
+| [FND-SOUND-029](../../findings/FND-SOUND-029.md) | Installed setup record strings and list counts fit the mapped field gaps, with one missing and duplicate primary-key exception |
 
 ## Open questions
 
@@ -59,8 +72,7 @@ Entries whose Open questions section says more than None known.
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | supported |
-| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
-| [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
+| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | supported |
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |

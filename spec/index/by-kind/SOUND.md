@@ -13,8 +13,8 @@ Entries by kind.
 | [FMT-SOUND-001](../../formats/FMT-SOUND-001.md) | Voice file with one block of 8-bit samples | supported |
 | [FMT-SOUND-002](../../formats/FMT-SOUND-002.md) | Music table DJ.DAT | supported |
 | [FMT-SOUND-003](../../formats/FMT-SOUND-003.md) | STDPATCH.AD files | supported |
-| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | unknown |
-| [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | unknown |
+| [FMT-SOUND-004](../../formats/FMT-SOUND-004.md) | ADV files on the disc | supported |
+| [FMT-SOUND-005](../../formats/FMT-SOUND-005.md) | GOG disc-audio Ogg tracks | supported |
 
 ## rules
 
@@ -29,7 +29,7 @@ Entries by kind.
 
 ## findings
 
-16 entries.
+29 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -49,3 +49,16 @@ Entries by kind.
 | [FND-SOUND-014](../../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads | recorded |
 | [FND-SOUND-015](../../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note | recorded |
 | [FND-SOUND-016](../../findings/FND-SOUND-016.md) | The installed STDPATCH.AD is a directory of 233 six-byte timbre entries ending in two 0xFF bytes and 233 fourteen-byte timbres, and the sound library opens it at setup and reads one timbre by bank and patch number on request | recorded |
+| [FND-SOUND-017](../../findings/FND-SOUND-017.md) | All forty GOG audio tracks have complete checksum-valid Ogg page framing and stereo 44100 Hz Vorbis identification | recorded |
+| [FND-SOUND-018](../../findings/FND-SOUND-018.md) | The nineteen disc ADV files share a Copy header and bounded function directories containing 598 entries | superseded |
+| [FND-SOUND-019](../../findings/FND-SOUND-019.md) | Corrected disc ADV envelope and inline loader-name binding | recorded |
+| [FND-SOUND-020](../../findings/FND-SOUND-020.md) | Setup driver-name tags populate inline fields and the selected names have a concrete first-loader pointer binding | recorded |
+| [FND-SOUND-021](../../findings/FND-SOUND-021.md) | Setup header flags select combined or separate card records while list-choice admission remains a distinct dependency | recorded |
+| [FND-SOUND-022](../../findings/FND-SOUND-022.md) | Setup's small printable-label profile preserves row cardinality and local index bounds under explicit vector and callee conditions | recorded |
+| [FND-SOUND-023](../../findings/FND-SOUND-023.md) | Installed setup source has two small printable label groups and an empty music-only group | recorded |
+| [FND-SOUND-024](../../findings/FND-SOUND-024.md) | Setup group counts drive low-word allocations and a tag counter rather than a parsed-record equality check | recorded |
+| [FND-SOUND-025](../../findings/FND-SOUND-025.md) | Setup's decimal count path converts the installed 13 and minus-one tokens without a sentinel shortcut | recorded |
+| [FND-SOUND-026](../../findings/FND-SOUND-026.md) | Setup count allocations zero-extend and round requests, and group clearing covers the requested span | recorded |
+| [FND-SOUND-027](../../findings/FND-SOUND-027.md) | Setup's plain string formatter preserves short label bytes and appends one terminator | recorded |
+| [FND-SOUND-028](../../findings/FND-SOUND-028.md) | Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists | recorded |
+| [FND-SOUND-029](../../findings/FND-SOUND-029.md) | Installed setup record strings and list counts fit the mapped field gaps, with one missing and duplicate primary-key exception | recorded |

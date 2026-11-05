@@ -34,7 +34,8 @@ Entries by area.
 | [FND-SAVE-021](../../findings/FND-SAVE-021.md) | A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF, with script entry points in GPLI form; the null table entries are filled from run-time pointers before each save and load | recorded |
 | [FND-SAVE-022](../../findings/FND-SAVE-022.md) | Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, re-places the objects, restores the script entry points, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned | recorded |
 | [FND-SAVE-023](../../findings/FND-SAVE-023.md) | Saving writes script entry points as GPLI/1 entry numbers, which GPLDATA.GFF maps to an offset and a GPL number, and every load and region change maps them back | recorded |
-| [FND-SAVE-024](../../findings/FND-SAVE-024.md) | Only the stored-character list of overlay 171 writes save_list_top, leaving its page start there when it closes, so the Save and Load screens open at that page | recorded |
+| [FND-SAVE-024](../../findings/FND-SAVE-024.md) | Only the stored-character list of overlay 171 writes save_list_top, leaving its page start there when it closes, so the Save and Load screens open at that page | superseded |
 | [FND-SAVE-025](../../findings/FND-SAVE-025.md) | After Save is answered to the F3 exit choice and the Save Game screen is left with EXIT, DS:627C stays 1 and the next completed save or load ends the game | recorded |
+| [FND-SAVE-026](../../findings/FND-SAVE-026.md) | Shared character-list top indexes a ten-record save list without establishing valid later save pages | recorded |
 | [RULE-SAVE-001](../../rules/RULE-SAVE-001.md) | The F1 and F2 screens and F3 exit choice | supported |
 | [RULE-SAVE-002](../../rules/RULE-SAVE-002.md) | The number and file name of a saved game | supported |

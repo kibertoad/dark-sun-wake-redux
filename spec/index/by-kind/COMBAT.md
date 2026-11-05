@@ -40,7 +40,7 @@ Entries by kind.
 
 ## findings
 
-109 entries.
+171 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -153,6 +153,68 @@ Entries by kind.
 | [FND-COMBAT-107](../../findings/FND-COMBAT-107.md) | GPL 119's request 9 has a conditional trigger-to-script-reset route before its local selector | recorded |
 | [FND-COMBAT-108](../../findings/FND-COMBAT-108.md) | MAS 65's eighteen encoded box triggers cannot accept an unchanged category-two replacement event | recorded |
 | [FND-COMBAT-109](../../findings/FND-COMBAT-109.md) | The unchanged GPL 37 rejected span contains no relocation opcode byte but native fetch and dispatch preservation remain open | recorded |
+| [FND-COMBAT-110](../../findings/FND-COMBAT-110.md) | Restore archive preparation selects a newly opened working record only on its open branch | recorded |
+| [FND-COMBAT-111](../../findings/FND-COMBAT-111.md) | The complete numbered reader has no own effect-row validation after its transfer loop | recorded |
+| [FND-COMBAT-112](../../findings/FND-COMBAT-112.md) | None of the 26 fingerprinted shipped top-level archives supplies a SAVE type table | recorded |
+| [FND-COMBAT-113](../../findings/FND-COMBAT-113.md) | The restore file copy checks 128-byte transfers but ignores final close results and has no own rollback | recorded |
+| [FND-COMBAT-114](../../findings/FND-COMBAT-114.md) | Restore file copying resolves DOS drive and directory state and normalizes each component to eight plus three characters | recorded |
+| [FND-COMBAT-115](../../findings/FND-COMBAT-115.md) | Save-list indexing uses a decimal prefix and the find wrappers do not save their query helper's returned pointer | recorded |
+| [FND-COMBAT-116](../../findings/FND-COMBAT-116.md) | The shipped restore spans separate effect rows and count while SAVE 21 supplies the nominal boundary row | recorded |
+| [FND-COMBAT-117](../../findings/FND-COMBAT-117.md) | All fifteen initially null restore slots have known allocation chains but binding alone does not admit their live storage | recorded |
+| [FND-COMBAT-118](../../findings/FND-COMBAT-118.md) | Nominal restore payload spans miss the source table and the fifteen pointer fields supplying its runtime bindings | recorded |
+| [FND-COMBAT-119](../../findings/FND-COMBAT-119.md) | The restore clearing branch uses stored-pointer equality and a fixed 12000-byte far fill before reloading the destination | recorded |
+| [FND-COMBAT-120](../../findings/FND-COMBAT-120.md) | Numbered resource reads advance a local fallback cursor and restart from active selection on each call | recorded |
+| [FND-COMBAT-121](../../findings/FND-COMBAT-121.md) | The resource writer creates a plain one-entry type before payload I/O and rejects an existing indexed type | recorded |
+| [FND-COMBAT-122](../../findings/FND-COMBAT-122.md) | Numbered saves continue the current remove-write pair after selection failure and do not branch on removal results | recorded |
+| [FND-COMBAT-123](../../findings/FND-COMBAT-123.md) | Archive payload positions are selected before consumption and freed ranges merge with at most one neighbour | recorded |
+| [FND-COMBAT-124](../../findings/FND-COMBAT-124.md) | Dirty archive preparation checks header and directory writes then AH 68 before clearing its flag | recorded |
+| [FND-COMBAT-125](../../findings/FND-COMBAT-125.md) | Directory movement copies bytes directionally through normalized far cursors without checking capacity | recorded |
+| [FND-COMBAT-126](../../findings/FND-COMBAT-126.md) | Archive growth requests old-record release before replacement allocation and publishes links after directory reload | recorded |
+| [FND-COMBAT-127](../../findings/FND-COMBAT-127.md) | Archive opening constructs and reads a record before list publication but does not reverse earlier accounting on read failure | recorded |
+| [FND-COMBAT-128](../../findings/FND-COMBAT-128.md) | Numbered loading can request region-handle closure after working-archive selection without clearing its reuse flag | recorded |
+| [FND-COMBAT-129](../../findings/FND-COMBAT-129.md) | Load action recomputes the selected path after window closure and releases the save list only after loading returns | recorded |
+| [FND-COMBAT-130](../../findings/FND-COMBAT-130.md) | Archive handle issuance is word-modular and its known output producers do not independently prove live handle separation | recorded |
+| [FND-COMBAT-131](../../findings/FND-COMBAT-131.md) | Character selection can produce FFFF and Save/Load navigation reads the inherited marker before normalizing that selection | recorded |
+| [FND-COMBAT-132](../../findings/FND-COMBAT-132.md) | Nominal fixed SAVE payloads miss eight UI admission regions | recorded |
+| [FND-COMBAT-133](../../findings/FND-COMBAT-133.md) | One admitted map F2 event reaches Load with a null event target and preserved top zero and selected row one | recorded |
+| [FND-COMBAT-134](../../findings/FND-COMBAT-134.md) | Down reaches the Load global callback with its outgoing event and return frame intact in one admitted state | recorded |
+| [FND-COMBAT-135](../../findings/FND-COMBAT-135.md) | An admitted Down callback returns row zero from row one when all ten Load markers are empty | recorded |
+| [FND-COMBAT-136](../../findings/FND-COMBAT-136.md) | Enter reaches the numbered-load entry for an empty selected row after Load-window cleanup | recorded |
+| [FND-COMBAT-137](../../findings/FND-COMBAT-137.md) | One admitted empty-row Load supplies an empty source path and a terminated working path to the copy helper | recorded |
+| [FND-COMBAT-138](../../findings/FND-COMBAT-138.md) | The admitted empty source is rejected before destination normalization and the working file has no net change | recorded |
+| [FND-COMBAT-139](../../findings/FND-COMBAT-139.md) | Numbered loading returns one after an empty-source copy rejection and subsequent settings requests | recorded |
+| [FND-COMBAT-140](../../findings/FND-COMBAT-140.md) | Native F1 and Enter create a row-one save and a strictly restorable post-Save keyboard-loop checkpoint | recorded |
+| [FND-COMBAT-141](../../findings/FND-COMBAT-141.md) | A native saved-game source normalizes, opens and repopulates the truncated working file before copy returns one | recorded |
+| [FND-COMBAT-142](../../findings/FND-COMBAT-142.md) | One copied native save reaches selector-zero reader entry with working handle fourteen and game mode four | recorded |
+| [FND-COMBAT-143](../../findings/FND-COMBAT-143.md) | One native load selects the working record for SAVE twenty-four and twenty-six with lengths 1920 and two | recorded |
+| [FND-COMBAT-144](../../findings/FND-COMBAT-144.md) | One native load completes both target resource transfers with destination bytes equal to the copied working file spans | recorded |
+| [FND-COMBAT-145](../../findings/FND-COMBAT-145.md) | One working-file open publishes the record and plain SAVE rows later selected by the two target requests | recorded |
+| [FND-COMBAT-146](../../findings/FND-COMBAT-146.md) | One selector-zero reader returns with both target payload spans retained and matching source-slot bindings | recorded |
+| [FND-COMBAT-147](../../findings/FND-COMBAT-147.md) | Map reconstruction requests a region archive and applies two bitmap planes through bounded-coordinate byte flag setters | recorded |
+| [FND-COMBAT-148](../../findings/FND-COMBAT-148.md) | One native reconstruction reads GMAP from the newly opened region archive and matches the saved-bit-plane map prediction at reader return | recorded |
+| [FND-COMBAT-149](../../findings/FND-COMBAT-149.md) | Flags-zero object re-placement still has conditional eviction and script or animation child paths | recorded |
+| [FND-COMBAT-150](../../findings/FND-COMBAT-150.md) | One native reader reconstructs 125 admitted object slots with sixteen-byte OJFF selections and no temporary-slot allocation stop | recorded |
+| [FND-COMBAT-151](../../findings/FND-COMBAT-151.md) | Reverse script conversion uses a narrowed signed scan bound and conditional near-local match flags with no own release request on read failure | recorded |
+| [FND-COMBAT-152](../../findings/FND-COMBAT-152.md) | One native reverse conversion retains its GPLI scan inputs and matches predicted chained-pair and trigger results before release and at reader return | recorded |
+| [FND-COMBAT-153](../../findings/FND-COMBAT-153.md) | One native restore clears three nonzero item-cache words and reaches a zero-result enumeration without either traversal helper | superseded |
+| [FND-COMBAT-154](../../findings/FND-COMBAT-154.md) | One native restore caller closes its working archive and retains item script and effect endpoints while one map byte changes | superseded |
+| [FND-COMBAT-155](../../findings/FND-COMBAT-155.md) | One native restore clears three nonzero item-cache words and reaches a zero-result enumeration without either traversal helper | recorded |
+| [FND-COMBAT-156](../../findings/FND-COMBAT-156.md) | One native restore caller closes its working archive and retains item script and effect endpoints while one map byte changes | recorded |
+| [FND-COMBAT-157](../../findings/FND-COMBAT-157.md) | The later native restore caller changes only cell 107 36 from zero to the occupancy mask | recorded |
+| [FND-COMBAT-158](../../findings/FND-COMBAT-158.md) | A named-cell watch attributes the later restore map change to the reached occupancy setter through its placement wrapper | recorded |
+| [FND-COMBAT-159](../../findings/FND-COMBAT-159.md) | Sorted insertion and removal preserve an empty temporary index in their adjustment pass while direct slot writes remain conditional | recorded |
+| [FND-COMBAT-160](../../findings/FND-COMBAT-160.md) | Per-record resource serialization writes 37 bytes but its matching reader has no record-size bound and caller slot admission remains conditional | recorded |
+| [FND-COMBAT-161](../../findings/FND-COMBAT-161.md) | An admitted flags-zero temporary load with successful allocation and a low image word has a closed resident call set until its record is cleared | recorded |
+| [FND-COMBAT-162](../../findings/FND-COMBAT-162.md) | Canonical OBJEX definitions and temporary-slot overrides keep the flags-zero image selector below the lazy-animation gate | recorded |
+| [FND-COMBAT-163](../../findings/FND-COMBAT-163.md) | The RDFF reader distinguishes minus one and minus two and its common metadata check can change which cleanup path the presentation loader takes | recorded |
+| [FND-COMBAT-164](../../findings/FND-COMBAT-164.md) | Admitted root cleanup clears temporary kind 319 before child deletion but leaves its presentation index for the parent loader to clear | recorded |
+| [FND-COMBAT-165](../../findings/FND-COMBAT-165.md) | Admitted deletion from root zero excludes reparenting and preserves cleared temporary kind through its finite recursive release calls | recorded |
+| [FND-COMBAT-166](../../findings/FND-COMBAT-166.md) | An admitted non-top noncoalescing buffer release has finite header writes and preserves the cleared temporary kind and RDFF status | recorded |
+| [FND-COMBAT-167](../../findings/FND-COMBAT-167.md) | Admitted enumeration produces bounded earlier-parent prefixes but its zero-result exit leaves root fields consumed by cleanup | recorded |
+| [FND-COMBAT-168](../../findings/FND-COMBAT-168.md) | Preserved non-five roots exclude enumeration zero-result exits and retain their original cleanup root index | recorded |
+| [FND-COMBAT-169](../../findings/FND-COMBAT-169.md) | A paused native saved-map checkpoint has canonical FNFO buffers, distinct scratch and selected objects, and finite disjoint free lists | recorded |
+| [FND-COMBAT-170](../../findings/FND-COMBAT-170.md) | Five native record-base headers describe disjoint extents that fit the four known fixed table requests | recorded |
+| [FND-COMBAT-171](../../findings/FND-COMBAT-171.md) | The paused native shared item-type buffer exactly matches all 102 canonical ALL/4 rows | recorded |
 
 ## bugs
 
