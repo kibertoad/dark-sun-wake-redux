@@ -264,7 +264,8 @@ Next ID: Q-PARTY-119
   indirect acquisition sites; native eviction handle/count/link/object
   admission beyond FND-ITEM-083's local decrement/fill/child ordering;
   image-refresh link termination, owner/cache/frame/buffer identity and
-  native reload/pool admission and release/consolidation/backing-store/
+  native reload/pool order/span/alias admission beyond FND-ITEM-089's
+  local release/metadata/consolidation contracts, and backing-store/
   reset children beyond FND-ITEM-087's local contracts and FND-ITEM-088's
   reclamation/accounting and existing pointer-update composition; archive-child effects, native
   cache count/flags/offset writers and size/data identity beyond
@@ -283,6 +284,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-089 removes local release/residency/pool-match gates,
+  metadata insertion/deletion and consolidation/pointer-adjustment ordering.
+  Bound resets and residency clears are not proven content preservation;
+  native pool/cache producers, spans/order/aliases and backing-store/reset
+  children remain above, not another unchanged reading of these bodies.
   Tried: FND-ITEM-088 removes reclamation's local age/candidate/release
   accounting and consolidation-call ordering, and composes the already
   recorded pointer update. Its byte total is not verified free space;
