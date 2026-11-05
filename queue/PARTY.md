@@ -808,19 +808,19 @@ Next ID: Q-PARTY-134
   passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
 
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
-  reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining runtime-computed or remotely assembled targets,
-  copied target producers and entries bypassing the four roots in FND-PARTY-264; computed resource numbers at separate DATA-request routes;
-  and separate resource-buffer readers/writers. For 2C5F:0003, bind the other 85 direct caller domains and the repeated equipment call's selector/frame preservation;
-  FND-PARTY-265 excludes positive 1001 at the first hook call, and its canonical-source bounds are conditional, not universal runtime exclusion.
-  FND-PARTY-264 accounts for relocated/fixed-up nearby offset/segment forms, including aliases, to the accessor and three reader roots; do not repeat that census or FND-PARTY-058/068's known direct-site/index/mask reading. Keep its runtime-target, near-transfer and bypass exclusions.
-  Use the two known literal-1001 sites, DATA-1000 callers and the stored/split-pointer controls; preserve unresolved transfers and decoder/range exclusions.
-  Bind caller argument/result widths, origin/class producers and rejection paths. Source/base/extent or byte mutations remain; general I/O success and unrelated lifetime do not.
-  Generation-screen behavior beyond this table stays RULE-PARTY-009. Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism; three alias candidates are unrelated operands. The Ghidra query misses the registration control and gives no negative proof. Runtime targets and computed numbers remain.
+  reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining accesses that could change the claimed 576-byte extent, row indices or class-bit meanings, through the mechanisms below.
+  Resolve runtime-computed or remotely assembled/copied targets, entries bypassing FND-PARTY-264's four roots, and separate buffer readers/writers; retain its near-transfer and producer-distance exclusions.
+  Classify FND-PARTY-266's eleven variable whole-reader type sites, record-driven 3A8E:03B4 and generic 47E5:04E6; do not repeat the 105 literal non-DATA exclusions or known DATA/1002 binding.
+  For 2C5F:0003, bind the other 85 direct caller number domains and the repeated hook call's selector/frame preservation. FND-PARTY-265 excludes positive 1001 at its first call; canonical-source bounds stay conditional.
+  Reuse FND-PARTY-264's relocated/fixed-up nearby pointer census and FND-PARTY-058/068's direct-site/index/mask reading. Bind resulting argument/result widths, origin/class producers and rejection paths.
+  Use the literal-1001 sites, DATA-1000 callers and stored/split-pointer controls; preserve unresolved transfers, decoder/range exclusions and interpretation-affecting source/base/extent/byte writes.
+  General I/O success and unrelated lifetime are not claims of this payload format. Full generation-screen behavior stays RULE-PARTY-009; the unowned ICON candidate in FND-PARTY-266 is not asserted to interpret DATA.
+  Tried: FND-PARTY-266 removes the 105 literal non-DATA request sites from number tracing and names the variable-tag remainder. Its partial-reader ownership gap and PUSH-CS limitation remain explicit.
+  Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism; its three alias candidates are unrelated operands. The missed Ghidra registration control supplies no negative proof; runtime targets remain.
   Tried: FND-PARTY-265 removes the first equipment request's positive-1001 possibility; all 87 direct getter arguments are nonliteral. Other domains and indirect clients remain.
   Tried: the prior FND-PARTY-058/068 review found the computed-1001 exclusion and direct-only caller list; no undeclared qualifying reading. Blocks: complete reading of FMT-PARTY-007.
 
-- Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve
-  the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,
+- Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,
   pointer copies and computed field accesses affecting the documented CHAR representation, after FND-PARTY-235's fourteen known direct
   resource-write sites and computed-tag bindings. Bind the serializer's root kind, mutable graph/field lists and restored metadata to its
   type-1/type-3 prefix and sentinel; account for state writers or copies that can change that field selection, including the DS/SS identity
