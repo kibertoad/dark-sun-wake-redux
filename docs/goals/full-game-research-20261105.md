@@ -35,7 +35,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 61325486
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 589b6fce
   -NoRestore passed: 1935 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
@@ -44,7 +44,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
   FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is fb0de1a8.
+  Latest research batch is 589b6fce; progress report is 32259adf.
   Q-PARTY-119 now owns bitmap-cache/backing-store coherence and lifetime;
   Q-PARTY-116 retains constructor publication and use-time owner/slot state.
   Next assess remaining descriptor/state producers and
@@ -189,6 +189,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   bounded ordinary child arithmetic and shared 4C49 scratch writes. Native
   coordinate/result/scratch admission, list population and casting-child
   preservation remain Q-PARTY-116; do not assume a pure nonnegative result.
+- Dispatcher composition: 589b6fce reuses FND-MAGIC-019/FND-RNG-052
+  to bind mode-zero routing and intact defined-index admission. Actual
+  source/index inputs (including DATA/73), +1119/+1249/+13EC effects and
+  preservation remain Q-PARTY-116; do not repeat the dispatcher body.
+- Requested progress report: docs/PROGRESS.md now measures 589b6fce9dfe
+  against 9288f86e584d, using the same areas. Findings increase by 48;
+  three queue splits add Q-CONFIG-011/012 and Q-PARTY-119, with no closures.
+  Parity, coverage denominators and complete-reading declarations are unchanged.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
