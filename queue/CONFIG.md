@@ -519,13 +519,19 @@ Next ID: Q-CONFIG-013
   reachability, source/stack bounds and write/seek child preservation
   beyond FND-SOUND-043's local lower-write contract;
   error-state computed/pointer/implicit accesses and aliases beyond
-  FND-SOUND-045's exact-literal census; its normalized-word boundary
-  candidates at 1C08:0C95/0C96, unsupported indirect continuations and
+  FND-SOUND-045's exact-literal census; excluded entry mechanisms into
+  1C08:0C95/0C96 beyond FND-SOUND-046's controlled direct-transfer
+  exclusion, unsupported indirect continuations and
   selector preservation through the create-mode consumer; actual DOS/device
   and heap/break outcomes
   beyond the local path and FND-SOUND-039's normal native parser endpoint.
   Keep unsupported native
   outcomes separate from code-decided branches and non-rb callers.
+  Tried: FND-SOUND-046 removes supported direct-transfer entry into
+  both normalized-word candidates with a repeated fixed census and
+  independent controls. The overlapping stub context is recorded;
+  excluded dynamic/prefixed entry mechanisms and broad aliases remain,
+  rather than another unchanged direct caller or operand search.
   Tried: FND-SOUND-045 records a controlled repeatable exact-literal
   census and the create-mode selector consumer. Do not repeat those
   searches unchanged; two boundary candidates and excluded representations,
