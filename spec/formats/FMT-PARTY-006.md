@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-259, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255, FND-PARTY-256, FND-ITEM-073, FND-ITEM-074, FND-ITEM-075, FND-ITEM-076, FND-ITEM-077, FND-ITEM-078, FND-ITEM-079, FND-ITEM-080, FND-ITEM-081, FND-ITEM-082, FND-ITEM-083, FND-ITEM-084, FND-ITEM-085, FND-ITEM-086, FND-ITEM-087, FND-ITEM-088, FND-ITEM-089, FND-ITEM-090, FND-ITEM-091, FND-ITEM-092, FND-ITEM-093, FND-ITEM-094, FND-ITEM-095, FND-ITEM-096, FND-ITEM-097, FND-ITEM-098, FND-ITEM-099]
+evidence: [FND-PARTY-259, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255, FND-PARTY-256, FND-ITEM-073, FND-ITEM-074, FND-ITEM-075, FND-ITEM-076, FND-ITEM-077, FND-ITEM-078, FND-ITEM-079, FND-ITEM-080, FND-ITEM-081, FND-ITEM-082, FND-ITEM-083, FND-ITEM-084, FND-ITEM-085, FND-ITEM-086, FND-ITEM-087, FND-ITEM-088, FND-ITEM-089, FND-ITEM-090, FND-ITEM-091, FND-ITEM-092, FND-ITEM-093, FND-ITEM-094, FND-ITEM-095, FND-ITEM-096, FND-ITEM-097, FND-ITEM-098, FND-ITEM-099, FND-COMBAT-034, FND-COMBAT-037]
 conflicting: []
 split_with: []
 related: []
@@ -311,6 +311,19 @@ for root index zero it instead returns the root object number
   FND-ITEM-099 records immediate handling's signed effect decode, target/
   distance/mode gates and local result. Actual geometry/list/child state
   and constructor-entry preservation remain separate obligations.
+  FND-COMBAT-034/037 already settle the immediate handler's lookup and
+  append helpers: they use three-byte owner/effect records at 50B0:000F
+  with count DS:2102. Lookup reads that table and returns the first match
+  or FFFF. Append repeats lookup and, only on a miss with signed count
+  below 84, writes the owner/effect pair and increments DS:2102; it has
+  no own nonnegative-count gate. Under admitted counts 0..84, preserved
+  segments and disjoint table/stack/placement storage, these helpers have
+  no direct placement-row or DS:264E write. This conditional footprint
+  does not settle native table admission or the intervening +12A8 cast.
+  The handler's local AL-one store follows the cast and append requests
+  without checking whether append succeeded, including its full-table
+  skip. It is not proof that a tracking record was added or that the
+  placement row survived the casting child (Q-PARTY-116).
   FND-ITEM-074 binds the shipped queue pointers/capacities and its local
   odd/even insertion shift under retained storage; native queue state,
   other writers and event use-time identity remain open.
