@@ -37,21 +37,22 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
 - Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
-  fa2a30bd -NoRestore` passed with the existing declared skips: 1937
+  3f59dad0 -NoRestore` passed with the existing declared skips: 1937
   entries, 208 parity rows and five deviations. Integration at adoption
   also passed the build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - Recovery assessment selection: FMT-PARTY-001, RULE-PARTY-008,
   FMT-PARTY-003, FMT-PARTY-004, FMT-PARTY-005, FMT-PARTY-006,
   FMT-PARTY-007, RULE-PARTY-002, RULE-PARTY-007, RULE-PARTY-009.
-  Reviewed: FMT-PARTY-007 (1 of 10). Next assess FMT-PARTY-001; the
-  remaining eight after that are still pending. No entry is chosen yet
+  Reviewed: FMT-PARTY-007 and FMT-PARTY-001 (2 of 10). Next assess
+  FMT-PARTY-003; seven others remain pending after that. No entry is chosen yet
   for the closure trial/map; its three-batch timing has not started.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review is
-  in commit 7886855b. Q-PARTY-124 holds FMT-PARTY-007's remaining
-  question. No complete-reading declaration or question closure was added.
+  in commits 7886855b and f2dc1cc0. Q-PARTY-124 and Q-PARTY-126 hold
+  the reviewed entries' remaining access questions; Q-PARTY-003 remains
+  open. No complete-reading declaration or question closure was added.
 - Upstream scope clarification PR 132 is open with checks passed:
   https://github.com/kibertoad/refurbished-dinosaurs/pull/132.
   It is not adopted in the pinned rules. Finish the selection's evidence
