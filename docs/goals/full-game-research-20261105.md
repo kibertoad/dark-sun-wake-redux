@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 7630c9ae
-  -NoRestore passed: 1930 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 04b58b2a
+  -NoRestore passed: 1931 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
@@ -44,7 +44,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
   FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 6a3b3bd5.
+  Latest batch is ee186cd1.
   Q-PARTY-119 now owns bitmap-cache/backing-store coherence and lifetime;
   Q-PARTY-116 retains constructor publication and use-time owner/slot state.
   Next assess remaining descriptor/state producers and
@@ -158,6 +158,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   direct entry-index stores. Actual lower-load state, coordinate child,
   insertion position/count identity and later services remain Q-PARTY-116.
   Do not import the effect constructor's no-removal position argument here.
+- Counted ordinary publication: FND-ITEM-097 names
+  effect-ordinary-counted-publication.txt and its matching -repeat pair.
+  Reuse both p=n, N=n+1 branches and the initializer index binding.
+  Native lower-load index/count/DF preservation, aliases and later lifetime
+  remain Q-PARTY-116. The effect p=N case is still a separate obligation.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
