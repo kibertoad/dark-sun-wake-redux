@@ -63,6 +63,9 @@ Next ID: Q-SOUND-011
   outside FND-SOUND-022's conditional local proof. Local cardinality/index,
   installed source profile, count conversion, allocation rounding/clearing
   and plain formatter are FND-SOUND-022 through FND-SOUND-027.
+  Tried: FND-SOUND-040 binds the normal group-header size word and
+  capacities for counts 13/-1. The native word values, record contents
+  and later label/vector/chooser admission remain distinct.
   Tried: FND-SOUND-039 observes two fresh successful parser returns with
   counts 13, 13, -1 and nonzero offset-four group pointers. The native
   negative-count group result is no longer hypothetical at that endpoint;

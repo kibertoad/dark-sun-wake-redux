@@ -424,6 +424,10 @@ Next ID: Q-CONFIG-013
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-040 binds the normal allocator size word at returned
+  segment offset zero and the offset-four payload capacity. Native size
+  values and complete record bytes remain; the header field's location
+  and local normal-path writers do not need another reading.
   Tried: FND-SOUND-039 observes two fresh native successful parser returns
   with counts 13, 13, -1 and nonzero group pointers. The fixed entry/frame,
   return and field-read capabilities are verified; DS and SS are distinct
