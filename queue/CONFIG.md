@@ -412,12 +412,18 @@ Next ID: Q-CONFIG-011
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and complete malformed/file-error behavior,
   and the full consumer effects of `CardGroup` and chunk numbers?
-  Settles it: file-byte delivery/read-result and complete error contracts;
+  Settles it: stream/handle/buffer/flag construction and lifetime, flush
+  child 292B, lower read 06FF, translation/seek and 27FC error contracts
+  and OS outcomes beyond FND-SOUND-030's local extraction/refill dispatch;
   token/value/numeric bounds and other inputs beyond FND-SOUND-025's two
   short counts; actual source/nested/repeated-tag span admission; and
   remaining CardGroup, chunk-number and SamplePlaybackMode consumers.
   The local outer/nested record dispatch is FND-SOUND-028, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-030 removes local unsigned-byte extraction, FFFF
+  separation, buffered refill result/flag dispatch and direct nonzero/CR
+  gates from Settles it. Stream admission and lower child/OS outcomes,
+  including the direct path's scratch-byte validity, remain distinct.
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
   paths and their mode-controlled output copies, plus the chunk-field
   destinations. Those local bindings are removed from the remaining parser
