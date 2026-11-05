@@ -251,7 +251,9 @@ Next ID: Q-PARTY-120
   immediate handler/cell/queue children bound by FND-ITEM-098; actual
   effect-row/hidden-position/lifetime inputs and child preservation beyond
   FND-ITEM-099's immediate decode/target/mode gates, including actual
-  geometry/list state, neighboring owner/effect table count/writers/aliases
+  actual geometry/owner/class/accepted-population and list/frame/span state
+  beyond FND-ITEM-100's target/insertion gates and 64-record caller region;
+  neighboring owner/effect table count/writers/aliases
   beyond FND-COMBAT-034/037's local lookup/append contracts, and +12A8
   casting effects; its returned K relative to
   persistent count N and retained frame/header/table identity, with the
@@ -294,6 +296,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-100 removes target-list rectangle/class/slot/position
+  and insertion-footprint gates. Its loop has no 64-entry cap; actual
+  accepted population and handler storage/aliases remain above. Selected
+  flag zero skips the geometry child; distance and casting effects remain.
   Tried: FND-COMBAT-034/037 already settle +15B9 lookup and +1519
   append. Their admitted local footprint is the neighboring owner/effect
   table and its count, not placement rows/count. Native count/writers,
