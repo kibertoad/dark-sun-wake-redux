@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-126
+Next ID: Q-PARTY-127
 
 ## Static
 
@@ -97,10 +97,24 @@ Next ID: Q-PARTY-126
   call deep; and the indirect calls that take it. Tried: FND-PARTY-115 reads the block copies, the
   straight-line pushes and stores of the table segment and one level of calls below them. Blocks:
   nothing yet.
-- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do the record's remaining `unk_`
-  fields hold? Settles it: the other
-  routines that print the character sheet from the record at `DS:1429` (FND-PARTY-055), and the
-  generation code that sets the scores. Tried: a search of the first 79 bytes of records 40 and 42
+- Q-PARTY-003. FMT-PARTY-001, RULE-PARTY-004, RULE-MAGIC-002: What do
+  the remaining unknown character fields and combatant identifier mean?
+  Settles it: meanings of CHAR bytes 0x1C, 0x21, 0x2A, 0x7B and 0x86, and the
+  combatant_id/CACT relationship, after the field placements below.
+  For byte 0x2A, decode the shipped script calls of opcode 0x22 functions
+  48/49 with field 33 using FND-SCRIPT-024's layouts and
+  FND-PARTY-156's actual target/field dispatch. For the other bytes,
+  distinguish retained opaque values from an interpretation established
+  by a reached consumer; FND-PARTY-152's fixed-displacement exclusions
+  and FND-PARTY-159's shipped-save-selector bound are not universal
+  absence proofs. Complete access/serialization coverage is Q-PARTY-126,
+  separate from assigning these remaining meanings.
+  Tried: the FMT-PARTY-001 assessment reuses FND-PARTY-052/054/148/152/
+  156/159/235/259 and existing field findings below. Their recorded positions
+  are not still questions about which sheet label belongs at which byte.
+  The remaining semantic work is named above; writer/access exclusions
+  that affect the record's universal-prefix claim move to Q-PARTY-126.
+  Tried: a search of the first 79 bytes of records 40 and 42
   for the label positions of their gender, origin, alignment and class (FND-PARTY-061);
   FND-PARTY-063 and FND-PARTY-066 show the four codes of Cleric, Druid and Ranger are the spheres; FND-PARTY-049, FND-PARTY-259 and FND-PARTY-055 to
   FND-PARTY-057 place hit points, the object offset, the combatant identifier, the control flags,
@@ -808,6 +822,33 @@ Next ID: Q-PARTY-126
   explicit computed-1001 exclusion and a direct-call-only caller list.
   No qualifying whole-entry complete reading is merely undeclared.
   Blocks: complete reading of FMT-PARTY-007.
+
+- Q-PARTY-126. FMT-PARTY-001: Do all CHAR readers and writers preserve
+  the documented chunk prefix and field interpretations?
+  Settles it: the remaining indirect entries, separate readers/writers,
+  pointer copies and computed field accesses affecting the documented
+  CHAR representation, after FND-PARTY-235's fourteen known direct
+  resource-write sites and computed-tag bindings. Bind the serializer's
+  root kind, mutable graph/field lists and restored metadata to its
+  type-1/type-3 prefix and sentinel; account for state writers or copies
+  that can change that field selection, including the DS/SS identity
+  and later field-list changes left open by FND-PARTY-235. The literal
+  tag gap in FND-PARTY-054 alone is no longer the remaining direct-site
+  question. Retain FND-PARTY-259's reader/header/reference and corrected
+  status facts. Account for copied pointers, computed offsets and alias
+  accesses excluded by FND-PARTY-152 wherever they could change a field
+  interpretation or its no-use bound. Known CHAR load/write sites remain
+  controls; preserve unresolved transfers and decoder exclusions.
+  Reuse the known serializer/chunk and copy contracts; this does not ask
+  for general file-I/O success or unrelated gameplay effects. Remaining
+  unknown field meanings stay Q-PARTY-003.
+  Tried: review FND-PARTY-052/054/148/152/156/159/235/259 for the whole
+  FMT-PARTY-001 claim. The later direct-site/tag census and serializer
+  selector reading remove those parts of the older writer limitation;
+  metadata/graph-state, indirect and pointer/access exclusions remain.
+  No newly observed contradiction or qualifying whole-entry declaration
+  was identified.
+  Blocks: complete reading of FMT-PARTY-001.
 
 ## Emulated call
 

@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_001.ksy
-evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-259, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-256, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-112, FND-PARTY-113, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-158, FND-PARTY-159]
+evidence: [FND-PARTY-001, FND-PARTY-003, FND-PARTY-005, FND-PARTY-013, FND-PARTY-020, FND-PARTY-048, FND-PARTY-049, FND-PARTY-050, FND-PARTY-259, FND-PARTY-052, FND-PARTY-053, FND-PARTY-054, FND-PARTY-055, FND-PARTY-056, FND-PARTY-057, FND-PARTY-058, FND-PARTY-059, FND-PARTY-073, FND-PARTY-066, FND-PARTY-074, FND-PARTY-081, FND-PARTY-082, FND-PARTY-083, FND-PARTY-085, FND-PARTY-086, FND-PARTY-091, FND-PARTY-100, FND-PARTY-096, FND-PARTY-099, FND-PARTY-108, FND-PARTY-071, FND-PARTY-070, FND-PARTY-256, FND-PARTY-095, FND-PARTY-143, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-148, FND-PARTY-112, FND-PARTY-113, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-158, FND-PARTY-159, FND-PARTY-235]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-006]
@@ -154,3 +154,16 @@ ends within its slot [FND-PARTY-001, FND-PARTY-005, FND-PARTY-052].
 - What `combatant_id` identifies: overlay 184 writes the combatant record's copy of it to a
   `CACT` resource (FND-PARTY-012), and the shipped values are never the record's own number
   (FND-PARTY-050, Q-PARTY-003).
+
+- Whether the documented prefix and field interpretations cover every
+  CHAR creation and read path (Q-PARTY-126). FND-PARTY-235 accounts for
+  fourteen known direct resource-write sites, their computed tags and the
+  serializer's field selectors, refining FND-PARTY-054's earlier literal
+  search. Its graph/metadata and DS/SS conditions, later field-list writes,
+  unresolved indirect access, and FND-PARTY-152's copied-pointer/computed-
+  offset exclusions still affect the universal prefix and no-use claims.
+  FND-PARTY-052/148/259 supply shipped-record, saved-reference and
+  corrected reader facts without making those accesses exhaustive.
+  General resource-load success and unrelated consumers are outside this
+  representation question. Remaining meanings stay Q-PARTY-003;
+  neutral field names alone are not a new contradiction.
