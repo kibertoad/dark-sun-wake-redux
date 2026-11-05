@@ -265,7 +265,9 @@ Next ID: Q-PARTY-119
   admission beyond FND-ITEM-083's local decrement/fill/child ordering;
   image-refresh link termination, owner/cache/frame/buffer identity and
   native reload/pool order/span/alias admission beyond FND-ITEM-089's
-  local release/metadata/consolidation contracts, and backing-store/
+  local release/metadata/consolidation contracts; native backing-store
+  handle/chain/validator state and installed backend targets/effects beyond
+  FND-ITEM-090's local transfer loops; remaining
   reset children beyond FND-ITEM-087's local contracts and FND-ITEM-088's
   reclamation/accounting and existing pointer-update composition; archive-child effects, native
   cache count/flags/offset writers and size/data identity beyond
@@ -284,6 +286,10 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-090 removes backing read/write's local count/range/error,
+  linked-block/chunk dispatch and offset-only buffer advance. Native
+  selector/chain/validator producers, installed backend targets/effects
+  and buffer lifetime remain, not another unchanged transfer-loop reading.
   Tried: FND-ITEM-089 removes local release/residency/pool-match gates,
   metadata insertion/deletion and consolidation/pointer-adjustment ordering.
   Bound resets and residency clears are not proven content preservation;
