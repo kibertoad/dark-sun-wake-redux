@@ -247,7 +247,9 @@ Next ID: Q-PARTY-120
 - Q-PARTY-116. FMT-PARTY-006: Does an admitted effect-row constructor
   publish a counted flagged row that survives until the equipment area
   removal uses its slot? Settles it: an actual admitted slot/sample/base/key,
-  count and extra-row state at 31E0:03CA entry, its returned K relative to
+  count and extra-row state at 31E0:03CA entry after the ordinary placement,
+  immediate handler/cell/queue children bound by FND-ITEM-098; actual
+  effect-row/hidden-position/lifetime inputs and child preservation; its returned K relative to
   persistent count N and retained frame/header/table identity, with the
   count-zero/retained-zero-key domain resolved by FND-ITEM-093; native
   admission and intervening key writers for that domain, and other counts/
@@ -288,6 +290,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-098 removes the selected slot producer's local object/
+  position/ordinary-placement and immediate/deferred order. Ordinary
+  placement precedes the sampled loop but unchecked children intervene;
+  native slot/count/row state at constructor entry remains above.
   Tried: FND-ITEM-097 resolves both wrapper outcomes for ordinary p=n,
   N=n+1: each publishes K<N under stated preserved-index/count/DF/span
   conditions. The effect p=N case remains different. Native lower-load
