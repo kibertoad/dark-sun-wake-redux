@@ -37,28 +37,34 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
 - Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
-  b4f09e77 -NoRestore` passed with the existing declared skips: 1938
+  3a6640a3 -NoRestore` passed with the existing declared skips: 1939
   entries, 208 parity rows and five deviations. Integration at adoption
   also passed the build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
-- Recovery assessment selection: FMT-PARTY-001, RULE-PARTY-008,
-  FMT-PARTY-003, FMT-PARTY-004, FMT-PARTY-005, FMT-PARTY-006,
-  FMT-PARTY-007, RULE-PARTY-002, RULE-PARTY-007, RULE-PARTY-009.
-  All ten are reviewed. FMT-PARTY-007 is chosen for the closure trial;
+- All ten selected entries are reviewed; their selection and assessments
+  remain in the research commit messages. FMT-PARTY-007 is the closure trial;
   its queue-backed ownership/dependency map is committed in 4d210fc1.
-  Trial batch one records FND-PARTY-264 and narrows Q-PARTY-124;
-  no question closure or accepted reading. Next: Q-PARTY-124 remaining
-  computed DATA-number paths, reusing FND-RNG-091 and FND-PARTY-264.
-  The first batch records separate research/tooling/validation/handover
-  times; two measured batches remain. Compare after the next one.
+  Trial batches one and two record FND-PARTY-264/265 and narrow Q-PARTY-124;
+  neither closes a question or declares a complete reading. One measured
+  batch remains. Next objective changes to Q-PARTY-124's DATA-request-route
+  census, reusing FND-RNG-091 and both trial findings, not caller-by-caller
+  extension of the getter. Keep separate timing categories and required gates.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
-  589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review is
-  in commits 7886855b, f2dc1cc0, 7d7fa4ce, 9f3588cd, 9b30c420,
-  9ca6c5e5, 984fe813, 86b5c4d3, 8e802bd7 and 1a382f6f.
+  589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review
+  ends at 1a382f6f and its map at 4d210fc1.
   Remaining review questions include Q-PARTY-003/005/124/126 through 133.
   No complete-reading declaration or question closure was added. The
   PSST/SPST split is not an answer; existing findings were reused.
+- Trial comparison, PARTY scope: fa2a30bd904434e18ac242b3e76116c63ad16951
+  to 56f71d560e4700bd7967646ebeed2153137554d6. Zero accepted-reading declarations, zero answered
+  queue deletions; two bounded obligation components removed with
+  FND-PARTY-264/265. Nine items added, including Q-PARTY-128's split;
+  Q-PARTY-003/005 narrowed, not answered. Q-PARTY-124 and Q-PARTY-126
+  through 133 remain open. No closure: change the next objective as above.
+  Inventory gaps persist: 6,376 rows, four assigned in this entry's map,
+  6,372 unassigned here, three missing inventories and no unmeasured ones.
+  Activity is two findings and 18 commits, not closure or measured overhead.
 - Upstream scope clarification is proposed in PR 132:
   https://github.com/kibertoad/refurbished-dinosaurs/pull/132.
   It is not adopted in the pinned rules. The selection's evidence review
