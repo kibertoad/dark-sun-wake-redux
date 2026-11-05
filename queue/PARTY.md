@@ -252,7 +252,9 @@ Next ID: Q-PARTY-119
   creators/restores and intervening row flag/count/base/slot writers; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
-  cell children 25AF:020C/04D0/01DD, redraw 31E0:128C and later
+  cell pointer/coordinate/read-span and alias admission beyond
+  FND-ITEM-076's local 25AF:020C/04D0/01DD contracts, redraw 31E0:128C
+  and later
   native kind-three slot/handler preservation and queue boundary-storage
   admission beyond FND-ITEM-075's local snapshot/dequeue/dispatch contract,
   including queue pointer/count/
@@ -261,6 +263,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-076 removes local cell-child dispatch/mask/read/write
+  contracts and caller ordering. The middle helper's preliminary read
+  precedes its child's coordinate gate, and no return gates compaction.
+  Native map/row/slot identity, readable spans, aliases and redraw/unload
+  children remain, not another unchanged reading of these leaf bodies.
   Tried: FND-ITEM-075 removes local kind-three dispatch and its detached
   snapshot/dequeue contract. It consumes the saved slot with a separate
   zero mode, not payload byte two; dequeue reads the boundary row too.
