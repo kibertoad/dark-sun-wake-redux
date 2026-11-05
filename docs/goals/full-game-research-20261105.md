@@ -30,10 +30,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; research Audit remains unmet.
-- Startup: pinned rules verified offline; documentation check passed on
-  2026-11-05 (1887 entries, 208 parity rows, five deviations; declared skips).
-- Previous session ended cleanly at the owner's earlier stop request;
-  docs/HANDOVER.md retains canonical local report and checkpoint references.
-- Unfinished: no research batch started.
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 4fdccb8c
+  -NoRestore passed; documentation passed with 1890 entries, 208 parity rows
+  and five deviations, retaining declared skips. The earlier two research
+  batches passed their own pre-batch gates. Use the project-local
+  EVIDENCE_PYTHON override for gates and commit hooks.
+- Retained inputs: docs/HANDOVER.md names the existing canonical reports
+  and checkpoints. FND-SOUND-030/031/032 name new static reports and exact
+  repeats in the same approved local disc-ADV analysis store. All six
+  reports were generated and verified during this session.
+- Unfinished: none; no owned original-game or analysis process remains.
 - Blockers: none known.
-- Next: Q-SOUND-010, Q-CONFIG-006, Q-PARTY-116, Q-PARTY-117, Q-PARTY-118.
+- Next: Q-CONFIG-006 (reuse FND-SOUND-030/031/032; native producers and
+  lower write contract), Q-SOUND-010, Q-PARTY-116, Q-PARTY-117,
+  Q-PARTY-118. Keep source/profile conditions separate from native admission.
+- Standing goal remains active; this handover is a continuation checkpoint,
+  not an Audit exit, owner acceptance of inaccessible evidence or stop request.
