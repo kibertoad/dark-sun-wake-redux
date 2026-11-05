@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_006.ksy
-evidence: [FND-PARTY-259, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255, FND-PARTY-256, FND-ITEM-073, FND-ITEM-074, FND-ITEM-075, FND-ITEM-076, FND-ITEM-077, FND-ITEM-078, FND-ITEM-079, FND-ITEM-080, FND-ITEM-081, FND-ITEM-082, FND-ITEM-083, FND-ITEM-084, FND-ITEM-085, FND-ITEM-086]
+evidence: [FND-PARTY-259, FND-PARTY-052, FND-PARTY-054, FND-PARTY-181, FND-PARTY-182, FND-PARTY-196, FND-PARTY-216, FND-PARTY-217, FND-PARTY-220, FND-PARTY-221, FND-PARTY-222, FND-PARTY-223, FND-PARTY-224, FND-PARTY-225, FND-PARTY-227, FND-PARTY-228, FND-PARTY-229, FND-PARTY-230, FND-PARTY-231, FND-PARTY-234, FND-PARTY-235, FND-PARTY-236, FND-PARTY-238, FND-PARTY-239, FND-PARTY-245, FND-PARTY-248, FND-PARTY-247, FND-PARTY-249, FND-PARTY-250, FND-PARTY-251, FND-PARTY-252, FND-PARTY-253, FND-PARTY-254, FND-PARTY-255, FND-PARTY-256, FND-ITEM-073, FND-ITEM-074, FND-ITEM-075, FND-ITEM-076, FND-ITEM-077, FND-ITEM-078, FND-ITEM-079, FND-ITEM-080, FND-ITEM-081, FND-ITEM-082, FND-ITEM-083, FND-ITEM-084, FND-ITEM-085, FND-ITEM-086, FND-ITEM-087]
 conflicting: []
 split_with: []
 related: []
@@ -326,6 +326,9 @@ for root index zero it instead returns the root object number
   mutation or validation; normalized results do not admit later reads.
   FND-ITEM-086 records the bitmap provider's hit/reload and miss/publication
   gates. Native cache/archive/buffer identity and its named children remain open.
+  FND-ITEM-087 records reload and pool-allocation gates, including global
+  reset requests on exhaustion. Pool/cache producers and the remaining
+  reclamation, pointer-update, backing-store and reset children remain open.
 - Equipment/cast DATA key/content coherence and snapshot lifetime beyond
   the complete getter and source-domain reading (FND-ITEM-057,
   FND-ITEM-062, Q-PARTY-117).
