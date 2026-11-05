@@ -564,9 +564,18 @@ Next ID: Q-CONFIG-013
 - Q-CONFIG-012. FMT-CONFIG-002: What full consumer effects follow the
   CardGroup, driver chunk-number and SamplePlaybackMode fields?
   Settles it: remaining field consumers and their incoming selector/input
-  producers, aliases and later state/driver effects beyond the recorded
-  local parser/output bindings. Keep field parsing distinct from device
+  producers, aliases and later state/driver effects beyond FND-SOUND-047's
+  field handoff, digital-copy alternatives, CardGroup formatter argument
+  and literal census; resolve its three 002A/six 00DA boundary candidates,
+  computed/pointer/implicit accesses and actual numeric-summary rendering.
+  Reuse FND-CONFIG-023/024 for the already recorded game ADV selectors.
+  Keep field parsing distinct from device
   behavior and from the current-record admission of Q-SOUND-007/010.
+  Tried: FND-SOUND-047 removes handoff widths, digital-copy alternatives
+  and the CardGroup-four summary-argument distinction. Eight controlled
+  literal queries and format controls repeat exactly. Remaining consumer,
+  boundary, incoming-state, alias and driver obligations are in Settles it;
+  no device effect follows from an offset or numeric match alone.
   Tried: split from Q-CONFIG-006 using FND-SOUND-020's chunk-field
   destinations/output copies and FND-SOUND-037's complete local scalar
   dispatch, including SamplePlaybackMode's zero/one gate. Those stores
