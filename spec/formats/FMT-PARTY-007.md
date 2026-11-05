@@ -64,3 +64,34 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   that every later consumer retains valid storage. Any source, base,
   extent or byte-write effect that changes this interpretation remains
   within Q-PARTY-124; the full generation-screen behavior is separate.
+  Closure objective selected after the ten-entry existing-evidence review:
+  use Q-PARTY-124 for the remaining caller census, interpretation-affecting
+  state producers, indirect transfers and source/base/extent evidence.
+  Its queue condition is authoritative; this map does not repeat it or
+  declare any of those obligations complete.
+  Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
+  SHA-256 `69555e580c3964e90ec43822629c29e3b909ecc264353b4dec0ccc82bdbf76ea`.
+  Known owned roots are `0x0006F640` (overlay 185 accessor, shared with
+  RULE-PARTY-013's experience-table use) and `0x0006BA1E` (overlay 183
+  selection caller, shared with RULE-PARTY-009 and generation level setting).
+  Known reached shared services are `38FF:04AB` (resource acquisition)
+  and `444C:0092` (release). Their relevant source/extent and byte effects
+  belong to this obligation; their unrelated clients and general service
+  success are not absorbed into the table contract. These four assignments
+  describe ownership, not accepted readings. Further reached functions
+  have no ownership assignment in this entry's map until identified by the
+  census; the other 3,226 installed-DSUN rows remain unassigned here.
+  The fresh pinned report measures 6,376 rows across six inventories;
+  this entry's four-root map leaves 6,372 unassigned across that denominator,
+  independently of the separate SAVE/COMBAT ownership assessment.
+  Missing inventories remain `CD:CHARTRAN.EXE`, `CD:SOUND_DS.EXE` and
+  `DOSBOX/DOSBox.exe`; no installed result establishes their behavior.
+  There are no unmeasured inventories or coverage problems in that report,
+  and no accepted complete-reading functions. A missing-inventory file is
+  not asserted to read this table merely because it is unmeasured.
+  First objective: remove the computed/indirect DATA-request caller gap by
+  reusing the controlled direct-reader and shared-accessor reports, then
+  classifying only unresolved target/argument sources. A bounded result
+  must identify every remaining excluded mechanism; another literal-1001
+  search cannot close this objective. The next three closure-objective
+  batches measure research, tooling, validation and handover separately.
