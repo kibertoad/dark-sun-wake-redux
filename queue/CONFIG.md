@@ -415,14 +415,19 @@ Next ID: Q-CONFIG-013
   outside FND-SOUND-034's installed spelling set and FND-SOUND-036's
   bounded ASCII/token/span conditions, including high-byte classification
   and signed-index wrap admission;
-  exact source consumption by 038E's nested flag/jumper/alternate loops
-  and 026F's tag counter; retained line/tag/value/record spans and aliases;
+  native line/tag/value/record spans, aliases and intervening writers
+  beyond FND-SOUND-038's complete installed source-band/count composition;
   and outer 0001's error/close child continuation beyond the local returns
   already recorded. Native stream admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-038 accounts for all 26 records and 940 interior keys,
+  including the two ignored MidiDmaJumper children, and removes exact
+  installed nested consumption and positive group tag-counter composition
+  from Settles it. Native storage/preservation, other input profiles and
+  outer error/close children remain, rather than another source-band census.
   Tried: independently reviewed FND-SOUND-037 supersedes the old nested
   jumper rejection claim: nonpositive lookup consumes a line without OR,
   unlike Flags; positive non-jumper selectors fail. The strict source

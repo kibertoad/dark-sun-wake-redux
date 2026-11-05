@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038]
 conflicting: []
 split_with: []
 related: []
@@ -38,6 +38,12 @@ selectors fails the record; inside Flags, nonpositive lookup instead fails.
 The installed source includes MidiDmaJumper as a counted jumper even though
 the native tag table lacks it. Under intact lookup/context/storage it is
 ignored rather than rejected, and supplies no jumper bit (FND-SOUND-037).
+All 26 installed records fit the measured counted source bands: 940
+interior keys comprise 649 outer keys, 27 flag children, 66 jumper children
+and 198 further alternate children. Two jumper children use the ignored
+spelling. This accounts for conditional installed source consumption and
+group-counter composition, without native storage/lifetime admission
+(FND-SOUND-038).
 
 | Key | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|
@@ -158,7 +164,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   the recorded local tag/field/output bindings and installed small tokens
   (FND-SOUND-020, FND-CONFIG-213, FND-CONFIG-007, FND-SOUND-025,
   FND-SOUND-037, FND-SOUND-029, FND-SOUND-034, FND-SOUND-035,
-  FND-SOUND-036, Q-CONFIG-006).
+  FND-SOUND-036, FND-SOUND-038, Q-CONFIG-006).
 - Native stream/storage lifetime, file/error contracts and OS outcomes
   (Q-CONFIG-011). FND-SOUND-030/031/032 record local byte, lower-read,
   translation and flush dispatch. FND-SOUND-033 binds the actual binary
