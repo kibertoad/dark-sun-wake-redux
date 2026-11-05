@@ -85,3 +85,22 @@ CRLF versus LF, missing final LF, line/tag/copy widths, controls and caps.
 Exit: tooling gate and synthetic controls pass; a separate research batch
 measures the installed file twice and compares spans to the existing static
 helper reading, retaining nested context, storage and conversion conditions.
+
+For Q-CONFIG-006's remaining nested source consumption, add optional --contexts
+to the same hash-locked profiler. Existing modes remain unchanged. Validate a
+bounded source profile against FND-SOUND-028's consecutive-key bands: Flags
+and Jumpers consume their declared following keys, and each alternate family
+has its preceding positive count and exactly count-minus-one consecutive
+alternate keys. This is conditional source conformance, not a replay of native
+file/heap behavior. Restrict counts to short decimal spellings, alternate
+families to at most ten total slots, flags to the recorded five flag names and
+jumpers to the eight recorded native names; reject unsupported patterns with
+no source text in diagnostics. Require terminal LF and no source-ignored
+brackets/control-byte discrepancy. Cap lines/record keys at 4096/512, preserve
+line numbers, count all outer and nested keys separately and emit only metadata.
+Synthetic controls cover zero lists, wrong/truncated nested keys, wrong alternate
+family/count/order, repeated bands, unknown outer keys, profiles beyond counts
+or caps and missing LF. Exit: selected tooling gate passes; a separate research
+batch measures all installed records twice and compares source-band accounting
+with the native group/record loop reading. Native context/state retention and
+partial-failure paths remain distinct even when this source profile conforms.

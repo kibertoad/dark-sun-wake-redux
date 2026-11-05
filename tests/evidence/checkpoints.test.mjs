@@ -38,7 +38,7 @@ from startup_segments import equipment_flag
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from disc_adv_envelopes import envelope as adv_envelope
 from resident_listing import span as resident_span
-from sound_ini_profile import profile as sound_ini_profile, source_spans as sound_ini_spans, source_inputs as sound_ini_inputs
+from sound_ini_profile import profile as sound_ini_profile, source_spans as sound_ini_spans, source_inputs as sound_ini_inputs, source_contexts as sound_ini_contexts
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
@@ -123,6 +123,40 @@ for spelling in ['+1','0x','1 trailing','9'*65,'--1']:
 base_lines=source_labels(['A']).count(lf)+1
 assert sound_ini_inputs(lf*(4096-base_lines)+source_labels(['A']))['physicalLines']==4096
 rejects(lambda:sound_ini_inputs(lf*(4097-base_lines)+source_labels(['A'])))
+def context_source(extra): return source_fields(extra)+lf
+context=sound_ini_contexts(context_source(lf.join(['[NumberOfMidiAddresses] 3',
+    '[MidiAddress] 0x330','[MidiAltAddress] 0x300','[MidiAltAddress] 0x320',
+    '[Flags] 2','[DspEnabled]','[MidiNotEnabled]','[Jumpers] 1','[AddressJumper]'])))['records'][0]
+assert context['sourceKeys']==10 and context['outerKeys']==6
+assert context['flagKeys']==2 and context['jumperKeys']==1 and context['alternateKeys']==1
+assert [band['childKeys'] for band in context['bands']]==[1,2,1]
+assert context['arrayCounts']=={'NumberOfMidiAddresses':3}
+assert all(band['firstChildLine']>band['line'] for band in context['bands'])
+empty_bands=sound_ini_contexts(context_source('[Flags] 0'+lf+'[Jumpers] 0'))['records'][0]
+assert empty_bands['sourceKeys']==3 and empty_bands['outerKeys']==3
+assert all(band['childKeys']==0 and band['firstChildLine'] is None for band in empty_bands['bands'])
+two=sound_ini_contexts(context_source('[NumberOfDmas] 2'+lf+'[AltDma] 1'))['records'][0]
+assert two['outerKeys']==3 and two['alternateKeys']==0 and two['bands'][0]['childKeys']==0
+ten=sound_ini_contexts(context_source('[NumberOfDmas] 10'+lf+lf.join(['[AltDma] 1']*9)))['records'][0]
+assert ten['alternateKeys']==8 and ten['sourceKeys']==ten['outerKeys']+8
+for bad in ['[Flags] 2'+lf+'[DspEnabled]','[Flags] 1'+lf+'[OpaqueTag] hidden',
+            '[Jumpers] 1'+lf+'[DspEnabled]','[DspEnabled]','[OpaqueTag] hidden',
+            '[AltDma] 1','[NumberOfDmas] 1'+lf+'[AltDma] 1',
+            '[NumberOfDmas] 2',
+            '[NumberOfDmas] 3'+lf+'[AltDma] 1',
+            '[NumberOfDmas] 3'+lf+'[AltDma] 1'+lf+'[AltIrq] 2',
+            '[NumberOfDmas] 2'+lf+'[AltDma] 1'+lf+'[AltDma] 2',
+            '[NumberOfDmas] 2'+lf+'[NumberOfDmas] 2']:
+    rejects(lambda:sound_ini_contexts(context_source(bad)))
+for value in ['0','11','-1','0x2','1000']:
+    rejects(lambda:sound_ini_contexts(context_source('[NumberOfDmas] '+value)))
+rejects(lambda:sound_ini_contexts(context_source('[Flags] 257')))
+rejects(lambda:sound_ini_contexts(source_labels(['A'])))
+rejects(lambda:sound_ini_contexts('; [comment]'+lf+context_source('')))
+rejects(lambda:sound_ini_contexts(';'+chr(1)+lf+context_source('')))
+max_keys=context_source(lf.join(['[CardId] 1']*511))
+assert sound_ini_contexts(max_keys)['records'][0]['sourceKeys']==512
+rejects(lambda:sound_ini_contexts(context_source(lf.join(['[CardId] 1']*512))))
 assert resident_span('1000:0000..1000:0004',4)==(0x1000,0,4,0)
 assert resident_span('1000:FFF0..1000:10000',65536)==(0x1000,65520,65536,0)
 for invalid in ['0FFF:0000..0FFF:0004','1000:0004..1000:0004',

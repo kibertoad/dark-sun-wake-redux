@@ -1,7 +1,7 @@
 """Bounded source-label metadata for Q-SOUND-010; FMT-CONFIG-002.
 
-Usage: python -I sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs]
-Reports no names and does not model the original parser or run a program.
+Usage: python -I sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs|--contexts]
+Reports no device names; source conformance is not native parser execution.
 """
 import json
 import re
@@ -22,6 +22,11 @@ NUMERIC_FIELDS = ("NumberOfRecords", "CardId", "CardGroup", "MidiIrq", "MidiAltI
                   "SamplePlaybackMode", "Flags", "Jumpers") + tuple(
                       name for family in ARRAY_FIELDS for name in family)
 NUMERIC_KEYS = {name.lower(): name for name in NUMERIC_FIELDS}
+FLAG_PROFILE = {name.lower() for name in ("DspEnabled", "DspNotEnabled",
+                "MidiNotEnabled", "CdEnabled", "MultipleInstallDisabled")}
+JUMPER_PROFILE = {name.lower() for name in ("MidiAddressJumper", "MidiIrqJumper",
+                  "DigitalAddressJumper", "DigitalIrqJumper", "DigitalDmaJumper",
+                  "AddressJumper", "IrqJumper", "DmaJumper")}
 
 
 def profile(text):
@@ -203,10 +208,98 @@ def source_inputs(text):
             "limits": "source spans/spellings only; numeric prefix alphabet is not a conversion result; native contexts, storage and continuation unvalidated"}
 
 
+def source_contexts(text):
+    """Validate only the declared consecutive-key source profile, not native state."""
+    inputs = source_inputs(text)
+    if not inputs["terminalLf"] or inputs["sourceIgnoredBracketLines"] or inputs["controlByteLines"]:
+        raise ValueError("SOUND.INI contexts: source delivery outside profile")
+    count_keys = {family[0].lower(): family[0] for family in ARRAY_FIELDS}
+    alternate_keys = {family[2].lower(): family[0].lower() for family in ARRAY_FIELDS}
+    outer_keys = (set(NUMERIC_KEYS) - {"numberofrecords"}) | {key.lower() for key in STRING_FIELDS}
+    records, group, entries = [], None, None
+
+    def decimal(value, maximum):
+        if not re.fullmatch(r"[0-9]{1,3}", value) or int(value) > maximum:
+            raise ValueError("SOUND.INI contexts: count spelling/limit outside profile")
+        return int(value)
+
+    def record(rows):
+        counts, seen_alternates, bands = {}, set(), []
+        i = outer = flag_keys = jumper_keys = alternate_count = 0
+        while i < len(rows):
+            line, key, value = rows[i]
+            if key in alternate_keys:
+                family = alternate_keys[key]
+                count = counts.get(family, 0)
+                if count < 2 or key in seen_alternates:
+                    raise ValueError("SOUND.INI contexts: alternate order/repetition outside profile")
+                # The first alternate is an outer key. Only the remaining
+                # count-minus-two keys belong to its nested consecutive band.
+                amount, kind, allowed = count - 2, count_keys[family], {key}
+                start = i + 1
+                seen_alternates.add(key)
+                alternate_count += amount
+                outer += 1
+            elif key in ("flags", "jumpers"):
+                amount = decimal(value, 256)
+                kind = "Flags" if key == "flags" else "Jumpers"
+                allowed = FLAG_PROFILE if key == "flags" else JUMPER_PROFILE
+                start = i + 1
+                outer += 1
+                flag_keys += amount if key == "flags" else 0
+                jumper_keys += amount if key == "jumpers" else 0
+            else:
+                if key not in outer_keys:
+                    raise ValueError("SOUND.INI contexts: outer key outside profile")
+                if key in count_keys:
+                    if key in counts:
+                        raise ValueError("SOUND.INI contexts: repeated array count outside profile")
+                    counts[key] = decimal(value, 10)
+                    if counts[key] == 0:
+                        raise ValueError("SOUND.INI contexts: nonpositive array count outside profile")
+                outer += 1
+                i += 1
+                continue
+            children = rows[start:start + amount]
+            if len(children) != amount or any(child[1] not in allowed for child in children):
+                raise ValueError("SOUND.INI contexts: consecutive-key band outside profile")
+            bands.append({"kind": kind, "line": line, "childKeys": amount,
+                          "firstChildLine": children[0][0] if children else None,
+                          "lastChildLine": children[-1][0] if children else None})
+            i = start + amount
+        for alternate, family in alternate_keys.items():
+            if counts.get(family, 0) > 1 and alternate not in seen_alternates:
+                raise ValueError("SOUND.INI contexts: missing alternate band outside profile")
+        return {"group": group, "ordinal": len(records), "sourceKeys": len(rows),
+                "outerKeys": outer, "flagKeys": flag_keys, "jumperKeys": jumper_keys,
+                "alternateKeys": alternate_count, "arrayCounts": {
+                    count_keys[key]: value for key, value in counts.items()}, "bands": bands}
+
+    for number, raw in enumerate(text.splitlines(), 1):
+        line = raw.split(";", 1)[0].strip()
+        if not line or line.startswith("//"):
+            continue
+        match = re.fullmatch(r"\[([A-Za-z][A-Za-z0-9]*)\]\s*(.*)", line)
+        key, value = match.group(1).lower(), match.group(2).strip()
+        if key in GROUP_KEYS:
+            group = GROUP_KEYS[key]
+        elif key == "startrecord":
+            entries = []
+        elif key == "endrecord":
+            records.append(record(entries))
+            entries = None
+        elif entries is not None:
+            if len(entries) >= 512:
+                raise ValueError("SOUND.INI contexts: per-record key limit")
+            entries.append((number, key, value))
+    return {"records": records,
+            "limits": "declared consecutive-key source profile only; no native parsing, storage, lifetime or successful setup guarantee"}
+
+
 def main():
-    modes = {"--spans": source_spans, "--inputs": source_inputs}
+    modes = {"--spans": source_spans, "--inputs": source_inputs, "--contexts": source_contexts}
     if len(sys.argv) not in (2, 3) or (len(sys.argv) == 3 and sys.argv[2] not in modes):
-        raise SystemExit("usage: sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs]")
+        raise SystemExit("usage: sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs|--contexts]")
     import xxhash
     with open(sys.argv[1], "rb") as stream:
         body = stream.read(128 * 1024 + 1)
