@@ -35,15 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 0a9862d3
-  -NoRestore passed: 1914 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince f21d1885
+  -NoRestore passed: 1915 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-080 for removal/queue/cell/redraw/unload
-  compositions. Latest batch is ac6d27f9. Next assess descriptor/state producers and
+  FND-ITEM-073 through FND-ITEM-081 for removal/queue/cell/redraw/unload
+  and descriptor acquisition compositions. Latest batch is 6a5ece2c.
+  Next assess actual acquisition callers and remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
   FND-PARTY-262/263 retain corrected request/slot-lifetime limits. A paused
@@ -67,6 +68,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   full local cleanup/fill/resource-wrapper contract; native header/count/
   descriptor/object identity and event/heap/chunk/free-list/graphics
   children remain Q-PARTY-116. Return/null/fill is not child-success proof.
+- Acquisition: FND-ITEM-081 names effect-descriptor-acquire-contract.txt
+  and its matching -repeat pair in the same store. Reuse its local number-hit,
+  content-hit and fresh-publication paths. Native caller selectors, actual
+  resource lengths, descriptor counts and other writers remain Q-PARTY-116.
+  The content comparison uses byte length while fresh records store frame count;
+  preserve that distinction without inferring a native defect.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
