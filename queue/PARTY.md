@@ -251,7 +251,8 @@ Next ID: Q-PARTY-120
   persistent count N and retained frame/header/table identity, with the
   count-zero/retained-zero-key domain resolved by FND-ITEM-093; native
   admission and intervening key writers for that domain, and other counts/
-  keys remain; other
+  keys remain; ETAB resource/content/transfer and count/key/slot lifetime
+  beyond FND-ITEM-094's local recount/flag propagation; other
   creators/restores and intervening row flag/count/base/slot writers; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
@@ -282,6 +283,11 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-094 removes local ETAB clear/read/count-boundary,
+  slot normalization and grouped bit-20 propagation. A successful zero
+  count does not establish a zero key; native ETAB content, transfer
+  identity and intervening writers remain above. Count-operand candidates
+  are retained with their controls/exclusions, not exhaustive coverage.
   Tried: FND-ITEM-093 resolves the complete count-zero/zero-key search
   domain: selected-caller nonzero coordinates return K=N=1, while origin
   returns K=0. Fresh clearing is not native use-time admission; actual
