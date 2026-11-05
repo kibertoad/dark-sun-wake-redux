@@ -129,6 +129,7 @@ context=sound_ini_contexts(context_source(lf.join(['[NumberOfMidiAddresses] 3',
     '[Flags] 2','[DspEnabled]','[MidiNotEnabled]','[Jumpers] 1','[AddressJumper]'])))['records'][0]
 assert context['sourceKeys']==10 and context['outerKeys']==6
 assert context['flagKeys']==2 and context['jumperKeys']==1 and context['alternateKeys']==1
+assert context['ignoredJumperKeys']==0 and all(b['ignoredChildKeys']==0 for b in context['bands'])
 assert [band['childKeys'] for band in context['bands']]==[1,2,1]
 assert context['arrayCounts']=={'NumberOfMidiAddresses':3}
 assert all(band['firstChildLine']>band['line'] for band in context['bands'])
@@ -139,6 +140,12 @@ two=sound_ini_contexts(context_source('[NumberOfDmas] 2'+lf+'[AltDma] 1'))['reco
 assert two['outerKeys']==3 and two['alternateKeys']==0 and two['bands'][0]['childKeys']==0
 ten=sound_ini_contexts(context_source('[NumberOfDmas] 10'+lf+lf.join(['[AltDma] 1']*9)))['records'][0]
 assert ten['alternateKeys']==8 and ten['sourceKeys']==ten['outerKeys']+8
+ignored=sound_ini_contexts(context_source('[Jumpers] 2'+lf+'[AddressJumper]'+lf+'[MidiDmaJumper]'))['records'][0]
+assert ignored['jumperKeys']==2 and ignored['ignoredJumperKeys']==1
+assert ignored['bands'][0]['childKeys']==2 and ignored['bands'][0]['ignoredChildKeys']==1
+assert ignored['sourceKeys']==ignored['outerKeys']+ignored['jumperKeys']
+rejects(lambda:sound_ini_contexts(context_source('[Flags] 1'+lf+'[MidiDmaJumper]')))
+rejects(lambda:sound_ini_contexts(context_source('[Jumpers] 1'+lf+'[OpaqueJumper]')))
 for bad in ['[Flags] 2'+lf+'[DspEnabled]','[Flags] 1'+lf+'[OpaqueTag] hidden',
             '[Jumpers] 1'+lf+'[DspEnabled]','[DspEnabled]','[OpaqueTag] hidden',
             '[AltDma] 1','[NumberOfDmas] 1'+lf+'[AltDma] 1',

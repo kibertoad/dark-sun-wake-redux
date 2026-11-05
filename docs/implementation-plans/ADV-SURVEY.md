@@ -104,3 +104,13 @@ or caps and missing LF. Exit: selected tooling gate passes; a separate research
 batch measures all installed records twice and compares source-band accounting
 with the native group/record loop reading. Native context/state retention and
 partial-failure paths remain distinct even when this source profile conforms.
+
+FND-SOUND-037 independently corrects the nonpositive nested-jumper branch.
+Extend --contexts only for its proven table-absent MidiDmaJumper spelling,
+counting it as a consumed but ignored jumper child. Report ignored-child
+counts per band and per record; keep other unclassified spellings outside
+the profile and keep Flags' nonpositive rejection distinct. Synthetic controls
+cover mixed recognized/ignored jumpers, the Flags contrast and continued
+unknown-tag refusal. Exit: selected tooling gate passes, then a separate
+research batch measures the complete installed source twice. The former
+strict-profile exception remains retained under its original tool commit.

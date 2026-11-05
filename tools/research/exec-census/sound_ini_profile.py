@@ -27,6 +27,9 @@ FLAG_PROFILE = {name.lower() for name in ("DspEnabled", "DspNotEnabled",
 JUMPER_PROFILE = {name.lower() for name in ("MidiAddressJumper", "MidiIrqJumper",
                   "DigitalAddressJumper", "DigitalIrqJumper", "DigitalDmaJumper",
                   "AddressJumper", "IrqJumper", "DmaJumper")}
+# FND-SOUND-037: exact installed table absence, consumed on the nonpositive
+# nested-jumper path. Other unclassified source names stay outside this profile.
+IGNORED_JUMPER_PROFILE = {"mididmajumper"}
 
 
 def profile(text):
@@ -225,7 +228,7 @@ def source_contexts(text):
 
     def record(rows):
         counts, seen_alternates, bands = {}, set(), []
-        i = outer = flag_keys = jumper_keys = alternate_count = 0
+        i = outer = flag_keys = jumper_keys = ignored_jumpers = alternate_count = 0
         while i < len(rows):
             line, key, value = rows[i]
             if key in alternate_keys:
@@ -243,7 +246,7 @@ def source_contexts(text):
             elif key in ("flags", "jumpers"):
                 amount = decimal(value, 256)
                 kind = "Flags" if key == "flags" else "Jumpers"
-                allowed = FLAG_PROFILE if key == "flags" else JUMPER_PROFILE
+                allowed = FLAG_PROFILE if key == "flags" else JUMPER_PROFILE | IGNORED_JUMPER_PROFILE
                 start = i + 1
                 outer += 1
                 flag_keys += amount if key == "flags" else 0
@@ -263,7 +266,10 @@ def source_contexts(text):
             children = rows[start:start + amount]
             if len(children) != amount or any(child[1] not in allowed for child in children):
                 raise ValueError("SOUND.INI contexts: consecutive-key band outside profile")
+            ignored = sum(child[1] in IGNORED_JUMPER_PROFILE for child in children) if key == "jumpers" else 0
+            ignored_jumpers += ignored
             bands.append({"kind": kind, "line": line, "childKeys": amount,
+                          "ignoredChildKeys": ignored,
                           "firstChildLine": children[0][0] if children else None,
                           "lastChildLine": children[-1][0] if children else None})
             i = start + amount
@@ -272,6 +278,7 @@ def source_contexts(text):
                 raise ValueError("SOUND.INI contexts: missing alternate band outside profile")
         return {"group": group, "ordinal": len(records), "sourceKeys": len(rows),
                 "outerKeys": outer, "flagKeys": flag_keys, "jumperKeys": jumper_keys,
+                "ignoredJumperKeys": ignored_jumpers,
                 "alternateKeys": alternate_count, "arrayCounts": {
                     count_keys[key]: value for key, value in counts.items()}, "bands": bands}
 
