@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince a9b8b3a3
-  -NoRestore passed: 1912 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince d21a4b93
+  -NoRestore passed: 1913 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-078 for removal/queue/cell/redraw/unload
-  compositions. Latest batch is a71139b9. Next assess the later
-  31E0:07CE..0AD1 cleanup/children or an actual constructor/use-time
+  FND-ITEM-073 through FND-ITEM-079 for removal/queue/cell/redraw/unload
+  compositions. Latest batch is 6c7cbaf3. Next assess full 31E0:044C and the
+  remaining graphics/movement/script children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
   FND-PARTY-262/263 retain corrected request/slot-lifetime limits. A paused
   endpoint is not a constructor call. Do not repeat only a recorded local
@@ -57,6 +57,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   removal/queue/consumer/cell/redraw pairs remain there; use source-specific
   MZ mappings, not the setup utility's header/data layout. Native row/slot,
   map/queue/page/source and neighbor preservation remains explicit in queue.
+- Later unload: FND-ITEM-079 names effect-unload-later-contract.txt
+  and its matching -repeat pair under the same local store. Reuse its
+  extra-row/kind/frame and cleanup-call binding. Native metadata/frame
+  bounds, termination and named child effects remain Q-PARTY-116; do not
+  repeat only the already recorded later body.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
