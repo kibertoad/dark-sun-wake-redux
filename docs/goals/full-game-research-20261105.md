@@ -37,29 +37,31 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
 - Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
-  9f3588cd -NoRestore` passed with the existing declared skips: 1937
+  1a382f6f -NoRestore` passed with the existing declared skips: 1937
   entries, 208 parity rows and five deviations. Integration at adoption
   also passed the build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - Recovery assessment selection: FMT-PARTY-001, RULE-PARTY-008,
   FMT-PARTY-003, FMT-PARTY-004, FMT-PARTY-005, FMT-PARTY-006,
   FMT-PARTY-007, RULE-PARTY-002, RULE-PARTY-007, RULE-PARTY-009.
-  Reviewed: FMT-PARTY-001, FMT-PARTY-003, FMT-PARTY-004, FMT-PARTY-005
-  and FMT-PARTY-007 (5 of 10). Next assess FMT-PARTY-006, then the four
-  selected rules. No entry is chosen yet
-  for the closure trial/map; its three-batch timing has not started.
+  All ten are reviewed. FMT-PARTY-007 is chosen for the closure trial;
+  its queue-backed ownership/dependency map is committed in 4d210fc1.
+  Next: Q-PARTY-124 computed/indirect DATA-request caller coverage,
+  reusing FND-PARTY-058/068 and FND-RNG-091 before original-code reading.
+  Measure research/tooling/validation/handover separately for the next
+  three closure batches; none has started. Compare after the first two.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review is
-  in commits 7886855b, f2dc1cc0, 7d7fa4ce, 9f3588cd and 9b30c420.
-  Remaining review questions include Q-PARTY-003/005/124/126/127/128.
+  in commits 7886855b, f2dc1cc0, 7d7fa4ce, 9f3588cd, 9b30c420,
+  9ca6c5e5, 984fe813, 86b5c4d3, 8e802bd7 and 1a382f6f.
+  Remaining review questions include Q-PARTY-003/005/124/126 through 133.
   No complete-reading declaration or question closure was added. The
   PSST/SPST split is not an answer; existing findings were reused.
 - Upstream scope clarification is proposed in PR 132:
   https://github.com/kibertoad/refurbished-dinosaurs/pull/132.
-  It is not adopted in the pinned rules. Finish the selection's evidence
-  review before more original-code exploration, then choose an assessed
-  entry and put its queue-backed closure map in Open questions.
+  It is not adopted in the pinned rules. The selection's evidence review
+  and map are complete; no whole-entry qualification was identified.
 - Pending research remains Q-PARTY-121, FMT-PARTY-006. Reuse
   FND-ITEM-102/103 and the existing mode-one composition. Provider/transfer,
   source/index/count and resource/refresh admission remain in the queue;
