@@ -36,10 +36,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
-  3a6640a3 -NoRestore` passed with the existing declared skips: 1939
-  entries, 208 parity rows and five deviations. Integration at adoption
-  also passed the build and 758 .NET tests. Use project-local
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed
+  with the existing declared skips: 1939 entries, 208 parity rows and
+  five deviations. Build and all 758 .NET tests passed. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
   remain in the research commit messages. FMT-PARTY-007 is the closure trial;
@@ -49,6 +48,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   batch remains. Next objective changes to Q-PARTY-124's DATA-request-route
   census, reusing FND-RNG-091 and both trial findings, not caller-by-caller
   extension of the getter. Keep separate timing categories and required gates.
+  Third-trial work is unfinished: 331 elapsed research seconds from
+  23:41:42 to 23:47:13 UTC on 2026-11-05 before the owner's adoption request.
+  Reports are retained locally; exclude the separate template adoption
+  from trial timing and resume with the saved route census, not a rerun.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review
@@ -65,10 +68,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Inventory gaps persist: 6,376 rows, four assigned in this entry's map,
   6,372 unassigned here, three missing inventories and no unmeasured ones.
   Activity is two findings and 18 commits, not closure or measured overhead.
-- Upstream scope clarification is proposed in PR 132:
-  https://github.com/kibertoad/refurbished-dinosaurs/pull/132.
-  It is not adopted in the pinned rules. The selection's evidence review
-  and map are complete; no whole-entry qualification was identified.
+- Latest template ef82c9784d08c4e98ade56cfd49cdd56130ac139 and protocol
+  5b398e0eab9a6ff8ad1c35fc003c214d85fe7d47 (merged PR 132) are adopted
+  in 58490e2d. docs/UPSTREAM-RULES.md records provenance and adaptations.
+  Checker 6.1.0 is unchanged; no evidence status was promoted.
 - Pending research remains Q-PARTY-121, FMT-PARTY-006. Reuse
   FND-ITEM-102/103 and the existing mode-one composition. Provider/transfer,
   source/index/count and resource/refresh admission remain in the queue;
@@ -90,12 +93,6 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-030 through FND-SOUND-048 and docs/RUNTIME.md before retrying.
   Retained reports: GAME_DIR/analysis/disc-adv-survey-20261104/.
   Existing DSUN-only scripts do not accept setup inputs.
-- Upstream closure recovery is adopted: protocol PR 130 at
-  34202ed4a313b0c9c702f159ccbc8f5e85fb9f28 and template PR 149 at
-  175daaad3c6be12cd389aedd2e3bc859647cecb7. The latest template snapshot
-  at 8cf09b087c184c7c6a6519fd9fc37c98d8ccd861 was checked byte-for-byte
-  against all four local vendored files; it uses that same rule revision.
-  docs/UPSTREAM-RULES.md records path/report adaptations and provenance.
 - docs/PROGRESS.md retains the requested comparison at 589b6fce9dfe
   against 9288f86e584d. Further comparisons must identify splits separately
   from evidenced answers. No complete-reading declaration was added here.
