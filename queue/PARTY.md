@@ -305,8 +305,15 @@ Next ID: Q-PARTY-124
   Settles it: bind active archive identity and exact ETAB transfer to
   31E0:0025 recount, including later indexed key/flag/count writers,
   whole-table restores and other creation routes; bind ordinary 31E0:0121
-  lower-load children to retained index, count, DF and valid
-  table/presentation/stack spans. Admit the coordinate helper's stable
+  lower-load mode-one inputs and reached children to retained index,
+  count, DF and valid table/presentation/stack spans. Actual OJFF provider/
+  exact-transfer identity, retained selector/frame, first-allocation result
+  and copied slot/index/count state remain, with retry/eviction on other
+  outcomes. FND-COMBAT-149/161/162 and FND-ITEM-082/084 exclude RDFF,
+  descriptor acquisition and the later lazy-animation branch only for the
+  intact mode-one, canonical low-selector, first-success domain described
+  in FMT-PARTY-006. Refresh/cache and linked-slot preservation remain
+  Q-PARTY-122/119; do not reread the excluded branches for that domain. Admit the coordinate helper's stable
   disjoint 1..1500-row domain, slot-kind and separate far-argument backing
   after lower loading; FND-ITEM-102 settles its local search/step/DF and
   finite termination conditions, not the actual post-load count. Trace stores/copies of the returned
@@ -319,6 +326,15 @@ Next ID: Q-PARTY-124
   and FND-ITEM-098 producer ordering. Their conditions, especially DF and
   the uncounted extra row, are not native guarantees. Q-PARTY-116 retains
   the constructor's K<N and subsequent lifetime question.
+  Tried: compose FND-COMBAT-149/161/162 with FND-ITEM-082/084 and
+  FND-ITEM-098's mode-one caller. Unchanged mode one skips RDFF and
+  descriptor acquisition but reaches bitmap refresh. Retained canonical
+  low selectors still produce a signed-negative image word after refresh,
+  excluding the parent's later lazy-animation branch; first valid
+  allocation at least five excludes retry/eviction and below-four chain
+  insertion in that continuation. Refresh failure does not cancel the
+  image store. Provider/transfer, actual allocation/copies/aliases and
+  refresh/cache preservation remain above; no native state is admitted.
   Tried: FND-ITEM-102 composes FND-EXE-622/FND-ITEM-096/098 and
   resolves the full coordinate child's local footprint and bounded
   termination. Separate far SS arguments need no DS=SS equality; no child
