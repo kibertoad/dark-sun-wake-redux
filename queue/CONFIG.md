@@ -1,6 +1,6 @@
 # CONFIG
 
-Next ID: Q-CONFIG-011
+Next ID: Q-CONFIG-013
 
 ## Static
 
@@ -410,32 +410,15 @@ Next ID: Q-CONFIG-011
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
-  group/numeric/count parsing and complete malformed/file-error behavior,
-  and the full consumer effects of `CardGroup` and chunk numbers?
-  Settles it: stream/handle/buffer/flag construction and lifetime, flush
-  lower write child 3B03 and child preservation, error-mapping
-  values/consumers, remaining table writers
-  and actual DOS/device outcomes beyond FND-SOUND-030/031's local
-  extraction/refill/read/translation/seek/error dispatch;
-  token/value/numeric bounds and other inputs beyond FND-SOUND-025's two
-  short counts; actual source/nested/repeated-tag span admission; and
-  remaining CardGroup, chunk-number and SamplePlaybackMode consumers.
+  group/numeric/count parsing and malformed token/value behavior?
+  Settles it: token/value/numeric bounds and other inputs beyond
+  FND-SOUND-025's two short counts; actual source/nested/repeated-tag span
+  admission; and parser-level failure/partial-store continuation, conditional
+  on the stream contract whose native admission is Q-CONFIG-011.
+  Independent stream/error/storage obligations move to Q-CONFIG-011;
+  full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-028, not remaining
   arm mapping. The file layout alone does not determine native admission.
-  Tried: FND-SOUND-030 removes local unsigned-byte extraction, FFFF
-  separation, buffered refill result/flag dispatch and direct nonzero/CR
-  gates from Settles it. Stream admission and lower child/OS outcomes,
-  including the direct path's scratch-byte validity, remain distinct.
-  Tried: FND-SOUND-031 removes local raw-read and error return, CR/1A
-  translation, seek result and zero-read position-check dispatch from
-  Settles it. It retains the unchecked last-CR extra read and ignored
-  marker rewind result. Native stream/table/buffer admission, flush,
-  mapping values/consumers, other writers and DOS outcomes remain.
-  Tried: FND-SOUND-032 removes local flush identity/count/pointer reset,
-  pre-write state changes, result/flag dispatch and scan selectors from
-  Settles it. Nonnegative routes need no lower write; the negative route
-  retains 3B03 and preservation. Table/storage/producer admission and
-  actual OS outcomes remain, rather than repeating local flush branches.
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
   paths and their mode-controlled output copies, plus the chunk-field
   destinations. Those local bindings are removed from the remaining parser
@@ -469,6 +452,35 @@ Next ID: Q-CONFIG-011
   and field/value admission remain; the measured missing DigitalAddress and
   duplicate Dma are source evidence, not proof of native failure or repair.
   Blocks: completing the named entry readings.
+
+- Q-CONFIG-011. FMT-CONFIG-002: What native stream/storage lifetime and
+  remaining file/error contracts admit setup's actual SOUND.INI reads?
+  Settles it: preservation of startup stream/handle/count/buffer state
+  through intervening children and later refills, aliases and other writers;
+  exhausted-slot and construction-failure cleanup paths; lower write 3B03
+  and child preservation where the negative flush route can occur;
+  error-mapping values/consumers; actual DOS/device and heap/break outcomes
+  beyond the local binary regular-file path. Keep unsupported native
+  outcomes separate from code-decided branches and non-rb callers.
+  Tried: split from Q-CONFIG-006 after FND-SOUND-030/031/032 remove
+  local byte/refill/read/translation/error/flush dispatch. FND-SOUND-033
+  removes the actual rb mode, startup free-handle/identity writes and
+  conditional normal 512-byte stream construction from Settles it.
+  Under its retained successful regular-file conditions, text translation
+  and read-side flush scans are bypassed. Native preservation and outcomes,
+  other paths/callers and failure cleanup remain; no setup run is admitted.
+  Blocks: complete native parser admission for the named format.
+- Q-CONFIG-012. FMT-CONFIG-002: What full consumer effects follow the
+  CardGroup, driver chunk-number and SamplePlaybackMode fields?
+  Settles it: remaining field consumers and their incoming selector/input
+  producers, aliases and later state/driver effects beyond the recorded
+  local parser/output bindings. Keep field parsing distinct from device
+  behavior and from the current-record admission of Q-SOUND-007/010.
+  Tried: split from Q-CONFIG-006 using FND-SOUND-020's chunk-field
+  destinations/output copies and FND-SOUND-028's complete local scalar
+  dispatch, including SamplePlaybackMode's zero/one gate. Those stores
+  alone do not establish all consumer effects.
+  Blocks: completing the named entry reading.
 
 ## Emulated call
 

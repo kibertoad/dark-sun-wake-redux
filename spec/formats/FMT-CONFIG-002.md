@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033]
 conflicting: []
 split_with: []
 related: []
@@ -117,16 +117,20 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 
 ## Open questions
 
-- Remaining group/numeric/count and complete file/error parsing, and full
-  consumer effects of `CardGroup` and the chunk numbers beyond the recorded
-  local tag/field/output bindings (FND-SOUND-020, FND-CONFIG-213,
-  FND-CONFIG-007, Q-CONFIG-006). FND-SOUND-030 records local unsigned-byte
-  extraction and refill-result dispatch; stream initialization, retained
-  spans and OS outcomes remain unadmitted. FND-SOUND-031 records local
-  lower read/error, translation and position-check dispatch without
-  establishing actual DOS outcomes or native stream/table admission.
-  FND-SOUND-032 removes local flush reset/result and scan-selector
-  uncertainty; negative-count write-child effects and retention remain.
+- Remaining group/numeric/count and malformed token/value parsing beyond
+  the recorded local tag/field/output bindings and two short count tokens
+  (FND-SOUND-020, FND-CONFIG-213, FND-CONFIG-007, FND-SOUND-025,
+  FND-SOUND-028, FND-SOUND-029, Q-CONFIG-006).
+- Native stream/storage lifetime, file/error contracts and OS outcomes
+  (Q-CONFIG-011). FND-SOUND-030/031/032 record local byte, lower-read,
+  translation and flush dispatch. FND-SOUND-033 binds the actual binary
+  mode, startup free-slot writes and conditional 512-byte construction;
+  retained successful regular-file conditions bypass text translation
+  and read-side flush scanning. Changed state, failed allocation/device
+  results and other callers remain competing native alternatives.
+- Full consumer effects of CardGroup, the driver chunk numbers and
+  SamplePlaybackMode beyond their recorded local stores/output copies
+  (FND-SOUND-020, FND-SOUND-028, Q-CONFIG-012).
 - Actual list-choice row/index, storage and continuation admission between
   parsed card records and the settings writers, beyond the conditional local
   small-label profile. Its producers, retained vector and child/frame state
