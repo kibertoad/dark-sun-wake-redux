@@ -263,6 +263,8 @@ Next ID: Q-PARTY-119
   automatic selectors, result stores and paired decrement; unresolved
   indirect acquisition sites; native eviction handle/count/link/object
   admission beyond FND-ITEM-083's local decrement/fill/child ordering;
+  image-refresh link termination, owner/cache/frame/buffer identity and
+  cache/pointer-helper effects beyond FND-ITEM-084's local contract;
   other writers and event/heap/chunk/
   free-list/graphics child effects beyond
   FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
@@ -276,6 +278,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-084 removes the flag-one image-refresh child's local
+  recursion/override/handle/reset/dimension ordering. Its recursive result
+  is ignored and failure can follow stores; actual links, buffer identity
+  and cache/pointer-helper effects remain above, not another unchanged
+  reading of the refresh body.
   Tried: FND-ITEM-083 removes eviction cleanup's local saved-handle/
   descriptor-count gates, neighbor stores, object fill and child/redraw
   ordering. Its count writer wraps zero and skips descriptor zero; actual
