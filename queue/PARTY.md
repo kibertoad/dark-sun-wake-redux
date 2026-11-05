@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-120
+Next ID: Q-PARTY-124
 
 ## Static
 
@@ -246,181 +246,123 @@ Next ID: Q-PARTY-120
   consumers. Actual slot/sample/key/K, child preservation and lifetime remain.
 - Q-PARTY-116. FMT-PARTY-006: Does an admitted effect-row constructor
   publish a counted flagged row that survives until the equipment area
-  removal uses its slot? Settles it: an actual admitted slot/sample/base/key,
-  count and extra-row state at 31E0:03CA entry after the ordinary placement,
-  immediate handler/cell/queue children bound by FND-ITEM-098; actual
-  effect-row/hidden-position/lifetime inputs and child preservation beyond
-  FND-ITEM-099's immediate decode/target/mode gates, including actual
-  actual geometry/owner/class/accepted-population and list/frame/span state
-  beyond FND-ITEM-100's target/insertion gates and 64-record caller region,
-  and FND-ITEM-101's distance arithmetic/shared-scratch contract; native
-  coordinate/signed-result/scratch alias admission;
-  neighboring owner/effect table count/writers/aliases
-  beyond FND-COMBAT-034/037's local lookup/append contracts, and +12A8
-  actual mode-zero source/index admission (including FND-RNG-052's
-  DATA/73 signed-index exception), +1119/+1249/+13EC child effects and
-  preservation beyond FND-MAGIC-019's local +12A8 routing; its returned K relative to
-  persistent count N and retained frame/header/table identity, with the
-  count-zero/retained-zero-key domain resolved by FND-ITEM-093; native
-  admission and intervening key writers for that domain, and other counts/
-  keys remain; active ETAB selection/exact-transfer admission beyond
-  FND-ITEM-095's shipped positive-count/trailing-sentinel composition,
-  and count/key/slot lifetime
-  beyond FND-ITEM-094's local recount/flag propagation; other
-  creators/restores and intervening row flag/count/base/slot writers,
-  including ordinary placement's actual lower-load/coordinate-child state
-  and position/count/DF preservation beyond FND-ITEM-096's local stores
-  and FND-ITEM-097's counted-publication proof for retained old-count positions; the
-  selected scanner's range/coordinate and row-minus-one memory admission,
-  and the positive flagged-match condition at 371D:050F, including its
-  cell pointer/coordinate/read-span and alias admission beyond
-  FND-ITEM-076's local 25AF:020C/04D0/01DD contracts; redraw page/table/
-  rectangle/source admission and graphics-child effects beyond
-  FND-ITEM-077's local 31E0:128C gates/cleanup; unload's metadata/frame
-  admission and termination, graphics/movement/script children and full
-  common cleanup's object/descriptor/header/metadata and acquisition
-  caller resource/length/count-state admission beyond
-  FND-ITEM-081's local producers and FND-ITEM-082's known direct-site
-  automatic selectors, result stores and paired decrement; unresolved
-  indirect acquisition sites; native eviction handle/count/link/object
-  admission beyond FND-ITEM-083's local decrement/fill/child ordering;
-  image-refresh link termination and owner/slot/frame identity beyond
-  FND-ITEM-084's local refresh contract; bitmap-cache/backing-store
-  coherence and buffer lifetime are tracked separately by Q-PARTY-119;
-  other writers and event/heap/chunk/
-  free-list/graphics child effects beyond
-  FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
-  including
-  use-time entry-index/slot/neighbor identity; and
-  native kind-three slot/handler preservation and queue boundary-storage
-  admission beyond FND-ITEM-075's local snapshot/dequeue/dispatch contract,
-  including queue pointer/count/
-  capacity/order preservation beyond FND-ITEM-074's initial-bound mover
-  composition and
-  FND-ITEM-073's local compaction/rescan and deferred-copy contract.
-  Q-PARTY-077 retains the distinct
-  DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
-  Tried: FND-MAGIC-019 and FND-RNG-052 resolve local mode-zero routing
-  and the intact defined-index round-trip domain. Four defined rows have
-  no casting-child call through the low-nibble gate; source DATA/73's -38
-  remains outside that domain. Actual source/index admission and named
-  +1119/+1249/+13EC effects/preservation remain, not a dispatcher rereading.
-  Tried: FND-ITEM-101 removes distance's wrapped delta/scaling and direct
-  shared scratch effects. The ordinary bounded child domain and signed
-  minimum case are separate; native coordinates, signed caller result,
-  scratch aliases, population and casting-child preservation remain above.
-  Tried: FND-ITEM-100 removes target-list rectangle/class/slot/position
-  and insertion-footprint gates. Its loop has no 64-entry cap; actual
-  accepted population and handler storage/aliases remain above. Selected
-  flag zero skips the geometry child; distance and casting effects remain.
-  Tried: FND-COMBAT-034/037 already settle +15B9 lookup and +1519
-  append. Their admitted local footprint is the neighboring owner/effect
-  table and its count, not placement rows/count. Native count/writers,
-  aliases, lookup state across casting and +12A8 effects remain above;
-  no duplicate helper finding or native preservation claim is needed.
-  Tried: FND-ITEM-099 removes immediate handling's local signed effect
-  decode, target/count/distance/mode gates and return-byte meaning. Native
-  effect/geometry/list admission and named casting-child effects remain
-  above; handler result alone is not preserved constructor-entry state.
-  Tried: FND-ITEM-098 removes the selected slot producer's local object/
-  position/ordinary-placement and immediate/deferred order. Ordinary
-  placement precedes the sampled loop but unchecked children intervene;
-  native slot/count/row state at constructor entry remains above.
-  Tried: FND-ITEM-097 resolves both wrapper outcomes for ordinary p=n,
-  N=n+1: each publishes K<N under stated preserved-index/count/DF/span
-  conditions. The effect p=N case remains different. Native lower-load
-  preservation, other input domains and later row lifetime remain above.
-  Tried: FND-ITEM-096 removes ordinary placement's local key/category,
-  count/anchor and direct entry-index publication. Its object-field position
-  argument differs from the effect constructor's count; actual lower-load
-  and child preservation, native indices and row lifetime remain above.
-  Tried: FND-ITEM-095 removes empty/internal-zero alternatives for exact
-  shipped ETAB loads: counts are positive and a cleared tail sentinel stops
-  recount. Region identities and zero/control scans were checked. Active
-  archive/transfer identity and intervening writers remain; no live load
-  or native constructor state is inferred from the installed source.
-  Tried: FND-ITEM-094 removes local ETAB clear/read/count-boundary,
-  slot normalization and grouped bit-20 propagation. A successful zero
-  count does not establish a zero key; native ETAB content, transfer
-  identity and intervening writers remain above. Count-operand candidates
-  are retained with their controls/exclusions, not exhaustive coverage.
-  Tried: FND-ITEM-093 resolves the complete count-zero/zero-key search
-  domain: selected-caller nonzero coordinates return K=N=1, while origin
-  returns K=0. Fresh clearing is not native use-time admission; actual
-  inputs, intervening key writers and other count/key domains remain above.
-  Tried: split bitmap-cache/backing-store coherence into Q-PARTY-119
-  after FND-ITEM-086 through FND-ITEM-092 supply local contracts. Those
-  findings' attempts and remaining producer/registration/native obligations
-  move there; constructor/use-time publication and slot identity stay here.
-  Tried: FND-ITEM-085 removes 1000:060E's signed displacement, segment
-  normalization and register/data-side-effect obligations. The helper
-  does not validate buffers; actual pointer/frame/cache inputs and other
-  child effects remain, not another unchanged reading of its arithmetic.
-  Tried: FND-ITEM-084 removes the flag-one image-refresh child's local
-  recursion/override/handle/reset/dimension ordering. Its recursive result
-  is ignored and failure can follow stores; actual links, buffer identity
-  and cache/pointer-helper effects remain above, not another unchanged
-  reading of the refresh body.
-  Tried: FND-ITEM-083 removes eviction cleanup's local saved-handle/
-  descriptor-count gates, neighbor stores, object fill and child/redraw
-  ordering. Its count writer wraps zero and skips descriptor zero; actual
-  eviction state, aliases and child effects remain above, not an unchanged
-  rereading of this body.
-  Tried: FND-ITEM-082 removes the two known direct acquisition sites'
-  selector/result/frame/failure bindings and the paired decrement gates.
-  Both select automatically; decrement skips descriptor zero and does not
-  free storage. Actual caller/resource/count state, other writers and
-  child preservation remain, not another reading of these local bodies.
-  Tried: FND-ITEM-081 removes local acquisition count producers and
-  number/content/selector/publication gates. The second-pass increment
-  differs from the guarded number hit; frame count and compared byte
-  length remain distinct. Actual caller/resource/buffer/count state and
-  child preservation remain, not an unchanged acquisition-body rereading.
-  Tried: FND-ITEM-080 removes common cleanup's local enable/descriptor/
-  fill/redraw gates and child ordering, including byte-count wrap and
-  null release result without a successful-release guarantee. Native
-  storage/count producers and event/heap/chunk/free-list/graphics children
-  remain above, not another unchanged reading of the cleanup body.
-  Tried: FND-ITEM-079 removes later unload's own linked-row loop, kind
-  branches, frame arithmetic and final cleanup-call binding. Saved effect
-  index and no ten-row cap are distinct from the outer removal. Native
-  metadata/frame/termination and the named children remain above; no
-  unchanged rereading of this body is needed.
-  Tried: FND-ITEM-078 removes unload's initial index binding and
-  remove-before-residual-count gate. A flagged removed row with counted
-  same-slot flagged survivors bypasses its own later slot cleanup; that
-  is neither a universal row guard nor proof of child preservation.
-  Remaining later cleanup and actual index/slot/neighbor lifetime stay above.
-  Tried: FND-ITEM-077 removes redraw's own clipping/alignment, handle
-  tests, cleanup and return-value/caller ordering. Graphics children and
-  their page/table/source/preservation conditions remain; AL one is not
-  full redraw success and an early zero does not cancel deferred insertion.
-  Tried: FND-ITEM-076 removes local cell-child dispatch/mask/read/write
-  contracts and caller ordering. The middle helper's preliminary read
-  precedes its child's coordinate gate, and no return gates compaction.
-  Native map/row/slot identity, readable spans, aliases and redraw/unload
-  children remain, not another unchanged reading of these leaf bodies.
-  Tried: FND-ITEM-075 removes local kind-three dispatch and its detached
-  snapshot/dequeue contract. It consumes the saved slot with a separate
-  zero mode, not payload byte two; dequeue reads the boundary row too.
-  Native row/slot/clock/queue identity, cell/redraw/unload children and
-  other writers remain, not another unchanged selected-handler reading.
-  Tried: FND-ITEM-074 removes the local queue-shift child for retained
-  initial queue bounds, including odd-length backward tails. Initial
-  counts/capacities and real MZ pointer relocations are recorded; actual
-  queue state, preservation and later dispatch remain, not an unchanged
-  rereading of the mover or assumption that the even-copy proof suffices.
-  Tried: FND-ITEM-073 removes local count/compaction/rescan and boundary
-  flag-clear ordering, deferred arguments and the twelve-byte copy
-  extent. Constructor/use-time publication, child preservation, actual
-  clock/queue storage and the named redraw/shift/consumer children remain;
-  the copied payload is not assumed fully assigned or scheduling successful.
-  Tried: split from Q-PARTY-109 after FND-ITEM-063/064 settle the selected
-  list/filter and FND-ITEM-065/066/068 settle local constructor, allocation
-  and caller contracts. FND-ITEM-067 supplies a strict paused endpoint,
-  not a constructor call. The historical Q-PARTY-109 attempts retain the
-  removed alternatives; no reading or native result is discarded.
+  removal uses its slot? Settles it: bind the admitted constructor's slot,
+  coordinates, extra row, count N and table/frame identity to the returned
+  K, then show K<N and the flagged slot row remains in the counted prefix
+  at 371D:050F, or give an admitted counterexample. FND-ITEM-065 supplies
+  the conditional K<N requirement; FND-ITEM-093 removes the complete
+  count-zero/retained-zero-key search domain, not its native admission.
+  Account for entry-index/slot/neighbor identity, intervening row flag,
+  count, key and table-base writes through direct stores, indexed stores,
+  whole-row copies/restores and reachable child calls. Bind the selected
+  scanner's coordinate/range/row-minus-one access and positive flagged
+  match to valid cell pointers and spans beyond FND-ITEM-063/064/073/076.
+  Entry-state production is Q-PARTY-121, immediate-handler preservation is
+  Q-PARTY-120, unload/descriptor/refresh preservation is Q-PARTY-122,
+  deferred consumption is Q-PARTY-123 and bitmap/backing coherence is
+  Q-PARTY-119. Their answers are dependencies, not assumed guarantees.
+  Q-PARTY-077 retains the distinct DUAL contract, Q-PARTY-117 DATA
+  coherence and Q-PARTY-118 equipment-flag lifetime. Do not infer native
+  publication from a local nonnegative return or a paused endpoint.
+  Tried: reviewed existing findings and split input production,
+  immediate handling, cleanup and deferred dispatch into Q-PARTY-121,
+  Q-PARTY-120, Q-PARTY-122 and Q-PARTY-123 respectively. FND-ITEM-065
+  establishes only conditional counted publication; FND-ITEM-093 settles
+  local count-zero/zero-key cases and FND-ITEM-073 removal/compaction,
+  while FND-ITEM-063/064 settle selection/filter gates. Actual constructor
+  admission and use-time identity remain. FND-ITEM-067 is a paused endpoint,
+  not a constructor call; FND-PARTY-262/263's withdrawn exclusion is not
+  restored. Earlier detailed attempts remain in Q-PARTY-116 at revision
+  3d9b7ea4 and in the cited findings. New parts each retain their relevant
+  evidence and exclusions below; no dependency was answered by the split
+  and no complete reading is declared.
   Blocks: complete interpretation of FMT-PARTY-006.
+- Q-PARTY-120. FMT-PARTY-006: Does the immediate effect handler preserve
+  the slot, placed-row/count and source state needed by the subsequent
+  sampled effect constructor on the admitted creation route?
+  Settles it: bind actual effect-row/hidden-position/coordinate inputs to
+  overlay 193 +0AAD, including the plus-one byte decode and DATA/73's
+  signed-index exception; establish actual rectangle/class/owner inputs,
+  accepted target population and the caller's 64-record frame/span and
+  DS/SS identity. Identify writes to that list/frame and distance scratch
+  4C49, and the owner/effect table 50B0:000F/count DS:2102, through indexed
+  stores, copies and reachable calls. Bind +12A8 mode-zero routing to
+  actual +1119/+1249/+13EC children and their slot/row/count effects,
+  including failed/rejected paths and lookup state retained across casts.
+  FND-ITEM-099/100/101 settle local decode, list/insertion and distance
+  behavior; FND-COMBAT-034/037 settle local lookup/append and
+  FND-MAGIC-019/FND-RNG-052 routing and defined-index round-trip limits.
+  Do not repeat those bodies or treat local AL one as preservation.
+  DATA acquisition coherence remains Q-PARTY-117; ordinary entry-state
+  production is Q-PARTY-121 and final publication/lifetime Q-PARTY-116.
+  Tried: split from Q-PARTY-116 using FND-ITEM-098/099/100/101,
+  FND-COMBAT-034/037 and FND-MAGIC-019/FND-RNG-052. Their existing local
+  results do not admit native counts/aliases or settle the casting children.
+  Earlier attempts remain in Q-PARTY-116 at revision 3d9b7ea4; no answer is discarded.
+  Blocks: Q-PARTY-116 constructor-entry preservation.
+- Q-PARTY-121. FMT-PARTY-006: Which placement count, extra-row/key and
+  slot-index state can actually reach the sampled effect constructor?
+  Settles it: bind active archive identity and exact ETAB transfer to
+  31E0:0025 recount, including later indexed key/flag/count writers,
+  whole-table restores and other creation routes; bind ordinary 31E0:0121
+  lower-load/coordinate children to retained index, count, DF and valid
+  table/presentation/stack spans. Trace stores/copies of the returned
+  slot index through 31E0:0EFF and its children, and bind the slot/source/
+  position/lifetime inputs of FND-ITEM-098's producer to the sampled loop.
+  Establish actual constructor count/key/extra-row state after its
+  immediate/cell/queue calls, using Q-PARTY-120/123 for their effects.
+  FND-ITEM-094/095 settle local recount and exact shipped-source count
+  composition, FND-ITEM-096/097 ordinary local/count-publication branches,
+  and FND-ITEM-098 producer ordering. Their conditions, especially DF and
+  the uncounted extra row, are not native guarantees. Q-PARTY-116 retains
+  the constructor's K<N and subsequent lifetime question.
+  Tried: split from Q-PARTY-116 using FND-ITEM-093/094/095/096/097/098.
+  Source-positive counts and conditional ordinary publication do not
+  establish constructor-entry state after unchecked children. Preserve
+  the earlier attempts in Q-PARTY-116 at revision 3d9b7ea4 and all remaining producer paths.
+  Blocks: Q-PARTY-116 native constructor input admission.
+- Q-PARTY-122. FMT-PARTY-006: What slot, row and neighbor state survives
+  the unload/common-cleanup/descriptor-refresh paths reached by removal?
+  Settles it: bind 371D:050F entry-index/flag/count gates and its later
+  linked-row traversal to admitted metadata/frame/span state and a
+  termination argument; resolve graphics, movement and script children.
+  For 31E0:044C and descriptor acquisition/decrement, identify actual
+  object/header/descriptor/resource-length/count inputs and direct,
+  indexed, copy/restore and indirect-acquisition producers. Bind eviction
+  handle/count/link/object state and image-refresh link termination,
+  owner/slot/frame/buffer identity; resolve event/heap/chunk/free-list
+  and graphics effects, including changes retained on failure.
+  FND-ITEM-078/079/080 settle local unload/cleanup ordering;
+  FND-ITEM-081/082/083 settle local acquisition/caller/decrement/eviction
+  contracts; FND-ITEM-084/085 settle local refresh/pointer normalization.
+  Q-PARTY-119 owns cache/backing content and buffer lifetime. Prove the
+  remaining slot/row/count/neighbor preservation at the removal return,
+  rather than equating null/fill/AL returns with successful cleanup.
+  Tried: split from Q-PARTY-116 using FND-ITEM-078 through FND-ITEM-085.
+  Local bodies and known direct caller bindings are already recorded;
+  native identities, unresolved indirect sites and named child effects
+  remain. Earlier attempts remain in Q-PARTY-116 at revision 3d9b7ea4, with no answer deleted.
+  Blocks: Q-PARTY-116 use-time row/slot/neighbor preservation.
+- Q-PARTY-123. FMT-PARTY-006: Does a kind-three deferred request preserve
+  its intended slot and queue storage through insertion and consumption?
+  Settles it: bind actual clock/queue selection, pointer/count/capacity,
+  order and boundary-readable storage at 371D:01F9 and consumption;
+  identify direct/indexed queue writers, copied/restored records and
+  aliases that can change those bindings. Trace the payload's initialized
+  slot versus its uninitialized bytes, snapshot/dequeue ordering and
+  handler selection to the use-time slot, including rejected/full paths
+  and nonnegative-lifetime scheduling. Bind cell/read-span and redraw
+  page/table/rectangle/source inputs and graphics effects, with
+  Q-PARTY-122 for unload and Q-PARTY-119 for image-buffer dependencies.
+  FND-ITEM-073/074/075 settle local copy/shift/snapshot/dequeue/dispatch
+  contracts and FND-ITEM-076/077 cell/redraw local ordering; these do not
+  prove native queue admission or scheduling success.
+  Tried: split from Q-PARTY-116 using FND-ITEM-073 through FND-ITEM-077
+  and FND-ITEM-098's deferred producer. Preserve all initial-bound,
+  odd-copy, boundary-row and ignored-result conditions. Earlier attempts
+  remain in Q-PARTY-116 at revision 3d9b7ea4; no successful native scheduling is inferred.
+  Blocks: Q-PARTY-116 deferred slot/queue lifetime and Q-PARTY-121
+  constructor-entry queue-child preservation.
 - Q-PARTY-119. FMT-PARTY-006: Does the bitmap cache supply coherent image
   content at the frame/dimension reads across lookup, reload and compaction?
   Settles it: admitted image/tag/size and archive identity at 31E0:3568;

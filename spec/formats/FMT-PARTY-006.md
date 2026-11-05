@@ -258,6 +258,21 @@ for root index zero it instead returns the root object number
 
 ## Open questions
 
+- Immediate effect handling's native source/index/list/owner/scratch admission
+  and named casting-child preservation (FND-ITEM-098/099/100/101,
+  FND-COMBAT-034/037, FND-MAGIC-019, FND-RNG-052, Q-PARTY-120).
+- Actual ETAB/ordinary-placement/lower-load state reaching the sampled
+  constructor, retaining count/key/extra-row, slot/index, DF and child
+  preservation conditions (FND-ITEM-093/094/095/096/097/098, Q-PARTY-121).
+- Native unload/common-cleanup/descriptor/refresh input and child effects,
+  indirect acquisition, termination and slot/row/neighbor identity, beyond
+  local body contracts (FND-ITEM-078/079/080/081/082/083/084/085,
+  Q-PARTY-122). Bitmap/backing content remains Q-PARTY-119.
+- Kind-three deferred request's actual queue/payload/slot/storage lifetime
+  through insertion and consumption, including cell/redraw children
+  (FND-ITEM-073/074/075/076/077, FND-ITEM-098, Q-PARTY-123).
+
+
 - What the word at `0x10` (field 8) of a 23-byte record holds;
   FND-PARTY-196 gives the shipped values, FND-PARTY-248 the accesses and
   FND-PARTY-257 overlay 173's reads as an on-hit `DATA` number plus one
