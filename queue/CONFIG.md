@@ -421,8 +421,14 @@ Next ID: Q-CONFIG-013
   already recorded. Native stream admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
-  The local outer/nested record dispatch is FND-SOUND-028, not remaining
+  The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: independently reviewed FND-SOUND-037 supersedes the old nested
+  jumper rejection claim: nonpositive lookup consumes a line without OR,
+  unlike Flags; positive non-jumper selectors fail. The strict source
+  profile first excludes MainGroup record ordinal eleven's fourth jumper
+  MidiDmaJumper, absent from the native table. That is not a native failure;
+  full source accounting needs an explicit ignored-lookup profile extension.
   Missing-token, short sign/non-assignment, bare-prefix-zero and local
   repeated-count/failure continuation are FND-SOUND-035, not remaining
   cases; retain other malformed/overflow inputs and complete nested/state
@@ -469,7 +475,7 @@ Next ID: Q-CONFIG-013
   for the installed count products, removing those local child operations
   from Settles it. Native heap/break/service and malformed-input behavior
   remain separate from the conditional normal continuation.
-  Tried: FND-SOUND-028 removes all fifty local outer record targets, five
+  Tried: FND-SOUND-037 removes all fifty local outer record targets, five
   alternate loops and nested flag/jumper actions from Settles it. It records
   rejection, no-op, early EndRecord and no-rollback paths. Source capacity,
   helper/file contracts and wider field consumers remain independent.
@@ -503,7 +509,7 @@ Next ID: Q-CONFIG-013
   local parser/output bindings. Keep field parsing distinct from device
   behavior and from the current-record admission of Q-SOUND-007/010.
   Tried: split from Q-CONFIG-006 using FND-SOUND-020's chunk-field
-  destinations/output copies and FND-SOUND-028's complete local scalar
+  destinations/output copies and FND-SOUND-037's complete local scalar
   dispatch, including SamplePlaybackMode's zero/one gate. Those stores
   alone do not establish all consumer effects.
   Blocks: completing the named entry reading.

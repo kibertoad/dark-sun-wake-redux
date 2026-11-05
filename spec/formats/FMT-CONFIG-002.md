@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036]
 conflicting: []
 split_with: []
 related: []
@@ -29,8 +29,15 @@ gives how many of the keys after it follow [FND-CONFIG-007]. The recorded
 ASCII tag path is case-insensitive (FND-SOUND-020). The native outer record
 dispatch does not enforce source field order or required-field completeness;
 nested alternate, flag and jumper contexts have distinct consumption and
-rejection rules (FND-SOUND-028). Complete malformed/file-error admission
+rejection rules (FND-SOUND-037). Complete malformed/file-error admission
 remains open.
+
+Inside a counted jumper list, a nonpositive tag lookup consumes the line
+without assigning a bit. A positive lookup outside the eight jumper
+selectors fails the record; inside Flags, nonpositive lookup instead fails.
+The installed source includes MidiDmaJumper as a counted jumper even though
+the native tag table lacks it. Under intact lookup/context/storage it is
+ignored rather than rejected, and supplies no jumper bit (FND-SOUND-037).
 
 | Key | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|
@@ -54,7 +61,7 @@ remains open.
 | `PmDigitalDriverName` | `char[]` | `pm_digital_driver` | The protected-mode digital sound driver's file name. | supported | FND-CONFIG-007 |
 | `MidiDriverChunkNumber` | `INT16` | `midi_chunk` | Purpose unknown; `SOUND.CFG` repeats it. | supported | FND-CONFIG-003, FND-CONFIG-007 |
 | `DigitalDriverChunkNumber` | `INT16` | `digital_chunk` | Purpose unknown; `SOUND.CFG` repeats it. | supported | FND-CONFIG-003, FND-CONFIG-007 |
-| `SamplePlaybackMode` | `INT16` | `sample_playback_mode` | Native record parser accepts zero or one into its local field; wider consumer effect remains open. | supported | FND-SOUND-028 |
+| `SamplePlaybackMode` | `INT16` | `sample_playback_mode` | Native record parser accepts zero or one into its local field; wider consumer effect remains open. | supported | FND-SOUND-037 |
 | `NumberOfMidiAddresses` | `INT16` | `midi_address_count` | How many of `MidiAddress` and `MidiAltAddress` follow. | supported | FND-CONFIG-007 |
 | `MidiAddress` | `INT16` | `midi_address` | The music port address to try first. | supported | FND-CONFIG-007 |
 | `MidiAltAddress` | `INT16` | `midi_alt_address` | Another music port address. | supported | FND-CONFIG-007 |
@@ -150,7 +157,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 - Remaining group/numeric/count and malformed token/value parsing beyond
   the recorded local tag/field/output bindings and installed small tokens
   (FND-SOUND-020, FND-CONFIG-213, FND-CONFIG-007, FND-SOUND-025,
-  FND-SOUND-028, FND-SOUND-029, FND-SOUND-034, FND-SOUND-035,
+  FND-SOUND-037, FND-SOUND-029, FND-SOUND-034, FND-SOUND-035,
   FND-SOUND-036, Q-CONFIG-006).
 - Native stream/storage lifetime, file/error contracts and OS outcomes
   (Q-CONFIG-011). FND-SOUND-030/031/032 record local byte, lower-read,
@@ -161,7 +168,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   results and other callers remain competing native alternatives.
 - Full consumer effects of CardGroup, the driver chunk numbers and
   SamplePlaybackMode beyond their recorded local stores/output copies
-  (FND-SOUND-020, FND-SOUND-028, Q-CONFIG-012).
+  (FND-SOUND-020, FND-SOUND-037, Q-CONFIG-012).
 - Actual list-choice row/index, storage and continuation admission between
   parsed card records and the settings writers, beyond the conditional local
   small-label profile. Its producers, retained vector and child/frame state

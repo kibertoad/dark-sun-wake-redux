@@ -91,7 +91,7 @@ Next ID: Q-SOUND-011
   the bounded short-label profile: its nonnull valid string is copied
   unchanged with one NUL and no padding. Actual record production/spans,
   heap/state retention, vector and chooser children remain in Settles it.
-  Tried: FND-SOUND-028 completes the local record-arm mapping, exposing
+  Tried: FND-SOUND-037 completes the local record-arm mapping, exposing
   source capacity obligations for five alternate arrays and five NUL copies.
   Actual source bounds and native spans remain; this is not label-retention
   or successful chooser evidence.

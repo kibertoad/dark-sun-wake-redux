@@ -46,7 +46,7 @@
   FND-SOUND-021 names the header/top dispatch and incoming controls plus
   selection, fallback, label-preparation and dialog listings. The separately
   named setup-choice-labels listing is not the label builder.
-  FND-SOUND-028/029 name setup-jumper-jumps controls/repeat and
+  FND-SOUND-037/029 name setup-jumper-jumps controls/repeat and
   setup-source-record-spans report/repeat.
   Q-SOUND-007 retains other setters/callers and later state preservation;
   Q-SOUND-010 owns dialog row/index, storage and child-state admission.

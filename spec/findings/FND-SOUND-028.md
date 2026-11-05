@@ -1,9 +1,9 @@
 ---
 id: FND-SOUND-028
 title: Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SOUND-037]
 recorded_by: codex
 reproduced_by: []
 method: static
