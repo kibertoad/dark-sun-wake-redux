@@ -54,4 +54,13 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
 
 ## Open questions
 
-None.
+- Which other code reads or writes this table, and with which index and
+  bit interpretations (Q-PARTY-124)? FND-PARTY-058 records the shared
+  accessor and its direct callers; FND-PARTY-068 identifies the two known
+  DATA-1001 sites but explicitly excludes computed resource numbers.
+  That census does not establish a whole-entry complete reading.
+  This entry describes the table representation and its index/bit
+  meanings. It does not assert that every live resource load succeeds or
+  that every later consumer retains valid storage. Any source, base,
+  extent or byte-write effect that changes this interpretation remains
+  within Q-PARTY-124; the full generation-screen behavior is separate.
