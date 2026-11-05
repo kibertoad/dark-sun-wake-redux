@@ -306,26 +306,38 @@ Next ID: Q-PARTY-124
   31E0:0025 recount, including later indexed key/flag/count writers,
   whole-table restores and other creation routes; bind ordinary 31E0:0121
   lower-load mode-one inputs and reached children to retained index,
-  count, DF and valid table/presentation/stack spans. Actual OJFF provider/
-  exact-transfer identity, retained selector/frame, first-allocation result
-  and copied slot/index/count state remain, with retry/eviction on other
-  outcomes. FND-COMBAT-149/161/162 and FND-ITEM-082/084 exclude RDFF,
+  count and valid table/presentation/stack spans. FND-ITEM-103 supplies
+  normal-return DF and the conditional fixed-copy/index handoff; actual
+  OJFF provider/exact-transfer identity, retained selector/frame, first-allocation result
+  and source/index/count identity across resource/refresh calls remain,
+  with retry/eviction on other outcomes. FND-COMBAT-149/161/162 and FND-ITEM-082/084 exclude RDFF,
   descriptor acquisition and the later lazy-animation branch only for the
   intact mode-one, canonical low-selector, first-success domain described
   in FMT-PARTY-006. Refresh/cache and linked-slot preservation remain
-  Q-PARTY-122/119; do not reread the excluded branches for that domain. Admit the coordinate helper's stable
+  Q-PARTY-122/119; do not reread the excluded branches for that domain.
+  Admit the coordinate helper's stable
   disjoint 1..1500-row domain, slot-kind and separate far-argument backing
   after lower loading; FND-ITEM-102 settles its local search/step/DF and
-  finite termination conditions, not the actual post-load count. Trace stores/copies of the returned
-  slot index through 31E0:0EFF and its children, and bind the slot/source/
+  finite termination conditions, not the actual post-load count. Admit
+  the retained initializer index across resource loading and refresh
+  after FND-ITEM-103's first-success copy proof, and bind the slot/source/
   position/lifetime inputs of FND-ITEM-098's producer to the sampled loop.
   Establish actual constructor count/key/extra-row state after its
   immediate/cell/queue calls, using Q-PARTY-120/123 for their effects.
   FND-ITEM-094/095 settle local recount and exact shipped-source count
   composition, FND-ITEM-096/097 ordinary local/count-publication branches,
-  and FND-ITEM-098 producer ordering. Their conditions, especially DF and
-  the uncounted extra row, are not native guarantees. Q-PARTY-116 retains
+  and FND-ITEM-098 producer ordering. Source/count/extra-row and storage
+  admission outside FND-ITEM-103's normal-return DF proof remain open.
+  Q-PARTY-116 retains
   the constructor's K<N and subsequent lifetime question.
+  Tried: FND-ITEM-103 resolves first-success pop/copy/index handoff
+  and DF at normal loader return. The paired word and presentation index
+  are distinct; both fixed odd-length copies include their tails. Final
+  fill supplies clear DF after earlier returning children, and the ordinary
+  coordinate/anchor path preserves it to insertion. Actual heads, valid
+  replacement/source/frame backing, e/count identity and refresh effects
+  remain; neither a first-success assumption nor an older snapshot admits
+  this native call. Retry/eviction outcomes stay in scope.
   Tried: compose FND-COMBAT-149/161/162 with FND-ITEM-082/084 and
   FND-ITEM-098's mode-one caller. Unchanged mode one skips RDFF and
   descriptor acquisition but reaches bitmap refresh. Retained canonical
