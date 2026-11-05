@@ -257,8 +257,10 @@ Next ID: Q-PARTY-119
   rectangle/source admission and graphics-child effects beyond
   FND-ITEM-077's local 31E0:128C gates/cleanup; unload's metadata/frame
   admission and termination, graphics/movement/script children and full
-  common cleanup's object/descriptor/header/metadata and count-producer
-  admission, event/heap/chunk/free-list/graphics child effects beyond
+  common cleanup's object/descriptor/header/metadata and acquisition
+  caller selector/resource/length/count-state admission beyond
+  FND-ITEM-081's local producers; other writers and event/heap/chunk/
+  free-list/graphics child effects beyond
   FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
   including
   use-time entry-index/slot/neighbor identity; and
@@ -270,6 +272,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-081 removes local acquisition count producers and
+  number/content/selector/publication gates. The second-pass increment
+  differs from the guarded number hit; frame count and compared byte
+  length remain distinct. Actual caller/resource/buffer/count state and
+  child preservation remain, not an unchanged acquisition-body rereading.
   Tried: FND-ITEM-080 removes common cleanup's local enable/descriptor/
   fill/redraw gates and child ordering, including byte-count wrap and
   null release result without a successful-release guarantee. Native
