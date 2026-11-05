@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince d21a4b93
-  -NoRestore passed: 1913 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 0a9862d3
+  -NoRestore passed: 1914 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-079 for removal/queue/cell/redraw/unload
-  compositions. Latest batch is 6c7cbaf3. Next assess full 31E0:044C and the
-  remaining graphics/movement/script children or an actual constructor/use-time
+  FND-ITEM-073 through FND-ITEM-080 for removal/queue/cell/redraw/unload
+  compositions. Latest batch is ac6d27f9. Next assess descriptor/state producers and
+  remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
   FND-PARTY-262/263 retain corrected request/slot-lifetime limits. A paused
   endpoint is not a constructor call. Do not repeat only a recorded local
@@ -62,6 +62,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   extra-row/kind/frame and cleanup-call binding. Native metadata/frame
   bounds, termination and named child effects remain Q-PARTY-116; do not
   repeat only the already recorded later body.
+- Common cleanup: FND-ITEM-080 names effect-common-cleanup-contract.txt
+  and its matching -repeat pair under the same local store. Reuse its
+  full local cleanup/fill/resource-wrapper contract; native header/count/
+  descriptor/object identity and event/heap/chunk/free-list/graphics
+  children remain Q-PARTY-116. Return/null/fill is not child-success proof.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
