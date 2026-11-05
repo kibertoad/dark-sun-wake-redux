@@ -94,4 +94,9 @@ None known.
 
 ## Open questions
 
-None.
+- Complete admitted level-gain caller/input, child and writer coverage is
+  Q-PARTY-131. FND-PARTY-160's fixed-displacement stores and byte-pattern
+  search do not include copied details pointers, index-only accesses or
+  whole-record copies. The local level-15 gate is recorded; stored levels
+  copied from CHAR are not evidence of another gain rule. These limits
+  prevent a whole-entry complete-reading declaration.

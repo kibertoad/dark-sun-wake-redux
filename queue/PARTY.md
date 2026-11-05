@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-131
+Next ID: Q-PARTY-132
 
 ## Static
 
@@ -904,6 +904,17 @@ Next ID: Q-PARTY-131
   portrait mapping recorded, but FND-PARTY-070 explicitly leaves other finalizer admission open and FND-PARTY-077 does not complete dispatch.
   Those findings do not alone prove the whole screen's reachable states. No complete-reading declaration or new contradictory behavior follows.
   Blocks: complete reading of RULE-PARTY-002.
+
+- Q-PARTY-131. RULE-PARTY-007: Does every admitted level-gain route use
+  the recorded level-15 gate without an origin limit or prime-requisite bonus? Settles it: complete caller/indirect-entry coverage for overlay 210 +08BC/+0740
+  and classification of level writes beyond FND-PARTY-160/081's fixed-displacement search: index-only accesses, copied details pointers and whole-record copies/restores.
+  Bind loaded/edited/current class and level inputs to the gain gate, and identify reached children that can change those inputs or the level after the gate.
+  Distinguish an opaque saved level from a competing level-gain rule; CHAR copying is already recorded in FND-PARTY-259, not proof that arbitrary stored levels
+  were gained. Reuse the known below-15 comparison and absence of score/origin limit tests in the read bodies. A nonmatching README byte pattern excludes
+  only that encoding; retain computed/word-table possibilities until actual relevant consumers are accounted for. Generation eligibility is shared
+  Q-PARTY-129; other class-change behavior remains RULE-PARTY-004. Tried: FND-PARTY-065/081/160 establish the local starting/gain/class-shift
+  bodies and bounded store census, but explicitly exclude copies/index-only writers and leave reached child effects and indirect caller coverage incomplete.
+  No qualifying whole-entry declaration or new contradiction follows. Blocks: complete reading of RULE-PARTY-007.
 
 ## Emulated call
 
