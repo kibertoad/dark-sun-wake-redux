@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-119
+Next ID: Q-PARTY-120
 
 ## Static
 
@@ -263,19 +263,9 @@ Next ID: Q-PARTY-119
   automatic selectors, result stores and paired decrement; unresolved
   indirect acquisition sites; native eviction handle/count/link/object
   admission beyond FND-ITEM-083's local decrement/fill/child ordering;
-  image-refresh link termination, owner/cache/frame/buffer identity and
-  native reload/pool order/span/alias admission beyond FND-ITEM-089's
-  local release/metadata/consolidation contracts; native backing-store
-  handle/chain producers, selector children, complete backend writers and
-  active registration/selection/native outcomes beyond FND-ITEM-092's
-  known callback-family contracts and
-  FND-ITEM-090's local transfer loops and FND-ITEM-091's offset validator/
-  existing selector composition; remaining
-  reset children beyond FND-ITEM-087's local contracts and FND-ITEM-088's
-  reclamation/accounting and existing pointer-update composition; archive-child effects, native
-  cache count/flags/offset writers and size/data identity beyond
-  FND-ITEM-086's local provider gates, FND-ITEM-084's refresh contract and
-  FND-ITEM-085's arithmetic-only pointer helper;
+  image-refresh link termination and owner/slot/frame identity beyond
+  FND-ITEM-084's local refresh contract; bitmap-cache/backing-store
+  coherence and buffer lifetime are tracked separately by Q-PARTY-119;
   other writers and event/heap/chunk/
   free-list/graphics child effects beyond
   FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
@@ -289,37 +279,10 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
-  Tried: FND-ITEM-092 composes existing known producer/callback contracts
-  for all four backend families. Their local zero/error mappings differ
-  and do not guarantee complete content. Active registration/selection,
-  unexcluded writers and native service/driver outcomes remain above;
-  do not reread only the already recorded callback bodies.
-  Tried: FND-ITEM-091 removes offset-validator logic and composes existing
-  FND-EXE-409/414 selector publication contracts. Positive counts reject
-  offset carry; zero count passes only at offset zero. Native buffers,
-  chain/selector producers and backend/child effects remain above.
-  Tried: FND-ITEM-090 removes backing read/write's local count/range/error,
-  linked-block/chunk dispatch and offset-only buffer advance. Native
-  selector/chain/validator producers, installed backend targets/effects
-  and buffer lifetime remain, not another unchanged transfer-loop reading.
-  Tried: FND-ITEM-089 removes local release/residency/pool-match gates,
-  metadata insertion/deletion and consolidation/pointer-adjustment ordering.
-  Bound resets and residency clears are not proven content preservation;
-  native pool/cache producers, spans/order/aliases and backing-store/reset
-  children remain above, not another unchanged reading of these bodies.
-  Tried: FND-ITEM-088 removes reclamation's local age/candidate/release
-  accounting and consolidation-call ordering, and composes the already
-  recorded pointer update. Its byte total is not verified free space;
-  native pool/cache state and release/consolidation children remain above.
-  Tried: FND-ITEM-087 removes reload's local pre-read/index/publication
-  gates and the pool allocator's search/selection/two-pass/reset ordering.
-  Exhaustion requests global cleanup before null return. Native pool/cache
-  inputs and remaining named children stay above, not unchanged rereading
-  of these local bodies.
-  Tried: FND-ITEM-086 removes the bitmap provider's own scan/tag/residency,
-  size/failure and count-publication gates. Hit reload and backing-store
-  results are unchecked; native cache/archive/buffer state and the named
-  children remain above, not another unchanged reading of the provider.
+  Tried: split bitmap-cache/backing-store coherence into Q-PARTY-119
+  after FND-ITEM-086 through FND-ITEM-092 supply local contracts. Those
+  findings' attempts and remaining producer/registration/native obligations
+  move there; constructor/use-time publication and slot identity stay here.
   Tried: FND-ITEM-085 removes 1000:060E's signed displacement, segment
   normalization and register/data-side-effect obligations. The helper
   does not validate buffers; actual pointer/frame/cache inputs and other
@@ -389,6 +352,62 @@ Next ID: Q-PARTY-119
   not a constructor call. The historical Q-PARTY-109 attempts retain the
   removed alternatives; no reading or native result is discarded.
   Blocks: complete interpretation of FMT-PARTY-006.
+- Q-PARTY-119. FMT-PARTY-006: Does the bitmap cache supply coherent image
+  content at the frame/dimension reads across lookup, reload and compaction?
+  Settles it: admitted image/tag/size and archive identity at 31E0:3568;
+  count/flags/offset/buffer producers and lifetime for the 52A2:0CA8 cache,
+  including other writers/restores and failed acquisition state; pool record
+  order, inclusive-bound/boundary storage, aliases and pointer/content
+  correspondence through allocation, reclamation and consolidation;
+  backing-handle initialization and lifetime at DS:45A2, selector/chain
+  producers and remaining 0C54/0C04/0591 children, complete backend-table
+  writers and active registration/selection beyond FND-EXE-584's literal
+  writer exclusions; native service/driver content outcomes and per-call
+  preservation for the four known families in FND-ITEM-092; and remaining
+  56EF:00D9 and 5773:0039/0025 reset-child effects. Bind a successful or
+  failed provider/reload result to the actual retained buffer and frame
+  span consumed by image refresh, including content moved and pointers
+  adjusted together. FND-ITEM-084/085 settle local refresh/pointer effects,
+  FND-ITEM-086 through FND-ITEM-091 settle local provider/pool/transfer/
+  validator contracts, and FND-ITEM-092 composes known callback contracts;
+  none alone supplies native content or a complete writer census.
+  Q-PARTY-116 retains constructor publication and use-time owner/slot identity;
+  Q-PARTY-087 retains the distinct bitmap-number cache's reader/writer scope.
+  Tried: split from Q-PARTY-116 after its local provider, pool and backend
+  readings expose this independently answerable content/lifetime obligation.
+  No unresolved native admission or failed attempt is discarded.
+  Tried: FND-ITEM-092 composes existing known producer/callback contracts
+  for all four backend families. Their local zero/error mappings differ
+  and do not guarantee complete content. Active registration/selection,
+  unexcluded writers and native service/driver outcomes remain above;
+  do not reread only the already recorded callback bodies.
+  Tried: FND-ITEM-091 removes offset-validator logic and composes existing
+  FND-EXE-409/414 selector publication contracts. Positive counts reject
+  offset carry; zero count passes only at offset zero. Native buffers,
+  chain/selector producers and backend/child effects remain above.
+  Tried: FND-ITEM-090 removes backing read/write's local count/range/error,
+  linked-block/chunk dispatch and offset-only buffer advance. Native
+  selector/chain/validator producers, installed backend targets/effects
+  and buffer lifetime remain, not another unchanged transfer-loop reading.
+  Tried: FND-ITEM-089 removes local release/residency/pool-match gates,
+  metadata insertion/deletion and consolidation/pointer-adjustment ordering.
+  Bound resets and residency clears are not proven content preservation;
+  native pool/cache producers, spans/order/aliases and backing-store/reset
+  children remain above, not another unchanged reading of these bodies.
+  Tried: FND-ITEM-088 removes reclamation's local age/candidate/release
+  accounting and consolidation-call ordering, and composes the already
+  recorded pointer update. Its byte total is not verified free space;
+  native pool/cache state and release/consolidation children remain above.
+  Tried: FND-ITEM-087 removes reload's local pre-read/index/publication
+  gates and the pool allocator's search/selection/two-pass/reset ordering.
+  Exhaustion requests global cleanup before null return. Native pool/cache
+  inputs and remaining named children stay above, not unchanged rereading
+  of these local bodies.
+  Tried: FND-ITEM-086 removes the bitmap provider's own scan/tag/residency,
+  size/failure and count-publication gates. Hit reload and backing-store
+  results are unchecked; native cache/archive/buffer state and the named
+  children remain above, not another unchanged reading of the provider.
+  Blocks: complete interpretation of FMT-PARTY-006 and Q-PARTY-116 child preservation.
 - Q-PARTY-117. FMT-PARTY-006: Do the equipment and cast DATA reads obtain
   coherent key/content and retain the snapshots actually used? Settles it:
   actual getter key/buffer inputs, cache-hit versus accepted-miss results,

@@ -319,6 +319,9 @@ for root index zero it instead returns the root object number
   FND-ITEM-083 records eviction cleanup's saved-handle/count gates and
   neighbor/object/child ordering; actual eviction state, aliases and child
   effects remain independent admission obligations.
+- Bitmap-cache image-content coherence and buffer lifetime across lookup,
+  reload and compaction (Q-PARTY-119), separate from Q-PARTY-116's
+  constructor/use-time owner/slot identity.
   FND-ITEM-084 records the acquisition caller's flag-one image-refresh
   child: local recursion/override/handle/dimension ordering is known,
   while native links, buffers and cache-provider effects remain open.
