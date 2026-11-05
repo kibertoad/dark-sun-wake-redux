@@ -258,8 +258,10 @@ Next ID: Q-PARTY-119
   FND-ITEM-077's local 31E0:128C gates/cleanup; unload's metadata/frame
   admission and termination, graphics/movement/script children and full
   common cleanup's object/descriptor/header/metadata and acquisition
-  caller selector/resource/length/count-state admission beyond
-  FND-ITEM-081's local producers; other writers and event/heap/chunk/
+  caller resource/length/count-state admission beyond
+  FND-ITEM-081's local producers and FND-ITEM-082's known direct-site
+  automatic selectors, result stores and paired decrement; unresolved
+  indirect acquisition sites; other writers and event/heap/chunk/
   free-list/graphics child effects beyond
   FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
   including
@@ -272,6 +274,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-082 removes the two known direct acquisition sites'
+  selector/result/frame/failure bindings and the paired decrement gates.
+  Both select automatically; decrement skips descriptor zero and does not
+  free storage. Actual caller/resource/count state, other writers and
+  child preservation remain, not another reading of these local bodies.
   Tried: FND-ITEM-081 removes local acquisition count producers and
   number/content/selector/publication gates. The second-pass increment
   differs from the guarded number hit; frame count and compared byte
