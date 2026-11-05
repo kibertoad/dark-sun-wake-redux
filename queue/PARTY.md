@@ -266,7 +266,9 @@ Next ID: Q-PARTY-119
   image-refresh link termination, owner/cache/frame/buffer identity and
   native reload/pool order/span/alias admission beyond FND-ITEM-089's
   local release/metadata/consolidation contracts; native backing-store
-  handle/chain producers, selector children and installed backend targets/effects beyond
+  handle/chain producers, selector children, complete backend writers and
+  active registration/selection/native outcomes beyond FND-ITEM-092's
+  known callback-family contracts and
   FND-ITEM-090's local transfer loops and FND-ITEM-091's offset validator/
   existing selector composition; remaining
   reset children beyond FND-ITEM-087's local contracts and FND-ITEM-088's
@@ -287,6 +289,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-092 composes existing known producer/callback contracts
+  for all four backend families. Their local zero/error mappings differ
+  and do not guarantee complete content. Active registration/selection,
+  unexcluded writers and native service/driver outcomes remain above;
+  do not reread only the already recorded callback bodies.
   Tried: FND-ITEM-091 removes offset-validator logic and composes existing
   FND-EXE-409/414 selector publication contracts. Positive counts reject
   offset carry; zero count passes only at offset zero. Native buffers,
