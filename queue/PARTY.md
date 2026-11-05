@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-130
+Next ID: Q-PARTY-131
 
 ## Static
 
@@ -878,30 +878,32 @@ Next ID: Q-PARTY-130
   transfers and actual reused-slot state remain outside that result. No earlier attempt, source exclusion or unresolved path is discarded.
   Blocks: complete interpretation of FMT-PARTY-005.
 
-- Q-PARTY-129. RULE-PARTY-009: Do the generation screen's admitted
-  inputs and state writers preserve the documented class-button choices?
-  Settles it: complete caller/event-target and working-record producer
-  coverage for overlay 183 +0A3E and its mask/compaction/button helpers,
-  binding origin 1..8, class codes 0..8 and the compacted zero-to-three
-  class list at each selection. Reuse FND-PARTY-065/068/073's local mask,
-  add/remove and code-conversion contracts. Account for the edit route's
-  selected record and 4E71:0B44 writers left open by FND-PARTY-073.
-  For the origin mask at 4E68:0000..0010, resolve writes via computed
-  segments, overlapping segment aliases, stored pointers/copies and
-  segment retention beyond FND-PARTY-069's 26-instruction windows,
-  with known direct reads and the separate array stores as controls.
-  Bind the button enable/selected-state contract and reachable callback
-  targets needed for add/remove admission; this asks for no general
-  graphics or successful file-I/O contract. DATA-1001 access/index and
-  representation coverage is shared Q-PARTY-124, not another census.
-  Tried: FND-PARTY-068 settles the local offer masks and the finite
-  reachable-order check; FND-PARTY-070 settles DONE's local predicate,
-  not every incoming edit/event path. FND-PARTY-069 explicitly excludes
-  computed/alias and longer-lived segment accesses. FND-PARTY-073's
-  fixed-displacement stores and direct callers leave the selected-record
-  writer question open. No new contradiction or qualifying undeclared
-  whole-entry reading was identified by this assessment.
+- Q-PARTY-129. RULE-PARTY-009, RULE-PARTY-002: Do the generation screen's admitted
+  inputs and state writers preserve the documented class-button choices? Settles it: complete caller/event-target and working-record producer
+  coverage for overlay 183 +0A3E and its mask/compaction/button helpers, binding origin 1..8, class codes 0..8 and the compacted zero-to-three
+  class list at each selection. Reuse FND-PARTY-065/068/073's local mask, add/remove and code-conversion contracts. Account for the edit route's
+  selected record and 4E71:0B44 writers left open by FND-PARTY-073. For the origin mask at 4E68:0000..0010, resolve writes via computed
+  segments, overlapping segment aliases, stored pointers/copies and segment retention beyond FND-PARTY-069's 26-instruction windows,
+  with known direct reads and the separate array stores as controls. Bind the button enable/selected-state contract and reachable callback
+  targets needed for add/remove admission; this asks for no general graphics or successful file-I/O contract. DATA-1001 access/index and
+  representation coverage is shared Q-PARTY-124, not another census. Tried: FND-PARTY-068 settles the local offer masks and the finite
+  reachable-order check; FND-PARTY-070 settles DONE's local predicate, not every incoming edit/event path. FND-PARTY-069 explicitly excludes
+  computed/alias and longer-lived segment accesses. FND-PARTY-073's fixed-displacement stores and direct callers leave the selected-record
+  writer question open. No new contradiction or qualifying undeclared whole-entry reading was identified by this assessment.
   Blocks: complete reading of RULE-PARTY-009.
+
+- Q-PARTY-130. RULE-PARTY-002: Can every admitted generation DONE route
+  store only the documented portrait, score, alignment and choice state, apart from the already documented Ctrl-alignment exception?
+  Settles it: bind the event/callback routes to overlay 184 +0F93/+1029, including flag-zero/flag-one callers, working-record initialization,
+  editing and selection preservation through storage. Account for writes and copied/restored aliases of discipline/sphere words DS:42C0/42C2,
+  the working portrait/origin/gender/alignment and six score bytes between their setters, DONE enablement and final copying. Resolve the closed
+  button event-dispatch exclusion in FND-PARTY-077 wherever it can admit a choice outside the predicate. Reuse FND-PARTY-066/070/071/073/077's
+  local setters, bounds, predicate and code conversion, and FND-PARTY-207's Ctrl bypass/recursive alignment reading. Class-mask and
+  selected-record admission is shared Q-PARTY-129, not another census. This predicate review needs no complete RNG draw ordering or generic
+  rendering proof: identify only effects that can change stored validity. Tried: existing-evidence assessment finds the local DONE checks and
+  portrait mapping recorded, but FND-PARTY-070 explicitly leaves other finalizer admission open and FND-PARTY-077 does not complete dispatch.
+  Those findings do not alone prove the whole screen's reachable states. No complete-reading declaration or new contradictory behavior follows.
+  Blocks: complete reading of RULE-PARTY-002.
 
 ## Emulated call
 

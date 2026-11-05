@@ -142,4 +142,12 @@ None known.
 
 ## Open questions
 
-None.
+- Complete admitted DONE/finalizer event paths and preservation of the
+  working portrait, score, alignment, discipline and sphere state through
+  storage remain Q-PARTY-130. FND-PARTY-070 gives the local predicate and
+  setters, not all incoming finalizer routes; FND-PARTY-077 explicitly
+  leaves closed-button dispatch incomplete. The Ctrl-alignment exception
+  is already described above, not a newly unanswered exception.
+- Class-mask, working-list and editing selected-record admission is shared
+  with RULE-PARTY-009 (Q-PARTY-129). Local class code conversion and compacting
+  are recorded in FND-PARTY-073; complete producer coverage remains open.
