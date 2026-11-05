@@ -34,17 +34,25 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; research Audit remains unmet.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 5d12821d
-  -NoRestore passed: 1899 entries, 208 parity rows and five deviations,
-  retaining declared skips. Tooling integration at 5d12821d passed 202
-  Node tests and 758 .NET tests. FND-SOUND-040's research batch also passed
-  its gate against c5c359c4. Use project-local EVIDENCE_PYTHON for gates
-  and commit hooks.
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 1c57dcee
+  -NoRestore passed: 1901 entries, 208 parity rows and five deviations,
+  retaining declared skips. FND-SOUND-042's research gate passed against
+  6d7e5d56. Prior tooling integration at 5d12821d passed 202 Node tests
+  and 758 .NET tests. Use project-local EVIDENCE_PYTHON for gates/hooks.
 - Retained inputs: docs/HANDOVER.md names the existing canonical reports
   and checkpoints. FND-SOUND-030 through FND-SOUND-038 name static/source
   reports and exact repeats in the same approved local disc-ADV analysis
   store. New overflow/value, reviewed jumper-correction, first-exception
   diagnostics and complete source-context reports have verified repeat pairs.
+- New static evidence: FND-SOUND-042/043 name retained repeat pairs
+  setup-stream-failure-complete.txt and setup-lower-write.txt (and their
+  -repeat files) under GAME_DIR/analysis/disc-adv-survey-20261104/.
+  Q-CONFIG-011's remaining obligations have been narrowed against them.
+  Q-CONFIG-006 retains the outer diagnostic continuation; its new Tried
+  note names the unresolved formatter/callback obligation. Do not repeat
+  only the outer branch reading. Retained exploratory listings are
+  setup-parser-exits.txt, setup-parser-diagnostic-wrapper.txt and
+  setup-diagnostic-write.txt in the same local analysis store.
 - Utility runtime: FND-SOUND-039/041 and docs/RUNTIME.md name the fixed
   setup parser capability and limits. New captures remain under
   GAME_DIR/captures/rust-dos-setup-parser/ as
@@ -57,7 +65,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   saw existing dotnet processes under other parents; none was stopped.
 - Blockers: none known.
 - Next: Q-CONFIG-006 (reuse FND-SOUND-034 through FND-SOUND-041 for remaining parser
-  obligations), Q-CONFIG-011 (reuse FND-SOUND-030 through FND-SOUND-033),
+  obligations), Q-CONFIG-011 (reuse FND-SOUND-030 through FND-SOUND-033 and FND-SOUND-042/043),
   Q-CONFIG-012, Q-SOUND-010 and Q-PARTY-116. Keep source/profile conditions
   separate from native admission. Q-CONFIG-011/012 hold the independent
   stream and field-consumer obligations split from Q-CONFIG-006.
