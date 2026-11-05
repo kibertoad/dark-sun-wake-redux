@@ -110,3 +110,21 @@ notice. Assessment results belong in research commit messages, obligation
 maps in spec Open questions keyed by queue IDs, timing in the next three
 closure-batch commit messages, and the two-batch comparison in the handover.
 Adoption changes no evidence status or parity result.
+
+## Claim-scoped closure adoption, 2026-11-06
+
+Following the owner's request to adopt the latest template, checked template
+main at `ef82c9784d08c4e98ade56cfd49cdd56130ac139` and adopted its protocol
+snapshot `5b398e0eab9a6ff8ad1c35fc003c214d85fe7d47`, the merge of process
+[PR 132](https://github.com/kibertoad/refurbished-dinosaurs/pull/132).
+The template's other changes since the previously checked `8cf09b0` are
+section-range updates and the matching research skill/closure procedure.
+
+The new scope paragraph and research-item instruction are adopted with
+this checkout's vendored paths and existing reporter adaptations. Each
+blocker names the claim and mechanism it could change; unrelated service
+behavior is not absorbed into an entry. Unknown accesses and indirect
+targets remain obligations. Layout, acquisition and buffer-lifetime claims
+retain their own evidence requirements. No claim, complete-reading
+declaration, queue closure or parity result changes through this adoption.
+Checker 6.1.0 and its release revision remain the template's exact pins.
