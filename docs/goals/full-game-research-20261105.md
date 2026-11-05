@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 38379817
-  -NoRestore passed: 1926 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince ce4b1c77
+  -NoRestore passed: 1927 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
@@ -44,7 +44,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
   FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is fed2d6f5.
+  Latest batch is 444a35d4.
   Q-PARTY-119 now owns bitmap-cache/backing-store coherence and lifetime;
   Q-PARTY-116 retains constructor publication and use-time owner/slot state.
   Next assess remaining descriptor/state producers and
@@ -137,6 +137,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-086 through FND-ITEM-092 attempts to Q-PARTY-119. Earlier
   cache paragraphs naming Q-PARTY-116 now refer to this dependency; their
   evidence and exclusions are retained. No item was answered or status raised.
+- Constructor boundary: FND-ITEM-093 names effect-first-row-search-contract.txt
+  and its matching -repeat pair. Reuse its complete count-zero/retained-zero-key
+  cases. Native entry/key preservation and other count/key domains remain
+  Q-PARTY-116; fresh clearing alone does not admit a live constructor call.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
