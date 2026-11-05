@@ -257,7 +257,9 @@ Next ID: Q-PARTY-120
   coordinate/signed-result/scratch alias admission;
   neighboring owner/effect table count/writers/aliases
   beyond FND-COMBAT-034/037's local lookup/append contracts, and +12A8
-  casting effects; its returned K relative to
+  actual mode-zero source/index admission (including FND-RNG-052's
+  DATA/73 signed-index exception), +1119/+1249/+13EC child effects and
+  preservation beyond FND-MAGIC-019's local +12A8 routing; its returned K relative to
   persistent count N and retained frame/header/table identity, with the
   count-zero/retained-zero-key domain resolved by FND-ITEM-093; native
   admission and intervening key writers for that domain, and other counts/
@@ -298,6 +300,11 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-MAGIC-019 and FND-RNG-052 resolve local mode-zero routing
+  and the intact defined-index round-trip domain. Four defined rows have
+  no casting-child call through the low-nibble gate; source DATA/73's -38
+  remains outside that domain. Actual source/index admission and named
+  +1119/+1249/+13EC effects/preservation remain, not a dispatcher rereading.
   Tried: FND-ITEM-101 removes distance's wrapped delta/scaling and direct
   shared scratch effects. The ordinary bounded child domain and signed
   minimum case are separate; native coordinates, signed caller result,
