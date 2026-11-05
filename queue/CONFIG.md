@@ -411,14 +411,26 @@ Next ID: Q-CONFIG-013
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and malformed token/value behavior?
-  Settles it: numeric/token/value inputs outside FND-SOUND-034's bounded
-  installed spelling set, actual source/nested/repeated-tag context and
-  storage/alias retention; and parser-level failure/partial-store continuation, conditional
-  on the stream contract whose native admission is Q-CONFIG-011.
+  Settles it: 0B26's source/destination length and classification admission
+  outside FND-SOUND-034's installed spelling set, 0C4D's overflow path and
+  remaining bounded malformed tokens; 0AC1's remaining value/span cases;
+  exact source consumption by 038E's nested flag/jumper/alternate loops
+  and 026F's tag counter; retained line/tag/value/record spans and aliases;
+  and outer 0001's error/close child continuation beyond the local returns
+  already recorded. Native stream admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-028, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Missing-token, short sign/non-assignment, bare-prefix-zero and local
+  repeated-count/failure continuation are FND-SOUND-035, not remaining
+  cases; retain other malformed/overflow inputs and complete nested/state
+  admission rather than retrying those bounded paths.
+  Tried: FND-SOUND-035 removes those representative numeric failure
+  channels and repeated-count publish/allocation/counter ordering from
+  Settles it. The ignored scanner count can propagate an unassigned local
+  despite helper success; global counts and earlier stores are not rolled
+  back on the read local failure paths. Other cases and native context remain.
   Tried: FND-SOUND-034 removes installed line/tag/numeric spelling widths
   and their local small conversion paths from Settles it. It records
   thirty-two alternate-address spellings whose suffix is discarded before

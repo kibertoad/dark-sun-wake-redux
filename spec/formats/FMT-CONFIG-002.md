@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035]
 conflicting: []
 split_with: []
 related: []
@@ -107,6 +107,16 @@ numeric token spans fit their mapped gaps/local token array; the helpers
 do not thereby gain general bounds or native storage admission
 (FND-SOUND-034).
 
+Numeric failure has separate channels. Finding no digit or minus returns
+helper failure without writing its destination. A short token that makes
+the scanner assign nothing can still produce helper success and copy an
+unassigned local word; no fixed numeric default is specified for that
+word. A bare zero/x prefix takes a successful zero assignment instead.
+Repeated count tags have no local seen-count rejection, and the count is
+published before allocation. Local record/group failure does not roll
+back preceding stores (FND-SOUND-035). General malformed-input and native
+storage contracts remain open.
+
 ## Enumerations and flags
 
 The header's CdEnabled, MultipleInstallDisabled and MidiNotEnabled tags OR
@@ -132,7 +142,7 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 - Remaining group/numeric/count and malformed token/value parsing beyond
   the recorded local tag/field/output bindings and installed small tokens
   (FND-SOUND-020, FND-CONFIG-213, FND-CONFIG-007, FND-SOUND-025,
-  FND-SOUND-028, FND-SOUND-029, FND-SOUND-034, Q-CONFIG-006).
+  FND-SOUND-028, FND-SOUND-029, FND-SOUND-034, FND-SOUND-035, Q-CONFIG-006).
 - Native stream/storage lifetime, file/error contracts and OS outcomes
   (Q-CONFIG-011). FND-SOUND-030/031/032 record local byte, lower-read,
   translation and flush dispatch. FND-SOUND-033 binds the actual binary
