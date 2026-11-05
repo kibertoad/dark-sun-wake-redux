@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-132
+Next ID: Q-PARTY-134
 
 ## Static
 
@@ -808,26 +808,16 @@ Next ID: Q-PARTY-132
   passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
 
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
-  reads or writes DATA 1001, and which caller/index domains do they admit?
-  Settles it: a controlled census of entry-based direct and indirect calls
-  to overlay 185 +0000 and the common DATA-request routes, covering
-  computed resource numbers as well as the literal 1001 forms tested by
-  FND-PARTY-068. Check every resulting caller's argument/result widths,
-  origin/first-class/second-class index producers and rejection paths;
-  identify any separate resource-buffer readers/writers and unresolved
-  transfers. Use the known two literal DATA-1001 sites and DATA-1000
-  callers as independent controls, preserving decoder/range exclusions.
-  FND-PARTY-058/068 settle the existing index expression, mask-bit use
-  and known direct-site results; another identical literal search does
-  not settle the explicitly excluded computed/indirect routes. Resource
-  acquisition or consumer-lifetime claims outside the documented table
-  representation are not additional format claims. Any source/base/extent
-  or byte mutation that changes its interpretation stays in this census.
-  Generation-screen behavior beyond this table is RULE-PARTY-009.
-  Tried: the existing-evidence assessment of FND-PARTY-058/068 finds an
-  explicit computed-1001 exclusion and a direct-call-only caller list.
-  No qualifying whole-entry complete reading is merely undeclared.
-  Blocks: complete reading of FMT-PARTY-007.
+  reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: a controlled census of entry-based direct and indirect calls
+  to overlay 185 +0000 and the common DATA-request routes, covering computed resource numbers as well as the literal 1001 forms tested by
+  FND-PARTY-068. Check every resulting caller's argument/result widths, origin/first-class/second-class index producers and rejection paths;
+  identify any separate resource-buffer readers/writers and unresolved transfers. Use the known two literal DATA-1001 sites and DATA-1000
+  callers as independent controls, preserving decoder/range exclusions. FND-PARTY-058/068 settle the existing index expression, mask-bit use
+  and known direct-site results; another identical literal search does not settle the explicitly excluded computed/indirect routes. Resource
+  acquisition or consumer-lifetime claims outside the documented table representation are not additional format claims. Any source/base/extent
+  or byte mutation that changes its interpretation stays in this census. Generation-screen behavior beyond this table is RULE-PARTY-009.
+  Tried: the existing-evidence assessment of FND-PARTY-058/068 finds an explicit computed-1001 exclusion and a direct-call-only caller list.
+  No qualifying whole-entry complete reading is merely undeclared. Blocks: complete reading of FMT-PARTY-007.
 
 - Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve
   the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,
@@ -915,6 +905,24 @@ Next ID: Q-PARTY-132
   Q-PARTY-129; other class-change behavior remains RULE-PARTY-004. Tried: FND-PARTY-065/081/160 establish the local starting/gain/class-shift
   bodies and bounded store census, but explicitly exclude copies/index-only writers and leave reached child effects and indirect caller coverage incomplete.
   No qualifying whole-entry declaration or new contradiction follows. Blocks: complete reading of RULE-PARTY-007.
+
+- Q-PARTY-132. RULE-PARTY-008: Do all admitted leader-key and leader-button
+  routes preserve the documented selection gates and party-state effects? Settles it: complete handler registration/restoration and callback-target
+  coverage beyond FND-PARTY-127's immediate-pointer/direct-call searches; bind combatant/object-slot mapping, turn/leader/status and party-shown
+  producers to the key handler and overlay 182 +1D3E. Account for computed, pointer-based and copy/restore writes left outside FND-PARTY-171's direct
+  leader-store census, and reached positioning/redraw children affecting party state. Reuse FND-PARTY-176/179's local gates and stores and
+  FND-PARTY-178's out-of-combat two-member observation. Do not assume unexamined registration restore callers cannot restore the handler in
+  display mode two. Include the View Character and inventory button routes; the observed equal slot/combatant mapping is not a universal invariant.
+  Tried: existing findings leave indirect registration/restoration, aliased state writers and some reached child effects open. FND-PARTY-130's
+  unresolved transfers and missing controls cannot prove redraw preservation. Blocks: complete reading of RULE-PARTY-008.
+- Q-PARTY-133. RULE-PARTY-008: Does every documented leader-key display
+  path show the redrawn view immediately without changing party state? Settles it: complete the relevant 4328:0B4C page/pointer branch and input
+  producer reading beyond FND-PARTY-180/195, retaining high-byte flag, page identity, DS:3330 and DS:A2B2 alternatives. Resolve the pointer
+  service branch DS:A155 zero and other reached party-state effects; confirm actual visible page/pixels where VGA/retrace behavior determines
+  the output, using evidence appropriate to that claim. FND-PARTY-195's map/out-of-combat trace establishes its observed branch and memory effects,
+  not every gate or a screenshot comparison. Static work must identify the remaining hardware-dependent assertion before any new run is selected.
+  Tried: FND-PARTY-179/180 record display request ordering and 195 records one reached page-flip branch; its other branch and pixel exclusions remain.
+  Blocks: complete reading of RULE-PARTY-008's display claim.
 
 ## Emulated call
 

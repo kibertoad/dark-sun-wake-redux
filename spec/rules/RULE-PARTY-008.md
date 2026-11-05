@@ -88,6 +88,16 @@ None known.
 
 ## Open questions
 
+- Complete handler registration/restoration, admitted key/button inputs,
+  aliased state-writer coverage and reached child effects remain Q-PARTY-132.
+  FND-PARTY-127 leaves some registration callers unread, and
+  FND-PARTY-171's direct stores do not cover base-register or block-copy
+  writes. The local key/leader gates are already recorded; the observed
+  party mapping does not close every caller/input obligation.
+- Immediate visible redraw and display-path party-state preservation beyond
+  the sampled map/out-of-combat branch remain Q-PARTY-133.
+  FND-PARTY-195 excludes unrun page/pointer branches and pixel comparison;
+  its observed memory copy does not settle those whole-entry claims.
 - Whether a key tests the combatant record of its own number or the one `object_slot_combatants`
   names for its slot where the two differ: the code reads record `slot` (FND-PARTY-176), and the
   runs had them equal (No item: the parties the game builds put combatant `k` in slot `k`,
