@@ -249,7 +249,9 @@ Next ID: Q-PARTY-120
   removal uses its slot? Settles it: an actual admitted slot/sample/base/key,
   count and extra-row state at 31E0:03CA entry after the ordinary placement,
   immediate handler/cell/queue children bound by FND-ITEM-098; actual
-  effect-row/hidden-position/lifetime inputs and child preservation; its returned K relative to
+  effect-row/hidden-position/lifetime inputs and child preservation beyond
+  FND-ITEM-099's immediate decode/target/mode gates, including actual
+  geometry/list state and +15B9/+12A8/+1519 effects; its returned K relative to
   persistent count N and retained frame/header/table identity, with the
   count-zero/retained-zero-key domain resolved by FND-ITEM-093; native
   admission and intervening key writers for that domain, and other counts/
@@ -290,6 +292,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-099 removes immediate handling's local signed effect
+  decode, target/count/distance/mode gates and return-byte meaning. Native
+  effect/geometry/list admission and named casting-child effects remain
+  above; handler result alone is not preserved constructor-entry state.
   Tried: FND-ITEM-098 removes the selected slot producer's local object/
   position/ordinary-placement and immediate/deferred order. Ordinary
   placement precedes the sampled loop but unchecked children intervene;
