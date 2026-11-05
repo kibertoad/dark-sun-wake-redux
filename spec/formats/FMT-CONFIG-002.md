@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042, FND-SOUND-043, FND-SOUND-044, FND-SOUND-045, FND-SOUND-046, FND-SOUND-047]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042, FND-SOUND-043, FND-SOUND-044, FND-SOUND-045, FND-SOUND-046, FND-SOUND-047, FND-SOUND-048]
 conflicting: []
 split_with: []
 related: []
@@ -77,7 +77,7 @@ unread; later lifetime and intermediate writers are not established
 | `StartRecord` | none | `start_record` | Opens a record. | supported | FND-CONFIG-007 |
 | `CardName` | `char[]` | `card_name` | The name of the sound card, at most 40 characters by the file's own comment. | supported | FND-CONFIG-007 |
 | `CardId` | `INT16` | `card_id` | The card's number, 102 to 131 in the shipped file; the one `SOUND.CFG` records. | supported | FND-CONFIG-003, FND-CONFIG-007 |
-| `CardGroup` | `INT16` | `card_group` | Copied to settings word +32; value four substitutes FFFF for a non-FFFF DMA summary argument. Wider effects remain open. | supported | FND-CONFIG-007, FND-SOUND-047 |
+| `CardGroup` | `INT16` | `card_group` | Copied to settings word +32; value four substitutes FFFF for a non-FFFF DMA summary argument, producing local decimal text -1 under the recorded storage conditions. Wider effects remain open. | supported | FND-CONFIG-007, FND-SOUND-047, FND-SOUND-048 |
 | `RmMidiDriverName` | `char[]` | `rm_midi_driver` | The real-mode music driver's file name, with its extension. | supported | FND-CONFIG-003, FND-CONFIG-006, FND-CONFIG-007 |
 | `RmDigitalDriverName` | `char[]` | `rm_digital_driver` | The real-mode digital sound driver's file name, with its extension. | supported | FND-CONFIG-003, FND-CONFIG-006, FND-CONFIG-007 |
 | `PmMidiDriverName` | `char[]` | `pm_midi_driver` | The protected-mode music driver's file name. | supported | FND-CONFIG-007 |
@@ -210,6 +210,9 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   handoff widths, digital-copy alternatives and the CardGroup summary
   argument; its literal census retains pointer/implicit-access and boundary
   limits. These local obligations do not require another unchanged reading.
+  FND-SOUND-048 establishes the bounded plain signed-word conversion
+  into the local summary buffer, including -1 for the substituted sentinel;
+  native storage, later drawing and device effects remain open.
 - Actual list-choice row/index, storage and continuation admission between
   parsed card records and the settings writers, beyond the conditional local
   small-label profile. Its producers, retained vector and child/frame state
