@@ -253,8 +253,9 @@ Next ID: Q-PARTY-119
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
   cell pointer/coordinate/read-span and alias admission beyond
-  FND-ITEM-076's local 25AF:020C/04D0/01DD contracts, redraw 31E0:128C
-  and later
+  FND-ITEM-076's local 25AF:020C/04D0/01DD contracts; redraw page/table/
+  rectangle/source admission and graphics-child effects beyond
+  FND-ITEM-077's local 31E0:128C gates/cleanup, and later
   native kind-three slot/handler preservation and queue boundary-storage
   admission beyond FND-ITEM-075's local snapshot/dequeue/dispatch contract,
   including queue pointer/count/
@@ -263,6 +264,10 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-077 removes redraw's own clipping/alignment, handle
+  tests, cleanup and return-value/caller ordering. Graphics children and
+  their page/table/source/preservation conditions remain; AL one is not
+  full redraw success and an early zero does not cancel deferred insertion.
   Tried: FND-ITEM-076 removes local cell-child dispatch/mask/read/write
   contracts and caller ordering. The middle helper's preliminary read
   precedes its child's coordinate gate, and no return gates compaction.
