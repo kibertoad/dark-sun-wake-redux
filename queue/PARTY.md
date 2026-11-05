@@ -810,13 +810,13 @@ Next ID: Q-PARTY-134
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
   reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining runtime-computed or remotely assembled targets,
   copied target producers and entries bypassing the four roots in FND-PARTY-264; computed resource numbers at separate DATA-request routes;
-  and separate resource-buffer readers/writers. Bind resulting caller argument/result widths, origin/first-class/second-class producers and rejection paths.
-  FND-PARTY-264 accounts for relocated/fixed-up nearby offset/segment forms, including aliases, to the accessor and three reader roots;
-  do not repeat that census or FND-PARTY-058/068's known direct-site/index/mask reading. Keep its runtime-target, near-transfer and bypass exclusions.
+  and separate resource-buffer readers/writers. For 2C5F:0003, bind the other 85 direct caller domains and the repeated equipment call's selector/frame preservation;
+  FND-PARTY-265 excludes positive 1001 at the first hook call, and its canonical-source bounds are conditional, not universal runtime exclusion.
+  FND-PARTY-264 accounts for relocated/fixed-up nearby offset/segment forms, including aliases, to the accessor and three reader roots; do not repeat that census or FND-PARTY-058/068's known direct-site/index/mask reading. Keep its runtime-target, near-transfer and bypass exclusions.
   Use the two known literal-1001 sites, DATA-1000 callers and the stored/split-pointer controls; preserve unresolved transfers and decoder/range exclusions.
-  Source/base/extent or byte mutations affecting interpretation remain in scope; general acquisition success and unrelated consumer lifetime do not.
-  Generation-screen behavior beyond this table stays RULE-PARTY-009. Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism;
-  three alias candidates are unrelated operands. The Ghidra query misses the registration control and gives no negative proof. Runtime targets and computed numbers remain.
+  Bind caller argument/result widths, origin/class producers and rejection paths. Source/base/extent or byte mutations remain; general I/O success and unrelated lifetime do not.
+  Generation-screen behavior beyond this table stays RULE-PARTY-009. Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism; three alias candidates are unrelated operands. The Ghidra query misses the registration control and gives no negative proof. Runtime targets and computed numbers remain.
+  Tried: FND-PARTY-265 removes the first equipment request's positive-1001 possibility; all 87 direct getter arguments are nonliteral. Other domains and indirect clients remain.
   Tried: the prior FND-PARTY-058/068 review found the computed-1001 exclusion and direct-only caller list; no undeclared qualifying reading. Blocks: complete reading of FMT-PARTY-007.
 
 - Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve

@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -65,6 +65,10 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   Runtime-computed or remotely assembled targets, separate request routes
   and computed resource numbers remain; the bounded Ghidra reference query
   misses a control and supplies no negative proof for those routes.
+  FND-PARTY-265 excludes positive 1001 at the equipment hook's first
+  guarded DATA-getter request, not at every nonliteral caller. The repeated
+  call still needs selector/frame preservation; the getter's other 85
+  direct sites, indirect clients and separate DATA request routes remain.
   This entry describes the table representation and its index/bit
   meanings. It does not assert that every live resource load succeeds or
   that every later consumer retains valid storage. Any source, base,
