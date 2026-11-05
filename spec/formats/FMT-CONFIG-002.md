@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041]
 conflicting: []
 split_with: []
 related: []
@@ -55,6 +55,12 @@ The second word is not interpreted here. Count 13 requests 3302 bytes
 and expects 207 paragraphs; count -1 requests low word 65282 and expects
 4081 paragraphs. Native header values and record contents remain separate
 from that local binding (FND-SOUND-040).
+Two further fresh runs match every byte of both populated 3302-byte
+groups against the documented source projection, with zero differences.
+All three first-prefix words match the predicted sizes, and the modeled
+extents are disjoint at return. Negative-count payload and slack remain
+unread; later lifetime and intermediate writers are not established
+(FND-SOUND-041).
 
 | Key | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|

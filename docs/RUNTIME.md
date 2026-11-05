@@ -48,6 +48,13 @@ sessions closed. Reproduce with the project-local Python and
 setup_parser.py <new-run-name>. Retained records are under
 GAME_DIR/captures/rust-dos-setup-parser/v181-setup-parser-20261105-a/ and
 v181-setup-parser-20261105-b/. No gameplay/rule replay capability follows.
+Two further fresh runs, v181-setup-records-20261105-a/ and
+v181-setup-records-20261105-b/ under the same root, verified the bounded
+first-prefix size reads and populated record comparisons at that same
+return (FND-SOUND-041). These fixed reads are agent. All headers must
+match the predicted bounds before populated payload reads; negative-count
+payloads, slack, second-prefix words and later lifetime remain outside
+the probe. No additional continuation or input capability is admitted.
 
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies

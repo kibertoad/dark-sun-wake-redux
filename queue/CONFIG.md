@@ -417,13 +417,17 @@ Next ID: Q-CONFIG-013
   and signed-index wrap admission;
   native line/tag/value/record spans, aliases and intervening writers
   beyond FND-SOUND-038's complete installed source-band/count composition
-  and FND-SOUND-039's successful native count/pointer endpoint;
+  and FND-SOUND-041's complete populated-record/header endpoint;
   and outer 0001's error/close child continuation beyond the local returns
   already recorded. Native stream admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-041 removes populated record-byte and modeled extent
+  uncertainty at the installed-source normal return: both 3302-byte
+  groups match, with all three size headers checked in two fresh runs.
+  Intermediate spans/aliases/writers, later lifetime and other paths remain.
   Tried: FND-SOUND-040 binds the normal allocator size word at returned
   segment offset zero and the offset-four payload capacity. Native size
   values and complete record bytes remain; the header field's location
