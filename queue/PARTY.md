@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-129
+Next ID: Q-PARTY-130
 
 ## Static
 
@@ -807,7 +807,7 @@ Next ID: Q-PARTY-129
   modes 1 to 3 give list numbers below 269, overlay 172 repeats table entries and overlay 213
   passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
 
-- Q-PARTY-124. FMT-PARTY-007: Which complete set of game-code accesses
+- Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
   reads or writes DATA 1001, and which caller/index domains do they admit?
   Settles it: a controlled census of entry-based direct and indirect calls
   to overlay 185 +0000 and the common DATA-request routes, covering
@@ -830,95 +830,78 @@ Next ID: Q-PARTY-129
   Blocks: complete reading of FMT-PARTY-007.
 
 - Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve
-  the documented chunk prefix and field interpretations?
-  Settles it: the remaining indirect entries, separate readers/writers,
-  pointer copies and computed field accesses affecting the documented
-  CHAR representation, after FND-PARTY-235's fourteen known direct
-  resource-write sites and computed-tag bindings. Bind the serializer's
-  root kind, mutable graph/field lists and restored metadata to its
-  type-1/type-3 prefix and sentinel; account for state writers or copies
-  that can change that field selection, including the DS/SS identity
-  and later field-list changes left open by FND-PARTY-235. The literal
-  tag gap in FND-PARTY-054 alone is no longer the remaining direct-site
-  question. Retain FND-PARTY-259's reader/header/reference and corrected
-  status facts. Account for copied pointers, computed offsets and alias
-  accesses excluded by FND-PARTY-152 wherever they could change a field
-  interpretation or its no-use bound. Known CHAR load/write sites remain
-  controls; preserve unresolved transfers and decoder exclusions.
-  Reuse the known serializer/chunk and copy contracts; this does not ask
-  for general file-I/O success or unrelated gameplay effects. Remaining
-  unknown field meanings stay Q-PARTY-003.
-  Tried: the FMT-PARTY-006 assessment identifies this as the same
-  chunk-reader/writer obligation, not a second census. FND-PARTY-259
-  retains the local dispatch/copy contracts and corrected error-status
-  qualification; its unread allocation/reclamation children do not
-  change the documented byte destinations but do not prove acquisition
-  success. FND-PARTY-052 leaves later FNFO/type-width writers unsearched;
-  FND-PARTY-235 leaves field-list mutation and DS/SS correspondence open.
-  Track those bindings here. Placement publication, effect handling and
-  bitmap content/lifetime remain their existing independent questions
-  Q-PARTY-116/119/120/121/122/123, not prerequisites for deciding the
-  stored header's byte widths or the known writer's selector source.
-  Tried: review FND-PARTY-052/054/148/152/156/159/235/259 for the whole
-  FMT-PARTY-001 claim. The later direct-site/tag census and serializer
-  selector reading remove those parts of the older writer limitation;
-  metadata/graph-state, indirect and pointer/access exclusions remain.
-  No newly observed contradiction or qualifying whole-entry declaration
-  was identified.
-  Blocks: complete reading of FMT-PARTY-001 and FMT-PARTY-006.
+  the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,
+  pointer copies and computed field accesses affecting the documented CHAR representation, after FND-PARTY-235's fourteen known direct
+  resource-write sites and computed-tag bindings. Bind the serializer's root kind, mutable graph/field lists and restored metadata to its
+  type-1/type-3 prefix and sentinel; account for state writers or copies that can change that field selection, including the DS/SS identity
+  and later field-list changes left open by FND-PARTY-235. The literal tag gap in FND-PARTY-054 alone is no longer the remaining direct-site
+  question. Retain FND-PARTY-259's reader/header/reference and corrected status facts. Account for copied pointers, computed offsets and alias
+  accesses excluded by FND-PARTY-152 wherever they could change a field interpretation or its no-use bound. Known CHAR load/write sites remain
+  controls; preserve unresolved transfers and decoder exclusions. Reuse the known serializer/chunk and copy contracts; this does not ask
+  for general file-I/O success or unrelated gameplay effects. Remaining unknown field meanings stay Q-PARTY-003.
+  Tried: the FMT-PARTY-006 assessment identifies this as the same chunk-reader/writer obligation, not a second census. FND-PARTY-259
+  retains the local dispatch/copy contracts and corrected error-status qualification; its unread allocation/reclamation children do not
+  change the documented byte destinations but do not prove acquisition success. FND-PARTY-052 leaves later FNFO/type-width writers unsearched;
+  FND-PARTY-235 leaves field-list mutation and DS/SS correspondence open. Track those bindings here. Placement publication, effect handling and
+  bitmap content/lifetime remain their existing independent questions Q-PARTY-116/119/120/121/122/123, not prerequisites for deciding the
+  stored header's byte widths or the known writer's selector source. Tried: review FND-PARTY-052/054/148/152/156/159/235/259 for the whole
+  FMT-PARTY-001 claim. The later direct-site/tag census and serializer selector reading remove those parts of the older writer limitation;
+  metadata/graph-state, indirect and pointer/access exclusions remain. No newly observed contradiction or qualifying whole-entry declaration
+  was identified. Blocks: complete reading of FMT-PARTY-001 and FMT-PARTY-006.
 
 - Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the
-  documented one-byte representation and discipline-bit interpretation?
-  Settles it: complete the game and unpacked CHARTRAN read/write and
-  caller census for PSIN and its slot-byte sources, covering indirect
-  entries, computed resource tags and pointer/index aliases that can
-  affect the represented byte. Reuse FND-EXE-006's literal occurrences,
-  FND-PARTY-011/012's one-byte transfer sites, FND-PARTY-235's fourteen
-  known direct resource-write sites and FND-RNG-091's direct reader
-  accounting; do not repeat those unchanged searches. Bind any remaining
-  interpretation-affecting source/width/index or bit writes to their
-  callers, including FND-PARTY-077's choice projection,
-  FND-PARTY-210's reset and FND-SAVE-015's four-byte SAVE table entry 22.
-  Keep opaque copies distinct from a new bit interpretation. Preserve
-  unresolved transfers and census controls/exclusions for both executables.
-  The entry does not claim that higher bits are forbidden, that every
-  resource operation succeeds, or that a closed UI button never delivers
-  an event; those are not additional blockers for this format claim.
-  Tried: the existing-evidence review of FND-PARTY-002/011/012/077,
-  FND-PARTY-210/235, FND-RNG-091 and FND-SAVE-015 confirms the physical
-  byte and known bit mapping. The literal/direct-site findings do not
-  establish a complete game/utility access set. No qualifying whole-entry
-  complete reading was identified but left undeclared.
-  Blocks: complete reading of FMT-PARTY-003.
+  documented one-byte representation and discipline-bit interpretation? Settles it: complete the game and unpacked CHARTRAN read/write and
+  caller census for PSIN and its slot-byte sources, covering indirect entries, computed resource tags and pointer/index aliases that can
+  affect the represented byte. Reuse FND-EXE-006's literal occurrences, FND-PARTY-011/012's one-byte transfer sites, FND-PARTY-235's fourteen
+  known direct resource-write sites and FND-RNG-091's direct reader accounting; do not repeat those unchanged searches. Bind any remaining
+  interpretation-affecting source/width/index or bit writes to their callers, including FND-PARTY-077's choice projection,
+  FND-PARTY-210's reset and FND-SAVE-015's four-byte SAVE table entry 22. Keep opaque copies distinct from a new bit interpretation. Preserve
+  unresolved transfers and census controls/exclusions for both executables. The entry does not claim that higher bits are forbidden, that every
+  resource operation succeeds, or that a closed UI button never delivers an event; those are not additional blockers for this format claim.
+  Tried: the existing-evidence review of FND-PARTY-002/011/012/077, FND-PARTY-210/235, FND-RNG-091 and FND-SAVE-015 confirms the physical
+  byte and known bit mapping. The literal/direct-site findings do not establish a complete game/utility access set. No qualifying whole-entry
+  complete reading was identified but left undeclared. Blocks: complete reading of FMT-PARTY-003.
 
 - Q-PARTY-128. FMT-PARTY-005: Which unaccounted SPST accesses or
-  transfers can affect its bit interpretation and short-load tail?
-  Settles it: remaining indirect/computed SPST read routes beyond
-  FND-PARTY-203's known reader/callers, and pointer-derived copies or
-  computed-offset accesses reaching 4D62's four 15-byte entries, with
-  their source/span/slot identity and ordering relative to a short read.
-  Reuse FND-PARTY-203's exact resource-length copy and shipped ADD/START
-  admission, FND-PARTY-209's literal-base bit accesses and clear ranges,
-  and FND-PARTY-011/012/104's two write sizes and spell-bit indexing.
-  FND-SAVE-015/022 already bind SAVE table entry 20 to the whole 60-byte
-  bank and its reader: an admitted 60-byte restore replaces all four
-  entries, not necessarily with zeros. Remove that mechanism from the
-  unknown-transfer list. FND-RNG-091 supplies the known direct file-read
-  accounting, retaining its stored-pointer and context-scan exclusions.
-  Identify only remaining accesses that can change the claimed byte/bit
-  interpretation or retained tail; preserve controls and unresolved
-  transfers rather than asking for all generic I/O or consumer behavior.
-  Tried: the FMT-PARTY-005 assessment reuses FND-PARTY-006/011/012/104/
-  203/209 with FND-SAVE-015/022 and FND-RNG-091. The full-bank SAVE
-  restore is a known writer; the local nine-byte read retains whatever
-  tail was present at its entry. Other-reader and nonliteral-access
-  exclusions remain. No actual transferred-character reuse sequence or
-  whole-entry complete reading follows from that conditional composition.
-  Tried: split from Q-PARTY-005 with its FND-PARTY-104/203/209 evidence.
-  Known literal accesses do not clear a whole entry; pointer-derived
-  transfers and actual reused-slot state remain outside that result.
-  No earlier attempt, source exclusion or unresolved path is discarded.
+  transfers can affect its bit interpretation and short-load tail? Settles it: remaining indirect/computed SPST read routes beyond
+  FND-PARTY-203's known reader/callers, and pointer-derived copies or computed-offset accesses reaching 4D62's four 15-byte entries, with
+  their source/span/slot identity and ordering relative to a short read. Reuse FND-PARTY-203's exact resource-length copy and shipped ADD/START
+  admission, FND-PARTY-209's literal-base bit accesses and clear ranges, and FND-PARTY-011/012/104's two write sizes and spell-bit indexing.
+  FND-SAVE-015/022 already bind SAVE table entry 20 to the whole 60-byte bank and its reader: an admitted 60-byte restore replaces all four
+  entries, not necessarily with zeros. Remove that mechanism from the unknown-transfer list. FND-RNG-091 supplies the known direct file-read
+  accounting, retaining its stored-pointer and context-scan exclusions. Identify only remaining accesses that can change the claimed byte/bit
+  interpretation or retained tail; preserve controls and unresolved transfers rather than asking for all generic I/O or consumer behavior.
+  Tried: the FMT-PARTY-005 assessment reuses FND-PARTY-006/011/012/104/ 203/209 with FND-SAVE-015/022 and FND-RNG-091. The full-bank SAVE
+  restore is a known writer; the local nine-byte read retains whatever tail was present at its entry. Other-reader and nonliteral-access
+  exclusions remain. No actual transferred-character reuse sequence or whole-entry complete reading follows from that conditional composition.
+  Tried: split from Q-PARTY-005 with its FND-PARTY-104/203/209 evidence. Known literal accesses do not clear a whole entry; pointer-derived
+  transfers and actual reused-slot state remain outside that result. No earlier attempt, source exclusion or unresolved path is discarded.
   Blocks: complete interpretation of FMT-PARTY-005.
+
+- Q-PARTY-129. RULE-PARTY-009: Do the generation screen's admitted
+  inputs and state writers preserve the documented class-button choices?
+  Settles it: complete caller/event-target and working-record producer
+  coverage for overlay 183 +0A3E and its mask/compaction/button helpers,
+  binding origin 1..8, class codes 0..8 and the compacted zero-to-three
+  class list at each selection. Reuse FND-PARTY-065/068/073's local mask,
+  add/remove and code-conversion contracts. Account for the edit route's
+  selected record and 4E71:0B44 writers left open by FND-PARTY-073.
+  For the origin mask at 4E68:0000..0010, resolve writes via computed
+  segments, overlapping segment aliases, stored pointers/copies and
+  segment retention beyond FND-PARTY-069's 26-instruction windows,
+  with known direct reads and the separate array stores as controls.
+  Bind the button enable/selected-state contract and reachable callback
+  targets needed for add/remove admission; this asks for no general
+  graphics or successful file-I/O contract. DATA-1001 access/index and
+  representation coverage is shared Q-PARTY-124, not another census.
+  Tried: FND-PARTY-068 settles the local offer masks and the finite
+  reachable-order check; FND-PARTY-070 settles DONE's local predicate,
+  not every incoming edit/event path. FND-PARTY-069 explicitly excludes
+  computed/alias and longer-lived segment accesses. FND-PARTY-073's
+  fixed-displacement stores and direct callers leave the selected-record
+  writer question open. No new contradiction or qualifying undeclared
+  whole-entry reading was identified by this assessment.
+  Blocks: complete reading of RULE-PARTY-009.
 
 ## Emulated call
 

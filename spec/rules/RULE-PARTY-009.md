@@ -94,4 +94,14 @@ None known.
 
 ## Open questions
 
-None.
+- Complete DATA-1001 access and index-producer coverage remains shared
+  with FMT-PARTY-007 (Q-PARTY-124); the known two literal calls and their
+  mask use do not cover computed resource numbers or indirect accesses.
+- Complete class-selection caller/event admission, working-record
+  producers and origin-mask writer coverage remain Q-PARTY-129.
+  FND-PARTY-069's no-write result covers its segment-reference windows,
+  excluding computed segments, overlapping aliases and retained segment
+  accesses beyond those windows. FND-PARTY-073 also leaves the editing
+  route's selected-record word writers open. The local add/remove and
+  reachable-order results remain supported; these exclusions prevent a
+  whole-entry complete-reading declaration.
