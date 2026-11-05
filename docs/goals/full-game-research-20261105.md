@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince ef7f9a51
-  -NoRestore passed: 1921 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince f93d99aa
+  -NoRestore passed: 1922 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-087 for removal/queue/cell/redraw/unload
+  FND-ITEM-073 through FND-ITEM-088 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 7052c768.
+  Latest batch is 7c4d017b.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -102,9 +102,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Reload/allocation: FND-ITEM-087 names
   effect-bitmap-reload-allocation-contract.txt and its matching -repeat pair.
   Reuse local pre-read/index/allocation/transfer and pool search/reset gates.
-  Actual pool/cache state, 3A66 reclamation, 0586 pointer update, backing-store
+  Actual pool/cache state, remaining reclamation children, backing-store
   and remaining reset-child effects stay Q-PARTY-116. A null allocation may
   follow global cleanup requests; no native failure was claimed.
+- Reclamation: FND-ITEM-088 names effect-bitmap-reclamation-contract.txt
+  and its matching -repeat pair. Reuse local age/candidate selection and
+  requested-size accounting; 3D2A release and 38EC consolidation remain.
+  FND-COMBAT-125 already supplies 0586 pointer updates, now composed here.
+  The accumulated total is not verified free space; native lifetime stays open.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
