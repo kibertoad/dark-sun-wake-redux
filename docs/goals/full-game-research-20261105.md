@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince daa73572
-  -NoRestore passed: 1923 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 30c0cc63
+  -NoRestore passed: 1924 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-089 for removal/queue/cell/redraw/unload
+  FND-ITEM-073 through FND-ITEM-090 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 0bdd4547.
+  Latest batch is c9663ea1.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -116,6 +116,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   contracts. Native cache/pool producers, order/span/alias admission and
   backing-store/reset children remain Q-PARTY-116; no free-space invariant
   or complete reading was declared.
+- Backing transfers: FND-ITEM-090 names effect-backing-transfer-contract.txt
+  and its matching -repeat pair. Reuse local count/range/error/chunk/link
+  and offset-only cursor contracts. Handle selectors, chain producers,
+  15F3:012E validation and installed backend targets/effects remain open.
+  Count word zero expands to 65536; an error does not roll back prior chunks.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
