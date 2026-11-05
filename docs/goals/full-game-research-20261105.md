@@ -35,20 +35,20 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince e0425ea2
-  -NoRestore passed: 1909 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince c7aac608
+  -NoRestore passed: 1910 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. FND-ITEM-063 through
   FND-ITEM-068 are its scanner/filter/constructor/allocation/caller inputs;
   FND-PARTY-262 and FND-COMBAT-159 supply removal/index-adjustment evidence.
-  FND-ITEM-073/074/075 are committed at 548eef41/1f11064b/57aba6c3.
-  Next assess the named cell/redraw/unload and use-time identity
+  FND-ITEM-073 through FND-ITEM-076 are committed, latest 912c2fa1.
+  Next assess redraw 31E0:128C, unload and use-time identity
   obligations, or an actual
   constructor-input/state-writer obligation. Do not repeat only the local
   compaction/deferred argument, admitted queue shift or selected kind-three
-  handler reading. The paused
+  handler or local cell-mask reading. The paused
   endpoint is not a
   constructor call; current runtime pins and supported named fields apply.
 - New retained evidence: GAME_DIR/analysis/item-removal-20261104/
@@ -69,6 +69,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   local store. The table controls remain beside them. Reuse that local
   snapshot/dequeue/dispatch composition; native boundary backing, queue
   and slot preservation and cell/redraw/unload children remain in Q-PARTY-116.
+- Cell follow-up: FND-ITEM-076 names effect-removal-cell-contract.txt
+  and effect-cell-mask-table.json with matching -repeat pairs under the
+  same local store. Reuse FND-COMBAT-147 for leaf masks. Q-PARTY-116
+  retains native map/coordinate/read-span and alias admission; the
+  middle helper's earlier read is not covered by its child's bounds gate.
+  No code or rule implementation, native run or parity status changed.
 - Setup work: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open with their
   narrowed obligations. Reuse FND-SOUND-030 through FND-SOUND-048 and
   their retained repeat pairs under GAME_DIR/analysis/disc-adv-survey-20261104/.
