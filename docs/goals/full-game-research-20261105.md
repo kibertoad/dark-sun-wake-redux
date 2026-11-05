@@ -35,17 +35,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 81a93f0b
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince a68000f1
   -NoRestore` passed, with the existing argument-metadata, unavailable Kaitai
   compiler and scheduled-generation skips. Documentation check passed:
   1936 entries, 208 parity rows, five deviations. Use project-local
   `EVIDENCE_PYTHON` for gates and hooks.
 - Next: Q-PARTY-121, FMT-PARTY-006, constructor input admission. Review
   FND-ITEM-093 through FND-ITEM-098 and FND-COMBAT-149 before new reading.
-  Reuse FND-ITEM-102 for the coordinate child. Next assess lower-loader
-  mode-one input/index/count preservation using FND-COMBAT-149, whose
-  flags-zero restrictions do not admit every mode-one child. Do not repeat
-  local coordinate arithmetic or conditional ordinary-publication proofs.
+  Reuse FND-ITEM-102 for coordinates and FMT-PARTY-006's mode-one
+  composition of FND-COMBAT-149/161/162 with FND-ITEM-082/084. Next
+  assess actual OJFF provider/transfer identity or first-allocation copied
+  slot/index/count admission. FND-COMBAT-150 has retained OJFF observations
+  from a distinct flags-zero load, not a mode-one constructor witness.
+  Do not repeat local coordinate arithmetic or excluded selector branches.
 - Then Q-PARTY-120, FMT-PARTY-006, immediate-handler input/child
   preservation. Review FND-ITEM-099/100/101, FND-COMBAT-034/037 and
   FND-MAGIC-019/FND-RNG-052; choose a named remaining child or producer.
@@ -57,7 +59,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Retained effect reports: GAME_DIR/analysis/item-removal-20261104/.
   Canonical names, repeat-pair identities and reproduction commands are
   in the findings. Keep licensed reports local; use source-specific MZ
-  mappings. No original game ran in the coordinate-helper batch.
+  mappings. No original game ran in the mode-one composition batch.
 - Setup work remains Q-CONFIG-006/011/012 and Q-SOUND-010. Review
   FND-SOUND-030 through FND-SOUND-048 and docs/RUNTIME.md before retrying.
   Retained reports: GAME_DIR/analysis/disc-adv-survey-20261104/.
