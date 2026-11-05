@@ -264,7 +264,8 @@ Next ID: Q-PARTY-119
   indirect acquisition sites; native eviction handle/count/link/object
   admission beyond FND-ITEM-083's local decrement/fill/child ordering;
   image-refresh link termination, owner/cache/frame/buffer identity and
-  cache/pointer-helper effects beyond FND-ITEM-084's local contract;
+  cache-provider effects beyond FND-ITEM-084's local contract and
+  FND-ITEM-085's arithmetic-only pointer helper;
   other writers and event/heap/chunk/
   free-list/graphics child effects beyond
   FND-ITEM-080's local 31E0:044C contract and FND-ITEM-078/079's gates,
@@ -278,6 +279,10 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-085 removes 1000:060E's signed displacement, segment
+  normalization and register/data-side-effect obligations. The helper
+  does not validate buffers; actual pointer/frame/cache inputs and other
+  child effects remain, not another unchanged reading of its arithmetic.
   Tried: FND-ITEM-084 removes the flag-one image-refresh child's local
   recursion/override/handle/reset/dimension ordering. Its recursive result
   is ignored and failure can follow stores; actual links, buffer identity
