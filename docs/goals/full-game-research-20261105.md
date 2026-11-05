@@ -14,7 +14,8 @@ Temporary blockers and completed individual batches do not meet this condition.
 Side: research. Areas: all game specification areas, their queues and research
 tooling. Continue the owner's standing full-game research objective. Existing
 upstream-gap-resolution tooling work remains separate; do not modify its claim.
-Use the local goal branch; no push is authorized by this continuation.
+Use the local goal branch. The owner authorized pushing the completed
+upstream adoption and accumulated work to main on 2026-11-06.
 
 ## Must not touch
 
@@ -35,20 +36,21 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince a294b0ce
-  -NoRestore` passed, with the existing argument-metadata, unavailable Kaitai
-  compiler and scheduled-generation skips. Documentation check passed:
-  1937 entries, 208 parity rows, five deviations. Use project-local
-  `EVIDENCE_PYTHON` for gates and hooks.
-- Next: Q-PARTY-121, FMT-PARTY-006, constructor input admission. Review
-  FND-ITEM-093 through FND-ITEM-098 and FND-COMBAT-149 before new reading.
-  Reuse FND-ITEM-102 for coordinates and FMT-PARTY-006's mode-one
-  composition of FND-COMBAT-149/161/162 with FND-ITEM-082/084. Next
-  assess actual OJFF provider/transfer identity and retained index/count
-  across resource/refresh calls. Reuse FND-ITEM-103 for fixed handoff and
-  normal-return DF; actual head/result/source/frame admission remains. FND-COMBAT-150 has retained OJFF observations
-  from a distinct flags-zero load, not a mode-one constructor witness.
-  Do not repeat local coordinate arithmetic or excluded selector branches.
+- Last integration gate: 2026-11-06, `Test.ps1 -ChangedSince 0f66a51e
+  -NoRestore` passed integration selection, build and 758 .NET tests.
+  Documentation check passed with existing argument-metadata, unavailable
+  Kaitai compiler and scheduled-generation skips: 1937 entries, 208 parity
+  rows, five deviations. Use project-local EVIDENCE_PYTHON for gates/hooks.
+- Next: start the adopted existing-evidence closure review in PARTY before
+  more original-code exploration. Follow docs/RESEARCH-CLOSURE.md: the first
+  assessment batch names up to ten selected entries and exact baseline
+  revisions in its commit message, and each batch respects research scope.
+  Choose an assessed entry and map obligations by queue ID in its Open
+  questions. Time the three batches after the map and compare after two.
+- Pending research remains Q-PARTY-121, FMT-PARTY-006. Reuse
+  FND-ITEM-102/103 and the existing mode-one composition. Provider/transfer,
+  source/index/count and resource/refresh admission remain in the queue;
+  this adoption makes no research claim about those inputs.
 - Then Q-PARTY-120, FMT-PARTY-006, immediate-handler input/child
   preservation. Review FND-ITEM-099/100/101, FND-COMBAT-034/037 and
   FND-MAGIC-019/FND-RNG-052; choose a named remaining child or producer.
@@ -65,14 +67,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-030 through FND-SOUND-048 and docs/RUNTIME.md before retrying.
   Retained reports: GAME_DIR/analysis/disc-adv-survey-20261104/.
   Existing DSUN-only scripts do not accept setup inputs.
-- Upstream process proposals are open for review:
-  https://github.com/kibertoad/refurbished-dinosaurs/pull/130 and
-  https://github.com/kibertoad/refurbished-dinosaurs-template/pull/149.
-  Do not adopt or refresh the proposed rules here before upstream review
-  and merge and the owner's requested downstream propagation.
+- Upstream closure recovery is adopted: protocol PR 130 at
+  34202ed4a313b0c9c702f159ccbc8f5e85fb9f28 and template PR 149 at
+  175daaad3c6be12cd389aedd2e3bc859647cecb7. The latest template snapshot
+  at 8cf09b087c184c7c6a6519fd9fc37c98d8ccd861 was checked byte-for-byte
+  against all four local vendored files; it uses that same rule revision.
+  docs/UPSTREAM-RULES.md records path/report adaptations and provenance.
 - docs/PROGRESS.md retains the requested comparison at 589b6fce9dfe
   against 9288f86e584d. Further comparisons must identify splits separately
   from evidenced answers. No complete-reading declaration was added here.
 - Unfinished changes: none. No delegated work or owned emulator is active.
-  Blockers: none known. Continue on the research side; no downstream push
-  is authorized. Earlier shared local stores are named in docs/HANDOVER.md.
+  Blockers: none known. Continue on the research side. The owner authorized
+  the main push after adoption; future work follows that recorded scope.
+  Earlier shared local stores are named in docs/HANDOVER.md.
