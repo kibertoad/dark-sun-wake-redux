@@ -252,7 +252,9 @@ Next ID: Q-PARTY-120
   effect-row/hidden-position/lifetime inputs and child preservation beyond
   FND-ITEM-099's immediate decode/target/mode gates, including actual
   actual geometry/owner/class/accepted-population and list/frame/span state
-  beyond FND-ITEM-100's target/insertion gates and 64-record caller region;
+  beyond FND-ITEM-100's target/insertion gates and 64-record caller region,
+  and FND-ITEM-101's distance arithmetic/shared-scratch contract; native
+  coordinate/signed-result/scratch alias admission;
   neighboring owner/effect table count/writers/aliases
   beyond FND-COMBAT-034/037's local lookup/append contracts, and +12A8
   casting effects; its returned K relative to
@@ -296,6 +298,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-101 removes distance's wrapped delta/scaling and direct
+  shared scratch effects. The ordinary bounded child domain and signed
+  minimum case are separate; native coordinates, signed caller result,
+  scratch aliases, population and casting-child preservation remain above.
   Tried: FND-ITEM-100 removes target-list rectangle/class/slot/position
   and insertion-footprint gates. Its loop has no 64-entry cap; actual
   accepted population and handler storage/aliases remain above. Selected
