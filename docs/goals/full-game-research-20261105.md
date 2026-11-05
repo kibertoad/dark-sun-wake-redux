@@ -37,7 +37,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
 - Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
-  1a382f6f -NoRestore` passed with the existing declared skips: 1937
+  b4f09e77 -NoRestore` passed with the existing declared skips: 1938
   entries, 208 parity rows and five deviations. Integration at adoption
   also passed the build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
@@ -46,10 +46,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FMT-PARTY-007, RULE-PARTY-002, RULE-PARTY-007, RULE-PARTY-009.
   All ten are reviewed. FMT-PARTY-007 is chosen for the closure trial;
   its queue-backed ownership/dependency map is committed in 4d210fc1.
-  Next: Q-PARTY-124 computed/indirect DATA-request caller coverage,
-  reusing FND-PARTY-058/068 and FND-RNG-091 before original-code reading.
-  Measure research/tooling/validation/handover separately for the next
-  three closure batches; none has started. Compare after the first two.
+  Trial batch one records FND-PARTY-264 and narrows Q-PARTY-124;
+  no question closure or accepted reading. Next: Q-PARTY-124 remaining
+  computed DATA-number paths, reusing FND-RNG-091 and FND-PARTY-264.
+  The first batch records separate research/tooling/validation/handover
+  times; two measured batches remain. Compare after the next one.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review is
@@ -75,6 +76,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   The pre-split detailed attempts are in Q-PARTY-116 at revision 3d9b7ea4.
   Queue IDs and spec Open questions hold the remaining research scope.
 - Retained effect reports: GAME_DIR/analysis/item-removal-20261104/.
+  Trial reports: GAME_DIR/analysis/class-table-closure-20261106/.
   Canonical names, repeat-pair identities and reproduction commands are
   in the findings. Keep licensed reports local; use source-specific MZ
   mappings. No original game ran in this assessment.
