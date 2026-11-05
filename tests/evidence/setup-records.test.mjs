@@ -9,6 +9,38 @@ function check(code, directory) {
   assert.equal(result.status, 0, result.stderr || result.stdout);
 }
 
+test('fixed setup boundary candidates preserve far aliases, relative forms and wrapped frame fetch', () => {
+  check(`
+import sys, struct
+sys.path.insert(0,sys.argv[1])
+from setup_stub_transfers import FRAME, candidates
+b=bytearray([0x90])*0x20000
+def near(ip, opcode, target, width):
+    length=len(opcode)+width
+    raw=bytes(opcode)+((target-(ip+length))&((1<<(width*8))-1)).to_bytes(width,'little')
+    for k,v in enumerate(raw):b[FRAME+((ip+k)&0xffff)]=v
+near(0x10,[0xe8],0xc96,2)
+near(0x100,[0xe9],0xc95,2)
+near(0xc80,[0x74],0xc96,1)
+near(0xc84,[0xe2],0xc95,1)
+near(0xc88,[0xeb],0xc96,1)
+near(0x200,[0x0f,0x82],0xc96,2)
+near(0xffff,[0xe9],0xc95,2)
+# Two segment:offset aliases of the same fixed physical load offset.
+struct.pack_into('<BHH',b,0x100,0x9a,0xc96,0xc08)
+struct.pack_into('<BHH',b,0x110,0xea,0xc86,0xc09)
+struct.pack_into('<BHH',b,0x120,0x9a,0xc97,0xc08)
+r=candidates(bytes(b))
+assert r[0xcd16]['far']==[{'site':0x100,'kind':'call'},{'site':0x110,'kind':'jump'}]
+assert {(x['site']-FRAME,x['kind']) for x in r[0xcd16]['relative']}=={(0x10,'call'),(0xc80,'conditional'),(0xc88,'jump'),(0x200,'conditional')}
+assert {(x['site']-FRAME,x['kind']) for x in r[0xcd15]['relative']}=={(0x100,'jump'),(0xc84,'conditional'),(0xffff,'jump')}
+for bad in (b'',bytes(FRAME+0xffff),bytes(0x20001),b):
+    try:candidates(bad)
+    except ValueError:pass
+    else:raise AssertionError('invalid image admitted')
+`, 'tools/research/exec-census');
+});
+
 test('setup source projection preserves documented words, strings, nested bits and duplicate stores', () => {
   check(`
 import sys, struct

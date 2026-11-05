@@ -16,10 +16,18 @@ from pathlib import Path
 
 import xxhash
 from capstone import CS_ARCH_X86, CS_MODE_16, Cs
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from setup_stub_transfers import candidates
 
 data = Path(sys.argv[1]).read_bytes()
 assert (len(data), xxhash.xxh3_128_hexdigest(data)) == (204593, "236c2dc23c071eca421eb5b427caee57")
 img = data[0x1400:0x1E5E0]
+boundary = candidates(img)
+assert {0x3EE2, 0x4065} <= {x["site"] for x in boundary[0xCBF5]["far"] if x["kind"] == "call"}, "0065 far-call controls missed"
+assert any(x["site"] == 0xCC7B and x["kind"] == "call" for x in boundary[0xC476]["relative"]), "dispatcher near-call control missed"
+for target, groups in boundary.items():
+    print(f"boundary load {target:05X}: {groups}")
+print("boundary exclusions: prefixes/operand-size overrides, computed transfers, returns, interrupts, stored pointers and runtime entries; every-byte hits are candidates only")
 md = Cs(CS_ARCH_X86, CS_MODE_16)
 SEG, DISPATCH, LOOKUP = 0xC080, 0xC476, 0xC43E
 

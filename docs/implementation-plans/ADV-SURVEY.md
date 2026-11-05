@@ -167,3 +167,18 @@ Exit: selected tooling gate passes; then two fresh runs compare all populated
 record bytes and headers, preserving any discrepancy as evidence rather than
 changing the expected projection to force a match. This verifies a paused
 endpoint, not later label/vector/chooser lifetime or every allocator path.
+
+For Q-CONFIG-011's two boundary candidates in FND-SOUND-045, extend the
+existing fixed SOUND_DS.EXE driver-function census with a bounded direct
+transfer candidate search. Check load offsets CD15/CD16 (1C08:0C95/0C96),
+with the known 0065 stub at CBF5 and dispatcher C476 as controls. Search
+every load-image byte for far call/jump aliases and the complete 16-bit
+1C08 frame for relative calls, jumps, conditional jumps and loop forms,
+including IP wrap. Preserve raw-start candidates as candidates, never
+established callers; retain computed/return/interrupt/pointer and runtime
+entry exclusions. Inputs remain only the existing hash-verified utility
+and bounded synthetic images; no execution or additional CLI targets.
+Synthetic controls cover aliasing, each relative form, wrapping, unrelated
+targets and image bounds. Exit: selected tooling gate passes, then a
+separate research batch repeats the fixed census, reviews all hits and
+records whether direct-transfer uncertainty is removed or remains open.
