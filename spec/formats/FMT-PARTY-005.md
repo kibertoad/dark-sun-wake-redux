@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_party_005.ksy
-evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-203, FND-PARTY-209]
+evidence: [FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104, FND-PARTY-203, FND-PARTY-209, FND-SAVE-015, FND-SAVE-022, FND-RNG-091]
 conflicting: []
 split_with: []
 related: []
@@ -44,7 +44,18 @@ bytes and 3 (characters 30, 31 and 33) are 9 bytes [FND-PARTY-006].
 
 ## Open questions
 
-- What a 9-byte resource leaves in bytes 9 to 14 of its 15-byte entry: the read writes only the
-  first 9 bytes, and no shipped character with one can be loaded (FND-PARTY-203); no instruction
-  that names the table clears a whole entry, so they keep the slot's earlier bits
-  (FND-PARTY-209). Left: transfers that reach the table without naming it (Q-PARTY-128).
+- Remaining SPST read and transfer coverage that can affect the byte/bit
+  interpretation or tail of a short load (Q-PARTY-128). FND-PARTY-203
+  shows the selected reader writes the resource's own length: nine bytes
+  leave the slot's pre-read bytes 9 to 14 untouched. Its shipped ADD and
+  START cases use fifteen-byte resources; it explicitly does not census
+  other SPST readers. FND-PARTY-209 covers literal-base accesses, not all
+  pointer-derived or computed-offset paths.
+  FND-SAVE-015/022 already identify the whole sixty-byte bank as SAVE
+  table entry 20 and its restore route. With a sixty-byte selected payload
+  and valid separate backing, that restore replaces all four entries;
+  it is not necessarily a zero clear. The retained tail at a later short
+  read can therefore be prior saved state, not just a previous character's
+  direct spell-bit writes. FND-RNG-091's direct-read accounting retains
+  indirect/context exclusions. General I/O success and unrelated gameplay
+  effects are outside this remaining representation question.

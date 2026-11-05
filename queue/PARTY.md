@@ -880,19 +880,29 @@ Next ID: Q-PARTY-129
   complete reading was identified but left undeclared.
   Blocks: complete reading of FMT-PARTY-003.
 
-- Q-PARTY-128. FMT-PARTY-005: Which transfers can change a slot's SPST
-  bytes without naming the table's literal base, including bytes 9 to 14
-  left by a nine-byte resource read?
-  Settles it: pointer-derived block copies, whole-segment transfers,
-  file reads and computed-offset writes reaching 4D62's four 15-byte
-  entries, with their source/span/slot identity and ordering relative to
-  a short read. Reuse FND-PARTY-203's exact resource-length copy and
-  shipped-character admission result, and FND-PARTY-209's literal-base
-  operand census and bit-clear ranges. FND-SAVE-015's 60-byte table
-  entry 20 and FND-RNG-091's direct file-reader accounting are known
-  mechanisms to compose, not a complete indirect/alias census. Preserve
-  controls and unexamined transfers; a caller or write that cannot affect
-  these bytes is not an additional SPST lifetime requirement.
+- Q-PARTY-128. FMT-PARTY-005: Which unaccounted SPST accesses or
+  transfers can affect its bit interpretation and short-load tail?
+  Settles it: remaining indirect/computed SPST read routes beyond
+  FND-PARTY-203's known reader/callers, and pointer-derived copies or
+  computed-offset accesses reaching 4D62's four 15-byte entries, with
+  their source/span/slot identity and ordering relative to a short read.
+  Reuse FND-PARTY-203's exact resource-length copy and shipped ADD/START
+  admission, FND-PARTY-209's literal-base bit accesses and clear ranges,
+  and FND-PARTY-011/012/104's two write sizes and spell-bit indexing.
+  FND-SAVE-015/022 already bind SAVE table entry 20 to the whole 60-byte
+  bank and its reader: an admitted 60-byte restore replaces all four
+  entries, not necessarily with zeros. Remove that mechanism from the
+  unknown-transfer list. FND-RNG-091 supplies the known direct file-read
+  accounting, retaining its stored-pointer and context-scan exclusions.
+  Identify only remaining accesses that can change the claimed byte/bit
+  interpretation or retained tail; preserve controls and unresolved
+  transfers rather than asking for all generic I/O or consumer behavior.
+  Tried: the FMT-PARTY-005 assessment reuses FND-PARTY-006/011/012/104/
+  203/209 with FND-SAVE-015/022 and FND-RNG-091. The full-bank SAVE
+  restore is a known writer; the local nine-byte read retains whatever
+  tail was present at its entry. Other-reader and nonliteral-access
+  exclusions remain. No actual transferred-character reuse sequence or
+  whole-entry complete reading follows from that conditional composition.
   Tried: split from Q-PARTY-005 with its FND-PARTY-104/203/209 evidence.
   Known literal accesses do not clear a whole entry; pointer-derived
   transfers and actual reused-slot state remain outside that result.
