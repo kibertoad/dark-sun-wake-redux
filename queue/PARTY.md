@@ -252,8 +252,16 @@ Next ID: Q-PARTY-119
   creators/restores and intervening row flag/count/base/slot writers; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
-  actual removal/redraw/deferred children. Q-PARTY-077 retains the distinct
+  cell children 25AF:020C/04D0/01DD, redraw 31E0:128C, queue-shift
+  289B:01DC and later kind-three dispatch/storage admission beyond
+  FND-ITEM-073's local compaction/rescan and deferred-copy contract.
+  Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-073 removes local count/compaction/rescan and boundary
+  flag-clear ordering, deferred arguments and the twelve-byte copy
+  extent. Constructor/use-time publication, child preservation, actual
+  clock/queue storage and the named redraw/shift/consumer children remain;
+  the copied payload is not assumed fully assigned or scheduling successful.
   Tried: split from Q-PARTY-109 after FND-ITEM-063/064 settle the selected
   list/filter and FND-ITEM-065/066/068 settle local constructor, allocation
   and caller contracts. FND-ITEM-067 supplies a strict paused endpoint,
