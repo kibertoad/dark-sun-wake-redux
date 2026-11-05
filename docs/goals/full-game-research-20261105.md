@@ -36,22 +36,20 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed
-  with the existing declared skips: 1939 entries, 208 parity rows and
-  five deviations. Build and all 758 .NET tests passed. Use project-local
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c6a03172
+  -NoRestore` passed with declared skips: 1940 entries, 208 parity rows,
+  five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
   remain in the research commit messages. FMT-PARTY-007 is the closure trial;
   its queue-backed ownership/dependency map is committed in 4d210fc1.
-  Trial batches one and two record FND-PARTY-264/265 and narrow Q-PARTY-124;
-  neither closes a question or declares a complete reading. One measured
-  batch remains. Next objective changes to Q-PARTY-124's DATA-request-route
-  census, reusing FND-RNG-091 and both trial findings, not caller-by-caller
-  extension of the getter. Keep separate timing categories and required gates.
-  Third-trial work is unfinished: 331 elapsed research seconds from
-  23:41:42 to 23:47:13 UTC on 2026-11-05 before the owner's adoption request.
-  Reports are retained locally; exclude the separate template adoption
-  from trial timing and resume with the saved route census, not a rerun.
+  All three trial batches record FND-PARTY-264/265/266 and narrow
+  Q-PARTY-124; none closes a question or declares a complete reading.
+  Separate elapsed timings are in their commit messages; template adoption
+  is excluded. No earlier comparable timing proves a speedup.
+  Next objective: classify FND-PARTY-266's thirteen remaining variable-type
+  sites under Q-PARTY-124, reusing existing service/caller findings before
+  new code reading. Keep the separate getter-number and indirect gaps.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review
@@ -68,6 +66,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Inventory gaps persist: 6,376 rows, four assigned in this entry's map,
   6,372 unassigned here, three missing inventories and no unmeasured ones.
   Activity is two findings and 18 commits, not closure or measured overhead.
+  The third batch adds FND-PARTY-266 and another narrowed condition;
+  still no accepted declaration or answered deletion. The trial remains
+  incomplete at topic level; proceed with the changed objective above.
 - Latest template ef82c9784d08c4e98ade56cfd49cdd56130ac139 and protocol
   5b398e0eab9a6ff8ad1c35fc003c214d85fe7d47 (merged PR 132) are adopted
   in 58490e2d. docs/UPSTREAM-RULES.md records provenance and adaptations.
