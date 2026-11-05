@@ -305,8 +305,11 @@ Next ID: Q-PARTY-124
   Settles it: bind active archive identity and exact ETAB transfer to
   31E0:0025 recount, including later indexed key/flag/count writers,
   whole-table restores and other creation routes; bind ordinary 31E0:0121
-  lower-load/coordinate children to retained index, count, DF and valid
-  table/presentation/stack spans. Trace stores/copies of the returned
+  lower-load children to retained index, count, DF and valid
+  table/presentation/stack spans. Admit the coordinate helper's stable
+  disjoint 1..1500-row domain, slot-kind and separate far-argument backing
+  after lower loading; FND-ITEM-102 settles its local search/step/DF and
+  finite termination conditions, not the actual post-load count. Trace stores/copies of the returned
   slot index through 31E0:0EFF and its children, and bind the slot/source/
   position/lifetime inputs of FND-ITEM-098's producer to the sampled loop.
   Establish actual constructor count/key/extra-row state after its
@@ -316,6 +319,14 @@ Next ID: Q-PARTY-124
   and FND-ITEM-098 producer ordering. Their conditions, especially DF and
   the uncounted extra row, are not native guarantees. Q-PARTY-116 retains
   the constructor's K<N and subsequent lifetime question.
+  Tried: FND-ITEM-102 composes FND-EXE-622/FND-ITEM-096/098 and
+  resolves the full coordinate child's local footprint and bounded
+  termination. Separate far SS arguments need no DS=SS equality; no child
+  call or DF write exists. Stable 1..1500-row backing/aliases and actual
+  slot-kind admission remain; zero count has no early guard. Selected
+  unchanged mode one skips ordinary placement's later mask-04 services,
+  so those paths are not another dependency on that route. Lower loading
+  and the producer's later immediate/cell/queue calls remain.
   Tried: split from Q-PARTY-116 using FND-ITEM-093/094/095/096/097/098.
   Source-positive counts and conditional ordinary publication do not
   establish constructor-entry state after unchecked children. Preserve
