@@ -35,24 +35,33 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince b29185b4
-  -NoRestore passed: 1907 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince ac85dc95
+  -NoRestore passed: 1908 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. FND-ITEM-063 through
   FND-ITEM-068 are its scanner/filter/constructor/allocation/caller inputs;
   FND-PARTY-262 and FND-COMBAT-159 supply removal/index-adjustment evidence.
-  FND-ITEM-073 is committed at 548eef41. Next assess the named cell/redraw,
-  queue-shift and later kind-three consumer obligations, or an actual
+  FND-ITEM-073/074 are committed at 548eef41/1f11064b. Next assess the
+  named cell/redraw and later kind-three consumer obligations, or an actual
   constructor-input/state-writer obligation. Do not repeat only the local
-  compaction/deferred argument reading. The paused endpoint is not a
+  compaction/deferred argument or admitted queue-shift reading. The paused
+  endpoint is not a
   constructor call; current runtime pins and supported named fields apply.
 - New retained evidence: GAME_DIR/analysis/item-removal-20261104/
   effect-row-removal-contract.txt and effect-row-removal-contract-repeat.txt
   exist and match. FND-ITEM-073 records the regeneration command and digest.
   Other exploratory removal/deferred-prefix/tail reports remain in that
   store; the finding names the complete canonical pair.
+- Queue follow-up: FND-ITEM-074 names effect-queue-move-contract.txt,
+  effect-queue-initial.json, effect-queue0-pointer.json,
+  effect-queue1-pointer.json and effect-queue-dgroup.json with matching
+  -repeat pairs under the same local store. Use the finding's real MZ
+  relocation/source mappings; DSUN's header differs from setup's.
+  effect-queue-table-operands.txt retains the inventory-backed search and
+  its raw candidates/exclusions; it is no no-writer proof. Runtime queue
+  pointer/count/capacity/order preservation remains Q-PARTY-116.
 - Setup work: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open with their
   narrowed obligations. Reuse FND-SOUND-030 through FND-SOUND-048 and
   their retained repeat pairs under GAME_DIR/analysis/disc-adv-survey-20261104/.
