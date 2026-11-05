@@ -91,3 +91,22 @@ omits its implicit scheduled-generation flag for this mode; explicit
 incompatible options still fail. Preflight never writes generated files and
 does not replace complete documentation, citation, schema, queue or staged
 acceptance checks. `--generate` cannot be combined with it.
+
+
+## Research closure recovery adoption, 2026-11-06
+
+Adopted protocol [PR 130](https://github.com/kibertoad/refurbished-dinosaurs/pull/130)
+at `34202ed4a313b0c9c702f159ccbc8f5e85fb9f28` and template
+[PR 149](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/149)
+at `175daaad3c6be12cd389aedd2e3bc859647cecb7`, following the owner's
+explicit refresh request. The lock records the protocol source revision and
+hashes; checker 6.1.0 and its existing release revision are retained.
+
+The template additions to `docs/RESEARCH-CLOSURE.md`, `start-session` and
+`research-item` are adopted with this checkout's `vendor/upstream/` paths.
+The closure procedure links the now-pinned recovery section and acknowledges
+the existing progress reporter instead of the template's missing-reporter
+notice. Assessment results belong in research commit messages, obligation
+maps in spec Open questions keyed by queue IDs, timing in the next three
+closure-batch commit messages, and the two-batch comparison in the handover.
+Adoption changes no evidence status or parity result.

@@ -5,7 +5,7 @@ description: Settle one research question about the original game as one batch -
 
 # Research batch
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 203-224),
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#research-batches) (lines 217-238),
 and the sections of the methodology and the documentation standard the steps
 below link to. This skill is the procedure.
 Open a linked section only when a step leaves a question it answers, read
@@ -56,6 +56,7 @@ only the lines the link gives, and never a section already read this session.
    already meet them, list them in the entry's `complete_reading`. A checklist
    alone raises no status. State which remaining obligations this batch can
    remove and what result would remove each; leave the rest in `Settles it`.
+   When successive snapshots add findings without qualifying readings, answered items or narrowed `Settles it`, run the [closure review](../../../docs/RESEARCH-CLOSURE.md#review-when-findings-accumulate-without-closure) before opening more original code. Assess up to ten existing entries in the area, as many per batch as one research batch may settle, and tell undeclared qualifying evidence from missing evidence. Choose one entry to close next and map its obligations in its Open questions by queue item ID. Each batch after that takes one closure objective. Record research, tooling, validation and handover times for the next three of them in their commit messages, and the comparison after two of them in the handover. Keep all required checks and the current priority order.
    Before new tooling, check supported reporters, readers and retained
    controlled reports. Prefer one reusable census for questions sharing a
    source and mechanism. Name the queue items the tooling serves and what
@@ -104,7 +105,7 @@ only the lines the link gives, and never a section already read this session.
    they need, and under `Live session` otherwise; `live-session` requests the
    owner's observation. Follow the local capture rules in `AGENTS.md` and
    `docs/live-sessions/README.md`.
-   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 431-443)
+   The protocol's [Recorded runs](../../../vendor/upstream/work-protocol.md#recorded-runs) (lines 445-457)
    records draws as `{ rule, bound, result }`, stops for an uncited draw, and
    diagnoses divergence through memory evidence and a static finding rather
    than fitting the rebuild to the recording. A probe runs only in a
@@ -116,7 +117,7 @@ only the lines the link gives, and never a section already read this session.
    An emulated call is always allowed, including in a repository whose
    `AGENTS.md` keeps agents from running the original: those limits cover
    runs of the game only. For an item under `Emulated call`, follow the protocol's
-   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 457-493).
+   [Emulated calls](../../../vendor/upstream/work-protocol.md#emulated-calls) (lines 471-507).
    It needs no run lock. Check the current harness contract in `docs/RUNTIME.md`
    and `tools/emu/README.md`; the delivered resident harness admits no-argument
    far roots, while raw memory/argument seeding waits for supported named

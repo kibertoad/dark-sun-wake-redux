@@ -5,8 +5,8 @@ description: Resume restoration work at the start of a session. Use before any r
 
 # Start a session
 
-The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 409-419).
-Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 576-674).
+The rules are in the [work protocol](../../../vendor/upstream/work-protocol.md#sessions) (lines 423-433).
+Goal discovery follows [Coding agents and long-running goals](../../../vendor/upstream/work-protocol.md#coding-agents-and-long-running-goals) (lines 590-688).
 Open a linked section only when a step leaves a question it answers, read
 only the lines the link gives, and never a section already read this session.
 This skill is the procedure; where they differ, the protocol wins.
@@ -83,6 +83,7 @@ This skill is the procedure; where they differ, the protocol wins.
      first) and removing the note. Then parity rows of the current slice
      from the goal or the plan, whose spec status is at least `supported`. Do
      not open `queue/` or `docs/reports/`.
+   For research, when the latest comparable snapshots show findings growing without complete readings, answered items or narrowed `Settles it`, select the [existing-evidence review](../../../docs/RESEARCH-CLOSURE.md#review-when-findings-accumulate-without-closure) before more original-code reading, within the priority order above. Resume an unfinished review from the selection the handover names and the queue items in the chosen entry's map; do not start another dependency chain.
 7. Say in two or three lines what you picked and why, then hand over to
    `research-item`, `implement-rows` or `live-session`.
 
