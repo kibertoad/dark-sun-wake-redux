@@ -257,7 +257,8 @@ Next ID: Q-PARTY-120
   beyond FND-ITEM-094's local recount/flag propagation; other
   creators/restores and intervening row flag/count/base/slot writers,
   including ordinary placement's actual lower-load/coordinate-child state
-  and insertion position/count identity beyond FND-ITEM-096's local stores; the
+  and position/count/DF preservation beyond FND-ITEM-096's local stores
+  and FND-ITEM-097's counted-publication proof for retained old-count positions; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
   cell pointer/coordinate/read-span and alias admission beyond
@@ -287,6 +288,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-097 resolves both wrapper outcomes for ordinary p=n,
+  N=n+1: each publishes K<N under stated preserved-index/count/DF/span
+  conditions. The effect p=N case remains different. Native lower-load
+  preservation, other input domains and later row lifetime remain above.
   Tried: FND-ITEM-096 removes ordinary placement's local key/category,
   count/anchor and direct entry-index publication. Its object-field position
   argument differs from the effect constructor's count; actual lower-load
