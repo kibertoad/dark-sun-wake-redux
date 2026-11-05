@@ -808,16 +808,16 @@ Next ID: Q-PARTY-134
   passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
 
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
-  reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: a controlled census of entry-based direct and indirect calls
-  to overlay 185 +0000 and the common DATA-request routes, covering computed resource numbers as well as the literal 1001 forms tested by
-  FND-PARTY-068. Check every resulting caller's argument/result widths, origin/first-class/second-class index producers and rejection paths;
-  identify any separate resource-buffer readers/writers and unresolved transfers. Use the known two literal DATA-1001 sites and DATA-1000
-  callers as independent controls, preserving decoder/range exclusions. FND-PARTY-058/068 settle the existing index expression, mask-bit use
-  and known direct-site results; another identical literal search does not settle the explicitly excluded computed/indirect routes. Resource
-  acquisition or consumer-lifetime claims outside the documented table representation are not additional format claims. Any source/base/extent
-  or byte mutation that changes its interpretation stays in this census. Generation-screen behavior beyond this table is RULE-PARTY-009.
-  Tried: the existing-evidence assessment of FND-PARTY-058/068 finds an explicit computed-1001 exclusion and a direct-call-only caller list.
-  No qualifying whole-entry complete reading is merely undeclared. Blocks: complete reading of FMT-PARTY-007.
+  reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining runtime-computed or remotely assembled targets,
+  copied target producers and entries bypassing the four roots in FND-PARTY-264; computed resource numbers at separate DATA-request routes;
+  and separate resource-buffer readers/writers. Bind resulting caller argument/result widths, origin/first-class/second-class producers and rejection paths.
+  FND-PARTY-264 accounts for relocated/fixed-up nearby offset/segment forms, including aliases, to the accessor and three reader roots;
+  do not repeat that census or FND-PARTY-058/068's known direct-site/index/mask reading. Keep its runtime-target, near-transfer and bypass exclusions.
+  Use the two known literal-1001 sites, DATA-1000 callers and the stored/split-pointer controls; preserve unresolved transfers and decoder/range exclusions.
+  Source/base/extent or byte mutations affecting interpretation remain in scope; general acquisition success and unrelated consumer lifetime do not.
+  Generation-screen behavior beyond this table stays RULE-PARTY-009. Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism;
+  three alias candidates are unrelated operands. The Ghidra query misses the registration control and gives no negative proof. Runtime targets and computed numbers remain.
+  Tried: the prior FND-PARTY-058/068 review found the computed-1001 exclusion and direct-only caller list; no undeclared qualifying reading. Blocks: complete reading of FMT-PARTY-007.
 
 - Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve
   the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,

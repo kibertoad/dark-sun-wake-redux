@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -59,6 +59,12 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   accessor and its direct callers; FND-PARTY-068 identifies the two known
   DATA-1001 sites but explicitly excludes computed resource numbers.
   That census does not establish a whole-entry complete reading.
+  FND-PARTY-264 now accounts for relocated/fixed-up nearby offset/segment
+  pointer forms to the accessor and three shared resource-reader roots,
+  including segment aliases and the three unrelated operand candidates.
+  Runtime-computed or remotely assembled targets, separate request routes
+  and computed resource numbers remain; the bounded Ghidra reference query
+  misses a control and supplies no negative proof for those routes.
   This entry describes the table representation and its index/bit
   meanings. It does not assert that every live resource load succeeds or
   that every later consumer retains valid storage. Any source, base,
