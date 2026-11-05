@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032]
 conflicting: []
 split_with: []
 related: []
@@ -125,6 +125,8 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   spans and OS outcomes remain unadmitted. FND-SOUND-031 records local
   lower read/error, translation and position-check dispatch without
   establishing actual DOS outcomes or native stream/table admission.
+  FND-SOUND-032 removes local flush reset/result and scan-selector
+  uncertainty; negative-count write-child effects and retention remain.
 - Actual list-choice row/index, storage and continuation admission between
   parsed card records and the settings writers, beyond the conditional local
   small-label profile. Its producers, retained vector and child/frame state

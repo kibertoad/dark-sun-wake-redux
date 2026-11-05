@@ -413,7 +413,8 @@ Next ID: Q-CONFIG-011
   group/numeric/count parsing and complete malformed/file-error behavior,
   and the full consumer effects of `CardGroup` and chunk numbers?
   Settles it: stream/handle/buffer/flag construction and lifetime, flush
-  child 292B, error-mapping values/consumers, remaining table writers
+  lower write child 3B03 and child preservation, error-mapping
+  values/consumers, remaining table writers
   and actual DOS/device outcomes beyond FND-SOUND-030/031's local
   extraction/refill/read/translation/seek/error dispatch;
   token/value/numeric bounds and other inputs beyond FND-SOUND-025's two
@@ -430,6 +431,11 @@ Next ID: Q-CONFIG-011
   Settles it. It retains the unchecked last-CR extra read and ignored
   marker rewind result. Native stream/table/buffer admission, flush,
   mapping values/consumers, other writers and DOS outcomes remain.
+  Tried: FND-SOUND-032 removes local flush identity/count/pointer reset,
+  pre-write state changes, result/flag dispatch and scan selectors from
+  Settles it. Nonnegative routes need no lower write; the negative route
+  retains 3B03 and preservation. Table/storage/producer admission and
+  actual OS outcomes remain, rather than repeating local flush branches.
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
   paths and their mode-controlled output copies, plus the chunk-field
   destinations. Those local bindings are removed from the remaining parser
