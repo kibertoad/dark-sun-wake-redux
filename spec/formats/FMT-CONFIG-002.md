@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039]
 conflicting: []
 split_with: []
 related: []
@@ -44,6 +44,10 @@ and 198 further alternate children. Two jumper children use the ignored
 spelling. This accounts for conditional installed source consumption and
 group-counter composition, without native storage/lifetime admission
 (FND-SOUND-038).
+Two fresh native setup-prefix runs returned parser success, counts 13,
+13 and -1 and nonzero group pointers; this observes the normal endpoint
+without verifying every record byte or later allocation/chooser state
+(FND-SOUND-039).
 
 | Key | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|
@@ -172,6 +176,8 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   retained successful regular-file conditions bypass text translation
   and read-side flush scanning. Changed state, failed allocation/device
   results and other callers remain competing native alternatives.
+  FND-SOUND-039 observes the native normal count/pointer return twice;
+  intermediate storage and complete record content remain unverified.
 - Full consumer effects of CardGroup, the driver chunk numbers and
   SamplePlaybackMode beyond their recorded local stores/output copies
   (FND-SOUND-020, FND-SOUND-037, Q-CONFIG-012).

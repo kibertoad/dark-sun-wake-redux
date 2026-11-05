@@ -37,9 +37,17 @@ the old state format incompatible. Historical checkpoints are preserved.
 The fixed SOUND_DS.EXE parser capability script is setup_parser.py under
 tools/research/rust-dos-runs/. Its two-file identity, entry/return and
 error/driver-guard contract is in docs/implementation-plans/ADV-SURVEY.md.
-Setup-specific launch, stops and named memory reads are unverified until an
-actual attempt; the existing DSUN.EXE answers do not establish them. This
-script admits no input, writes, frames, drivers or gameplay/rule replay.
+On 2026-11-05 two fresh owned runs validated setup-specific launch to the
+declared parser entry and return, the incoming far frame and named
+count/pointer/mode reads (FND-SOUND-039). These fixed parts are agent;
+input, guest writes, frames, saves/restores, drivers and later UI remain
+unverified and outside this probe. The utility's DS/SS mapping is separate
+from DSUN.EXE. Both attempts used package 1.0.0/rust-dos v1.8.1, default
+muted host output, private two-file C drives and no other media; owned
+sessions closed. Reproduce with the project-local Python and
+setup_parser.py <new-run-name>. Retained records are under
+GAME_DIR/captures/rust-dos-setup-parser/v181-setup-parser-20261105-a/ and
+v181-setup-parser-20261105-b/. No gameplay/rule replay capability follows.
 
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies

@@ -416,13 +416,19 @@ Next ID: Q-CONFIG-013
   bounded ASCII/token/span conditions, including high-byte classification
   and signed-index wrap admission;
   native line/tag/value/record spans, aliases and intervening writers
-  beyond FND-SOUND-038's complete installed source-band/count composition;
+  beyond FND-SOUND-038's complete installed source-band/count composition
+  and FND-SOUND-039's successful native count/pointer endpoint;
   and outer 0001's error/close child continuation beyond the local returns
   already recorded. Native stream admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-039 observes two fresh native successful parser returns
+  with counts 13, 13, -1 and nonzero group pointers. The fixed entry/frame,
+  return and field-read capabilities are verified; DS and SS are distinct
+  at return. Record-byte/extent coherence, intermediate aliases/writers
+  and other input/error/child paths remain, not launch/normal-return uncertainty.
   Tried: FND-SOUND-038 accounts for all 26 records and 940 interior keys,
   including the two ignored MidiDmaJumper children, and removes exact
   installed nested consumption and positive group tag-counter composition
@@ -497,7 +503,8 @@ Next ID: Q-CONFIG-013
   exhausted-slot and construction-failure cleanup paths; lower write 3B03
   and child preservation where the negative flush route can occur;
   error-mapping values/consumers; actual DOS/device and heap/break outcomes
-  beyond the local binary regular-file path. Keep unsupported native
+  beyond the local path and FND-SOUND-039's normal native parser endpoint.
+  Keep unsupported native
   outcomes separate from code-decided branches and non-rb callers.
   Tried: split from Q-CONFIG-006 after FND-SOUND-030/031/032 remove
   local byte/refill/read/translation/error/flush dispatch. FND-SOUND-033
@@ -505,7 +512,12 @@ Next ID: Q-CONFIG-013
   conditional normal 512-byte stream construction from Settles it.
   Under its retained successful regular-file conditions, text translation
   and read-side flush scans are bypassed. Native preservation and outcomes,
-  other paths/callers and failure cleanup remain; no setup run is admitted.
+  other paths/callers and failure cleanup remain.
+  Tried: FND-SOUND-039 verifies the fixed utility's native parser entry,
+  far caller and successful return twice, with counts and nonzero group
+  pointers. This removes a solely hypothetical normal endpoint. Full
+  stream/record bytes, extents, intermediate state and other/error paths
+  remain; this is not a general input/UI/driver capability.
   Blocks: complete native parser admission for the named format.
 - Q-CONFIG-012. FMT-CONFIG-002: What full consumer effects follow the
   CardGroup, driver chunk-number and SamplePlaybackMode fields?

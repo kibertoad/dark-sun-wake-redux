@@ -55,12 +55,18 @@ Next ID: Q-SOUND-011
   Blocks: complete loader interpretation of FMT-SOUND-004.
 - Q-SOUND-010. FMT-SOUND-004, FMT-CONFIG-002: What actual row/index,
   storage and continuation contract admits setup's list-choice result?
-  Settles it: actual record/source spans and heap/break/state admission;
+  Settles it: record-byte/extent coherence beyond FND-SOUND-039's native
+  group count/pointer endpoint; heap/break/state admission for the remaining
+  label/vector/chooser allocations;
   retained far-zero vector storage; chooser child/frame preservation and
   native reachability; and nonpositive, larger or other-label profiles
   outside FND-SOUND-022's conditional local proof. Local cardinality/index,
   installed source profile, count conversion, allocation rounding/clearing
   and plain formatter are FND-SOUND-022 through FND-SOUND-027.
+  Tried: FND-SOUND-039 observes two fresh successful parser returns with
+  counts 13, 13, -1 and nonzero offset-four group pointers. The native
+  negative-count group result is no longer hypothetical at that endpoint;
+  record bytes/extents and later label/vector/chooser admission remain.
   Tried: split from Q-SOUND-007 after FND-SOUND-021
   identifies the wrapper's unconditional first-label read, entry-only negative
   index clamp, layout FFFF path and normal current-index return. A source
