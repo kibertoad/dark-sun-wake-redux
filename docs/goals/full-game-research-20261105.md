@@ -35,15 +35,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 6201ee9b
-  -NoRestore passed: 1917 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 9a053164
+  -NoRestore passed: 1918 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-083 for removal/queue/cell/redraw/unload
-  and descriptor acquisition/caller/eviction compositions. Latest batch is 23b09f64.
+  FND-ITEM-073 through FND-ITEM-084 for removal/queue/cell/redraw/unload
+  and descriptor acquisition/caller/eviction/refresh compositions. Latest batch is 94a87c3e.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -84,6 +84,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   neighbor/object/child ordering. Actual eviction/link/descriptor inputs,
   other writers and transitive child effects remain Q-PARTY-116; no native
   count invariant or exhaustive writer coverage was declared.
+- Image refresh: FND-ITEM-084 names effect-image-refresh-contract.txt and
+  its matching -repeat pair. Reuse its complete local recursion, image
+  overrides, handle publication and repeated dimension-read ordering.
+  Link termination, native owner/cache/frame/buffer admission and 3568/060E
+  effects remain Q-PARTY-116; refresh AL does not cancel parent acquisition.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
