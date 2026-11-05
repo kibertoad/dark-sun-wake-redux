@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-128
+Next ID: Q-PARTY-129
 
 ## Static
 
@@ -757,19 +757,25 @@ Next ID: Q-PARTY-128
   leaves. Tried: split from Q-UI-002. FND-PARTY-232 reads the window request, the callback, the
   eight source button IDs with their eligibility flags, and the local event loop and close
   pointer branches; the children they call remain. Blocks: nothing yet.
-- Q-PARTY-005. FMT-PARTY-004, FMT-PARTY-005: When do `30B0:00C1` and overlay 202 `+0C82` clear
-  bit 0 of `PSST` bytes, what does the byte at `51F1:07E2 + 3 * power` hold, and does anything
-  write a slot's 15-byte `SPST` entry at `4D62:039C` without naming that address? Settles it:
-  `2D40:197A` and its caller `2AAD:0000`, the callers of the routine holding overlay 202 `+0C82`,
-  the readers of the power table at `51F1:07E1`, and a search for block copies and reads into
-  segment `4D62` (segment word `0x0320`) at computed offsets. Tried:
-  FND-PARTY-104 reads the level-gain windows, which show `SPST` as the known spells and bits 1 to
-  7 of `PSST` as power ranks, and keep bit 0; FND-PARTY-203 shows the load writes only the
-  resource's own length and that no shipped character with a 9-byte `SPST` can be loaded;
-  FND-PARTY-209 lists every instruction naming `0x039C` and finds no clear of a whole entry;
-  FND-PARTY-210 shows bit 0 of a `PSST` byte marks a power in effect, and FND-PARTY-211 that
-  every power in effect ends at the end of a fight and of a rest.
-  Blocks: slice 3.
+- Q-PARTY-005. FMT-PARTY-004: Which paths and inputs reach overlay
+  202 +0C82's PSST active-bit clear?
+  Settles it: the entry and callers or stored callback transfers reaching
+  the routine that holds +0C82, with the current member and power index
+  used for that write and any interpretation-affecting state changes.
+  Reuse FND-PARTY-210's local byte clear; do not repeat the rank or
+  maintenance-table readings. FND-MAGIC-007/008 settle the maintenance
+  byte and positive/zero/99 gates, and FND-MAGIC-014 binds the walker's
+  signed clock condition and selected clear calls. Their stated alias,
+  table-writer and clock-source exclusions remain where relevant; they
+  do not prove all possible native timing or a new invariant.
+  SPST computed-copy coverage is now Q-PARTY-128.
+  Tried: assess FMT-PARTY-004 using FND-PARTY-006/011/012/104/210/211
+  and FND-MAGIC-007/008/014. The later findings remove the table-byte
+  meaning and local walker-condition obligations. The overlay-202
+  caller/input context remains; the older 2AAD spelling is not another
+  independent sweep implementation. Split the distinct SPST question
+  into Q-PARTY-128 without answering it or changing evidence confidence.
+  Blocks: complete interpretation of FMT-PARTY-004.
 - Q-PARTY-017. RULE-PARTY-006: When the player opens Create Characters (start window button
   `0x4B65`, overlay 212 `+061C`, window `0x2CEC`) before START GAME, which actions on that
   screen other than `ADD` on an empty box change the placed-object count, `DS:0DAB`, the
@@ -873,6 +879,25 @@ Next ID: Q-PARTY-128
   establish a complete game/utility access set. No qualifying whole-entry
   complete reading was identified but left undeclared.
   Blocks: complete reading of FMT-PARTY-003.
+
+- Q-PARTY-128. FMT-PARTY-005: Which transfers can change a slot's SPST
+  bytes without naming the table's literal base, including bytes 9 to 14
+  left by a nine-byte resource read?
+  Settles it: pointer-derived block copies, whole-segment transfers,
+  file reads and computed-offset writes reaching 4D62's four 15-byte
+  entries, with their source/span/slot identity and ordering relative to
+  a short read. Reuse FND-PARTY-203's exact resource-length copy and
+  shipped-character admission result, and FND-PARTY-209's literal-base
+  operand census and bit-clear ranges. FND-SAVE-015's 60-byte table
+  entry 20 and FND-RNG-091's direct file-reader accounting are known
+  mechanisms to compose, not a complete indirect/alias census. Preserve
+  controls and unexamined transfers; a caller or write that cannot affect
+  these bytes is not an additional SPST lifetime requirement.
+  Tried: split from Q-PARTY-005 with its FND-PARTY-104/203/209 evidence.
+  Known literal accesses do not clear a whole entry; pointer-derived
+  transfers and actual reused-slot state remain outside that result.
+  No earlier attempt, source exclusion or unresolved path is discarded.
+  Blocks: complete interpretation of FMT-PARTY-005.
 
 ## Emulated call
 

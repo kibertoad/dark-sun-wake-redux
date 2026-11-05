@@ -47,4 +47,4 @@ bytes and 3 (characters 30, 31 and 33) are 9 bytes [FND-PARTY-006].
 - What a 9-byte resource leaves in bytes 9 to 14 of its 15-byte entry: the read writes only the
   first 9 bytes, and no shipped character with one can be loaded (FND-PARTY-203); no instruction
   that names the table clears a whole entry, so they keep the slot's earlier bits
-  (FND-PARTY-209). Left: transfers that reach the table without naming it (Q-PARTY-005).
+  (FND-PARTY-209). Left: transfers that reach the table without naming it (Q-PARTY-128).
