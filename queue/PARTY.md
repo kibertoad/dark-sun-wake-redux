@@ -255,9 +255,10 @@ Next ID: Q-PARTY-119
   cell pointer/coordinate/read-span and alias admission beyond
   FND-ITEM-076's local 25AF:020C/04D0/01DD contracts; redraw page/table/
   rectangle/source admission and graphics-child effects beyond
-  FND-ITEM-077's local 31E0:128C gates/cleanup; unload's later 07CE..0AD1
-  cleanup/child effects beyond FND-ITEM-078's placement-index and flagged
-  residual gate, including use-time entry-index/slot/neighbor identity; and
+  FND-ITEM-077's local 31E0:128C gates/cleanup; unload's metadata/frame
+  admission and termination, graphics/movement/script children and full
+  31E0:044C effects beyond FND-ITEM-078/079's local gates/loops, including
+  use-time entry-index/slot/neighbor identity; and
   native kind-three slot/handler preservation and queue boundary-storage
   admission beyond FND-ITEM-075's local snapshot/dequeue/dispatch contract,
   including queue pointer/count/
@@ -266,6 +267,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-079 removes later unload's own linked-row loop, kind
+  branches, frame arithmetic and final cleanup-call binding. Saved effect
+  index and no ten-row cap are distinct from the outer removal. Native
+  metadata/frame/termination and the named children remain above; no
+  unchanged rereading of this body is needed.
   Tried: FND-ITEM-078 removes unload's initial index binding and
   remove-before-residual-count gate. A flagged removed row with counted
   same-slot flagged survivors bypasses its own later slot cleanup; that
