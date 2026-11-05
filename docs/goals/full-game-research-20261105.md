@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince f5d27c55
-  -NoRestore passed: 1925 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince bf7eb80e
+  -NoRestore passed: 1926 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-091 for removal/queue/cell/redraw/unload
+  FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 22e3ac29.
+  Latest batch is 5d576923.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -126,6 +126,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-EXE-409/414 selector contracts; no duplicate selector reading is needed.
   Native buffers, selector/chain producers, selector children and installed
   backend targets/effects remain Q-PARTY-116. Zero count requires offset zero.
+- Backend composition: FND-ITEM-092 reuses FND-EXE-391/395/396/397/
+  398/399/584 for all four known callback families. Do not repeat their
+  local result/body readings. Complete writers, registration lifetime,
+  active selection, native service/driver outcomes and per-call preservation
+  remain Q-PARTY-116; a zero callback is not a completed-byte count.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
