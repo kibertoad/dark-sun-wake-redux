@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince f93d99aa
-  -NoRestore passed: 1922 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince daa73572
+  -NoRestore passed: 1923 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-088 for removal/queue/cell/redraw/unload
+  FND-ITEM-073 through FND-ITEM-089 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 7c4d017b.
+  Latest batch is 0bdd4547.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -107,9 +107,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   follow global cleanup requests; no native failure was claimed.
 - Reclamation: FND-ITEM-088 names effect-bitmap-reclamation-contract.txt
   and its matching -repeat pair. Reuse local age/candidate selection and
-  requested-size accounting; 3D2A release and 38EC consolidation remain.
+  requested-size accounting; release/consolidation native admission remains.
   FND-COMBAT-125 already supplies 0586 pointer updates, now composed here.
   The accumulated total is not verified free space; native lifetime stays open.
+- Release/consolidation: FND-ITEM-089 names
+  effect-pool-release-consolidation-contract.txt and its matching -repeat pair.
+  Reuse local release, pool insert/delete, pointer-adjustment and consolidation
+  contracts. Native cache/pool producers, order/span/alias admission and
+  backing-store/reset children remain Q-PARTY-116; no free-space invariant
+  or complete reading was declared.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
