@@ -518,12 +518,18 @@ Next ID: Q-CONFIG-013
   beyond FND-SOUND-042's retained initial-slot failure path; negative-flush
   reachability, source/stack bounds and write/seek child preservation
   beyond FND-SOUND-043's local lower-write contract;
-  error-word consumers and table/word writers or aliases beyond
-  FND-SOUND-044's initial values and normalization; actual DOS/device
+  error-state computed/pointer/implicit accesses and aliases beyond
+  FND-SOUND-045's exact-literal census; its normalized-word boundary
+  candidates at 1C08:0C95/0C96, unsupported indirect continuations and
+  selector preservation through the create-mode consumer; actual DOS/device
   and heap/break outcomes
   beyond the local path and FND-SOUND-039's normal native parser endpoint.
   Keep unsupported native
   outcomes separate from code-decided branches and non-rb callers.
+  Tried: FND-SOUND-045 records a controlled repeatable exact-literal
+  census and the create-mode selector consumer. Do not repeat those
+  searches unchanged; two boundary candidates and excluded representations,
+  child preservation and runtime storage remain explicit in Settles it.
   Tried: FND-SOUND-044 removes the initial 89-row error-map values,
   reachable extent, fallback/direct categories and argument cleanup.
   Consumers, table/word preservation and actual interrupt outcomes remain,
