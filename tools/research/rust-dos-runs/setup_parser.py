@@ -4,6 +4,7 @@ Only two fingerprinted licensed files enter a private session drive. No
 arguments, input, guest writes, screenshots, driver use or gameplay is admitted.
 Reports are original-derived and remain beneath the approved GAME_DIR.
 """
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -19,6 +20,8 @@ from dinorefurb_dosbox_session import (
 )
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "exec-census"))
+from setup_record_projection import project_source, RECORD_SIZE
 INPUTS = {"SOUND_DS.EXE": (204593, "236c2dc23c071eca421eb5b427caee57"),
           "SOUND.INI": (54669, "aecc7469098e0c188e0e3d056c5fd530")}
 # FND-SOUND-024/033 and FND-EXE-491; no arbitrary address or target input.
@@ -99,12 +102,76 @@ def wait_same_operation(session, operation, attempts=6):
     raise RuntimeError("setup continuation still pending after pause; closing owned session")
 
 
+def observe_records(client, stop, loaded, projection):
+    """Only named group headers/payloads at the existing successful return stop."""
+    fields = observe_fields(client, stop, loaded, "returned")
+    names = {"main", "digital", "music_only"}
+    if (fields["ax"] != 1 or set(projection["counts"]) != names
+            or set(projection["payloads"]) != names or fields["counts"] != projection["counts"]):
+        raise ValueError("setup records need successful source-matching counts")
+    registers = stop["registers"]
+    ss, sp = (int(registers.get(key, "-1"), 16) for key in ("ss", "sp"))
+    if not 0 <= ss <= 0xFFFF or not 0 <= sp <= 0xFFF0 or ss * 16 + sp + 16 > 0xA0000:
+        raise ValueError("setup record observation has an unsupported stack window")
+    floor = max((loaded + 0x1E36 - 0x1000) * 16 + 0x10000, ss * 16 + sp + 16)
+    blocks = {}
+    for name in ("main", "digital", "music_only"):
+        count = fields["counts"][name]
+        if type(count) is not int or count != -1 and not 1 <= count <= 16:
+            raise ValueError("setup record count outside bounded profile")
+        payload = projection["payloads"][name]
+        if type(payload) is not bytes or len(payload) != max(0, count) * RECORD_SIZE:
+            raise ValueError("setup projected record extent mismatch")
+        pointer = fields["groups"][name]
+        segment, offset = pointer["segment"], pointer["offset"]
+        if type(segment) is not int or segment <= 0 or offset != 4:
+            raise ValueError("setup record pointer outside offset-four profile")
+        request = count * RECORD_SIZE & 0xFFFF
+        paragraphs = (request + 19) // 16
+        begin, end = segment * 16, segment * 16 + paragraphs * 16
+        if begin < floor or end > 0xA0000 or request + 4 > 0x10000:
+            raise ValueError("setup group extent crosses the observation bounds")
+        if any(begin < block["end"] and block["begin"] < end for block in blocks.values()):
+            raise ValueError("setup group allocations overlap")
+        blocks[name] = {"segment": segment, "begin": begin, "end": end,
+                        "paragraphs": paragraphs, "request": request}
+    # Check every header before reading any payload. Never follow word two.
+    for name, block in blocks.items():
+        paragraphs = struct.unpack("<H", checked_read(client, block["segment"], 0, 2))[0]
+        if paragraphs != block["paragraphs"]:
+            raise ValueError(f"setup allocation size word differs for {name}: {paragraphs}")
+    summaries, native = {}, {}
+    for name, block in blocks.items():
+        expected = projection["payloads"][name]
+        summary = {"count": fields["counts"][name], "header_paragraphs": block["paragraphs"],
+                   "modeled_payload_capacity": block["paragraphs"] * 16 - 4,
+                   "compared_bytes": 0, "equal": None}
+        if expected:
+            if len(expected) > 4096:
+                raise ValueError("setup populated record observation exceeds cap")
+            actual = client.read_memory(f"{block['segment']:04X}:0004", len(expected)).data
+            if len(actual) != len(expected):
+                raise ValueError("short setup record payload read")
+            native[name] = actual
+            differing = [index for index, (a, b) in enumerate(zip(actual, expected)) if a != b]
+            summary.update({"compared_bytes": len(expected), "equal": not differing,
+                            "expected_sha256": hashlib.sha256(expected).hexdigest(),
+                            "native_sha256": hashlib.sha256(actual).hexdigest(),
+                            "differing_bytes": len(differing), "first_differing_offsets": differing[:32]})
+        summaries[name] = summary
+    if observe_fields(client, stop, loaded, "returned") != fields:
+        raise ValueError("setup named fields changed during paused record observation")
+    return {"groups": summaries, "all_populated_equal": all(
+                row["equal"] for row in summaries.values() if row["compared_bytes"])}, native
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
         body = stream.read(size + 1)
     if (len(body), xxhash.xxh3_128_hexdigest(body)) != identity:
         raise ValueError("setup input differs from the fixed licensed identity")
+    return body
 
 
 def main():
@@ -113,8 +180,8 @@ def main():
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    for name, identity in INPUTS.items():
-        verified_input(game / name, identity)
+    inputs = {name: verified_input(game / name, identity) for name, identity in INPUTS.items()}
+    projection = project_source(inputs["SOUND.INI"].decode("ascii"))
     run = game / "captures/rust-dos-setup-parser" / sys.argv[1]
     if run.exists():
         raise ValueError("setup run directory exists; choose a new name")
@@ -151,6 +218,15 @@ def main():
             report["phases"].append(fields)
             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
             print(json.dumps(fields), flush=True)
+        summary, native = observe_records(session.client, observed.stop, loaded, projection)
+        report["record_comparison"] = summary
+        for name, body in native.items():
+            (run / f"{name}-native.bin").write_bytes(body)
+            (run / f"{name}-expected.bin").write_bytes(projection["payloads"][name])
+        (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        print(json.dumps(summary), flush=True)
+        if not summary["all_populated_equal"]:
+            raise RuntimeError("setup record contents differ; local payloads and report retained")
         print("setup parser boundary observed; closing owned session", flush=True)
 
 

@@ -1,0 +1,143 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {resolve} from 'node:path';
+import {enginePython} from '../../tools/tool-dependencies.mjs';
+
+function check(code, directory) {
+  const result = spawnSync(enginePython(), ['-I', '-', resolve(directory)], {encoding: 'utf8', input: code});
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+}
+
+test('setup source projection preserves documented words, strings, nested bits and duplicate stores', () => {
+  check(`
+import sys, struct
+sys.path.insert(0,sys.argv[1])
+from setup_record_projection import numeric_word, project_source
+def reject(fn):
+    try: fn()
+    except ValueError: return
+    raise AssertionError('accepted unsupported source projection')
+def source(records,digital=()):
+    rows=[]
+    for group,items in [('MainGroup',records),('DigitalGroup',digital),('MusicOnlyGroup',())]:
+        rows+=['['+group+']','[NumberOfRecords] '+str(-1 if group=='MusicOnlyGroup' else len(items))]
+        for name,fields in items:
+            rows+=['[StartRecord]','[CardName] ['+name+']',*fields,'[EndRecord]']
+        rows+=['[EndOfGroup]']
+    return chr(10).join(rows+['[EndOfFile]'])+chr(10)
+fields=['[CardId] 7','[CardGroup] 4',
+        '[NumberOfMidiAddresses] 3','[MidiAddress] 0x330','[MidiAltAddress] 0x3A8','[MidiAltAddress] 0x320',
+        '[NumberOfDigitalAddresses] 2','[DigitalAltAddress] 0x380',
+        '[NumberOfMidiIrqs] 2','[MidiIrq] 5','[MidiAltIrq] 7',
+        '[NumberOfIrqs] 2','[Irq] 10','[AltIrq] 11',
+        '[NumberOfDmas] 2','[Dma] 1','[AltDma] 3','[Dma] -1',
+        '[RmDigitalDriverName] [D0]','[RmMidiDriverName] [M0]',
+        '[PmDigitalDriverName] [D1]','[PmMidiDriverName] [M1]',
+        '[DigitalDriverChunkNumber] 12','[MidiDriverChunkNumber] 13','[SamplePlaybackMode] 1',
+        '[Flags] 3','[DspEnabled]','[DspNotEnabled]','[MidiNotEnabled]',
+        '[Flags] 2','[CdEnabled]','[MultipleInstallDisabled]',
+        '[Jumpers] 9','[MidiAddressJumper]','[MidiIrqJumper]','[DigitalAddressJumper]',
+        '[DigitalIrqJumper]','[DigitalDmaJumper]','[AddressJumper]','[IrqJumper]',
+        '[DmaJumper]','[MidiDmaJumper]']
+r=project_source(source([('A',fields),('B',[])]))
+assert r['counts']=={'main':2,'digital':0,'music_only':-1}
+body=r['payloads']['main']; assert len(body)==508 and not r['payloads']['music_only']
+assert body[:2]==bytes([65,0]) and body[254:256]==bytes([66,0])
+assert body[256:]==bytes(252) and body[0xE0:254]==bytes(30)
+assert struct.unpack_from('<5H',body,0x28)==(7,4,3,816,3)
+assert struct.unpack_from('<H',body,0x32)[0]==800
+assert struct.unpack_from('<3H',body,0x42)==(2,0,896)
+assert struct.unpack_from('<3H',body,0x58)==(2,5,7)
+assert struct.unpack_from('<3H',body,0x6E)==(2,10,11)
+assert struct.unpack_from('<3H',body,0x84)==(2,65535,3)
+assert [body[at:at+3] for at in (0x9A,0xA9,0xB8,0xC7)]==[b'D0'+bytes(1),b'M0'+bytes(1),b'D1'+bytes(1),b'M1'+bytes(1)]
+assert struct.unpack_from('<5H',body,0xD6)==(12,13,1,9,255)
+for spelling,word in [('00012',12),('-32768',32768),('65536',0),('0x3A8',3),
+                      ('0xffff',0),('-0x330',0),('4294967295',65535),
+                      ('-4294967295',1),('4294967296',65535),('-4294967296',0)]:
+    assert numeric_word(spelling)==word
+for spelling in ['-','--1','0x','+1','1 suffix','9'*20]: reject(lambda:numeric_word(spelling))
+assert len(project_source(source([('A'*39,[])]))['payloads']['main'])==254
+reject(lambda:project_source(source([('A'*40,[])])))
+for tag in ['RmDigitalDriverName','RmMidiDriverName','PmDigitalDriverName','PmMidiDriverName']:
+    assert len(project_source(source([('A',['['+tag+'] ['+'Q'*14+']'])]))['payloads']['main'])==254
+    reject(lambda:project_source(source([('A',['['+tag+'] ['+'Q'*15+']'])])))
+reject(lambda:project_source(source([('A',['[SamplePlaybackMode] 2'])])))
+reject(lambda:project_source(source([('A',['[NumberOfDmas] 11'])])))
+reject(lambda:project_source(source([('A',['[Jumpers] 1','[OpaqueJumper]'])])))
+reject(lambda:project_source(source([('A',[])])[:-1]))
+`, 'tools/research/exec-census');
+});
+
+test('setup record observations require disjoint matching headers before payload reads and retain bounded differences', () => {
+  check(`
+import sys, struct
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_records, address, PHASES
+def reject(fn):
+    try: fn()
+    except ValueError: return
+    raise AssertionError('accepted unsupported record observation')
+loaded=0x1000; ds=0x1E36; ss=0x3000; sp=0x100
+counts={'main':2,'digital':3,'music_only':-1}
+expected={'main':bytes(i%251 for i in range(508)),
+          'digital':bytes(i%239 for i in range(762)),'music_only':b''}
+projection={'counts':counts.copy(),'payloads':expected.copy()}
+stop={'reason':'breakpoint','cs_ip':address(loaded,*PHASES['returned']),
+      'registers':{'ds':f'{ds:04X}','ss':f'{ss:04X}','sp':f'{sp:04X}','ax':'0001'}}
+class Memory:
+    def __init__(self):
+        self.groups={'main':0x4000,'digital':0x4100,'music_only':0x4200}
+        self.counts=counts.copy(); self.offset=4; self.headers=0; self.payloads=0
+        self.bad_header=False; self.short_header=False; self.short_payload=False
+        self.mismatch=False; self.drift=False
+    def read_memory(self,where,size):
+        values={f'{ds:04X}:EC74':struct.pack('<hhh',self.counts['main']+int(self.drift and self.payloads==2),self.counts['digital'],self.counts['music_only']),
+                f'{ds:04X}:188C':struct.pack('<6H',self.offset,self.groups['main'],self.offset,self.groups['music_only'],self.offset,self.groups['digital']),
+                f'{ds:04X}:1888':struct.pack('<HH',0,0), f'{ds:04X}:ECCC':struct.pack('<H',1)}
+        if where in values:
+            assert len(values[where])==size; return NS(data=values[where])
+        for name,segment in self.groups.items():
+            if where==f'{segment:04X}:0000':
+                self.headers+=1
+                value=((self.counts[name]*254&65535)+19)//16
+                data=struct.pack('<H',value+int(self.bad_header and name=='music_only'))
+                return NS(data=data[:1] if self.short_header else data)
+            if where==f'{segment:04X}:0004':
+                assert self.headers==3 and name!='music_only'
+                self.payloads+=1
+                data=bytearray(expected[name]); assert len(data)==size
+                if self.mismatch and name=='main':
+                    for i in range(40): data[i]^=1
+                return NS(data=bytes(data[:-1] if self.short_payload else data))
+        raise AssertionError('read outside named record fields')
+m=Memory(); r,native=observe_records(m,stop,loaded,projection)
+assert r['all_populated_equal'] and m.headers==3 and m.payloads==2
+assert native=={name:expected[name] for name in ('main','digital')}
+assert r['groups']['main']['compared_bytes']==508 and r['groups']['main']['header_paragraphs']==32
+assert r['groups']['music_only']['equal'] is None and r['groups']['music_only']['compared_bytes']==0
+assert r['groups']['music_only']['header_paragraphs']==4081
+m=Memory(); m.mismatch=True; r,native=observe_records(m,stop,loaded,projection)
+assert not r['all_populated_equal'] and r['groups']['main']['differing_bytes']==40
+assert r['groups']['main']['first_differing_offsets']==list(range(32))
+for attr in ['bad_header','short_header']:
+    m=Memory(); setattr(m,attr,True); reject(lambda:observe_records(m,stop,loaded,projection))
+    assert m.payloads==0
+m=Memory(); m.short_payload=True; reject(lambda:observe_records(m,stop,loaded,projection))
+m=Memory(); m.drift=True; reject(lambda:observe_records(m,stop,loaded,projection))
+for mutate in [lambda m:setattr(m,'offset',5),
+               lambda m:m.groups.update(main=0x2000),
+               lambda m:m.groups.update(digital=0x4001),
+               lambda m:m.groups.update(music_only=0xFFF0),
+               lambda m:m.counts.update(main=1)]:
+    m=Memory(); mutate(m); reject(lambda:observe_records(m,stop,loaded,projection)); assert m.headers==0 and m.payloads==0
+bad={**stop,'registers':{**stop['registers'],'ax':'0000'}}
+m=Memory(); reject(lambda:observe_records(m,bad,loaded,projection)); assert m.headers==0
+bad={**stop,'registers':{**stop['registers'],'ss':'FFFF'}}
+reject(lambda:observe_records(Memory(),bad,loaded,projection))
+wrong={'counts':counts.copy(),'payloads':{**expected,'main':b''}}
+reject(lambda:observe_records(Memory(),stop,loaded,wrong))
+`, 'tools/research/rust-dos-runs');
+});

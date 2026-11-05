@@ -136,3 +136,34 @@ short reads, exact input identity and pending-operation handling. Exit:
 selected tooling gate passes, then a separate capability/research attempt
 records actual success or the blocking incompatibility under docs/RUNTIME.md
 and the relevant queue items. Utility capabilities stay unverified until then.
+
+After FND-SOUND-039, extend that same fixed parser-return probe for
+Q-CONFIG-006/011 and Q-SOUND-010. Build an expected local record projection
+from FND-SOUND-037's declarative field/array/string mapping, FND-SOUND-034/035/
+036's bounded numeric conversion and FND-SOUND-038's admitted source bands.
+Use only the existing fingerprinted SOUND.INI and synthetic controls; do not
+translate disassembly or infer new fields. Zero each 254-byte expected record,
+preserve source order and duplicate primary stores, apply counted flag/jumper
+ORs including the ignored spelling, and retain hex-letter truncation. Reject
+source profiles outside those documented bounds. Keep projected source-derived
+bytes only in the run's GAME_DIR capture directory, never in fixtures or Git.
+
+At the existing validated return require AX=1, matching source counts,
+offset-four nonzero group pointers and real-mode, pairwise-disjoint modeled
+block extents outside the loaded code/data and active stack window. Cap block
+ends at 0xA0000 as a probe limit. Read only each first header word, requiring
+FND-SOUND-040's request-derived paragraph size, before any payload read. Read
+only populated groups (at most sixteen records/4096 bytes each), never the
+negative group's payload or rounded slack. Preserve native/projected payloads
+as <group>-native.bin and <group>-expected.bin locally; report hashes, equality,
+total differing-byte count and at most 32 differing offsets, never strings or
+byte dumps. Zero-record negative groups report header-only observations rather
+than payload equality. Keep the fixed entrypoints, two-file drive, guards,
+muted session, no input/writes and same-operation observation unchanged.
+Synthetic controls cover every field family, flags/no-op/ignored jumpers,
+duplicate/missing primary values, numeric truncation, string gaps, source
+limits, bad stops/counts/pointers/overlap/headers/short reads and mismatch caps.
+Exit: selected tooling gate passes; then two fresh runs compare all populated
+record bytes and headers, preserving any discrepancy as evidence rather than
+changing the expected projection to force a match. This verifies a paused
+endpoint, not later label/vector/chooser lifetime or every allocator path.

@@ -33,6 +33,7 @@
         "tests/evidence/build-listing.test.mjs",
         "tests/evidence/emulator.test.mjs",
         "tests/evidence/checkpoints.test.mjs",
+        "tests/evidence/setup-records.test.mjs",
         "tests/evidence/declared-flows.test.mjs",
         "tests/evidence/script-local-paths.test.mjs",
         "tests/evidence/script-selector-census.test.mjs",
