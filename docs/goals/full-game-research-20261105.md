@@ -35,15 +35,17 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 3d9b7ea4
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 81a93f0b
   -NoRestore` passed, with the existing argument-metadata, unavailable Kaitai
   compiler and scheduled-generation skips. Documentation check passed:
-  1935 entries, 208 parity rows, five deviations. Use project-local
+  1936 entries, 208 parity rows, five deviations. Use project-local
   `EVIDENCE_PYTHON` for gates and hooks.
 - Next: Q-PARTY-121, FMT-PARTY-006, constructor input admission. Review
   FND-ITEM-093 through FND-ITEM-098 and FND-COMBAT-149 before new reading.
-  Select a named producer or preservation obligation from its Settles it;
-  do not repeat only conditional ordinary-publication arithmetic.
+  Reuse FND-ITEM-102 for the coordinate child. Next assess lower-loader
+  mode-one input/index/count preservation using FND-COMBAT-149, whose
+  flags-zero restrictions do not admit every mode-one child. Do not repeat
+  local coordinate arithmetic or conditional ordinary-publication proofs.
 - Then Q-PARTY-120, FMT-PARTY-006, immediate-handler input/child
   preservation. Review FND-ITEM-099/100/101, FND-COMBAT-034/037 and
   FND-MAGIC-019/FND-RNG-052; choose a named remaining child or producer.
@@ -55,7 +57,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Retained effect reports: GAME_DIR/analysis/item-removal-20261104/.
   Canonical names, repeat-pair identities and reproduction commands are
   in the findings. Keep licensed reports local; use source-specific MZ
-  mappings. No original game ran in the queue-review batch.
+  mappings. No original game ran in the coordinate-helper batch.
 - Setup work remains Q-CONFIG-006/011/012 and Q-SOUND-010. Review
   FND-SOUND-030 through FND-SOUND-048 and docs/RUNTIME.md before retrying.
   Retained reports: GAME_DIR/analysis/disc-adv-survey-20261104/.
