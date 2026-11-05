@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042, FND-SOUND-043]
 conflicting: []
 split_with: []
 related: []
@@ -195,6 +195,9 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   FND-SOUND-042 records the local exhausted-slot ordering and retained
   initial-slot allocation-failure cleanup: close is attempted, active
   fields cleared and its result discarded, without proving DOS success.
+  FND-SOUND-043 records the lower write's raw/translated branches and
+  word arithmetic for short translated writes. Native negative-flush
+  reachability, source/stack bounds and DOS outcomes remain open.
 - Full consumer effects of CardGroup, the driver chunk numbers and
   SamplePlaybackMode beyond their recorded local stores/output copies
   (FND-SOUND-020, FND-SOUND-037, Q-CONFIG-012).

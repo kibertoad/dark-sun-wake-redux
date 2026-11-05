@@ -424,6 +424,11 @@ Next ID: Q-CONFIG-013
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-037, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: the outer error/close reading reuses FND-SOUND-024/042 and the
+  direct 333D wrapper, but its 0F25 formatter/351D output callback and
+  preservation through error output remain unproved. FND-SOUND-043
+  settles the independently answerable lower write under Q-CONFIG-011;
+  this does not remove the outer diagnostic continuation obligation.
   Tried: FND-SOUND-041 removes populated record-byte and modeled extent
   uncertainty at the installed-source normal return: both 3302-byte
   groups match, with all three size headers checked in two fresh runs.
@@ -510,12 +515,17 @@ Next ID: Q-CONFIG-013
   through intervening children and later refills, aliases and other writers;
   exhausted-slot storage beyond the nominal table; cleanup with nonzero
   size/count/auxiliary state and its 292B/1ACC/05F5/0EF5 child preservation,
-  beyond FND-SOUND-042's retained initial-slot failure path; lower write 3B03
-  and child preservation where the negative flush route can occur;
+  beyond FND-SOUND-042's retained initial-slot failure path; negative-flush
+  reachability, source/stack bounds and write/seek child preservation
+  beyond FND-SOUND-043's local lower-write contract;
   error-mapping values/consumers; actual DOS/device and heap/break outcomes
   beyond the local path and FND-SOUND-039's normal native parser endpoint.
   Keep unsupported native
   outcomes separate from code-decided branches and non-rb callers.
+  Tried: FND-SOUND-043 removes lower-write raw/translated dispatch and
+  short-result arithmetic. Remaining negative-flush reachability, buffer
+  and stack spans, aliases, state/child preservation and actual DOS results
+  are distinct from that local contract.
   Tried: FND-SOUND-042 removes local exhausted-loop ordering and zero-size
   initial-slot construction-failure cleanup. Close-result discard, active
   field reset and retained pointers are recorded; extra-slot storage,
