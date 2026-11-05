@@ -34,8 +34,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; research Audit remains unmet.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 60f6c45e
-  -NoRestore passed: 1905 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince b8be1796
+  -NoRestore passed: 1906 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls with Test.ps1 -ChangedSince 25461ebb -NoRestore. Prior full
   integration remains 5d12821d. Use project-local EVIDENCE_PYTHON for
@@ -81,6 +81,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the remaining boundary, pointer/implicit, incoming-state, formatter and
   driver obligations; do not repeat only the recorded field handoff.
   No setup selection or driver runtime capability changed.
+- Numeric summary: FND-SOUND-048 names setup-plain-word-format.txt,
+  setup-numeric-classes.json and setup-numeric-dispatch.json with their
+  matching -repeat pairs in the same approved local analysis store.
+  Q-CONFIG-012 no longer asks for local plain-word conversion. Do not
+  repeat it; native storage, drawing and wider consumers remain open.
 - Utility runtime: FND-SOUND-039/041 and docs/RUNTIME.md name the fixed
   setup parser capability and limits. New captures remain under
   GAME_DIR/captures/rust-dos-setup-parser/ as
@@ -92,12 +97,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Unfinished: none; final process audit found only its own shell among
   the inspected emulator/analysis/runtime process names.
 - Blockers: none known.
-- Next: Q-CONFIG-012 for remaining field consumers/numeric formatter;
-  Q-CONFIG-006 (reuse FND-SOUND-034 through FND-SOUND-041 for remaining parser
-  obligations), Q-CONFIG-011 (reuse FND-SOUND-030 through FND-SOUND-033 and FND-SOUND-042 through FND-SOUND-046),
-  Q-CONFIG-012, Q-SOUND-010 and Q-PARTY-116. Keep source/profile conditions
-  separate from native admission. Q-CONFIG-011/012 hold the independent
-  stream and field-consumer obligations split from Q-CONFIG-006.
+- Next: Q-PARTY-116, FMT-PARTY-006, for the effect-row constructor/use
+  contract. Review FND-ITEM-063 through FND-ITEM-068 and retained reports
+  first; name which input/state-writer or child obligation the batch can
+  remove. The prior paused endpoint is not a constructor call. Reuse
+  current runtime pins and supported named fields only.
+  Q-CONFIG-006/011/012 and Q-SOUND-010 remain open with their narrowed
+  obligations; setup findings have not established the broader contracts.
 - Correction review: the separate read-only reviewer completed the required
   re-reading for FND-SOUND-037; no delegated work remains.
 - Standing goal remains active; this handover is a continuation checkpoint,
