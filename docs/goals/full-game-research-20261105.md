@@ -35,16 +35,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 3d9625bb
-  -NoRestore passed: 1919 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 764de9c8
+  -NoRestore passed: 1920 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
 - Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
-  FND-ITEM-073 through FND-ITEM-085 for removal/queue/cell/redraw/unload
+  FND-ITEM-073 through FND-ITEM-086 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 69f22170.
+  Latest batch is 85d675cf.
   Next assess remaining descriptor/state producers and
   remaining cleanup children or an actual constructor/use-time
   state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
@@ -94,6 +94,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and its matching -repeat pair. Reuse its signed-displacement, normalized
   register-result and no-data-mutation contract. Native buffer admission
   remains open; 060E itself is no longer an unread child obligation.
+- Bitmap provider: FND-ITEM-086 names effect-bitmap-provider-contract.txt
+  and its matching -repeat pair. Reuse its hit/tag/reload and miss/count
+  publication gates. Native count/flags/offset and archive size/data identity,
+  31F7 reload, 3C02 allocation and backing-store children remain Q-PARTY-116.
+  A returned index is not successful content transfer or frame admission.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
