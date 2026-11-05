@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 855c450a
-  -NoRestore passed: 1933 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince c3a3fff7
+  -NoRestore passed: 1934 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
@@ -44,7 +44,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
   FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is 350a01af.
+  Latest batch is abaf1b4e.
   Q-PARTY-119 now owns bitmap-cache/backing-store coherence and lifetime;
   Q-PARTY-116 retains constructor publication and use-time owner/slot state.
   Next assess remaining descriptor/state producers and
@@ -178,6 +178,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-PARTY-116. Do not duplicate those readings. Native neighboring-table
   count/writers/aliases, lookup state across casting and +12A8 effects remain.
   Handler AL one does not prove an append succeeded or a row survived.
+- Target list: FND-ITEM-100 names effect-rectangle-target-list.txt and
+  effect-target-list-insertion.txt, each with matching -repeat pair. Reuse
+  literal rectangle/class/slot gates and capacity-free insertion. Actual
+  accepted population, handler's 64-record region, owner/frame/DS-SS/span
+  admission and casting children remain Q-PARTY-116. No native excess-count
+  case or defect was claimed; selected flag zero skips geometry testing.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
