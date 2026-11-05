@@ -252,11 +252,18 @@ Next ID: Q-PARTY-119
   creators/restores and intervening row flag/count/base/slot writers; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
-  cell children 25AF:020C/04D0/01DD, redraw 31E0:128C, queue-shift
-  289B:01DC and later kind-three dispatch/storage admission beyond
+  cell children 25AF:020C/04D0/01DD, redraw 31E0:128C and later
+  kind-three dispatch/storage admission, including queue pointer/count/
+  capacity/order preservation beyond FND-ITEM-074's initial-bound mover
+  composition and
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-074 removes the local queue-shift child for retained
+  initial queue bounds, including odd-length backward tails. Initial
+  counts/capacities and real MZ pointer relocations are recorded; actual
+  queue state, preservation and later dispatch remain, not an unchanged
+  rereading of the mover or assumption that the even-copy proof suffices.
   Tried: FND-ITEM-073 removes local count/compaction/rescan and boundary
   flag-clear ordering, deferred arguments and the twelve-byte copy
   extent. Constructor/use-time publication, child preservation, actual
