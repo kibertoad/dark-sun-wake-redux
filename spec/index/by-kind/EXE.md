@@ -19,7 +19,7 @@ Entries by kind.
 
 ## findings
 
-510 entries.
+512 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -490,7 +490,7 @@ Entries by kind.
 | [FND-EXE-593](../../findings/FND-EXE-593.md) | The installed DSUN.EXE inventory decodes the bytes after INT 3Fh in 149 trampoline rows, starts a row one byte into 1BF3:3C90's instruction at 1BF3:40DC that no transfer targets, and has no row for 284 of the census walk's routines | recorded |
 | [FND-EXE-594](../../findings/FND-EXE-594.md) | The DSUN.EXE rows 3F96:0375, 3F96:0381 and 1BF3:5334 are not routine entries, and 15 walk routines in segment 4842 are one-byte iret targets inside an or bh, 0 | recorded |
 | [FND-EXE-595](../../findings/FND-EXE-595.md) | The restaged DSUN.EXE inventory has 3,261 rows, a five-byte row for each of the 854 trampolines, no row at 1BF3:40DD, and a row at every walk routine but 15 one-byte iret targets; 19,117 walk instructions stay outside its ranges | recorded |
-| [FND-EXE-596](../../findings/FND-EXE-596.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress | recorded |
+| [FND-EXE-596](../../findings/FND-EXE-596.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress | superseded |
 | [FND-EXE-597](../../findings/FND-EXE-597.md) | Ghidra 12.1.3 wraps near transfer targets at the 64K linear page; with them corrected and the walk's table jumps and runs declared, the DSUN.EXE inventory has 3,227 rows and 14 walk instructions outside its ranges | recorded |
 | [FND-EXE-598](../../findings/FND-EXE-598.md) | The 16 routines of overlay 175 that no entry placed open, fill, draw and close a six-slot item window and register two groups of six frame handlers for overlay 189 | recorded |
 | [FND-EXE-599](../../findings/FND-EXE-599.md) | Six overlay routines that only a trampoline enters started no row of the DSUN.EXE inventory; declared as entries, they add six rows and leave every other row unchanged | recorded |
@@ -499,7 +499,7 @@ Entries by kind.
 | [FND-EXE-602](../../findings/FND-EXE-602.md) | The 10 routines of overlay 206 that no entry placed set a slot's frame, move a slot step by step along a line and draw each step, save and restore a 64 by 64 screen area, show a frame of BMP 19001 at one of four places for 40 ticks, place an object, and give one of eight directions between two points | recorded |
 | [FND-EXE-603](../../findings/FND-EXE-603.md) | The 13 routines of overlay 199 that no entry placed keep a text and choice dialog for overlay 188 in three windows at 52A1:0000, 0004 and 0008, take the MAP, BOOK, CLOSE, DEBUG and END lines, scroll the text and the list of up to ten choices, wait for a choice, and load and draw PORT pictures | recorded |
 | [FND-EXE-604](../../findings/FND-EXE-604.md) | The 5 routines of overlay 178 that no entry placed sort a clicked slot into an action or open a small window at 4DA0:0000 with three action buttons, a hover label of TALK, GET, USE or OPEN and a USEABLE BY list, handle that window's events, and close it | recorded |
-| [FND-EXE-605](../../findings/FND-EXE-605.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party | recorded |
+| [FND-EXE-605](../../findings/FND-EXE-605.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party | superseded |
 | [FND-EXE-606](../../findings/FND-EXE-606.md) | The 8 routines of overlay 193 that no entry placed lay a cast's area out as placed entries of a new effect slot, flash a cast's area points and remove the object, sum caster levels over a slot's effect rows, and gather effect slots in a cone, a strip, a box or a circle | recorded |
 | [FND-EXE-607](../../findings/FND-EXE-607.md) | The 8 routines of overlay 207 that no entry placed sort a store's items into a page of six slots, draw the store panel and its slots, move a bought item onto the pointer, draw the character panel and the party's money in the inventory window, and adjust a buying and a selling price by the words at 4E71:0036 and 4E71:0034 | recorded |
 | [FND-EXE-608](../../findings/FND-EXE-608.md) | The 7 routines of overlay 211 that no entry placed redraw the spell window's four party boxes and current name, close the spell window, handle the events of its 34 list controls, and draw a frame over one of those controls through overlay 190 or 2D40:3BEC | superseded |
@@ -533,3 +533,5 @@ Entries by kind.
 | [FND-EXE-636](../../findings/FND-EXE-636.md) | Overlay tail census distinguishes shared-frame continuations from interior decode gaps | recorded |
 | [FND-EXE-637](../../findings/FND-EXE-637.md) | Canonical ownership and decode declarations reproduce a bounded repaired overlay view | recorded |
 | [FND-EXE-638](../../findings/FND-EXE-638.md) | Regenerated resident metadata admits the repaired joined function inventory | recorded |
+| [FND-EXE-639](../../findings/FND-EXE-639.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress | recorded |
+| [FND-EXE-640](../../findings/FND-EXE-640.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party | recorded |

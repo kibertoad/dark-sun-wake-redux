@@ -39,7 +39,7 @@ Entries by status.
 
 ## recorded
 
-32 entries.
+71 entries.
 
 | ID | Title |
 |---|---|
@@ -75,6 +75,45 @@ Entries by status.
 | [FND-ITEM-031](../../findings/FND-ITEM-031.md) | The effect-block builder clears fifteen bytes but its code-byte bit store needs a separate destination bound |
 | [FND-ITEM-032](../../findings/FND-ITEM-032.md) | The qualified direct effect-insertion path admits positive signed codes but does not enforce the bitmap's fifteen-byte bound |
 | [FND-ITEM-033](../../findings/FND-ITEM-033.md) | Same-offset stores target another segment while numbered-save loading requests the effect table independently of insertion |
+| [FND-ITEM-034](../../findings/FND-ITEM-034.md) | Two explicit effect-handler outputs write the API's final word rather than its code argument |
+| [FND-ITEM-035](../../findings/FND-ITEM-035.md) | The handler's local bitmap has distinct bounds for its cleared span and neighboring dispatch and result fields |
+| [FND-ITEM-036](../../findings/FND-ITEM-036.md) | Only canonical type 50 lacks the other type predicates that force a nonzero Look classification |
+| [FND-ITEM-037](../../findings/FND-ITEM-037.md) | Every canonical type-50 first-item record has a valid name number that masks the independent Look word gate |
+| [FND-ITEM-038](../../findings/FND-ITEM-038.md) | Recorded canonical generic setter families and decoded script paths do not select item-name field eleven |
+| [FND-ITEM-039](../../findings/FND-ITEM-039.md) | Known item initializer and scalar setter exclude a name invalidation while the record sentinel returns success without a store |
+| [FND-ITEM-040](../../findings/FND-ITEM-040.md) | All type-fifty item payloads in canonical RDFF chains have valid names including the two later items |
+| [FND-ITEM-041](../../findings/FND-ITEM-041.md) | Every canonical RDFF item starts with a valid name regardless of its initial type |
+| [FND-ITEM-042](../../findings/FND-ITEM-042.md) | The malformed GPL thirty-seven instruction targets the accumulator under preserved returning-error context |
+| [FND-ITEM-043](../../findings/FND-ITEM-043.md) | Canonical RDFF item-test inputs have bounded source domains and no position six or nine or negative bonus |
+| [FND-ITEM-044](../../findings/FND-ITEM-044.md) | Placement admission can return positions six and nine and compares a full word before the position byte write |
+| [FND-ITEM-045](../../findings/FND-ITEM-045.md) | Decoded literal scalar-setter calls select nine fixed fields but neither item position nor word ten |
+| [FND-ITEM-046](../../findings/FND-ITEM-046.md) | The dynamic GPL twenty-seven request loop has sixteen inspected literal caller leads selecting functions ten through thirteen |
+| [FND-ITEM-047](../../findings/FND-ITEM-047.md) | Printed nested scalar-setter requests select field twenty-five only |
+| [FND-ITEM-048](../../findings/FND-ITEM-048.md) | Inventory placement orders category container capacity and hand checks before origin and class eligibility |
+| [FND-ITEM-049](../../findings/FND-ITEM-049.md) | The placement load gate compares a narrowed minimum aggregate with the second Strength-table column |
+| [FND-ITEM-050](../../findings/FND-ITEM-050.md) | Canonical field-eighty-nine samples cannot reject the placement load gate at Strength three or above |
+| [FND-ITEM-051](../../findings/FND-ITEM-051.md) | Six encoded placement calls separate five message-disabled queries from one message-enabled action prefix |
+| [FND-ITEM-052](../../findings/FND-ITEM-052.md) | The placement removal gate checks existing target items against seven initialized effect bits |
+| [FND-ITEM-053](../../findings/FND-ITEM-053.md) | Rebuilt class flags make item eligibility an any-admitted-class test and exclude canonical row fifty |
+| [FND-ITEM-054](../../findings/FND-ITEM-054.md) | The inventory transfer wrapper subtracts four from logical position and partitions target list fields |
+| [FND-ITEM-055](../../findings/FND-ITEM-055.md) | The occupied-slot exchange continues after transfer results and bootstraps its temporary slot from a zero-result graph |
+| [FND-ITEM-056](../../findings/FND-ITEM-056.md) | Canonical item hook inputs exclude negative DATA selectors and the repeated acquisition branch |
+| [FND-ITEM-057](../../findings/FND-ITEM-057.md) | Canonical DATA properties narrow equipment dispatch while the getter retains separate cache and read admission |
+| [FND-ITEM-058](../../findings/FND-ITEM-058.md) | The equipment status query tests effect-four membership and locally preserves captured selector registers |
+| [FND-ITEM-059](../../findings/FND-ITEM-059.md) | Equipment reset copies a live item word before dispatch and preserves the captured selector registers |
+| [FND-ITEM-060](../../findings/FND-ITEM-060.md) | Joint canonical item inputs assign conditional equipment resets to quantity and word zero E |
+| [FND-ITEM-061](../../findings/FND-ITEM-061.md) | Equipment dispatch forces the direct cast route with level six even for canonical psionic selectors |
+| [FND-ITEM-062](../../findings/FND-ITEM-062.md) | Equipment casts start with the owner as one target and return a continuation counter before draining queued effects |
+| [FND-ITEM-063](../../findings/FND-ITEM-063.md) | The canonical equipment area pass selects at most one filtered effect-object target without proving a removable row |
+| [FND-ITEM-064](../../findings/FND-ITEM-064.md) | The final area filter accepts selector forty-two by default without child calls or persistent writes |
+| [FND-ITEM-065](../../findings/FND-ITEM-065.md) | Effect-row construction prepares the removal flag before insertion but counted publication remains conditional |
+| [FND-ITEM-066](../../findings/FND-ITEM-066.md) | The modeled placed-table allocation covers the extra insertion row but does not initialize all of its bytes |
+| [FND-ITEM-067](../../findings/FND-ITEM-067.md) | A paused native placed table has an ordered counted prefix and a zero extra row that breaks the extended ordering |
+| [FND-ITEM-068](../../findings/FND-ITEM-068.md) | The sampled effect-placement caller builds wrapped coordinate keys and accepts every constructor result except FFFF |
+| [FND-ITEM-069](../../findings/FND-ITEM-069.md) | Controlled direct-operand searches find the equipment flag's known stores and duration read without another byte-word-doubleword overlap |
+| [FND-ITEM-070](../../findings/FND-ITEM-070.md) | Startup explicitly clears the equipment flag while nominal save spans do not prove later restore preservation |
+| [FND-ITEM-071](../../findings/FND-ITEM-071.md) | The equipment flag is zero at main entry after the observed startup initialization |
+| [FND-ITEM-072](../../findings/FND-ITEM-072.md) | Canonical equipment effects always have a nonsentinel sound request although 85 of their 186 requests return at the sentinel gate |
 
 ## Open questions
 

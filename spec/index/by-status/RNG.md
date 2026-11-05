@@ -14,7 +14,7 @@ Entries by status.
 
 ## superseded
 
-10 entries.
+11 entries.
 
 | ID | Title |
 |---|---|
@@ -27,6 +27,7 @@ Entries by status.
 | [FND-RNG-036](../../findings/FND-RNG-036.md) | Overlay 195's ten unread roll_sum calls are a d10 confusion table, a side roll, a d100 test against a table on combatant byte +0x19, and the dice of seven per-round effect damages |
 | [FND-RNG-037](../../findings/FND-RNG-037.md) | Overlay 197's ten unread roll_sum calls are five tests in the hit routine's gates and a check routine, four picks of a summoned creature and a 4d20 pool for DATA 71 |
 | [FND-RNG-039](../../findings/FND-RNG-039.md) | Overlay 195's ten roll_sum calls are a d10 confusion table, a side roll, a d100 test against a table on byte +0x19 of the record its slot argument numbers, and the dice of seven per-round effect damages |
+| [FND-RNG-083](../../findings/FND-RNG-083.md) | Blocks from 4AB9:001C come from the far heap, whose base the startup code sets at least 0x200 bytes past DS:A4EC and which 1000:1831 never moves below that base |
 | [FND-RNG-088](../../findings/FND-RNG-088.md) | DSUN.EXE reads files at five DOS read requests; of the 19 calls of the read routine 44DE:01AF, eight read into frame locals or fixed DS buffers that miss DS:426D, three into blocks just allocated on the far heap, and eight through far pointers held in frame locals, arguments or DS variables |
 
 ## recorded
@@ -108,7 +109,6 @@ Entries by status.
 | [FND-RNG-080](../../findings/FND-RNG-080.md) | The page words that 1BF3:42FB returns hold only segments from A000 to AFFB or page offsets, and the cases of the segment 2707 jump tables write only through ES set from them and their own stack frames |
 | [FND-RNG-081](../../findings/FND-RNG-081.md) | Of the timer callbacks, 31E0:31A7 stores DS:265A, DS:145E, DS:1424 and 4C13:035B, overlay 196 +040B adds 1 to DS:21E0, and 4654:09A9 stores into segments 4E71 and 50C3 and calls driver function 0xC1 |
 | [FND-RNG-082](../../findings/FND-RNG-082.md) | In each of the ten ADV drivers with a timer function 0067, functions 0067, 0xB5 and 0xC1 write only their stack frames, the driver's own code segment and the 0x208-byte sequence blocks that function 0x97 registers, which the game allocates through 4AB9:001C |
-| [FND-RNG-083](../../findings/FND-RNG-083.md) | Blocks from 4AB9:001C come from the far heap, whose base the startup code sets at least 0x200 bytes past DS:A4EC and which 1000:1831 never moves below that base |
 | [FND-RNG-084](../../findings/FND-RNG-084.md) | From play-ready under rust-dos no music driver is loaded, the timer slots hold only 4654:09A9, 31E0:31A7 and the old timer vector, the far heap starts at DS plus 0x1000 paragraphs, and the driver dispatch is not entered in 3 s |
 | [FND-RNG-085](../../findings/FND-RNG-085.md) | Three instructions store the slot word +6 of the placed-object entries through the far pointer DS:67B7 directly, none of them 9999 except 31E0:1127 with a slot argument of 9999, and only four calls of 31E0:0121 pass a slot not shown to be below 9999 |
 | [FND-RNG-086](../../findings/FND-RNG-086.md) | From play-ready, with and after the view click that leaves DS:426D at 9999, 31E0:2C86 calls 31E0:2D6E only with its own stack copy of the slot, and 31E0:0EFF stores only slots 0xDC to 0x10B in the placed-object entries |
@@ -117,6 +117,7 @@ Entries by status.
 | [FND-RNG-090](../../findings/FND-RNG-090.md) | DSUN.EXE reads files at five DOS read requests; of the 19 calls of the read routine 44DE:01AF, eight read into frame locals or fixed DS buffers that miss DS:426D, three into blocks just allocated on the far heap, and eight through far pointers held in frame locals, arguments or DS variables |
 | [FND-RNG-091](../../findings/FND-RNG-091.md) | Of the file reads FND-RNG-090 leaves open, only the SAVE load writes 4C13:0369, restoring the saved word, and none writes DS:426D; the others read into heap blocks, frame locals or fixed buffers that miss both words |
 | [FND-RNG-092](../../findings/FND-RNG-092.md) | The copy, fill and string routines other than 1000:0452 and 1000:3F5A, and the inline moves block_copies.py lists, write DS:426D and 4C13:0369 at no classified site; script instruction 0x0A can reach 4C13:0369 but no shipped script does |
+| [FND-RNG-093](../../findings/FND-RNG-093.md) | Startup places the modeled far-heap base above resident data using paragraph rounding, with later heap validity still required |
 
 ## Open questions
 

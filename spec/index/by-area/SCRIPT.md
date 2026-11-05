@@ -39,7 +39,7 @@ Entries by area.
 | [FND-SCRIPT-024](../../findings/FND-SCRIPT-024.md) | Every script instruction's handler reads a fixed operand layout, apart from 0x33, 0x40 and 0x48, and 349 of the 350 shipped scripts decode with these layouts to their last byte | recorded |
 | [FND-SCRIPT-025](../../findings/FND-SCRIPT-025.md) | Script instructions 0x01 to 0x05, 0x07, 0x11 and 0x76 to 0x7F change the byte, word or double word at their first parameter's address in place | recorded |
 | [FND-SCRIPT-026](../../findings/FND-SCRIPT-026.md) | Overlay 169 allocates and clears the eight script variable blocks before MAS/99 runs, and the interpreter clears the four local blocks again whenever another script becomes current | recorded |
-| [FND-SCRIPT-027](../../findings/FND-SCRIPT-027.md) | Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead | recorded |
+| [FND-SCRIPT-027](../../findings/FND-SCRIPT-027.md) | Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead | superseded |
 | [FND-SCRIPT-028](../../findings/FND-SCRIPT-028.md) | The trigger walkers of segment 1695 run the first record of a list whose cell, box, key or key pair matches, after storing the trigger's actors and cell in the script variables, only while the script state 4C0E:000B is 2; a region change frees the cell and box triggers and those not registered by MAS 99 | recorded |
 | [FND-SCRIPT-029](../../findings/FND-SCRIPT-029.md) | The game runs cell and box triggers when an object enters a cell, and the one-key and key-pair triggers when the player picks an item up, talks to, attacks, looks at or uses an object, or uses one item on another, and at the end of a fight and a creature's death | recorded |
 | [FND-SCRIPT-030](../../findings/FND-SCRIPT-030.md) | No source-declared adjacent relocated pointer pair names either GPLI conversion | recorded |
@@ -48,6 +48,12 @@ Entries by area.
 | [FND-SCRIPT-033](../../findings/FND-SCRIPT-033.md) | The object-context setter repeats a negative selector until its cursor reaches 320 | recorded |
 | [FND-SCRIPT-034](../../findings/FND-SCRIPT-034.md) | Trigger keys use kind-specific field-zero words and kind four has no shipped mapping | recorded |
 | [FND-SCRIPT-035](../../findings/FND-SCRIPT-035.md) | The cursor target finder returns a freshly read placement word rather than a normalized metadata index | recorded |
+| [FND-SCRIPT-036](../../findings/FND-SCRIPT-036.md) | The list-wide idle runner reloads next after script and unlink calls and stops after clearing its current link | recorded |
+| [FND-SCRIPT-037](../../findings/FND-SCRIPT-037.md) | The zero-height second-entry geometry gate tests only interior grid-cell bit seven and skips both endpoints | recorded |
+| [FND-SCRIPT-038](../../findings/FND-SCRIPT-038.md) | Script instructions 0x66, 0x6C, 0x6D and 0x6E fill one-key trigger lists like 0x65, 0x69 a cell list like 0x68, 0x6A and 0x6B box lists, and 0x70 a two-key list that never replaces a record; 0x6F, 0x1B and 0x1C set an object's entry points instead | recorded |
+| [FND-SCRIPT-039](../../findings/FND-SCRIPT-039.md) | The decoded registration radius domain has 381 small literals and one local-variable operand | recorded |
+| [FND-SCRIPT-040](../../findings/FND-SCRIPT-040.md) | The preserved GPL two-twenty-three callback sequence supplies radii five four and two then skips re-registration | recorded |
+| [FND-SCRIPT-041](../../findings/FND-SCRIPT-041.md) | A preserved public-entry local reset bounds the variable radius for every counter value | recorded |
 | [RULE-SCRIPT-001](../../rules/RULE-SCRIPT-001.md) | Loading a GPL or MAS script into the script cache | superseded |
 | [RULE-SCRIPT-002](../../rules/RULE-SCRIPT-002.md) | Running a script, reading its code and calling other scripts | supported |
 | [RULE-SCRIPT-003](../../rules/RULE-SCRIPT-003.md) | The script instructions for jumps, calls, returns, if, while, compare, the accumulator and assignment | supported |

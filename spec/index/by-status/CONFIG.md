@@ -30,7 +30,7 @@ Entries by status.
 
 ## superseded
 
-22 entries.
+23 entries.
 
 | ID | Title |
 |---|---|
@@ -42,6 +42,7 @@ Entries by status.
 | [FND-CONFIG-057](../../findings/FND-CONFIG-057.md) | Overlay 189 sends four guarded inventory and item-interaction messages |
 | [FND-CONFIG-071](../../findings/FND-CONFIG-071.md) | Startup calls the guarded save-capacity message helper after resource initialization |
 | [FND-CONFIG-078](../../findings/FND-CONFIG-078.md) | The stored-character list opens with a message-capable window callback |
+| [FND-CONFIG-079](../../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 |
 | [FND-CONFIG-081](../../findings/FND-CONFIG-081.md) | The resident pointer path returns a matched button number as an event-two identifier |
 | [FND-CONFIG-082](../../findings/FND-CONFIG-082.md) | The keyboard packet supplies the event-six word to the global fallback |
 | [FND-CONFIG-090](../../findings/FND-CONFIG-090.md) | The item-feedback callback limits mouse event bits before its shared message path |
@@ -59,7 +60,7 @@ Entries by status.
 
 ## recorded
 
-198 entries.
+199 entries.
 
 | ID | Title |
 |---|---|
@@ -133,7 +134,6 @@ Entries by status.
 | [FND-CONFIG-075](../../findings/FND-CONFIG-075.md) | The shipped 14002 window contains six of the seven frames targeted by its callback loop |
 | [FND-CONFIG-076](../../findings/FND-CONFIG-076.md) | Save and cinematic message helpers in overlay 187 have bounded direct caller routes |
 | [FND-CONFIG-077](../../findings/FND-CONFIG-077.md) | Overlay 204 rest messages have handler and script-request caller routes |
-| [FND-CONFIG-079](../../findings/FND-CONFIG-079.md) | The resident event dispatcher calls a loaded window's callback at offset 0xF5 |
 | [FND-CONFIG-080](../../findings/FND-CONFIG-080.md) | Two event-record discriminators reach the stored-character list message branch |
 | [FND-CONFIG-083](../../findings/FND-CONFIG-083.md) | The stored-character list callback is also installed as the global event fallback |
 | [FND-CONFIG-084](../../findings/FND-CONFIG-084.md) | A shared-message path restores its prior global callback after temporary registration |
@@ -261,6 +261,8 @@ Entries by status.
 | [FND-CONFIG-218](../../findings/FND-CONFIG-218.md) | F4 and F5 change the music and sound-effects bytes as the Preferences buttons do, A and F6 both toggle the animation byte unless it is locked, and no key changes the voice bytes |
 | [FND-CONFIG-219](../../findings/FND-CONFIG-219.md) | None of the 13 Preferences buttons writes the music level, which the screen only reads from the sound library on entry and draws as a bar |
 | [FND-CONFIG-220](../../findings/FND-CONFIG-220.md) | No uncompressed shipped program or batch file names PATCH.RTP, and PATCH.EXE keeps its program compressed after a 4,474-byte loader |
+| [FND-CONFIG-221](../../findings/FND-CONFIG-221.md) | Window-callback dispatch has no global fallthrough and zero window count rewrites the global event kind |
+| [FND-CONFIG-222](../../findings/FND-CONFIG-222.md) | Window count has three literal writers and wrapped bookkeeping differs from graph validity and signed traversal |
 
 ## Open questions
 
