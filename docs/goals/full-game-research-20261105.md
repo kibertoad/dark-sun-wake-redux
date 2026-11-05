@@ -36,17 +36,27 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last integration gate: 2026-11-06, `Test.ps1 -ChangedSince 0f66a51e
-  -NoRestore` passed integration selection, build and 758 .NET tests.
-  Documentation check passed with existing argument-metadata, unavailable
-  Kaitai compiler and scheduled-generation skips: 1937 entries, 208 parity
-  rows, five deviations. Use project-local EVIDENCE_PYTHON for gates/hooks.
-- Next: start the adopted existing-evidence closure review in PARTY before
-  more original-code exploration. Follow docs/RESEARCH-CLOSURE.md: the first
-  assessment batch names up to ten selected entries and exact baseline
-  revisions in its commit message, and each batch respects research scope.
-  Choose an assessed entry and map obligations by queue ID in its Open
-  questions. Time the three batches after the map and compare after two.
+- Last research gate: 2026-11-06, `Test.ps1 -Research -ChangedSince
+  fa2a30bd -NoRestore` passed with the existing declared skips: 1937
+  entries, 208 parity rows and five deviations. Integration at adoption
+  also passed the build and 758 .NET tests. Use project-local
+  EVIDENCE_PYTHON for gates and hooks.
+- Recovery assessment selection: FMT-PARTY-001, RULE-PARTY-008,
+  FMT-PARTY-003, FMT-PARTY-004, FMT-PARTY-005, FMT-PARTY-006,
+  FMT-PARTY-007, RULE-PARTY-002, RULE-PARTY-007, RULE-PARTY-009.
+  Reviewed: FMT-PARTY-007 (1 of 10). Next assess FMT-PARTY-001; the
+  remaining eight after that are still pending. No entry is chosen yet
+  for the closure trial/map; its three-batch timing has not started.
+- Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
+  Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
+  589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review is
+  in commit 7886855b. Q-PARTY-124 holds FMT-PARTY-007's remaining
+  question. No complete-reading declaration or question closure was added.
+- Upstream scope clarification PR 132 is open with checks passed:
+  https://github.com/kibertoad/refurbished-dinosaurs/pull/132.
+  It is not adopted in the pinned rules. Finish the selection's evidence
+  review before more original-code exploration, then choose an assessed
+  entry and put its queue-backed closure map in Open questions.
 - Pending research remains Q-PARTY-121, FMT-PARTY-006. Reuse
   FND-ITEM-102/103 and the existing mode-one composition. Provider/transfer,
   source/index/count and resource/refresh admission remain in the queue;
@@ -62,7 +72,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Retained effect reports: GAME_DIR/analysis/item-removal-20261104/.
   Canonical names, repeat-pair identities and reproduction commands are
   in the findings. Keep licensed reports local; use source-specific MZ
-  mappings. No original game ran in the slot-handoff/DF batch.
+  mappings. No original game ran in this assessment.
 - Setup work remains Q-CONFIG-006/011/012 and Q-SOUND-010. Review
   FND-SOUND-030 through FND-SOUND-048 and docs/RUNTIME.md before retrying.
   Retained reports: GAME_DIR/analysis/disc-adv-survey-20261104/.
