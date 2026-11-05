@@ -1,6 +1,6 @@
 # PARTY
 
-Next ID: Q-PARTY-127
+Next ID: Q-PARTY-128
 
 ## Static
 
@@ -849,6 +849,30 @@ Next ID: Q-PARTY-127
   No newly observed contradiction or qualifying whole-entry declaration
   was identified.
   Blocks: complete reading of FMT-PARTY-001.
+
+- Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the
+  documented one-byte representation and discipline-bit interpretation?
+  Settles it: complete the game and unpacked CHARTRAN read/write and
+  caller census for PSIN and its slot-byte sources, covering indirect
+  entries, computed resource tags and pointer/index aliases that can
+  affect the represented byte. Reuse FND-EXE-006's literal occurrences,
+  FND-PARTY-011/012's one-byte transfer sites, FND-PARTY-235's fourteen
+  known direct resource-write sites and FND-RNG-091's direct reader
+  accounting; do not repeat those unchanged searches. Bind any remaining
+  interpretation-affecting source/width/index or bit writes to their
+  callers, including FND-PARTY-077's choice projection,
+  FND-PARTY-210's reset and FND-SAVE-015's four-byte SAVE table entry 22.
+  Keep opaque copies distinct from a new bit interpretation. Preserve
+  unresolved transfers and census controls/exclusions for both executables.
+  The entry does not claim that higher bits are forbidden, that every
+  resource operation succeeds, or that a closed UI button never delivers
+  an event; those are not additional blockers for this format claim.
+  Tried: the existing-evidence review of FND-PARTY-002/011/012/077,
+  FND-PARTY-210/235, FND-RNG-091 and FND-SAVE-015 confirms the physical
+  byte and known bit mapping. The literal/direct-site findings do not
+  establish a complete game/utility access set. No qualifying whole-entry
+  complete reading was identified but left undeclared.
+  Blocks: complete reading of FMT-PARTY-003.
 
 ## Emulated call
 

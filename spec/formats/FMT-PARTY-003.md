@@ -48,4 +48,13 @@ is one byte [FND-PARTY-002].
 
 ## Open questions
 
-None.
+- Whether every game and transfer-utility access agrees with this byte
+  representation and the documented bit meanings (Q-PARTY-127).
+  FND-PARTY-011/012 and FND-PARTY-077 establish the known transfer
+  sizes and generation projection, but not a complete indirect/computed
+  access census. Reuse FND-PARTY-235's later direct writer accounting,
+  FND-RNG-091's direct readers, FND-PARTY-210's reset and
+  FND-SAVE-015's table entry 22 when assessing remaining paths.
+  The scope is this representation and its bit interpretation, not
+  resource-operation success or the discipline window's event delivery.
+  No claim is made that bits above the named three are forbidden.
