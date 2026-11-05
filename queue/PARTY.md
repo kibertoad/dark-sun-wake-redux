@@ -829,7 +829,7 @@ Next ID: Q-PARTY-129
   No qualifying whole-entry complete reading is merely undeclared.
   Blocks: complete reading of FMT-PARTY-007.
 
-- Q-PARTY-126. FMT-PARTY-001: Do all CHAR readers and writers preserve
+- Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve
   the documented chunk prefix and field interpretations?
   Settles it: the remaining indirect entries, separate readers/writers,
   pointer copies and computed field accesses affecting the documented
@@ -848,13 +848,24 @@ Next ID: Q-PARTY-129
   Reuse the known serializer/chunk and copy contracts; this does not ask
   for general file-I/O success or unrelated gameplay effects. Remaining
   unknown field meanings stay Q-PARTY-003.
+  Tried: the FMT-PARTY-006 assessment identifies this as the same
+  chunk-reader/writer obligation, not a second census. FND-PARTY-259
+  retains the local dispatch/copy contracts and corrected error-status
+  qualification; its unread allocation/reclamation children do not
+  change the documented byte destinations but do not prove acquisition
+  success. FND-PARTY-052 leaves later FNFO/type-width writers unsearched;
+  FND-PARTY-235 leaves field-list mutation and DS/SS correspondence open.
+  Track those bindings here. Placement publication, effect handling and
+  bitmap content/lifetime remain their existing independent questions
+  Q-PARTY-116/119/120/121/122/123, not prerequisites for deciding the
+  stored header's byte widths or the known writer's selector source.
   Tried: review FND-PARTY-052/054/148/152/156/159/235/259 for the whole
   FMT-PARTY-001 claim. The later direct-site/tag census and serializer
   selector reading remove those parts of the older writer limitation;
   metadata/graph-state, indirect and pointer/access exclusions remain.
   No newly observed contradiction or qualifying whole-entry declaration
   was identified.
-  Blocks: complete reading of FMT-PARTY-001.
+  Blocks: complete reading of FMT-PARTY-001 and FMT-PARTY-006.
 
 - Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the
   documented one-byte representation and discipline-bit interpretation?

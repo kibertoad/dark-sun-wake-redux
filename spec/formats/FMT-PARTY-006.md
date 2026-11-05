@@ -258,6 +258,16 @@ for root index zero it instead returns the root object number
 
 ## Open questions
 
+- Complete chunk-reader/writer and mutable descriptor/selector coverage is
+  shared with FMT-PARTY-001 (Q-PARTY-126). FND-PARTY-052/054/235/259
+  describe shipped chunks, known serializer selectors and local load
+  dispatch/copies; they do not complete the indirect-access census or
+  settle later FNFO, type-width and graph-list writes. The fourteen known
+  direct resource-write sites and their tag sources are already accounted
+  for by FND-PARTY-235, so the older literal-CHAR search is not the remaining
+  direct-site gap. This representation question is separate from the
+  placement, effect and image-lifetime contracts below; the whole entry
+  also includes those qualified behaviors and has no complete reading.
 - Immediate effect handling's native source/index/list/owner/scratch admission
   and named casting-child preservation (FND-ITEM-098/099/100/101,
   FND-COMBAT-034/037, FND-MAGIC-019, FND-RNG-052, Q-PARTY-120).
