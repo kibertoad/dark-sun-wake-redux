@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 91f29dcb
-  -NoRestore passed: 1932 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince aba65d70
+  -NoRestore passed: 1933 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
@@ -44,7 +44,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
   FND-ITEM-073 through FND-ITEM-092 for removal/queue/cell/redraw/unload
   and descriptor acquisition/caller/eviction/refresh/pointer compositions.
-  Latest batch is c653dce2.
+  Latest batch is 884c23af.
   Q-PARTY-119 now owns bitmap-cache/backing-store coherence and lifetime;
   Q-PARTY-116 retains constructor publication and use-time owner/slot state.
   Next assess remaining descriptor/state producers and
@@ -168,6 +168,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   gates and metadata/immediate/deferred ordering before sampled constructors.
   Actual inputs and immediate handler/cell/queue preservation of slot/count/
   row state remain Q-PARTY-116. Returned slot is not lifetime success.
+- Immediate handler: FND-ITEM-099 names effect-immediate-handler-contract.txt
+  and its matching -repeat pair. Reuse signed-byte decode and local target/
+  distance/mode/result gates. Effect-domain, geometry/list bounds, +15B9/
+  +12A8/+1519 effects and constructor-entry preservation remain Q-PARTY-116.
+  Selected callers pass zero mode and skip the deferred division branch.
 - Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
   FND-SOUND-030 through FND-SOUND-048 and retained reports under
   GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
