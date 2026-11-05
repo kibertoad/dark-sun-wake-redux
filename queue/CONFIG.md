@@ -508,12 +508,18 @@ Next ID: Q-CONFIG-013
   remaining file/error contracts admit setup's actual SOUND.INI reads?
   Settles it: preservation of startup stream/handle/count/buffer state
   through intervening children and later refills, aliases and other writers;
-  exhausted-slot and construction-failure cleanup paths; lower write 3B03
+  exhausted-slot storage beyond the nominal table; cleanup with nonzero
+  size/count/auxiliary state and its 292B/1ACC/05F5/0EF5 child preservation,
+  beyond FND-SOUND-042's retained initial-slot failure path; lower write 3B03
   and child preservation where the negative flush route can occur;
   error-mapping values/consumers; actual DOS/device and heap/break outcomes
   beyond the local path and FND-SOUND-039's normal native parser endpoint.
   Keep unsupported native
   outcomes separate from code-decided branches and non-rb callers.
+  Tried: FND-SOUND-042 removes local exhausted-loop ordering and zero-size
+  initial-slot construction-failure cleanup. Close-result discard, active
+  field reset and retained pointers are recorded; extra-slot storage,
+  nonzero-state children and actual DOS outcomes remain.
   Tried: split from Q-CONFIG-006 after FND-SOUND-030/031/032 remove
   local byte/refill/read/translation/error/flush dispatch. FND-SOUND-033
   removes the actual rb mode, startup free-handle/identity writes and
