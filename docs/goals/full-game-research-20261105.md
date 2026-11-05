@@ -34,11 +34,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; research Audit remains unmet.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 92d80760
-  -NoRestore passed: 1903 entries, 208 parity rows and five deviations,
-  retaining declared skips. Prior tooling integration at 5d12821d passed
-  202 Node tests and 758 .NET tests. Use project-local EVIDENCE_PYTHON
-  for gates and commit hooks.
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince 697e811f
+  -NoRestore passed: 1904 entries, 208 parity rows and five deviations,
+  retaining declared skips. Tooling at 697e811f passed selected evidence
+  controls with Test.ps1 -ChangedSince 25461ebb -NoRestore. Prior full
+  integration remains 5d12821d. Use project-local EVIDENCE_PYTHON for
+  gates and commit hooks.
 - Retained inputs: docs/HANDOVER.md names the existing canonical reports
   and checkpoints. FND-SOUND-030 through FND-SOUND-038 name static/source
   reports and exact repeats in the same approved local disc-ADV analysis
@@ -65,6 +66,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   supported configuration and preserved limits. No complete reading follows
   from partialSearch=false. Existing DSUN-only scripts remain unsuitable
   for setup. SOUND_DS.EXE has a committed function inventory.
+- Boundary follow-up: FND-SOUND-046 names repeated
+  setup-error-boundary-transfers.txt and setup-error-boundary-stubs.txt
+  reports under the same local analysis store, with matching -repeat pairs.
+  Q-CONFIG-011 retains only the excluded entry/access and preservation
+  obligations, not an unchanged direct caller search. Tooling at 697e811f
+  extends the fixed source census; synthetic wrap/alias controls passed.
+  No original runtime capability changed.
 - Utility runtime: FND-SOUND-039/041 and docs/RUNTIME.md name the fixed
   setup parser capability and limits. New captures remain under
   GAME_DIR/captures/rust-dos-setup-parser/ as
@@ -76,8 +84,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Unfinished: none; final process audit found only its own shell among
   the inspected emulator/analysis/runtime process names.
 - Blockers: none known.
-- Next: Q-CONFIG-006 (reuse FND-SOUND-034 through FND-SOUND-041 for remaining parser
-  obligations), Q-CONFIG-011 (reuse FND-SOUND-030 through FND-SOUND-033 and FND-SOUND-042 through FND-SOUND-045),
+- Next: Q-CONFIG-012 for independently untried field-consumer work;
+  Q-CONFIG-006 (reuse FND-SOUND-034 through FND-SOUND-041 for remaining parser
+  obligations), Q-CONFIG-011 (reuse FND-SOUND-030 through FND-SOUND-033 and FND-SOUND-042 through FND-SOUND-046),
   Q-CONFIG-012, Q-SOUND-010 and Q-PARTY-116. Keep source/profile conditions
   separate from native admission. Q-CONFIG-011/012 hold the independent
   stream and field-consumer obligations split from Q-CONFIG-006.
