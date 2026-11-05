@@ -255,7 +255,9 @@ Next ID: Q-PARTY-120
   FND-ITEM-095's shipped positive-count/trailing-sentinel composition,
   and count/key/slot lifetime
   beyond FND-ITEM-094's local recount/flag propagation; other
-  creators/restores and intervening row flag/count/base/slot writers; the
+  creators/restores and intervening row flag/count/base/slot writers,
+  including ordinary placement's actual lower-load/coordinate-child state
+  and insertion position/count identity beyond FND-ITEM-096's local stores; the
   selected scanner's range/coordinate and row-minus-one memory admission,
   and the positive flagged-match condition at 371D:050F, including its
   cell pointer/coordinate/read-span and alias admission beyond
@@ -285,6 +287,10 @@ Next ID: Q-PARTY-120
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-096 removes ordinary placement's local key/category,
+  count/anchor and direct entry-index publication. Its object-field position
+  argument differs from the effect constructor's count; actual lower-load
+  and child preservation, native indices and row lifetime remain above.
   Tried: FND-ITEM-095 removes empty/internal-zero alternatives for exact
   shipped ETAB loads: counts are positive and a cleared tail sentinel stops
   recount. Region identities and zero/control scans were checked. Active
