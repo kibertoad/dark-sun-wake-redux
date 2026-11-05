@@ -4,6 +4,92 @@ import {spawnSync} from 'node:child_process';
 import {resolve} from 'node:path';
 import {enginePython} from '../../tools/tool-dependencies.mjs';
 
+test('fixed setup parser probe rejects unbound fields and observes only its existing operation', () => {
+  const code = `
+import sys, struct, tempfile
+from pathlib import Path
+from types import SimpleNamespace as NS
+import xxhash
+sys.path.insert(0,sys.argv[1])
+from setup_parser import address, checked_read, observe_fields, wait_same_operation, verified_input, PHASES
+def reject(fn):
+    try: fn()
+    except (ValueError, RuntimeError): return
+    raise AssertionError('accepted unsupported setup observation')
+loaded=0x1000
+ds=loaded+0x1E36-0x1000
+ss=0x3000
+sp=0x100
+ret=address(loaded,*PHASES['returned'])
+cs,ip=(int(x,16) for x in ret.split(':'))
+class Memory:
+    calls=0
+    short=False
+    def read_memory(self,where,size):
+        self.calls+=1
+        data={f'{ss:04X}:{sp:04X}':struct.pack('<HH',ip,cs),
+              f'{ds:04X}:EC74':struct.pack('<hhh',2,3,-1),
+              f'{ds:04X}:188C':struct.pack('<6H',4,5,6,7,8,9),
+              f'{ds:04X}:1888':struct.pack('<HH',10,11),
+              f'{ds:04X}:ECCC':struct.pack('<H',1)}[where]
+        assert len(data)==size
+        return NS(data=data[:-1] if self.short else data)
+def stop(phase):
+    return {'reason':'breakpoint','cs_ip':address(loaded,*PHASES[phase]),
+            'registers':{'ds':f'{ds:04X}','ss':f'{ss:04X}','sp':f'{sp:04X}','ax':'0001'}}
+m=Memory()
+r=observe_fields(m,stop('parser'),loaded,'parser')
+assert r['counts']=={'main':2,'digital':3,'music_only':-1}
+assert r['groups']['music_only']=={'offset':6,'segment':7}
+assert r['incoming_frame']=={'return_cs':cs,'return_ip':ip} and r['ax']==1
+assert observe_fields(m,stop('returned'),loaded,'returned')['incoming_frame'] is None
+for field,value in [('reason','paused'),('cs_ip',address(loaded,*PHASES['returned']))]:
+    bad=stop('parser'); bad[field]=value; fresh=Memory()
+    reject(lambda:observe_fields(fresh,bad,loaded,'parser'))
+    assert fresh.calls==0
+bad=stop('parser'); bad['registers']['ds']='0000'
+fresh=Memory(); reject(lambda:observe_fields(fresh,bad,loaded,'parser')); assert fresh.calls==0
+bad=stop('parser'); bad['registers']['ax']='10000'
+reject(lambda:observe_fields(Memory(),bad,loaded,'parser'))
+bad=stop('parser'); bad['registers']['sp']='FFFF'
+reject(lambda:observe_fields(Memory(),bad,loaded,'parser'))
+class WrongFrame(Memory):
+    def read_memory(self,where,size): return NS(data=bytes(size))
+reject(lambda:observe_fields(WrongFrame(),stop('parser'),loaded,'parser'))
+fresh=Memory(); fresh.short=True
+reject(lambda:observe_fields(fresh,stop('parser'),loaded,'parser'))
+reject(lambda:observe_fields(Memory(),stop('parser'),loaded,'other'))
+for args in [(-1,0x1000,0),(True,0x1000,0),(0xFFFF,0x1E36,0),
+             (0x1000,0x1000,0x10000),(0xFFFF,0x1000,0x10)]:
+    reject(lambda:address(*args))
+for args in [(ss,0xFFFF,2),(0xFFFF,0xF,2),(ss,sp,17),(ss,sp,0)]:
+    reject(lambda:checked_read(Memory(),*args))
+operation=NS(op='synthetic')
+class Session:
+    def __init__(self,pending): self.pending=pending; self.seen=[]; self.pauses=0
+    def observe(self,op,timeout):
+        assert op is operation and timeout==30
+        self.seen.append(op)
+        return NS(pending=len(self.seen)<=self.pending,stop={})
+    def pause(self): self.pauses+=1
+s=Session(1); assert not wait_same_operation(s,operation,2).pending
+assert len(s.seen)==2 and s.pauses==0
+s=Session(2); reject(lambda:wait_same_operation(s,operation,2))
+assert len(s.seen)==3 and s.pauses==1
+s=Session(10); reject(lambda:wait_same_operation(s,operation,2))
+assert len(s.seen)==5 and s.pauses==1
+with tempfile.TemporaryDirectory() as tmp:
+    p=Path(tmp)/'synthetic.bin'; p.write_bytes(b'synthetic')
+    identity=(9,xxhash.xxh3_128_hexdigest(b'synthetic'))
+    verified_input(p,identity)
+    p.write_bytes(b'different'); reject(lambda:verified_input(p,identity))
+    p.write_bytes(b'synthetic!'); reject(lambda:verified_input(p,identity))
+`;
+  const result = spawnSync(enginePython(), ['-I', '-', resolve('tools/research/rust-dos-runs')],
+    {encoding: 'utf8', input: code});
+  assert.equal(result.status, 0, result.stderr || result.stdout);
+});
+
 test('checkpoint probes reject stale identities, unready states and wrapping named reads', () => {
   const code = `
 import sys, hashlib, struct

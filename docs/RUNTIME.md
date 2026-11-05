@@ -34,6 +34,13 @@ different digest before starting restore. Native cross-release format
 compatibility has not been tested: the package guard alone does not prove
 the old state format incompatible. Historical checkpoints are preserved.
 
+The fixed SOUND_DS.EXE parser capability script is setup_parser.py under
+tools/research/rust-dos-runs/. Its two-file identity, entry/return and
+error/driver-guard contract is in docs/implementation-plans/ADV-SURVEY.md.
+Setup-specific launch, stops and named memory reads are unverified until an
+actual attempt; the existing DSUN.EXE answers do not establish them. This
+script admits no input, writes, frames, drivers or gameplay/rule replay.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,

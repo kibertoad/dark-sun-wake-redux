@@ -114,3 +114,25 @@ cover mixed recognized/ignored jumpers, the Flags contrast and continued
 unknown-tag refusal. Exit: selected tooling gate passes, then a separate
 research batch measures the complete installed source twice. The former
 strict-profile exception remains retained under its original tool commit.
+
+For Q-CONFIG-006/011 and Q-SOUND-010, add a fixed setup-parser runtime
+capability probe. Admit only SOUND_DS.EXE length 204593/XXH3
+236c2dc23c071eca421eb5b427caee57 and SOUND.INI length 54669/XXH3
+aecc7469098e0c188e0e3d056c5fd530 from the approved installation. Copy only
+those verified inputs to the session package's private C:; use pinned
+RustDosSession/rust-dos with its default muted host audio and run lock.
+No configurable target, arguments, entrypoints, input or guest writes.
+Stop first at parser entry 1AF6:0001, checking its DS mapping and incoming
+far return to 1ABD:0021; then at that return, with early error and driver
+loader guards. Read only the named stream pointer, group pointers/counts
+and mode word documented by FND-SOUND-024/033. Never follow an invalid
+pointer or continue after an unexpected guard. Observe each continuation's
+same operation handle; after a bounded observation budget request pause and
+observe that same handle before closing. No fixed emulated-time advancement,
+gameplay, frames, driver execution or rule/RNG replay claim. Source findings
+and FND-EXE-491/572 supply the static attempt and in-image prefix boundaries.
+Synthetic controls check relocation bounds, wrong stop/DS/return frame,
+short reads, exact input identity and pending-operation handling. Exit:
+selected tooling gate passes, then a separate capability/research attempt
+records actual success or the blocking incompatibility under docs/RUNTIME.md
+and the relevant queue items. Utility capabilities stay unverified until then.
