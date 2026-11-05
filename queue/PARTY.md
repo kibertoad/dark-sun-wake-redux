@@ -255,7 +255,9 @@ Next ID: Q-PARTY-119
   cell pointer/coordinate/read-span and alias admission beyond
   FND-ITEM-076's local 25AF:020C/04D0/01DD contracts; redraw page/table/
   rectangle/source admission and graphics-child effects beyond
-  FND-ITEM-077's local 31E0:128C gates/cleanup, and later
+  FND-ITEM-077's local 31E0:128C gates/cleanup; unload's later 07CE..0AD1
+  cleanup/child effects beyond FND-ITEM-078's placement-index and flagged
+  residual gate, including use-time entry-index/slot/neighbor identity; and
   native kind-three slot/handler preservation and queue boundary-storage
   admission beyond FND-ITEM-075's local snapshot/dequeue/dispatch contract,
   including queue pointer/count/
@@ -264,6 +266,11 @@ Next ID: Q-PARTY-119
   FND-ITEM-073's local compaction/rescan and deferred-copy contract.
   Q-PARTY-077 retains the distinct
   DUAL action/slot contract; Q-PARTY-118 owns the equipment flag.
+  Tried: FND-ITEM-078 removes unload's initial index binding and
+  remove-before-residual-count gate. A flagged removed row with counted
+  same-slot flagged survivors bypasses its own later slot cleanup; that
+  is neither a universal row guard nor proof of child preservation.
+  Remaining later cleanup and actual index/slot/neighbor lifetime stay above.
   Tried: FND-ITEM-077 removes redraw's own clipping/alignment, handle
   tests, cleanup and return-value/caller ordering. Graphics children and
   their page/table/source/preservation conditions remain; AL one is not
