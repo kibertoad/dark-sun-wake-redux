@@ -38,7 +38,7 @@ from startup_segments import equipment_flag
 sys.path.insert(0,sys.argv[1]+'/../exec-census')
 from disc_adv_envelopes import envelope as adv_envelope
 from resident_listing import span as resident_span
-from sound_ini_profile import profile as sound_ini_profile, source_spans as sound_ini_spans
+from sound_ini_profile import profile as sound_ini_profile, source_spans as sound_ini_spans, source_inputs as sound_ini_inputs
 def rejects(fn):
     try: fn()
     except (ValueError, SystemExit): return
@@ -88,6 +88,41 @@ for invalid in [source_labels(['A'],0),source_labels(['A'],-1),source_labels([],
                 labels.replace('[EndOfFile]',''),labels+chr(10)+'[Extra]',
                 source_labels(['X'*257]),source_labels([chr(955)]),'X'*4097,'X'*131073]:
     rejects(lambda:sound_ini_profile(invalid))
+inputs=sound_ini_inputs(source_fields('[CardId] 0x000A'+chr(10)+'[CardGroup] -32768'+chr(10)+
+    '[MidiAddress] 0x330'+chr(10)+'[NumberOfMidiIrqs] 8'+chr(10)+'[SamplePlaybackMode] 1'))
+numbers={row['field']:row for row in inputs['numericRows'] if row['field']!='NumberOfRecords'}
+assert numbers['CardId']['sourceBytes']==6 and numbers['CardId']['sourceBase']==16
+assert numbers['CardId']['sourceValue']==10 and numbers['CardId']['extractorAlphabetPrefixBytes']==5
+assert not numbers['CardId']['wholeSpellingInExtractorAlphabet']
+assert numbers['CardGroup']['sourceValue']==-32768 and numbers['CardGroup']['extractorAlphabetPrefixBytes']==6
+assert numbers['MidiAddress']['sourceValue']==816 and numbers['MidiAddress']['wholeSpellingInExtractorAlphabet']
+assert numbers['NumberOfMidiIrqs']['sourceValue']==8 and numbers['SamplePlaybackMode']['sourceValue']==1
+assert not inputs['terminalLf'] and not inputs['controlByteLines'] and not inputs['sourceIgnoredBracketLines']
+lf=chr(10)
+geometry=sound_ini_inputs('; [COMMENT]'+lf+'// [SEPARATOR]'+lf+source_labels(['A']).replace(chr(13),'')+lf)
+assert geometry['terminalLf'] and geometry['sourceIgnoredBracketLines']==[1,2]
+assert geometry['maxFirstTagBytes']==15 and geometry['maxBracketToCommentBytes']==20
+assert geometry['physicalLines']==source_labels(['A']).count(lf)+3
+assert sound_ini_inputs(source_labels(['A']))['physicalLines']==source_labels(['A']).count(lf)+1
+crlf_inputs=sound_ini_inputs(source_labels(['A']))
+lf_inputs=sound_ini_inputs(source_labels(['A']).replace(chr(13),''))
+assert crlf_inputs['maxBracketToCommentBytes']==lf_inputs['maxBracketToCommentBytes']+1
+assert crlf_inputs['maxPhysicalLineBytes']==lf_inputs['maxPhysicalLineBytes']
+assert sound_ini_inputs(source_fields('[CardId] 12 ; hidden 999999'))['numericRows'][1]['sourceBytes']==2
+long_line=sound_ini_inputs(source_fields('[UnknownKey] '+'Q'*256))
+assert long_line['maxPhysicalLineBytes']==269 and long_line['maxBracketToCommentBytes']==269
+assert 'Q'*10 not in str(long_line) and 'UnknownKey' not in str(long_line)
+for width in [39,40,41]:
+    tag_inputs=sound_ini_inputs(source_fields('['+'Q'*width+']'))
+    assert tag_inputs['maxFirstTagBytes']==width and 'Q'*10 not in str(tag_inputs)
+assert sound_ini_inputs(';'+chr(1)+lf+source_labels(['A']))['controlByteLines']==[1]
+for spelling in ['0','65535','0xffff','-0XfF','00012','9'*64]:
+    assert sound_ini_inputs(source_fields('[CardId] '+spelling))['numericRows'][1]['sourceBytes']==len(spelling)
+for spelling in ['+1','0x','1 trailing','9'*65,'--1']:
+    rejects(lambda:sound_ini_inputs(source_fields('[CardId] '+spelling)))
+base_lines=source_labels(['A']).count(lf)+1
+assert sound_ini_inputs(lf*(4096-base_lines)+source_labels(['A']))['physicalLines']==4096
+rejects(lambda:sound_ini_inputs(lf*(4097-base_lines)+source_labels(['A'])))
 assert resident_span('1000:0000..1000:0004',4)==(0x1000,0,4,0)
 assert resident_span('1000:FFF0..1000:10000',65536)==(0x1000,65520,65536,0)
 for invalid in ['0FFF:0000..0FFF:0004','1000:0004..1000:0004',

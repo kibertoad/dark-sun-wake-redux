@@ -1,6 +1,6 @@
 """Bounded source-label metadata for Q-SOUND-010; FMT-CONFIG-002.
 
-Usage: python -I sound_ini_profile.py APPROVED_SOUND_INI [--spans]
+Usage: python -I sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs]
 Reports no names and does not model the original parser or run a program.
 """
 import json
@@ -17,6 +17,11 @@ ARRAY_FIELDS = (("NumberOfMidiAddresses", "MidiAddress", "MidiAltAddress"),
                 ("NumberOfMidiIrqs", "MidiIrq", "MidiAltIrq"),
                 ("NumberOfIrqs", "Irq", "AltIrq"),
                 ("NumberOfDmas", "Dma", "AltDma"))
+NUMERIC_FIELDS = ("NumberOfRecords", "CardId", "CardGroup", "MidiIrq", "MidiAltIrq",
+                  "DigitalDriverChunkNumber", "MidiDriverChunkNumber",
+                  "SamplePlaybackMode", "Flags", "Jumpers") + tuple(
+                      name for family in ARRAY_FIELDS for name in family)
+NUMERIC_KEYS = {name.lower(): name for name in NUMERIC_FIELDS}
 
 
 def profile(text):
@@ -143,16 +148,72 @@ def source_spans(text):
     return {"records": rows, "limits": "source key/value lengths and occurrences only; no native parsing, conversion, storage or retention guarantee"}
 
 
+def source_inputs(text):
+    """Bounded source geometry/spellings; no native parser or conversion replay."""
+    profile(text)
+    lines = text.split("\n")
+    if text.endswith("\n"):
+        lines.pop()
+    if len(lines) > 4096:
+        raise ValueError("SOUND.INI inputs: line count limit")
+    numeric, ignored_brackets, controls = [], [], []
+    max_line = max_copy = max_tag = 0
+    bracket_lines = 0
+    for number, raw in enumerate(lines, 1):
+        line = raw[:-1] if raw.endswith("\r") else raw
+        max_line = max(max_line, len(line))
+        if any(ord(char) < 32 and char != "\t" or ord(char) == 127 for char in line):
+            controls.append(number)
+        start = line.find("[")
+        if start < 0:
+            continue
+        bracket_lines += 1
+        # Binary delivery preserves the CR before LF unless a semicolon
+        # already stopped copying. Physical width excludes the CRLF ending.
+        copied = raw[start:].split(";", 1)[0]
+        max_copy = max(max_copy, len(copied))
+        end = copied.find("]")
+        if end >= 0:
+            max_tag = max(max_tag, end - 1)
+        source_line = line.split(";", 1)[0].strip()
+        if not source_line or source_line.startswith("//"):
+            ignored_brackets.append(number)
+            continue
+        match = re.fullmatch(r"\[([A-Za-z][A-Za-z0-9]*)\]\s*(.*)", source_line)
+        if match is None:
+            raise ValueError("SOUND.INI inputs: unsupported physical line syntax")
+        key, value = match.group(1).lower(), match.group(2).strip()
+        if key not in NUMERIC_KEYS:
+            continue
+        if len(value) > 64 or not re.fullmatch(r"-?(?:0[xX][0-9A-Fa-f]+|[0-9]+)", value):
+            raise ValueError("SOUND.INI inputs: numeric syntax/limit")
+        magnitude = value.removeprefix("-")
+        base = 16 if magnitude.lower().startswith("0x") else 10
+        prefix = re.match(r"[0-9xX-]*", value).group()
+        numeric.append({"line": number, "field": NUMERIC_KEYS[key],
+                        "sourceBytes": len(value), "sourceBase": base,
+                        "sourceValue": (-1 if value.startswith("-") else 1) * int(magnitude, base),
+                        "extractorAlphabetPrefixBytes": len(prefix),
+                        "wholeSpellingInExtractorAlphabet": len(prefix) == len(value)})
+    return {"physicalLines": len(lines), "terminalLf": text.endswith("\n"),
+            "maxPhysicalLineBytes": max_line, "bracketBearingLines": bracket_lines,
+            "maxBracketToCommentBytes": max_copy, "maxFirstTagBytes": max_tag,
+            "sourceIgnoredBracketLines": ignored_brackets, "controlByteLines": controls,
+            "numericRows": numeric,
+            "limits": "source spans/spellings only; numeric prefix alphabet is not a conversion result; native contexts, storage and continuation unvalidated"}
+
+
 def main():
-    if len(sys.argv) not in (2, 3) or (len(sys.argv) == 3 and sys.argv[2] != "--spans"):
-        raise SystemExit("usage: sound_ini_profile.py APPROVED_SOUND_INI [--spans]")
+    modes = {"--spans": source_spans, "--inputs": source_inputs}
+    if len(sys.argv) not in (2, 3) or (len(sys.argv) == 3 and sys.argv[2] not in modes):
+        raise SystemExit("usage: sound_ini_profile.py APPROVED_SOUND_INI [--spans|--inputs]")
     import xxhash
     with open(sys.argv[1], "rb") as stream:
         body = stream.read(128 * 1024 + 1)
     digest = xxhash.xxh3_128_hexdigest(body)
     if (len(body), digest) != (54669, "aecc7469098e0c188e0e3d056c5fd530"):
         raise ValueError("SOUND.INI profile: not the approved installed source")
-    measure = source_spans if len(sys.argv) == 3 else profile
+    measure = modes[sys.argv[2]] if len(sys.argv) == 3 else profile
     print(json.dumps({"sourceIdentity": {"bytes": len(body), "xxh3": digest}, **measure(body.decode("ascii"))}, indent=2))
 
 

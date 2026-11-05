@@ -66,3 +66,22 @@ boundary and over-slot strings, repeated/missing keys, signed/hex counts,
 count-token limits and unknown keys. Exit: tooling gate passes, then a
 separate research batch measures all installed records twice and compares
 source spans against FND-SOUND-028, keeping native retention separate.
+
+For Q-CONFIG-006's remaining installed token/line admission, extend the same
+profiler with optional --inputs metadata. Existing default and --spans output
+stay unchanged. Reuse the exact installed identity and source structural
+admission, then measure LF-delimited physical lines, the first bracket-to-
+semicolon copied span, first tag length, terminal LF and unexpected control
+bytes. Keep brackets in source-ignored comment/separator lines visible by
+line number; do not silently equate the source grammar with native delivery.
+For the fixed known numeric keys, report source-spelling length/base/value
+and length of its initial digit/minus/x alphabet prefix, without emitting
+source text, unknown tag names or numeric token strings. This is source
+measurement, not numeric-conversion or native-parser replay. Bound total
+lines to 4096 and numeric spelling to 64 bytes; reject unknown numeric syntax
+or limits explicitly. Synthetic controls cover decimal/hex/sign boundaries,
+hex letters outside the extractor alphabet, comments containing brackets,
+CRLF versus LF, missing final LF, line/tag/copy widths, controls and caps.
+Exit: tooling gate and synthetic controls pass; a separate research batch
+measures the installed file twice and compares spans to the existing static
+helper reading, retaining nested context, storage and conversion conditions.
