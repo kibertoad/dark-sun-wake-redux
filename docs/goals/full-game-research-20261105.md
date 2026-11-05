@@ -35,68 +35,44 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; full research Audit remains unmet. This is a continuation
   checkpoint, not owner acceptance of inaccessible evidence or a stop request.
-- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince ac2485e3
-  -NoRestore passed: 1911 entries, 208 parity rows and five deviations,
+- Last gate: 2026-11-05, Test.ps1 -Research -ChangedSince a9b8b3a3
+  -NoRestore passed: 1912 entries, 208 parity rows and five deviations,
   retaining declared skips. Tooling at 697e811f passed selected evidence
   controls against 25461ebb. Prior full integration remains 5d12821d.
   Use project-local EVIDENCE_PYTHON for gates and commit hooks.
-- Current priority: Q-PARTY-116, FMT-PARTY-006. FND-ITEM-063 through
-  FND-ITEM-068 are its scanner/filter/constructor/allocation/caller inputs;
-  FND-PARTY-262 and FND-COMBAT-159 supply removal/index-adjustment evidence.
-  FND-ITEM-073 through FND-ITEM-077 are committed, latest c9a6056d.
-  Next assess unload or graphics-child/state admission and use-time identity
-  obligations, or an actual
-  constructor-input/state-writer obligation. Do not repeat only the local
-  compaction/deferred argument, admitted queue shift or selected kind-three
-  handler, local cell-mask or redraw-wrapper gate reading. The paused
-  endpoint is not a
-  constructor call; current runtime pins and supported named fields apply.
-- New retained evidence: GAME_DIR/analysis/item-removal-20261104/
-  effect-row-removal-contract.txt and effect-row-removal-contract-repeat.txt
-  exist and match. FND-ITEM-073 records the regeneration command and digest.
-  Other exploratory removal/deferred-prefix/tail reports remain in that
-  store; the finding names the complete canonical pair.
-- Queue follow-up: FND-ITEM-074 names effect-queue-move-contract.txt,
-  effect-queue-initial.json, effect-queue0-pointer.json,
-  effect-queue1-pointer.json and effect-queue-dgroup.json with matching
-  -repeat pairs under the same local store. Use the finding's real MZ
-  relocation/source mappings; DSUN's header differs from setup's.
-  effect-queue-table-operands.txt retains the inventory-backed search and
-  its raw candidates/exclusions; it is no no-writer proof. Runtime queue
-  pointer/count/capacity/order preservation remains Q-PARTY-116.
-- Deferred consumer: FND-ITEM-075 names effect-queue-consumer-contract.txt
-  and effect-kind-dispatch.json with matching -repeat pairs under the same
-  local store. The table controls remain beside them. Reuse that local
-  snapshot/dequeue/dispatch composition; native boundary backing, queue
-  and slot preservation and cell/redraw/unload children remain in Q-PARTY-116.
-- Cell follow-up: FND-ITEM-076 names effect-removal-cell-contract.txt
-  and effect-cell-mask-table.json with matching -repeat pairs under the
-  same local store. Reuse FND-COMBAT-147 for leaf masks. Q-PARTY-116
-  retains native map/coordinate/read-span and alias admission; the
-  middle helper's earlier read is not covered by its child's bounds gate.
-  No code or rule implementation, native run or parity status changed.
-- Redraw follow-up: FND-ITEM-077 names effect-removal-redraw-contract.txt
-  and its matching -repeat pair in the same local store. Reuse its own
-  rectangle/handle/cleanup/caller gates; the named graphics children and
-  native page/table/source preservation remain Q-PARTY-116. No native
-  drawing or completed scheduling follows from the wrapper's return.
-- Setup work: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open with their
-  narrowed obligations. Reuse FND-SOUND-030 through FND-SOUND-048 and
-  their retained repeat pairs under GAME_DIR/analysis/disc-adv-survey-20261104/.
-  FND-SOUND-045/046 name census exclusions and boundary obligations;
-  FND-SOUND-047/048 name field and formatter reports. No complete reading
-  follows merely from partialSearch=false, and no unchanged direct search
-  or local formatter reading is needed again.
+- Current priority: Q-PARTY-116, FMT-PARTY-006. Reuse FND-ITEM-063 through
+  FND-ITEM-068 for scanner/filter/constructor/allocation/caller inputs and
+  FND-ITEM-073 through FND-ITEM-078 for removal/queue/cell/redraw/unload
+  compositions. Latest batch is a71139b9. Next assess the later
+  31E0:07CE..0AD1 cleanup/children or an actual constructor/use-time
+  state-writer obligation. FND-PARTY-213 supplies existing cleanup facts;
+  FND-PARTY-262/263 retain corrected request/slot-lifetime limits. A paused
+  endpoint is not a constructor call. Do not repeat only a recorded local
+  copy, selected handler, cell leaf, redraw wrapper or flagged residual gate.
+- Retained effect evidence is under GAME_DIR/analysis/item-removal-20261104/.
+  Each finding names its canonical reports, repeated pairs and digests.
+  New effect-unload-flagged-gate.txt and its -repeat pair exist and match.
+  effect-unload-complete.txt retains an exploratory full-body listing for
+  later cleanup work, not a complete-reading declaration. Earlier canonical
+  removal/queue/consumer/cell/redraw pairs remain there; use source-specific
+  MZ mappings, not the setup utility's header/data layout. Native row/slot,
+  map/queue/page/source and neighbor preservation remains explicit in queue.
+- Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 remain open. Reuse
+  FND-SOUND-030 through FND-SOUND-048 and retained reports under
+  GAME_DIR/analysis/disc-adv-survey-20261104/. The census exclusions,
+  field/formatter contracts and exact repeat pairs are named in those
+  findings. partialSearch=false is not a complete reading. No unchanged
+  exact-literal/direct-transfer or plain formatter search is needed again.
 - Utility runtime: FND-SOUND-039/041 and docs/RUNTIME.md name the fixed
   setup capability. Captures remain under
   GAME_DIR/captures/rust-dos-setup-parser/ as
   v181-setup-records-20261105-a and v181-setup-records-20261105-b.
-  Both input copies were reverified and owned muted sessions closed.
-  Use setup_parser.py only for its fixed stops/reads; retain buffers locally.
-  Further observations require their planned bounded extension/static attempt.
-- Shared retained inputs: docs/HANDOVER.md names earlier canonical stores
-  and checkpoints. The separate review for FND-SOUND-037 completed; no
-  delegated work remains. Existing DSUN-only scripts do not accept setup.
+  Input copies were reverified and owned muted sessions closed. Use the
+  fixed setup_parser.py stops/reads only; keep buffers locally. Extensions
+  need their own plan, controls and prior static attempt.
+- Shared retained inputs: docs/HANDOVER.md names earlier stores/checkpoints.
+  The separate review for FND-SOUND-037 completed; no delegated work remains.
+  Existing DSUN-only scripts do not accept setup inputs.
 - Unfinished: none. Final process audits found only their own shell among
-  the inspected emulator/analysis/runtime process names. No original ran
-  during the current effect-row batch. Blockers: none known.
+  inspected emulator/analysis/runtime names. No original ran during this
+  effect-row batch. Blockers: none known.
