@@ -411,14 +411,19 @@ Next ID: Q-CONFIG-013
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and malformed token/value behavior?
-  Settles it: token/value/numeric bounds and other inputs beyond
-  FND-SOUND-025's two short counts; actual source/nested/repeated-tag span
-  admission; and parser-level failure/partial-store continuation, conditional
+  Settles it: numeric/token/value inputs outside FND-SOUND-034's bounded
+  installed spelling set, actual source/nested/repeated-tag context and
+  storage/alias retention; and parser-level failure/partial-store continuation, conditional
   on the stream contract whose native admission is Q-CONFIG-011.
   Independent stream/error/storage obligations move to Q-CONFIG-011;
   full field-consumer effects move to Q-CONFIG-012.
   The local outer/nested record dispatch is FND-SOUND-028, not remaining
   arm mapping. The file layout alone does not determine native admission.
+  Tried: FND-SOUND-034 removes installed line/tag/numeric spelling widths
+  and their local small conversion paths from Settles it. It records
+  thirty-two alternate-address spellings whose suffix is discarded before
+  successful hexadecimal assignment of two or three. Actual context and
+  retention, general malformed inputs and failure continuation remain.
   Tried: FND-SOUND-020 settles the four local driver-name tag/value/copy
   paths and their mode-controlled output copies, plus the chunk-field
   destinations. Those local bindings are removed from the remaining parser

@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033]
+evidence: [FND-CONFIG-003, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-028, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034]
 conflicting: []
 split_with: []
 related: []
@@ -95,6 +95,18 @@ names otherwise. The chunk-number tags populate record words later copied
 to output offsets 0x38 and 0x36, respectively (FND-SOUND-020). This does not
 establish every parser arm, count/error path or actual setup selection.
 
+Source numeric spelling is distinct from the setup helper's parsed word.
+The helper copies digits, minus and x/X into its token but stops before
+other hexadecimal letters. Under intact input/context/storage conditions,
+thirty-two installed alternate-address fields consequently scan as the
+single hexadecimal digit two or three after the base prefix. They produce
+word two in eight cases and word three in twenty-four, rather than their
+complete source magnitudes. This is a conditional parsing contract, not
+an observed driver configuration. The measured installed line, tag and
+numeric token spans fit their mapped gaps/local token array; the helpers
+do not thereby gain general bounds or native storage admission
+(FND-SOUND-034).
+
 ## Enumerations and flags
 
 The header's CdEnabled, MultipleInstallDisabled and MidiNotEnabled tags OR
@@ -118,9 +130,9 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
 ## Open questions
 
 - Remaining group/numeric/count and malformed token/value parsing beyond
-  the recorded local tag/field/output bindings and two short count tokens
+  the recorded local tag/field/output bindings and installed small tokens
   (FND-SOUND-020, FND-CONFIG-213, FND-CONFIG-007, FND-SOUND-025,
-  FND-SOUND-028, FND-SOUND-029, Q-CONFIG-006).
+  FND-SOUND-028, FND-SOUND-029, FND-SOUND-034, Q-CONFIG-006).
 - Native stream/storage lifetime, file/error contracts and OS outcomes
   (Q-CONFIG-011). FND-SOUND-030/031/032 record local byte, lower-read,
   translation and flush dispatch. FND-SOUND-033 binds the actual binary
