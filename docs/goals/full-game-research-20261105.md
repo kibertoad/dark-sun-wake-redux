@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 44dd935c
-  -NoRestore` passed with declared skips: 1942 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince bcdb8dbd
+  -NoRestore` passed with declared skips: 1943 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -47,11 +47,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-PARTY-124; none closes a question or declares a complete reading.
   Separate elapsed timings are in their commit messages; template adoption
   is excluded. No earlier comparable timing proves a speedup.
-  Follow-up FND-PARTY-268 narrows Q-PARTY-124 to four type domains;
-  FND-PARTY-267 supersedes the earlier census label. Next: those four
-  domains under Q-PARTY-124, reusing its recorded sources/controls before
-  more code. Keep the separate getter-number and indirect gaps, including
-  the exploratory raw/Ghidra caller discrepancy retained in FND-PARTY-268.
+  FND-PARTY-267 corrects the earlier census label; FND-PARTY-268/269
+  classify the variable type routes. Next Q-PARTY-124: tag-builder
+  prefix/frame state, live child-tag provider/writers and excluded incoming
+  target forms. Reuse the bounded chunk/window source and pointer results
+  from dd622e74. Keep the getter-number and indirect gaps; raw/Ghidra
+  discrepancies are not reachability proofs. No question closes here.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review
