@@ -177,3 +177,13 @@ Its shared counts are non-additive and its unassigned functions remain
 visible. It does not replace the four-root map in FMT-PARTY-007 or the
 SAVE/COMBAT numbered-load plan. No combined count across those plans is
 claimed, and no assignment declares a complete reading.
+
+
+`docs/research-closure-sound-playback.json` independently assigns the recorded
+resource/file playback bodies and their shared Q-RNG-040 frame dependency.
+Its eight open obligations retain actual caller/state/target admission and
+external output requirements. Run `node tools/Report-ResearchClosure.mjs
+--plan docs/research-closure-sound-playback.json --json` for the measured
+assessment. This map does not replace or add counts to the cast-window,
+FMT-PARTY-007 or SAVE/COMBAT plans. Ownership is metadata, not a complete
+reading, and all other inventories/functions remain visible in the report.

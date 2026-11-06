@@ -1,0 +1,370 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "SOUND",
+      "scope": "Partial resource/file playback contracts recorded in FND-SOUND-049 through 059: dispatch, defaults, state/refill and descriptor submission. Other SOUND functions remain unassigned; driver output and complete readings are not claimed."
+    },
+    {
+      "id": "RNG",
+      "scope": "Q-RNG-040 segment/frame propagation across sound submission, including actual capability admission and later reseeding/restoration routes. Other RNG functions and the independent graphics/frame question Q-RNG-029 are outside this map."
+    }
+  ],
+  "inventories": [
+    {
+      "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
+      "sha256": "820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2",
+      "assignments": [
+        {
+          "start": "45E1:0097",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:0051",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4611:0177",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:0211",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:0262",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:02D8",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:032A",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:03A5",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:0407",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4611:0415",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4654:04FE",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4654:056A",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4654:0A96",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4654:0C2C",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "49E9:00FD",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "49E9:0142",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "49E9:02ED",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:03BC",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:03F4",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:05EF",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:0A23",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:0F57",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:0F92",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:1107",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:112E",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:1285",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:13DA",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:1468",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:1626",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:1685",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:182E",
+          "areas": [
+            "SOUND",
+            "RNG"
+          ],
+          "reason": "Playback/submission interface also controls the conditional post-return segment/frame dependency of Q-RNG-040; local contracts are FND-SOUND-056 through 059, not accepted complete readings."
+        },
+        {
+          "start": "4842:186B",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:18B3",
+          "areas": [
+            "SOUND"
+          ]
+        },
+        {
+          "start": "4842:18F7",
+          "areas": [
+            "SOUND"
+          ]
+        }
+      ]
+    }
+  ],
+  "obligations": [
+    {
+      "id": "sound-playback-callers",
+      "area": "SOUND",
+      "kind": "callers",
+      "question": "Which actual caller/configuration/index domains admit the recorded resource and file paths, including rejected branches and repeated reads?",
+      "state": "open",
+      "queue": [
+        "Q-SOUND-002"
+      ],
+      "evidence": [
+        "FND-SOUND-049",
+        "FND-SOUND-050",
+        "FND-SOUND-054",
+        "FND-SOUND-055"
+      ]
+    },
+    {
+      "id": "sound-playback-state-producers",
+      "area": "SOUND",
+      "kind": "state-producers",
+      "question": "Which actual records, counts/capacities, buffer and file lifetimes, saved frames and excluded state writers determine playback and refill inputs?",
+      "state": "open",
+      "queue": [
+        "Q-SOUND-002"
+      ],
+      "evidence": [
+        "FND-SOUND-051",
+        "FND-SOUND-053",
+        "FND-SOUND-054",
+        "FND-SOUND-055",
+        "FND-SOUND-058"
+      ]
+    },
+    {
+      "id": "sound-playback-indirect-transfers",
+      "area": "SOUND",
+      "kind": "indirect-transfers",
+      "question": "Which actual driver table/image and interrupt targets resolve the recorded selectors, and which external or changed targets remain unadmitted?",
+      "state": "open",
+      "queue": [
+        "Q-SOUND-002"
+      ],
+      "evidence": [
+        "FND-EXE-585",
+        "FND-SOUND-052",
+        "FND-SOUND-056",
+        "FND-SOUND-057",
+        "FND-SOUND-058"
+      ]
+    },
+    {
+      "id": "sound-playback-remaining-evidence",
+      "area": "SOUND",
+      "kind": "remaining-evidence",
+      "question": "Which physical parameter meanings and original playback/stop results require evidence beyond unchecked driver requests and software-state publications?",
+      "state": "open",
+      "queue": [
+        "Q-SOUND-002"
+      ],
+      "evidence": [
+        "FND-SOUND-050",
+        "FND-SOUND-052",
+        "FND-SOUND-055",
+        "FND-SOUND-057"
+      ]
+    },
+    {
+      "id": "rng-playback-callers",
+      "area": "RNG",
+      "kind": "callers",
+      "question": "Which actual caller and post-return routes connect admitted descriptor submission to the three reseeding callers, and which restore DS first?",
+      "state": "open",
+      "queue": [
+        "Q-RNG-040"
+      ],
+      "evidence": [
+        "FND-SOUND-059",
+        "FND-RNG-096"
+      ]
+    },
+    {
+      "id": "rng-playback-state-producers",
+      "area": "RNG",
+      "kind": "state-producers",
+      "question": "Which descriptor count/frame/backing and cached capability histories admit the conditional changed-DS continuation rather than an excluded state?",
+      "state": "open",
+      "queue": [
+        "Q-RNG-040"
+      ],
+      "evidence": [
+        "FND-SOUND-056",
+        "FND-SOUND-057",
+        "FND-SOUND-058",
+        "FND-SOUND-059"
+      ]
+    },
+    {
+      "id": "rng-playback-indirect-transfers",
+      "area": "RNG",
+      "kind": "indirect-transfers",
+      "question": "Which selected driver and image/068C target effects propagate segment state across the far-return dispatch and later calls?",
+      "state": "open",
+      "queue": [
+        "Q-RNG-040"
+      ],
+      "evidence": [
+        "FND-EXE-585",
+        "FND-SOUND-057",
+        "FND-SOUND-058",
+        "FND-RNG-096"
+      ]
+    },
+    {
+      "id": "rng-playback-remaining-evidence",
+      "area": "RNG",
+      "kind": "remaining-evidence",
+      "question": "Which actual admission or external frame/handler guarantees settle the reseeding segment question beyond the historical census model?",
+      "state": "open",
+      "queue": [
+        "Q-RNG-040"
+      ],
+      "evidence": [
+        "FND-SOUND-057",
+        "FND-SOUND-059",
+        "FND-RNG-096"
+      ]
+    }
+  ]
+}
