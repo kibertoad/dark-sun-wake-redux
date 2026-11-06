@@ -29,6 +29,9 @@ Next ID: Q-SCRIPT-025
   history after the region-50 reset, ready state and loader/cache conditions.
   FND-SCRIPT-049 binds variable32 to combat_state and supplies positive
   flag24 producers; retain actual zero-state, shared flag and pointer histories.
+  FND-SCRIPT-051 excludes entry167/offset0001's listed literal connection
+  to the pre-gap postamble. Preserve entry168 and independent computed,
+  restored or changed entries, not the excluded literal route or failed77 query.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
