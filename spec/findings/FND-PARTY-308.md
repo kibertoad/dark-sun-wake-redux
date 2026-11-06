@@ -1,6 +1,6 @@
 ---
 id: FND-PARTY-308
-title: Member-switch state brackets do not lock events and their forced release can reach graphics callbacks
+title: Member-switch state brackets change flags and a counter and their forced release can reach graphics callbacks
 status: recorded
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
