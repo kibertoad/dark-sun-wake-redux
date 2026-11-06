@@ -58,7 +58,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Reuse FND-EXE-588's application-frame census. FND-EXE-644 resolves all
   nine first-jump candidate joins; do not repeat those local paths.
   Next match the 144 first-call candidates to the retained caller/argument
-  censuses in FND-EXE-579/583/585/586/587/588. Consumer-family coverage
+  censuses in FND-EXE-579/583/646/586/587/588. Consumer-family coverage
   is separate from verifying each candidate's argument and instruction start.
   Retain destination aliasing, excluded writers/histories and header-relevant
   target effects. Use FND-PARTY-156/EXE-626 for per-slot callbacks.

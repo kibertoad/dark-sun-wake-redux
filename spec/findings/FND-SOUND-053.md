@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:186B..4842:1906
-tool: window_operands.py and resident_listing.py at a38e0bf4; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-052 and FND-EXE-585
+tool: window_operands.py and resident_listing.py at a38e0bf4; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-052 and FND-EXE-646
 environment: null
 ---
 
@@ -49,7 +49,7 @@ from FND-SOUND-052. Listed routines have zero string stores.
 | 18A3 | In 186B, with 0E5C zero and 0E5E zero, publishes two before calling 112E. Nonzero 0E5E skips this branch. |
 | 18B9 | Selector 007E's stop body clears state before the interrupt requests and later software writes recorded in FND-SOUND-052. |
 
-Selector-to-body correspondence uses FND-EXE-585's unchanged
+Selector-to-body correspondence uses FND-EXE-646's unchanged
 DIGPAK table. In the 0E5C-nonzero start branch, an existing state
 two returns without calling 1107. In the zero branch, 112E can
 replace the newly published two with three at its 1158 store.

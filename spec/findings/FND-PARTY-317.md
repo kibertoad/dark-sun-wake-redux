@@ -29,7 +29,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     offset: 0x0008337B..0x00083384
-tool: window_operands.py, resident_listing.py and overlay_listing.py at bf131518; Python 3.12.10, Capstone 5.0.9, xxhash 4.0.1; FND-PARTY-316, FND-TIME-012/013/014 and FND-EXE-585
+tool: window_operands.py, resident_listing.py and overlay_listing.py at bf131518; Python 3.12.10, Capstone 5.0.9, xxhash 4.0.1; FND-PARTY-316, FND-TIME-012/013/014 and FND-EXE-646
 environment: null
 ---
 
@@ -92,10 +92,10 @@ but the pointed record's +0B/+2 writes require actual pointer admission.
 Its local stack accesses likewise require private-stack bounds.
 
 0D72 selects driver function 00C1 and tail-jumps to 03F4. That
-dispatcher reads its slot argument through SS, uses FND-EXE-585's
+dispatcher reads its slot argument through SS, uses FND-EXE-646's
 03BC lookup, and either returns directly on a null pair or pushes the
 target and transfers by RETF. The unchanged internal DIGPAK function
-table recorded in FND-EXE-585 has no C1 pair. Under that table's
+table recorded in FND-EXE-646 has no C1 pair. Under that table's
 binding and intact lookup, this request therefore invokes no driver
 function. Other admitted tables or changed lookup/slot state remain
 indirect targets; C1 must not be treated as an unconditional no-op.
@@ -133,7 +133,7 @@ Run window_operands.py with installed DSUN.EXE, the committed installed
 DSUN inventory and 03B3..03BA. Check both capture stores and reloads
 against FND-PARTY-316. Use resident_listing.py for the resident locations
 above and overlay_listing.py for descriptor 196, 8337B..83384.
-Reuse FND-EXE-585's table rather than decoding its data as instructions.
+Reuse FND-EXE-646's table rather than decoding its data as instructions.
 
 Retained reports under GAME_DIR/analysis/handler-census-20261106/ are
 getter-timer-capture-writers.txt, getter-timer-known-callbacks.txt,

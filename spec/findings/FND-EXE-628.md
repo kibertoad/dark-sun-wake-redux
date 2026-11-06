@@ -44,7 +44,7 @@ bytes at `DS:6299` and the file handle the word `DS:6319`.
 | `+024F` | `0x831BF..0x831D4` | `5755:002F` | Takes a handle and returns `+017B` of it with `DS:24E4` and 1. Called from `+0354` and `+03C3` (in `+02F9`). |
 | `+0264` | `0x831D4..0x83269` | `5755:0043` | The play entry of FND-VIDEO-008: takes a far file name, a byte `song`, a byte `ticks` and a dword `delay`; calls `+0414`, `1BF3:2973` with `0x13` and `+0122` with the name and `DS:6299`, keeping the handle in `DS:6319` and returning 2 when it is negative; starts the song through `4A32:0011`; when `DS:1436` is set calls `2660:04F3` until the byte `4E71:0C4A` is above `song` or 20,000 calls have been made; calls `+02F9` with `ticks` and `delay`, closes the file through `44DE:003A`, calls `+0443` and overlay 187 `+2B6C` (`56EF:00F7`, which stops the music, FND-EXE-639), and returns `+02F9`'s result. Called from overlay 187 `+278D`, in the cinematic routine `+2546` (FND-VIDEO-004). |
 | `+02F9` | `0x83269..0x8337B` | `5755:0048` | The frame loop of FND-VIDEO-008: takes `ticks` (1 when 0) and `delay`; waits for `delay` ticks of `DS:21E0` (giving up after 50,000 passes while the word stays 0), reads the first record through `+024F` (calling `1000:1C32` and returning 3 when that fails), then for each later record waits `ticks` less the time the previous read took, reads it (3 on failure), returns 4 when the count reaches the header's word `DS:629F`, and returns 1 when `44B6:0011` gives bit 0 or 1 and `DS:631B` is set or more than 240 records have been read. Called from `+02D7` (in `+0264`). |
-| `+0443` | `0x833B3..0x833C2` | `5755:0039` | Passes the timer slot `DS:21E2` that `+0414` took to `4842:084A`, the release routine of the timer slots (FND-EXE-585). Called from `+02EC` (in `+0264`). |
+| `+0443` | `0x833B3..0x833C2` | `5755:0039` | Passes the timer slot `DS:21E2` that `+0414` took to `4842:084A`, the release routine of the timer slots (FND-EXE-646). Called from `+02EC` (in `+0264`). |
 
 ## Interpretation
 
@@ -58,7 +58,7 @@ until a reading shows what the decoders do.
 ## Alternatives
 
 The calls through trampolines may come from code no listing has reached, so a routine may have
-callers the table does not list. `4842:084A` is named a release routine by FND-EXE-585 without a
+callers the table does not list. `4842:084A` is named a release routine by FND-EXE-646 without a
 reading of its body here, and the decoders `57D4`, `57D7`, `57DA` and `57DD`, `444C:00FA`,
 `1000:374E`, `2660:04F3` and `1000:1C32` are not read; the reading of them rests on FND-VIDEO-008
 and on how their arguments are used. Whether any shipped FLI record reaches 65,552 bytes was not

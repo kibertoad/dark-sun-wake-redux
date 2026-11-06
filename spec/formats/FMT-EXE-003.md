@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -77,6 +77,12 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   the branch joins themselves add no unread header-data dereference.
   Actual route admission, destination aliasing and reached callback effects
   remain distinct from that finite immediate-use result.
+  FND-EXE-645 matches the other 144 first-call candidates one-to-one to
+  the expected relocated callback arguments, including sixteen cases
+  after a structure-copy helper. Together the findings classify this
+  finite 153-pair set under their decoder/frame models; they do not prove
+  every instruction start, predecessor, native frame or alias condition.
+  Reuse that correspondence rather than repeating the local slot census.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
   unresolved target/access mechanisms. A complete-reading declaration

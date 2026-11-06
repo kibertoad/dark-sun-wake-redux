@@ -14,7 +14,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:13DA..4842:145A
-tool: window_operands.py and resident_listing.py at c8e79f06; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-EXE-585, FND-SOUND-052/057 and FND-PARTY-319
+tool: window_operands.py and resident_listing.py at c8e79f06; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-EXE-646, FND-SOUND-052/057 and FND-PARTY-319
 environment: null
 ---
 
@@ -28,7 +28,7 @@ it does not assign the external handler's actual returned mask.
 
 ### Installation and initialization epoch
 
-FND-EXE-585 establishes the DIGPAK signature/install route within
+FND-EXE-646 establishes the DIGPAK signature/install route within
 4842:0A23. On that route, 0AC5 first rejects a nonzero CS:0E22.
 Otherwise it sets that word one, stores the selected slot at 0E20,
 and constructs the image pointer at 0E26/0E28 by adding 0100 to

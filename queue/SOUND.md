@@ -144,7 +144,7 @@ Next ID: Q-SOUND-013
   filename/resource loader paths.
   Tried: FND-SOUND-019 validates all nineteen common directory envelopes;
   their structure is removed from Settles it. FND-EXE-491/492 identify the
-  two filename consumers and setup batch; FND-EXE-585/590 bind the shipped
+  two filename consumers and setup batch; FND-EXE-646/590 bind the shipped
   game selectors to ADV eleven/eight and their disc-file matches. Those
   known consumers/default matches do not settle the remaining producers.
   Tried: FND-SOUND-020 binds all four name tags to inline parsed fields

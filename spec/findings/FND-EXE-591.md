@@ -41,7 +41,7 @@ disc driver (FND-EXE-590). Offsets inside a resource below are the offsets its c
 it with the offset's high twelve bits moved into the segment, so the offset is 0. The install
 routine keeps `ES - 10` and `DI + 0100` at `CS:0E28` and `CS:0E26` (`4842:0ADF..0AF1`), so file offset
 `f` runs at offset `f + 0100` of its segment. `4842:13FB` and `4842:14EA` call offsets `0200` and
-`0203` (FND-EXE-585).
+`0203` (FND-EXE-646).
 
 **ADV 10.** `resource_adv_census.py` decodes from `0200` and `0203`, the handlers the decoded code
 hands out as far pointers, and the 16 rows of the jump table at `020C` that `0264` indexes with AX
@@ -70,7 +70,7 @@ image's start as a `.COM` program, which DSUN.EXE never calls: it decodes 403 mo
 `int 21` AH=09 and AH=4C, `int 27` and `int 66` AX=0701, and two `CD` bytes at `0915` and `091A` that
 lie in the 12 bytes after `jmp 0929` at `090D`, which nothing decoded reaches.
 
-**The requests that reach the handler.** DSUN.EXE's six `int 66` sites (FND-EXE-585) select AX
+**The requests that reach the handler.** DSUN.EXE's six `int 66` sites (FND-EXE-646) select AX
 `068A` (`4842:0FE2`, `103E`), `068E` (`4842:1058`), `0688` or `068B` (`4842:13D1`), `068C`
 (`4842:1403`) and `068F` (`4842:18DE`). The site at `4842:1058` is in `4842:1045`, which passes its
 far pointer argument in DX:BX with DS = CS; its callers `4842:11BA` and `1228` pass `4842:105F`,

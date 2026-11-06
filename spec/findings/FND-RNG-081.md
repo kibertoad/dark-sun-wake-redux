@@ -31,7 +31,7 @@ environment: null
 ## Observation
 
 Addresses are static; segment immediates in load-image code are relative to 0, so `0x1000` is
-added. FND-EXE-585 names the callbacks `4842:0498` can call: `4654:09A9`, overlay 196 `+040B`,
+added. FND-EXE-646 names the callbacks `4842:0498` can call: `4654:09A9`, overlay 196 `+040B`,
 `31E0:31A7`, and function `0067` of a driver loaded from an `ADV ` resource.
 
 **`31E0:31A7`** stores 1 at `DS:265A`, adds 1 to the double word `DS:145E`, stores 1 at `DS:1424`

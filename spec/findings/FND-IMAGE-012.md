@@ -151,7 +151,7 @@ so that after the step entry `first + k` holds what entry
 3796:047C's only caller is 277B:0565, in the loop of 277B:0024, which
 calls it when the byte at DS:1424 is nonzero and then stores 0 there.
 The only store of 1 to DS:1424 is at 31E0:31BF, in the timer callback
-31E0:31A7 (FND-PARTY-047, FND-EXE-585), which adds 1 to the dword at
+31E0:31A7 (FND-PARTY-047, FND-EXE-646), which adds 1 to the dword at
 DS:145E each time it runs and stores the 1 when the result's low three
 bits are 0.
 

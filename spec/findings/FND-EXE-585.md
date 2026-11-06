@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-585
 title: DSUN.EXE's timer callbacks and sound driver function calls go to routines in the file or to driver code loaded from ADV resources, and the driver dispatch's far return is a transfer the walk does not report
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-646]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

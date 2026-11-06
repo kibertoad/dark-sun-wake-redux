@@ -9,7 +9,7 @@ installed_adv_resources.py does, and decodes each resource from its own entry po
   disc_adv_flow_scan.py does for the disc drivers;
 - a DIGPAK image (DIGPAK at +3) is laid out like a .COM program, its first byte at offset 0100, so
   file offset f runs at offset f + 0100: from offsets 0200 and 0203, the image bytes +0x100 and
-  +0x103 that DSUN.EXE calls (4842:13FB, 4842:14EA; FND-EXE-585).
+  +0x103 that DSUN.EXE calls (4842:13FB, 4842:14EA; FND-EXE-646).
 To these it adds every handler the decoded code hands out as a far pointer (`mov ax,imm; push cs;
 push ax`, or a store of an immediate at X beside a store of CS at X+2, through CS, DS or ES), and
 every entry of a bounded near jump table (`cmp ax,LO; jb; cmp ax,HI; ja` before `sub ax,LO; shl

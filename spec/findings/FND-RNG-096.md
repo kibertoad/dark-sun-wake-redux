@@ -83,7 +83,7 @@ of the overlay manager. Eleven of FND-RNG-056's 24 are not among the 19: `1000:0
 `1BF3:42FB`, `1BF3:43AE` and `1BF3:4C09`, and the walk does not decode `1000:1622`, `45CD:0138`,
 `1BF3:40DD`, `1BF3:5C17`, `4842:182E`, `2707:02A8` or `2707:0395`. The sound driver functions of
 the table at `4842:0D7E`, which the game enters through the far return at `4842:040A`
-(FND-EXE-585), are inventory rows the first census walks, and neither census flags a call of
+(FND-EXE-646), are inventory rows the first census walks, and neither census flags a call of
 `4842:03F4`.
 
 **Reach queries.** Each query copies FND-RNG-050's (its 112 computed-transfer declarations, the
@@ -97,7 +97,7 @@ direct call or, without one, its first return. The starts are:
 | 22 | `1BF3:738F`, which overlay 170 `+0040` and `+019D` far-call; the declared targets of the first census's flagged indirect calls (`4AE5:1257`, `4AE5:0EA2`, `4AE5:1155`, `1000:02FC`, `1BF3:59C1`, `1BF3:5E12`, the ten of the table at `1BF3:61B8`, `289B:02AE`, `289B:02BD`, `45CD:011A`, whose `call bx` at `45CD:00BB` loads `BX` from the local word set to 0x11A at `45CD:006A`), and the `INT 23` and `INT 24` handlers `1000:0338` and `1000:1D66` |
 | 16 | the routines whose paths leave their ranges with `DS` `other`, FND-RNG-056's unread changers other than `1BF3:40DD`, `1000:1F50`, and `1000:0163`, the exit after the main call |
 | 26 | the second census's flagged callees not queried above, and the four targets of `1BF3:654E`'s table at `CS:6393` |
-| 4 | the timer callbacks `4654:09A9` and `31E0:31A7` (FND-EXE-585) and the DIGPAK callbacks `4842:105F` and `4842:107E` (FND-EXE-591) |
+| 4 | the timer callbacks `4654:09A9` and `31E0:31A7` (FND-EXE-646) and the DIGPAK callbacks `4842:105F` and `4842:107E` (FND-EXE-591) |
 
 Six starts are a lone `retf` or `iret` and have no control; every other query reaches its
 control, and none has a gap or a contested start. Only the walk from the

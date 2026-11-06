@@ -53,12 +53,12 @@ these 50 is classified by an earlier finding:
 | `1000:029D`, `1000:1D8D`, `4AB9:002B`, `4AB9:0052`, `1BF3:5D0E`, `3D72:012A`, `3D72:09C7`, `3D72:0BD7`, `3D72:0DA1`, `3D72:0DD0` | 10 | never run: the pointer or record each calls through is never set, or the record kind it needs is never present | FND-EXE-580, FND-EXE-579, FND-EXE-583, FND-PARTY-043, FND-EXE-588 |
 | `4AE5:0F55`, `0F60`, `0F6D`, `0F7B`, `0FA5`, `0FAF`, `10CB`, `10D9`, `1172`, `117C`, `1220`; `15F3:05D4`, `0629`, `066C`, `0699`, `0701`, `0727`, `0754`, `07C2`, `07D7`, `07FF`, `0817`, `083A` | 23 | the XMS driver's entry, which interrupt 2F AX=4310 returns, with AH 00 or 08 to 0D | FND-EXE-581, FND-EXE-582, FND-EXE-584 |
 | `1000:2A24`, `4842:051A`, `44B6:00B8`, `55CE:018F` | 4 | the handlers of interrupts 5, 8, 9 and 19 that were installed before the program started | FND-EXE-575 |
-| `4842:0498` | 1 | `4654:09A9`, `196+040B`, `31E0:31A7`, or function `0067` of a driver loaded from an `ADV ` resource | FND-EXE-585 |
-| the far return at `4842:040A`, and `4842:13FB` and `4842:14EA` | 3 | the driver functions in segment `4842` for a `DIGPAK` driver, or a `Copy` driver's functions; the `DIGPAK` image's code | FND-EXE-585 |
+| `4842:0498` | 1 | `4654:09A9`, `196+040B`, `31E0:31A7`, or function `0067` of a driver loaded from an `ADV ` resource | FND-EXE-646 |
+| the far return at `4842:040A`, and `4842:13FB` and `4842:14EA` | 3 | the driver functions in segment `4842` for a `DIGPAK` driver, or a `Copy` driver's functions; the `DIGPAK` image's code | FND-EXE-646 |
 
 The walk reaches 83 interrupt 21 sites (FND-EXE-578, FND-EXE-579, FND-EXE-584), none selecting
 AH=4B, and the file holds no interrupt 2E (FND-EXE-578).
-It reaches six `int 66` instructions, whose handler the program does not install (FND-EXE-585).
+It reaches six `int 66` instructions, whose handler the program does not install (FND-EXE-646).
 FND-EXE-576 gives a control for each kind of site the census searched for.
 
 ## Interpretation

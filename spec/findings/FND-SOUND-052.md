@@ -23,7 +23,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:0EB3..4842:0EEA
-tool: resident_listing.py at f156ca09; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-007/008/011 and FND-EXE-585/589
+tool: resident_listing.py at f156ca09; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-007/008/011 and FND-EXE-646/589
 environment: null
 ---
 
@@ -55,13 +55,13 @@ handle. The stop wrapper's one means the request path returned;
 it does not confirm device silence or a successful driver result.
 
 The two controller stubs select AX 007C and 007E respectively,
-then tail-jump to 4842:03F4. Reuse FND-EXE-585/589 for lookup and
+then tail-jump to 4842:03F4. Reuse FND-EXE-646/589 for lookup and
 far-return dispatch, including a missing target and the distinction
 between loaded Copy-driver tables and the resident DIGPAK adapter.
 A missing dispatch target can return without an actual device call;
 this finding does not assume every configuration resolves a target.
 
-For the unchanged DIGPAK table described by FND-EXE-585, selector
+For the unchanged DIGPAK table described by FND-EXE-646, selector
 007C reaches 4842:18F7. That body saves DS/SI/DI, reads the word
 at CS:0E5E into AX and restores those registers before returning.
 It makes no interrupt request. Actual state writers and driver-table
@@ -106,7 +106,7 @@ queue closure, status promotion or runtime confirmation is claimed.
 
 Use resident_listing.py at the revision above for the five location
 ranges. Retain sound-state-stop-contract.txt under
-GAME_DIR/analysis/handler-census-20261106/. Reuse FND-EXE-585/589
+GAME_DIR/analysis/handler-census-20261106/. Reuse FND-EXE-646/589
 for table binding and dispatch rather than treating a stub selector
 as proof of a selected runtime target. Track the stack-built zero
 arguments, ordering of software writes and interrupt requests, and

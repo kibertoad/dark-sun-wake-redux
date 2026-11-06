@@ -52,7 +52,7 @@ descriptor 75 maps it to 4842:0D77. Its segment-table range is
 0002..1906 with flags one. It is not excluded merely for lying
 in an unowned inventory gap: decoding the six-byte thunk from
 4842:0D72 establishes its actual instruction boundaries. The
-adjacent thunk starts at 0D78. FND-EXE-585 and FND-EXE-590
+adjacent thunk starts at 0D78. FND-EXE-646 and FND-EXE-590
 describe this module's driver-call mechanism; no driver or game
 code was executed for this check.
 

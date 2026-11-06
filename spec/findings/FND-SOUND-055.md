@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:1685..4842:169A
-tool: resident_listing.py at 7280071c; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-CONFIG-166, FND-SOUND-053/054, FND-EXE-585 and FND-COMBAT-082
+tool: resident_listing.py at 7280071c; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-CONFIG-166, FND-SOUND-053/054, FND-EXE-646 and FND-COMBAT-082
 environment: null
 ---
 
@@ -93,7 +93,7 @@ result returns one. Reuse FND-CONFIG-166 for the stop clear and
 release ordering, not an assumed successful device stop.
 
 The three stubs select AX 0079 (0C64), 0086 (0C6A) and 007A
-(0C70), then tail-jump to dispatch 03F4. FND-EXE-585 supplies
+(0C70), then tail-jump to dispatch 03F4. FND-EXE-646 supplies
 the table/target conditions. Under its unchanged DIGPAK table,
 007A reaches 1685: it doubles incoming word BP+8 with word
 wrapping and returns CS:[0E58 + doubled index], restoring its

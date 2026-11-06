@@ -32,7 +32,7 @@ native reseeding outcome.
 4611:0051 saves BP and SI at entry, but never saves DS and has
 no local DS assignment. At 0122 it requests selector 0086 through
 4842:0C6A with current DS:3436 and descriptor DS:A424. Under
-FND-EXE-585's unchanged DIGPAK dispatch this is the 182E body.
+FND-EXE-646's unchanged DIGPAK dispatch this is the 182E body.
 After its return the caller removes six argument bytes, increments
 current SI and compares it with two signed. It does not reload
 its loop index before that comparison.

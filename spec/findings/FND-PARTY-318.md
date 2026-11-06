@@ -18,7 +18,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:03BC..4842:040C
-tool: window_operands.py at 350ed79d; Python 3.12.10, Capstone 5.0.9, xxhash 4.0.1; existing FND-RNG-081/082/093, FND-EXE-585 and FND-PARTY-316/317
+tool: window_operands.py at 350ed79d; Python 3.12.10, Capstone 5.0.9, xxhash 4.0.1; existing FND-RNG-081/082/093, FND-EXE-646 and FND-PARTY-316/317
 environment: null
 ---
 
@@ -75,7 +75,7 @@ base is at least A6F0 beyond DS:0000 under its explicit stable-field,
 segment and nonwrapping assumptions. Valid later heap links, extents,
 callback routes and pointer lifetimes remain necessary. It supersedes
 FND-RNG-083; its conditional heap result does not prove separation
-from an arbitrary interrupted stack. FND-EXE-585 and FND-PARTY-317
+from an arbitrary interrupted stack. FND-EXE-646 and FND-PARTY-317
 separately exclude C1 invocation through the unchanged internal DIGPAK
 table, rather than treating every driver as following the ADV 11 route.
 

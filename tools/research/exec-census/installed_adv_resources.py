@@ -8,7 +8,7 @@ Reads RESOURCE.GFF's ADV tag table through its directory (FMT-GFF-001 to FMT-GFF
 table, or an indexed one whose offsets and sizes are in a GFFI resource, FMT-GFF-006 and
 FMT-GFF-007) and prints, for each resource, its number, offset, size and XXH3-128, the disc file whose
 bytes it equals (or the disc file with the longest common prefix), and the two load signatures
-DSUN.EXE's driver install routine 4842:0A23 tests (FND-EXE-585): the words at +3 spelling DIGPAK,
+DSUN.EXE's driver install routine 4842:0A23 tests (FND-EXE-646): the words at +3 spelling DIGPAK,
 or the words at +2 and +4 spelling Copy. Then prints the values of the installed SOUND.INI's
 MidiDriverChunkNumber and DigitalDriverChunkNumber keys. Nothing is written or executed.
 """

@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:0F57..4842:0F92
-tool: resident_listing.py at 790237e6; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-EXE-585 and FND-SOUND-052/053/055
+tool: resident_listing.py at 790237e6; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-EXE-646 and FND-SOUND-052/053/055
 environment: null
 ---
 
@@ -29,7 +29,7 @@ environment: null
 Installed DSUN.EXE is 634416 bytes, XXH3-128
 e296af55ba2ecde7e77f555c90f33d0b. Addresses below are hex.
 FND-SOUND-055's two descriptor requests select 0079 and 0086.
-Under FND-EXE-585's unchanged DIGPAK table they reach 1626
+Under FND-EXE-646's unchanged DIGPAK table they reach 1626
 and 182E. Other driver tables and actual admission remain separate.
 
 ### Staging a slot
@@ -122,5 +122,5 @@ above and retain sound-descriptor-consumers.txt under
 GAME_DIR/analysis/handler-census-20261106/. Model SP relative to
 182E's BP through the argument push, far call, RETF, ADD SP and
 final pops; compare 1285's two-byte cleanup of the same helper.
-Reuse FND-EXE-585 for conditional table binding. No original-game
+Reuse FND-EXE-646 for conditional table binding. No original-game
 run, emulator session or emulated call supplied evidence.

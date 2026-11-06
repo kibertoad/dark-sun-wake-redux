@@ -74,7 +74,7 @@ environment: null
 
 ## Observation
 
-Addresses, regions and the walk are those of FND-EXE-585, whose walk leaves 61 computed transfers
+Addresses, regions and the walk are those of FND-EXE-646, whose walk leaves 61 computed transfers
 unresolved. This reads eight of them and the ones the walk reaches once they are declared.
 
 **Script opcode dispatch.** `172C:018F` takes an opcode byte and calls the stop routine when it is
@@ -122,12 +122,12 @@ target `+18CD`); each segment word is in its overlay's fixup list. Trampoline 24
 and `05B1`, `05C2`, `05EF`, `0600`, `062C`, `063C`, `0668`, `0678`. The engine declares computed
 near jumps and computed calls only, so these are given to the walk as starts.
 
-**The walk with these targets.** The query `q007_dsun_local_census.json` is FND-EXE-585's query with
+**The walk with these targets.** The query `q007_dsun_local_census.json` is FND-EXE-646's query with
 exhaustive `indirectCalls` declarations for `172C:01A7`, `172C:01B5`, `1BF3:6199`, `1BF3:61A0`,
 `61D3`, `61EC`, `62B6`, `1BF3:654E`, `289B:025E`, `0269` and overlay 204 `+1AAC`, `+1AED`,
 `+1B15` and `+1B4D`, and the 34 distinct jump table rows as starts. The walk reaches 1,884 routines
 and decodes 129,266 instructions in 2,037 ranges. It reaches no interrupt instruction that
-FND-EXE-585's walk did not, so every interrupt site keeps that finding's reading. It leaves 58
+FND-EXE-646's walk did not, so every interrupt site keeps that finding's reading. It leaves 58
 transfers unresolved: the 61 less the six of `172C`, `1BF3:6199`, `1BF3:61A0` and `289B`, plus the
 three far jumps `2707:02FA`, `03D5` and `04D0` it now reaches. Each other call it newly reaches is
 one declared above.

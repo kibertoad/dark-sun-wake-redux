@@ -52,7 +52,7 @@ six through 44 are outside this described signature/pointer contract and
 remain opaque. At the directory, each nonterminal entry has a two-byte
 function number followed by a two-byte target offset. A function number
 FFFF ends the directory; no target word after that number is required.
-FND-EXE-491/585's lookup tests the number and stops at that sentinel before
+FND-EXE-491/646's lookup tests the number and stops at that sentinel before
 using an entry's target.
 
 | Entries per directory | Files | Sentinel offset, hex | Directory end, hex |
@@ -87,7 +87,7 @@ Neither site loads a far pointer from a name field. The current record
 pointer producer and preservation remain separate prerequisites.
 
 The game-side image is requested as an ADV resource rather than a loose
-file in FND-EXE-585. FND-CONFIG-023/024 bind the resource selectors to
+file in FND-EXE-646. FND-CONFIG-023/024 bind the resource selectors to
 SOUND.CFG words +38 and +36. FND-EXE-590 compares the resources byte for
 byte: the installed configuration selects ADV 11, equal to SBP2FM.ADV,
 and ADV 8, equal to SBPDIG.ADV. Other resource/configuration choices and

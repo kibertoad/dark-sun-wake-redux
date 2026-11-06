@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-585, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029]
 conflicting: []
 split_with: []
 related: []
@@ -29,7 +29,7 @@ remain opaque in this format description (FND-SOUND-019).
 | directory_offset | 4 per nonterminal entry, then 2 | Function[] | directory | Function-number/target pairs terminated by number FFFF. | supported | FND-SOUND-019 |
 | After directory | Remainder | BYTE[] | opaque_body | Driver code/data; no instruction or device semantics implied. | supported | FND-SOUND-019 |
 
-Each directory entry has this structure (FND-EXE-491, FND-EXE-585,
+Each directory entry has this structure (FND-EXE-491, FND-EXE-646,
 FND-SOUND-019):
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
@@ -61,7 +61,7 @@ The setup utility loads named files from its current device record after
 the batch copies disc ADV files into its working directory (FND-EXE-491/492).
 The game requests embedded ADV resources; the installed default resource
 numbers eleven and eight equal SBP2FM.ADV and SBPDIG.ADV respectively
-(FND-EXE-585, FND-EXE-590). This does not establish every actual setup
+(FND-EXE-646, FND-EXE-590). This does not establish every actual setup
 selection or successful driver initialization.
 
 ## Open questions

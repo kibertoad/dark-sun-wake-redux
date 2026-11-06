@@ -90,7 +90,7 @@ operands with segment word `0x34B6` finds no store from another segment.
 `0x3842` finds no store from another segment.
 
 **`4842:0498`, `call far cs:[si+6]`.** Besides `4842:0541`, slots are stored at `4842:07B7` from
-`SI` and `DS`, the registration FND-EXE-585 reads.
+`SI` and `DS`, the registration FND-EXE-646 reads.
 
 **`55E3:003F`, `jmp far cs:[002F]`.** `55E3:002F` and `55E3:0031` are stored only at
 `4AE5:110D..111F`, from the interrupt 19h entry of the vector table, before `4AE5:111F` and
@@ -104,7 +104,7 @@ operands with segment word `0x34B6` finds no store from another segment.
 were installed before the program ran, outside the file's code. `1000:298A` returns to the startup
 walker, which FND-RNG-058's walk already decodes. The table jumps of segment `2707` go to 16
 cases, which with the routines they call are the code still to read. The timer callbacks are
-`4842:0519`, an established entry, and the ones FND-EXE-585 lists; FND-RNG-065 sees `4654:09A9`,
+`4842:0519`, an established entry, and the ones FND-EXE-646 lists; FND-RNG-065 sees `4654:09A9`,
 `31E0:31A7` and `4842:0519` taken.
 
 ## Alternatives
