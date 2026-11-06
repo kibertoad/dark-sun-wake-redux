@@ -7,7 +7,7 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_shutdown_snapshot import Memory
-from shutdown_calls import slot_call, slot_return, stream_use
+from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
 
 
 class CallControls(unittest.TestCase):
@@ -42,6 +42,32 @@ class CallControls(unittest.TestCase):
         after["cs_ip"] = "1425:16B0"
         with self.assertRaisesRegex(ValueError, "return boundary"):
             slot_return(after, 0, before)
+
+    def test_callee_frame_and_changed_argument(self):
+        before = slot_call(self.memory, self.stop, 0)
+        entry = copy.deepcopy(self.stop)
+        entry["cs_ip"] = "1425:0454"
+        entry["registers"]["sp"] = "FEFC"
+        self.memory.put(0x57E0, 0xFEFC, struct.pack("<3H", 0x16AF, 0x1425, 7))
+        result = slot_entry(self.memory, entry, 0, before)
+        self.assertEqual((result["entry"], result["return"], result["argument"]),
+                         ("1425:0454", "1425:16AF", 7))
+        self.assertTrue(result["argument_equal"])
+        self.memory.word(0xFF00, 8)
+        self.assertFalse(slot_entry(self.memory, entry, 0, before)["argument_equal"])
+
+    def test_callee_return_and_stack_rejections(self):
+        before = slot_call(self.memory, self.stop, 0)
+        entry = copy.deepcopy(self.stop)
+        entry["cs_ip"] = "1425:0454"
+        entry["registers"]["sp"] = "FEFC"
+        for off, seg in ((0x16B0, 0x1425), (0x16AF, 0x1426)):
+            self.memory.put(0x57E0, 0xFEFC, struct.pack("<3H", off, seg, 7))
+            with self.assertRaisesRegex(ValueError, "return pair"):
+                slot_entry(self.memory, entry, 0, before)
+        entry["registers"]["sp"] = "FEFA"
+        with self.assertRaisesRegex(ValueError, "stack"):
+            slot_entry(self.memory, entry, 0, before)
 
     def test_invalid_index_stride_and_binding(self):
         for field, value in (("si", "0010"), ("bx", "000E"), ("ds", "6000"), ("sp", "FFFF")):

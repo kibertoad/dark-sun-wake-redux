@@ -29,6 +29,21 @@ def slot_call(client, stop, delta):
             "before": {name: registers[name] for name in ("ds", "ss", "si", "sp")}}
 
 
+def slot_entry(client, stop, delta, before):
+    registers, _, ss = admitted(stop, delta, 0x1425, (0x0454,))
+    if before["target"] != f"{0x1425 + delta:04X}:0454":
+        raise ValueError("observed target differs from fixed type-three entry")
+    sp, prior_sp = int(registers["sp"], 16), int(before["before"]["sp"], 16)
+    if prior_sp < 4 or sp != prior_sp - 4:
+        raise ValueError("cleanup entry stack differs from far-call frame")
+    off, seg, argument = struct.unpack("<3H", checked_read(client, ss, sp, 6))
+    if off != 0x16AF or seg != 0x1425 + delta:
+        raise ValueError("cleanup entry return pair differs from dispatcher")
+    return {"entry": stop["cs_ip"], "return": f"{seg:04X}:{off:04X}",
+            "argument": argument, "argument_equal": argument == before["passed_argument"],
+            "sp": registers["sp"]}
+
+
 def slot_return(stop, delta, before):
     if (stop.get("reason") != "breakpoint"
             or stop.get("cs_ip", "").upper() != f"{0x1425 + delta:04X}:16AF"):

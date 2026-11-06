@@ -50,6 +50,15 @@ cover changed arguments/registers, wrong boundaries/index/stride and signed
 counts. These point observations do not establish continuous preservation,
 unseen native targets or the dirty-archive case.
 
+The fixed callee-entry extension observes the known type-three cleanup
+entry only. Require its return pair to name the dispatcher's ordinary
+return, and SP to reflect the four-byte far-call frame below the observed
+pushed argument. Record the entry argument separately, preserving a mismatch
+as an observation. Reject other targets or unpaired entries instead of
+following arbitrary pointers. Test wrong return pairs, stack displacement
+and changed arguments. Entry/return observations do not certify all internal
+native effects or continuous preservation.
+
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
 request/result/file-change distinctions, and narrows the rule/queue only

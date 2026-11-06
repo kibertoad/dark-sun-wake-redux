@@ -20,7 +20,7 @@ from load_entry import fields, input_map_ready, observe_delivery
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop
 from shutdown_snapshot import capture
-from shutdown_calls import slot_call, slot_return, stream_use
+from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
 
 
 class QuitFlow:
@@ -132,6 +132,7 @@ def main():
             terminate = rng.address(0x1000, 0x1A5)
             pending_write = None
             slot_before, slot_after = rng.address(0x1425, 0x16AB), rng.address(0x1425, 0x16AF)
+            cleanup_entry = rng.address(0x1425, 0x0454)
             stream_stops = (rng.address(0x1000, 0x3F1E), rng.address(0x1000, 0x2F30))
             pending_slot = None
             report["cleanup_calls"], report["stream_uses"] = [], []
@@ -161,7 +162,7 @@ def main():
                     if report["entry"]["status"] != 0:
                         raise ValueError("Quit reached a nonzero-status exit")
                     report["write_requests"] = []
-                    for target in (*requests, close_all, prep, terminate, slot_before, slot_after, *stream_stops):
+                    for target in (*requests, close_all, prep, terminate, slot_before, slot_after, cleanup_entry, *stream_stops):
                         session.client.set_breakpoint(target)
                     session.client.remove_breakpoints(poll)
                 elif flow.phase == "shutdown" and address == slot_before:
@@ -169,10 +170,19 @@ def main():
                         raise ValueError("nested slot call outside fixed pairing")
                     report["cleanup_calls"].append(slot_call(session.client, stop, delta))
                     pending_slot = len(report["cleanup_calls"]) - 1
+                    if report["cleanup_calls"][pending_slot]["target"] != cleanup_entry:
+                        raise ValueError("slot target outside fixed type-three observation")
+                elif flow.phase == "shutdown" and address == cleanup_entry:
+                    if pending_slot is None or "callee_entry" in report["cleanup_calls"][pending_slot]:
+                        raise ValueError("cleanup entry lacks a unique observed slot call")
+                    item = report["cleanup_calls"][pending_slot]
+                    item["callee_entry"] = slot_entry(session.client, stop, delta, item)
                 elif flow.phase == "shutdown" and address == slot_after:
                     if pending_slot is None:
                         raise ValueError("slot return lacks observed call")
                     item = report["cleanup_calls"][pending_slot]
+                    if "callee_entry" not in item:
+                        raise ValueError("slot return lacks fixed callee-entry observation")
                     item["result"] = slot_return(stop, delta, item)
                     pending_slot = None
                 elif flow.phase == "shutdown" and address in stream_stops:

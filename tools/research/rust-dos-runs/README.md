@@ -19,6 +19,9 @@ The per-call extension records the actual slot argument/target and paired
 return, plus the four stream selector/count-test points. Run its controls
 with `-I tools/research/rust-dos-runs/check_shutdown_calls.py`. These
 additional native stops require their own capability attempt.
+The fixed type-three callee-entry extension additionally pairs the entry
+frame and its argument with the observed slot call; other targets fail
+explicitly rather than arming an arbitrary target breakpoint.
 
 Agent runs of the installed `DSUN.EXE` through `dinorefurb-dosbox-session`
 (`RustDosSession`, the pinned rust-dos, host sound muted), as `docs/RUNTIME.md`
