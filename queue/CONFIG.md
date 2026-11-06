@@ -362,6 +362,12 @@ Next ID: Q-CONFIG-014
   shipped FONT at offset four and classifies every high-byte address.
   Retain actual text/pointer/table identity and lifetime, rather than an
   unclassified byte-index range or a universal zero-extended lookup model.
+  FND-CONFIG-233 identifies FONT cleanup39D1:0326, its conditional
+  release without an own pointer clear, and the final saved-record restore.
+  Retain named preceding-helper/alias and actual release effects plus
+  later-reader or reinitialization/exit admission; do not assume cleanup
+  nulls A0ED, A043 or the graphics-record root. Its literal field census
+  retains computed/bulk/physical aliases and excluded incoming streams.
   Q-CONFIG-013 now owns the shared allocation/header contract formerly
   accumulated here, retaining FND-CONFIG-209/211/212/223 and all their
   heap/link/bound, caller-range, direction-flag and runtime obligations.
