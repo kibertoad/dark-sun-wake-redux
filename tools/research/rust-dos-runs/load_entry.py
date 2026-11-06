@@ -453,6 +453,7 @@ def main():
                                            "same_binding": f"{seg:04X}:{off:04X}" == step["selected"]["destination"]})
                             if number==38:
                                 sample["basis"] = "reverse-conversion prediction"
+                                sample["prediction_sha256"] = sample.pop("private_span_sha256")
                                 if not sample["equal"] or not sample["same_binding"]:
                                     raise ValueError("SAVE38 reader-return output differs from predicted conversion")
                             samples.append(sample)
