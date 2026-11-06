@@ -14,6 +14,12 @@ Next ID: Q-SAVE-008
   Tried: FND-SAVE-027 retains the local exit sequence, corrects the
   bulk interrupt-table copy ABI and withdraws FND-SAVE-019's unconditional
   no-save conclusion. No reached save operation is established either.
+  FND-SAVE-028 connects shutdown's all-ones close argument to ordinary
+  record preparation and its dirty header/directory write requests, reusing
+  FND-COMBAT-096/113/121/122/123/124 and the non-negative-usable DOS
+  census. Retain actual record/handle/dirty and native admission, the
+  explicit-Save transfer control and remaining computed service/callback
+  mechanisms, not an assumption that closing archives is read-only.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
