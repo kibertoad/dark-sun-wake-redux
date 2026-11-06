@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     offset: 0x0007E795..0x0007E907
-tool: tools/research/exec-census/overlay_listing.py at c693a7e8; locked Python 3.12.10 with Capstone distribution 5.0.9; existing FND-PARTY-288/328/332/335 and FND-MAGIC-018/019/020
+tool: tools/research/exec-census/overlay_listing.py at c693a7e8 and 07ea3d35; locked Python 3.12.10 with Capstone distribution 5.0.9; existing FND-PARTY-288/328/332/335 and FND-MAGIC-018/019/020
 environment: null
 ---
 
@@ -64,6 +64,36 @@ increment to -1 and form a wrapped record offset. This names a concrete
 state-producer question; no reached native malformed queue or defect is
 established by the arithmetic alone.
 
+### Connected returning reflection route
+
+The changed-index case has a concrete encoded producer, not only an
+arithmetic example. Reuse FND-PARTY-288/328/332: the kind-one client is
+hit +0D2F, whose admitted reflection path calls 197+1760. Its successful
+shared enqueue calls 179+12B1 at 197+180F. If the queue byte is the
+runner's selected i in 0..4 when that enqueue begins, the non-full branch
+increments it to i+1 and publishes into record i+1. Under the stated
+record/frame/segment and no-intervening-writer conditions, the enqueue
+returns with that byte unchanged.
+
+The reflection caller cleans its arguments, sets AL0 and jumps directly
+to its +1A90 epilogue. The hit caller tests that zero result at +0EA6 and
+jumps to its +11D5 epilogue. This is the same short hit continuation read
+in FND-PARTY-332, but its immediate caller here is the drain's kind-one
+call, not the +0C7F wrapper. Consequently the client returns directly to
+the drain's argument cleanup and live index decrement: i+1 becomes i,
+and the next iteration reloads record i. No encoded game-helper call or
+nested drain occurs between this successful enqueue and that decrement
+on this selected path. Overlay return machinery, asynchronous effects
+and actual backing retain their existing conditions.
+
+This settles the encoded returning-enqueue route for that admitted
+reflection branch. It does not establish its actual inputs, all effects
+before enqueue, an unchanged selected record/kind, repeated reflection,
+termination, or permanent omission of record i+1. In particular, enqueue
+does not initialize the separate kind table. Other client paths and
+nested drains remain Q-PARTY-138 obligations. The initial i=5 full-queue
+case cannot use this successful-publication argument.
+
 ### Two roots and a longer kind-zero client
 
 Wrapper 193+0000 forwards its arguments to +003C, retains the result
@@ -97,7 +127,8 @@ reading, distinct from preserving the number before the first handoff.
 The kind-zero client has concrete post-hit calls and loops; it cannot
 inherit FND-PARTY-332's short return path for the 179+0C7F wrapper.
 
-Q-PARTY-138 retains actual index-changing client routes, nested drain
+Q-PARTY-138 retains admission of the identified reflection route, other
+index-changing client routes, nested drain
 entry/return, selected record/kind/frame and child/native/asynchronous
 bindings. The conditional i+1 and -1 outcomes identify what to seek in
 those routes. Q-PARTY-137 retains its actual first-handoff admission.
@@ -113,7 +144,7 @@ observed bug or status promotion is declared.
 - A reflection's short hit return makes every cast client return directly:
   contradicted by the kind-zero client's target loop and post-hit tail.
 - A conditional changed-index example proves a reachable queue defect:
-  actual publication, nested-call and state-preservation evidence is
+  actual admission, nested-call and state-preservation evidence is
   still needed; no such observation occurred here.
 
 ## How to reproduce
@@ -132,4 +163,9 @@ drain with the client's own post-hit loop/return. Reuse FND-PARTY-332 for
 the null optional argument and first-handoff contract, and the cited cast
 findings for the known earlier hit/target interfaces. Do not model unknown
 children as harmless or imply that the conditional scheduler states were
-executed. No original game ran and no source-derived listing is committed.
+executed. For the connected reflection route, reuse FND-PARTY-332's
+established instruction boundaries and read descriptor 179 `65591 655E4`,
+`6517E 6518D`, `654B5 654E5`, and descriptor 197 `84C0F 84C1C`,
+`84E90 84E94`. Do not start the hit caller at 65160: it is inside an
+instruction, so a linear decode there supplies no entry or path evidence.
+No original game ran and no source-derived listing is committed.
