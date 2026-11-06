@@ -8,7 +8,8 @@ Next ID: Q-RNG-041
   DIGPAK descriptor submission change DS at a reseeding caller despite the
   earlier census model? Settles it: actual driver/descriptor/frame admission
   for 4842:182E after FND-SOUND-057's ordinary child-frame contracts,
-  capability-word production, interrupt-affected frames and subsequent routes to overlay
+  actual image/068C result and cache-epoch admission after FND-SOUND-058,
+  excluded capability writers, interrupt-affected frames and subsequent routes to overlay
   193 +003C, 201 +05D5 or 204 +1F06; determine whether those routes restore
   DS or exclude this submission state. Tried: FND-SOUND-056 shows that
   184D removes four bytes after one word argument to ordinary-RETF 0F57,
@@ -16,7 +17,9 @@ Next ID: Q-RNG-041
   FND-RNG-061's matching push/pop sites alone do not settle this frame
   consequence. FND-SOUND-057 removes ordinary child-cleanup ambiguity: no
   compensation occurs, and capability-disabled 0F92 returns without an
-  interrupt. Actual admission and subsequent reseeding/restoration routes
+  interrupt. FND-SOUND-058 identifies the known cached capability producer
+  as the image-call/068C path; actual result, epoch and excluded writers
+  remain. Actual admission and subsequent reseeding/restoration routes
   remain. Blocks: complete seed-source reading.
 
 - Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
