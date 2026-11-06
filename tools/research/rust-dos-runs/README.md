@@ -7,6 +7,15 @@ Run its synthetic controls with the evidence Python and
 `-I tools/research/rust-dos-runs/check_shutdown_snapshot.py`. No runtime
 capability or shutdown result is admitted by those controls.
 
+`shutdown_run.py <native-save-source-run> <new-run-name>` is the fixed
+saved-map F3/Quit runner for that plan. It verifies source/checkpoint/map
+identity, waits at declared instruction stops, records RNG draws, captures
+exit-entry fields and the reached archive preparation/write requests and
+write-interrupt results, and stops before DOS termination. Its native
+capabilities remain untested until a research attempt records them.
+Synthetic controls: evidence Python with
+`-I tools/research/rust-dos-runs/check_shutdown_run.py`.
+
 Agent runs of the installed `DSUN.EXE` through `dinorefurb-dosbox-session`
 (`RustDosSession`, the pinned rust-dos, host sound muted), as `docs/RUNTIME.md`
 describes. Run them from the repository root with the evidence Python and
