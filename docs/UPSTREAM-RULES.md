@@ -128,3 +128,27 @@ targets remain obligations. Layout, acquisition and buffer-lifetime claims
 retain their own evidence requirements. No claim, complete-reading
 declaration, queue closure or parity result changes through this adoption.
 Checker 6.1.0 and its release revision remain the template's exact pins.
+
+## Connected-contract procedure adoption, 2026-11-06
+
+At the owner's request, adopted merged template
+[PR 150](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/150)
+(`dc06cc87a82065b053fc3318e962e2f5ae69ab15`) and the corrective
+[PR 151](https://github.com/kibertoad/refurbished-dinosaurs-template/pull/151)
+(`824a3a831b641267d54228c1c10c3d996b5c89fa`). PR 151 was stacked
+onto PR 150's branch; its Evidence bundle row is applied explicitly here.
+
+The closure guide and start/research skills require a contract brief in
+the existing batch commit-message draft: useful answer, boundary, connected
+evidence bundle and falsifiable exit. The bundle stays within the items one
+research batch may settle; another entry's dependency gets its own bounded
+queue item. Required helpers join the reading rather than automatically
+ending a batch. Partial results name the exact remaining condition, and
+interrupted work resumes from the objective and queue IDs in the handover.
+
+Adoption preserves local goal, clean-room, validation and reporter
+adaptations. Links use this checkout's vendor/upstream paths. The generic
+template handover State bullet is recorded in the active goal's handover,
+without replacing the unrelated non-goal handover or copying template test
+counts. No rule snapshot, package/checker pin, evidence status, complete
+reading or parity result changes through this procedure adoption.

@@ -84,6 +84,7 @@ This skill is the procedure; where they differ, the protocol wins.
      from the goal or the plan, whose spec status is at least `supported`. Do
      not open `queue/` or `docs/reports/`.
    For research, when the latest comparable snapshots show findings growing without complete readings, answered items or narrowed `Settles it`, select the [existing-evidence review](../../../docs/RESEARCH-CLOSURE.md#review-when-findings-accumulate-without-closure) before more original-code reading, within the priority order above. Resume an unfinished review from the selection the handover names and the queue items in the chosen entry's map; do not start another dependency chain.
+   Before reading more original code for the selected research item, use the [contract brief](../../../docs/RESEARCH-CLOSURE.md#select-and-read-one-meaningful-contract) to choose one independently meaningful answer with a finite evidence boundary. When the handover names an interrupted contract, resume from the objective and remaining queue IDs it gives; do not select the next helper merely because the previous batch reached it. Preserve the priority order and unknown accesses, and distinguish a whole-entry closure from a remaining-obligation answer.
 7. Say in two or three lines what you picked and why, then hand over to
    `research-item`, `implement-rows` or `live-session`.
 
