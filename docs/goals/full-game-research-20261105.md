@@ -39,17 +39,22 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Integration -NoRestore` passed all Node checks and 758 .NET
-  tests: 2124 entries, 208 parity rows, five deviations. Existing argument-count,
+  `Test.ps1 -Research -ChangedSince b31c7848 -NoRestore` passed:
+  2125 entries, 208 parity rows, five deviations. Prior integration passed
+  all Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
   and supported escalation for child processes. No original run this session.
-- FMT-EXE-003 remains supported, with zero accepted readings. Resume
-  Q-EXE-037: reconcile the retained fifty unresolved sites in
-  GAME_DIR/analysis/header-pointer-reach-report-20261106.json with
-  FND-EXE-575/578..588 before further target reading. Choose a finite
-  header-relevant cohort, preserving FND-EXE-647's model limits and the historical
-  49-site versus current 50-site distinction. Do not repeat the 153-pair
-  argument/boundary classification in FND-EXE-644/645/647.
+- FMT-EXE-003 remains supported, with zero accepted readings.
+  FND-EXE-653 reconciles the fifty-site cohort against the retained readings;
+  do not repeat the local classification or confuse sequence/call starts.
+  Next Q-EXE-037: audit the explicit outside-manager hook-slot writer
+  candidates retained by FND-EXE-582, binding their actual data segments
+  before treating them as possible manager-hook writers. Review existing
+  findings first; keep computed/bulk/native target changes separate.
+  Reuse FND-EXE-647's retained model/report under
+  GAME_DIR/analysis/header-pointer-reach-report-20261106.json; its gaps,
+  contested decodes and assumed continuations remain. Do not repeat the
+  153-pair argument/boundary classification in FND-EXE-644/645/647.
   Q-EXE-033 now owns the additional-mechanism census; Q-EXE-035 destination
   aliases; Q-EXE-036 actual heap/buffer address domains; Q-EXE-034 general
   return admission. Reuse FND-EXE-648..652, FND-CONFIG-225/226/227/230/231/234
@@ -60,6 +65,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Blocked 4; Next ID 38. The split answers no question. After map commit
   9517ca97, time research/tooling/checks/handover separately for the next three
   closure batches and compare outcomes after two against that revision.
+  FND-EXE-653 is the first; its timing record excludes unmeasured bootstrap
+  reads and labels the early-check overlap rather than estimating effort.
 - FMT-PARTY-007 remains the first-handoff trial after the ten-entry assessment.
   Next Q-PARTY-137: actual publication-to-first-handoff backing/frame/native
   preservation, reusing PARTY-288/328..331/337..341 and paused observations
