@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 84d8d939 -NoRestore`
-  passed with declared skips: 1994 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 009d20f3 -NoRestore`
+  passed with declared skips: 1995 entries, 208 parity rows, five deviations.
   Integration at 96077cf3 passed build, JavaScript suites and 758 .NET tests.
   The ownership JSON path requires separate integration when changed.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
@@ -65,14 +65,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
 - Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
   the new plan's state/indirect obligations to select one closure objective.
-  Reuse FND-PARTY-287/288 and 301 through 315, FND-RNG-095,
+  Reuse FND-PARTY-287/288 and 301 through 316, FND-RNG-095,
   FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
   source, member/count, event and segment/frame binding remain authoritative
   in the queue. Next Q-PARTY-136's actual SS/DS, stack-limit and saved-word
   backing producers, applying FND-PARTY-314's conditional guard contract.
   Reuse FND-PARTY-315 for classified stack-limit writers and existing setter
   callers; actual input/bounds, backing aliases and excluded writes remain.
-  Its retained segment-writer list is exploratory, not a validated SS census.
+  FND-PARTY-316 classifies that list's five code sites and thirteen trampoline
+  decodings; it remains no whole-program absence proof. Apply the timer's
+  saved-DI/captured-SS:SP contract to callback memory and continuation, not live DI.
   Reuse FND-PARTY-289 through 296 and FND-RNG-095; actual
   DS:9BE2 histories and the snapshot/reload conditions remain Q-PARTY-134.
   FND-PARTY-313's literal-overlap and known record-pointer windows need no
