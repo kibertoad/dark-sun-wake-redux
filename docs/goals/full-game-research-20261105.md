@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Research -ChangedSince 5310ed70 -NoRestore` passed:
-  2123 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  `Test.ps1 -Research -ChangedSince eb1bb188 -NoRestore` passed:
+  2124 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen pointer-boundary and twenty segment-overlap controls passed.
   Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
@@ -67,8 +67,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   separate unless it changes header accesses. Reuse its two conditional
   escape cases rather than rereading merge/unlink bodies.
   Reuse FND-EXE-651 for all five direct release arguments and the input
-  flag history; do not repeat those producers. Next Q-EXE-033: packet-buffer
-  destination aliases and actual free-link domains, reusing FND-INPUT-016,
+  flag history; reuse FND-EXE-652 for fixed-segment copy-window exclusion.
+  Next Q-EXE-033: actual buffer/free-link segment histories, reusing INPUT-016,
   CONFIG-225/227/230 and EXE-296/297. Keep callback intervals separate.
   Reporter 23fa5697 preserves legacy exact-start scope; --overlap has
   positive byte-extent controls. Existing exact-start findings are not
