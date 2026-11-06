@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-338, FND-PARTY-339]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -56,6 +56,10 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   in both editions; FND-EXE-520/561/562/563/566 supplies the known manager
   field uses. FND-EXE-567's relocated/fixup census explicitly excludes
   runtime-computed segments and does not prove all header accesses known.
+  FND-PARTY-342 classifies its two retained signal-table pointers as stored
+  callbacks: registration and immediate consumers do not dereference them
+  as header data. Their downstream manager/reporter effects and other
+  computed or aliased pointers remain within the census obligations.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
   unresolved target/access mechanisms. A complete-reading declaration

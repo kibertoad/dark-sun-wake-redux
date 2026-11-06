@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-105
 title: A divide error runs the C run time's signal catcher, which calls the game's floating-point signal handler; that handler restores the screen, prints Math Err and ends the program with exit code 1
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-342]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-280, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242, FND-PARTY-243]
+evidence: [FND-PARTY-082, FND-PARTY-342, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-280, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242, FND-PARTY-243]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -33,7 +33,7 @@ each level whose start the experience reaches, counting a hit die roll for each 
 lowered. It then divides the total of those rolls by their count with a signed 16-bit `idiv`
 (FND-PARTY-082). With no roll the count is 0 and the processor raises a divide error. The game's
 handler for that error, installed at start-up, restores the screen, prints `Math Err` and exits
-with code 1 (FND-PARTY-105).
+with code 1 (FND-PARTY-342).
 
 ## Frequency
 

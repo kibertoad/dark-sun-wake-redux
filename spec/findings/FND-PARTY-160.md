@@ -36,7 +36,7 @@ those displacements in inventoried routines and 10 outside them. Those that form
 - overlay 210 `+07CB`, in `+0740`, which adds 1 for a level gained in play, called by `+08BC` only
   while the level is below 15 (FND-PARTY-081);
 - overlay 210 `+0C86` and `+0D46`, the level drain and its re-raise (FND-PARTY-096,
-  FND-PARTY-105);
+  FND-PARTY-342);
 - overlay 209 `+1831` and `+1890`, the class change;
 - overlay 190 `+06D1`, which stores 0.
 

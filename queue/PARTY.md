@@ -983,7 +983,7 @@ None.
   cast, of the cast window at level 7, the target cursor on the companion with Shift held, and the
   screen after the companion fails its saving throw, repeated until one fails (FND-PARTY-109,
   FND-PARTY-280, FND-PARTY-111). Required parts: Send it input, Capture frames and sound (frames)
-  and Load a patched save, for a save holding such a druid, all of them the owner's. Tried: the static readings FND-PARTY-082, FND-PARTY-105 and FND-PARTY-109 to
+  and Load a patched save, for a save holding such a druid, all of them the owner's. Tried: the static readings FND-PARTY-082, FND-PARTY-342 and FND-PARTY-109 to
   FND-PARTY-111. Blocks: nothing yet.
 - Q-PARTY-037. RULE-PARTY-013, BUG-PARTY-003: Does a party gain levels after a fight as
   RULE-PARTY-013 gives, and does a level-14 psionicist stay at level 14 with 1,400,000
