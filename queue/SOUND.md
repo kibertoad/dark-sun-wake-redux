@@ -59,8 +59,8 @@ Next ID: Q-SOUND-012
   startup, the 18 mode-2 songs of `DJ.DAT` that the selector never takes, and how does a disc
   track or an FM song start and end? Settles it: the writers of `music_mode` through a pointer or
   a register, actual track/response/status/table/frame admission and external
-  handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, the FM branch of
-  `4A32:0011`, actual status/query/stop/release and target/frame admission
+  handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, actual FM tag/configuration, failure-flag and 3458/344A pointer
+  binding after FND-SOUND-069's acquisition/cleanup/start contracts, actual status/query/stop/release and target/frame admission
   after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and the stores to `current_region` at `277B:03C1` and in
   overlay 187. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-012). FND-SOUND-067 records
@@ -69,7 +69,10 @@ Next ID: Q-SOUND-012
   lifetime and the other named behavior remain. FND-SOUND-068 records
   busy/stop branches: FFFF status can satisfy the busy bit test, while
   stop has conditional disc-target and sequence cleanup/publication paths.
-  Actual query/handle/release correspondence and output remain. Blocks: slice 7.
+  FND-SOUND-069 settles local FM tag selection, resource-interface reuse,
+  prior cleanup and start forwarding. Actual load failure does not locally
+  set the tested flag; retain excluded flag producers, source/sequence pointer
+  correspondence and query/handle/release/output evidence. Blocks: slice 7.
 - Q-SOUND-005. RULE-SOUND-003: Does the game ever play a `PLYL` playlist or the `CSEQ` sequence,
   and through which code? Settles it: a caller of `2660:0004`, a writer of the far pointers at
   `DS:3496` and `DS:349A` that `2660:01AF` sets, and the resource lookups of the FM or MIDI branch
