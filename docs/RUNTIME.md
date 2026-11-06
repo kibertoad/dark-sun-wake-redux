@@ -50,6 +50,13 @@ continuation are agent under the current pins (FND-SAVE-041). This
 admits the observed value-change mechanism only, not arbitrary watched
 fields or unchanged-value writes. Both sessions closed and released locks.
 
+The fixed retry observer command is `failed_save.py <failed-source-run>
+<new-run-name> retry`. It accepts only the checked failed-map source under
+captures/rust-dos-save-failure and writes under captures/rust-dos-save-retry.
+It adds no host lock or guest setup write. Its copy-boundary metadata
+observation and retry-map checkpoint are not yet runtime-admitted; the
+next actual attempt must establish their capabilities.
+
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while
 the modal waited. Its bounded continuation was paused and the owned session

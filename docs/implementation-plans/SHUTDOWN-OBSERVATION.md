@@ -152,3 +152,35 @@ request/result/file-change distinctions, and narrows the rule/queue only
 as those observations justify. Exit requires a reviewable retained report
 or a precise capability failure; no snapshot or successful gate establishes
 the rule, parity, universal no-write behavior or complete reading by itself.
+
+## Reused-open Save observation
+
+Q-SAVE-008 needs a successful Save after the admitted failed-map state,
+where the working archive remains open and pending. Reuse the existing
+F1/Enter state gates, payload/frame guards, same-record pending watch,
+preparation trace and return relocation watch. Add an explicit retry mode
+with the sole source root captures/rust-dos-save-failure and its checked
+failed-map state. Require the existing failed-source guard, exact restored
+state/frame/files and preexisting working reuse/handle binding. This mode
+never acquires a host lock and makes no guest setup write.
+
+Observe the original numbered-writer success byte and payload result,
+then retain fixed working and numbered file header/directory summaries at
+the actual copy-helper entry and after return to play. Record the current
+in-memory working header/directory summaries as a separate domain. The
+fixed copy observation requires the same working record and the saved
+ownership byte zero; other callers are excluded. A bounded metadata
+reader rejects links, nonfiles, excessive lengths and invalid directory
+extents; synthetic controls exercise these exclusions and distinguish
+header/directory equality from whole-file equality. No payload bytes or
+original-derived summaries enter Git.
+
+A successful retry need not prove a stale directory. Compare observed
+in-memory metadata with the on-disk source and actual numbered result;
+state which differ, and retain pending/preparation outcomes without
+assuming that a pending flag implies stale copied bytes. Retain a checked
+retry-map checkpoint for later ordinary Quit using the existing observer
+only after that new source contract has been explicitly admitted. Tooling
+exit is passing controls and integration; runtime admission remains a
+separate actual attempt. The research exit answers Q-SAVE-008 or records
+the precise remaining evidence, with no status promotion from tooling.

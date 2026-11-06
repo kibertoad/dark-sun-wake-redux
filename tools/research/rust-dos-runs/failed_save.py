@@ -20,7 +20,8 @@ from load_entry import fields, input_map_ready, observe_delivery, archive_fields
 from native_save import save_ready, save_root, save_return
 from startup_window import wait_for_stop, checkpoint_summary
 from checkpoint_rng import Recorder
-from shutdown_run import file_states, write_request
+from shutdown_run import file_states, write_request, failed_source
+import retry_metadata
 from private_payload_lock import PrivatePayloadLock, LIMIT
 from save_failure_fields import payload, record as archive_record, pending_watch, pending_change
 from request_provider import frame
@@ -38,23 +39,27 @@ def arm_save_return(client, registers):
 
 
 def main():
-    if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
-        raise SystemExit("usage: failed_save.py <play-ready-source-run> <new-run-name>")
+    if (len(sys.argv) not in (3,4) or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
+            or len(sys.argv)==4 and sys.argv[3]!="retry"):
+        raise SystemExit("usage: failed_save.py <source-run> <new-run-name> [retry]")
+    retry=len(sys.argv)==4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    source = game / "captures/rust-dos-regenerated" / sys.argv[1]
-    meta = json.loads((source / "regeneration.json").read_text(encoding="utf-8"))
-    controls = [c for c in meta["checkpoints"] if c["name"] == "play-ready" and c["checked"]]
+    source = game / ("captures/rust-dos-save-failure" if retry else "captures/rust-dos-regenerated") / sys.argv[1]
+    meta = json.loads((source / ("failure.json" if retry else "regeneration.json")).read_text(encoding="utf-8"))
+    expected_record=failed_source(meta) if retry else None
+    controls = ([{"state":meta["saved_state"],"frame_sha256":meta["frame_sha256"]}] if retry else
+        [c for c in meta["checkpoints"] if c["name"] == "play-ready" and c["checked"]])
     if len(controls) != 1:
         raise ValueError("source lacks unique verified play-ready controls")
     control = controls[0]
-    state = read_saved_state(source, "play-ready")
+    state = read_saved_state(source, "failed-map" if retry else "play-ready")
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
     rng = Recorder(delta)
-    run = game / "captures/rust-dos-save-failure" / sys.argv[2]
+    run = game / ("captures/rust-dos-save-retry" if retry else "captures/rust-dos-save-failure") / sys.argv[2]
     if run.exists():
         raise ValueError("failed-Save run already exists")
     settings = RustDosSettings(
@@ -65,11 +70,11 @@ def main():
             ultrasound=None), readiness_timeout=60.0)
     report = {"source": sys.argv[1], "load_mapping_stop": meta["load_mapping_stop"],
               "inputs": [], "writes": [], "draws": [], "preparations": [], "native_writes": [], "pending_changes": [],
-              "passed": False, "limits": "one private file-lock input; no guest setup write"}
+              "retry":retry, "passed": False, "limits": "fixed F1/Enter; no lock in retry mode; no guest setup write"}
     lock = PrivatePayloadLock(run)
     with RustDosSession(settings) as session:
         def retain():
-            (run / "failure.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            (run / ("retry.json" if retry else "failure.json")).write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         try:
             stop = session.stop
             if (stop["reason"] != "load" or stop["cs_ip"] != state.stop["cs_ip"]
@@ -82,6 +87,13 @@ def main():
                 raise ValueError("failed-Save source differs from verified input map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             report["files_before"] = file_states(run)
+            if retry:
+                if report["files_before"]!=meta["files_after"]:
+                    raise ValueError("retry restored private files differ")
+                archive=archive_fields(session.client,delta)
+                if archive["reuse"]!=1 or archive["working_handle"]!=expected_record["handle"]:
+                    raise ValueError("retry source lacks the expected preexisting working archive")
+                retry_metadata.memory(session.client,expected_record["pointer"],expected_record)
             if report["files_before"]["SAVE02.SAV"]["exists"]:
                 raise ValueError("fixed failed-Save slot already exists")
             generator, setter = rng.address(0x1000, 0x822), rng.address(0x1000, 0x811)
@@ -97,6 +109,9 @@ def main():
             phase, previous = "window", None
             root = destination = watch = opening = published = pending_write = suffix = None
             dirty_watch = None
+            if retry:
+                published={"provider":expected_record["pointer"],"provider_handle":expected_record["handle"],"io_handle":expected_record["io_handle"]}
+                dirty_watch=pending_watch(session.client,expected_record["pointer"],1)
             builder_armed = False
             for index in range(2048):
                 # Bounded sampling only: input/state transitions require the predicates below.
@@ -132,9 +147,13 @@ def main():
                     destination,watch = arm_save_return(session.client,stop["registers"])
                     for site in (open_entry, write_at, resource_return, prep):
                         session.client.set_breakpoint(site)
+                    if retry:
+                        session.client.set_breakpoint(rng.address(0x4544,0))
                     phase = "saving"
                 elif stop["reason"] == "breakpoint" and address == open_entry:
                     item = archive_origin.opening(session.client, stop["registers"], delta, terminated_path)
+                    if retry and item is not None:
+                        raise ValueError("retry unexpectedly opens a new working archive")
                     if item is not None:
                         if opening is not None:
                             raise ValueError("duplicate working open")
@@ -160,11 +179,13 @@ def main():
                             raise ValueError("payload precedes observed working publication")
                         report["fault"] = payload(session.client, stop, delta, published,
                                                   archive_fields(session.client, delta))
-                        dirty_watch=pending_watch(session.client,published["provider"],report["fault"]["record"]["dirty"])
+                        if not retry:
+                            dirty_watch=pending_watch(session.client,published["provider"],report["fault"]["record"]["dirty"])
                         report["files_before_fault"] = file_states(run)
-                        lock.acquire()
-                        report["fault"]["lock"] = {"file": "drive-c/DARKRUN.GFF", "start": 0,
-                                                     "length": LIMIT, "acquired": True, "released": False}
+                        if not retry:
+                            lock.acquire()
+                            report["fault"]["lock"] = {"file": "drive-c/DARKRUN.GFF", "start": 0,
+                                                         "length": LIMIT, "acquired": True, "released": False}
                     report["native_writes"].append(item)
                     pending_write = item
                     session.client.set_breakpoint(write_after, once=True)
@@ -174,6 +195,13 @@ def main():
                     result = {"ax": stop["registers"]["ax"],
                               "carry": bool(int(stop["registers"]["flags"],16)&1)}
                     pending_write["result"] = result
+                    if retry and "write_result" not in report["fault"]:
+                        report["fault"]["write_result"]=result
+                        if result["carry"] or int(result["ax"],16)!=report["fault"]["length"]:
+                            raise ValueError("retry payload did not write its full count")
+                        f=report["fault"]
+                        suffix=f'{f["numbered_segment"]:04X}:0A65'
+                        session.client.set_breakpoint(suffix,once=True)
                     if lock.locked:
                         lock.release()
                         report["fault"]["lock"]["released"] = True
@@ -195,7 +223,7 @@ def main():
                         state_now = archive_record(session.client, published["provider"])
                         error = int.from_bytes(checked_read(session.client,0x57E0+delta,0x9D99,2),"little")
                         report["resource_result"] = {"ax": r["ax"], "error": error, "record": state_now}
-                        if int(r["ax"],16)!=0xFFFF or not state_now["dirty"]:
+                        if int(r["ax"],16)!=(0 if retry else 0xFFFF) or not state_now["dirty"]:
                             raise ValueError("native error did not reach dirty resource failure")
                 elif stop["reason"] == "breakpoint" and suffix is not None and address == suffix:
                     r, f = stop["registers"], report["fault"]
@@ -203,8 +231,22 @@ def main():
                         raise ValueError("numbered return frame differs")
                     flag = checked_read(session.client,0x57E0+delta,f["numbered_bp"]-1,1)[0]
                     report["numbered_result"] = {"success_byte":flag,"record":archive_record(session.client,published["provider"])}
-                    if flag:
-                        raise ValueError("failed payload did not retain numbered failure byte")
+                    if flag != (1 if retry else 0):
+                        raise ValueError("numbered writer result differs from the fixed stage")
+                elif retry and stop["reason"]=="breakpoint" and address==rng.address(0x4544,0):
+                    r=stop["registers"]
+                    ss,sp=int(r["ss"],16),int(r["sp"],16)
+                    ret,caller=struct.unpack("<HH",checked_read(session.client,ss,sp,4))
+                    if ("fault" not in report or caller!=report["fault"]["numbered_segment"]
+                            or not 0xDCD <= ret < 0xEBE):
+                        raise ValueError("retry copy is not the declared Save wrapper")
+                    bp=int(r["bp"],16)
+                    ownership=checked_read(session.client,ss,bp-1,1)[0]
+                    if ownership!=0:
+                        raise ValueError("retry copy does not have ownership zero")
+                    report["copy_entry"]={"stop":stop,"ownership":ownership,
+                        "memory":retry_metadata.memory(session.client,published["provider"],expected_record),
+                        "disk":retry_metadata.disk(run,"DARKRUN.GFF")}
                 elif stop["reason"] == "breakpoint" and address == prep:
                     r=stop["registers"]
                     _,_,arg=struct.unpack("<HHI",checked_read(session.client,int(r["ss"],16),int(r["sp"],16),8))
@@ -219,6 +261,8 @@ def main():
                     watch = None
                     for site in (open_entry, write_at, resource_return, prep):
                         session.client.remove_breakpoints(site)
+                    if retry:
+                        session.client.remove_breakpoints(rng.address(0x4544,0))
                     phase = "map"
                 elif phase == "map" and stop["reason"] == "breakpoint" and address == map_gate:
                     pass
@@ -247,9 +291,14 @@ def main():
                     report["post_failed_map"]={"archive":archive_fields(session.client,delta),
                         "record":archive_record(session.client,published["provider"])}
                     report["files_after"]=file_states(run)
-                    if report["files_after"]["SAVE02.SAV"]["exists"]:
+                    if retry:
+                        if "copy_entry" not in report or not report["files_after"]["SAVE02.SAV"]["exists"]:
+                            raise ValueError("retry lacks its observed copy and numbered result")
+                        report["metadata_after"]={name:retry_metadata.disk(run,name) for name in ("DARKRUN.GFF","SAVE02.SAV")}
+                        report["memory_after"]=retry_metadata.memory(session.client,published["provider"],expected_record)
+                    elif report["files_after"]["SAVE02.SAV"]["exists"]:
                         raise ValueError("failed writer unexpectedly copied a numbered save")
-                    report["checkpoint"]=checkpoint_summary(session.save_state("failed-map",check_files=True))
+                    report["checkpoint"]=checkpoint_summary(session.save_state("retry-map" if retry else "failed-map",check_files=True))
                     report["passed"]=True
                     break
                 previous=current
