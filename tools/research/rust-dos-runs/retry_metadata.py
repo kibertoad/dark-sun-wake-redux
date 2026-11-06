@@ -45,4 +45,6 @@ def memory(client,pointer,expected):
     length=struct.unpack_from("<I",header,16)[0]
     if not 0 < length <= 65535 or off+0x31+length > 65536:
         raise ValueError("retry memory directory is outside its bound")
-    return {"record":state,"metadata":summary(header,checked_read(client,seg,off+0x31,length))}
+    directory=b"".join(checked_read(client,seg,off+0x31+start,min(261,length-start))
+                       for start in range(0,length,261))
+    return {"record":state,"metadata":summary(header,directory)}

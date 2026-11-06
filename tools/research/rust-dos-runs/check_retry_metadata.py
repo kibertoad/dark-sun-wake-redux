@@ -56,6 +56,23 @@ class RetryMetadataControls(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,"bound"):
             memory(client,expected["pointer"],expected)
 
+    def test_directory_larger_than_one_named_read_is_chunked(self):
+        class Limited(Memory):
+            def read_memory(self,address,size):
+                if size>261:
+                    raise AssertionError("single read exceeds the existing named-field limit")
+                return super().read_memory(address,size)
+        client=Limited()
+        header=struct.pack("<4s6I",b"GFFI",0x30000,28,1024,600,0,1)
+        directory=b"synthetic"*66+b"......"
+        self.assertEqual(len(directory),600)
+        client.put(0x7100,0x104,struct.pack("<HH",7,2))
+        client.put(0x7100,0x110,header)
+        client.put(0x7100,0x12C,b"\x01")
+        client.put(0x7100,0x131,directory)
+        expected={"pointer":"7100:0100","io_handle":7,"options":2,"flags":0,"handle":1,"dirty":1}
+        self.assertEqual(memory(client,expected["pointer"],expected)["metadata"],summary(header,directory))
+
 
 if __name__=="__main__":
     unittest.main()

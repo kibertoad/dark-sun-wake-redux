@@ -55,7 +55,13 @@ The fixed retry observer command is `failed_save.py <failed-source-run>
 captures/rust-dos-save-failure and writes under captures/rust-dos-save-retry.
 It adds no host lock or guest setup write. Its copy-boundary metadata
 observation and retry-map checkpoint are not yet runtime-admitted; the
-next actual attempt must establish their capabilities.
+next actual attempt must establish their capabilities. The first attempt,
+v181-q008-reused-save-20261106, stopped at the copy helper before
+metadata capture: the new reader exceeded checked_read's existing261-byte
+per-call bound. Its report remains under captures/rust-dos-save-retry;
+the owned emulator closed and machine lock was released. No completed-copy
+capability is admitted. The correction reads the already bounded directory
+in chunks and keeps the original single-read limit unchanged.
 
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while
