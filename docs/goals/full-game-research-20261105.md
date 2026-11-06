@@ -36,10 +36,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed build,
-  JavaScript suites, 758 .NET tests and documentation with declared skips
-  (1992 entries, 208 parity rows, five deviations).
-  Research batches FND-PARTY-311/312 passed their selected gates separately.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince a4305661 -NoRestore`
+  passed with declared skips: 1993 entries, 208 parity rows, five deviations.
+  Integration at 96077cf3 passed build, JavaScript suites and 758 .NET tests.
   The ownership JSON path requires separate integration when changed.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
@@ -66,11 +65,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
 - Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
   the new plan's state/indirect obligations to select one closure objective.
-  Reuse FND-PARTY-287/288 and 301 through 313, FND-RNG-095,
+  Reuse FND-PARTY-287/288 and 301 through 314, FND-RNG-095,
   FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
   source, member/count, event and segment/frame binding remain authoritative
-  in the queue. Next Q-PARTY-136's setup/getter-miss number preservation
-  contract, reusing FND-PARTY-289 through 296 and FND-RNG-095; actual
+  in the queue. Next Q-PARTY-136's actual SS/DS, stack-limit and saved-word
+  backing producers, applying FND-PARTY-314's conditional guard contract.
+  Reuse FND-PARTY-289 through 296 and FND-RNG-095; actual
   DS:9BE2 histories and the snapshot/reload conditions remain Q-PARTY-134.
   FND-PARTY-313's literal-overlap and known record-pointer windows need no
   repeated reading. Preserve FND-PARTY-311/312's remaining MENU conditions.
