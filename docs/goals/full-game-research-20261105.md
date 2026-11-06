@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince fbcb4d90
-  -NoRestore` passed: 2042 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d5ded4d5
+  -NoRestore` passed: 2043 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -66,11 +66,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   inventories; zero accepted readings/errors/stale or unmeasured files.
   Counts non-additive; no closures.
 - FMT-SOUND-002 review baseline 26785998 remains supported, no complete
-  reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
-  literal/raw accesses, 064 for list/address equations, 065 for shipped
-  populations and 066 for RNG-child interfaces. Next actual state/table/list/
-  frame aliases and excluded computed/indirect accesses. Q-SOUND-004
-  reuses FND-SOUND-067 through 070 for playback interfaces; next actual
+  reading. Q-SOUND-011 reuses FND-SOUND-061 through 066; next actual
+  state/table/list/frame aliases and excluded computed/indirect accesses.
+  Q-SOUND-004 reuses FND-SOUND-067 through 070; next actual
   status/response/target/heap/frame admission, source/block lifetime,
   failure-flag producers, patch-loop termination and external output.
   FND-SOUND-071
@@ -86,6 +84,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   next other entries/backing, GPL15 helper, actual GPL18 pointer
   allocation/cleanup admission and snapshot/child preservation,
   dynamic selector, decode gap and scheduling.
+- FND-SCRIPT-042 corrects RULE-SCRIPT-004 error scratch/continuation;
+  Q-SCRIPT-024 owns GPL37 reachability and error/cursor/frame admission.
+  Split from Q-SOUND-004, no closure or complete reading.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
