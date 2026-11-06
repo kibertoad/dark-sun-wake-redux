@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -72,6 +72,9 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   direct sites. Three of those admit formal word 1001 locally and need
   their actual incoming argument bindings. Indirect clients and separate
   DATA request routes remain.
+  FND-PARTY-273 bounds all canonical effect-row DATA words for the
+  object-dice route; valid row selection, actual row contents and selector
+  preservation remain. It removes no whole getter site from those 83.
   FND-PARTY-267 excludes 105 direct literal non-DATA request setups from
   number tracing. FND-PARTY-268 classifies its thirteen variable sites
   into five local non-DATA choices, four known-caller non-DATA bindings
