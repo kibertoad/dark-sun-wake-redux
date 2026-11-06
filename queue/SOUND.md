@@ -36,7 +36,11 @@ Next ID: Q-SOUND-012
   shipped list populations: nine mode-one fallbacks and mode-three lists
   of four/three/three, including a populated health-eight first-list read
   under the recorded frame/binding conditions. Actual preservation and
-  changed input domains remain. Blocks: complete
+  changed input domains remain. FND-SOUND-066 bounds the known RNG
+  children: local DS/ES preservation, fixed DS:384A..384E plus stack
+  writes, admitted index ranges and no-draw chance ten. Retain actual
+  state/table/list/frame aliasing and external interference rather than
+  unspecified effects of those helpers. Blocks: complete
   FMT-SOUND-002 reading; slice 7.
 
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a

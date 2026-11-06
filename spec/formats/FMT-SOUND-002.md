@@ -77,7 +77,9 @@ computed-access component to its four DS list stores, mixed DS/SS reads,
 word-offset calculation and explicit capacity/population conditions.
 FND-SOUND-065 supplies nonempty shipped populations of nine mode-one
 fallbacks and four/three/three mode-three records, retaining actual
-loaded-byte and frame/binding conditions. A missing
+loaded-byte and frame/binding conditions. FND-SOUND-066 supplies the
+known RNG children's direct segment/write interface; actual state/list/
+table/frame aliasing remains Q-SOUND-011. A missing
 access could change a field's extent, signedness or interpretation. Unknown
 computed/indirect accesses remain obligations. Successful generic I/O and
 unrelated playback output are not themselves layout claims of this entry.
