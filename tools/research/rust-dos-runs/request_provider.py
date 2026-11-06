@@ -5,16 +5,29 @@ import hashlib
 from regenerate_checkpoints import checked_read
 
 
-def request(client, registers, segment):
+def request(client, registers, segment, include_trigger=False):
     ss, sp = (int(registers[key], 16) for key in ("ss", "sp"))
     off, seg, tag, number, start, count, slot = struct.unpack(
         "<HHIIIII", checked_read(client, ss, sp, 24))
-    if tag != int.from_bytes(b"SAVE", "little") or number not in (24, 26):
+    if tag != int.from_bytes(b"SAVE", "little") or number not in ((24, 26, 38) if include_trigger else (24, 26)):
         return None
     if off != 0x4D0 or seg != segment or start != 0 or count != 0xFFFFFFFF or not slot:
         raise ValueError("SAVE target lacks the declared complete-transfer wrapper frame")
     return {"number": number, "start": start, "count": count, "slot": slot,
             "ss": ss, "bp": sp - 2}
+
+
+def trigger_bindings(client, original, delta):
+    if original["number"] != 38 or original["slot"] >> 16 != original["ss"]:
+        raise ValueError("trigger request lacks the declared reader-local slot")
+    values = {}
+    for name, segment, offset in (("destination_slot", original["ss"], original["slot"] & 0xFFFF),
+                                  ("prepared_slot", 0x57E0 + delta, 0x1612),
+                                  ("live_pointer", 0x57E0 + delta, 0x40C0)):
+        off, seg = struct.unpack("<HH", checked_read(client, segment, offset, 4))
+        values[name] = f"{seg:04X}:{off:04X}"
+    values["equal"] = len(set(values.values())) == 1 and values["live_pointer"] != "0000:0000"
+    return values
 
 
 def frame(registers, original):
@@ -42,7 +55,7 @@ def selected(client, registers, original):
 
 def payload(client, selection, number, expected):
     count = selection["count"]
-    if number not in (24, 26) or count != {24: 1920, 26: 2}[number] or len(expected) != count:
+    if number not in (24, 26, 38) or count != {24: 1920, 26: 2, 38: 2600}[number] or len(expected) != count:
         raise ValueError("payload comparison is outside the admitted target spans")
     seg, off = (int(x, 16) for x in selection["destination"].split(":"))
     if off + count > 0x10000 or seg * 16 + off + count > 0x100000:

@@ -761,6 +761,25 @@ p.start=1; rejects(lambda: provider.request(p,regs,0x3000)); p.start=0
 p.slot=0; rejects(lambda: provider.request(p,regs,0x3000)); p.slot=0x20000020
 p.number=25; assert provider.request(p,regs,0x3000) is None
 p.number=26; assert provider.request(p,regs,0x3000)['number']==26
+p.number=38; assert provider.request(p,regs,0x3000) is None
+assert provider.request(p,regs,0x3000,include_trigger=True)['number']==38
+p.start=1; rejects(lambda: provider.request(p,regs,0x3000,include_trigger=True)); p.start=0
+p.number=25; assert provider.request(p,regs,0x3000,include_trigger=True) is None
+class TriggerBindings:
+    prepared=0x20000004; live=0x20000004; destination=0x20000004
+    def read_memory(self,address,size):
+        assert size==4
+        values={'1000:0020':self.destination,'57E0:1612':self.prepared,'57E0:40C0':self.live}
+        return NS(data=values[address].to_bytes(4,'little'))
+tb=TriggerBindings(); tr={'number':38,'ss':0x1000,'slot':0x10000020}
+assert provider.trigger_bindings(tb,tr,0)['equal']
+tb.prepared=0; assert not provider.trigger_bindings(tb,tr,0)['equal']
+tb.prepared=tb.live; tb.destination=0x20000005
+assert not provider.trigger_bindings(tb,tr,0)['equal']
+tb.prepared=tb.live=tb.destination=0
+assert not provider.trigger_bindings(tb,tr,0)['equal']
+rejects(lambda: provider.trigger_bindings(tb,{**tr,'number':24},0))
+rejects(lambda: provider.trigger_bindings(tb,{**tr,'slot':0x20000020},0))
 p.length=0; rejects(lambda: provider.selected(p,regs,entry)); p.length=12
 p.offset=0x80000000; rejects(lambda: provider.selected(p,regs,entry)); p.offset=40
 p.pointer=0x2000FFE0; rejects(lambda: provider.selected(p,regs,entry))
@@ -1018,6 +1037,8 @@ memory=PayloadMemory(); selection={'count':1920,'destination':'2000:0020'}
 assert provider.payload(memory,selection,24,b'x'*1920)['equal']
 assert not provider.payload(memory,selection,24,b'y'*1920)['equal']
 assert provider.payload(memory,{'count':2,'destination':'2000:0020'},26,b'xx')['equal']
+assert provider.payload(memory,{'count':2600,'destination':'2000:0020'},38,b'x'*2600)['equal']
+rejects(lambda: provider.payload(memory,{'count':2599,'destination':'2000:0020'},38,b'x'*2599))
 rejects(lambda: provider.payload(memory,selection,26,b'x'*1920))
 rejects(lambda: provider.payload(memory,selection,25,b'x'*1920))
 rejects(lambda: provider.payload(memory,{**selection,'destination':'2000:FF00'},24,b'x'*1920))

@@ -218,7 +218,7 @@ def working_file(run):
 
 def private_span(run, selection, identity, name="darkrun.GFF"):
     offset, count = selection["offset"], selection["count"]
-    if (not identity.get("exists") or named_file(run,name) != identity or count not in (2, 1920,12544)
+    if (not identity.get("exists") or named_file(run,name) != identity or count not in (2, 1920, 2600, 12544)
             or offset < 0 or offset + count > identity["length"]):
         raise ValueError("private payload span or copied file identity differs")
     with (run / "drive-c" / name).open("rb") as stream:
@@ -285,16 +285,17 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-items", "saved-caller-epilogue", "saved-map-writer"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-items|saved-caller-epilogue|saved-map-writer]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-trigger-transfer", "saved-items", "saved-caller-epilogue", "saved-map-writer"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-trigger-transfer|saved-items|saved-caller-epilogue|saved-map-writer]")
     navigation = len(sys.argv) == 4
+    observe_trigger_transfer = navigation and sys.argv[3] == "saved-trigger-transfer"
     observe_objects = navigation and sys.argv[3] == "saved-objects"
     observe_writer = navigation and sys.argv[3] == "saved-map-writer"
     observe_caller = observe_writer or navigation and sys.argv[3] == "saved-caller-epilogue"
     observe_items = observe_caller or navigation and sys.argv[3] == "saved-items"
     observe_scripts = observe_items or navigation and sys.argv[3] == "saved-script-conversion"
     observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
-    observe_reader_return = observe_map or navigation and sys.argv[3] == "saved-reader-return"
+    observe_reader_return = observe_trigger_transfer or observe_map or navigation and sys.argv[3] == "saved-reader-return"
     observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
     observe_payloads = observe_origin or navigation and sys.argv[3] == "saved-payloads"
     observe_providers = observe_payloads or navigation and sys.argv[3] == "saved-providers"
@@ -421,6 +422,8 @@ def main():
                     outcome = reader_return.handle(stop)
                     report["reader_return_events"] = reader_return.events
                     if outcome == "returned":
+                        if observe_trigger_transfer:
+                            raise ValueError("reader returned before the fixed SAVE38 transfer completed")
                         if item_trace is not None:
                             report["item_trace"] = item_trace.finish()
                         if script_trace is not None:
@@ -497,7 +500,7 @@ def main():
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_entry:
                     if target_request is not None:
                         raise ValueError("nested resource request while observing a target")
-                    target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta)
+                    target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta, include_trigger=observe_trigger_transfer)
                     if target_request is None and observe_map and open_report=="region_open":
                         target_request = map_restore.request(session.client,stop["registers"],delta)
                         if target_request is not None:
@@ -509,10 +512,17 @@ def main():
                             record()
                             continue
                     if target_request is not None:
-                        expected_number = 24 if not report["resource_requests"] else 26
+                        target_order = (24, 26, 38) if observe_trigger_transfer else (24, 26)
+                        target_index = len(report["resource_requests"])
+                        expected_number = target_order[target_index] if target_index < len(target_order) else None
                         if target_request["number"] != expected_number:
                             raise ValueError("target SAVE requests differ from the admitted order")
                         report["resource_requests"].append({"request": target_request, "entry": stop})
+                        if target_request["number"] == 38:
+                            bindings = request_provider.trigger_bindings(session.client, target_request, delta)
+                            report["resource_requests"][-1]["trigger_entry_bindings"] = bindings
+                            if not bindings["equal"]:
+                                raise ValueError("SAVE38 entry destination differs from prepared/live binding")
                         session.client.set_breakpoint(provider_selected, once=True)
                         session.client.set_breakpoint(provider_return, once=True)
                     record()
@@ -563,6 +573,11 @@ def main():
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_selected:
                     step = report["resource_requests"][-1]
                     step["selected"] = request_provider.selected(session.client, stop["registers"], target_request)
+                    if target_request["number"] == 38:
+                        bindings = request_provider.trigger_bindings(session.client, target_request, delta)
+                        step["trigger_selected_bindings"] = bindings
+                        if not bindings["equal"] or bindings["destination_slot"] != step["selected"]["destination"]:
+                            raise ValueError("SAVE38 selection differs from prepared/live binding")
                     step["selection_stop"] = stop
                     step["archive"] = archive_fields(session.client, delta)
                     if observe_origin:
@@ -594,6 +609,14 @@ def main():
                         record()
                         if not step["payload"]["equal"]:
                             raise ValueError("target payload differs from the selected private-file span")
+                        if target_request["number"] == 38:
+                            bindings = request_provider.trigger_bindings(session.client, target_request, delta)
+                            step["trigger_return_bindings"] = bindings
+                            if (not bindings["equal"] or bindings["destination_slot"] != step["selected"]["destination"]
+                                    or bindings != step["trigger_entry_bindings"]):
+                                raise ValueError("SAVE38 returned binding differs from its transfer entry")
+                            report["passed"] = True
+                            break
                         if target_request["number"] == 26:
                             if not observe_reader_return:
                                 report["passed"] = True
@@ -601,7 +624,7 @@ def main():
                             if observe_map:
                                 open_report = "region_open"
                                 session.client.set_breakpoint(open_entry)
-                            else:
+                            elif not observe_trigger_transfer:
                                 session.client.remove_breakpoints(provider_entry)
                     target_request = None
                     record()
