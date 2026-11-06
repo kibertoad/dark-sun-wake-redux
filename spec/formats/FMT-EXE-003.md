@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-EXE-652, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-EXE-652, FND-EXE-653, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -76,7 +76,11 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 - Which downstream signal/window/application-frame callback effects can
   select, alter or reinterpret these headers (Q-EXE-037)? Reuse
   FND-PARTY-342 and FND-EXE-582/587/588 for known arguments, setters and
-  consumers, preserving their unresolved target and writer mechanisms.
+  consumers. FND-EXE-653 reconciles all fifty current unresolved sites to
+  retained local mechanism readings, including the added signal-2 root;
+  this leaves actual target histories and header-relevant effects open,
+  rather than fifty unidentified transfers. Preserve all writer/native
+  and caller/construction exclusions of those readings.
   FND-CONFIG-163's guard/native/cleanup conditions remain. The map does
   not assign every callback target or loader outside its listed functions;
   those unassigned rows and unresolved targets remain visible obligations.
