@@ -39,19 +39,22 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 1bb1ae74 -NoRestore` passed on
-  df80467d's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
+  `Test.ps1 -Research -ChangedSince 035caf90 -NoRestore` passed:
+  2114 entries, 208 parity rows, five deviations. Integration at 448da523
+  passed 758 .NET tests and nineteen snapshot controls.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
   readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
-  reuse FND-EXE-567/582 and FND-RNG-066/096.
+  reuse FND-EXE-567/582, FND-RNG-066/096 and FND-PARTY-342.
+  Immediate signal-pointer use is classified; retain transitive effects
+  and computed/aliased mechanisms. Never extend recorded findings in place;
+  factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
   EXE Static 2, Source 1, Blocked 4; Next ID 35. No ownership assigned.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
   Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
-  reusing FND-PARTY-288/328..331/337..341 and the extended FND-PARTY-340 paused
-  observations. Next evidence must address the publication-to-first-handoff
+  reusing FND-PARTY-288/328..331/337..341 and FND-PARTY-340 paused observations. Next evidence must address the publication-to-first-handoff
   interval; do not repeat baseline snapshots. Reuse FND-PARTY-337's
   kind-specific handoff contracts and FND-PARTY-338's
   connected BP/upward-chain contracts and FND-PARTY-339's retained
@@ -102,7 +105,7 @@ or unmeasured inventories. Sound-playback plan independently has 34 assigned,
 eight shared, eight open obligations and 6979 unassigned. Counts are
 non-additive. Eight inventories total 7013 rows; 636 disc-associated rows
 add no independent understanding. Owner-excluded DOSBox lacks a raw inventory.
-Original FMT map assigns four; SAVE/COMBAT map assigns nine.
+FMT map assigns four; SAVE/COMBAT nine.
 
 Three timed batches after 02e2d875 are FND-PARTY-311/312/313, ending
 96077cf3. PARTY/UI comparison 02e2d87549c20763b6951b505d1a73ff9a47a821
