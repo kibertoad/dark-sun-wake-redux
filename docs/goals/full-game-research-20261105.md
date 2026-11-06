@@ -39,22 +39,24 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Research -ChangedSince b31c7848 -NoRestore` passed:
-  2125 entries, 208 parity rows, five deviations. Prior integration passed
+  `Test.ps1 -Research -ChangedSince 9104ff27 -NoRestore` passed:
+  2126 entries, 208 parity rows, five deviations. Prior integration passed
   all Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
-  and supported escalation for child processes. No original run this session.
+  and supported escalation for child processes. The fixed startup observer
+  passed without inputs, guest setup writes or RNG draws.
 - FMT-EXE-003 remains supported, with zero accepted readings.
-  FND-EXE-653 reconciles the fifty-site cohort against the retained readings;
-  do not repeat the local classification or confuse sequence/call starts.
-  Next Q-EXE-037: audit the explicit outside-manager hook-slot writer
-  candidates retained by FND-EXE-582, binding their actual data segments
-  before treating them as possible manager-hook writers. Review existing
-  findings first; keep computed/bulk/native target changes separate.
+  Reuse FND-EXE-653 for the transfer cohort and FND-PARTY-339/FND-EXE-654
+  for the outside-manager writer/constructor-point assessment. Do not repeat
+  those local classifications or generalize stopped points to continuous DS.
+  After two batches without closure, change the next objective to Q-EXE-033:
+  review the runtime-error continuation behind the retained five gap bytes
+  and four contested starts, using FND-EXE-578 and existing exit readings.
+  Determine the actual instruction/data/continuation boundary before proposing
+  any profile annotation; retain the old model and do not silently cut paths.
   Reuse FND-EXE-647's retained model/report under
-  GAME_DIR/analysis/header-pointer-reach-report-20261106.json; its gaps,
-  contested decodes and assumed continuations remain. Do not repeat the
-  153-pair argument/boundary classification in FND-EXE-644/645/647.
+  GAME_DIR/analysis/header-pointer-reach-report-20261106.json. Do not repeat
+  the 153-pair argument/boundary classification in FND-EXE-644/645/647.
   Q-EXE-033 now owns the additional-mechanism census; Q-EXE-035 destination
   aliases; Q-EXE-036 actual heap/buffer address domains; Q-EXE-034 general
   return admission. Reuse FND-EXE-648..652, FND-CONFIG-225/226/227/230/231/234
@@ -65,8 +67,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Blocked 4; Next ID 38. The split answers no question. After map commit
   9517ca97, time research/tooling/checks/handover separately for the next three
   closure batches and compare outcomes after two against that revision.
-  FND-EXE-653 is the first; its timing record excludes unmeasured bootstrap
-  reads and labels the early-check overlap rather than estimating effort.
+  FND-EXE-653/654 are the first two; one timed batch remains. Their records
+  disclose unmeasured bootstrap/early-check portions rather than estimating
+  active effort or claiming a measured overhead improvement.
 - FMT-PARTY-007 remains the first-handoff trial after the ten-entry assessment.
   Next Q-PARTY-137: actual publication-to-first-handoff backing/frame/native
   preservation, reusing PARTY-288/328..331/337..341 and paused observations
@@ -100,11 +103,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   docs/RUNTIME.md and corrected profile 595c7602. DSUN-only reporters do
   not admit setup inputs.
 
-EXE comparison f2031798ada3d66604bab1ee4e92c85929d4f8c4 to
-9517ca97f2745d2249fe948950fa1fcaef564173: zero new findings, accepted-reading
-changes or answered items; three queue additions are splits. The new plan has
-6973 unassigned functions, zero errors/stale/unmeasured inventories and the
-owner-excluded DOSBox inventory gap. Other plans remain independent.
+EXE comparison 9517ca97f2745d2249fe948950fa1fcaef564173 to
+6ab3d0dfcdab6674968d295a17d64c7fb96a14f3: zero accepted-reading changes, answered deletions
+or whole plan obligations closed; Q-EXE-037 narrowed with FND-EXE-653/654.
+Thirteen plan obligations remain open. Two findings/four commits are activity,
+including one current-pin fixed startup observation; no closure speedup proved.
+The map still has forty assigned, twenty-five shared and 6973 unassigned
+functions, zero errors/stale/unmeasured inventories and the owner-excluded
+DOSBox inventory gap. Other plans remain independent.
 
 Measurement context: cast-window plan has 54 assigned, 25 shared,
 16 open obligations, 6959 unassigned, zero accepted readings/errors/stale
