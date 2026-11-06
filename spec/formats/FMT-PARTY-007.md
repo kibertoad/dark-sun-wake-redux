@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -146,7 +146,10 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   Closure objective selected after the ten-entry existing-evidence review:
   use Q-PARTY-124 for the remaining caller census, interpretation-affecting
   state producers, indirect transfers and source/base/extent evidence.
-  Its queue condition is authoritative; this map does not repeat it or
+  FND-PARTY-286's unsuccessful immediate-caller attempt splits the three
+  word-client caller domains to Q-PARTY-134, retaining eighty other
+  direct sites and repeated-hook preservation under Q-PARTY-124.
+  Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
   SHA-256 `baac52b88e23a72661cfc2caaf4c19c8c08b1cdce2c23d04e3d2ad402f553477`.

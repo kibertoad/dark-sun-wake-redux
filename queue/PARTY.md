@@ -1,9 +1,8 @@
 # PARTY
 
-Next ID: Q-PARTY-134
+Next ID: Q-PARTY-135
 
 ## Static
-
 - Q-PARTY-076. BUG-PARTY-001: Can anything other than overlay 184 `+0DA7` run while the
   generation screen is up and point `DS:1429` at a stored details record before the screen draws
   its sheet? Settles it: the 34 unresolved calls of FND-PARTY-189's reach, the main loop's calls
@@ -806,21 +805,21 @@ Next ID: Q-PARTY-134
   reads every store of `DS:6273`, the table at `DS:445E`, the list at `DS:9C20` and `DS:43F5`:
   modes 1 to 3 give list numbers below 269, overlay 172 repeats table entries and overlay 213
   passes item powers, so only the mode 0 case is left. Blocks: nothing yet.
-
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
   reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining accesses that could change the claimed 576-byte extent, row indices or class-bit meanings, through the mechanisms below.
   Resolve runtime-computed or remotely assembled/copied targets, entries bypassing FND-PARTY-264's four roots, and separate buffer readers/writers; retain its near-transfer and producer-distance exclusions.
   For 2D40:00A9, resolve prefix changes through computed/copied addresses, aliases, block operations or excluded streams, and segment preservation from FND-PARTY-219's observed main equality to the two tag-builder callers. FND-PARTY-270 removes tested scalar writers/literal in-window pointer producers. For 3A8E:03B4, resolve indirect/bypass inputs, runtime provider/transfer identity and reached-helper or computed/copied/alias writes affecting the window pointer, byte +F2, word +F3 or selected child type +4/number +8; reuse FND-PARTY-271's two direct WIND routes, own-store exclusions and FND-COMBAT-095's sole-provider/table bounds, including incomplete-transfer qualifications.
   For 47E5:04B8/0500, resolve incoming computed, unrelocated, remotely assembled/copied and near/bypass target forms excluded by FND-PARTY-269; direct and tested nearby relocated bindings are no longer unknown argument sources. Reuse FND-PARTY-268's five local choices/four caller bindings and FND-PARTY-267's literal exclusions/DATA-1002 binding.
-  For 2C5F:0003, bind the other 83 direct caller number domains and repeated-hook preservation. FND-PARTY-265/272 exclude three sites; 273/274 bound shipped words/relocations. For resident aliases, resolve FND-PARTY-285's dimension F8B8/F8B9, counter-low 02/adjacent E9, coordinate argument/local/indexed-source 03E9 and flag E9/adjacent 03 admission/preservation; all 63 fixed expressions are classified, including FND-PARTY-284's event-window argument/A121/frame producers and offset-high E9/segment-low 03 admission, FND-PARTY-283's FONT pointer-segment/offset, prior A0ED byte and allocation-segment provenance/preservation, FND-PARTY-282's step-source, unsigned-selection, modular-sum, DS/SS and preservation conditions, FND-PARTY-281's four archive-pointer low-byte/current-count conditions and increment E8FF..E9FE/decrement E901..EA00 predecessor admission, and FND-PARTY-279's count-capacity/frame/saved-SI/output-pointer and DS:9C1E handoff conditions; its ordinary count domain is answered. Keep jumps/computed/unrelocated/copied/remote targets or runtime overlay bindings to the 34 interiors, larger/block/indexed/copied/segment-alias writes, index retention and other word-index domains. FND-PARTY-277/278 remove tested calls/nearby pairs; 275/276 exclude 36 constants. Other word inputs retain producers; 208+0866 forwards its second word as selector.
+  For 2C5F:0003, bind eighty other direct caller number domains, Q-PARTY-134's three-client domains and repeated-hook preservation. FND-PARTY-265/272 exclude three sites; 273/274 bound shipped words/relocations. For resident aliases, resolve FND-PARTY-285's dimension F8B8/F8B9, counter-low 02/adjacent E9, coordinate argument/local/indexed-source 03E9 and flag E9/adjacent 03 admission/preservation; all 63 fixed expressions are classified, including FND-PARTY-284's event-window argument/A121/frame producers and offset-high E9/segment-low 03 admission, FND-PARTY-283's FONT pointer-segment/offset, prior A0ED byte and allocation-segment provenance/preservation, FND-PARTY-282's step-source, unsigned-selection, modular-sum, DS/SS and preservation conditions, FND-PARTY-281's four archive-pointer low-byte/current-count conditions and increment E8FF..E9FE/decrement E901..EA00 predecessor admission, and FND-PARTY-279's count-capacity/frame/saved-SI/output-pointer and DS:9C1E handoff conditions; its ordinary count domain is answered. Keep jumps/computed/unrelocated/copied/remote targets or runtime overlay bindings to the 34 interiors, larger/block/indexed/copied/segment-alias writes, index retention and other word-index domains. FND-PARTY-277/278 remove tested calls/nearby pairs; 275/276 exclude 36 constants. Other word inputs retain producers; 208+0866 forwards its second word as selector.
   Reuse FND-PARTY-264's relocated/fixed-up nearby pointer census and FND-PARTY-058/068's direct-site/index/mask reading. Bind resulting argument/result widths, origin/class producers and rejection paths.
   Use the literal-1001 sites, DATA-1000 callers and stored/split-pointer controls; preserve unresolved transfers, decoder/range exclusions and interpretation-affecting source/base/extent/byte writes.
   General I/O success and unrelated lifetime are not claims of this payload format. Full generation-screen behavior stays RULE-PARTY-009; the unowned ICON candidate in FND-PARTY-267 is not asserted to interpret DATA.
   Tried: FND-PARTY-267 removes the 105 literal non-DATA request sites from number tracing and names the variable-tag remainder. Its partial-reader ownership gap and PUSH-CS limitation remain explicit.
   Tried: FND-PARTY-268 classifies thirteen variable sites into five local non-DATA choices, four known-caller bindings and four type domains. FND-PARTY-269 removes unclassified canonical chunk/window tags and tested nearby relocated reader bindings. FND-PARTY-270 removes the tested direct prefix-writer/pointer forms; computed/alias/block/alternate-stream writes, later segment preservation, live-child writers and excluded targets remain. FND-PARTY-267 corrects the prior overlay label without changing the census.
   Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism; its alias candidates are unrelated operands and the missed Ghidra control supplies no negative proof. FND-PARTY-265 excludes the first equipment request. FND-PARTY-272 excludes two name-helper number domains and identifies three word-input sites whose local FFFF test admits 1001. The other 83 direct sites, repeated hook preservation and indirect clients remain.
-  Tried: FND-PARTY-058/068 leave computed-1001/direct-only coverage; no undeclared qualifying reading. FND-PARTY-271 removes separate direct window tables/own stores; 273/274 exclude shipped words/relocations; 275/276 exclude 36 constants; 277/278 account for tested interior calls/pairs. FND-PARTY-279 bounds the count-value result while retaining its named storage conditions. FND-PARTY-281 answers six archive expressions, retaining pointer/count admission. FND-PARTY-282 excludes the canonical segment store and names five step/residual conditions; FND-PARTY-283 binds three graphics expressions to FONT pointer bytes and allocator segment; FND-PARTY-284 binds four event-window pointer expressions and their byte conditions; FND-PARTY-285 classifies the final seven; all 63 expressions are accounted for, with 26 conditional admissions still open. The 83-site count is unchanged. Blocks: complete reading of FMT-PARTY-007.
-
+  Tried: FND-PARTY-058/068 leave computed-1001/direct-only coverage; no undeclared qualifying reading. FND-PARTY-271 removes separate direct window tables/own stores; 273/274 exclude shipped words/relocations; 275/276 exclude 36 constants; 277/278 account for tested interior calls/pairs. FND-PARTY-279 bounds the count-value result while retaining its named storage conditions. FND-PARTY-281 answers six archive expressions, retaining pointer/count admission. FND-PARTY-282 excludes the canonical segment store and names five step/residual conditions; FND-PARTY-283 binds three graphics expressions to FONT pointer bytes and allocator segment; FND-PARTY-284 binds four event-window pointer expressions and their byte conditions; FND-PARTY-285 classifies the final seven; all 63 expressions are accounted for, with 26 conditional admissions still open. FND-PARTY-286 adds no exclusion; Q-PARTY-134 splits three-client caller admission from the eighty other sites. Blocks: complete reading of FMT-PARTY-007.
+- Q-PARTY-134. FMT-PARTY-007: Can callers of 193+1E81/1F88 or 208+07F2 supply DATA 1001, and what input domains do they admit? Settles it: actual number producers and retained argument/register/frame state for the six direct bindings in FND-PARTY-286, plus indirect, jump and bypass inputs excluded by that reporter. Distinguish level selection from number rejection; resolve the original number, not only the forwarded level. Preserve source/cache/interpretation effects under Q-PARTY-124. Blocks: complete reading of FMT-PARTY-007.
+  Tried: split from Q-PARTY-124 after FND-PARTY-286's immediate-caller attempt ended with no domain exclusion. FND-PARTY-272 proves the three clients locally admit word 1001; FND-MAGIC-018/019 and FND-PARTY-201 bind three callers, and FND-PARTY-286 binds the other three without settling actual producers. No getter site or queue question closes.
 - Q-PARTY-126. FMT-PARTY-001, FMT-PARTY-006: Do all CHAR readers and writers preserve the documented chunk prefix and field interpretations? Settles it: the remaining indirect entries, separate readers/writers,
   pointer copies and computed field accesses affecting the documented CHAR representation, after FND-PARTY-235's fourteen known direct
   resource-write sites and computed-tag bindings. Bind the serializer's root kind, mutable graph/field lists and restored metadata to its
@@ -839,7 +838,6 @@ Next ID: Q-PARTY-134
   FMT-PARTY-001 claim. The later direct-site/tag census and serializer selector reading remove those parts of the older writer limitation;
   metadata/graph-state, indirect and pointer/access exclusions remain. No newly observed contradiction or qualifying whole-entry declaration
   was identified. Blocks: complete reading of FMT-PARTY-001 and FMT-PARTY-006.
-
 - Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the documented one-byte representation and discipline-bit interpretation? Settles it: complete the game and unpacked CHARTRAN read/write and
   caller census for PSIN and its slot-byte sources, covering indirect entries, computed resource tags and pointer/index aliases that can
   affect the represented byte. Reuse FND-EXE-006's literal occurrences, FND-PARTY-011/012's one-byte transfer sites, FND-PARTY-235's fourteen
@@ -851,7 +849,6 @@ Next ID: Q-PARTY-134
   Tried: the existing-evidence review of FND-PARTY-002/011/012/077, FND-PARTY-210/235, FND-RNG-091 and FND-SAVE-015 confirms the physical
   byte and known bit mapping. The literal/direct-site findings do not establish a complete game/utility access set. No qualifying whole-entry
   complete reading was identified but left undeclared. Blocks: complete reading of FMT-PARTY-003.
-
 - Q-PARTY-128. FMT-PARTY-005: Which unaccounted SPST accesses or
   transfers can affect its bit interpretation and short-load tail? Settles it: remaining indirect/computed SPST read routes beyond
   FND-PARTY-203's known reader/callers, and pointer-derived copies or computed-offset accesses reaching 4D62's four 15-byte entries, with
@@ -867,7 +864,6 @@ Next ID: Q-PARTY-134
   Tried: split from Q-PARTY-005 with its FND-PARTY-104/203/209 evidence. Known literal accesses do not clear a whole entry; pointer-derived
   transfers and actual reused-slot state remain outside that result. No earlier attempt, source exclusion or unresolved path is discarded.
   Blocks: complete interpretation of FMT-PARTY-005.
-
 - Q-PARTY-129. RULE-PARTY-009, RULE-PARTY-002: Do the generation screen's admitted
   inputs and state writers preserve the documented class-button choices? Settles it: complete caller/event-target and working-record producer
   coverage for overlay 183 +0A3E and its mask/compaction/button helpers, binding origin 1..8, class codes 0..8 and the compacted zero-to-three
@@ -881,7 +877,6 @@ Next ID: Q-PARTY-134
   computed/alias and longer-lived segment accesses. FND-PARTY-073's fixed-displacement stores and direct callers leave the selected-record
   writer question open. No new contradiction or qualifying undeclared whole-entry reading was identified by this assessment.
   Blocks: complete reading of RULE-PARTY-009.
-
 - Q-PARTY-130. RULE-PARTY-002: Can every admitted generation DONE route
   store only the documented portrait, score, alignment and choice state, apart from the already documented Ctrl-alignment exception?
   Settles it: bind the event/callback routes to overlay 184 +0F93/+1029, including flag-zero/flag-one callers, working-record initialization,
@@ -894,7 +889,6 @@ Next ID: Q-PARTY-134
   portrait mapping recorded, but FND-PARTY-070 explicitly leaves other finalizer admission open and FND-PARTY-077 does not complete dispatch.
   Those findings do not alone prove the whole screen's reachable states. No complete-reading declaration or new contradictory behavior follows.
   Blocks: complete reading of RULE-PARTY-002.
-
 - Q-PARTY-131. RULE-PARTY-007: Does every admitted level-gain route use
   the recorded level-15 gate without an origin limit or prime-requisite bonus? Settles it: complete caller/indirect-entry coverage for overlay 210 +08BC/+0740
   and classification of level writes beyond FND-PARTY-160/081's fixed-displacement search: index-only accesses, copied details pointers and whole-record copies/restores.
