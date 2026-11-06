@@ -36,77 +36,59 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e57ba583 -NoRestore`
-  passed with declared skips: 1989 entries, 208 parity rows, five deviations.
-  Integration at 7f387a81 passed build and 758 .NET tests. Set project-local
-  EVIDENCE_PYTHON for gates, hooks and tool-dependency lookup.
-- All ten selected entries are reviewed; selection and assessments remain in
-  the research commit messages. FMT-PARTY-007 is the closure trial, with its
-  queue-backed ownership/dependency map in 4d210fc1. Current obligations are
-  authoritative in the queue, not this handover. No complete reading or
-  answered queue deletion was added by FND-PARTY-298 through 310.
-- Next Q-PARTY-134, FMT-PARTY-007: remaining actual original-number producers
-  for FND-PARTY-286's six bindings, beyond FND-PARTY-287/288's settled
-  intrinsic domains and FND-PARTY-301's range-wrapper producer assessment.
-  Reuse word-selector-producer-callers and FND-PARTY-302's assessment of
-  its remaining seven candidates. FND-PARTY-303 assesses the two SI families
-  in FND-RNG-095's six setup bindings. FND-PARTY-304 settles both known
-  callers' own mode-zero count clears; 305 bounds intended registration
-  indices from existing evidence. FND-PARTY-306/307 settle own refresh
-  and member-publication ordering. Next actual callback/window/member and
-  prior-count admission in the publication-to-clear interval, reentrant or
-  alternate handler use there, later state changes and actual source histories;
-  then other cast/object routes. FND-PARTY-308/309 settle the bracket
-  semantics and unchanged-shipped-APFM graphics callback case. Next changed
-  graphics record/field/mode histories or other named interval mechanisms.
-  FND-PARTY-310 classifies the finite ES field-writer window; retain its
-  setter incoming forms, button-record/fixed-data backing aliases and
-  excluded write/construction forms. Reuse FND-EXE-588 and
-  FND-CONFIG-171/189/197. Keep source/frame
-  and alternate-entry limits; missed Ghidra controls remain diagnostic.
-  FND-PARTY-300 splits getter-pair binding, helper preservation and queue
-  handoff into Q-PARTY-135/136/137. This raises PARTY Static 56 to 59 as
-  a split, not answers. Next ID 138; queue/PARTY.md is at 1000 lines.
-  Their settling conditions preserve all unresolved scope. Reuse
-  FND-PARTY-289 through 310, FND-ITEM-057 and SRC-RUSTDOS-181; do not
-  restart resolved helper-result, cache-operand or pointer-residue work.
-  Retain missed decompiler controls, source/release and external-state limits.
-- Then Q-PARTY-124, FMT-PARTY-007: eighty other direct sites plus the separate
-  repeated-hook and indirect/bypass obligations; Q-PARTY-134 owns three clients.
-  Reuse FND-PARTY-264/265/267 through 285. Keep alternate DS:19C5 pointer
-  histories and broader selector-write scope from FND-PARTY-295/296.
-  The handler declaration/inventory and all twelve census profiles are repaired;
-  docs/EVIDENCE-TOOLS.md records their controls and regeneration procedure.
-- Trial comparison, PARTY scope: fa2a30bd904434e18ac242b3e76116c63ad16951 to
-  56f71d560e4700bd7967646ebeed2153137554d6: zero accepted-reading declarations
-  and zero answered queue deletions; two bounded components removed with
-  FND-PARTY-264/265. Nine items added, including Q-PARTY-128's split;
-  Q-PARTY-003/005 narrowed. Findings/commit counts are activity, not speedup.
-  Assessment ends at 1a382f6f; the map is 4d210fc1. The trial has no topic closure.
-- Inventory baseline after FND-PARTY-293's repair: 6377 rows, four assigned
-  in this entry's map, 6373 unassigned there and three missing inventories.
-  Current map hashes and separate ownership assessment have zero errors/stale
-  hashes. Missing: CD:CHARTRAN.EXE, CD:SOUND_DS.EXE and DOSBOX/DOSBox.exe.
-  Assignment and mapping do not qualify complete readings. Historical reports
-  retain their own denominator revisions and engine versions.
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed build,
+  203 JavaScript tests, 758 .NET tests and documentation with declared skips:
+  1989 entries, 208 parity rows, five deviations. Research validation at
+  bfede10c also passed before the metadata plan was added. Its new JSON path
+  requires separate integration rather than research selection. Set project-local
+  EVIDENCE_PYTHON for gates, hooks and dependency lookup.
+- All ten selected entries have existing-evidence assessments. FMT-PARTY-007
+  remains the closure trial; its original four-root map is separate from the
+  new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
+  The new plan has 28 unique assignments, three shared, eight open obligations,
+  6349 unassigned rows and zero accepted readings. Both metadata reporters pass
+  with zero errors/stale inventories/unmeasured files. Three inventories remain
+  missing. No complete reading or answered queue deletion was added in this
+  session; 6d2e065a reuses existing contracts rather than adding findings.
+- For the next three closure-focused research batches after 02e2d875, record
+  elapsed research, tooling, validation and handover time separately in their
+  commit messages. After the first two, compare exact revisions against
+  02e2d875 over the same PARTY/UI scope: accepted readings, evidenced answers,
+  removed obligations, remaining gaps and activity counts. This is a new
+  ownership assessment, not a reset or replacement of the earlier trial.
+- Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
+  the new plan's state/indirect obligations to select one closure objective.
+  Reuse FND-PARTY-287/288 and 301 through 310, FND-RNG-095,
+  FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
+  source, member/count, event and segment/frame binding remain authoritative
+  in the queue. Preserve the scope/controls of each retained census; do not
+  reread the named conditional constructor/paint/text contracts as unknown.
+  Q-PARTY-135/136/137 retain getter-pair, preservation and queue-record
+  dependencies. PARTY Static 59; Next ID 138; queue/PARTY.md is at 1000 lines.
+- Then Q-PARTY-124, FMT-PARTY-007: eighty other direct sites plus repeated-hook
+  and indirect/bypass obligations; Q-PARTY-134 owns three clients. Reuse
+  FND-PARTY-264/265/267 through 285 and 295/296. Inventory/profile controls
+  and regeneration are in docs/EVIDENCE-TOOLS.md. Retain alternate source,
+  pointer, indexed-alias and runtime-routing conditions in the queue.
 - Then Q-PARTY-121, FMT-PARTY-006: reuse FND-ITEM-102/103. Q-PARTY-120 follows
   with FND-ITEM-099/100/101, FND-COMBAT-034/037 and FND-MAGIC-019/FND-RNG-094.
-  Q-PARTY-116 retains its own publication/use-time question and dependencies
-  Q-PARTY-119/120/121/122/123. Keep those scopes separate.
-- Setup work remains Q-CONFIG-006/011/012 and Q-SOUND-010. Review
-  FND-SOUND-030 through 048 and docs/RUNTIME.md before retrying. Existing
-  DSUN-only reporters do not accept setup inputs.
+  Q-PARTY-116 retains its own question and Q-PARTY-119/120/121/122/123
+  dependencies. Keep those scopes separate.
+- Setup remains Q-CONFIG-006/011/012 and Q-SOUND-010. Review FND-SOUND-030
+  through 048 and docs/RUNTIME.md before retrying; DSUN-only reporters do not
+  accept setup inputs. Reuse the corrected context profile from 595c7602.
+- Earlier PARTY trial comparison: fa2a30bd904434e18ac242b3e76116c63ad16951
+  to 56f71d560e4700bd7967646ebeed2153137554d6: zero accepted readings and
+  zero answered queue deletions; two bounded components removed with
+  FND-PARTY-264/265. Nine items added, including Q-PARTY-128's split;
+  Q-PARTY-003/005 narrowed. Assessment ends at 1a382f6f; map at 4d210fc1.
+  Finding and commit counts are activity, not evidence of faster closure.
+- Inventory baseline: 6377 rows across six inventories. The original FMT map
+  assigns four and leaves 6373 unassigned there; the separate SAVE/COMBAT
+  map assigns nine. Do not add shared counts or combine these maps into an
+  unsupported total. Missing: CD:CHARTRAN.EXE, CD:SOUND_DS.EXE and
+  DOSBOX/DOSBox.exe. Historical reports retain their own denominators.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
-  Findings give canonical report names, source fingerprints and regeneration.
-  No original game, emulator session or emulated call ran in the latest batches.
-- Template ef82c9784d08c4e98ade56cfd49cdd56130ac139 and protocol
-  5b398e0eab9a6ff8ad1c35fc003c214d85fe7d47 are adopted; the latest owner-requested
-  check found no newer template. docs/UPSTREAM-RULES.md records adaptations.
-  FND-CONFIG-223 supersedes 210; FND-PARTY-280 supersedes 110; use their
-  corrected reproduction endpoints and active citations. FND-RNG-095
-  supersedes 064; active citations and the partial RNG row are updated.
-  Other current work
-  and retained local stores are in docs/HANDOVER.md.
-- Unfinished changes: none. No delegated work or owned emulator is active.
-  Blockers: none known. The goal continues on the research side.
+  Findings give canonical report names, fingerprints and regeneration.
+  No original game ran; integration includes existing harness controls.
