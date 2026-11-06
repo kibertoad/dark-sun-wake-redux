@@ -36,12 +36,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed build,
-  203 JavaScript tests, 758 .NET tests and documentation with declared skips:
-  1989 entries, 208 parity rows, five deviations. Research validation at
-  bfede10c also passed before the metadata plan was added. Its new JSON path
-  requires separate integration rather than research selection. Set project-local
-  EVIDENCE_PYTHON for gates, hooks and dependency lookup.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 7682c86e -NoRestore`
+  passed with declared skips: 1990 entries, 208 parity rows, five deviations.
+  Integration at 02e2d875 passed 203 JavaScript tests and 758 .NET tests.
+  The ownership JSON path requires separate integration when changed.
+  Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
@@ -49,8 +48,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   6349 unassigned rows and zero accepted readings. Both metadata reporters pass
   with zero errors/stale inventories/unmeasured files. Three inventories remain
   missing. No complete reading or answered queue deletion was added in this
-  session; 6d2e065a reuses existing contracts rather than adding findings.
-- For the next three closure-focused research batches after 02e2d875, record
+  session. FND-PARTY-311 at 34516499 is timed batch one after the new map.
+- For the remaining two timed closure-focused batches after FND-PARTY-311, record
   elapsed research, tooling, validation and handover time separately in their
   commit messages. After the first two, compare exact revisions against
   02e2d875 over the same PARTY/UI scope: accepted readings, evidenced answers,
@@ -58,10 +57,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   ownership assessment, not a reset or replacement of the earlier trial.
 - Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
   the new plan's state/indirect obligations to select one closure objective.
-  Reuse FND-PARTY-287/288 and 301 through 310, FND-RNG-095,
+  Reuse FND-PARTY-287/288 and 301 through 311, FND-RNG-095,
   FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
   source, member/count, event and segment/frame binding remain authoritative
-  in the queue. Preserve the scope/controls of each retained census; do not
+  in the queue. Next FND-PARTY-311's explicit caller/state/null-selection
+  admission and excluded transfer forms. The two new menu caller rows remain
+  unassigned in the partial ownership plan. Preserve census scope/controls; do not
   reread the named conditional constructor/paint/text contracts as unknown.
   Q-PARTY-135/136/137 retain getter-pair, preservation and queue-record
   dependencies. PARTY Static 59; Next ID 138; queue/PARTY.md is at 1000 lines.
