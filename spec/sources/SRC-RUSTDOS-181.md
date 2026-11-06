@@ -30,6 +30,8 @@ The older SRC-RUSTDOS-172 remains evidence for its historical revision.
 | src/instructions/control.rs | 209..234 | Software-interrupt dispatch. |
 | src/cpu/fault.rs | 217..241 | Real-mode vector lookup and interrupt frame. |
 | src/bios.rs | 9..17, 102..109, 145..183 | Default HLE and IRET vector mapping versus separately booted DOS. |
+| src/interrupts/int21.rs | 2153..2160 | AH41 path argument and result publication. |
+| src/disk/files.rs | 375..407 | Conditional file deletion and missing/nonfile result. |
 | src/interrupts/int2f.rs | 30..37 | XMS installation result and entry pointer query. |
 | src/dos_data.rs | 19, 75..78, 171..173 | Fixed DOS segment, XMS entry offset and physical address calculation. |
 | src/xms.rs | 21..26, 299..309, 324..327, 406..417 | Entry installation, result convention, AH selection and free-handle branch. |
@@ -43,6 +45,16 @@ reports AX1. The bounded branch makes no file-service request. This is
 the source's own interface, not proof of every active guest hook or of
 source/release build correspondence. FND-SAVE-040 separately records a
 current native query, entered service and reported result.
+
+For FND-SAVE-043, the same pinned source's AH41 branch reads a
+terminated path through DS:DX and publishes the file helper's result
+through the common AX/carry convention. On success its AX is retained
+from the request rather than normalized to zero. The helper returns
+error2 for a missing or nonfile host target, error3 for an unresolved
+path, and error5 for its access-denied cases. Read-only checks and
+image/system-file branches remain distinct. This is the chosen source
+interface, not a proof of actual guest routing or source-to-release build
+correspondence; the finding records the live argument and result.
 
 The ordinary-file branches for read/write/seek publish AX and carry,
 with seek also publishing DX. Neither those branches nor their

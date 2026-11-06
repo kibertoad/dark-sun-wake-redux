@@ -6,10 +6,12 @@ Next ID: Q-SAVE-010
 
 - Q-SAVE-007. RULE-SAVE-001: Can the Quit shutdown route write a saved
   game or working archive through a reached callback or callee?
-  Settles it: establish ordinary pending-state histories through flag8-clear
+  Settles it: establish additional pending-state histories through flag8-clear
   updates, other dirty producers or
   later field changes, and their shutdown handle/file
-  bindings and external outcomes; classify remaining computed callback/target,
+  bindings and external outcomes, plus nonempty-path deletion histories;
+  FND-SAVE-041/042 settle the recorded working-file histories and
+  FND-SAVE-043 the default empty-path delete calls. Classify remaining callback/target,
   service-selector and save-producing branches. Reuse FND-SAVE-028/029's
   dirty-close write chain and explicit-Save022C/0285 control; no generic
   transfer control remains missing. Preserve unsearched streams and
@@ -39,8 +41,8 @@ Next ID: Q-SAVE-010
   and the callback's subsequent DS:4022 deletion request. Remaining slot
   admission is00C4, each tested/reloaded3F4E+14*i argument and
   3F4A/3F4C+14*i target, producer index/range and stability across calls;
-  retain other targets, native zero-count/close/delete outcomes and actual
-  handle/path identity. Do not reread007F as an unspecified cleanup callee
+  retain other targets, native zero-count/close and nonempty-path delete
+  outcomes and other actual handle/path identities. Do not reread007F as an unspecified cleanup callee
   or treat an uninitialized byte's zero-count request as a payload snapshot.
   FND-SAVE-031 admits one fixed saved-map Quit: five clean records at
   entry and actual08FB preparations, a known type-three slot0 target at
@@ -105,6 +107,11 @@ Next ID: Q-SAVE-010
   then ordinary Quit writes and clears it. That existential case needs no
   further generic alias/provider exclusion. Other state histories, targets
   and mechanisms remain here; the whole exit-side reading is incomplete.
+  FND-SAVE-043 answers the default-scenario delete obligation: both known
+  callback callers used the same empty path, native AX2/carry set mapped
+  to wrapper FFFF/carry clear, and four monitored files were unchanged.
+  Retain nonempty-path admission and other mechanisms; do not re-request
+  that scenario's caller/path/native-result binding as unspecified.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does

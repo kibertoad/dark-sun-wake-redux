@@ -594,7 +594,12 @@ one-call guard omitted FND-SAVE-027's already documented game-cleanup
 call. The session closed and released its lock; this attempt admits no
 complete interval. The corrected guard distinguishes the registered caller
 from the exact game-cleanup call instruction and requires both completed
-invocations, rejecting a third. The next actual attempt must validate it. No arbitrary host path is opened and no guest field
+invocations, rejecting a third. At0b4ba5bc the repeat passed in
+captures/rust-dos-shutdown/v181-q007-registered-delete-b-20261106.
+The fixed caller/frame/path reads, paired native result and normalized
+return parts are agent under current pins (FND-SAVE-043). The owned
+session closed and released its lock. Nonempty paths and other caller
+sequences remain outside this admitted scenario. No arbitrary host path is opened and no guest field
 is written. The static point check uses resident_listing.py over the two
 already established FND-EXE-558/559 ranges; its retained listing is
 GAME_DIR/analysis/handler-census-20261106/registered-delete-observer-points.txt.
