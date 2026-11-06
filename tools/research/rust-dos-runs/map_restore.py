@@ -28,7 +28,7 @@ def state(client, delta):
 
 
 def bounds(address, size):
-    if size not in (12544,1568,1920,2):
+    if size not in (12544,1568,1920,2600,2):
         raise ValueError("undeclared map/effect span size")
     seg, off = (int(x,16) for x in address.split(":"))
     low = seg*16+off

@@ -848,6 +848,11 @@ assert [c['offset'] for c in many['differing_cells']]==list(range(32))
 rejects(lambda:map_restore.comparison(bytes(12543),bytes(12544)))
 rejects(lambda: map_restore.expected_flags(base,bytes(1567),second))
 assert map_restore.overlaps({'a':('2000:0020',2),'b':('2002:0001',2),'c':('2000:0022',2)})==[['a','b'],['b','c']]
+assert map_restore.overlaps({'map':('2000:0000',12544),'trigger':('2200:0000',2600)})==[['map','trigger']]
+assert map_restore.overlaps({'map':('2000:0000',12544),'trigger':('2400:0000',2600)})==[]
+rejects(lambda: map_restore.bounds('2000:FF00',2600))
+rejects(lambda: map_restore.bounds('FFFF:0000',2600))
+rejects(lambda: map_restore.bounds('2000:0000',2599))
 rejects(lambda: map_restore.bounds('2000:FF00',12544))
 rejects(lambda: map_restore.bounds('FFFF:0000',1568))
 rejects(lambda: map_restore.bounds('0000:0000',2))
@@ -1057,6 +1062,7 @@ rejects(lambda: provider.payload(memory,{**selection,'destination':'2000:FF00'},
 rejects(lambda: provider.payload(memory,{**selection,'destination':'FFFF:0000'},24,b'x'*1920))
 memory.short=True; rejects(lambda: provider.payload(memory,selection,24,b'x'*1920))
 rejects(lambda: map_restore.read(memory,'2000:0020',12544))
+rejects(lambda: map_restore.read(memory,'2000:0020',2600))
 memory.short=False; assert map_restore.read(memory,'2000:0020',12544)==b'x'*12544
 rejects(lambda: named_file(Path('.'),'RGN033.GFF'))
 png=b'synthetic frame'

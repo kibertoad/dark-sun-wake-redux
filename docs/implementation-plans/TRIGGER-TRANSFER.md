@@ -53,3 +53,10 @@ tooling gate before a native attempt. Exit requires one run to connect the
 verified transfer, conversion input and predicted output at the sampled
 boundaries. This still does not establish continuous lifetime, all writes
 between stops, other inputs or failure behavior.
+
+The first connected native attempt stopped at the existing overlap checker:
+its arithmetic span allowlist omitted the newly admitted 2600-byte target.
+Admit that fixed extent for overlap arithmetic only; the map reader's
+12544/1568-byte input limits stay unchanged. Add overlapping, disjoint,
+wrapping and unsupported-size controls before retrying with fresh output.
+The stopped attempt remains a tooling diagnostic, not a conversion result.
