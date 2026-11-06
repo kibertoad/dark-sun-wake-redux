@@ -7,15 +7,20 @@ Next ID: Q-SOUND-012
 - Q-SOUND-011. FMT-SOUND-002: Which original code reads or writes DJ.DAT
   and the loaded count, retry word and six-byte record array, including
   aliases and indirect accesses outside the known loader/selector?
-  Settles it: a controlled census of file-name and loaded-field/pointer
-  accesses, identifying instruction starts and actual field/extent bindings,
+  Settles it: actual ownership/reachability and base/segment bindings for
+  FND-SOUND-061's eight field-window raw candidates and filename-window
+  candidates, plus excluded computed/overlapping/indirect accesses; identify
+  actual field/extent bindings beyond the controlled literal component,
   with each computed or indirect undecided access retained; relate any
   additional access to the format's width, encoding or field interpretation.
   Tried: the existing-evidence assessment of FND-SOUND-011/012/013 locates
   2834:043B acquisition, 2834:000C selection, 2834:0665 song forwarding and
   4A32:0011 dispatch, but those findings do not establish an exhaustive
   loaded-table reader/writer census. Generic I/O success and unrelated
-  driver output are not added as layout obligations. Blocks: complete
+  driver output are not added as layout obligations. FND-SOUND-061 classifies
+  the 32 listed field-window operands and local loader branches, including
+  signed-count extent, partial-header mutation and non-clearing cleanup.
+  The raw candidate and alias/indirect obligations remain. Blocks: complete
   FMT-SOUND-002 reading; slice 7.
 
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a

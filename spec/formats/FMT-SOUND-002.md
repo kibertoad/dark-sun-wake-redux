@@ -24,7 +24,7 @@ reads each time it chooses a song [FND-SOUND-012].
 |---|---|---|---|---|---|---|
 | `0x00` | 1 | `UINT8` | `count` | The number of records, 38. | supported | FND-SOUND-011 |
 | `0x01` | 2 | `UINT16LE` | `retry_passes` | After a failed chance, the number of selector runs to pass before choosing again: 1,000. | supported | FND-SOUND-011, FND-SOUND-012 |
-| `0x03` | 6 Ã— `count` | `music_record[count]` | `records` | The songs. | supported | FND-SOUND-011 |
+| `0x03` | 6 Ãƒâ€” `count` | `music_record[count]` | `records` | The songs. | supported | FND-SOUND-011 |
 | `0xE7` | | | | Total size 231 | | |
 
 `music_record`, 6 bytes:
@@ -68,7 +68,8 @@ not yet establish every access to the file and loaded structure. No finding
 qualifies for a whole-entry complete_reading declaration on that evidence.
 
 Q-SOUND-011 owns the remaining file/loaded-structure access census: count
-at DS:4252, retry word at DS:4253 and record pointer at DS:424E. A missing
+at DS:4252, retry word at DS:4253 and record pointer at DS:424E. FND-SOUND-061 now classifies the known literal field accesses and loader
+failure writes, retaining raw candidates and excluded aliases. A missing
 access could change a field's extent, signedness or interpretation. Unknown
 computed/indirect accesses remain obligations. Successful generic I/O and
 unrelated playback output are not themselves layout claims of this entry.
