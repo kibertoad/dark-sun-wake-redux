@@ -397,6 +397,11 @@ Next ID: Q-CONFIG-014
   records and ES:BX objects from direct heap globals. Retain actual P/DS,
   native/intervening updates, computed/bulk/object aliases and backing state,
   not unspecified startup quantities or an invariant that failures leave bounds unchanged.
+  FND-CONFIG-227 settles allocated/free metadata footprints and exact-size/
+  tail-split transitions. Retain actual free-list membership and coalesced
+  predecessor/successor admission, especially the following header's word-two
+  state overwritten unconditionally by splitting; payload-only disjointness
+  and fixed decompiler DS aliases do not settle those inputs.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;

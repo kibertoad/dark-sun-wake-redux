@@ -1,5 +1,11 @@
 # Ghidra setup for clean-room analysis
 
+For the resident heap helpers, check dynamic segments in instructions before
+using displayed C field identities. FND-CONFIG-227 records current-view
+examples at1000:13CA and1582 where changing DS produces misleading fixed
+57E0 data/text aliases. Function markers and branch calls remain useful for
+navigation; those symbols do not identify the physical heap headers.
+
 Ghidra is a recommended research tool for questions that the manual,
 walkthrough, controlled play, and bounded data inspection cannot answer exactly.
 Use it only against the repository owner's legally owned local executable.
