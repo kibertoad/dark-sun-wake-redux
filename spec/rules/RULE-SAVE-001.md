@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -78,6 +78,9 @@ states or all file effects (FND-SAVE-031).
 A second fixed run observed the actual type-three slot call and normal
 register rejoin, and zero counts for all four streams at their flush-count
 tests, with the same clean-archive and file-hash result (FND-SAVE-032).
+The fixed callee-entry extension also verified that the observed transfer
+entered that documented target with the same argument and expected return
+frame before its normal rejoin (FND-SAVE-033).
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
 game once it has saved (FND-SAVE-018).
 

@@ -46,6 +46,11 @@ the same capture root. FND-SAVE-032 admits its one slot argument/target
 and paired return stop, plus the four fixed stream selector/count-test
 reads. These named parts are agent; other slot targets, dirty writes and
 continuous state preservation remain unverified. That owned session closed.
+The fixed callee-entry extension passed in v181-quit-callee-entry-20261106
+under the same capture root. FND-SAVE-033 admits its known type-three
+entry breakpoint, incoming argument, expected far-return frame and paired
+normal rejoin. These fixed parts are agent; arbitrary/other target entries,
+dirty writes and internal native effects remain unverified. The session closed.
 
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;

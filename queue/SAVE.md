@@ -53,6 +53,12 @@ Next ID: Q-SAVE-008
   Quit run. Those named point bindings are answered for this scenario;
   retain dirty/other-state and other-target admission, unmonitored mechanisms
   and external effects, not an unchanged entry-only gap for these observations.
+  FND-SAVE-033 answers the remaining fixed-scenario transfer linkage:
+  the documented type-three callee was entered with argument1 and the
+  expected far-call stack displacement/return pair, then rejoined normally.
+  Do not retain a post-resume different-target explanation for that recorded
+  call. Dirty/other-state and other-target cases, internal native effects
+  and unmonitored mechanisms remain; this does not close the whole item.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
