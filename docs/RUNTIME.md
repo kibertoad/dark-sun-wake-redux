@@ -617,3 +617,15 @@ This admits those paused named reads and comparisons only, without input,
 guest continuation or setup writes. It does not admit a reflection probe,
 BP-chain validation, a cache copy or interval preservation. Five synthetic
 controls and the full integration gate passed; the owned session closed.
+
+
+At55fbe24d, the same paused verifier also observes the documented SS:BP
+link graph, with a 64-node bound and explicit cycle/crossing/limit results.
+The new strict verification in
+captures/rust-dos-regenerated/v181-q137-frame-links-20261106-play-ready/
+passed with an identical observation across the same-process roundtrip;
+FND-PARTY-335 records the result. These bounded read-only link and return
+field observations are agent for the admitted paused states. They do not
+validate frame authenticity or later interrupt-entry links. Six new
+synthetic controls, five existing backing controls and integration passed.
+The owned muted session closed without resuming gameplay or writing fields.

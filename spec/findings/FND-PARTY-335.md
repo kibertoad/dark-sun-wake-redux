@@ -8,7 +8,7 @@ recorded_by: kibertoad
 reproduced_by: []
 method: dynamic
 locations: []
-tool: tools/research/rust-dos-runs/verify_checkpoints.py and overlay_backing.py at 1d638bc3; dinorefurb-dosbox-session 1.0.0; Python 3.12.10
+tool: tools/research/rust-dos-runs/verify_checkpoints.py and overlay_backing.py at 1d638bc3; frame_links.py and extended snapshot at 55fbe24d; dinorefurb-dosbox-session 1.0.0; Python 3.12.10
 environment: Windows; rust-dos v1.8.1 SHA-256 e880ecf0d76dbb2f77e4d1d7568d90cb53f3d1cf798679cd24f025955bf85da0; deterministic15000 cycles; SB16 base220 IRQ5 DMA1; no Ultrasound; muted host output
 ---
 
@@ -65,6 +65,35 @@ passed again, and the complete backing snapshot was identical. The owned
 session closed; no owned emulator remained afterward. Reports, private
 files, image and state sidecars remain in the approved local store.
 
+### Bounded saved-frame observation at the same point
+
+A separate owned verification on 2026-11-06 used the extended observer
+at 55fbe24d, with the same source and play-ready state. Its output is
+GAME_DIR/captures/rust-dos-regenerated/v181-q137-frame-links-20261106-play-ready/restore-check.json.
+The strict source, mapping, instruction/time, state/frame/file checks and
+sound-IRQ mismatch refusal passed again. The fixed backing snapshot,
+including its frame-link observation, was identical after the checked
+same-process save/reload. No guest continuation, input or setup write
+was performed; no new gameplay RNG sequence is claimed.
+
+At the reported SS=4D9A and BP=FFD6, the saved link word was FFE8.
+It is nonzero even, so FND-EXE-234's walk would inspect this node's
+return-segment field. The observed offset/segment pair was 015D/05BA.
+The next link, at SS:FFE8, was zero: the walk terminates there before
+comparing that node's return segment. Exactly two link words were read;
+only the first node's return pair was read. Neither a cycle nor the
+64-node cap nor a crossing ended this observation.
+
+This admits a terminating observed link graph at the checkpoint. It
+removes an unknown about that point's graph, not about the future INT3F
+handler's incoming BP. It does not identify these words as genuine live
+far-return frames, admit a matched rewrite, or infer a first match from
+the resident-looking segment value. The graph can change before the
+reflection interval or while the interrupt-enabled loader runs. All
+observed SS-relative fields remain inside FND-PARTY-335's disjoint SS
+window at this point; actual later segment/backing preservation remains
+Q-PARTY-137. The owned session closed and released its run lock.
+
 ## Interpretation
 
 For observations starting from this exact checkpoint, EMS is a concrete
@@ -111,3 +140,12 @@ registers. The helper reads only the fields justified by
 FND-PARTY-328/333/334 and FND-EXE-562/566. Five synthetic controls prove
 tooling admission only; the integration gate passed all 758 .NET tests.
 No original pixels, runtime payloads or state files are committed.
+
+For the bounded link observation, run the same committed verifier with
+source `v181-q046-play-ready-20261104`, a new unused output prefix and
+state `play-ready`, using 55fbe24d or its unchanged observer. Inspect
+`overlay_backing.frame_links` and require equality across the checked
+roundtrip. Interpret links using FND-EXE-234, including zero/one early
+termination and odd-link suppression; termination is not frame authenticity.
+The six synthetic controls in `check_frame_links.py` and five backing
+controls passed before the full integration gate (758 .NET tests).
