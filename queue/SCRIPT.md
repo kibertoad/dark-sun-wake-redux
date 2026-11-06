@@ -130,6 +130,11 @@ Next ID: Q-SCRIPT-026
   1/script37 becomes 1/script1 with the shipped table, whereas 2625/script37
   is unmatched. Retain admission of such records after omitted/partial reads
   and reached child/pointer/table effects, not the local match outcome.
+  FND-SCRIPT-063 settles bitmap acquisition/cleanup's own pointer stores:
+  null acquisition and release leave the secondary pointer un-cleared, and
+  allocation AL zero is not assigned to the transfer-success byte. Retain
+  actual diagnostic/heap/release effects, field histories and bitmap/map aliases
+  that can reach trigger, table or frame state before conversion.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
