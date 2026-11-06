@@ -79,7 +79,11 @@ Next ID: Q-SOUND-012
   driver/block/source binding, patch-loop termination and excluded pointer
   writers remain. FND-SOUND-071 corrects the literal region census to five
   stores and identifies the two overlay-182 transition branches; actual
-  caller/state domains and excluded writers remain. Blocks: slice 7.
+  caller/state domains and excluded writers remain. FND-SOUND-072 removes
+  three raw instruction interiors from the unclassified mode/region set.
+  The remaining raw candidate is 1BF3:488B: settle incoming ownership of
+  the 4889..4C09 gap and the provisional 490D lookup-reader interpretation,
+  preserving computed/changed/alternative-entry exclusions. Blocks: slice 7.
 - Q-SOUND-005. RULE-SOUND-003: Does the game ever play a `PLYL` playlist or the `CSEQ` sequence,
   and through which code? Settles it: a caller of `2660:0004`, a writer of the far pointers at
   `DS:3496` and `DS:349A` that `2660:01AF` sets, and the resource lookups of the FM or MIDI branch
