@@ -36,9 +36,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed
-  with declared skips: 1954 entries, 208 parity rows,
-  five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 281591b9 -NoRestore` passed
+  with declared skips: 1956 entries, 208 parity rows,
+  five deviations. Integration at a7a68e14 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
   remain in the research commit messages. FMT-PARTY-007 is the closure trial;
@@ -54,7 +54,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   wrapped byte-domain source words and relocations; the count remains 83.
   FND-PARTY-275 through 278 exclude 36 constants, classify all 34
   interiors and account for tested calls/nearby pairs. Next Q-PARTY-124:
-  27 inventory values; start with 211+1AEF's 9D79 count (FND-PARTY-280/243).
+  26 other inventory values and FND-PARTY-279's count-storage conditions.
+  Review archive counter/pointer aliases next; reuse FND-PARTY-275/276.
+  FND-PARTY-280 replaces 110; retain its corrected capacity/null branches.
   Keep unsearched transfers and block/indexed/copied/alias mechanisms.
   FND-PARTY-278 repairs 33 body bytes and sidecars, preserving two
   analyzer-undefined bytes. Current map hashes and assessment are refreshed;
