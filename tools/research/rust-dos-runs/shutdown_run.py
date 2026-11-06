@@ -20,6 +20,7 @@ from load_entry import fields, input_map_ready, observe_delivery
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop
 from shutdown_snapshot import capture
+from shutdown_calls import slot_call, slot_return, stream_use
 
 
 class QuitFlow:
@@ -130,6 +131,10 @@ def main():
             close_all, prep = rng.address(0x38FF, 0x2B5), rng.address(0x37FC, 0x8FB)
             terminate = rng.address(0x1000, 0x1A5)
             pending_write = None
+            slot_before, slot_after = rng.address(0x1425, 0x16AB), rng.address(0x1425, 0x16AF)
+            stream_stops = (rng.address(0x1000, 0x3F1E), rng.address(0x1000, 0x2F30))
+            pending_slot = None
+            report["cleanup_calls"], report["stream_uses"] = [], []
             for index in range(4096):
                 observed, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
                 stop = observed.stop
@@ -156,9 +161,22 @@ def main():
                     if report["entry"]["status"] != 0:
                         raise ValueError("Quit reached a nonzero-status exit")
                     report["write_requests"] = []
-                    for target in (*requests, close_all, prep, terminate):
+                    for target in (*requests, close_all, prep, terminate, slot_before, slot_after, *stream_stops):
                         session.client.set_breakpoint(target)
                     session.client.remove_breakpoints(poll)
+                elif flow.phase == "shutdown" and address == slot_before:
+                    if pending_slot is not None:
+                        raise ValueError("nested slot call outside fixed pairing")
+                    report["cleanup_calls"].append(slot_call(session.client, stop, delta))
+                    pending_slot = len(report["cleanup_calls"]) - 1
+                elif flow.phase == "shutdown" and address == slot_after:
+                    if pending_slot is None:
+                        raise ValueError("slot return lacks observed call")
+                    item = report["cleanup_calls"][pending_slot]
+                    item["result"] = slot_return(stop, delta, item)
+                    pending_slot = None
+                elif flow.phase == "shutdown" and address in stream_stops:
+                    report["stream_uses"].append(stream_use(session.client, stop, delta))
                 elif flow.phase == "shutdown" and address in requests:
                     if pending_write is not None:
                         raise ValueError("nested write before previous interrupt result")
@@ -180,7 +198,8 @@ def main():
                                           "dirty": checked_read(session.client, seg, off + 0x2C, 1)[0]}
                     report["events"].append(item)
                 elif flow.phase == "shutdown" and address == terminate:
-                    if pending_write is not None or int(stop["registers"]["ax"], 16) >> 8 != 0x4C:
+                    if (pending_write is not None or pending_slot is not None
+                            or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)
                     report["passed"] = True

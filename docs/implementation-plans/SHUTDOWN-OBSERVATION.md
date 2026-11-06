@@ -38,6 +38,18 @@ No memory seeding, injected calls, unrestricted program arguments or
 arbitrary breakpoint configuration. Close the owned session in all paths.
 Synthetic runner controls must cover admission failures and stop progression.
 
+The per-call extension observes only the declared slot indirect-call and
+return boundaries and the four fixed stream selector/count-test boundaries.
+At the slot call require the admitted DS/SS, index0..15 and BX=14*index;
+record the pushed argument separately from the current table argument and
+target. A mismatch is evidence to retain, not silently normalize. Pair the
+ordinary return with that call and record register/frame preservation without
+assuming it. Stream reads require one of the four fixed offsets; unsupported
+records stop rather than admitting arbitrary near pointers. Synthetic controls
+cover changed arguments/registers, wrong boundaries/index/stride and signed
+counts. These point observations do not establish continuous preservation,
+unseen native targets or the dirty-archive case.
+
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
 request/result/file-change distinctions, and narrows the rule/queue only
