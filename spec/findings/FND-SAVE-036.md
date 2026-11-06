@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-036
 title: The observed type-three Quit cleanup enters the queried XMS driver with free-handle request one and reports success
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-040]
 recorded_by: codex
 reproduced_by: []
 method: dynamic

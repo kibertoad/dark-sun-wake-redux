@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-034
 title: Controlled dirty Quit writes metadata and clears its pending byte after native success
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-039]
 recorded_by: codex
 reproduced_by: []
 method: dynamic

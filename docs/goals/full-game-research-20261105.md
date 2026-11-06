@@ -86,7 +86,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
-  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..038; post-error: Q-COMBAT-059,
+  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..041; post-error: Q-COMBAT-059,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   Next Q-SAVE-009: actual failed-Save interval; Q-SAVE-008 owns reused-open copy.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,

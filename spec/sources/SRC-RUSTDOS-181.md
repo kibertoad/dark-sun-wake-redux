@@ -41,7 +41,7 @@ An invalid or locked block reports AX0 and an error in BL; a valid unlocked
 block is removed from the allocation and resident-handle records, then
 reports AX1. The bounded branch makes no file-service request. This is
 the source's own interface, not proof of every active guest hook or of
-source/release build correspondence. FND-SAVE-036 separately records a
+source/release build correspondence. FND-SAVE-040 separately records a
 current native query, entered service and reported result.
 
 The ordinary-file branches for read/write/seek publish AX and carry,

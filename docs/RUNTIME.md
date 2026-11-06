@@ -42,8 +42,13 @@ passed in captures/rust-dos-shutdown/v181-q009-failed-save-quit-20261106/.
 It restored that checkpoint and reached ordinary Quit's known metadata
 write/commit/result observations. This admits those fixed filesystem-input
 and continuation parts only; it made no guest setup write. Both owned
-sessions closed and released their locks. Pending-byte watch extensions
-still require their own native capability attempt.
+sessions closed and released their locks. At376dc27f, the pending-byte
+watch stages also passed: v181-q009-native-write-failure-c-20261106
+and v181-q009-failed-save-quit-watch-20261106 in those respective roots.
+Their fixed record watch, checked source restore and normal-input
+continuation are agent under the current pins (FND-SAVE-041). This
+admits the observed value-change mechanism only, not arbitrary watched
+fields or unchanged-value writes. Both sessions closed and released locks.
 
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while
@@ -72,7 +77,7 @@ normal rejoin. These fixed parts are agent; arbitrary/other target entries,
 dirty writes and internal native effects remain unverified. The session closed.
 
 The controlled stage passed in v181-quit-dirty-active-20261106 under
-that capture root (FND-SAVE-034). The fixed active-head named-byte
+that capture root (FND-SAVE-039). The fixed active-head named-byte
 write, including expected-old/readback guards, is now agent under the
 current pins. So are the two observed full-count native write results,
 the AH68 request/result and five paired preparation returns. This admits
@@ -82,7 +87,7 @@ DOS termination remain unverified. The owned session closed and released
 its lock. Reports and writable copies remain in that private run directory.
 
 The XMS linkage extension passed in v181-quit-xms-entry-20261106 under
-the same capture root (FND-SAVE-036). Its installation/entry queries,
+the same capture root (FND-SAVE-040). Its installation/entry queries,
 free-call pointer and handle reads, fixed0160:1F00 native-entry frame and
 paired return are agent under the current pins. The fixed scenario entered
 that service with function0A/handle1 and returned AX1. This admits neither
@@ -484,7 +489,7 @@ Revalidate any further required part before admitting a new run.
 | Send mouse input | agent, left/right only | 2026-10-19: separate completed motion and click operations reached character and conversation controls (FND-UI-054), using virtual 320 x 200 coordinates. Middle button and held modifiers have only v1.7.2 provenance (FND-PARTY-204, FND-PARTY-206) and are not currently admitted. | A current attempt for each additional gesture. |
 | Send keyboard input | agent, Esc and 2 only | 2026-10-19: Esc returned from Create Characters to Start; 2 selected occupied slot 1 as leader in Play (FND-UI-054). Other keys and held modifiers retain historical provenance only. | A current attempt for another required key or modifier. |
 | Read memory and set breakpoints | agent, named fields and declared stops | 2026-10-19: current window/handler, party kinds/box records, seed, callback arguments and strict restore fields were read; generator, setter and native input stops were reached (FND-UI-054). 2026-10-25: once-breakpoints on all 854 overlay trampolines at a time, with return addresses read from the stack, ran from play-ready (FND-EXE-632); breakpoints kept armed on indirect transfers, with operand addresses formed from the stop's registers, and memory reads of saved vectors (FND-RNG-065); write watchpoints over 115 ranges of 1 to 4 bytes, with the stack walked at a stop (FND-RNG-067); armed breakpoints counting 13 branch addresses, at most 50 hits each because every stop opens new TCP connections and a run with uncapped counts used up the local ephemeral ports (FND-RNG-075). | A field or stop outside the tested contract. |
-| Write supported memory fields | agent for the fixed active-head archive_pending_metadata setup only | FND-SAVE-034 verifies expected-old/readback under current pins. Earlier hit-point writes in FND-PARTY-212 remain historical. | Other fields need their own current guarded-write capability attempt. |
+| Write supported memory fields | agent for the fixed active-head archive_pending_metadata setup only | FND-SAVE-039 verifies expected-old/readback under current pins. Earlier hit-point writes in FND-PARTY-212 remain historical. | Other fields need their own current guarded-write capability attempt. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | agent, frames only; person, frames only | 2026-10-19: `screenshot()` produced 640 x 400 PNGs and independent strict restores reproduced the checked frames (FND-UI-054). Host audio stayed muted; sound capture is untested. Owner screenshots retain their own DOSBox provenance. | A sound capture from a session-package run. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |

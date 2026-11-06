@@ -77,7 +77,7 @@ helpers, the own publication/preparation continuations compose as follows:
 | Either tail calls preparation and it returns AXFFFF | Preparation has not performed its success clear; no local rollback |
 
 FND-COMBAT-124 supplies the preparation checks and success clear;
-FND-SAVE-034 observes one controlled native success. Early update
+FND-SAVE-039 observes one controlled native success. Early update
 rejection does not independently establish that the incoming record was
 clean, and a later reader, explicit close or another update may prepare
 the record before Quit. These are return-boundary claims, not continuous
@@ -89,7 +89,7 @@ The ordinary producer investigation can focus on write-through-clear
 updates, writer errors that bypass preparation, failed preparation, other
 dirty producers and later state changes. A successful checked preparation
 on the same stable record is not itself an unexplained source of pending1.
-FND-SAVE-034's observed options000A include option8, but that run did
+FND-SAVE-039's observed options000A include option8, but that run did
 not sample record+24 or establish its full producer history. Its explicit
 dirty seed cannot substitute for finding one of the ordinary histories.
 

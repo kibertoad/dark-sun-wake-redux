@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-SAVE-036, FND-SAVE-037, FND-SAVE-038, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-039, FND-SAVE-035, FND-SAVE-040, FND-SAVE-037, FND-SAVE-038, FND-SAVE-041, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -38,7 +38,7 @@ commit sequence. Success clears it; a failed check retains it without
 rolling back earlier requests (FND-SAVE-028, FND-COMBAT-124). A controlled
 Quit with this byte explicitly seeded nonzero observed full native header/
 directory writes, carry-clear commit and a successful preparation return
-with the byte cleared (FND-SAVE-034). This does not establish ordinary
+with the byte cleared (FND-SAVE-039). This does not establish ordinary
 dirty-state reachability. Open option bit8 constructs the runtime
 write-through flag: a zero-error resource update with that flag calls
 preparation before returning, but a writer error can skip it even when
@@ -97,7 +97,7 @@ entered that documented target with the same argument and expected return
 frame before its normal rejoin (FND-SAVE-033). A further observation
 linked that call to its queried XMS driver, entered the fixed native
 service with function0A and memory handle1, and observed AX1 success
-before the same normal rejoin (FND-SAVE-036). This handle is distinct
+before the same normal rejoin (FND-SAVE-040). This handle is distinct
 from a DOS file or archive handle.
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
 game after the action returns, without checking its success result
@@ -109,9 +109,17 @@ If explicit Save's numbered writer returns AL0, its wrapper skips its
 working-archive close and numbered-file copy, then the Save-screen caller
 requests the ordinary failure message. After a returning message and
 record-buffer release, the callback consumes the exit mark without a
-save-success test. Actual pending metadata and preservation to later Quit
-remain unadmitted; a writer failure can also occur before publishing it
-(FND-SAVE-037).
+save-success test. A writer failure can also occur before publishing
+pending metadata (FND-SAVE-037). One controlled native payload-write
+failure instead changed the working record pending byte from0 to1,
+returned through the UI to play without clearing it, and reached ordinary
+F3/Quit. Quit wrote that same record's28-byte header and52-byte directory
+through its bound DARKRUN.GFF handle, committed successfully and cleared
+the byte. DARKRUN.GFF changed; SAVE02.SAV remained absent. Neither stage
+seeded guest fields. The external failure input was a temporary lock on
+only the session's private payload file, released before continuation
+(FND-SAVE-041). This establishes the conditional working-file effect,
+not a valid new gameplay snapshot or every failure/shutdown domain.
 
 The writer's returning cleanup suffix retains its saved failure result
 across reverse conversion. That converter's GPLI reads can prepare the
@@ -151,20 +159,16 @@ None known.
 
 ## Open questions
 
-- For the failed-Save route, either the pending working record survives
-  the named return/UI interval and can be prepared at later shutdown,
-  or an intervening preparation, close or nonreturning failure prevents
-  that continuation. The close bypass and provider-dependent preparation
-  are read; actual same-record history and file outcome remain open
-  (FND-SAVE-037, FND-SAVE-038, Q-SAVE-009).
-
 - Which saved-game or working-archive files, if any, are affected by the
   known pending-write and registered slot/delete routes on actual Quit
   paths, and do other callback targets produce saves? Ordinary pending-state
   histories, other stream/slot states and targets, handle/path identity,
   native failures and unmonitored mechanisms remain unresolved. The fixed
-  clean Quit and controlled seeded-dirty success are already observed
-  (FND-SAVE-031..035); the latter does not establish ordinary reachability.
+  clean Quit, controlled seeded-dirty success and game-produced pending
+  metadata after a controlled failed Save are already observed
+  (FND-SAVE-031..033, FND-SAVE-035, FND-SAVE-039, FND-SAVE-041).
+  The last case answers the failed-Save continuation question; remaining
+  histories are not prerequisites for that positive case.
   The type-four slot's installed cleanup
   target and zero-count request sequence are already read; their live
   bindings and external effects are not (FND-SAVE-027, FND-SAVE-028,
