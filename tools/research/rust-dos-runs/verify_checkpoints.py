@@ -17,6 +17,7 @@ from probe_drive import ROOT
 from regenerate_checkpoints import admit_state, mapping, snapshot
 from restore_opener import verify_checkpoint_executable
 from overlay_backing import capture as overlay_capture
+from loaded_headers import registered
 from dinorefurb_dosbox_session.errors import ConfigurationRefused
 
 
@@ -45,6 +46,7 @@ def main():
         state = read_saved_state(source, name)
         verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
         admit_state(state)
+        headers = registered(state.directory / "drive-c/DSUN.EXE", delta) if name in ("play", "play-ready") else None
         run = game / "captures/rust-dos-regenerated" / f"{sys.argv[2]}-{name}"
         if run.exists():
             raise ValueError("verification run already exists")
@@ -85,12 +87,12 @@ def main():
                     result["leader"] = leader
                     if leader != 1 or result["state"]["slot_kinds"] != [0, 2, 0, 2]:
                         raise ValueError("two-character Play state differs from FND-PARTY-178")
-                    result["overlay_backing"] = overlay_capture(s.client, s.stop, delta)
+                    result["overlay_backing"] = overlay_capture(s.client, s.stop, delta, headers)
                 saved = s.save_state("roundtrip", check_files=True)
                 s.load_state(saved)
                 compare(expected[0], snapshot(s.client, delta), s.client.screenshot())
                 if "overlay_backing" in result:
-                    repeated = overlay_capture(s.client, s.stop, delta)
+                    repeated = overlay_capture(s.client, s.stop, delta, headers)
                     if repeated != result["overlay_backing"]:
                         raise ValueError("overlay backing differs after paused roundtrip")
                     result["overlay_backing_roundtrip_equal"] = True

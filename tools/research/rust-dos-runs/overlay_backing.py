@@ -1,9 +1,10 @@
 """Fixed paused overlay/queue metadata; caller verifies the source and restore."""
 import struct
 from frame_links import observe
+from loaded_headers import observe as observe_headers
 
 
-def capture(client, stop, delta):
+def capture(client, stop, delta, headers=None):
     if type(delta) is not int or not all(0 <= s + delta <= 0xFFFF
                                        for s in (0x4DA1, 0x55CE, 0x57E0)):
         raise ValueError("invalid overlay snapshot mapping")
@@ -54,4 +55,7 @@ def capture(client, stop, delta):
                   if 0 < first < last else None,
               "frame_links": observe(read, regs["ss"], regs["bp"]),
               "limits": "paused checkpoint only; observed links do not prove frame validity or later-state preservation"}
+    if headers is not None:
+        result["loaded_headers"] = observe_headers(read, result["loaded_head"], headers,
+                                                  first, last, [qstart, qend])
     return result
