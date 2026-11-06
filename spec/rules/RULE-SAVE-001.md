@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -64,6 +64,12 @@ selected records. These conditional mechanisms do not by themselves create
 a new gameplay snapshot or prove successful persistence; actual state,
 handle targets and other callback effects remain open
 (FND-SAVE-028, FND-SAVE-030, Q-SAVE-007).
+The known registered library cleanup also dispatches populated slots and
+requests deletion of its stored path. One documented slot producer installs
+a cleanup target that requests positioning, a zero-count write and close;
+it ignores the positioning and write results before closing. Those requests
+do not establish the affected live file, a successful deletion, or the OS's
+zero-count behavior (FND-EXE-398, FND-EXE-558, FND-EXE-559).
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
 game once it has saved (FND-SAVE-018).
 
@@ -92,7 +98,11 @@ None known.
 
 ## Open questions
 
-- Can the Quit shutdown route write a saved game or working archive through
-  a reached callback or callee? The local sequence has no explicit save,
-  but its transitive no-write claim lacks a complete mechanism and target
-  audit (FND-SAVE-027, Q-SAVE-007).
+- Which saved-game or working-archive files, if any, are affected by the
+  known pending-write and registered slot/delete routes on actual Quit
+  paths, and do other callback targets produce saves? Actual dirty records,
+  stream state, slot targets/arguments, handle/path identity and native
+  outcomes remain unresolved. The type-four slot's installed cleanup
+  target and zero-count request sequence are already read; their live
+  bindings and external effects are not (FND-SAVE-027, FND-SAVE-028,
+  FND-SAVE-030, FND-EXE-398, FND-EXE-559, Q-SAVE-007).

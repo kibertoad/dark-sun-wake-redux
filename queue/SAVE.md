@@ -31,6 +31,15 @@ Next ID: Q-SAVE-008
   stream-flush body. The distinct167B:0029 slot/delete route reuses
   FND-EXE-558/559 and retains actual slot targets. Current load reports
   do not observe+2C at shutdown; that admission requires new evidence.
+  FND-EXE-398/558/559 already connect the registered167B:0029 callback
+  to1425:1684's slot dispatch and the type-four producer's1425:007F
+  target. Reuse that target's position/zero-count-write/close sequence
+  and the callback's subsequent DS:4022 deletion request. Remaining slot
+  admission is00C4, each tested/reloaded3F4E+14*i argument and
+  3F4A/3F4C+14*i target, producer index/range and stability across calls;
+  retain other targets, native zero-count/close/delete outcomes and actual
+  handle/path identity. Do not reread007F as an unspecified cleanup callee
+  or treat an uninitialized byte's zero-count request as a payload snapshot.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
