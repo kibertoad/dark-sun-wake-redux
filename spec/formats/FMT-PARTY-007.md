@@ -237,6 +237,14 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   The separate metadata-only ownership plan
   `docs/research-closure-cast-window.json` assigns the already identified
   cast-window and APFM rows to PARTY/UI, including shared selection callbacks.
+  It also assigns the identified timer restoration/reset, sound callback and
+  initialization rows to PARTY/TIME/SOUND from FND-PARTY-316 through 320.
+  The current map assigns 54 unique rows, 25 shared; 6323 remain unassigned
+  across the six-inventory denominator. Sixteen open metadata obligations
+  include eight newly explicit TIME/SOUND checklist components of Q-PARTY-136,
+  not eight new research questions or answered dependencies. Accepted readings
+  remain zero and three inventories remain missing. This map's per-area counts
+  are non-additive and do not replace the original four-root map above.
   Its open obligations reference Q-PARTY-134/135/136/137; it does not replace
   this entry's four-root map, the separate SAVE/COMBAT map or their denominators.
   Assignment and cited coverage do not establish complete readings.

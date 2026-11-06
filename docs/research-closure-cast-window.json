@@ -8,6 +8,14 @@
     {
       "id": "PARTY",
       "scope": "Known cast-window and last-cast number-producer paths assessed for Q-PARTY-134, with getter and preservation dependencies Q-PARTY-135/136/137. No closure claim for PARTY as a whole."
+    },
+    {
+      "id": "TIME",
+      "scope": "Timer stack capture, nesting and old-vector restoration effects on Q-PARTY-136 retained-number contracts. Scheduling and unrelated timer users remain outside this partial map."
+    },
+    {
+      "id": "SOUND",
+      "scope": "Known sound initialization/reset and timer callback/driver interfaces relevant to Q-PARTY-136. General sound playback and unassigned driver functions remain outside this partial map."
     }
   ],
   "inventories": [
@@ -253,6 +261,143 @@
             "PARTY"
           ],
           "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "4842:040C",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4842:04DD",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4842:0519",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4842:0520",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4842:056C",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4842:06CF",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "31E0:31A7",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "0x0008337B",
+          "areas": [
+            "PARTY",
+            "TIME"
+          ],
+          "reason": "Shared preservation dependency assessed in FND-PARTY-316 through FND-PARTY-320; assignment does not declare a complete reading."
+        },
+        {
+          "start": "4654:09A9",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4734:00B0",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4734:0133",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4734:0591",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4842:03BC",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4842:03F4",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "4842:0D72",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "0x00067206",
+          "areas": [
+            "PARTY",
+            "SOUND"
+          ],
+          "reason": "Shared timer/reset or driver-interface dependency assessed in FND-PARTY-317/318/320; actual backing and interval admission remain open."
+        },
+        {
+          "start": "0x00067321",
+          "areas": [
+            "PARTY",
+            "TIME",
+            "SOUND"
+          ],
+          "reason": "Containing setup root for the known zero-mode reset and nonzero-mode sound setup, classified in FND-PARTY-320; no unique startup or re-entry claim."
         }
       ]
     }
@@ -359,7 +504,151 @@
         "Q-PARTY-136",
         "Q-PARTY-137"
       ],
-      "evidence": []
+      "evidence": [
+        "FND-PARTY-314",
+        "FND-PARTY-315",
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "time-preservation-callers",
+      "area": "TIME",
+      "kind": "callers",
+      "question": "Which actual reset/root re-entry and old-vector capture intervals reach the retained-number paths after the known callers and gates in FND-PARTY-319/320?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "time-preservation-state-producers",
+      "area": "TIME",
+      "kind": "state-producers",
+      "question": "Which actual interrupted/private-stack backing and excluded capture-word, nesting, ready or mode writers defeat FND-PARTY-316 through 320 preservation conditions?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "time-preservation-indirect-transfers",
+      "area": "TIME",
+      "kind": "indirect-transfers",
+      "question": "Which actual BIOS-chain target, changed slot/callback binding or nonlocal transfer can change the saved number, captured stack or continuation?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "time-preservation-remaining-evidence",
+      "area": "TIME",
+      "kind": "remaining-evidence",
+      "question": "Which native interrupt/frame and actual backing evidence remains after applying the local timer restoration and fixed callback write contracts?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "sound-preservation-callers",
+      "area": "SOUND",
+      "kind": "callers",
+      "question": "Which admitted initialization/teardown re-entry or wrapper bypass reaches a nesting reset during the getter interval after FND-PARTY-320 gates?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "sound-preservation-state-producers",
+      "area": "SOUND",
+      "kind": "state-producers",
+      "question": "Which actual selected sound-record, driver/sequence-block and saved-frame backing or excluded pointer/table writes remain after FND-PARTY-318?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "sound-preservation-indirect-transfers",
+      "area": "SOUND",
+      "kind": "indirect-transfers",
+      "question": "Which changed C1/67 driver table, slot or external transfer can defeat the known internal-table exclusion and bounded ADV write domains?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
+    },
+    {
+      "id": "sound-preservation-remaining-evidence",
+      "area": "SOUND",
+      "kind": "remaining-evidence",
+      "question": "Which actual driver/block/frame lifetime and external effects remain necessary to preserve the number, beyond the known sound callback interfaces?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-136"
+      ],
+      "evidence": [
+        "FND-PARTY-316",
+        "FND-PARTY-317",
+        "FND-PARTY-318",
+        "FND-PARTY-319",
+        "FND-PARTY-320"
+      ]
     }
   ]
 }
