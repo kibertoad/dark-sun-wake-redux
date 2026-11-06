@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-EXE-652, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -117,6 +117,10 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   bindings; retained or changed flag/pointer histories can differ. Actual
   source domains, copy-frame separation, remainder extent and implicit
   buffer-writer effects remain, not an unspecified release callee.
+  FND-EXE-652 gives the packet writer's fixed-segment copy spans and
+  sufficient whole-window separation conditions. Actual captured segments,
+  mapping and preserved frame/code/shared-field histories remain; a complete
+  ring-correctness proof is not independently required for that exclusion.
   Other excluded header-access mechanisms remain separate.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
