@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e88d0ef8
-  -NoRestore` passed: 2020 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 963aa90e
+  -NoRestore` passed: 2021 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -75,7 +75,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   before restoring SI, never restores DS, and can return through a conditional
   invalid-slot route without another driver child. FND-SOUND-060 controls eleven direct service sites and names the
   same-invocation 201 +0767 -> +075F repeat edge. Next actual service
-  admission, nonzero AL, offset-loop callee/frame and DS effects; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
+  admission, nonzero AL and loaded/trap residency. FND-RNG-098 excludes
+  a local DS reload or mode/count gate before the clock prefix on the
+  loaded-jump route; next actual SS/DS backing, service/converter effects
+  and final seed-store binding; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
   counts remain. Q-RNG-029 retains actual graphics SS-frame/page admission. No new closures.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
