@@ -40,7 +40,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
   `Test.ps1 -Integration -NoRestore` passed:
-  2117 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  2118 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen new boundary controls passed. Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
@@ -52,16 +52,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   under the retained decoder/frame model. Do not repeat those classifications.
   FND-EXE-646 corrects the retained timer caller and replaces 585;
   its driver/timer survey is retained, not newly executed.
-  Next compare all candidate instruction starts and eventual consumer calls
-  with a controlled root-based reach report, using reach_config.py and
-  q007_dsun_apfm_census.json and the pinned engine. Review retained reports
-  first; preserve root, mapping, decoder and unresolved-transfer provenance.
-  Distinguish report-matched starts from actual caller/frame admission.
-  Reuse FND-EXE-579/583/646/586/587/588 and FND-CONFIG-128/189;
-  retain destination/header aliasing, adjusted/block writers, copied/computed
-  pointers and reached header-relevant target effects. Original-derived
-  candidate and argument reports remain in GAME_DIR/analysis/ as named
-  by FND-EXE-644/645. No complete reading or queue answer was added.
+  FND-EXE-647 positively matches all 306 pushes and 160 consumer/helper
+  call starts in the declared-root model. All six controls pass per cohort;
+  the inside-call-byte control is distinguished. Do not repeat the boundaries.
+  Preserve 50 unresolved transfers, five gaps, four contested decodes and
+  false negativeUsable; source models do not admit every live predecessor/frame.
+  Next Q-EXE-033: select the 4DA0:0000 destination producer/lifetime
+  contract behind overlay 178's window callback store. Reuse FND-EXE-604
+  and FND-CONFIG-018/030/031; identify concrete stores, acquisition and
+  deletion/reuse routes before asserting a header alias blocker. Read that
+  connected contract, keeping unrelated rendering outside its boundary.
+  Other computed/copied pointer, writer and target-effect mechanisms remain.
+  Retained candidate/argument/reach outputs are under GAME_DIR/analysis/
+  as named in FND-EXE-644/645/647. No complete reading or queue answer added.
   Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
