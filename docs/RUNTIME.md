@@ -39,8 +39,13 @@ ordinary exit entry, named archive/slot/stream reads and reached preparation
 stops, then the pre-termination breakpoint and fixed private-file hashes.
 These fixed parts are agent under session1.0.0/rust-dos1.8.1. No draw or
 guest write occurred. Native write-result capture remains unverified because
-no monitored write request hit; dirty shutdowns, every indirect slot call
+no monitored write request hit; dirty shutdowns, other indirect slot calls
 and actual DOS termination are also unverified. Both sessions closed.
+The per-call extension passed in v181-quit-use-points-20261106 under
+the same capture root. FND-SAVE-032 admits its one slot argument/target
+and paired return stop, plus the four fixed stream selector/count-test
+reads. These named parts are agent; other slot targets, dirty writes and
+continuous state preservation remain unverified. That owned session closed.
 
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;

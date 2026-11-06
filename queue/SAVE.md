@@ -47,6 +47,12 @@ Next ID: Q-SAVE-008
   actual per-call slot preservation, handle/file bindings and unmonitored
   callbacks/services; do not repeat an unqualified missing clean-state
   observation or extrapolate this one run to all Quit paths.
+  FND-SAVE-032 adds one actual type-three slot call with matching pushed/
+  table argument1 and its paired normal return, plus all four zero stream
+  counts at actual selector and flush-count-test points in a second fixed
+  Quit run. Those named point bindings are answered for this scenario;
+  retain dirty/other-state and other-target admission, unmonitored mechanisms
+  and external effects, not an unchanged entry-only gap for these observations.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
