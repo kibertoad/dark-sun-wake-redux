@@ -35,7 +35,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 78bcfd4c
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince adc25ab5
   -NoRestore` passed: 2053 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
@@ -85,7 +85,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   allocation/cleanup admission and snapshot/child preservation,
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
-  RULE-SCRIPT-008: FND-SCRIPT-050; TALK admission: FND-SCRIPT-043..049/051/052.
+  RULE-SCRIPT-008: FND-SCRIPT-050 (current-view reproduction in docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
   Q-SCRIPT-024: pool/key/entry admission; Q-COMBAT-059 owns post-error effects,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   No complete reading/closure.
