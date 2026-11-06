@@ -392,6 +392,11 @@ Next ID: Q-CONFIG-014
   reload before release. Retain computed/bulk/physical aliases, reentry and
   changed incoming/callee segment effects; do not repeat the controlled
   direct-store census or assume a nested write necessarily changes its value.
+  FND-CONFIG-226 binds the eight listed startup/later bound-current stores,
+  cache store and unchanged-shipped-quantity startup range, separating15F3
+  records and ES:BX objects from direct heap globals. Retain actual P/DS,
+  native/intervening updates, computed/bulk/object aliases and backing state,
+  not unspecified startup quantities or an invariant that failures leave bounds unchanged.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
