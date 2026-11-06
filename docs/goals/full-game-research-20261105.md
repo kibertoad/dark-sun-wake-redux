@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 52a64a27 -NoRestore` passed on
-  47801da6's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
+  `Test.ps1 -Research -ChangedSince d1d5706c -NoRestore` passed on
+  29a0f69d's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
@@ -48,8 +48,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reusing FND-PARTY-288/328..336 and the extended FND-PARTY-335 paused
   observations. Next evidence must address the publication-to-first-handoff
   interval; do not repeat baseline snapshots. Reuse FND-PARTY-333's
-  connected BP contract and FND-PARTY-334's retained candidate audit; next
-  native BP/DS, saved-word, incoming/captured-segment and target admission.
+  connected BP contract and FND-PARTY-334's retained candidate/scalar contracts; next
+  actual cache-node registration, frame-walker SS writes, native BP/DS and
+  copy/frame preservation, incoming/captured-segment and target admission.
   Preserve the indexed/block/string/adjusted-pointer and alternate-entry exclusions.
   Read docs/RUNTIME.md first. No retained reflection checkpoint was located;
   checkpoint_rng.py admits sound and script-52 callers only. Do not use
