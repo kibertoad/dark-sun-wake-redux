@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -78,6 +78,11 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   conditions are the tag builder's prefix/frame state, live child-tag
   provider/writers and excluded incoming target forms under Q-PARTY-124;
   the known DATA/1002 route stays separate.
+  FND-PARTY-270 removes fixed-displacement scalar prefix writers and
+  literal in-window pointer producers in the tested decodes, preserving
+  computed/copied addresses, aliases, block operations and alternate
+  streams. Main-entry DS/SS equality is already observed; preservation
+  to these callers remains unresolved, not another startup experiment.
   The partial-reader ICON candidate omitted by the inventory remains an
   executable-ownership gap, not an asserted DATA consumer. The argument
   reporter's PUSH-CS limit at wrapper calls supplies no type classification.
