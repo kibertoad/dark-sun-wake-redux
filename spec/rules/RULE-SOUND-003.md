@@ -245,3 +245,8 @@ None known.
   FND-SOUND-076: the known aggregation and request-52 override do not
   clamp the byte to 1..10, and ordinary tick selection reloads it after
   recomputation. Backing, ordering and excluded writers remain open.
+
+- Q-SOUND-004 retains script-input and scheduling evidence after
+  FND-SOUND-077's 37 literal health-override sites: ten take local variables,
+  one other call has a dynamic function selector, and GPL/37 has a decode
+  gap. The 27 fixed-value sites alone do not establish a universal domain.

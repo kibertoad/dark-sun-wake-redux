@@ -74,7 +74,11 @@ Next ID: Q-SOUND-013
   subsequent startup preservation remain. FND-SOUND-076 settles known
   health aggregation/override and tick forwarding; retain actual record
   input histories, script ordering, backing and excluded health writers
-  rather than an assumed 1..10 field domain. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
+  rather than an assumed 1..10 field domain. FND-SOUND-077 identifies
+  37 shipped literal script writers: 27 fixed values and ten local-variable
+  inputs. Remaining script input scope is those variable histories,
+  GPL/27 01C8 dynamic selection, GPL/37 0D39..0D58 decode gap, actual
+  scheduling and excluded script/native producers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
   local disc-start, response-table writes and request-status ordering; track
   publication ignores start-request failure. Actual handler/output, table
