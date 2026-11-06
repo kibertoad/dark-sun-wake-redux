@@ -8,8 +8,8 @@ Next ID: Q-SOUND-012
   and the loaded count, retry word and six-byte record array, including
   aliases and indirect accesses outside the known loader/selector?
   Settles it: actual ownership/reachability and base/segment bindings for
-  FND-SOUND-061's eight field-window raw candidates and filename-window
-  candidates, plus excluded computed/overlapping/indirect accesses; identify
+  FND-SOUND-062's four exact-name interior candidates and excluded
+  computed/overlapping/indirect accesses; identify
   actual field/extent bindings beyond the controlled literal component,
   with each computed or indirect undecided access retained; relate any
   additional access to the format's width, encoding or field interpretation.
@@ -20,7 +20,10 @@ Next ID: Q-SOUND-012
   driver output are not added as layout obligations. FND-SOUND-061 classifies
   the 32 listed field-window operands and local loader branches, including
   signed-count extent, partial-header mutation and non-clearing cleanup.
-  The raw candidate and alias/indirect obligations remain. Blocks: complete
+  FND-SOUND-062 classifies all eight field candidates as two loader
+  instruction interiors and six combat-table data locations. Its exact
+  filename query retains four interior candidates; wider-query history and
+  excluded aliases/indirects remain explicit. Blocks: complete
   FMT-SOUND-002 reading; slice 7.
 
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a
