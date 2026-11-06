@@ -70,8 +70,9 @@ qualifies for a whole-entry complete_reading declaration on that evidence.
 Q-SOUND-011 owns the remaining file/loaded-structure access census: count
 at DS:4252, retry word at DS:4253 and record pointer at DS:424E. FND-SOUND-061 now classifies the known literal field accesses and loader
 failure writes. FND-SOUND-062 classifies the eight field-window candidates
-as loader interiors or combat-table data; four exact-name interiors and
-excluded aliases/indirects remain. A missing
+as loader interiors or combat-table data; FND-SOUND-063 classifies the
+four exact-name interiors. Excluded computed/aliased/indirect mechanisms
+and actual bindings remain. A missing
 access could change a field's extent, signedness or interpretation. Unknown
 computed/indirect accesses remain obligations. Successful generic I/O and
 unrelated playback output are not themselves layout claims of this entry.

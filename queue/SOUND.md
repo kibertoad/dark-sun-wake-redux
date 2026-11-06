@@ -7,9 +7,8 @@ Next ID: Q-SOUND-012
 - Q-SOUND-011. FMT-SOUND-002: Which original code reads or writes DJ.DAT
   and the loaded count, retry word and six-byte record array, including
   aliases and indirect accesses outside the known loader/selector?
-  Settles it: actual ownership/reachability and base/segment bindings for
-  FND-SOUND-062's four exact-name interior candidates and excluded
-  computed/overlapping/indirect accesses; identify
+  Settles it: excluded computed/aliased filename and table addresses,
+  overlapping writes, indirect accesses and alternate-entry mechanisms; identify
   actual field/extent bindings beyond the controlled literal component,
   with each computed or indirect undecided access retained; relate any
   additional access to the format's width, encoding or field interpretation.
@@ -23,7 +22,10 @@ Next ID: Q-SOUND-012
   FND-SOUND-062 classifies all eight field candidates as two loader
   instruction interiors and six combat-table data locations. Its exact
   filename query retains four interior candidates; wider-query history and
-  excluded aliases/indirects remain explicit. Blocks: complete
+  excluded aliases/indirects remain explicit. FND-SOUND-063 classifies all
+  four exact-name candidates as instruction interiors in unrelated argument,
+  direction and state-field arithmetic. No raw field/exact-name candidate
+  remains unclassified; excluded mechanisms and actual bindings remain. Blocks: complete
   FMT-SOUND-002 reading; slice 7.
 
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a
