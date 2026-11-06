@@ -36,7 +36,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 6bcc0bfe -NoRestore` passed
   with declared skips: 1971 entries, 208 parity rows,
   five deviations. Integration at 7f387a81 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
@@ -60,8 +60,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   preservation conditions. FND-PARTY-288 assesses reflected-cast producer
   domains. FND-PARTY-289 through 292 assess DI interfaces; SRC-RUSTDOS-181
   records exact public-runtime provenance and limits. Next Q-PARTY-134:
-  refresh handler census roots after FND-PARTY-293's inventory/export repair;
-  then actual route/file admission. docs/EVIDENCE-TOOLS.md records the repair.
+  actual route/file admission. The handler inventory and twelve census profiles
+  are repaired; all profile controls pass. docs/EVIDENCE-TOOLS.md records
+  reproduction and the same-inventory comparison; retained reports are in
+  GAME_DIR/analysis/handler-census-20261106/.
   Current assessment: zero errors/stale hashes, three missing inventories;
   no new accepted reading. Other routing/state conditions remain.
   FND-CONFIG-223 replaces 210's reproduction endpoints; reuse its ranges.
