@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d6f285da
-  -NoRestore` passed: 2051 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 4c5171a0
+  -NoRestore` passed: 2052 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -85,7 +85,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   allocation/cleanup admission and snapshot/child preservation,
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
-  RULE-SCRIPT-008: FND-SCRIPT-050; TALK admission: FND-SCRIPT-043..048.
+  RULE-SCRIPT-008: FND-SCRIPT-050; TALK admission: FND-SCRIPT-043..049/051.
   Q-SCRIPT-024: pool/key/entry admission; Q-COMBAT-059 owns post-error effects,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   No complete reading/closure.
