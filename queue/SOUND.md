@@ -63,7 +63,12 @@ Next ID: Q-SOUND-013
   source/block extents and lifetime after FND-SOUND-070's separate-argument
   setup binding and FND-SOUND-069's acquisition/cleanup/start contracts, actual status/query/stop/release and target/frame admission
   after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and actual region-argument/state histories for the five literal
-  region sites in FND-SOUND-071, including overlay 182 +15FC/+16B5. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
+  region sites in FND-SOUND-071, including overlay 182 +15FC/+16B5,
+  plus the computed SAVE/18 producer identified by FND-SOUND-074. The
+  four known transition-call argument tuples and result consumers are
+  settled by FND-SOUND-074; remaining region domains are actual source-table/
+  resource lengths and bytes, incoming frame contents, segment/frame
+  retention, state-4 admission and excluded callers/writers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
   local disc-start, response-table writes and request-status ordering; track
   publication ignores start-request failure. Actual handler/output, table
@@ -82,7 +87,12 @@ Next ID: Q-SOUND-013
   caller/state domains and excluded writers remain. FND-SOUND-072 removes
   three raw instruction interiors from the unclassified mode/region set.
   The remaining raw candidate and its ownership move to Q-SOUND-012
-  with FND-SOUND-073; this split closes no part by declaration. Blocks: slice 7.
+  with FND-SOUND-073; this split closes no part by declaration.
+  FND-SOUND-074 binds all four known direct transition calls, distinguishes
+  fresh restored-region reloads from incoming words and separates the
+  reader-failure option from the preparation byte. Reuse its connected
+  wrappers and child interfaces; native input/preservation histories remain.
+  Blocks: slice 7.
 - Q-SOUND-012. RULE-SOUND-003, FMT-SOUND-002: Does an established path
   enter the 1BF3:4889..4C09 ownership gap in a way that makes the raw
   488B candidate a current-region access, or binds the provisional 490D

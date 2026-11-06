@@ -230,3 +230,9 @@ None known.
 - Q-SOUND-012 owns the remaining 1BF3:488B census candidate and provisional
   lookup-reader binding after FND-SOUND-072/073; tested encoded entry forms
   are excluded, computed/aliased and alternative entries remain.
+
+- Q-SOUND-004 retains actual region histories after FND-SOUND-074 binds
+  the four known transition calls: numbered restoration can write current
+  region through SAVE/18 before its fresh reload; the transition wrapper
+  instead forwards its incoming word. Actual source-table/resource/frame
+  bindings and excluded callers/writers remain.
