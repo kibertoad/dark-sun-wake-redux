@@ -70,6 +70,12 @@ load and after a region change. The game state never uses the numbered form.
 
 ## Alternatives
 
+FND-SCRIPT-062 subsequently connects the failed selector-zero continuation
+to concrete retained-pair outcomes: ordinary offset 1/script 37 can become
+1/script 1, while ordinary offset 2625/script 37 remains unmatched under
+the shipped table and retained converter conditions. This qualifies the
+normal roundtrip interpretation; actual failed-state admission remains open.
+
 FND-SCRIPT-060 subsequently excludes a zero entry-offset operand from
 1687 counted top-level sites in eight shipped trigger-registration families.
 It qualifies the unchecked-source question below, without excluding native,

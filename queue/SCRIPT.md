@@ -126,6 +126,10 @@ Next ID: Q-SCRIPT-026
   and a source-equal 2600-byte transfer in one native route. Retain intervening
   child effects, continuous preservation and other inputs/failures; do not
   combine its separate run with FND-SCRIPT-058 into one continuous trace.
+  FND-SCRIPT-062 resolves the conditional stale-offset remap: retained
+  1/script37 becomes 1/script1 with the shipped table, whereas 2625/script37
+  is unmatched. Retain admission of such records after omitted/partial reads
+  and reached child/pointer/table effects, not the local match outcome.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
