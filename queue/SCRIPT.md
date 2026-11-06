@@ -10,7 +10,7 @@ Next ID: Q-SCRIPT-025
   ready TALK-list state and normalized key -99 selecting its record after
   FND-SCRIPT-045 binds the direct GPL/37 0A41 producer/consumer. Retain
   converted-entry-168/map lifetime and independent entries to 0D29..0D37; the
-  kind-nine-value-32/global-flag-24 histories on the 0A41 route, menu
+  combat-state/global-flag-24 histories on the 0A41 route, menu
   selection/flag retention, and pre-error postamble child/cursor/frame
   admission. FND-SCRIPT-043 resolves local stop/skip/menu-return routes;
   FND-SCRIPT-044 binds entry 168 separately from entry 167 at 0001.
@@ -27,6 +27,8 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-048 binds the startup gate's saved low-count byte and fresh
   region argument: retain actual callback/child/frame admission, region-one
   history after the region-50 reset, ready state and loader/cache conditions.
+  FND-SCRIPT-049 binds variable32 to combat_state and supplies positive
+  flag24 producers; retain actual zero-state, shared flag and pointer histories.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
