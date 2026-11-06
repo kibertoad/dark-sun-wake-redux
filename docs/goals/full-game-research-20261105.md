@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 0b4ba5bc
-  -NoRestore` passed: 2094 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 9cb82114
+  -NoRestore` passed: 2095 entries, 208 parity rows, five deviations.
   Tooling: 46 controls, 758 .NET tests passed.
   Use pinned EVIDENCE_PYTHON.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -90,9 +90,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
-  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..043; post-error: Q-COMBAT-059,
+  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..044; post-error: Q-COMBAT-059,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
-  Q-SAVE-008/009 closed (FND-SAVE-041/042). Q-SAVE-007 reuses FND-SAVE-043; next other exit domains.
+  Q-SAVE-008/009 closed (FND-SAVE-041/042). Q-SAVE-007 reuses FND-SAVE-043/044; next Q-SAVE-002.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
