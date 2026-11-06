@@ -62,9 +62,9 @@ Next ID: Q-SOUND-012
   handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, actual FM tag/configuration, failure-flag and 3458/344A pointer
   source/block extents and lifetime after FND-SOUND-070's separate-argument
   setup binding and FND-SOUND-069's acquisition/cleanup/start contracts, actual status/query/stop/release and target/frame admission
-  after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and the stores to `current_region` at `277B:03C1` and in
-  overlay 187. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
-  speech calls of `2834:0001` (FND-SOUND-012). FND-SOUND-067 records
+  after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and actual region-argument/state histories for the five literal
+  region sites in FND-SOUND-071, including overlay 182 +15FC/+16B5. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
+  speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
   local disc-start, response-table writes and request-status ordering; track
   publication ignores start-request failure. Actual handler/output, table
   lifetime and the other named behavior remain. FND-SOUND-068 records
@@ -77,7 +77,9 @@ Next ID: Q-SOUND-012
   resolves the local 3458/344A relationship as separate arguments to driver
   selector 0097 and records literal allocation/release components. Actual
   driver/block/source binding, patch-loop termination and excluded pointer
-  writers remain. Blocks: slice 7.
+  writers remain. FND-SOUND-071 corrects the literal region census to five
+  stores and identifies the two overlay-182 transition branches; actual
+  caller/state domains and excluded writers remain. Blocks: slice 7.
 - Q-SOUND-005. RULE-SOUND-003: Does the game ever play a `PLYL` playlist or the `CSEQ` sequence,
   and through which code? Settles it: a caller of `2660:0004`, a writer of the far pointers at
   `DS:3496` and `DS:349A` that `2660:01AF` sets, and the resource lookups of the FM or MIDI branch

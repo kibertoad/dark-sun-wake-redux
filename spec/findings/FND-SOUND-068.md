@@ -25,7 +25,7 @@ environment: null
 
 Installed DSUN.EXE is 634416 bytes, XXH3-128
 e296af55ba2ecde7e77f555c90f33d0b. Addresses below are hex.
-FND-SOUND-012 infers music status/stop roles from their callers.
+FND-SOUND-071 infers music status/stop roles from their callers.
 This reading supplies their local branch and result contracts for
 Q-SOUND-004, without treating a software status as audible evidence.
 

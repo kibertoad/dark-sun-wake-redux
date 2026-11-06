@@ -1,9 +1,9 @@
 ---
 id: FND-SOUND-012
 title: Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SOUND-071]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

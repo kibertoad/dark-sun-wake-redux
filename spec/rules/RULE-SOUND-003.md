@@ -4,7 +4,7 @@ title: Music is chosen from DJ.DAT by region at startup and by party health in c
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SOUND-002, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-SOUND-013, FND-RNG-011, FND-RNG-006, FND-CONFIG-005, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023]
+evidence: [FND-SOUND-002, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-071, FND-SOUND-013, FND-RNG-011, FND-RNG-006, FND-CONFIG-005, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-SOUND-002, FMT-SOUND-002, FMT-CONFIG-001, FMT-COMBAT-001, FMT-COMBAT-002]
@@ -22,7 +22,7 @@ The scripts' music opcode does nothing (FND-SOUND-009).
 ## When it runs
 
 `start_music` runs once at startup, in the sound setup of overlay 180 (FND-SOUND-011).
-`music_tick` runs once per pass of the main loop (FND-SOUND-012). `set_music_mode` runs from
+`music_tick` runs once per pass of the main loop (FND-SOUND-071). `set_music_mode` runs from
 RULE-SOUND-002 around each spoken line.
 
 ## Parameters
@@ -190,7 +190,7 @@ disc track.
 
 ## Edge cases
 
-`music_mode` starts at 1 and `music_previous_mode` at 1 (FND-SOUND-012). In mode 1 the random
+`music_mode` starts at 1 and `music_previous_mode` at 1 (FND-SOUND-071). In mode 1 the random
 pick takes an index below the pool's length minus 1, so the last song of the pool, song 20, is
 never picked at startup; with an empty pool the original reads a stale byte of its stack. In
 mode 3 a `distress` of 8 takes the first band with a last index of 0, so only its first song is
@@ -216,7 +216,7 @@ None known.
 ## Open questions
 
 - Whether other code sets `music_mode`, and so what chooses the songs of mode 2, the music of
-  exploration after startup (FND-SOUND-012, Q-SOUND-004).
+  exploration after startup (FND-SOUND-071, Q-SOUND-004).
 - What `fn_4ABF_01E5` reports, what `fn_4A32_0185` stops, and how `play_cd_track` starts the track
   and how long it plays: the original reads the start of each track from the disc's table of
   contents into a table at `g_57E0_3482`, and the routine it keeps at `g_57E0_348E` tests
@@ -224,5 +224,5 @@ None known.
 - What the FM or MIDI branch of `play_song` does: `g_57E0_217A`, `g_4E71_0B51`, `g_4E71_0B56`,
   `g_4E71_0C14`, `g_4E71_0C1F`, `g_4E71_0C22`, `g_4E71_0C28`, `g_57E0_3468`, `fn_4ABF_006B`,
   `fn_47E5_01C4`, `fn_4A32_0310` and `fn_4A6E_0064` were not read (FND-SOUND-013, Q-SOUND-004).
-- What `g_4E71_0C1D` and `g_57E0_08C0` count (FND-SOUND-012, Q-SOUND-004).
-- Whether `current_region` changes only through the stores FND-SOUND-012 lists (Q-SOUND-004).
+- What `g_4E71_0C1D` and `g_57E0_08C0` count (FND-SOUND-071, Q-SOUND-004).
+- Whether `current_region` changes only through the stores FND-SOUND-071 lists (Q-SOUND-004).

@@ -67,7 +67,7 @@ word interpretation and absolute magnitude.
   in actual gameplay.
 - The function body and arithmetic widths are read; all callers and complete
   rule inputs are not. No complete-reading or validated replay claim is made.
-- Historical FND-RNG-001 and FND-SOUND-012 citations retain their original
+- Historical FND-RNG-001 and FND-SOUND-071 citations retain their original
   evidence records. Active rule and probe citations move to this replacement.
 
 ## How to reproduce

@@ -126,7 +126,7 @@ coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv for 424B..4258 and
 Retain music-table-fields-window.txt and music-table-name-window.txt
 under GAME_DIR/analysis/handler-census-20261106/. Read 043B..0508
 with resident_listing.py as music-table-loader-contract.txt; reuse
-FND-SOUND-012's selector reading and verify its reported operand
+FND-SOUND-071's selector reading and verify its reported operand
 sites against the controlled census. Preserve both controls and all
 raw candidates/exclusions. No original game, emulator session or
 emulated call supplied evidence.

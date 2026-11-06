@@ -229,7 +229,7 @@ None known.
   overlay 195 `+1000` when an effect row is removed, or overlay 193 `+0DC7` (FND-RNG-050,
   FND-RNG-060, Q-RNG-022), and `1695:02E7` through the scripts it runs (Q-RNG-024). Recovered `random_mod`
   uses include `chance_in_ten`, the table selection in FND-RNG-007 and the music selector of
-  RULE-SOUND-003 (FND-SOUND-012).
+  RULE-SOUND-003 (FND-SOUND-071).
   FND-PARTY-099 recovers an effect-saving caller of `roll_sum(1, 20)`; the earlier statement
   that `roll_sum` had no recovered caller was stale.
 - What the readers of a cast's sampled area points do with them and with the amount, and what

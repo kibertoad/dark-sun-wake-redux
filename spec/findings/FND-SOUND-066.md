@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 2834:0519..2834:063F
-tool: resident_listing.py at 8b1658c3; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-RNG-006/011, FND-SOUND-012/064/065 and RULE-SOUND-003
+tool: resident_listing.py at 8b1658c3; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-RNG-006/011, FND-SOUND-071/064/065 and RULE-SOUND-003
 environment: null
 ---
 

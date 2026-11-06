@@ -87,12 +87,12 @@ bands, the last-index byte derives from the list count minus one.
 Whether the selected list is populated, the random-index contract
 and retained list contents remain required before claiming every
 chosen record is initialized and in bounds. This specializes the
-health-eight route already recorded by FND-SOUND-012.
+health-eight route already recorded by FND-SOUND-071.
 
 ### Direct caller component
 
 The direct-call query reports one resident caller of 000C at
-28C9:2346, matching FND-SOUND-012. Loader 043B has two overlay
+28C9:2346, matching FND-SOUND-071. Loader 043B has two overlay
 180 sites, +0097 and +00AA, both established in the retained
 startup stream of FND-SOUND-011. They are alternate branches,
 not two mandatory consecutive loads: current DS:14E3 selects

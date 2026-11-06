@@ -4,7 +4,7 @@ title: A spoken line plays INTR files from the disc below 50 and SPCH files from
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SOUND-001, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-012, FND-SOUND-013, FND-CONFIG-005]
+evidence: [FND-SOUND-001, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-010, FND-SOUND-011, FND-SOUND-071, FND-SOUND-013, FND-CONFIG-005]
 conflicting: []
 split_with: []
 related: [RULE-SOUND-003, FMT-SOUND-001, FMT-CONFIG-001, FMT-CONFIG-003]

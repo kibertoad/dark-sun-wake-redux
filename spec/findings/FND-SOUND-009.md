@@ -29,7 +29,7 @@ that FND-SCRIPT-012 lists.
 
 A script's sound request plays the effect of that number, cut to its low 8 bits, through the
 sound-effect routine. A script's music request has no effect in this build: the routine it calls
-was left empty. The music the player hears is chosen elsewhere (FND-SOUND-012).
+was left empty. The music the player hears is chosen elsewhere (FND-SOUND-071).
 
 ## Alternatives
 

@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: The music table the game's music selector reads at startup.
-doc-ref: FMT-SOUND-002, FND-SOUND-011, FND-SOUND-012
+doc-ref: FMT-SOUND-002, FND-SOUND-011, FND-SOUND-071
 seq:
   - id: count
     type: u1

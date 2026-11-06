@@ -75,8 +75,8 @@ Overlay sites are written `descriptor +offset in the overlay's code`.
 | generator | 204 `+0A29` | FND-PARTY-169 (`+0A0B`'s draw modulo 100) |
 | generator | 204 `+166A` | FND-ACTOR-014 (request 8's pair draws) |
 | seed setter | 180 `+065E`, 204 `+001E` | FND-RNG-009 |
-| `chance_in_ten` | `2834:000C` +0327, +0345, +0391, +03D9 | FND-SOUND-012 |
-| `random_mod` | `2834:000C` +0182, +02FD; `2834:0519` +0535..+0608 (nine) | FND-RNG-003, FND-RNG-006, FND-SOUND-012 |
+| `chance_in_ten` | `2834:000C` +0327, +0345, +0391, +03D9 | FND-SOUND-071 |
+| `random_mod` | `2834:000C` +0182, +02FD; `2834:0519` +0535..+0608 (nine) | FND-RNG-003, FND-RNG-006, FND-SOUND-071 |
 | `roll_sum` | 179 `+2B59` | FND-PARTY-099 (`roll_sum(1, 20)`) |
 | `roll_sum` | 179 `+2BF0` | FND-PARTY-150 (`roll_sum(1, 100)`) |
 | `roll_sum` | 183 `+159D` | FND-PARTY-071 (`roll_sum(4, 4)`, four times) |

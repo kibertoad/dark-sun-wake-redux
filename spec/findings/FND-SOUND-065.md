@@ -24,7 +24,7 @@ ending exactly at byte 231. Fields are region byte +0, chance byte
 +1, health-band byte +2, mode word +3 and song byte +5, following
 FMT-SOUND-002 and the direct code readings. The reporter returns
 unsigned raw fields; region 255 maps to signed -1 only through
-FND-SOUND-012/064's signed-byte interpretation.
+FND-SOUND-071/064's signed-byte interpretation.
 
 Grouped results are:
 

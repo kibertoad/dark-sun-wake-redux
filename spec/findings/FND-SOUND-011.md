@@ -59,7 +59,7 @@ the last byte runs from 1 to 35, each value once except 29, 32 and 34, twice eac
 ## Interpretation
 
 This is the sound setup at startup. `DJ.DAT` is the music table of the sound library's music
-selector, "Mel DJ" (FMT-SOUND-002, FND-SOUND-012); the message's `CD.DAT` names a file that does
+selector, "Mel DJ" (FMT-SOUND-002, FND-SOUND-071); the message's `CD.DAT` names a file that does
 not exist in this build. Without digital sound (`DS:14E3` at 0) the game starts music track 2 at
 once. `DS:26B5`, `unk_03` of `PREF`, is passed to the library right after the sound-effects
 setting `DS:1435` is checked, so it reads as the effects volume (FMT-CONFIG-003).

@@ -41,7 +41,7 @@ those of the original tracks.
 ## Alternatives
 
 Whether the original disc had exactly these 40 audio tracks in this order is not shown by this
-build; the cue sheet is GOG's. Which track the game asks for, and when, is FND-SOUND-012 and
+build; the cue sheet is GOG's. Which track the game asks for, and when, is FND-SOUND-071 and
 FND-SOUND-013.
 
 ## How to reproduce

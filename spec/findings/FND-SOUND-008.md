@@ -46,7 +46,7 @@ word, 1 unless noted. In order it:
 The overlay 187 routine at offset `0x2B6C`, `DSUN.EXE+0x0007299C`, returns 0 when `DS:13F7` is
 0; otherwise it calls `4A32:0185` and then `2834:0001` with 0, and returns 1. The routine at
 offset `0x2B91`, `DSUN.EXE+0x000729C1`, sets the byte at `DS:4263` to 1, calls `2834:0001` with its argument, sets `DS:4275` to 0 and returns 1.
-`2834:0001` stores its argument in the word at `DS:08BC` (FND-SOUND-012).
+`2834:0001` stores its argument in the word at `DS:08BC` (FND-SOUND-071).
 
 `2C5F:0AFA` has no far caller in the load image and two in overlays: offset `0x20DC` of overlay
 187 and offset `0x22F2` of overlay 204.

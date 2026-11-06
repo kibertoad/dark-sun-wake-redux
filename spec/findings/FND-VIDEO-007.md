@@ -48,7 +48,7 @@ reference to them; the addresses are pushed as immediate words, which it did not
 Overlay 187 (header segment `56EF`, code from file offset `0x6FE30`) has its entry `56EF:0110` at
 offset `0x1E63`, `DSUN.EXE+0x00071C93`, a routine that takes a word `region`. It is called from
 offset `0x12C1` of the same overlay, inside the routine that stores `current_region` at offset
-`0x1216` (FND-SOUND-012), with that routine's first argument. In order it:
+`0x1216` (FND-SOUND-071), with that routine's first argument. In order it:
 
 1. calls offset `0x23E3` (FND-SOUND-006) when the bytes at `DS:55BC` and `DS:14E3` are not 0;
 2. calls offset `0x2424` with `region` and offset `0x206E` with the double word it returns;

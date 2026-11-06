@@ -47,7 +47,7 @@ The far routine at `4A32:0011` takes a word, `n`, and returns nothing:
 
 Its far callers are at load-image addresses `0x2663A`, `0x266A1`, `0x27A8C`, `0x289AB` and
 `0x4A995`, and in overlays at offset `0x0109` of overlay 180 (FND-SOUND-011) and through
-`2834:0665` (FND-SOUND-012).
+`2834:0665` (FND-SOUND-071).
 
 The only stores to `DS:348E` are in `2660:01C4`, which the startup of overlay 180 calls when
 `DS:14E3` is not 0. It stores the far pointers `2660:052D`, `2660:05CA`, `2660:0250` and
