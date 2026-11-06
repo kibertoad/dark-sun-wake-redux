@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -72,8 +72,12 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   FND-PARTY-267 excludes 105 direct literal non-DATA request setups from
   number tracing. FND-PARTY-268 classifies its thirteen variable sites
   into five local non-DATA choices, four known-caller non-DATA bindings
-  and four unresolved type domains. Those four and alternate incoming
-  targets remain Q-PARTY-124; the known DATA/1002 route stays separate.
+  and four initially unresolved type domains. FND-PARTY-269 bounds the
+  chunk-loader setups and shipped window-child tags, and finds no nearby
+  relocated pointer binding for the two unbound readers. Remaining type
+  conditions are the tag builder's prefix/frame state, live child-tag
+  provider/writers and excluded incoming target forms under Q-PARTY-124;
+  the known DATA/1002 route stays separate.
   The partial-reader ICON candidate omitted by the inventory remains an
   executable-ownership gap, not an asserted DATA consumer. The argument
   reporter's PUSH-CS limit at wrapper calls supplies no type classification.
