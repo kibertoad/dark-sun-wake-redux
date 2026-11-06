@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -83,6 +83,11 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   computed/copied addresses, aliases, block operations and alternate
   streams. Main-entry DS/SS equality is already observed; preservation
   to these callers remains unresolved, not another startup experiment.
+  FND-PARTY-271 binds both known direct window-registration routes to
+  WIND acquisition and excludes their own selector writes under distinct
+  valid storage. The live pointer, byte +F2, word +F3 and selected
+  child type/number need preservation through reached helpers and aliases;
+  the known source provider/table need no repeated census.
   The partial-reader ICON candidate omitted by the inventory remains an
   executable-ownership gap, not an asserted DATA consumer. The argument
   reporter's PUSH-CS limit at wrapper calls supplies no type classification.
