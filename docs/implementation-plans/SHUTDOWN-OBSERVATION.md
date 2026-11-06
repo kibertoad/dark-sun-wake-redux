@@ -194,8 +194,10 @@ shutdown observer. The finite objective is the actual argument/request
 path, native deletion result, normalized wrapper return and fixed-file
 comparison for this one scenario; other callback/stream states remain open.
 
-Bind the reached registered callback to its captured exit-table entry and
-ordinary exit caller frame. At deletion-wrapper entry, require that
+Bind both known invocations: the direct registered ordinary-exit caller
+and FND-SAVE-027's game-cleanup call, checked at its exact instruction
+and return point. Retain the registered table target and reject other
+callers or a third invocation. At deletion-wrapper entry, require that
 callback's known return and stack displacement, the fixed DS:4022 path
 argument and preserved SS/BP. Retain a bounded terminated path without
 reading an arbitrary host path. Require the native AH41 point to use the

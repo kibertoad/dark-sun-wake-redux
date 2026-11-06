@@ -27,10 +27,15 @@ class RegisteredDelete:
         ss,sp,bp=(int(r[k],16) for k in ("ss","sp","bp"))
         if address==self.stops[0]:
             ret,caller=struct.unpack("<HH",checked_read(client,ss,sp,4))
-            if (self.current is not None or self.records or address not in callbacks
-                    or caller!=0x1000+self.delta or not 0x388<=ret<0x3CC):
-                raise ValueError("delete callback lacks its registered ordinary-exit frame")
-            self.current={"callback":stop,"callback_sp":sp,"phase":"wrapper"}
+            registered=caller==0x1000+self.delta and 0x388<=ret<0x3CC
+            game=(ret==0x7B4 and checked_read(client,caller,0x7AF,5)==
+                  struct.pack("<BHH",0x9A,0x29,0x167B+self.delta))
+            if (self.current is not None or address not in callbacks
+                    or not ((not self.records and registered) or (len(self.records)==1 and game))):
+                raise ValueError("delete callback is outside the fixed two-caller sequence")
+            self.current={"callback":stop,"callback_sp":sp,"phase":"wrapper",
+                "callback_source":"registered" if registered else "game-cleanup",
+                "callback_return":f"{caller:04X}:{ret:04X}"}
             self.records.append(self.current)
             return
         item=self.current

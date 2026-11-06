@@ -587,8 +587,14 @@ registered library callback, its deletion-wrapper entry, native AH41
 request/result and normalized return. It requires the captured registered
 target, known caller/frame/path argument, equal bounded request path,
 restored registers and the wrapper's conditional error-word/AX/carry mapping.
-This extension is not yet runtime-admitted; its first actual attempt must
-validate those parts. No arbitrary host path is opened and no guest field
+This extension is not yet runtime-admitted. The first attempt,
+v181-q007-registered-delete-20261106 under captures/rust-dos-shutdown,
+recorded one request/result but stopped on the second cleanup call. Its
+one-call guard omitted FND-SAVE-027's already documented game-cleanup
+call. The session closed and released its lock; this attempt admits no
+complete interval. The corrected guard distinguishes the registered caller
+from the exact game-cleanup call instruction and requires both completed
+invocations, rejecting a third. The next actual attempt must validate it. No arbitrary host path is opened and no guest field
 is written. The static point check uses resident_listing.py over the two
 already established FND-EXE-558/559 ranges; its retained listing is
 GAME_DIR/analysis/handler-census-20261106/registered-delete-observer-points.txt.

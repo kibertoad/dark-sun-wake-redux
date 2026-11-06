@@ -303,7 +303,7 @@ def main():
                 elif flow.phase == "shutdown" and address == terminate:
                     if (pending_write is not None or pending_slot is not None
                             or pending_commit is not None or preparation.pending is not None or xms.current is not None
-                            or deletion.current is not None or len(report["delete_calls"])!=1
+                            or deletion.current is not None or len(report["delete_calls"])!=2
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)
