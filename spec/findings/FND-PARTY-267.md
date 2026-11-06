@@ -92,7 +92,7 @@ source-type classification obligation here; a variable push alone does
 not mean the type is unconstrained.
 
 The variable pointer-wrapper site is `3A8E:03B4`, which takes a type from
-the record field at `+4`. FND-PARTY-044 and FND-COMBAT-089 already record
+the record field at `+4`. FND-PARTY-343 and FND-COMBAT-089 already record
 this loader. The lower reader has two wrapper calls and one generic
 direct call at `47E5:04E6`. At the wrapper calls, the argument reporter
 sees PUSH CS immediately before a near call. That is the far-return frame,

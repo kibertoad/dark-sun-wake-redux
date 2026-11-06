@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-EXE-652, FND-EXE-653, FND-EXE-654, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-EXE-652, FND-EXE-653, FND-EXE-654, FND-EXE-655, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -53,8 +53,11 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 - Which additional header-access mechanisms remain beyond the known manager
   routes (Q-EXE-033)? Reuse the shipped-record and field-use findings and
   FND-EXE-644/645/647's finite callback-pair classification. Their controls,
-  unresolved transfers, gaps, contested decodes and excluded access mechanisms
-  remain; known local classifications are not a whole-program negative.
+  unresolved transfers and excluded access mechanisms remain. FND-EXE-655
+  qualifies the five-gap/four-contested cohort as an entry/data/conditional-
+  exit boundary with an explicit inventory repair; it does not erase the
+  baseline model's gap or return assumptions. Known local classifications
+  are not a whole-program negative.
   Ownership is explicit in docs/research-closure-overlay-headers.json,
   pinned to coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv. Its assignments are metadata,
   not complete readings; its report retains every unassigned/shared function,

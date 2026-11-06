@@ -112,10 +112,10 @@ instruction limit at 100,000.
 
 1. `q017_add_window_reach.json`: the query of FND-PARTY-045 run 4 with overlay 171 `+03C5` as
    the first start in place of overlay 212 `+0967`, so the 22 fixed pointer values of
-   FND-PARTY-044 run 6 as the other starts, the 149 targets of `q011_window_handlers_reach.json`,
+   FND-PARTY-343 run 6 as the other starts, the 149 targets of `q011_window_handlers_reach.json`,
    no control, and overlay 182 `+1856`, `+19F8` and `+1167` as leaves. 1,085 routines and
    86,437 instructions; 48 unresolved transfers, 52 interrupts, the five gaps and four contested
-   bytes at `1000:02E9..02F8` of FND-PARTY-044. It reaches 51 targets, among them the count
+   bytes at `1000:02E9..02F8` of FND-PARTY-343. It reaches 51 targets, among them the count
    store `0x271E3` through `+07C1` and `+0C25` (two calls), the count store `0x27404`, the
    `DS:13FB` setter overlay 173 `+3CDA`, and the FND-PARTY-036 sites `2C5F:0CBF`, `2C5F:0CF1`
    and `0x777F7`. It reaches none of the stores of 0 to the count at `0x709B1`, `0x710A0` and
@@ -139,7 +139,7 @@ on that path stores 0 to the count, so the count stays nonzero when the window c
 Esc on the character screen returns to a start window built by the same routine as the first
 one, provided `DS:0DAB` is still 0. Neither run reaches a routine that makes it nonzero, and
 the start window's START GAME path reaches no count writer before the gate (FND-PARTY-031,
-FND-PARTY-044). Under those readings, a player who adds a stored character and then chooses
+FND-PARTY-343). Under those readings, a player who adds a stored character and then chooses
 START GAME reaches the gate at overlay 182 `+12DD` with the count nonzero, so the gate skips
 the loader of characters 40 to 43 (FND-PARTY-021) and play begins with the party built on the
 character screen.

@@ -83,7 +83,7 @@ at `0x6C929` in overlay 183 `+191D`. It reads 937 routines and 77,126 instructio
 stopping at its limit, reaches the control, reports no gap and no contested instruction, and
 leaves 34 calls unresolved: the run-time, `DS:3F42`, `DS:02F6` and `DS:030A` calls and the
 formatter calls of FND-PARTY-039, the window, `APFM` and `DS:A0F1`/`DS:A0F5` calls of
-FND-PARTY-044, `0x16E3E` (FND-PARTY-043), two `call bx` at `0x1DE0E` and `0x1DE19`, `lcall
+FND-PARTY-343, `0x16E3E` (FND-PARTY-043), two `call bx` at `0x1DE0E` and `0x1DE19`, `lcall
 [0xa119]` at `0x336C1` and `0x336F0`, and `lcall` through `DS:348A`, `DS:3475`, `DS:3479`,
 `DS:3471` and `DS:346D` at `0x3CB07`, `0x3F007`, `0x3F071`, `0x3FDBB` and `0x3FDE2`. It reaches
 three targets, all in overlay 209: `0x9316F` (`+000F`), `0x93386` (`+0226`) and `0x93BF2`

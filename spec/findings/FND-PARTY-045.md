@@ -36,8 +36,8 @@ Overlay offsets are written `descriptor +offset`; file offsets are those of the 
 `DSUN.EXE`.
 
 **Load Saved Game (button `0x4B66`).** The start window's branch calls overlay 192 `+0000`
-(FND-PARTY-044). `+0000` stores 1 to the byte at `50AF:0004` (`+0008`) and calls `+024B`, which
-opens window `0x4844` with handler `+0785` and sets its `+0xFD` to `+022B` (FND-PARTY-044).
+(FND-PARTY-343). `+0000` stores 1 to the byte at `50AF:0004` (`+0008`) and calls `+024B`, which
+opens window `0x4844` with handler `+0785` and sets its `+0xFD` to `+022B` (FND-PARTY-343).
 `+0015` stores 0 there and calls `+024B`; it runs only when the bytes at `DS:13FB` and `DS:0690`
 are both nonzero (FND-PARTY-026). A scan of every byte of the file for a load of the segment
 word `0x03A8` (descriptor 117) or `0x40AF` (the resident segment `50AF` before relocation) into
@@ -83,7 +83,7 @@ double word is 1 and 0 otherwise.
 is nonzero; FND-PARTY-039 shows it stays 0.
 
 **Create Characters (button `0x4B65`).** The start window's branch opens window `0x2CEC`
-(`RESOURCE.GFF#WIND/11500`, SCR-UI-002) with handler overlay 212 `+0967` (FND-PARTY-044).
+(`RESOURCE.GFF#WIND/11500`, SCR-UI-002) with handler overlay 212 `+0967` (FND-PARTY-343).
 `+0967` handles three events:
 
 - event 1: calls `+08E3`, stores 0 to `DS:1462` and returns -1 (`+0A14..+0A1D`);
@@ -99,9 +99,9 @@ Each overlay 190 call receives the 24-byte event record, copied by `1000:0699`, 
 pointer `57C9:002A`, which is overlay 212 `+08E3`.
 
 **The runs.** Each configuration is built by `reach_config.py` as in FND-PARTY-040, with the
-instruction limit at 100,000. Every run has the 22 fixed pointer values of FND-PARTY-044 run 6
+instruction limit at 100,000. Every run has the 22 fixed pointer values of FND-PARTY-343 run 6
 as starts besides the one named, the 149 targets of `q011_window_handlers_reach.json` (the 29
-of FND-PARTY-040 and the 120 setter call sites of FND-PARTY-044), no control, and as leaves
+of FND-PARTY-040 and the 120 setter call sites of FND-PARTY-343), no control, and as leaves
 overlay 182 `+1856` and `+19F8` (FND-PARTY-029) and the gate routine `+1167`.
 
 1. `q017_load_entry_reach.json`, start overlay 192 `+0000`. 354 routines and 23,645
@@ -124,10 +124,10 @@ overlay 182 `+1856` and `+19F8` (FND-PARTY-029) and the gate routine `+1167`.
    fewest-call chain to them runs through one of the overlay 190 calls at `+09AB`, `+09E9` or
    `+0A03`.
 
-Every unresolved transfer in runs 1 to 3 is a call FND-PARTY-039 or FND-PARTY-044 (run 2)
-accounts for, or one of the four record-field calls of FND-PARTY-044 that run 2 there leaves
+Every unresolved transfer in runs 1 to 3 is a call FND-PARTY-039 or FND-PARTY-343 (run 2)
+accounts for, or one of the four record-field calls of FND-PARTY-343 that run 2 there leaves
 unresolved; for window `0x4844` those fields hold `+0785` and `+022B`, which are starts. All
-runs report the five gaps and four contested bytes at `1000:02E9..02F8` that FND-PARTY-044
+runs report the five gaps and four contested bytes at `1000:02E9..02F8` that FND-PARTY-343
 describes, so none is usable as a negative without that reading.
 
 ## Interpretation

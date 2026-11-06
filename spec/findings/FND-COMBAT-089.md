@@ -96,7 +96,7 @@ exclusion or complete-reading declaration follows.
 
 Read resident 3A8E:0384..3A8E:03CD and 38FF:0438..38FF:04AB with
 resident_listing.py on the licensed installed DSUN.EXE, using the parent
-entry and APFM dispatch already located by FND-PARTY-044. Bind the zero
+entry and APFM dispatch already located by FND-PARTY-343. Bind the zero
 third argument through the wrapper's actual far-pointer accesses and track
 the independent local destination. Reuse FND-CONFIG-208 and
 FND-CONFIG-151 for their complete wrapper and reader contracts.

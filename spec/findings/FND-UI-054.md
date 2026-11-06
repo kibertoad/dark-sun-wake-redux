@@ -29,7 +29,7 @@ return of FND-UI-040 with unchanged RNG state 44976, saving opened.
 The new menu driver independently restored opened before acting.
 
 The driver read the current window and its state bits (FMT-UI-001,
-FND-UI-045), the registered global handler (FND-PARTY-044), the slot-kind
+FND-UI-045), the registered global handler (FND-PARTY-343), the slot-kind
 table (FND-PARTY-049) and the 66-byte box records through their far pointer
 (FND-PARTY-046). A bounded polling quantum only advanced execution; the
 observed state determined readiness. No guest-memory writes were used.

@@ -23,7 +23,7 @@ environment: null
 
 ## Observation
 
-FND-PARTY-044 and FND-CONFIG-031 locate the APFM child-registration
+FND-PARTY-343 and FND-CONFIG-031 locate the APFM child-registration
 branch of resident 3A8E:02B3. At 0514 it pushes the child entry's
 placement words +0E and +0C, the locally retained window far pointer,
 and the loaded child far pointer, then calls 3F96:000B. It compares the
@@ -47,7 +47,7 @@ It then passes the child far pointer advanced by 0C to 3CFA:0006.
 Nonzero returned AX becomes FFFF; zero becomes zero. There is no own
 store at child offsets 58 through 73. The supplied child pointer is not
 tested for null in this helper; the parent tests its acquired child pointer
-before tag dispatch (FND-PARTY-044).
+before tag dispatch (FND-PARTY-343).
 
 3CFA:0006 has its own stack-limit guard. It tests a double word at
 argument-relative 20, then one at 28. For this APFM call these are child

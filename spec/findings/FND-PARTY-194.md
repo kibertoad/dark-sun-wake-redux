@@ -27,7 +27,7 @@ near call at `+052D` and the trampoline `5778:0025`.
 1. It calls overlay 182 `+1856` (`+041E`), which enters display mode 2 (FND-PARTY-124), and
    `28C9:2ABD` (`+0423`).
 2. It calls overlay 182 `+016B` with `0x4C2E` (19502) and a far handler of 0 (`+0428..+0431`),
-   which loads and draws a `WIND` resource (FND-PARTY-044), and stores the result at `5499:0000`
+   which loads and draws a `WIND` resource (FND-PARTY-343), and stores the result at `5499:0000`
    (`+0439..+0443`). `RESOURCE.GFF` has a `WIND` resource numbered 19502.
 3. It calls `38FF:04AB` with the tag `BMP `, the byte at `DS:4458` sign-extended as the number and
    the address of `[bp - 4]` (`+0447..+045A`). When that returns 0 it goes to step 5.

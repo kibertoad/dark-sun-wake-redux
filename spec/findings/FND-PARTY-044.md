@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-044
 title: Before the party-loader gate, the window and APFM callback fields hold no routine that reaches the count, DS:0DAB or pointer writers unless another start-window button runs first
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-343]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

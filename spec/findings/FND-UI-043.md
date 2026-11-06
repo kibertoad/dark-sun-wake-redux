@@ -43,7 +43,7 @@ environment: null
 FMT-UI-003's BUTN byte 6D gives the number of tail bytes at 6E.
 FND-UI-004 records printable words, placeholders and zero-only
 tails but leaves their purpose open. The literal 64/6D/6E operand
-query locates consumers in module 3EBE. FND-PARTY-044 already
+query locates consumers in module 3EBE. FND-PARTY-343 already
 corrects its constructor's start to 0008: the inventory's 001F
 start lies inside the preceding far call. This reading uses 0008.
 
@@ -154,7 +154,7 @@ Use installed DSUN.EXE, size 634416, XXH3-128
 e296af55ba2ecde7e77f555c90f33d0b, and locked evidence Python.
 Run immediate_search.py with 64 6d 6e, then decode resident
 3EBE:0008..042B and 042B..0686 from their actual entries.
-Use FND-PARTY-044's entry correction rather than starting at the
+Use FND-PARTY-343's entry correction rather than starting at the
 inventory's 001F. Follow the stated caption branches; this is not
 a complete reading of every constructor, painter or child effect.
 

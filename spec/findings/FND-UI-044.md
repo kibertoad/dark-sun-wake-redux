@@ -75,7 +75,7 @@ jumps to its exit at `+1522` (`+11BE`). Otherwise it calls `+016B` with 19501, a
 pointer `28C9:0CFF` (`+11C8..+11D5`) and stores the returned far pointer at `4E28:00D7`. It
 then passes `28C9:0CFF` to overlay 190 `+11A1`, and calls `+01EF` for `APFM/19200` with
 `28C9:1261` and `0x01EE`, and for `APFM/19201` with `28C9:0061` and `0x0166` (`+11E9..+1230`,
-as FND-PARTY-044 reads), before it stores 1 at `DS:0D9C` (`+1233`).
+as FND-PARTY-343 reads), before it stores 1 at `DS:0D9C` (`+1233`).
 
 **WIND/19502 with a handler.** Overlay 201 `+0073` is trampoline 0 (`5778:0020`) of overlay
 201; direct far calls reach it from overlay 181 `+028E` and overlay 190 `+1EBD`. It calls

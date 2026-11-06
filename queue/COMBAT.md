@@ -294,7 +294,7 @@ Next ID: Q-COMBAT-068
   and mode admission (Q-COMBAT-052) for the numbered-load paths; identify the concrete
   target and its effects if nonzero fields are admitted, or exclude both dispatches
   on every admitted path. A conditional zero-field reading alone does not settle it.
-  Tried: split from Q-COMBAT-048. FND-UI-005, FND-PARTY-044 and FND-EXE-588
+  Tried: split from Q-COMBAT-048. FND-UI-005, FND-PARTY-343 and FND-EXE-588
   supply shipped zeros and the bounded field census; FND-COMBAT-087 through
   FND-COMBAT-091 remove bounded selector/setup/paint/text questions. The remaining
   independent acquisition, storage/writer and mode obligations are split below;
@@ -326,7 +326,7 @@ Next ID: Q-COMBAT-068
   paint and text writes. FND-COMBAT-092 and FND-UI-068 map local selection;
   FND-COMBAT-093 and FND-COMBAT-094 map this registration producer and connected
   status/output propagation. Those bounded parts are removed from Settles it.
-  FND-PARTY-044 and FND-EXE-588 retain the other-writer census limits; actual
+  FND-PARTY-343 and FND-EXE-588 retain the other-writer census limits; actual
   payload identity, aliases, lifetime and preservation remain unanswered.
   Blocks: slice 4.
 - Q-COMBAT-053. RULE-COMBAT-007: Which source bytes and allocation/transfer states

@@ -86,7 +86,7 @@ None known.
   when `MAS` 99 loads and nothing before closes it, so the load, whose error routine leads to
   such routines (FND-PARTY-040), fails only on a file call's result (FND-PARTY-042). The 7 calls
   through window and `APFM` record fields hold, on paths where START GAME is the first
-  start-window choice, no routine that opens a route (FND-PARTY-044), and the two calls
+  start-window choice, no routine that opens a route (FND-PARTY-343), and the two calls
   FND-PARTY-043 reads reach none. Opening Load Saved Game first and leaving it without loading
   opens no route either (FND-PARTY-045). Against it, when the player opens Create Characters
   first: `ADD` on an empty character box loads a stored character and places it with the

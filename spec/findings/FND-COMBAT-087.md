@@ -21,7 +21,7 @@ environment: null
 ## Observation
 
 FND-CONFIG-189's two pointer services can dispatch record fields +5A
-and +5E through DS:A15B, under different mode gates. FND-PARTY-044
+and +5E through DS:A15B, under different mode gates. FND-PARTY-343
 and FND-EXE-588 locate two literal pointer-store sites. This reads their
 containing routines from their entries, without treating that earlier
 literal search as a complete storage-identity proof.
@@ -76,7 +76,7 @@ admitted +5A/+5E callback.
 ## Alternatives
 
 FND-UI-005 records zero callback bytes in all shipped APFM resources;
-FND-EXE-588 and FND-PARTY-044 give the earlier field/setter census and
+FND-EXE-588 and FND-PARTY-343 give the earlier field/setter census and
 its explicit block-copy, record-kind, alternative-base and split-pointer
 limits. With an admitted typed resource lifecycle preserving those zeros,
 the selector cannot choose mode two. Those findings do not alone prove

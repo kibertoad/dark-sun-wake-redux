@@ -90,7 +90,7 @@ two calls. Each call the run leaves unresolved either has its values among the s
 formatter's `1BF3:1154` and table calls, the `1BF3:6393` table) or is skipped while the screen
 runs: `0x16E3E` from the graphics set-up `39D1:0009` on, which runs before any game screen
 (FND-PARTY-043), and the two `APFM` callbacks because their fields are never set
-(FND-PARTY-044). The one route to the exit worker is the run-time library's stack overflow abort,
+(FND-PARTY-343). The one route to the exit worker is the run-time library's stack overflow abort,
 after which nothing more is drawn. So a roll makes its draws for the scores and then for the hit
 dice, and no further draw follows them before the routine returns.
 

@@ -52,7 +52,7 @@ trampoline `5736:002F`) only at overlay 192 `+02B2` (to overlay 182 `+016B`) and
 overlay 190 `+11A1`), among the 31 calls of `+016B` and 23 of `+11A1` that `callback_args.py`
 reads (the others pass other relocated handlers, 0, or at overlay 172 `+0479`, `+0775` and overlay
 209 `+178E` the handler registered before, read back from overlay 190 `+11C1`, FND-EXE-587); both
-lie in `+024B`, which opens window `0x4844` with that handler (FND-PARTY-044).
+lie in `+024B`, which opens window `0x4844` with that handler (FND-PARTY-343).
 `+024B`'s only callers are the near calls at overlay 192 `+0010` and `+0025`, in `+0000` and
 `+0015`, and its trampoline has no far caller.
 

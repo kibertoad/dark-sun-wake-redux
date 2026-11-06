@@ -38,7 +38,7 @@ The relocation/fixup-aware direct caller query for overlay 182 +00F6
 returns the near call at +01AA and the overlay-172 far call at +00A6.
 For its acquisition helper +00C4 it returns the near call at +0191
 and overlay 172 +0078. These are the previously identified direct paths
-in FND-PARTY-044, rather than absence conclusions from Ghidra references.
+in FND-PARTY-343, rather than absence conclusions from Ghidra references.
 The independently read near and overlay-far calls control both forms.
 Indirect calls, jumps, bypass entries and unsupported aliases remain
 outside the query.

@@ -68,7 +68,7 @@ It has already overwritten the failing entry's previous pointer with
 zero. The diagnostic callees' effects and storage bounds remain conditions.
 
 For a nonnull pointer, the entry tag is read again after acquisition.
-FND-PARTY-044 resolves the five-way dispatch to MENU at 0440,
+FND-PARTY-343 resolves the five-way dispatch to MENU at 0440,
 BUTN at 04B3, APFM at 0514, ACCL at 0537 and EBOX at 0543.
 An unrecognized tag skips construction and advances the loop. The
 MENU, BUTN, APFM and EBOX constructor results are compared with the
@@ -152,7 +152,7 @@ the opener's error call uses descriptor 180's +0867 trampoline target.
 
 Follow each failure edge from before and after 032F/0333 to the common
 return, retain 03BF before 03C3, and compare the success-only tail
-with every earlier exit. Reuse FND-PARTY-044's five tag targets and
+with every earlier exit. Reuse FND-PARTY-343's five tag targets and
 FND-CONFIG-170's error-collector contract, rather than assuming all
 error calls restore registration state. No game process or emulated
 function call is used.
