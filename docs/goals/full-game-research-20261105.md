@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 26785998
-  -NoRestore` passed: 2021 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 8729386a
+  -NoRestore` passed: 2022 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -68,22 +68,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - FMT-SOUND-002 existing-evidence review at baseline 26785998 is complete:
   FND-SOUND-011/012/013 do not qualify for a whole-entry declaration.
   The entry maps known shared roots and Q-SOUND-004/011. Next Q-SOUND-011:
-  controlled DJ.DAT/count/retry/record-pointer access census, preserving
-  undecided aliases/indirects. No generic I/O-success demand for layout alone.
-- Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166:
-  dispatch/defaults, preference, state transitions, query/stop, file/refill,
-  descriptor and capability contracts. Actual histories, bounds, driver and
-  interrupt effects/output remain. Preserve selector differences and gates.
-  Q-RNG-040 retains FND-SOUND-056/059's conditional frame route.
-  FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
-  before restoring SI, never restores DS, and can return through a conditional
-  invalid-slot route without another driver child. FND-SOUND-060 controls eleven direct service sites and names the
-  same-invocation 201 +0767 -> +075F repeat edge. Next actual service
-  admission, nonzero AL and loaded/trap residency. FND-RNG-098 excludes
-  a local DS reload or mode/count gate before the clock prefix on the
-  loaded-jump route; next actual SS/DS backing, service/converter effects
-  and final seed-store binding; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
-  counts remain. Q-RNG-029 retains actual graphics SS-frame/page admission. No new closures.
+  FND-SOUND-061 settles the literal field-window component and loader
+  branches. Next eight raw field candidates, name candidates and excluded
+  aliases/indirects; preserve signed-count and partial-read/cleanup ordering. No generic I/O-success demand for layout alone.
+- Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166;
+  actual histories, bounds, driver/interrupt effects and output remain.
+  Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
+  and FND-RNG-098's loaded-jump prefix. Next actual SS/DS backing,
+  residency, service/converter effects and final seed-store binding.
+  FND-RNG-096/097 withdraw blanket segment/frame exclusions; Q-RNG-029
+  retains actual graphics SS-frame/page admission. No new closures.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
