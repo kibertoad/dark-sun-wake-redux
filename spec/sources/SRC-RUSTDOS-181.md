@@ -59,6 +59,8 @@ claim or proof of the active guest vector.
 For FND-PARTY-298, the same source's default vector four remains
 F000:FF53: it starts at the common IRET pointer and is absent from
 the service list and later overrides. Offset bit fifteen is set.
+Vectors two, three and five likewise retain that default pointer;
+FND-PARTY-299 uses only their identified bytes for a conditional copy.
 This describes the source's initial table, not a live original-game
 state or a verified source-to-release correspondence.
 
