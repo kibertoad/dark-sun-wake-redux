@@ -82,6 +82,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-056 bounds all twelve named request/marker arithmetic cases;
   reuse Q-CONFIG-008's shared heap/header/bound obligations and retain
   actual capacity, pointer preservation and lifetime at these trigger uses.
+  FND-SCRIPT-057 binds the direct pointer publications and separate SAVE/38
+  table copy; retain their actual ordering/word preservation, copied-slot
+  lifetime, computed/indexed/bulk aliases and transfer/converter identity.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.

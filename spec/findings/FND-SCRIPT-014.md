@@ -39,6 +39,12 @@ Ghidra's `ReportReferences` finds 34 direct references to the far pointer at `57
 `5B7C:0700`), all reads, in nine functions, and no direct write. The pointer's 16 bytes are 0 in
 the file.
 
+FND-SCRIPT-057 subsequently supplies an inventoried resident/overlay
+operand audit with four independently established pointer-word stores
+in overlay169's allocation and cleanup. The older Ghidra reference-view
+result above is not an all-writer exclusion. The save-table pointer copy
+and later live-pointer reloads have their own preservation conditions.
+
 The routine `277B:0024`, whose only direct caller is the program entry at `1000:0158`, rejects a
 first argument below 1. It then fills `0x0A28` bytes (200 times 13) at the pointer with `0xFF`,
 writes, for each index i from 0 to 199, the word i + 1 at offset 11 of record i (the record at
