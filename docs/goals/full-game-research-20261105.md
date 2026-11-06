@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e980ffef
-  -NoRestore` passed with declared skips: 1945 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 2fbce3b7
+  -NoRestore` passed with declared skips: 1947 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -49,8 +49,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   is excluded. No earlier comparable timing proves a speedup.
   FND-PARTY-267 corrects the earlier census label; FND-PARTY-268 through
   271 narrow type routes, prefix writers and direct window providers/stores.
-  Next Q-PARTY-124: classify the other 85 direct getter number domains
-  from retained FND-PARTY-265 reports before extending generic children.
+  FND-PARTY-272 excludes two name getters, leaving 83 other direct sites
+  plus repeated-hook preservation. Next Q-PARTY-124: incoming domains for
+  193+1E81/+1F88 and 208+07F2, whose word inputs locally admit 1001.
+  Reuse FND-PARTY-265's exact caller set. FND-EXE-641 corrects 611's
+  power-name input predicate and retains its other routines; citations moved.
   Remaining type mechanisms include prefix/segment preservation, indirect
   bindings and window pointer/F2/F3/type/number changes via helper/alias
   effects or provider/transfer identity. Q-PARTY-124 keeps their scope.
