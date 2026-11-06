@@ -603,3 +603,17 @@ sequences remain outside this admitted scenario. No arbitrary host path is opene
 is written. The static point check uses resident_listing.py over the two
 already established FND-EXE-558/559 ranges; its retained listing is
 GAME_DIR/analysis/handler-census-20261106/registered-delete-observer-points.txt.
+
+
+## Paused overlay and queue backing
+
+At1d638bc3, verify_checkpoints.py adds fixed read-only metadata to its
+admitted play/play-ready stages. The strict play-ready verification passed
+at captures/rust-dos-regenerated/v181-q137-overlay-backing-20261106-play-ready/,
+with source v181-q046-play-ready-20261104: exact restored state/frame/time,
+checked files, deliberate IRQ mismatch refusal and identical named backing
+across the same-process roundtrip. FND-PARTY-335 records the observation.
+This admits those paused named reads and comparisons only, without input,
+guest continuation or setup writes. It does not admit a reflection probe,
+BP-chain validation, a cache copy or interval preservation. Five synthetic
+controls and the full integration gate passed; the owned session closed.
