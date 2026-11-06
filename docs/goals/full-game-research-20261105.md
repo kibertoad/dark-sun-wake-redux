@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c8e79f06 -NoRestore`
-  passed with declared skips: 2016 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 7f06e5ca -NoRestore`
+  passed with declared skips: 2017 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -51,7 +51,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the third batch is 96077cf3.
 - All three timed closure-focused batches are complete; their commit messages
   retain research, tooling, checks and handover phase windows separately.
-  Historical PARTY/UI comparison:
+  PARTY/UI comparison:
   02e2d87549c20763b6951b505d1a73ff9a47a821 to
   127bdb98e3293b64826dd81f167a4086578a1f54:
   zero accepted-reading changes, zero answered deletions, zero whole plan
@@ -62,18 +62,17 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
   
-- Q-SOUND-002 reuses FND-SOUND-049 through 058 and FND-CONFIG-166:
-  dispatch/defaults, preference, state transitions, query/stop and file start.
-  Next actual refill count/capacity, file/record/configuration/handle admission,
-  excluded writers, buffer/frame retention, driver/interrupt effects and output.
-  Descriptor staging is classified; downstream submission remains.
-  Prioritize Q-RNG-040: 182E cleanup can shift its DS pop to the count
-  high word. FND-SOUND-057 excludes ordinary child compensation;
-  capability-disabled submission returns without interrupts. FND-SOUND-058
-  identifies the cached 068C result; actual mask/epoch remains. Audit
-  admission and later reseeding routes before
-  extending FND-RNG-061's census model; parity carries the dependency. Preserve conditional zero/three exclusion and selector
-  differences. RULE-SOUND-001 stays supported; no whole sound question closed.
+- Q-SOUND-002 reuses FND-SOUND-049 through 059 and FND-CONFIG-166:
+  dispatch/defaults, preference, state transitions, query/stop, file/refill,
+  descriptor and capability contracts. Actual histories, bounds, driver and
+  interrupt effects/output remain. Preserve selector differences and gates.
+  Prioritize Q-RNG-040: the submission cleanup can shift DS to count high.
+  Children do not compensate; capability-disabled submission has no interrupt.
+  FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
+  before restoring SI, never restores DS, and can return through a conditional
+  invalid-slot route without another driver child. Next admission
+  and later reseeding/restoration routes; FND-RNG-061's own dispatch exclusions
+  remain material. No whole sound question or complete reading is closed.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
@@ -121,7 +120,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-264/265. Nine items added, including Q-PARTY-128's split;
   Q-PARTY-003/005 narrowed. Assessment ends at 1a382f6f; map at 4d210fc1.
   
-- Current inventory denominator: 7013 rows across eight inventories, including
+- Inventory denominator: 7013 rows across eight inventories, including
   two byte-identical disc associations from 7a8b8ec1. Their 636 rows add no
   independent binary understanding. The original FMT map assigns four and
   leaves 7009 unassigned; the separate SAVE/COMBAT map assigns nine. Keep
