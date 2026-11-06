@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286, FND-PARTY-287]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -149,6 +149,8 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   FND-PARTY-286's unsuccessful immediate-caller attempt splits the three
   word-client caller domains to Q-PARTY-134, retaining eighty other
   direct sites and repeated-hook preservation under Q-PARTY-124.
+  FND-PARTY-287 bounds the script producer's signed remainder at -999..999;
+  its saved-word and later-call preservation remain Q-PARTY-134.
   Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
