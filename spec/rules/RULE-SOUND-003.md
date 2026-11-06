@@ -236,3 +236,7 @@ None known.
   region through SAVE/18 before its fresh reload; the transition wrapper
   instead forwards its incoming word. Actual source-table/resource/frame
   bindings and excluded callers/writers remain.
+
+- Q-SOUND-004 retains actual startup-region admission after FND-SOUND-075:
+  the ordered command-line gate and numeric store are read, but they supply
+  no region-range validation or proof of later startup preservation.
