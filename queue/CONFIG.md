@@ -416,6 +416,10 @@ Next ID: Q-CONFIG-014
   membership, positive counts, no-adjacent-free successors, physical
   separation and saved-slot stability, plus terminal/native effects;
   do not reopen the composed merge bodies as unspecified callee behavior.
+  FND-CONFIG-231 settles the four terminal predecessor choices, requested
+  pairs and metadata publication before17F2, including persistence on local
+  bounds rejection. Retain actual bound/header/link/alias and native-result
+  admission, not an assumed transactional rollback or unspecified terminal body.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
