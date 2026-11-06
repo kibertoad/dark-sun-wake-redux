@@ -76,6 +76,13 @@ and 2 in `4C0E:000B` (`+040F`), and returns 2. A failure returns -1. Its only di
 the one at `+012E`. The release routines `+0174` and `+0422` free the same blocks and set their
 pointers to 0; `+0174` sets `4C0E:000B` to 0 at the end.
 
+FND-SCRIPT-054 subsequently qualifies this release summary: `+0422`
+performs its seven working-pointer releases only for incoming state exactly
+two. Other states skip them. `+0174` then performs its global/pool releases
+and final state-zero store; the initializer can set state FFFF before that
+call. Release, cache clearing and allocation-flag recovery are separate
+operations, so this paragraph does not establish unconditional teardown.
+
 **Who sets the eight pointers.** The operand search for the displacements `0x32F` to `0x33D`
 finds stores only in overlay 169's allocation and release above; the other hits are reads: the
 variable code in `172C` (FND-SCRIPT-009, FND-SCRIPT-010), the clear `172C:31ED` below and the

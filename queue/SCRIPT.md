@@ -73,6 +73,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-053 verifies the allocation flag through its second descriptor
   alias; retain its actual domain/history, including the unequal zero/one
   allocator/checker gates. Reject the earlier missed-control empty reports.
+  FND-SCRIPT-054 settles the state-gated working cleanup, unconditional
+  global/pool publications and separate cached-result clear; retain actual
+  failure/partial-allocation/retry histories rather than assuming full teardown.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
