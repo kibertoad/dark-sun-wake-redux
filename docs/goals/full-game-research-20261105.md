@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 5810d119 -NoRestore` passed
-  with declared skips: 1972 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 1a225a80 -NoRestore` passed
+  with declared skips: 1973 entries, 208 parity rows,
   five deviations. Integration at 7f387a81 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -60,8 +60,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   preservation conditions. FND-PARTY-288 assesses reflected-cast producer
   domains. FND-PARTY-289 through 292 assess DI interfaces; SRC-RUSTDOS-181
   records exact public-runtime provenance and limits. Next Q-PARTY-134:
-  actual route/file admission, starting with the loader live selector and its
-  writers. FND-PARTY-294 reuses fixed and known dynamic-call exclusions.
+  actual route/file admission: FND-PARTY-295's DS:19C5 indexed-writer alias
+  condition and broader selector writes. Reuse its controlled census.
+  FND-PARTY-294 reuses fixed and known dynamic-call exclusions.
   The handler inventory and twelve census profiles
   are repaired; all profile controls pass. docs/EVIDENCE-TOOLS.md records
   reproduction and the same-inventory comparison; retained reports are in
