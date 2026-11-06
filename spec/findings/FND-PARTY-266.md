@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-266
 title: The direct resource-reader tag census excludes 105 literal non-DATA requests and names the remaining variable-tag sites
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-267]
 recorded_by: codex
 reproduced_by: []
 method: static

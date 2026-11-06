@@ -810,12 +810,13 @@ Next ID: Q-PARTY-134
 - Q-PARTY-124. FMT-PARTY-007, RULE-PARTY-009: Which complete set of game-code accesses
   reads or writes DATA 1001, and which caller/index domains do they admit? Settles it: remaining accesses that could change the claimed 576-byte extent, row indices or class-bit meanings, through the mechanisms below.
   Resolve runtime-computed or remotely assembled/copied targets, entries bypassing FND-PARTY-264's four roots, and separate buffer readers/writers; retain its near-transfer and producer-distance exclusions.
-  Classify FND-PARTY-266's eleven variable whole-reader type sites, record-driven 3A8E:03B4 and generic 47E5:04E6; do not repeat the 105 literal non-DATA exclusions or known DATA/1002 binding.
+  Resolve the remaining type domains at 2D40:00A9, 3A8E:03B4, 47E5:0527 and 47E5:04E6 using FND-PARTY-268; do not repeat its five local choices, four known-caller bindings, FND-PARTY-267's 105 literal exclusions or known DATA/1002 binding.
   For 2C5F:0003, bind the other 85 direct caller number domains and the repeated hook call's selector/frame preservation. FND-PARTY-265 excludes positive 1001 at its first call; canonical-source bounds stay conditional.
   Reuse FND-PARTY-264's relocated/fixed-up nearby pointer census and FND-PARTY-058/068's direct-site/index/mask reading. Bind resulting argument/result widths, origin/class producers and rejection paths.
   Use the literal-1001 sites, DATA-1000 callers and stored/split-pointer controls; preserve unresolved transfers, decoder/range exclusions and interpretation-affecting source/base/extent/byte writes.
-  General I/O success and unrelated lifetime are not claims of this payload format. Full generation-screen behavior stays RULE-PARTY-009; the unowned ICON candidate in FND-PARTY-266 is not asserted to interpret DATA.
-  Tried: FND-PARTY-266 removes the 105 literal non-DATA request sites from number tracing and names the variable-tag remainder. Its partial-reader ownership gap and PUSH-CS limitation remain explicit.
+  General I/O success and unrelated lifetime are not claims of this payload format. Full generation-screen behavior stays RULE-PARTY-009; the unowned ICON candidate in FND-PARTY-267 is not asserted to interpret DATA.
+  Tried: FND-PARTY-267 removes the 105 literal non-DATA request sites from number tracing and names the variable-tag remainder. Its partial-reader ownership gap and PUSH-CS limitation remain explicit.
+  Tried: FND-PARTY-268 classifies all thirteen variable sites: five local non-DATA choices and four known-caller non-DATA bindings leave four type domains; indirect/bypass alternatives remain, not generalized sound/graphics-success obligations. FND-PARTY-267 corrects the prior overlay descriptor while retaining the census.
   Tried: FND-PARTY-264 removes the tested relocated/fixed-up pointer mechanism; its three alias candidates are unrelated operands. The missed Ghidra registration control supplies no negative proof; runtime targets remain.
   Tried: FND-PARTY-265 removes the first equipment request's positive-1001 possibility; all 87 direct getter arguments are nonliteral. Other domains and indirect clients remain.
   Tried: the prior FND-PARTY-058/068 review found the computed-1001 exclusion and direct-only caller list; no undeclared qualifying reading. Blocks: complete reading of FMT-PARTY-007.
@@ -839,8 +840,7 @@ Next ID: Q-PARTY-134
   metadata/graph-state, indirect and pointer/access exclusions remain. No newly observed contradiction or qualifying whole-entry declaration
   was identified. Blocks: complete reading of FMT-PARTY-001 and FMT-PARTY-006.
 
-- Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the
-  documented one-byte representation and discipline-bit interpretation? Settles it: complete the game and unpacked CHARTRAN read/write and
+- Q-PARTY-127. FMT-PARTY-003: Do all PSIN access paths agree with the documented one-byte representation and discipline-bit interpretation? Settles it: complete the game and unpacked CHARTRAN read/write and
   caller census for PSIN and its slot-byte sources, covering indirect entries, computed resource tags and pointer/index aliases that can
   affect the represented byte. Reuse FND-EXE-006's literal occurrences, FND-PARTY-011/012's one-byte transfer sites, FND-PARTY-235's fourteen
   known direct resource-write sites and FND-RNG-091's direct reader accounting; do not repeat those unchanged searches. Bind any remaining

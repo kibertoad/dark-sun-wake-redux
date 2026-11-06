@@ -47,7 +47,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-PARTY-124; none closes a question or declares a complete reading.
   Separate elapsed timings are in their commit messages; template adoption
   is excluded. No earlier comparable timing proves a speedup.
-  Next objective: classify FND-PARTY-266's thirteen remaining variable-type
+  Next objective: classify FND-PARTY-267's thirteen remaining variable-type
   sites under Q-PARTY-124, reusing existing service/caller findings before
   new code reading. Keep the separate getter-number and indirect gaps.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
@@ -66,7 +66,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Inventory gaps persist: 6,376 rows, four assigned in this entry's map,
   6,372 unassigned here, three missing inventories and no unmeasured ones.
   Activity is two findings and 18 commits, not closure or measured overhead.
-  The third batch adds FND-PARTY-266 and another narrowed condition;
+  The third batch adds FND-PARTY-267 and another narrowed condition;
   still no accepted declaration or answered deletion. The trial remains
   incomplete at topic level; proceed with the changed objective above.
 - Latest template ef82c9784d08c4e98ade56cfd49cdd56130ac139 and protocol
