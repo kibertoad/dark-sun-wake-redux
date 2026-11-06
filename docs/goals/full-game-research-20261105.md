@@ -39,14 +39,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Integration -NoRestore` passed on research batch 56319392's
-  tree: 2107 entries, 208 parity rows, five deviations, 758 .NET tests.
+  `Test.ps1 -Research -ChangedSince 07ea3d35 -NoRestore` passed on
+  e526db54's tree: 2107 entries, 208 parity rows, five deviations. Prior integration at 56319392 passed 758 .NET tests.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
   Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
   reusing FND-PARTY-288/328..336. Q-PARTY-138 separately retains other
-  roots, client index changes, nested drains and later iterations. The split
+  roots, other client index changes, nested drains and later iterations.
+  Reuse FND-PARTY-336 before further route classification. The split
   at 56319392 answered no question and added no complete reading.
   PARTY Static 60, Emulated call 0, Agent run 2, Live session 3, Source 0,
   Blocked 0; Next ID 139. queue/PARTY.md remains at 1000 lines.
