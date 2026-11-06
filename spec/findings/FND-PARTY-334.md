@@ -47,7 +47,10 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4AE5:029B..4AE5:031B
-tool: tools/research/exec-census/resident_listing.py at dd0ce3fe, 52a64a27, 32446397 and 885408dc; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:0A4B..4AE5:0AB5
+tool: tools/research/exec-census/resident_listing.py at dd0ce3fe, 52a64a27, 32446397, 885408dc and 5559a56c; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
 environment: null
 ---
 
@@ -107,8 +110,9 @@ INT67 for the current logical page/handle. On its admitted continuing
 status branch it reloads the physical page-frame segment from manager
 word +30, sets DS from selected-header word +10, and performs forward
 REP MOVSB into that page frame. Native preservation of CX, pointers,
-segments and stack remains necessary: the copy uses the post-interrupt
-register state, not an independently restored chunk count.
+segments and stack remains necessary for intended chunk/source/return
+semantics: the copy uses the post-interrupt register state, not an
+independently restored chunk count.
 
 It increments the logical page, clears the destination offset and
 continues while remaining bytes are nonzero. It saves its local carry
@@ -118,9 +122,12 @@ return or unchanged partial payload is implied for them.
 
 The payload destination is therefore a conventional-memory page-frame
 window, not merely an abstract remote cache. To exclude queue/index
-writes through this branch requires the actual +30 segment, handle/page
-mapping, count and register binding. Fixed cache-record addresses alone
-do not exclude such an alias. The overlay source is likewise the actual
+preservation through this branch requires the actual destination segment,
+native handle/page mapping and register/stack/interference bindings.
+Intended payload/chunk correctness also requires count and pointer binding.
+The architectural CPU-write exclusion below needs no particular count,
+but does not certify native effects. Fixed cache-record addresses alone
+do not supply those bindings. The overlay source is likewise the actual
 selected load segment +10, not a source-file offset.
 
 ### Extended-memory copy and descriptor writes
@@ -362,6 +369,55 @@ change, setup or external writer, string/copy/fixup/native effect, or
 asynchronous transfer. Those mechanisms remain Q-PARTY-137; no universal
 immutable-target or successful native-load claim follows from this result.
 
+### EMS CPU byte-copy destinations have a segment-wide bound
+
+The cache write at +0A2D and cache read at +0A98 are unprefixed
+sixteen-bit-address REP MOVSB instructions. For a destination segment e
+retained during a copy, every explicit byte destination is e*16+DI with
+DI in 0..FFFF. DI wraps at its address width; it does not make the
+linear address progress indefinitely past that segment window. CX zero
+writes nothing, and any other CX value still writes only inside that
+window. This is an architectural destination bound, not a claim that
+the intended chunk or native transfer was correct.
+
+On the cache-write path, ES is assigned from the manager +30 word
+immediately before the copy. On the cache-read path, ES is assigned
+from the selected header's load-segment word +10. These use the actual
+post-native DS/header bindings; preserving a mode flag or cache record
+does not establish the segment that those loads actually obtain.
+FND-PARTY-333 supplies the connected cache-read path as well.
+
+Using FND-PARTY-335's recorded values as conditional bindings, not as
+an observed later copy:
+
+| Destination condition | Complete linear CPU destination envelope |
+|---|---|
+| ES remains page-frame segment E000 | E0000..F0000 |
+| ES remains a load segment at least 5D9C and below 662E | 5D9C0..762D0 |
+
+The second envelope covers every sixteen-bit DI for every segment in
+that interval; it is deliberately larger than the allocated overlay
+buffer. It does not claim an arbitrary copy remains within its own
+allocation. Both envelopes are nonwrapping below 100000 and disjoint
+from queue/kinds 435B0..43610, the entire recorded DS/SS window
+4D9A0..5D9A0, and manager callback slots 4B900..4B90A. The queue
+index at DS:0915 is linear 4E2B5, inside that DS/SS window.
+
+Therefore, with those actual destination-segment/address-mode bindings,
+no choice of post-service DI or CX can make these explicit byte-copy
+instructions write the queue, index, saved stack words or callback slots.
+Count/index uncertainty alone is not a remaining CPU linear-alias
+mechanism in that case. The point snapshot does not prove that either
+segment condition holds during the selected reflection interval.
+
+Native INT67 mapping and service writes, the backing selected by a
+handle/page, changed DS/ES or address mode, interrupt-time changes,
+copy sources, payload correctness and termination remain separate
+conditions. This excludes neither native effects nor aliases in the
+external backing model. It covers only the two named byte-copy forms;
+word moves, fixup stores and DOS writes retain their own extents. No
+native copy was observed or certified by this derivation.
+
 ## Interpretation
 
 The selected overlay hook is a no-op or one of two specific copy paths,
@@ -441,3 +497,12 @@ Require the same-header +18 positive overlap and absence at the other
 control slots. Read `4AE5:029B..4AE5:031B` and the connected allocator
 through `4AE5:0CD5` at 885408dc; retain FND-EXE-239/240/241/561/563
 for entry and setup conditions. This adds no original run or new census.
+
+For the CPU destination result, read `4AE5:0A0F..4AE5:0A43` and
+`4AE5:0A7B..4AE5:0AAD` at 5559a56c, reusing FND-PARTY-333 for the
+full cache-read continuation. Verify the unprefixed byte-copy forms,
+the ES loads and intervening native gates. For a sixteen-bit destination
+index, bound each stable segment by [segment*16, segment*16+10000).
+For a segment interval use its last admitted segment plus that whole
+window, not just the intended chunk length. Compare against the recorded
+regions above while keeping actual later segment/native bindings open.
