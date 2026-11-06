@@ -39,29 +39,29 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince c007e2b7 -NoRestore` passed:
-  2115 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  `Test.ps1 -Integration -NoRestore` passed:
+  2117 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen new boundary controls passed. Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
   readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
   reuse FND-EXE-567/582, FND-RNG-066/096 and FND-PARTY-342.
-  Immediate signal-pointer use is classified; retain transitive effects
-  and computed/aliased mechanisms. Next review the 153 unique overlay
-  candidates in GAME_DIR/analysis/header-pointer-candidates-20261106.txt:
-  144 first-call and nine first-jump candidates, twenty transfer forms.
-  Use segment_table_readers.py --pointer-sites and its finite tooling plan;
-  candidate decoding does not establish callers or callback argument identity.
-  Reuse FND-EXE-587's connected setter/forwarder/argument/consumer census
-  and FND-CONFIG-163's guard conditions; these are reconciled into Q-EXE-033.
-  Reuse FND-EXE-588's application-frame census. FND-EXE-644 resolves all
-  nine first-jump candidate joins; do not repeat those local paths.
-  Next match the 144 first-call candidates to the retained caller/argument
-  censuses in FND-EXE-579/583/646/586/587/588. Consumer-family coverage
-  is separate from verifying each candidate's argument and instruction start.
-  Retain destination aliasing, excluded writers/histories and header-relevant
-  target effects. Use FND-PARTY-156/EXE-626 for per-slot callbacks.
+  Immediate signal-pointer use is classified. FND-EXE-644/645 completes
+  local pair/argument classification of the finite 153 overlay candidates
+  under the retained decoder/frame model. Do not repeat those classifications.
+  FND-EXE-646 corrects the retained timer caller and replaces 585;
+  its driver/timer survey is retained, not newly executed.
+  Next compare all candidate instruction starts and eventual consumer calls
+  with a controlled root-based reach report, using reach_config.py and
+  q007_dsun_apfm_census.json and the pinned engine. Review retained reports
+  first; preserve root, mapping, decoder and unresolved-transfer provenance.
+  Distinguish report-matched starts from actual caller/frame admission.
+  Reuse FND-EXE-579/583/646/586/587/588 and FND-CONFIG-128/189;
+  retain destination/header aliasing, adjusted/block writers, copied/computed
+  pointers and reached header-relevant target effects. Original-derived
+  candidate and argument reports remain in GAME_DIR/analysis/ as named
+  by FND-EXE-644/645. No complete reading or queue answer was added.
   Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
