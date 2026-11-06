@@ -21,6 +21,9 @@ Next ID: Q-SCRIPT-025
   its region-1 route needs actual transfer/creation/restore evidence.
   Keep that hypothesis separate from raw-negative passthrough and other
   nonnegative kind-specific key sources; reuse Q-SCRIPT-022 for validity.
+  FND-SCRIPT-047 binds the other literal key-99 TALK registrations to
+  GPL/239 and the equal-key replacement/regional pruning interfaces;
+  establish their actual ordering/retention rather than assuming a unique key.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
