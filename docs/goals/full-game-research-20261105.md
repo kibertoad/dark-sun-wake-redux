@@ -40,8 +40,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
   `Test.ps1 -Integration -NoRestore` passed:
-  2118 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
-  thirteen new boundary controls passed. Prior snapshot controls remain passing.
+  2120 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  thirteen pointer-boundary and twenty segment-overlap controls passed.
+  Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
@@ -57,14 +58,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the inside-call-byte control is distinguished. Do not repeat the boundaries.
   Preserve 50 unresolved transfers, five gaps, four contested decodes and
   false negativeUsable; source models do not admit every live predecessor/frame.
-  Next Q-EXE-033: select the 4DA0:0000 destination producer/lifetime
-  contract behind overlay 178's window callback store. Reuse FND-EXE-604
-  and FND-CONFIG-018/030/031; identify concrete stores, acquisition and
-  deletion/reuse routes before asserting a header alias blocker. Read that
-  connected contract, keeping unrelated rendering outside its boundary.
-  Other computed/copied pointer, writer and target-effect mechanisms remain.
-  Retained candidate/argument/reach outputs are under GAME_DIR/analysis/
-  as named in FND-EXE-644/645/647. No complete reading or queue answer added.
+  FND-EXE-648 and FND-CONFIG-234 now carry the concrete window
+  producer/cleanup and resource-output contracts; 234 replaces 038.
+  Next Q-EXE-033: inspect Q-CONFIG-013's existing allocation/header
+  assessment before more 444C:0008 reading. Select the remaining address/
+  span admission relevant to allocation(1,count) and resident-header overlap;
+  keep unrelated resource rendering outside the contract. Retain cached
+  pointer history and concrete callbacks/writers across FND-EXE-648's
+  publication/cleanup intervals. Do not repeat local producer/clear paths.
+  Reporter 23fa5697 preserves legacy exact-start scope; --overlap has
+  positive byte-extent controls. Existing exact-start findings are not
+  silently upgraded to overlapping-write exclusions.
+  Retained reports are GAME_DIR/analysis/window-4da0-* as named in 648.
+  No complete reading or queue answer added. Other mechanisms remain.
   Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
