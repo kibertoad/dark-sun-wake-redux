@@ -1,5 +1,23 @@
 # Bounded evidence tools
 
+## Resident segment descriptor aliases
+
+For Q-SCRIPT-019/024, the existing segment reference, offset-context and
+displacement-writer reporters now search every descriptor row whose
+resident paragraph matches the named segment. The previous first-row
+selection could miss a positive control when another descriptor named the
+same segment. `segment_aliases.py` shares this metadata selection; the
+reference reporter retains its existing flags-0/1 restriction. Resident
+relocation words remain separate from overlay descriptor words, including
+when their numeric values coincide.
+
+The synthetic addressing controls cover later aliases, view flags, no
+match and numeric collisions. These changes do not extend the reporters'
+instruction windows, establish candidate ownership, resolve computed or
+split segment bindings, or prove live storage. Rebuild affected retained
+reports and require their independent positive controls before using an
+absence claim. Earlier missed-control reports remain rejected diagnostics.
+
 ## Overlay near-transfer pattern query
 
 `tools/research/exec-census/overlay_near_patterns.py` serves Q-PARTY-136's

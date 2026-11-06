@@ -15,6 +15,8 @@ around it. Nothing is written or executed.
 """
 import struct
 import sys
+import runpy
+from pathlib import Path
 
 import xxhash
 from capstone import CS_ARCH_X86, CS_MODE_16, Cs
@@ -54,18 +56,20 @@ def show(at, low):
             return
 
 
+descriptor_words = runpy.run_path(str(Path(__file__).with_name("segment_aliases.py")))["descriptor_words"]
 for item in sys.argv[2:]:
     seg = int(item, 16) - 0x1000
-    descriptor = next((i for i, r in enumerate(rows) if r[2] in (0, 1) and r[0] == seg), None)
-    print(f"-- {item}" + (f" (descriptor {descriptor})" if descriptor is not None else " (no descriptor)"))
+    words = descriptor_words(rows, seg + 0x1000, flags=(0, 1))
+    print(f"-- {item}" + (f" (descriptors {','.join(str(word // 8) for word in sorted(words))})"
+                          if words else " (no descriptor)"))
     for at in relocated:
         if struct.unpack_from("<H", body, at)[0] == seg and body[at - 3] not in (0x9A, 0xEA):
             s = (at - header) // 16
             print(f"load image 0x{at:08X} ({s + 0x1000:04X}:{at - header - s * 16:04X} as paragraph)")
             show(at, header)
-    if descriptor is None:
+    if not words:
         continue
     for at, i, code in fixups:
-        if struct.unpack_from("<H", body, at)[0] == descriptor * 8 and body[at - 3] not in (0x9A, 0xEA):
+        if struct.unpack_from("<H", body, at)[0] in words and body[at - 3] not in (0x9A, 0xEA):
             print(f"overlay {i} 0x{at:08X} (+{at - code:04X})")
             show(at, code)

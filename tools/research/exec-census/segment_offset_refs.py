@@ -13,6 +13,8 @@ instructions are not listed. Nothing is written or executed.
 """
 import struct
 import sys
+import runpy
+from pathlib import Path
 
 import xxhash
 from capstone import CS_ARCH_X86, CS_MODE_16, Cs
@@ -28,18 +30,16 @@ header = struct.unpack_from("<H", body, 8)[0] * 16
 cblp, pages = struct.unpack_from("<HH", body, 2)
 image_end = (pages - 1) * 512 + (cblp or 512)
 table_offset, count = struct.unpack_from("<IH", body, image_end + 8)
-words = {seg - 0x1000: "load"}
-for i in range(count):
-    s, _, flags, _ = struct.unpack_from("<HHHH", body, table_offset + 8 * i)
-    if s == seg - 0x1000:
-        words[i * 8] = "overlay"
+rows = [struct.unpack_from("<HHHH", body, table_offset + 8 * i) for i in range(count)]
+descriptor_words = runpy.run_path(str(Path(__file__).with_name("segment_aliases.py")))["descriptor_words"]
+overlay_words = descriptor_words(rows, seg)
 spans = [("load", header, image_end, seg - 0x1000)]
 for i in range(count):
     s, _, flags, _ = struct.unpack_from("<HHHH", body, table_offset + 8 * i)
     if flags == 3:
         po, cs = struct.unpack_from("<IH", body, header + s * 16 + 4)
         st = image_end + 16 + po
-        spans.append((f"overlay {i}", st, st + cs, [w for w, k in words.items() if k == "overlay"][0]))
+        spans.extend((f"overlay {i}", st, st + cs, word) for word in sorted(overlay_words))
 for name, start, end, w in spans:
     pat = struct.pack("<H", w)
     at = start

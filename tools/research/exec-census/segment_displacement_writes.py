@@ -18,6 +18,8 @@ is to be checked against the instructions around it. Nothing is written or execu
 """
 import struct
 import sys
+import runpy
+from pathlib import Path
 
 import xxhash
 from capstone import CS_ARCH_X86, CS_MODE_16, Cs
@@ -37,17 +39,19 @@ cblp, pages = struct.unpack_from("<HH", body, 2)
 image_end = (pages - 1) * 512 + (cblp or 512)
 table_offset, count = struct.unpack_from("<IH", body, image_end + 8)
 rows = [struct.unpack_from("<HHHH", body, table_offset + 8 * i) for i in range(count)]
-overlay_word = next((8 * i for i, r in enumerate(rows) if r[0] + 0x1000 == segment), None)
-spans = [("load image", header, image_end, segment - 0x1000)]
+descriptor_words = runpy.run_path(str(Path(__file__).with_name("segment_aliases.py")))["descriptor_words"]
+overlay_words = descriptor_words(rows, segment)
+spans = [("load image", header, image_end, {segment - 0x1000})]
 for i, (seg, _, flags, _) in enumerate(rows):
-    if flags == 3 and overlay_word is not None:
+    if flags == 3 and overlay_words:
         payload_offset, code_size = struct.unpack_from("<IH", body, header + seg * 16 + 4)
         start = image_end + 16 + payload_offset
-        spans.append((f"overlay {i}", start, start + code_size, overlay_word))
-print(f"segment {segment:04X}, displacement 0x{disp:X}, overlay segment word "
-      f"{'none' if overlay_word is None else hex(overlay_word)}")
-for name, start, end, word in spans:
-    loads = {bytes([op]) + struct.pack("<H", word) for op in (0xB8, 0xB9, 0xBA, 0xBB, 0xBE, 0xBF)}
+        spans.append((f"overlay {i}", start, start + code_size, overlay_words))
+print(f"segment {segment:04X}, displacement 0x{disp:X}, overlay segment words "
+      f"{','.join(hex(word) for word in sorted(overlay_words)) or 'none'}")
+for name, start, end, words in spans:
+    loads = {bytes([op]) + struct.pack("<H", word)
+             for word in words for op in (0xB8, 0xB9, 0xBA, 0xBB, 0xBE, 0xBF)}
     for at in range(start, end):
         ins = next(md.disasm(body[at:min(at + 15, end)], 0), None)
         if ins is None or ins.mnemonic not in WRITES or not ins.operands:

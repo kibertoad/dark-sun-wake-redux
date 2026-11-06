@@ -4,6 +4,32 @@ import {fileURLToPath} from 'node:url';
 import {spawnSync} from 'node:child_process';
 import {enginePython} from '../../tools/tool-dependencies.mjs';
 
+test('segment descriptor aliases retain later rows, view flags and resident-word collisions',()=>{
+  const tool=fileURLToPath(new URL('../../tools/research/exec-census/segment_aliases.py',import.meta.url));
+  const script=`
+import runpy, sys
+select = runpy.run_path(sys.argv[1])['descriptor_words']
+# Entirely synthetic table: two resident aliases and an overlay header
+# share a paragraph. A different row must not enter the result.
+rows = [(0x500, 0, 0, 0), (0x600, 0, 1, 0),
+        (0x500, 0, 1, 0), (0x500, 0, 3, 0)]
+assert select(rows, 0x1500) == {0, 16, 24}
+assert select(rows, 0x1500, flags=(0, 1)) == {0, 16}
+assert select(rows, 0x1600, flags=(0, 1)) == {8}
+assert select(rows, 0x1700) == set()
+assert select([], 0x1500) == set()
+# A resident segment word can equal a descriptor word. These belong to
+# separate input representations and must not be collapsed in a dict.
+assert select(rows, 0x1000 + 16) == set()
+assert select([(16, 0, 1, 0)] * 3, 0x1010) == {0, 8, 16}
+print('alias controls passed')
+`;
+  const result=spawnSync(enginePython(),['-I','-c',script,tool],{encoding:'utf8',timeout:30000,maxBuffer:1024*1024});
+  if(result.error)throw result.error;
+  assert.equal(result.status,0,result.stderr);
+  assert.equal(result.stdout.trim(),'alias controls passed');
+});
+
 test('offset-word candidates use typed encoded immediates and import without a source',()=>{
   const tool=fileURLToPath(new URL('../../tools/research/exec-census/far_pointer_words.py',import.meta.url));
   const fixtures=fileURLToPath(new URL('../fixtures/synthetic/offset-word-immediates.json',import.meta.url));
