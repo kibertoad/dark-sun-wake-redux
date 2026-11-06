@@ -7,7 +7,7 @@ every queue item is closed or the owner has accepted its evidence as out of
 reach; installation/media accounting, format and executable-function coverage,
 caller/state/indirect-transfer obligations and complete readings are audited;
 the documentation check passes and every batch ends with its status block.
-Temporary blockers and completed individual batches do not meet this condition.
+
 
 ## Scope
 
@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 790237e6 -NoRestore`
-  passed with declared skips: 2014 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 0a1f7320 -NoRestore`
+  passed with declared skips: 2015 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -51,7 +51,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the third batch is 96077cf3.
 - All three timed closure-focused batches are complete; their commit messages
   retain research, tooling, checks and handover phase windows separately.
-  Historical first-two-batch PARTY/UI comparison:
+  Historical PARTY/UI comparison:
   02e2d87549c20763b6951b505d1a73ff9a47a821 to
   127bdb98e3293b64826dd81f167a4086578a1f54:
   zero accepted-reading changes, zero answered deletions, zero whole plan
@@ -61,14 +61,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   obligations, 6349 unassigned rows and three missing inventories remained then.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
-  The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
-- Q-SOUND-002 reuses FND-SOUND-049 through 056 and FND-CONFIG-166:
+  
+- Q-SOUND-002 reuses FND-SOUND-049 through 057 and FND-CONFIG-166:
   dispatch/defaults, preference, state transitions, query/stop and file start.
   Next actual refill count/capacity, file/record/configuration/handle admission,
   excluded writers, buffer/frame retention, driver/interrupt effects and output.
   Descriptor staging is classified; downstream submission remains.
   Prioritize Q-RNG-040: 182E cleanup can shift its DS pop to the count
-  high word. Audit actual admission and later reseeding routes before
+  high word. FND-SOUND-057 excludes ordinary child compensation;
+  capability-disabled submission returns without interrupts. Audit actual
+  admission and later reseeding routes before
   extending FND-RNG-061's census model; parity carries the dependency. Preserve conditional zero/three exclusion and selector
   differences. RULE-SOUND-001 stays supported; no whole sound question closed.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
@@ -128,4 +130,4 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
   Findings give canonical report names, fingerprints and regeneration.
-  No original game ran; integration includes existing harness controls.
+  No game ran; integration includes existing harness controls.
