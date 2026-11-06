@@ -32,7 +32,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4AE5:0C22..4AE5:0D27
-tool: tools/research/exec-census/resident_listing.py at 8f183c45 and 7d00e02e; locked Python 3.12.10 with Capstone distribution 5.0.9; existing overlay interfaces in FND-EXE-226/234/562/566 and queue continuation in FND-PARTY-332
+tool: tools/research/exec-census/resident_listing.py at 8f183c45, 7d00e02e and 027bacb1; locked Python 3.12.10 with Capstone distribution 5.0.9; existing overlay interfaces in FND-EXE-226/234/562/566 and queue continuation in FND-PARTY-332
 environment: null
 ---
 
@@ -117,6 +117,56 @@ not arbitrary payload writes, but their physical separation from the
 cast queue/index still requires actual SS, graph and header/buffer bounds.
 FND-EXE-566 retains allocation, movement, file-read and cache-hook effects;
 this reading does not establish that those effects preserve the queue.
+
+### A sufficient own-write contract for the frame walk
+
+The leaf and wrapper admit a concrete sufficient graph contract; this
+is not a claim that every actual frame chain has that shape. Let S be
+SP on entry to +075F and b0 its incoming BP. Require unchanged SS and
+code, no outside writes, readable nonwrapping words, S at least four,
+and S+2 at most b0. Let every reachable nonterminal link, with its low
+bit cleared, advance to an even next node at least six bytes higher.
+All nodes are at most FFFA, and a terminal link is zero or one.
+Physical SS addressing must not wrap at the real-mode address boundary.
+
+For a node b, its link word occupies b..b+2. The only leaf rewrite is
+b+4..b+6; it is skipped for an odd original link. With the six-byte
+spacing, that rewrite cannot touch the current link, any earlier link,
+or any later node's link. The wrapper's one exchange at the first
+matched node plus two likewise touches no link. Thus own rewrites do
+not change the graph on which the traversal depends. Strict upward
+progress in the bounded sixteen-bit offset domain also prevents a
+cycle; under these link conditions the walk must reach its sentinel.
+These are sufficient conditions, not a required shape for every safe
+odd-link or terminal-node case.
+
+The two initial pushes save CX at SS:(S-2) and BP at SS:(S-4). The near
+return word is at SS:S. All three words lie below b0 under the stated
+ordering and do not overlap the rewrites at b+4 or the later exchange
+at b+2. The pushes themselves do not overwrite a link. No other leaf
+instruction adjusts SP. Consequently its own writes preserve these
+save/return words, and ordinary exit restores the input BP and CX.
+For a wrapper invocation, its near return is the following stack word;
+the exchange is above that word as well. Since b0 is nonzero under
+this ordering, a matching node does not collide with the zero BX sentinel.
+
+The exclusions are consequential. A mere even readable link is not
+enough. With a four-byte successor gap, the current b+4 return-segment
+word is the next node's link word. If it matches DX, storing AX there
+can replace that link after the current successor has already been
+captured in CX, changing the rest of the walk. Likewise, if b+4 equals
+S-4, an admitted matching store overwrites the saved BP word: the final
+POP BP then restores the replacement. Balanced pushes and pops do not
+exclude either case. These are conditional alias counterexamples, not
+observed native defects.
+
+For Q-PARTY-137 this replaces an unspecified own-write hazard with
+checkable stack ordering, node spacing and successor-bound conditions.
+Actual handler BP/SP, initial links, outside/native changes, different
+chains and rewritten caller storage remain to be admitted. The paused
+chain in FND-PARTY-335 does not by itself establish the leaf's entry S
+or the later handler's graph. Its source-level caller and saved-word
+conditions cannot be dropped merely because this sufficient case is proved.
 
 ### BP through the connected load continuation
 
@@ -223,3 +273,11 @@ with `4AE5:03E8..4AE5:04F4`, `4AE5:04F4..4AE5:055A`,
 and FND-PARTY-334 for the connected interfaces. Separate a restored BP
 register from its saved word's preservation and from native BP effects.
 No original game ran for this reread.
+
+For the sufficient frame-write case, reread the full wrapper/leaf
+`4AE5:0753..4AE5:0785` with resident_listing.py at 027bacb1.
+Track the link read before the +4 store and the clear-low-bit successor.
+Compare each two-byte write with the ordered node/link/save intervals;
+retain the four-byte-gap and saved-BP overlap counterexamples. This is
+static reasoning over the recorded instructions, not an emulated call
+or original run and not proof of actual frame admission.
