@@ -32,12 +32,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   profile from 595c7602 for complete source accounting, not the former
   tool rejection as evidence of native failure.
 
+- Controlled memory profiles are unavailable in the pinned session API;
+  toolkit issue552 tracks typed support. Static/default-profile work remains
+  available; do not substitute a package-owned config.
+
 ## Handover
 
 - Stage: Slices; Audit unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c8d925e3
-  -NoRestore` passed: 2093 entries, 208 parity rows, five deviations.
-  Tooling: 40 controls, 758 .NET tests passed.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 0b4ba5bc
+  -NoRestore` passed: 2094 entries, 208 parity rows, five deviations.
+  Tooling: 46 controls, 758 .NET tests passed.
   Use pinned EVIDENCE_PYTHON.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
@@ -86,9 +90,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
-  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..042; post-error: Q-COMBAT-059,
+  Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..043; post-error: Q-COMBAT-059,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
-  Q-SAVE-008/009 closed (FND-SAVE-041/042). Next Q-SAVE-007: other exit domains.
+  Q-SAVE-008/009 closed (FND-SAVE-041/042). Q-SAVE-007 reuses FND-SAVE-043; next other exit domains.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
