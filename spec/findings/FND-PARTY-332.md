@@ -29,7 +29,13 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     offset: 0x00064FFD..0x00065008
-tool: tools/research/exec-census/overlay_listing.py at 0db4c879; locked Python 3.12.10 with Capstone distribution 5.0.9; connected interfaces in FND-PARTY-288/328, FND-MAGIC-019/020 and FND-CONFIG-131
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    offset: 0x0007E32C..0x0007E33B
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    offset: 0x0006500F..0x0006501D
+tool: tools/research/exec-census/overlay_listing.py at 0db4c879 and 0f4e3da5; locked Python 3.12.10 with Capstone distribution 5.0.9; connected interfaces in FND-PARTY-288/328, FND-MAGIC-019/020 and FND-CONFIG-131
 environment: null
 ---
 
@@ -96,6 +102,63 @@ client or no client without changing which saved word either encoded
 handoff uses. A universal zero-kind invariant is not required for this
 local value-identity conclusion.
 
+### Saved word, outgoing argument and actual transfer forms
+
+Let B be the admitted runner BP. Its prologue allocates 0A bytes and
+pushes SI/DI, leaving SP at B-0E before argument setup. The number
+is saved at B-2. Stack offsets and outgoing byte counts below are hexadecimal; require the actual
+same SS/BP, readable arguments and nonwrapping stack accesses.
+
+| Dispatch kind | Outgoing bytes | SP F before transfer | Number word F+4 | Recipient BP after its initial PUSH BP |
+|---|---|---|---|---|
+| zero | 16 | B-24 | B-20 | B-2A |
+| one | 1A | B-28 | B-24 | B-2E |
+
+The kind-zero total includes its four-byte null pointer push. The
+kind-one total includes both words of its far record pointer. Neither
+argument block overlaps B-2 or the runner's other allocated locals.
+From the number read through each number push, there is no encoded
+call, interrupt or port instruction. Ordinary synchronous overlay
+loading therefore is not an intervening writer in that prefix; a
+changed transfer or asynchronous event needs its own evidence.
+
+Kind one pushes CS then makes a near call at +1299 directly to hit
++0D2F in the same overlay. It does not transfer through a header
+trampoline or synchronously request a callee overlay load. The hit
+prologue saves BP, reserves its locals and saves SI/DI, then loads its
+third word into SI at +0D3A. Under the stated stack conditions these
+own writes are below the outgoing arguments and do not change that
+number before the first load. Later hit-client effects remain separate.
+
+Kind zero far-calls descriptor 193's trampoline +0084, entering +003C.
+An already admitted jump-form trampoline introduces no handler path.
+For the ordinary trap form, let H be the INT3F handler BP after its
+initial PUSH BP. Far return and interrupt-frame construction give
+H=F-0C=B-30. The nonzero trampoline offset selects FND-PARTY-333's
+six-byte adjustment. After the documented exchange, the exposed first
+walk node is H+6=B-2A, with its next BP link equal to runner B.
+Its repair fields are H+8 (return offset) and H+0A (return segment).
+The outgoing number is H+10=B-20: distinct from both fields.
+
+If the subsequent runner/ancestor graph satisfies FND-PARTY-333's
+upward-chain contract, writes at runner B+4 and later ancestor +4,
+and the possible first-match +2 exchange, do not overlap B-2 or the
+outgoing number below B. The synthetic first node's +2/+4 fields are
+below the outgoing argument block. Thus the frame repair's own writes
+have a concrete exclusion for the saved/outgoing number on this
+admitted trampoline chain. This is not a claim about arbitrary linked
+SS words, changed BP across loading or a chain with nodes in that block.
+
+On successful rejoin, +003C's prologue establishes BP=B-2A, reserves
+its locals and saves SI/DI, then reads its third word into DI at +0048.
+There is no child call before that number read. Its own stack writes
+are below the argument block under the nonwrapping-frame condition.
+The argument at its BP+0A is exactly F+4. Native loader/copy effects,
+actual backing, restored register/return bindings and asynchronous
+writers still require evidence; balanced stack arithmetic is not their
+proof. The argument is followed only to this first recipient number
+load, not through the recipient's later use or return.
+
 ## Interpretation
 
 For successful reflected publication through this root, the normal game-
@@ -149,3 +212,11 @@ Keep successful publication, first read and selected push distinct. Check
 both kind branches and the no-handoff branch, retaining actual stack,
 index, residency and asynchronous conditions. No original game ran and no
 original-derived listing or runtime state is committed.
+
+For the two concrete handoffs, read descriptor 179 `654BC 65591`,
+193 `7E32C 7E33B` and 179 `6500F 6501D` using overlay_listing.py
+at 0f4e3da5. Count the four-byte null push and two-word record pointer
+at their actual widths. Distinguish the local PUSH CS/near CALL from
+the far trampoline call. Apply FND-PARTY-333's actual handler frame
+layout and sufficient chain contract, retaining native and asynchronous
+conditions. No original game or emulated call was run for this reading.
