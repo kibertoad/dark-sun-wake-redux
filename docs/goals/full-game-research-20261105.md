@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 6d5fccb9 -NoRestore` passed
-  with declared skips: 1961 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince a3a10444 -NoRestore` passed
+  with declared skips: 1962 entries, 208 parity rows,
   five deviations. Integration at a7a68e14 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -56,8 +56,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   interiors and account for tested calls/nearby pairs. Next Q-PARTY-124:
   the fixed-expression component is assessed in FND-PARTY-285.
   FND-PARTY-279/281 through 285 retain named state/storage conditions.
-  Next bind FND-PARTY-272's three word-input caller domains within
-  the existing 83-site set; reuse its caller reports before new tooling.
+  Q-PARTY-134 now owns the three word-input caller domains, split by
+  FND-PARTY-286; eighty other sites remain Q-PARTY-124. No answer counted.
+  Next test FND-MAGIC-020's script-cast remainder producer against
+  Q-PARTY-134 before following another forwarding edge; reuse reports.
   FND-PARTY-280 replaces 110; retain its corrected capacity/null branches.
   Keep unsearched transfers and block/indexed/copied/alias mechanisms.
   FND-PARTY-278 repairs 33 body bytes and sidecars, preserving two
