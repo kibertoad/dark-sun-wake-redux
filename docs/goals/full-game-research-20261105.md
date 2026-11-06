@@ -36,19 +36,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 82331f1d -NoRestore`
-  passed with declared skips: 1999 entries, 208 parity rows, five deviations.
-  Integration at 96077cf3 passed build, JavaScript suites and 758 .NET tests.
-  The ownership JSON path requires separate integration when changed.
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` for the map
+  expansion passed build, 203 JavaScript tests and 758 .NET tests, plus
+  documentation with declared skips: 1999 entries, 208 parity rows, five deviations.
+  Research selection requires separate integration for the ownership JSON.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
-  The current plan has 37 unique assignments, eight shared, eight open obligations,
-  6340 unassigned rows and zero accepted readings. The updated plan reporter passes
+  The current plan has 54 unique assignments, 25 shared, sixteen open obligations,
+  6323 unassigned rows and zero accepted readings. The updated plan reporter passes
   with zero errors/stale inventories/unmeasured files. Three inventories remain
-  missing. No complete reading or answered queue deletion was added in this
-  session. FND-PARTY-311/312/313 are the three timed batches after the new map;
+  missing. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
+  none closes a question. No complete reading or answered deletion was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
   the third batch is 96077cf3.
 - All three timed closure-focused batches are complete; their commit messages
   retain research, tooling, checks and handover phase windows separately.
