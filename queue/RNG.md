@@ -23,7 +23,11 @@ Next ID: Q-RNG-041
   remain. FND-SOUND-059 settles the immediate caller: no DS restoration,
   returned SI controls the loop, and an invalid-slot continuation can
   return without a restoring child. Actual state admission and later
-  reseeding/restoration routes remain. FND-RNG-096 withdraws the universal
+  reseeding/restoration routes remain, now including FND-SOUND-060's
+  explicit 201 +0767 -> +075F repeat edge: actual active-service admission,
+  nonzero AL, offset-loop input/frame and callee DS effects must be settled.
+  Other direct caller continuations and excluded incoming forms remain.
+  FND-RNG-096 withdraws the universal
   DS/SS inference while retaining historical counts and query scopes. Blocks: complete seed-source reading.
 
 - Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
