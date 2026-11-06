@@ -629,3 +629,15 @@ field observations are agent for the admitted paused states. They do not
 validate frame authenticity or later interrupt-entry links. Six new
 synthetic controls, five existing backing controls and integration passed.
 The owned muted session closed without resuming gameplay or writing fields.
+
+
+At448da523, paused play/play-ready verification also observes the loaded
+header queue through registered FMT-EXE-003 links, bounded to the 49
+fingerprint-checked source headers and code sizes. The strict observation
+in captures/rust-dos-regenerated/v181-q137-loaded-headers-20261106-play-ready/
+passed with identical loaded-queue metadata after checked roundtrip
+(FND-PARTY-335). These registered metadata reads and point range comparisons
+are agent; cache lists, later graph preservation and native transfers are
+not admitted by them. Eight new controls, eleven prior snapshot controls
+and full integration passed. The owned muted session closed without
+input, guest continuation or setup writes.

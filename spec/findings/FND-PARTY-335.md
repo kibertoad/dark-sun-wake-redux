@@ -8,7 +8,7 @@ recorded_by: kibertoad
 reproduced_by: []
 method: dynamic
 locations: []
-tool: tools/research/rust-dos-runs/verify_checkpoints.py and overlay_backing.py at 1d638bc3; frame_links.py and extended snapshot at 55fbe24d; dinorefurb-dosbox-session 1.0.0; Python 3.12.10
+tool: tools/research/rust-dos-runs/verify_checkpoints.py and overlay_backing.py at 1d638bc3; frame_links.py and extended snapshot at 55fbe24d; loaded_headers.py and verifier at 448da523; dinorefurb-dosbox-session 1.0.0; Python 3.12.10
 environment: Windows; rust-dos v1.8.1 SHA-256 e880ecf0d76dbb2f77e4d1d7568d90cb53f3d1cf798679cd24f025955bf85da0; deterministic15000 cycles; SB16 base220 IRQ5 DMA1; no Ultrasound; muted host output
 ---
 
@@ -94,6 +94,44 @@ observed SS-relative fields remain inside FND-PARTY-335's disjoint SS
 window at this point; actual later segment/backing preservation remains
 Q-PARTY-137. The owned session closed and released its run lock.
 
+### Registered loaded-overlay queue at the paused point
+
+The follow-up verification at 448da523 used the same source checkpoint
+and paused play-ready state. The executable registration identified all
+49 source overlay headers, descriptors 169..217, with their code sizes.
+The retained report is
+GAME_DIR/captures/rust-dos-regenerated/v181-q137-loaded-headers-20261106-play-ready/restore-check.json.
+Strict restore checks, deliberate sound-IRQ mismatch refusal and the
+same-process checked roundtrip passed; the complete backing snapshot,
+including the loaded-header queue, was identical after reload. There
+was no input, guest write or continuation, and no new gameplay RNG trace.
+
+Starting at manager loaded-head 4CBC, following the documented +1C
+links reached exactly three registered headers and then zero:
+
+| Descriptor | Runtime header | Load segment | Code bytes | Next header |
+|---|---|---|---|---|
+| 188 | 4CBC | 5D9C | 6470 | 4C53 |
+| 177 | 4C53 | 5F31 | 3854 | 4D41 |
+| 204 | 4D41 | 6022 | 10400 | zero |
+
+Each observed code size matched its fingerprint-checked source header.
+All three observed code spans were within the reported overlay buffer;
+their code spans and immediately preceding backlink words were disjoint
+from the queue interval. Their observed header-field spans were also
+disjoint from that interval. Saved return-offset words and the state/pass
+byte pairs were zero in these three nodes. There was no unknown header,
+cycle, size mismatch or node-limit outcome.
+
+This is a measured loaded-queue point graph. Descriptors 179, 193 and
+197 are not members of this observed queue; their separate header fields
+were not read, so absence is not substituted for a complete unloaded-state
+or manager-consistency audit. In particular this point cannot stand in
+for the later reflection-to-first-handoff interval. New loads, eviction,
+cache lists, trampoline/frame repair, native bindings and asynchronous
+changes still require their own interval evidence. The owned muted
+session closed and released its run lock.
+
 ## Interpretation
 
 For observations starting from this exact checkpoint, EMS is a concrete
@@ -149,3 +187,10 @@ roundtrip. Interpret links using FND-EXE-234, including zero/one early
 termination and odd-link suppression; termination is not frame authenticity.
 The six synthetic controls in `check_frame_links.py` and five backing
 controls passed before the full integration gate (758 .NET tests).
+
+For the registered loaded queue, use verifier revision 448da523 or its
+unchanged code, the same source and play-ready state, and a fresh output
+prefix. Inspect `overlay_backing.loaded_headers`, its explicit termination
+reason, source size matches, range comparisons and checked-roundtrip
+equality. Eight new loaded-header controls, the six frame-link controls,
+five backing controls and full integration passed before observation.
