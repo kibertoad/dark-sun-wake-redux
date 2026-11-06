@@ -212,7 +212,7 @@ None known.
   `31E0:2C86`, which needs 9999 in a placed-object entry's slot word (FND-RNG-085, FND-RNG-086),
   remain Q-RNG-031, Q-RNG-037, Q-RNG-038 and Q-RNG-034. Whether the game
   creates objects 428 and 430, and whether the party's
-  target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-064, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
+  target cursor can pass `DATA` 293, remain open (FND-RNG-055, FND-RNG-062, FND-RNG-095, Q-RNG-003, Q-RNG-025). The second root's local reseeding and
   conditional draw loop, and its script wrapper widths, are recorded in
   FND-RNG-021..022, and the shipped scripts that issue it in FND-RNG-027.
 - The events that reach overlay 206's

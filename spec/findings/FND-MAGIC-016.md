@@ -47,7 +47,7 @@ overlay 208 `+1662` (file `0x92EF2`), one to `DS:9BE5`, at `+166C` (`0x92EFC`), 
 `+1776` (`0x93006`, `DS:9BD3`) and `+178E` (`0x9301E`) and `0x92AB6` (`DS:9BE5`). Overlay 208
 `+1612` (`+1612..+169E`) stores its first argument at `DS:9BE0`, its third at `DS:9BE2`, the low
 byte of its fourth at `DS:9BD3` and the low byte of its fifth at `DS:9BE5` (`+1652..+166C`), as
-FND-RNG-064 reads.
+FND-RNG-095 reads.
 
 **The cast from the cursor.** Overlay 208 `+1761` (`+1761..+17BD`) calls overlay 193 `+2290`
 (`+179F`) with the words, first to last: `DS:9BE0`, `DS:9BDE`, `DS:9BE2`, the byte `DS:9BE5`

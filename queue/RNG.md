@@ -77,7 +77,7 @@ Next ID: Q-RNG-040
   Tried: FND-RNG-055 finds overlay 208 `+179F` passing `DS:9BE2` to the spell dispatcher with
   the byte at `DS:9BD3` as `bp+0x1A`, and the party's spell, psionic and item numbers of
   FND-PARTY-242 and FND-PARTY-121 below 293 or never 294 in an item; the stores at `DS:9BE2` were
-  not followed. Tried: FND-RNG-064 finds both stores in overlay 208 `+1612` and its six callers;
+  not followed. Tried: FND-RNG-095 finds both stores in overlay 208 `+1612` and its six callers;
   only overlay 189 `+0B3C` (with `DS:43F5`) and overlay 213 `+0B82` (with an item's word `0x10`
   less 1) pass the byte as 1, so the other four callers are out. Blocks: reproducible seeding.
 - Q-RNG-005. RULE-RNG-001: Do the string stores and copy helpers on FND-RNG-058's walk write the

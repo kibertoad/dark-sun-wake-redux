@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-064
 title: Overlay 208 +1612 alone stores DS:9BE2 and DS:9BD3, and of its six callers only overlay 189 +0B3C and overlay 213 +0B82 pass the byte as 1, with DS:43F5 and an item's word 0x10 less 1, each below 328
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-095]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
