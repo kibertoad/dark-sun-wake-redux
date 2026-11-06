@@ -36,18 +36,18 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` for the map
-  expansion passed build, 203 JavaScript tests and 758 .NET tests, plus
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` for disc inventory
+  association passed build, 203 JavaScript tests and 758 .NET tests, plus
   documentation with declared skips: 1999 entries, 208 parity rows, five deviations.
-  Research selection requires separate integration for the ownership JSON.
+  New provenance paths required separate integration acceptance.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
   The current plan has 54 unique assignments, 25 shared, sixteen open obligations,
-  6323 unassigned rows and zero accepted readings. The updated plan reporter passes
-  with zero errors/stale inventories/unmeasured files. Three inventories remain
-  missing. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
+  6959 unassigned rows and zero accepted readings. The updated plan reporter passes
+  with zero errors/stale inventories/unmeasured files. Only owner-excluded
+  DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
   none closes a question. No complete reading or answered deletion was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
   the third batch is 96077cf3.
 - All three timed closure-focused batches are complete; their commit messages
@@ -113,11 +113,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-264/265. Nine items added, including Q-PARTY-128's split;
   Q-PARTY-003/005 narrowed. Assessment ends at 1a382f6f; map at 4d210fc1.
   Finding and commit counts are activity, not evidence of faster closure.
-- Inventory baseline: 6377 rows across six inventories. The original FMT map
-  assigns four and leaves 6373 unassigned there; the separate SAVE/COMBAT
-  map assigns nine. Do not add shared counts or combine these maps into an
-  unsupported total. Missing: CD:CHARTRAN.EXE, CD:SOUND_DS.EXE and
-  DOSBOX/DOSBox.exe. Historical reports retain their own denominators.
+- Current inventory denominator: 7013 rows across eight inventories, including
+  two byte-identical disc associations from 7a8b8ec1. Their 636 rows add no
+  independent binary understanding. The original FMT map assigns four and
+  leaves 7009 unassigned; the separate SAVE/COMBAT map assigns nine. Keep
+  historical report denominators. CD:CHARTRAN.EXE and CD:SOUND_DS.EXE now
+  reuse validated metadata with unchanged provenance; only owner-excluded
+  DOSBOX/DOSBox.exe lacks an inventory in the raw reporter.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
   Findings give canonical report names, fingerprints and regeneration.
