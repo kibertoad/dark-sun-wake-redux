@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. No inaccessible evidence has owner acceptance.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c7070b73 -NoRestore`
-  passed with declared skips: 2009 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince f156ca09 -NoRestore`
+  passed with declared skips: 2010 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -62,13 +62,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
-- Q-SOUND-002 reuses FND-SOUND-049/050/051 for the wrapper, preference adjustment, dispatch
-  and default-selector contracts. The 6000/6001 meaning is answered; next
-  actual card/mode/type/record/frame admission, explicit-value domains,
-  driver selector meanings and original output. Preserve the conditional
-  zero/three gate exclusion and distinct explicit/default selector paths.
-  FND-SOUND-051 links the preference byte to the record-relative default
-  adjustment. RULE-SOUND-001 stays supported; no whole sound question is closed.
+- Q-SOUND-002 reuses FND-SOUND-049 through 052 for dispatch, default
+  selectors, preference adjustment and query/stop contracts. Next actual
+  record/configuration/handle admission, state-word writers, frame retention,
+  driver/interrupt effects, explicit domains and original output. The stop
+  wrapper repeats the query and returns one without checking stop success.
+  Preserve conditional zero/three exclusion and distinct selector paths.
+  RULE-SOUND-001 stays supported; no whole sound question is closed.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
