@@ -17,7 +17,7 @@
   "inventories": [
     {
       "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
-      "sha256": "820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2",
+      "sha256": "0021755654b72af6cf77746b9c43505f7840835ff8b8e67ab97040a325a356ed",
       "assignments": [
         {
           "start": "4AE5:0010",
@@ -310,6 +310,20 @@
             "INPUT"
           ],
           "reason": "Shared buffer producer or pointer normalizer: EXE owns header exclusion, CONFIG the setup/allocation interface, INPUT the queue destination. Assigning a whole inventoried row does not establish every entry or branch."
+        },
+        {
+          "start": "1000:02AD",
+          "areas": [
+            "EXE"
+          ],
+          "reason": "Source-bound runtime-error entry supporting the header-access model boundary in FND-EXE-655; assignment is not a complete reading."
+        },
+        {
+          "start": "1000:02DF",
+          "areas": [
+            "EXE"
+          ],
+          "reason": "Source-bound runtime-error entry supporting the header-access model boundary in FND-EXE-655; assignment is not a complete reading."
         }
       ]
     }

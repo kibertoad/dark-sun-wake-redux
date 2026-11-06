@@ -116,6 +116,55 @@ before reuse. Far-call and relocated-pair classifications are unchanged.
 
 ## Measured work baseline
 
+### Runtime-error entry/data supplement, 2026-11-07
+
+FND-EXE-655 and FND-PARTY-343 support the installed-source partition in
+`tools/ghidra/dsun-runtime-error-boundary.json`. Follow the bounded plan in
+[RUNTIME-ERROR-INVENTORY](implementation-plans/RUNTIME-ERROR-INVENTORY.md).
+Run `ApplyEntryDataBoundary.java` with that JSON on a fresh isolated copy of
+the handler snapshot, after its existing declared-entry repairs. This separate
+partition configuration creates the additional entry; the general declared-entry
+file is unchanged. Do not substitute ordinary entry creation for the partition.
+
+The script requires the source MD5, exact original body and complete partition,
+rejects enclosing transactions and rolls back failed postconditions. It preserves
+memory bytes, the original function identity and every unrelated function body.
+Reapplication is inert. Run `tools/ghidra/Test-EntryDataBoundary.ps1` with
+`-GhidraHome` and `-JavaHome` for the pinned installations. Its invented fixture
+checks nine rejection cases, rollback, valid application and idempotence. The
+controls caught a nested FlatProgramAPI transaction bug before licensed metadata
+was changed; both transaction levels now close explicitly. The final controls pass.
+
+Retained licensed acceptance exports and logs are under
+GAME_DIR/analysis/runtime-error-inventory-20261107/. Ghidra 12.1.3 used an
+isolated copy of INST-handler-20261106; source MD5 is
+90b09ee26f2bc3a8d20063712636241c and XXH3 is
+e296af55ba2ecde7e77f555c90f33d0b. Export before and after with
+ExportResearchBaseline.java, passing the output stem, source XXH3, snapshot ID,
+exporter SHA-256, `initialized`, source MD5 and region, in that order. Use
+1000:0000..1000:4259 and 1000:02AD..1000:02FD; duplicate both after exports.
+The recorded exporter SHA-256 is
+fd88d69d04118cfbfecf48f03b6768e8a0cc9dbf795a2b3786c5e6b3baa1adba.
+Require completion markers: an initial export missing MD5 failed despite
+headless exit zero and was replaced by the corrected before export.
+
+The old 80-byte body becomes 23- and 30-byte bodies, with 27 data bytes.
+The narrow region changes from 80 instruction bytes to 53 instructions and
+27 data, with no undefined bytes. All 3222 unrelated program bodies and all
+211 other main-region rows are unchanged. Main-region functions change 212
+to 213, instruction bytes 16157 to 16130, data 74 to 101, and undefined
+bytes stay 754. Duplicate exports agree. The joined inventory has 3232
+functions and 484659 body bytes; prior repairs remain intact. Disc files
+are unchanged. All four ownership plans require refreshed hashes.
+
+Run `tools/ghidra/Verify-RuntimeErrorInventory.ps1 -AnalysisRoot` with the
+retained acceptance directory and `-CanonicalProjectRoot` with
+GAME_DIR/analysis/handler-inventory-20261106/. It checks duplicate exports,
+source identity, precise row/classification changes, the committed join and
+canonical project hashes. Acceptance reports `reconciled=True` and
+`canonicalUnchanged=true`. No reach roots, regions, return assumptions or
+negative-search conclusions change. This is mapping, not a complete reading.
+
 ### Declared handler supplement, 2026-11-06
 
 FND-PARTY-293 supplies the source-bound 1000:2BDB..2C56 handler.

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "sourceMd5": "90b09ee26f2bc3a8d20063712636241c",
+  "oldEntry": "1000:02AD",
+  "oldBody": "1000:02AD..1000:02FD",
+  "functions": [
+    { "entry": "1000:02AD", "range": "1000:02AD..1000:02C4" },
+    { "entry": "1000:02DF", "range": "1000:02DF..1000:02FD" }
+  ],
+  "data": [
+    { "range": "1000:02C4..1000:02C6", "kind": "word" },
+    { "range": "1000:02C6..1000:02C8", "kind": "bytes" },
+    { "range": "1000:02C8..1000:02DF", "kind": "bytes" }
+  ]
+}

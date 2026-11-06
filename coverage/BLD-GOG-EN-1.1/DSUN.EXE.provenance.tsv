@@ -3,16 +3,17 @@ xxh3	e296af55ba2ecde7e77f555c90f33d0b
 source_md5	90b09ee26f2bc3a8d20063712636241c
 analysis_tool	Ghidra
 analysis_version	12.1.3
-snapshot	INST-single-20261103b+INST-overlay-20261029g+INST-handler-20261106
+snapshot	INST-single-20261103b+INST-overlay-20261029g+INST-handler-20261106+INST-runtime-error-after-20261107
 exporter_revision	fd88d69d04118cfbfecf48f03b6768e8a0cc9dbf795a2b3786c5e6b3baa1adba
 overlay_view_xxh3	f48148049b7bd26475845bfcbeb2d11e
 overlay_body_clip_revision	1c38149e3ed55693336abfe94ad35c76c9c4e9548bccb7531ba2465305613671
 join_revision	69dddc01fcc141559be6223c54b01357f070e339211c95448ee04057b015841c
 region_mode	initialized
-functions	3231
-summed_body_bytes	484686
-unique_body_bytes	484686
+functions	3232
+summed_body_bytes	484659
+unique_body_bytes	484659
 body_bytes_outside_regions	0
 entries_without_instruction	0
 body_range_repair	FND-PARTY-278: source-verified 3F96:070E body extended through 0755; +33 bytes, no overlapping owner; narrow export of INST-single-20261103b reassigns 31 instruction and 2 undefined bytes from outside to inside the body, preserving analyzer classifications.
 declared_entry_repair	FND-PARTY-293: add source-bound 1000:2BDB..2C56, 123 bytes; isolated INST-handler-20261106 copy creates one function and decodes 123 formerly undefined bytes. Duplicate narrow exports agree with zero entry/body anomalies; canonical snapshots unchanged.
+entry_data_repair	FND-EXE-655: isolated metadata repair splits the former 80-byte row into 23-byte 1000:02AD and 30-byte 1000:02DF bodies; the intervening 27 bytes are data outside function bodies. Duplicate main/narrow exports agree, all other main-region rows and canonical project hashes are unchanged; program bytes and reach profiles are unchanged.
