@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 021f38f6
-  -NoRestore` passed: 2034 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d447505f
+  -NoRestore` passed: 2035 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -64,7 +64,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Independent `docs/research-closure-sound-playback.json`: 34 assigned,
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
-  Counts are not additive with other plans; no status or closure changes.
+  Counts are non-additive; no status/closure changes.
 - FMT-SOUND-002 review baseline 26785998 remains supported, no complete
   reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
   literal/raw accesses, 064 for list/address equations, 065 for shipped
@@ -81,7 +81,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   supersedes 012. FND-SOUND-072 classifies three raw interiors; next
   Q-SOUND-012 gap 1BF3:4889..4C09 ownership/490D binding after
   FND-SOUND-073 excludes tested encoded entries. Split, not closure;
-  Q-SOUND-004 retains actual region histories and excluded writers.
+  FND-SOUND-074 binds four known transition-call tuples/results;
+  Q-SOUND-004 retains actual SAVE/18/resource/frame histories and excluded writers.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
@@ -133,4 +134,4 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   DOSBOX/DOSBox.exe lacks an inventory in the raw reporter.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
-  Findings give report names, fingerprints and regeneration.
+  Findings give reproduction details.
