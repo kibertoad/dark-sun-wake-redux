@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -106,6 +106,9 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   FND-PARTY-282 excludes the canonical timer segment-store result and
   names five drawing step/residual conditions, leaving fourteen other
   unclassified values. Caller values alone do not prove preservation.
+  FND-PARTY-283 names three graphics stores' FONT pointer-byte and
+  allocation-segment conditions, leaving eleven other unclassified
+  values. Acquisition and valid-heap preservation remain unresolved.
   FND-PARTY-267 excludes 105 direct literal non-DATA request setups from
   number tracing. FND-PARTY-268 classifies its thirteen variable sites
   into five local non-DATA choices, four known-caller non-DATA bindings
