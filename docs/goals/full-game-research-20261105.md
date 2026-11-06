@@ -36,41 +36,45 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 9e10a110 -NoRestore`
-  passed with declared skips: 1991 entries, 208 parity rows, five deviations.
-  Integration at 02e2d875 passed 203 JavaScript tests and 758 .NET tests.
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed build,
+  JavaScript suites, 758 .NET tests and documentation with declared skips
+  (1992 entries, 208 parity rows, five deviations).
+  Research batches FND-PARTY-311/312 passed their selected gates separately.
   The ownership JSON path requires separate integration when changed.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
-  The new plan has 28 unique assignments, three shared, eight open obligations,
-  6349 unassigned rows and zero accepted readings. Both metadata reporters pass
+  The current plan has 37 unique assignments, eight shared, eight open obligations,
+  6340 unassigned rows and zero accepted readings. The updated plan reporter passes
   with zero errors/stale inventories/unmeasured files. Three inventories remain
   missing. No complete reading or answered queue deletion was added in this
-  session. FND-PARTY-311/312 are timed batches one/two after the new map.
-- One timed closure-focused batch remains after FND-PARTY-311/312. Record
-  research, tooling, validation and handover elapsed time separately in its
-  commit message. PARTY/UI comparison:
+  session. FND-PARTY-311/312/313 are the three timed batches after the new map;
+  the third batch is 96077cf3.
+- All three timed closure-focused batches are complete; their commit messages
+  retain research, tooling, checks and handover phase windows separately.
+  Historical first-two-batch PARTY/UI comparison:
   02e2d87549c20763b6951b505d1a73ff9a47a821 to
   127bdb98e3293b64826dd81f167a4086578a1f54:
   zero accepted-reading changes, zero answered deletions, zero whole plan
   obligations closed and one queue item narrowed (Q-PARTY-134). FND-PARTY-311
   classifies four selector calls and excludes the tested setter incoming forms;
   FND-PARTY-312 excludes two encoded routes under its conditions. Eight plan
-  obligations, 6349 unassigned rows and three missing inventories remain.
+  obligations, 6349 unassigned rows and three missing inventories remained then.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
-  Change the third objective to DS:9BE2 producer history; retain MENU admission.
+  The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
 - Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
   the new plan's state/indirect obligations to select one closure objective.
-  Reuse FND-PARTY-287/288 and 301 through 312, FND-RNG-095,
+  Reuse FND-PARTY-287/288 and 301 through 313, FND-RNG-095,
   FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
   source, member/count, event and segment/frame binding remain authoritative
-  in the queue. Next DS:9BE2 publication/use history for the two known
-  208+05B2 consumers in FND-PARTY-302 and FND-RNG-095's setup contract.
-  Preserve FND-PARTY-311/312's remaining caller/state and transfer conditions;
-  newly identified menu rows remain unassigned in the partial plan. Do not
+  in the queue. Next Q-PARTY-136's setup/getter-miss number preservation
+  contract, reusing FND-PARTY-289 through 296 and FND-RNG-095; actual
+  DS:9BE2 histories and the snapshot/reload conditions remain Q-PARTY-134.
+  FND-PARTY-313's literal-overlap and known record-pointer windows need no
+  repeated reading. Preserve FND-PARTY-311/312's remaining MENU conditions.
+  The newly identified menu and cursor rows are now assigned. Do not
   reread the named conditional constructor/paint/text contracts as unknown.
   Q-PARTY-135/136/137 retain getter-pair, preservation and queue-record
   dependencies. PARTY Static 59; Next ID 138; queue/PARTY.md is at 1000 lines.
