@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -102,6 +102,14 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   break alone is insufficient; its noncanonical counterexample is not an
   admitted game state. Free-list returns, actual bindings, cached history
   and later header-relevant effects remain separate.
+  FND-EXE-650 separates free-list address confinement from complete heap
+  validity. The relevant remaining inputs are the actual root and followed
+  link/release/predecessor segment domains and nonwrapping count/end
+  producers. A high root alone does not exclude a foreign link; a high
+  selected segment alone does not exclude a wrapped tail. Full reciprocity,
+  termination or checker success is not an additional obligation unless it
+  can change the described header access. Actual input histories and the
+  excluded writer/alias mechanisms remain.
   Other excluded header-access mechanisms remain separate.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
