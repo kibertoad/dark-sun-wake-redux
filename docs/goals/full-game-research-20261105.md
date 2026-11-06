@@ -35,9 +35,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e0c60110
+- Last gate: 2026-11-06, `Test.ps1 -Integration -ChangedSince 67b5caae
   -NoRestore` passed: 2080 entries, 208 parity rows, five deviations.
-  Prior integration passed controls and 758 .NET tests.
+  Five snapshot controls and 758 .NET tests passed.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
@@ -64,7 +64,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Independent `docs/research-closure-sound-playback.json`: 34 assigned,
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
-  Counts non-additive; no closures.
+  Counts non-additive.
 - FMT-SOUND-002 review baseline 26785998 remains supported, no complete
   reading. Q-SOUND-011 reuses FND-SOUND-061 through 066; next actual
   state/table/list/frame aliases and excluded computed/indirect accesses.
@@ -88,7 +88,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
   Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..030; post-error: Q-COMBAT-059,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
-  No complete reading/closure.
+  Next Q-SAVE-007: SHUTDOWN-OBSERVATION runner; native admission remains untested.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
