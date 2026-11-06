@@ -1,9 +1,21 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-024
+Next ID: Q-SCRIPT-025
 
 ## Static
 
+- Q-SCRIPT-024. RULE-SCRIPT-004, RULE-SCRIPT-011, RULE-SOUND-003:
+  Which admitted paths reach GPL/37 0D37, and what happens after its first
+  rejected expression atom through the error and opcode-77 continuation?
+  Settles it: actual script-entry/menu/loop/call admission, cursor/frame/
+  operand-address retention and the shared Q-SCRIPT-003 error effects
+  determining whether parameter decoding and the byte mutation continue.
+  This controls the interpretation and reachability of the 0D39..0D58
+  script-census gap; do not silently replace B3 with B1 or assume zero.
+  Tried: separated from Q-SOUND-004's retained decode-gap obligation.
+  FND-SCRIPT-042 establishes the distinct native dispatch, uninitialized
+  scratch and missing local stop gates; actual continuation remains.
+  This split answers no part by deletion. Blocks: slices 3-7.
 - Q-SCRIPT-018. RULE-SCRIPT-002, RULE-COMBAT-007: Which targets can the optional opcode hook call?
   Settles it: admission and ordering of the DS:193E-gated setup assignment;
   remaining admitted writers of the four-byte field at 57E0:02F6 beyond

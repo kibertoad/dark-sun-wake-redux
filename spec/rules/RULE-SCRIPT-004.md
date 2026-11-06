@@ -4,7 +4,7 @@ title: Reading instruction parameters, expressions, variables and strings
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024, FND-PARTY-241, FND-SCRIPT-026]
+evidence: [FND-SCRIPT-042, FND-SCRIPT-006, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-024, FND-PARTY-241, FND-SCRIPT-026]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, FMT-SCRIPT-002]
@@ -184,9 +184,9 @@ define read_number() -> INT32:
     let level = 0
     script_operand_address = script_accumulator
     let more = true
+    let v: INT32 # scratch is not initialized; a matching branch assigns it
     while more:
         let b = fetch_byte()
-        let v: INT32 = 0
         let combine = true
         let go_on = false
         if b < 0x80:
@@ -199,12 +199,15 @@ define read_number() -> INT32:
             level = level + 1
             if level >= 8:
                 fn_5702_00B1()
+                return values[0]
+            v = 0
             go_on = true
         else if b == 0xE1:
             v = values[level]
             level = level - 1
             if level < 0:
                 fn_5702_00B1()
+                return values[0]
         else if b == 0x80 or b == 0xC0:
             v = script_accumulator
         else if (b >= 0x81 and b <= 0x8A) or b == 0x8D or b == 0x8E:
@@ -226,6 +229,7 @@ define read_number() -> INT32:
         else if b == 0x91:
             v = INT16(-fetch_word())
         else if b == 0x92:
+            v = 0
             script_operand_address = read_string()
         else if b == 0xB1:
             v = fn_172C_284D()
@@ -309,6 +313,13 @@ there, and `g_4C0E_0002` then records whether the next byte is 0. Kinds 3, 4, 8,
 return their kind code as the value; kinds 1 and 6 return theirs and point the operand address at
 the string. A variable number outside the arrays is not checked.
 
+A rejected expression atom calls the error entry without assigning the scratch
+value. On a returning intact continuation it can retain a prior value, or
+unspecified stack contents on the first atom. The parameter loop and opcode
+77 do not locally stop before their following operations merely because that
+error entry was called [FND-SCRIPT-042]. Actual rejected-input continuation
+is Q-SCRIPT-024; this does not supply a deterministic zero fallback.
+
 ## What the sources say
 
 SRC-LIBGFF-839B11D (`include/gff/var.h`) names the operators `0xD1` to `0xDF` and the kinds: 1
@@ -329,3 +340,6 @@ None known.
 - Which string `fn_172C_31B7` (the string of kind 1) copies (Q-SCRIPT-011).
 - Where the entries of `global_name_pointers` other than `0x20` to `0x24` point (Q-SCRIPT-014).
 - What `fn_5702_00B1` does after reporting an error, and what reads `g_4C0E_0002` (Q-SCRIPT-003).
+
+- Whether GPL/37 reaches its rejected atom and what the error/cursor/frame
+  continuation permits in its current handler (FND-SCRIPT-042, Q-SCRIPT-024).

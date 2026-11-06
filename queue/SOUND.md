@@ -89,7 +89,8 @@ Next ID: Q-SOUND-013
   allocation/current-pointer publication plus the returning +0422 cleanup
   clear; remaining lifetime scope includes actual release admission between
   save and restore, other aliases and excluded computed/bulk writers,
-  GPL/27 01C8 dynamic selection, GPL/37 0D39..0D58 decode gap, actual
+  GPL/27 01C8 dynamic selection, Q-SCRIPT-024's GPL/37 decode-gap
+  admission/error continuation, actual
   scheduling and excluded script/native producers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
   local disc-start, response-table writes and request-status ordering; track

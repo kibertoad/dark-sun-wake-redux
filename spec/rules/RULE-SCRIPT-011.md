@@ -113,4 +113,6 @@ None known.
 
 ## Open questions
 
-None known.
+- The reached opcode-77 continuation after GPL/37's rejected first atom,
+  including retained parameter addresses and error effects
+  (FND-SCRIPT-042, Q-SCRIPT-024).
