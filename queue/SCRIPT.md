@@ -139,6 +139,11 @@ Next ID: Q-SCRIPT-026
   under preserved exit arguments/frames, including a returning terminate
   interrupt. Retain changed argument/frame or nonlocal mechanisms; ordinary
   numbered resource-read failure remains a separate admitted local path.
+  FND-SCRIPT-064 settles selected-short-resource versus short-I/O status,
+  prefix/mixed-word/link consequences and later head-request ordering under
+  its explicit prefix/preservation conditions. Retain actual selected lengths,
+  produced bytes, live destination identity and reached child/alias effects,
+  not an invented 2600-byte minimum or prefix-bounded conversion pass.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to

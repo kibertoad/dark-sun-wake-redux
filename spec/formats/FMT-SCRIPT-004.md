@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152, FND-SCRIPT-058, FND-SCRIPT-061]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152, FND-SCRIPT-058, FND-SCRIPT-061, FND-SCRIPT-064]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -86,6 +86,12 @@ to GPLI numbers before the writer's resource phase, reverse conversion afterward
 and reverse conversion after the reader's resource phase, including failed-read
 continuations. These call and transfer contracts do not prove archive success,
 current capacity or pointer lifetime.
+FND-SCRIPT-064 distinguishes a completely read short selected resource from
+a short I/O result. Under its explicit contiguous-prefix and preservation
+conditions, an incomplete thirteen-byte record can mix entry, script or link
+bytes with preceding contents. The converter still visits200 records;
+neither the format's nominal size nor a local success proves a complete table
+replacement or valid list topology.
 
 ## Open questions
 
