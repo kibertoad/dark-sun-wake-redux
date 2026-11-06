@@ -17,6 +17,10 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-045 binds MAS/1's regional TALK registration and native head/
   key consumer; reuse Q-SCRIPT-019 for pool/storage admission, preserving
   actual key normalization, replacement/pruning and restored record scope.
+  FND-SCRIPT-046 places the source object-99 candidate only in Limbo;
+  its region-1 route needs actual transfer/creation/restore evidence.
+  Keep that hypothesis separate from raw-negative passthrough and other
+  nonnegative kind-specific key sources; reuse Q-SCRIPT-022 for validity.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
