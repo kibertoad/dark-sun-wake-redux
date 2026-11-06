@@ -34,6 +34,16 @@ tooling failure and admits no native write-error or failed-map capability.
 The owned session closed and its run lock was released. Retained under
 GAME_DIR/captures/rust-dos-save-failure/. The next tooling revision arms
 that return and its relocation watch together, with a synthetic control.
+The corrected probe passed in v181-q009-native-write-failure-b-20261106
+under that root. Its private single-payload lock, observed native failure,
+released-lock continuation, Save return and checked failed-map checkpoint
+are agent under the current pins. The fixed failed-save source stage also
+passed in captures/rust-dos-shutdown/v181-q009-failed-save-quit-20261106/.
+It restored that checkpoint and reached ordinary Quit's known metadata
+write/commit/result observations. This admits those fixed filesystem-input
+and continuation parts only; it made no guest setup write. Both owned
+sessions closed and released their locks. Pending-byte watch extensions
+still require their own native capability attempt.
 
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while

@@ -23,6 +23,7 @@ from shutdown_snapshot import capture
 from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
 from shutdown_dirty import seed_active, Preparation
 from shutdown_xms import XmsCleanup, OFFSETS as XMS_OFFSETS, NATIVE_ENTRY as XMS_ENTRY
+from save_failure_fields import pending_watch, pending_change
 
 
 class QuitFlow:
@@ -147,6 +148,10 @@ def main():
                 raise ValueError("shutdown source differs from admitted saved-map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             report["files_before"] = file_states(run)
+            failed_watch = None
+            report["failed_pending_changes"] = []
+            if failed_record is not None:
+                failed_watch=pending_watch(session.client,failed_record["pointer"],1)
             # FND-COMBAT-051's choice loop fetches events here; the builder
             # stop used by native_save does not recur while the modal waits.
             poll = rng.address(0x39D1, 0x854)
@@ -180,12 +185,14 @@ def main():
                 observed, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
                 stop = observed.stop
                 report["last_stop"], report["observations"] = stop, index + 1
-                if exhausted or stop.get("reason") != "breakpoint":
+                if exhausted or stop.get("reason") not in (("breakpoint","watchpoint") if failure_stage else ("breakpoint",)):
                     raise RuntimeError("shutdown continuation did not reach a declared breakpoint")
                 address = stop["cs_ip"]
                 delivery = observe_delivery(session, key, delivery)
                 report["last_delivery"] = {"key": key_name, "state": delivery.state}
-                if address == generator:
+                if stop.get("reason")=="watchpoint":
+                    report["failed_pending_changes"].append(pending_change(stop,failed_watch))
+                elif address == generator:
                     report["draws"].append(rng.record(session, stop))
                 elif address == setter:
                     raise ValueError("unadmitted seed setter during Quit")

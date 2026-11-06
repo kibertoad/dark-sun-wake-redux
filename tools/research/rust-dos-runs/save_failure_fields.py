@@ -4,6 +4,24 @@ from regenerate_checkpoints import checked_read
 from private_payload_lock import LIMIT
 
 
+def pending_watch(client, pointer, expected):
+    seg, off = (int(x,16) for x in pointer.split(":"))
+    if checked_read(client,seg,off+0x2C,1) != bytes([expected]):
+        raise ValueError("pending watch initial value differs")
+    address=f"{seg:04X}:{off+0x2C:04X}"
+    client.set_watchpoint(address,1)
+    return seg*16+off+0x2C
+
+
+def pending_change(stop, physical):
+    watch=stop.get("watch",{})
+    if (stop.get("reason")!="watchpoint" or int(watch.get("addr","-1"),16)!=physical
+            or watch.get("len")!=1):
+        raise ValueError("stop does not match the fixed pending-byte watch")
+    return {"old":int(watch["old"],16),"new":int(watch["new"],16),
+            "cs_ip":stop["cs_ip"],"seq":stop["seq"],"emu_ns":stop["emu_ns"]}
+
+
 def record(client, pointer):
     seg, off = (int(x, 16) for x in pointer.split(":"))
     body = checked_read(client, seg, off, 0x2D)

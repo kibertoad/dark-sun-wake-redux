@@ -10,7 +10,7 @@ import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parent))
 from check_shutdown_snapshot import Memory
 from private_payload_lock import PrivatePayloadLock, LIMIT
-from save_failure_fields import payload
+from save_failure_fields import payload, pending_watch, pending_change
 from shutdown_run import controlled_stage, failed_source
 from failed_save import arm_save_return
 
@@ -55,6 +55,22 @@ class FailureControls(unittest.TestCase):
         self.assertEqual(destination,"6506:0BF2")
         self.assertEqual(client.breakpoints,{destination:True})
         self.assertEqual(client.watches,{watch:2})
+
+    def test_pending_watch_rejects_return_segment_and_wrong_initial_value(self):
+        class Client(Memory):
+            def set_watchpoint(self,address,length): self.watch=(address,length)
+        client=Client()
+        client.put(0x7100,0x12C,b"\x01")
+        physical=pending_watch(client,"7100:0100",1)
+        self.assertEqual(client.watch,("7100:012C",1))
+        stop={"reason":"watchpoint","cs_ip":"37FC:09BC","seq":10,"emu_ns":200,
+              "watch":{"addr":f"{physical:05X}","len":1,"old":"01","new":"00"}}
+        self.assertEqual(pending_change(stop,physical)["new"],0)
+        bad=copy.deepcopy(stop);bad["watch"]["len"]=2
+        with self.assertRaises(ValueError): pending_change(bad,physical)
+        bad=copy.deepcopy(stop);bad["watch"]["addr"]="50000"
+        with self.assertRaises(ValueError): pending_change(bad,physical)
+        with self.assertRaises(ValueError): pending_watch(client,"7100:0100",0)
 
     def test_header_write_other_record_and_wrapping_span_rejected(self):
         for case in ("header","readonly","through","span","number","handle","active"):

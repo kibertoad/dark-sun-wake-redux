@@ -22,7 +22,7 @@ from startup_window import wait_for_stop, checkpoint_summary
 from checkpoint_rng import Recorder
 from shutdown_run import file_states, write_request
 from private_payload_lock import PrivatePayloadLock, LIMIT
-from save_failure_fields import payload, record as archive_record
+from save_failure_fields import payload, record as archive_record, pending_watch, pending_change
 from request_provider import frame
 import archive_origin
 
@@ -64,7 +64,7 @@ def main():
             deterministic=True, cycles="15000", sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1),
             ultrasound=None), readiness_timeout=60.0)
     report = {"source": sys.argv[1], "load_mapping_stop": meta["load_mapping_stop"],
-              "inputs": [], "writes": [], "draws": [], "preparations": [], "native_writes": [],
+              "inputs": [], "writes": [], "draws": [], "preparations": [], "native_writes": [], "pending_changes": [],
               "passed": False, "limits": "one private file-lock input; no guest setup write"}
     lock = PrivatePayloadLock(run)
     with RustDosSession(settings) as session:
@@ -96,6 +96,7 @@ def main():
             delivered = None
             phase, previous = "window", None
             root = destination = watch = opening = published = pending_write = suffix = None
+            dirty_watch = None
             builder_armed = False
             for index in range(2048):
                 # Bounded sampling only: input/state transitions require the predicates below.
@@ -111,7 +112,12 @@ def main():
                     report["draws"].append(rng.record(session, stop))
                 elif stop["reason"] == "breakpoint" and address == setter:
                     raise ValueError("unadmitted seed setter during failed Save")
+                elif (stop["reason"] == "watchpoint" and dirty_watch is not None
+                        and int(stop.get("watch",{}).get("addr","-1"),16)==dirty_watch):
+                    report["pending_changes"].append(pending_change(stop,dirty_watch))
                 elif stop["reason"] == "watchpoint" and watch is not None:
+                    if int(stop.get("watch",{}).get("addr","-1"),16) != int(watch.split(":")[0],16)*16+int(watch.split(":")[1],16):
+                        raise ValueError("unknown failed-Save watchpoint")
                     changed = save_return(session.client, report["save_entry"]["registers"])
                     if changed != destination:
                         session.client.remove_breakpoints(destination)
@@ -154,6 +160,7 @@ def main():
                             raise ValueError("payload precedes observed working publication")
                         report["fault"] = payload(session.client, stop, delta, published,
                                                   archive_fields(session.client, delta))
+                        dirty_watch=pending_watch(session.client,published["provider"],report["fault"]["record"]["dirty"])
                         report["files_before_fault"] = file_states(run)
                         lock.acquire()
                         report["fault"]["lock"] = {"file": "drive-c/DARKRUN.GFF", "start": 0,

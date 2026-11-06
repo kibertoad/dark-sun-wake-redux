@@ -140,6 +140,11 @@ root is accepted. Distinguish the controlled filesystem-failure cause from
 uncontrolled field corruption and from normal successful saving. A positive
 Q-SAVE-009 answer needs the same pending record and bound file outcome at
 later shutdown; a local failure or a checkpoint alone does not close it.
+Both stages watch only that record's named pending byte. Retain every
+value-change stop separately from the Save-return relocation watch. Verify
+the starting byte and reject unrelated watch stops. The sequence adds direct
+value-history evidence; it does not certify every unchanged-value write or
+unrelated record field. Synthetic controls distinguish the two watches.
 
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
