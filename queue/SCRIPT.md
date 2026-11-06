@@ -85,6 +85,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-057 binds the direct pointer publications and separate SAVE/38
   table copy; retain their actual ordering/word preservation, copied-slot
   lifetime, computed/indexed/bulk aliases and transfer/converter identity.
+  FND-SCRIPT-058 admits copied-slot/live-pointer equality at three sampled
+  post-transfer conversion/return boundaries in one native route; retain
+  earlier SAVE/38 transfer identity, continuous lifetime and other phases/failures.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.

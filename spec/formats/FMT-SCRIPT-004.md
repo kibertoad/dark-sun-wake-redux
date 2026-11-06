@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152, FND-SCRIPT-058]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -51,6 +51,11 @@ FND-SCRIPT-015, FND-SCRIPT-017]. FND-COMBAT-152 subsequently captures one native
 as predicted, and the whole block matches the prediction before release and
 at reader return. This admits one sampled span and result, not general
 allocation lifetime, all trigger semantics or every restore/failure state.
+FND-SCRIPT-058 repeats that native route with an explicit prepared SAVE/38
+slot comparison. The slot's two pointer words equal the live pointer after
+GPLI transfer, before table release and at reader return, and are unchanged
+across those samples. This does not observe the earlier SAVE/38 transfer
+destination or establish continuous lifetime between samples.
 
 FND-CONFIG-156 locates allocation in the initializer reached through 565C:0020.
 On its nonpositive-status initialization path, the known caller supplies 200;

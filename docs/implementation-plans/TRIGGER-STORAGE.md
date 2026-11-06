@@ -33,3 +33,8 @@ Exit: the probe reports the fixed slot at the existing boundaries,
 synthetic controls pass, and any native comparison is recorded with its
 actual result and limits. Native capability remains unverified until that
 attempt; a tooling or process exit alone is not an evidence result.
+
+Native attempt recorded: FND-SCRIPT-058 admits matching prepared/live
+pointer words at the three existing stops in one normal route, with the
+existing conversion controls passing. Earlier transfer identity, continuous
+lifetime and other restore/failure paths remain Q-SCRIPT-019.

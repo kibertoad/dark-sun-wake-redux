@@ -284,6 +284,13 @@ bindings, with predicted conversion fields matching before release and
 at matched reader return. Output is
 GAME_DIR/captures/rust-dos-load-entry/v181-q066-script-bound-20261104/;
 the earlier v181-q066-script-conversion-20261104 observation is retained.
+FND-SCRIPT-058 adds a fixed four-byte prepared SAVE/38 slot read at the
+same three stops. Its words match the live trigger pointer and remain
+unchanged at those samples in
+GAME_DIR/captures/rust-dos-load-entry/v181-script-save-slot-20261106/.
+Reproduce with load_entry.py v181-q063-native-save-input-20261104
+<fresh-output-name> saved-script-conversion using the pinned interpreter.
+This does not observe the earlier SAVE/38 transfer destination.
 The stage still stops before the reader caller consumes AL; file provenance,
 continuous lifetime, other inputs/failures and completed loading remain open.
 Guarded writes were not reattempted under these new pins.
