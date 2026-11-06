@@ -36,10 +36,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` for disc inventory
-  association passed build, 203 JavaScript tests and 758 .NET tests, plus
-  documentation with declared skips: 1999 entries, 208 parity rows, five deviations.
-  New provenance paths required separate integration acceptance.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 8697c8df -NoRestore`
+  passed with declared skips: 2000 entries, 208 parity rows, five deviations.
+  Integration for 7a8b8ec1 passed build, 203 JavaScript and 758 .NET tests.
+  New provenance/ownership paths require separate integration acceptance.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
 - All ten selected entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
@@ -63,38 +63,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
-- Next Q-PARTY-134, FMT-PARTY-007: use the queue's remaining conditions and
-  the new plan's state/indirect obligations to select one closure objective.
-  Reuse FND-PARTY-287/288 and 301 through 320, FND-RNG-095,
-  FND-EXE-588 and FND-COMBAT-087/088/090/091/092/093. Actual record,
-  source, member/count, event and segment/frame binding remain authoritative
-  in the queue. Next Q-PARTY-136's actual SS/DS, stack-limit and saved-word
-  backing producers, applying FND-PARTY-314's conditional guard contract.
-  Reuse FND-PARTY-315 for classified stack-limit writers and existing setter
-  callers; actual input/bounds, backing aliases and excluded writes remain.
-  FND-PARTY-316 classifies that list's five code sites and thirteen trampoline
-  decodings; it remains no whole-program absence proof. Apply the timer's
-  saved-DI/captured-SS:SP contract to callback memory and continuation, not live DI.
-  FND-PARTY-317 classifies literal capture writers and fixed callbacks; next
-  actual selected sound-record/stack aliases, changed C1 driver binding, BIOS
-  chain and excluded capture/nesting writers, without repeating fixed writes.
-  Reuse FND-PARTY-318 and FND-RNG-081/082/093 for shipped record and known
-  driver domains; next actual pointer histories and interrupted/driver-frame
-  backing, not another reading of unchanged record or fixed driver writes.
-  FND-PARTY-319 identifies saved-IVT capture, explicit nesting reset and
-  flag restoration. Next actual old-vector/reset caller admission and
-  excluded writers; do not assume a fixed BIOS target or absent reset.
-  FND-PARTY-320 classifies both reset callers and sound-ready writers. Next
-  actual ready/mode histories, root/teardown re-entry and bypass admission,
-  applying the wrapper ready-one exclusion without assuming perpetual readiness.
-  Reuse FND-PARTY-289 through 296 and FND-RNG-095; actual
-  DS:9BE2 histories and the snapshot/reload conditions remain Q-PARTY-134.
-  FND-PARTY-313's literal-overlap and known record-pointer windows need no
-  repeated reading. Preserve FND-PARTY-311/312's remaining MENU conditions.
-  The newly identified menu and cursor rows are now assigned. Do not
-  reread the named conditional constructor/paint/text contracts as unknown.
-  Q-PARTY-135/136/137 retain getter-pair, preservation and queue-record
-  dependencies. PARTY Static 59; Next ID 138; queue/PARTY.md is at 1000 lines.
+- Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
+  and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 321,
+  FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
+  root/mode/ready admission, saved-frame and excluded pointer histories;
+  apply conditional nonreturn contracts without dismissing reentrant exit
+  readers or changed-frame/nonlocal rejoining. Newly identified rows
+  4734:010F, 49DE:000F and 0x00067902 remain unassigned in the map.
+  Q-PARTY-134 retains actual number-state histories and snapshot/reload
+  conditions. Reuse FND-PARTY-287/288 and 301 through 313 plus
+  FND-COMBAT-087/088/090/091/092/093; do not reread the classified fixed
+  callbacks, shipped record, known driver domains or setter contracts.
+  Q-PARTY-135/137 retain getter-pair and queue-record dependencies.
+  PARTY Static 59; Next ID 138; queue/PARTY.md is at 1000 lines.
 - Then Q-PARTY-124, FMT-PARTY-007: eighty other direct sites plus repeated-hook
   and indirect/bypass obligations; Q-PARTY-134 owns three clients. Reuse
   FND-PARTY-264/265/267 through 285 and 295/296. Inventory/profile controls
