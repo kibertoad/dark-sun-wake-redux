@@ -9,7 +9,7 @@ byte_order: little
 size: 49
 text: false
 definition: fmt_combat_001.ksy
-evidence: [FND-AI-003, FND-AI-004, FND-AI-005, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-PARTY-012, FND-PARTY-013, FND-EXPLORE-002, FND-MAGIC-012, FND-MAGIC-013, FND-PARTY-048, FND-PARTY-049, FND-PARTY-052, FND-PARTY-059, FND-PARTY-085, FND-PARTY-095, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-221, FND-COMBAT-065, FND-COMBAT-068, FND-COMBAT-069, FND-COMBAT-071, FND-COMBAT-072, FND-COMBAT-073, FND-COMBAT-074]
+evidence: [FND-AI-003, FND-AI-004, FND-AI-005, FND-COMBAT-052, FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-024, FND-SAVE-046, FND-PARTY-013, FND-EXPLORE-002, FND-MAGIC-012, FND-MAGIC-013, FND-PARTY-048, FND-PARTY-049, FND-PARTY-052, FND-PARTY-059, FND-PARTY-085, FND-PARTY-095, FND-PARTY-144, FND-PARTY-145, FND-PARTY-146, FND-PARTY-152, FND-PARTY-156, FND-PARTY-157, FND-PARTY-221, FND-COMBAT-065, FND-COMBAT-068, FND-COMBAT-069, FND-COMBAT-071, FND-COMBAT-072, FND-COMBAT-073, FND-COMBAT-074]
 conflicting: []
 split_with: []
 related: [RULE-AI-001, RULE-COMBAT-004, RULE-COMBAT-005]
@@ -30,7 +30,7 @@ number as its first index [FND-COMBAT-072]. Each field has a field number of `FN
 | `0x00` | 2 | `INT16LE` | `hit_points` | The character's current hit points, the first number of the panel's second line. Field 13. | supported | FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-074 |
 | `0x02` | 2 | `UINT16LE` | `psionic_points` | The current psionic strength points, field 14. A load copies the `CHAR` record's `psionic_points`; `2D40:3EBF` raises it over time up to the details record's `max_psionic_points`. | supported | FND-PARTY-049, FND-PARTY-059, FND-COMBAT-073, FND-COMBAT-074 |
 | `0x04` | 2 | `UINT16LE` | `details_index` | Index of the combatant's FMT-COMBAT-002 record, field 15: the object's own number for objects 0 to 4, otherwise the shared record of its `details_key`. `2D40:3E64` gives it as its second index when it is below 17. Equal to the slot for party slots. | supported | FND-COMBAT-022, FND-EXPLORE-002, FND-MAGIC-012, FND-COMBAT-072 |
-| `0x06` | 2 | `UINT16LE` | `character_id` | The identifier of the character in the character archive, field 0; 0 in a slot that holds no character, and 0 marks the record free for `2D40:2C87`, which a release stores. | supported | FND-COMBAT-052, FND-PARTY-012, FND-COMBAT-072 |
+| `0x06` | 2 | `UINT16LE` | `character_id` | The identifier of the character in the character archive, field 0; 0 in a slot that holds no character, and 0 marks the record free for `2D40:2C87`, which a release stores. | supported | FND-COMBAT-052, FND-SAVE-046, FND-COMBAT-072 |
 | `0x08` | 2 | `UINT16LE` | `worn_items` | Field 16: the handle of the first 23-byte record of a list, 9999 for none. The ability rebuild and two spell routines count the items of this list. | supported | FND-PARTY-049, FND-PARTY-052, FND-MAGIC-013, FND-COMBAT-074 |
 | `0x0A` | 2 | `UINT16LE` | `held_items` | Field 17: the handle of the first record of the list the attack routine takes its weapons from, 9999 for none. | supported | FND-PARTY-049, FND-PARTY-052, FND-COMBAT-065, FND-COMBAT-074 |
 | `0x0C` | 2 | `UINT16LE` | `carried_items` | Field 4: the handle of the first record of the list that neither the armour class nor the attack counts, the target of the recipient transfer, 9999 for none. | supported | FND-PARTY-049, FND-PARTY-052, FND-PARTY-221, FND-COMBAT-068, FND-COMBAT-074 |

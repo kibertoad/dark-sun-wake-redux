@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: The SPST resource kept beside each CHAR resource, 15 bytes as the game writes it and 9 as the transfer utility writes it.
-doc-ref: FMT-PARTY-005, FND-PARTY-006, FND-PARTY-011, FND-PARTY-012, FND-PARTY-104
+doc-ref: FMT-PARTY-005, FND-PARTY-006, FND-PARTY-011, FND-SAVE-046, FND-PARTY-104
 seq:
   - id: known_spells_00
     size: 9

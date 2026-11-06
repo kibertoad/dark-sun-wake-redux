@@ -9,7 +9,7 @@ byte_order: little
 size: 66
 text: false
 definition: fmt_combat_002.ksy
-evidence: [FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-EXPLORE-002, FND-COMBAT-068, FND-COMBAT-069, FND-COMBAT-075, FND-COMBAT-072, FND-COMBAT-073, FND-COMBAT-074, FND-MAGIC-012, FND-MAGIC-013, FND-MAGIC-022, FND-PARTY-259, FND-PARTY-055, FND-PARTY-058, FND-PARTY-059, FND-PARTY-074, FND-PARTY-081, FND-PARTY-085, FND-PARTY-086, FND-PARTY-099, FND-PARTY-100, FND-PARTY-145, FND-PARTY-146, FND-PARTY-147, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-158, FND-PARTY-159]
+evidence: [FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-023, FND-EXPLORE-002, FND-COMBAT-068, FND-COMBAT-069, FND-COMBAT-075, FND-COMBAT-072, FND-COMBAT-073, FND-COMBAT-074, FND-MAGIC-012, FND-MAGIC-013, FND-MAGIC-022, FND-PARTY-259, FND-PARTY-055, FND-PARTY-058, FND-PARTY-059, FND-PARTY-074, FND-PARTY-081, FND-PARTY-085, FND-PARTY-086, FND-PARTY-099, FND-PARTY-100, FND-PARTY-145, FND-PARTY-146, FND-SAVE-045, FND-PARTY-149, FND-PARTY-150, FND-PARTY-151, FND-PARTY-158, FND-PARTY-159]
 conflicting: []
 split_with: []
 related: [RULE-EXPLORE-003]
@@ -33,7 +33,7 @@ field number of `FNFO` 1 [FND-COMBAT-074].
 | `0x08` | 2 | `INT16LE` | `max_hit_points` | Field 37. The character's greatest hit points, the second number of the panel's second line; scaled by the difficulty when a record above 4 is loaded. | supported | FND-COMBAT-018, FND-COMBAT-022, FND-COMBAT-075, FND-COMBAT-074 |
 | `0x0A` | 2 | `UINT16LE` | `hit_die_total` | Field 38: the sum of the hit die rolls. | supported | FND-PARTY-259, FND-PARTY-074, FND-COMBAT-074 |
 | `0x0C` | 2 | `UINT16LE` | `max_psionic_points` | Field 39: the greatest psionic strength points, the cap of `2D40:3EBF`'s gain. | supported | FND-PARTY-259, FND-PARTY-059, FND-COMBAT-073, FND-COMBAT-074 |
-| `0x0E` | 2 | `INT16LE` | `details_key` | Field 0: the key creatures share a record by; 0 marks a free record, and a party slot whose key is 0 holds no character, so its leader and character buttons do nothing. | supported | FND-COMBAT-023, FND-PARTY-259, FND-PARTY-147, FND-COMBAT-072, FND-COMBAT-074 |
+| `0x0E` | 2 | `INT16LE` | `details_key` | Field 0: the key creatures share a record by; 0 marks a free record, and a party slot whose key is 0 holds no character, so its leader and character buttons do nothing. | supported | FND-COMBAT-023, FND-PARTY-259, FND-SAVE-045, FND-COMBAT-072, FND-COMBAT-074 |
 | `0x10` | 2 | `UINT16LE` | `class_flags` | Field 40: one bit per class counted. | supported | FND-PARTY-259, FND-PARTY-085, FND-COMBAT-074 |
 | `0x12` | 1 | `UINT8` | `origin` | Field 41: origin 1 to 8 for party members, the creature kind otherwise (9 for undead). | supported | FND-PARTY-259, FND-MAGIC-022, FND-COMBAT-074 |
 | `0x13` | 1 | `UINT8` | `gender` | Field 42. | supported | FND-PARTY-259, FND-PARTY-055, FND-COMBAT-074 |

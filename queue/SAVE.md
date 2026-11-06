@@ -121,13 +121,23 @@ Next ID: Q-SAVE-010
   do not assume the constructed local name was copied into the cleanup field.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
-- Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
-  its top bit mean? Settles it: the code that gives a new character its identifier. Tried:
-  comparing every 16-bit window of both families with the `CHAR` resource numbers, which finds
-  none (FND-SAVE-002). Blocks: slice 5.
-  Tried: FND-SAVE-013 takes a census of the operands naming the `GREQ` globals: the four words are
-  the subregion edges, the byte the overhead map's page and the tenth byte the defeat picture.
-  The `GREQ` parts are removed from Settles it; the scripts' values move to Q-SAVE-003.
+- Q-SAVE-002. FMT-SAVE-001: Does bit 15 of a stored character identifier
+  have separate meaning to its consumers, or is the word opaque?
+  Settles it: identify actual character-identifier consumers and relevant
+  writers, including transfer inputs; trace bit tests, signed/unsigned
+  conversions and full-word comparisons through their connected callers and
+  helpers. Preserve unknown computed/indirect accesses. FND-SAVE-045 answers
+  the normal producer and candidate/publication boundary; FND-SAVE-046
+  connects the stored payload to the runtime identifier. The high-bit-set
+  allocation range alone does not settle global bit semantics.
+  Tried: FND-SAVE-002 excludes installed CHAR resource numbers as the stored
+  word's representation. FND-SAVE-013 removes the unrelated GREQ scope;
+  script values belong to Q-SAVE-003.
+  Tried: FND-SAVE-045 reuses and corrects FND-PARTY-147's producer reading:
+  at most 39 CACT reads per candidate, unchecked reader result and no
+  publication on candidate exhaustion. This removes the missing-normal-
+  producer condition; no consumer census or whole-entry reading is claimed.
+  Blocks: slice 5.
 
 ## Emulated call
 

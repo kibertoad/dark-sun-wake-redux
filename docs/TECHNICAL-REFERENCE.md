@@ -158,7 +158,7 @@ rejecting unsupported semantics:
   neither tag, and no code that reads either family is located. The `GREQ` and `CACT` resources are
   `FMT-SAVE-002` and `FMT-SAVE-001`: overlay 192 writes and reads `GREQ` when
   it saves and loads a game (`FND-SAVE-004`, `FND-SAVE-005`), and `CACT` holds
-  the identifiers of stored characters (`FND-PARTY-011`, `FND-PARTY-012`).
+  the identifiers of stored characters (`FND-PARTY-011`, `FND-SAVE-046`).
 - The `PREF` tag is pushed only by the save and load routines of overlay 192
   (`FND-CONFIG-002`); it supplies no settings names, defaults, or control
   behavior.
@@ -192,7 +192,7 @@ rejecting unsupported semantics:
   drawing, dialogue, or timing rule.
 - The character archive's tags occur only in overlay code (`FND-PARTY-009`):
   overlays 171, 184 and 186 keep the stored characters and their records
-  (`FND-PARTY-012`), and overlay 182 loads characters 40 to 43 into the party
+  (`FND-SAVE-046`), and overlay 182 loads characters 40 to 43 into the party
   (`FND-PARTY-013`, `RULE-PARTY-006`). `SVIEW.EXE` is a text viewer
   (`FND-PARTY-014`). `CHARTRAN.EXE`, once unpacked, transfers Dark Sun 1
   characters into the archive (`FND-PARTY-010`, `FND-PARTY-011`).

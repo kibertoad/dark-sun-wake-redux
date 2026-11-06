@@ -64,7 +64,7 @@ A party of fewer than four plays under the same rules, except that a kill's expe
 among the filled slots (RULE-PARTY-015); no other code found counts the filled slots
 (FND-PARTY-173).
 The game keeps four slots for the party's characters and their `PSIN`, `PSST` and `SPST`
-records (FND-PARTY-012).
+records (FND-SAVE-046).
 
 ## What the sources say
 

@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-012
 title: Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-046]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

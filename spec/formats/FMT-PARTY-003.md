@@ -9,7 +9,7 @@ byte_order: little
 size: 1
 text: false
 definition: fmt_party_003.ksy
-evidence: [FND-PARTY-002, FND-PARTY-011, FND-PARTY-012, FND-PARTY-077]
+evidence: [FND-PARTY-002, FND-PARTY-011, FND-SAVE-046, FND-PARTY-077]
 conflicting: []
 split_with: []
 related: []
@@ -20,11 +20,11 @@ related: []
 The `PSIN` resource of the character archive, one per character under the character's number,
 beside its FMT-PARTY-001 record [FND-PARTY-002]. The game reads and writes it as one byte of a
 four-slot table, one byte per party slot, and the transfer utility writes it the same way
-[FND-PARTY-011, FND-PARTY-012].
+[FND-PARTY-011, FND-SAVE-046].
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
-| `0x00` | 1 | `UINT8` | `disciplines` | The character's psionic disciplines, one bit each (see the flags below). Generation sets the bits from the discipline window when it stores the character; 1, 2, 4, 5, 6 or 7 in the shipped resources. | supported | FND-PARTY-002, FND-PARTY-012, FND-PARTY-077 |
+| `0x00` | 1 | `UINT8` | `disciplines` | The character's psionic disciplines, one bit each (see the flags below). Generation sets the bits from the discipline window when it stores the character; 1, 2, 4, 5, 6 or 7 in the shipped resources. | supported | FND-PARTY-002, FND-SAVE-046, FND-PARTY-077 |
 | `0x01` | | | | Total size 1 | | |
 
 ## Enumerations and flags

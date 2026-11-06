@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-147
 title: The word at 0x53 of a CHAR record is the key of the character's details record, which is 0 for a free record and which generation sets to the new combatant identifier
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-045]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

@@ -4,7 +4,7 @@ meta:
   license: MIT
   endian: le
 doc: The 34-byte PSST resource kept beside each CHAR resource.
-doc-ref: FMT-PARTY-004, FND-PARTY-006, FND-PARTY-012, FND-PARTY-104
+doc-ref: FMT-PARTY-004, FND-PARTY-006, FND-SAVE-046, FND-PARTY-104
 seq:
   - id: power_ranks
     size: 34

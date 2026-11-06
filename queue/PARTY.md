@@ -122,7 +122,7 @@ Next ID: Q-PARTY-138
   psionic points at `0x0C` and `0x51`. FND-PARTY-256 shows `0x5A` holds the base scores, and
   with FND-PARTY-071 that the scores are stored with the origin modifiers added. FND-PARTY-143 shows `0x1F` is the
   combatant kind, FND-PARTY-144 that `0x29` is the facing and FND-PARTY-145 that `0x66` is the base
-  armor class; FND-PARTY-146 shows `0x1D` and `0x67` are the current and base movement rate, FND-PARTY-147 that `0x53` is the details record's key, and FND-PARTY-148 that `0x04`, `0x06` and
+  armor class; FND-PARTY-146 shows `0x1D` and `0x67` are the current and base movement rate, FND-SAVE-045 that `0x53` is the details record's key, and FND-PARTY-148 that `0x04`, `0x06` and
   `0x0E` hold the slot the character was written from and `0x12` to `0x16` the child words at that time; FND-PARTY-149 shows `0x81` and `0x83` are sound numbers, and FND-PARTY-150 that `0x68` is the magic resistance; FND-PARTY-151 places the footprint at `0x7C` and a spell list at `0x7D`. FND-PARTY-152 finds no reader through the combatant table of
   `0x1C` or `0x21`, and `0x2A` only as field 33 of overlay 204's field getter and setter, which FND-PARTY-156 shows are
   functions 48 and 49 of script opcode `0x22`, so what `0x2A` means waits on the decoded calls, whose layouts FND-SCRIPT-024 gives; FND-PARTY-157 names `0x18` the special attack kind
@@ -883,7 +883,7 @@ Next ID: Q-PARTY-138
   computed/alias and longer-lived segment accesses. FND-PARTY-073's fixed-displacement stores and direct callers leave the selected-record
   writer question open. No new contradiction or qualifying undeclared whole-entry reading was identified by this assessment.
   Blocks: complete reading of RULE-PARTY-009.
-- Q-PARTY-130. RULE-PARTY-002: Can every admitted generation DONE route
+- Q-PARTY-130. RULE-PARTY-002, FMT-SAVE-001: Can every admitted generation DONE route
   store only the documented portrait, score, alignment and choice state, apart from the already documented Ctrl-alignment exception?
   Settles it: bind the event/callback routes to overlay 184 +0F93/+1029, including flag-zero/flag-one callers, working-record initialization,
   editing and selection preservation through storage. Account for writes and copied/restored aliases of discipline/sphere words DS:42C0/42C2,
