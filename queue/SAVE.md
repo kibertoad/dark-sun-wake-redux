@@ -6,11 +6,12 @@ Next ID: Q-SAVE-008
 
 - Q-SAVE-007. RULE-SAVE-001: Can the Quit shutdown route write a saved
   game or working archive through a reached callback or callee?
-  Settles it: census the file-write mechanisms and selecting operands
-  reachable from the recorded exit route, with a positive control from
-  an explicit Save path, then resolve remaining computed callback/target
-  and archive-write branches. Preserve unsearched streams and external
-  effects; a shutdown call list alone does not settle a negative claim.
+  Settles it: establish actual shutdown record/handle/dirty state and
+  external outcomes, and classify remaining computed callback/target,
+  service-selector and save-producing branches. Reuse FND-SAVE-028/029's
+  dirty-close write chain and explicit-Save022C/0285 control; no generic
+  transfer control remains missing. Preserve unsearched streams and
+  external effects; a shutdown call list alone does not settle a negative claim.
   Tried: FND-SAVE-027 retains the local exit sequence, corrects the
   bulk interrupt-table copy ABI and withdraws FND-SAVE-019's unconditional
   no-save conclusion. No reached save operation is established either.
@@ -18,8 +19,12 @@ Next ID: Q-SAVE-008
   record preparation and its dirty header/directory write requests, reusing
   FND-COMBAT-096/113/121/122/123/124 and the non-negative-usable DOS
   census. Retain actual record/handle/dirty and native admission, the
-  explicit-Save transfer control and remaining computed service/callback
+  remaining computed service/callback
   mechanisms, not an assumption that closing archives is read-only.
+  FND-SAVE-029 binds explicit Save's resource payload and numbered-file
+  copy to the counted writer, including the independent small-write0285
+  control and dirty publication after payload failure. No new census or
+  native write result is implied by that connected evidence review.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
