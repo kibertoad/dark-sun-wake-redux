@@ -38,7 +38,7 @@ the chosen resource archive (FND-SCRIPT-003, FND-CONFIG-039).
 The archive-open success path inserts a new record at the head and links
 its `+0x0C` pointer to the previous head (FND-CONFIG-037). The traversal
 helper at `39A9:0157`, called by the resource reader on a missing type or
-number (FND-CONFIG-038), handles the three mode values:
+number (FND-CONFIG-234), handles the three mode values:
 
 | `DS:9D9B` | Next archive after a miss |
 |---:|---|

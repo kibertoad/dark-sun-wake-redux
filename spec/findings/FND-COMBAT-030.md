@@ -81,7 +81,7 @@ AX status, skipping later processing when that pointer remains zero.
 The complete local wrapper forwards tag, number, start zero, full-length
 sentinel FFFFFFFF and the supplied pointer-output address to 38FF:07B1.
 FND-CONFIG-151 reads this wrapper and the reader's complete-transfer
-branches; FND-CONFIG-037..040 describe the stateful archive list and its
+branches; FND-CONFIG-037/234/039/040 describe the stateful archive list and its
 startup registration. These are shared reader contracts, not proof that
 the selected live archive is the installed RESOURCE.GFF in every icon
 call or that allocation/seek/read succeeds.

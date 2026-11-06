@@ -69,7 +69,7 @@ call acquires that record.
 
 Normal game states may keep `RESOURCE.GFF` open and reachable through the
 archive list even while another archive is selected. FND-CONFIG-039
-identifies the startup open, and FND-CONFIG-038 follows the reader's list
+identifies the startup open, and FND-CONFIG-234 follows the reader's list
 traversal; the later state at each message call remains unread, so this
 finding does not establish a failed acquisition in any live state. The raw
 filename hits could be reached indirectly or copied at runtime; absence

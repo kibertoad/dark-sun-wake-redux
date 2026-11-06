@@ -35,7 +35,7 @@ That index has count 28, and entry 2 gives `WIND/10501` at file offset
 `0x5B6AB`, length `0x141` (FND-GFF-003).
 
 The resource reader at `38FF:07B1` tests the type record's high bit and
-calls `38FF:0615` for the indexed case (FND-CONFIG-038). That helper tests
+calls `38FF:0615` for the indexed case (FND-CONFIG-234). That helper tests
 the requested number against each range, accumulates the preceding range
 lengths, and calculates `4 + 8 * position` within the selected `GFFI`
 resource. It looks up `GFFI` and the record's index number, seeks to the

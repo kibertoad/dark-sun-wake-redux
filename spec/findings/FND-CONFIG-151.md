@@ -54,7 +54,7 @@ writes length through the supplied far output address and returns
 zero. Missing records try the next archive through 39A9:0157.
 An exhausted search sets error six if a type was encountered,
 or four otherwise, and returns FFFF. A failed high-bit lookup
-with an existing error also returns FFFF. FND-CONFIG-038
+with an existing error also returns FFFF. FND-CONFIG-234
 and FND-CONFIG-040 read the shared lookup and traversal
 helpers; local 0615's external I/O remains a dependency.
 
@@ -162,6 +162,6 @@ Verify the named MZ relocation operands before labeling call
 segments. Confirm 07B1's return from its instruction path;
 its inventory size is a body-byte count, not a contiguous end.
 Compare FND-CONFIG-150's two call arguments and signed
-maximum check, FND-CONFIG-038 and FND-CONFIG-040's shared
+maximum check, FND-CONFIG-234 and FND-CONFIG-040's shared
 lookups, and FND-CONFIG-152's bounded transfer path.
 Keep operating-system outcomes separate from static requests.

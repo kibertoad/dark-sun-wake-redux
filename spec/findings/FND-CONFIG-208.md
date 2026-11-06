@@ -36,7 +36,7 @@ After its own runtime stack-limit guard, it compares current double
 word DS:9DA7 with GFFI. Mismatch writes word nine to DS:9D99
 and returns AL zero; match writes zero there and returns AL one.
 It does not itself verify an archive pointer, directory storage or
-resource payload. FND-CONFIG-038 already identifies this gate
+resource payload. FND-CONFIG-234 already identifies this gate
 inside the shared reader. Guard and current-state validity remain
 conditions on following normal returns.
 
@@ -55,7 +55,7 @@ order: original tag double word, original selector double word,
 double-word zero, double-word FFFFFFFF and SS:BP-04 by far
 address. The caller removes twenty bytes. The zero and FFFFFFFF
 pushes are four-byte operands, not two-byte arguments.
-FND-CONFIG-038 records the shared reader's archive/type/number
+FND-CONFIG-234 records the shared reader's archive/type/number
 search and retained open storage/state conditions.
 
 Returned AX nonzero selects DX:AX zero return. AX zero selects
@@ -107,6 +107,6 @@ initialization, signature gate, optional clear, five argument widths,
 reader-result branch, optional metadata write and returned local
 pointer. Read 39A9:012E through 0156 and verify its signature and
 error assignments, retaining runtime guards as dependencies. Compare
-FND-CONFIG-038's shared-reader reading and FND-CONFIG-207's
+FND-CONFIG-234's shared-reader reading and FND-CONFIG-207's
 null optional-output call. Keep output mutation paths separate from
 resource validity, aliasing and native success.

@@ -1,4 +1,4 @@
-"""Fixed working-open and selected plain-row guards; FND-COMBAT-110/127, FND-CONFIG-038."""
+"""Fixed working-open and selected plain-row guards; FND-COMBAT-110/127, FND-CONFIG-234."""
 import struct
 
 from regenerate_checkpoints import checked_read

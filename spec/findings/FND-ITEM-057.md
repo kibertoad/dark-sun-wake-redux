@@ -48,7 +48,7 @@ condition, not independent proof of complete I/O or valid content.
 
 The wrapper 38FF:04AB checks its runtime stack guard, then calls 38FF:07B1
 with the supplied tag, number and output-pointer address, requested offset
-zero and length -1. It returns that reader's result. FND-CONFIG-034/038 give
+zero and length -1. It returns that reader's result. FND-CONFIG-034/234 give
 the reader's archive/search/allocation/read prerequisites and failure paths.
 The stack-guard failure helper is also outside an ordinary returning-call
 claim. No separate success-code normalization is introduced by this wrapper.

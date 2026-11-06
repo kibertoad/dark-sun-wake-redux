@@ -23,14 +23,14 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 39A9:01A2..39A9:01BC
-tool: tools/research/exec-census/resident_listing.py at 0e7cb66a; existing lookup and transfer contracts FND-CONFIG-038/040/151
+tool: tools/research/exec-census/resident_listing.py at 0e7cb66a; existing lookup and transfer contracts FND-CONFIG-234/040/151
 environment: null
 ---
 
 ## Observation
 
 Q-COMBAT-064 needs the archive supplying each numbered restore resource.
-FND-CONFIG-038/040 describe lookup and traversal, and FND-CONFIG-151
+FND-CONFIG-234/040 describe lookup and traversal, and FND-CONFIG-151
 reads the complete underlying transfer. This reading connects their
 archive cursor and continuation behavior to the separate requests of
 FND-COMBAT-035. All offsets below are hexadecimal.
@@ -136,7 +136,7 @@ omitting the established alignment gaps. Follow BP-0C through its
 two initial loads, fallback replacement and later preparation/handle
 uses. Distinguish search-miss edges from metadata/preparation/transfer
 failures and traversal's global rereads from the local cursor.
-Reuse FND-CONFIG-038/040/151 and FND-COMBAT-035 rather than
+Reuse FND-CONFIG-234/040/151 and FND-COMBAT-035 rather than
 assuming admitted live record contents from this body alone.
 Retain the listing only in GAME_DIR/analysis/hit-incoming-20261104/
 restore-resource-fallback.txt. No original listing or payload is committed.

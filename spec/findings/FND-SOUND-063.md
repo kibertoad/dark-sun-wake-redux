@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     offset: 0x0008A191..0x0008A1E3
-tool: resident_listing.py, overlay_listing.py and direct_callers.py at 015e35a6; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-062, FND-CONFIG-038/065, FND-COMBAT-065/120 and FND-EXE-603
+tool: resident_listing.py, overlay_listing.py and direct_callers.py at 015e35a6; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-062, FND-CONFIG-234/065, FND-COMBAT-065/120 and FND-EXE-603
 environment: null
 ---
 
@@ -39,7 +39,7 @@ This finding classifies those four against their containing entries.
 | 190 +2486 | 190 +2448 | The candidate is the final address byte of the DS:6273 load at +2483. The next instruction at +2487 adds 5208 to DX. The false memory displacement spans these unrelated encodings. |
 | 201 +0A1C | 201 +09D1 | The candidate is the operand byte of the register ADD at +0A1B. The following +0A1D instruction adds eight to DX. No 08C2 data operand occurs in those established instructions. |
 
-The first entry is the resource-index helper of FND-CONFIG-038/065
+The first entry is the resource-index helper of FND-CONFIG-234/065
 and FND-COMBAT-120. The 173 entry is the direction helper used
 by FND-COMBAT-065. FND-EXE-603 records the 201 code area. The 190 root resolves
 through trampoline 571F:00D4 and has direct callers in overlays

@@ -4,7 +4,7 @@ title: The Preferences message-delay adjustment
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-035]
+evidence: [FND-CONFIG-010, FND-UI-034, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018, FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-035, FND-CONFIG-234]
 conflicting: []
 split_with: []
 related: [SCR-UI-007]
@@ -48,8 +48,11 @@ The screen redraws the upper bar from `message_delay_value - 20`. An overlay
 172 routine multiplies the word by 100 with 16-bit arithmetic and passes the
 result as milliseconds to the timer-chip wait. At the loaded-image value 50,
 that call requests 5,000 ms. Several text-message paths call that routine;
-the wait follows successful acquisition and setup of `WIND/10501`. Which
-calls pass that gate in live states still needs a complete reading
+the wait follows a nonzero returned window pointer and the local setup
+gates for `WIND/10501`. The acquisition wrapper discards reader status;
+a nonzero pointer alone does not prove completed I/O or a valid populated
+record (FND-CONFIG-234). Which calls pass the pointer/setup gates in
+live states still needs a complete reading
 (FND-CONFIG-010, FND-TIME-004, FND-CONFIG-017, FND-CONFIG-018).
 
 ## Edge cases
@@ -309,7 +312,7 @@ None known.
   FND-CONFIG-030, FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033,
   FND-CONFIG-034, FND-CONFIG-035, FND-CONFIG-036, FND-CONFIG-063,
   FND-CONFIG-037,
-  FND-CONFIG-038, FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-041,
+  FND-CONFIG-234, FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-041,
   FND-CONFIG-042, FND-CONFIG-043, FND-CONFIG-044, FND-CONFIG-045,
   FND-CONFIG-046, FND-CONFIG-121, FND-CONFIG-048, FND-CONFIG-049,
   FND-CONFIG-050, FND-CONFIG-051, FND-CONFIG-052, FND-CONFIG-053,
@@ -324,7 +327,7 @@ None known.
   gate (FND-UI-001); another is that resource acquisition, bounds or child
   registration fails depending on state (FND-CONFIG-018, FND-CONFIG-030,
   FND-CONFIG-031, FND-CONFIG-032, FND-CONFIG-033, FND-CONFIG-034,
-  FND-CONFIG-037, FND-CONFIG-038, FND-CONFIG-039,
+  FND-CONFIG-037, FND-CONFIG-234, FND-CONFIG-039,
   FND-CONFIG-040, FND-CONFIG-041, FND-CONFIG-042,
   FND-CONFIG-043, FND-CONFIG-044, FND-CONFIG-045,
   FND-CONFIG-046, FND-CONFIG-121, FND-CONFIG-048,

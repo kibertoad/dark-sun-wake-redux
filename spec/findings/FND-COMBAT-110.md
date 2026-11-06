@@ -25,7 +25,7 @@ environment: null
 
 Q-COMBAT-018 retains the archive used by the numbered restore request.
 FND-COMBAT-043 reads the callers' shared helper +1BE7, while
-FND-CONFIG-037/038/040/068 identify the implicit reader selection and
+FND-CONFIG-037/234/040/068 identify the implicit reader selection and
 fallback. This connects the helper's successful open to that selection;
 it does not assume a saved numeric handle is the active archive pointer.
 Offsets below are hexadecimal unless stated otherwise.

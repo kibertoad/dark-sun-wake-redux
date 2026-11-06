@@ -621,7 +621,7 @@ promoting a spec entry or supplying native state. Whole Gap 37 remains open.
 FND-CONFIG-151 records output-pointer publication before later archive/seek/read
 gates. Fresh bounded source context agrees: the acquisition helper reads and
 returns its local pointer after the reader call without branching on its status.
-The older generic failure wording in FND-CONFIG-038 cannot support an assumption
+The older generic failure wording in FND-CONFIG-234 cannot support an assumption
 that every reader error leaves a null output. This acceptance record uses the
 more detailed recorded ordering and retains intervening callee, alias/storage
 and native failure-admission questions; it does not establish an observed defect.
@@ -1157,7 +1157,7 @@ the next Gap 37 dependency is the field-to-consumer segment/preservation chain
 and admitted transfer/count producers, rather than the repaired mask arithmetic.
 ## FONT request entry handoff and ENTER barrier, 2026-10-06
 
-Read-only FND-CONFIG-207/208/038 supply a new connected dependency for the
+Read-only FND-CONFIG-207/208/234 supply a new connected dependency for the
 current record's lookup field. Published reader 2.1.0 and engine 10.1.0 trace
 the actual FONT request preparation into the real acquisition wrapper. The
 source-generated tag, selector 100 and null optional-output argument occupy

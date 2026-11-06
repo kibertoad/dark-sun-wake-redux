@@ -300,7 +300,7 @@ Require SAVE type, plain flag, table and row extents within the provider's
 contiguous directory, aligned row index below count, and matching number,
 offset and length. Compare the selected twelve-byte row with its corresponding
 private-file span under unchanged whole-file identity. FMT-GFF-001/002/003
-and FND-CONFIG-038 describe the file/directory layout. Reject indexed or
+and FND-CONFIG-234 describe the file/directory layout. Reject indexed or
 wrapping layouts; do not add an unbounded table or graph traversal.
 
 Acceptance: matched fixed-path open/publication, both provider/row bindings,

@@ -2,7 +2,7 @@
 
 ## Issue 5 FONT and allocation producer handoffs
 
-Tooling acceptance uses read-only FND-CONFIG-207/208/038 to trace the actual
+Tooling acceptance uses read-only FND-CONFIG-207/208/234 to trace the actual
 three-double-word request preparation into its wrapper and signature helper.
 Check caller-byte writers, null optional-output bypass and source-generated reader forwarding, with wrong-writer, omitted-body and step negatives.
 Use read-only FND-CONFIG-209/210/211/212/167 for the real allocation and lower heap/request chain: check wrapped product/increment provenance, header writers, size rejection, null gates and child returns with omitted-helper, wrong-producer and cap negatives; retain admitted bounds, runtime interrupts, heap/header, direction, alias and stopped-path limits.

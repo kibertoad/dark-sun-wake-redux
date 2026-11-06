@@ -307,7 +307,7 @@ Next ID: Q-COMBAT-068
   Distinguish successful transfer from merely finding a shipped directory entry. Preserve
   unresolved external I/O outcomes explicitly rather than assuming success.
   Tried: split from Q-COMBAT-049. FND-COMBAT-089 binds the null local destination
-  and sole APFM provider among 26 inspected archives; FND-CONFIG-038,
+  and sole APFM provider among 26 inspected archives; FND-CONFIG-234,
   FND-CONFIG-039, FND-CONFIG-040, FND-CONFIG-151 and FND-CONFIG-208 supply
   lookup, startup and wrapper gates, without proving their state at the load call.
   Blocks: slice 4.
@@ -618,7 +618,7 @@ Next ID: Q-COMBAT-068
   selection from reuse; FND-SAVE-021 records the preceding writer's explicit
   selections; FND-COMBAT-096 bounds selection/close results. FND-COMBAT-112
   excludes all 26 unchanged shipped top-level files as SAVE providers. Reuse
-  FND-CONFIG-037/038/040/068 and FND-CONFIG-151 for lookup, fallback and
+  FND-CONFIG-037/234/040/068 and FND-CONFIG-151 for lookup, fallback and
   complete-resource requests. Runtime directory and state admission remain.
   Tried: FND-COMBAT-120 resolves the local fallback cursor, fresh active
   starting point on each read, failure paths without further fallback and

@@ -56,7 +56,7 @@ For each row, number, offset and length matched the selected core locals.
 The row's twelve bytes equalled its corresponding span in the fixed private
 working file, whose whole-file identity still matched the native copy at
 both sides of that file read. FMT-GFF-001/002/003 describe the file layout;
-FND-CONFIG-038 and FND-COMBAT-127 describe lookup and directory placement.
+FND-CONFIG-234 and FND-COMBAT-127 describe lookup and directory placement.
 Only these two selected rows were compared, not the full directory.
 
 The experiment also repeated FND-COMBAT-144's matched core returns with
