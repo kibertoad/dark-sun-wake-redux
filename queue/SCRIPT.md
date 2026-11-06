@@ -53,7 +53,7 @@ Next ID: Q-SCRIPT-025
   FND-CONFIG-136 and FND-EXE-586 removes the initial-value, known binding,
   argument producer and registered local-body questions from Settles it;
   setup admission, later writers and lifetime remain above. Blocks: slices 2-4.
-- Q-SCRIPT-019. FMT-SCRIPT-004: Which admitted states provide valid storage
+- Q-SCRIPT-019. FMT-SCRIPT-004, RULE-SCRIPT-008: Which admitted states provide valid storage
   for the 200 trigger records at their uses?
   Settles it: allocation/failure and bypass admission, actual extent and
   initialized contents, pointer replacement/alias/lifetime and save/restore
@@ -62,6 +62,8 @@ Next ID: Q-SCRIPT-025
   The qualified local allocation/reset link transformations are already
   FND-CONFIG-156 and FND-SCRIPT-031; establish actual phase admission and
   remaining content producers/preservation rather than assuming one terminal link.
+  FND-SCRIPT-050 settles the local free-pop detachment and empty/occupied
+  exhaustion effects; actual list/pointer/storage admission remains here.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.

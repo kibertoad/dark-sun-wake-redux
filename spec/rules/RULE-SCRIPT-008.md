@@ -4,7 +4,7 @@ title: The script instructions that register triggers
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028, FND-SCRIPT-029]
+evidence: [FND-SCRIPT-005, FND-SCRIPT-010, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-038, FND-SCRIPT-028, FND-SCRIPT-029, FND-SCRIPT-050]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-002, RULE-SCRIPT-004, RULE-SCRIPT-013, FMT-SCRIPT-004]
@@ -16,7 +16,8 @@ A script registers a trigger: a script entry point that the game runs when a con
 (RULE-SCRIPT-013). Instructions `0x65`, `0x66`, `0x6C`, `0x6D` and `0x6E` key a trigger by one
 number, `0x68` and `0x69` by a cell and a byte saying who may set it off, `0x6A` and `0x6B` by a box
 of cells and such a byte, and `0x70` by two numbers. Registering a one-key, cell or box trigger with
-the key of one already on its list replaces that one; each `0x70` adds a trigger.
+the key of one already on its list replaces that one; `0x70` requests a new record even for an
+equal pair. An exhausted free list can leave an occupied insertion position overwritten.
 
 ## When it runs
 
@@ -41,6 +42,7 @@ define take_trigger_record() -> INT16:
         return -1
     let n = trigger_free_head
     trigger_free_head = trigger_records[n].next
+    trigger_records[n].next = -1
     return n
 
 # head: a list head or the next field of the record before the place to insert
@@ -194,7 +196,13 @@ existing record on that list is overwritten.
 
 ## Edge cases
 
-When the free list is empty and no record has the key, nothing is registered. The one-key list
+Taking a free record detaches its link by setting `next` to -1 before returning it.
+When the free list is empty, a request to insert at an empty position leaves that position empty.
+At an occupied insertion position, failure to obtain a new record leaves the old index in place;
+the inserter then overwrites that record's prefix, even if its key differs. The 7-, 9- and 11-byte
+copies all stop before the link at byte 11, so this failure path retains the overwritten record's
+successor. An equal-key one-key, cell or box replacement needs no free record
+(FND-SCRIPT-050). The one-key list
 is kept in ascending order of `key_1` compared as signed numbers. The two-key walk moves past
 every record whose `key_1` or `key_2` is below the new record's, compared as unsigned numbers,
 so a record with a larger `key_1` and a smaller `key_2` does not stop it; the list is in pair
@@ -204,8 +212,9 @@ triggers on this list whose byte is 0 (FND-SCRIPT-013, FND-SCRIPT-014). The same
 other one-key lists, and for byte `unk_08` of a `0x70` record (FND-SCRIPT-028).
 
 The box lists are walked like the cell lists and copy 11 bytes. `0x70` compares its keys as signed
-numbers and always takes a new record, so the same pair registered twice is on the list twice, and
-when the free list is empty the record at its place is overwritten (FND-SCRIPT-038). Opcodes `0x69`
+numbers and always requests a new record, so with free records the same pair registered twice is
+on the list twice. With an empty free list it overwrites an occupied position, or does nothing at
+an empty position (FND-SCRIPT-038, FND-SCRIPT-050). Opcodes `0x69`
 and `0x6B` fill lists no event found runs, and no shipped script uses them.
 
 ## What the sources say
@@ -219,5 +228,9 @@ None known.
 
 ## Open questions
 
+- Which admitted states supply valid record storage and independent list/head,
+  source-prefix and pointer bindings for these local insertion postconditions
+  (Q-SCRIPT-019). FND-SCRIPT-050 answers the local pop/link and exhausted
+  insertion branches, without proving their native admission.
 - Whether anything runs the lists at `g_4C10_0007` and `g_4C10_000B`, which `0x69` and `0x6B` fill:
   the only walker found for them, `1695:0235`, has no direct caller (FND-SCRIPT-028; Q-SCRIPT-016).
