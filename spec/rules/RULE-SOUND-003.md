@@ -226,3 +226,7 @@ None known.
   `fn_47E5_01C4`, `fn_4A32_0310` and `fn_4A6E_0064` were not read (FND-SOUND-013, Q-SOUND-004).
 - What `g_4E71_0C1D` and `g_57E0_08C0` count (FND-SOUND-071, Q-SOUND-004).
 - Whether `current_region` changes only through the stores FND-SOUND-071 lists (Q-SOUND-004).
+
+- Q-SOUND-012 owns the remaining 1BF3:488B census candidate and provisional
+  lookup-reader binding after FND-SOUND-072/073; tested encoded entry forms
+  are excluded, computed/aliased and alternative entries remain.

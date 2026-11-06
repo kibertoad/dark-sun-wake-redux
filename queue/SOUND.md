@@ -1,6 +1,6 @@
 # SOUND
 
-Next ID: Q-SOUND-012
+Next ID: Q-SOUND-013
 
 ## Static
 
@@ -81,9 +81,22 @@ Next ID: Q-SOUND-012
   stores and identifies the two overlay-182 transition branches; actual
   caller/state domains and excluded writers remain. FND-SOUND-072 removes
   three raw instruction interiors from the unclassified mode/region set.
-  The remaining raw candidate is 1BF3:488B: settle incoming ownership of
-  the 4889..4C09 gap and the provisional 490D lookup-reader interpretation,
-  preserving computed/changed/alternative-entry exclusions. Blocks: slice 7.
+  The remaining raw candidate and its ownership move to Q-SOUND-012
+  with FND-SOUND-073; this split closes no part by declaration. Blocks: slice 7.
+- Q-SOUND-012. RULE-SOUND-003, FMT-SOUND-002: Does an established path
+  enter the 1BF3:4889..4C09 ownership gap in a way that makes the raw
+  488B candidate a current-region access, or binds the provisional 490D
+  reader and its lookup-data interpretation? Settles it: establish incoming
+  ownership through the remaining computed/paragraph-aliased, constructed
+  target or alternative-entry mechanisms, then determine the reached
+  segment/index domains and whether the candidate reads game region state.
+  This could add an access or exclude the candidate from the region census;
+  it does not require unrelated playback output. Tried: split from
+  Q-SOUND-004 after FND-SOUND-072/073 classify three interiors and exclude
+  the tested exact-word bindings and resident 1BF3 rel8/rel16 forms.
+  Reuse their controls/reports; do not repeat those searches without changed
+  inputs. Preserve omitted ranges, other entries and modified code.
+  Blocks: slice 7.
 - Q-SOUND-005. RULE-SOUND-003: Does the game ever play a `PLYL` playlist or the `CSEQ` sequence,
   and through which code? Settles it: a caller of `2660:0004`, a writer of the far pointers at
   `DS:3496` and `DS:349A` that `2660:01AF` sets, and the resource lookups of the FM or MIDI branch

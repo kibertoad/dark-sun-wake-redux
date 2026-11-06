@@ -97,11 +97,12 @@ known source-versus-sequence-block relationship as separate setup arguments,
 retaining actual extents, lifetime and aliases.
 
 FND-SOUND-072 classifies three literal mode/region census candidates as
-instruction interiors. Under Q-SOUND-004, one gap candidate at 1BF3:488B
+instruction interiors. Under Q-SOUND-012, split from Q-SOUND-004, one gap candidate at 1BF3:488B
 remains: lookup data with a provisional reader at 490D is supported by
 spaced byte bases but lacks an established incoming binding; a separate
 executed entry remains possible. Establishing that binding or an actual
-entry to 488B would distinguish the readings. Neither changes the format
+entry to 488B would distinguish the readings. FND-SOUND-073 excludes tested encoded incoming forms without resolving
+ownership. Neither changes the format
 status or discharges Q-SOUND-011's computed-access obligations.
 
 The known inventory roots in coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv are
