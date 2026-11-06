@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 444C:00FA..444C:0162
-tool: tools/research/exec-census/resident_listing.py at 3406d564; existing lower-heap readings FND-CONFIG-210/211/212 and startup reading FND-PARTY-215
+tool: tools/research/exec-census/resident_listing.py at 3406d564; existing lower-heap readings FND-CONFIG-223/211/212 and startup reading FND-PARTY-215
 environment: null
 ---
 

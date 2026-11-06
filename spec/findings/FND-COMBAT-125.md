@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 1000:05CA..1000:060B
-tool: tools/research/exec-census/resident_listing.py at d5f1be4d; shared pointer arithmetic FND-CONFIG-210/212
+tool: tools/research/exec-census/resident_listing.py at d5f1be4d; shared pointer arithmetic FND-CONFIG-223/212
 environment: null
 ---
 
@@ -69,7 +69,7 @@ is 0..0F; segment operations wrap at word width.
 For these positive one-byte steps, 0586 adds one and 05CA subtracts
 one in the modeled twenty-bit address space. The initial N-minus-one
 adjustment likewise retains the modular arithmetic; a negative bit
-pattern is not a separately rejected input. FND-CONFIG-210/212 read
+pattern is not a separately rejected input. FND-CONFIG-223/212 read
 connected pointer arithmetic and its wrap qualifications. The helpers
 provide no own allocation, capacity, physical mapping or payload bound.
 
@@ -116,7 +116,7 @@ Python. resident_listing.py verifies size 634416 and XXH3-128
 e296af55ba2ecde7e77f555c90f33d0b. Read all listed ranges, excluding
 the separate three-byte entry at 05C7..05CA. Track the SS local
 cursors, unsigned initial ordering, N-minus-one adjustment, old-count
-tests and positive one-byte steps. Compare FND-CONFIG-210/212 and
+tests and positive one-byte steps. Compare FND-CONFIG-223/212 and
 the caller ranges in FND-COMBAT-121/122/123 rather than admitting
 their lengths by analogy. Retain reports only under
 GAME_DIR/analysis/hit-incoming-20261104/: restore-directory-far-helpers.txt

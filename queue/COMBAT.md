@@ -343,7 +343,7 @@ Next ID: Q-COMBAT-068
   and registration order; FND-COMBAT-094 binds the returned allocation slot, and
   FND-COMBAT-095 supplies the fingerprinted provider/source bounds. Those
   bounded parts are removed from Settles it. FND-CONFIG-151, FND-CONFIG-209
-  and FND-CONFIG-210 retain allocation, marker, clearing and I/O limits; nonnull
+  and FND-CONFIG-223 retain allocation, marker, clearing and I/O limits; nonnull
   does not establish complete source bytes, valid capacity or native failure.
   Blocks: slice 4.
 - Q-COMBAT-054. RULE-COMBAT-007: Which archive/directory state and selected resource

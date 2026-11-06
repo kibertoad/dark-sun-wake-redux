@@ -29,7 +29,7 @@ environment: null
 
 ## Observation
 
-FND-CONFIG-210's admitted paragraph count reaches four lower
+FND-CONFIG-223's admitted paragraph count reaches four lower
 helpers. Their complete local bodies occupy offsets 143B..1463,
 14C4..1527, 1528..1581 and 1582..15A4, mapped by adding file
 0x5200. FND-CONFIG-167 inspected 143B as a release dependency;
@@ -41,7 +41,7 @@ its word at +6. Equality clears CS:135F without dereferencing another
 segment. Inequality uses +6 and +4 as linked segments, writes the
 +6 link in the latter and the +4 link in the former, installs the
 +4 segment in CS:135F, then restores the selected block's DS.
-Neither path changes DX or AX. FND-CONFIG-210's caller then copies
+Neither path changes DX or AX. FND-CONFIG-223's caller then copies
 the selected block's +8 word to +2 and returns segment DX, offset
 four. Valid linked segments and the +8 producer are still conditions.
 
@@ -134,7 +134,7 @@ undone. Header writes do not establish inaccessible or unknown links.
 ## How to reproduce
 
 Read each named lower helper from its entry through every return.
-Follow FND-CONFIG-210's exact/oversized conditions into 143B and 1582,
+Follow FND-CONFIG-223's exact/oversized conditions into 143B and 1582,
 keeping effective DS separate at each linked or following-block write.
 Track 14C4's three possible requests and only final sentinel test;
 track 1528's alignment branch, saved segment, second failure and root

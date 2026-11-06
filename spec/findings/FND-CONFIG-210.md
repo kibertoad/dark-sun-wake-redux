@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-210
 title: The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-223]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

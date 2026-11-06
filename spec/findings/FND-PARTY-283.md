@@ -70,7 +70,7 @@ is 03E9. A null return writes zero; a nonnull test alone does not
 exclude segment 03E9. This differs from the FONT overlap's E9
 high-byte condition and must not be merged with it.
 
-FND-RNG-093 and FND-CONFIG-210/211/212 already give the conditional
+FND-RNG-093 and FND-CONFIG-223/211/212 already give the conditional
 startup/valid-heap separation above resident data. With the modeled
 DS=57E0, admitted startup base, preserved bounds/roots/links, valid
 block extents and nonwrapping segment arithmetic, that allocation
@@ -114,5 +114,5 @@ Read 0105/0109, 010C..012E, 0132 and 0146..015B together.
 Intersect each store's byte interval with A0EC..A0EE or 9E76..9E78
 as appropriate, rather than treating a pointer or selector as one value.
 Reuse FND-CONFIG-207 and FND-EXE-292/293 for the producer bindings,
-and FND-RNG-093 with FND-CONFIG-210/211/212 for conditional heap
+and FND-RNG-093 with FND-CONFIG-223/211/212 for conditional heap
 admission. No original game ran.

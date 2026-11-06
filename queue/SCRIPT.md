@@ -249,7 +249,7 @@ Next ID: Q-SCRIPT-024
   FND-CONFIG-209 resolves the allocation wrapper's product-plus-one
   request and header-derived marker, retaining runtime allocation/header
   contracts, admitted counts, storage aliases and resource lifetime.
-  FND-CONFIG-210 resolves runtime product/chunk clearing and the local
+  FND-CONFIG-223 resolves runtime product/chunk clearing and the local
   heap-entry admission branches; lower heap effects, header/state producers,
   direction-flag provenance and returned capacity remain open.
   FND-CONFIG-211 resolves named allocation header writers, tail splitting

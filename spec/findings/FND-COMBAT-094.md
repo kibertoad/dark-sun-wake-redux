@@ -52,7 +52,7 @@ allocation sets error ten and reaches the FFFF return without assigning
 a nonzero output. A nonnull allocation is retained locally, then written
 as a double word through the caller's pointer-slot address at 0939.
 This output assignment precedes archive preparation, seeking and reading.
-FND-CONFIG-209 and FND-CONFIG-210 describe the allocation, marker
+FND-CONFIG-209 and FND-CONFIG-223 describe the allocation, marker
 and attempted zero-filling contracts and their remaining preconditions;
 this reading does not assume arbitrary or fully initialized contents.
 
@@ -144,5 +144,5 @@ Follow the returned AX test in +00C4 through its unconditional pointer
 loads and the opener's later OR of AX with DX. Compare the explicit
 error branch at 38FF:048F in the APFM pointer wrapper. Retain the
 archive, heap, direction, alias, capacity and I/O limitations of
-FND-CONFIG-151, FND-CONFIG-209 and FND-CONFIG-210. No original-game
+FND-CONFIG-151, FND-CONFIG-209 and FND-CONFIG-223. No original-game
 process or emulated function call is used.

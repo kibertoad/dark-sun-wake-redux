@@ -1293,7 +1293,7 @@ the base comparison. Original-dependent tests skipped without GAME_DIR.
 
 ## Exact-size heap entry and root-return scope, 2026-10-06
 
-The previously dropped exact-size path is now tested from FND-CONFIG-210's
+The previously dropped exact-size path is now tested from FND-CONFIG-223's
 documented heap prologue, with FND-CONFIG-211's real removal body and the
 same declared lower dependencies. This is a separate source scope, not
 imported caller state or a joined FONT/reader/allocation route. Reader 2.1.0

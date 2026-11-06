@@ -32,7 +32,7 @@ pointer takes the failure path. FND-CONFIG-209's product is 12000;
 the wrapper adds one and asks 1000:18D0 for 12001 times one. There is no
 doubleword overflow for this request.
 
-FND-CONFIG-210's admitted nonzero request adds nineteen and divides by
+FND-CONFIG-223's admitted nonzero request adds nineteen and divides by
 sixteen using a right shift: floor((12001+19)/16)=751 paragraphs. Under
 FND-CONFIG-211's valid ordinary heap/header path, the allocated header
 records that extent and the returned pointer is segment:0004. The complete
@@ -52,7 +52,7 @@ lifetime. It does not admit an arbitrary nonnull pointer or restored header.
 
 With clear direction flag and valid spans, 1000:18D0 zeroes exactly its
 12001-byte requested product, offsets [0,12001) from the returned pointer,
-as FND-CONFIG-210 records. The marker follows that clearing. At the largest
+as FND-CONFIG-223 records. The marker follows that clearing. At the largest
 extra row, index 1500, only its first byte lies in that zeroed interval;
 the remaining seven bytes have no zero guarantee from this allocation.
 The marker at offset 12011 is outside the row and does not initialize it.

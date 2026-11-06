@@ -66,7 +66,7 @@ its failure-byte gate. It also reaches 1000:15A5, through the direct
 far-allocation path described in FND-RNG-093. The trigger block is
 not another 444C:0008 request merely because its size matches a table.
 
-FND-CONFIG-210/211/212 and FND-RNG-093 retain the lower allocator's
+FND-CONFIG-223/211/212 and FND-RNG-093 retain the lower allocator's
 request, root/header/link, bound, arithmetic and runtime conditions.
 Under admitted startup mapping, valid heap state, successful allocations,
 preserved source fields and fitting nonwrapping transfers, these known

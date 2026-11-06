@@ -73,7 +73,7 @@ though the helper alone would normalize its sum to 0000:0000.
 These are arithmetic consequences of the local reading, not executed
 experiments, admitted native requests or reported game defects.
 
-FND-CONFIG-210's paragraph admission yields counts 1..FFFF for
+FND-CONFIG-223's paragraph admission yields counts 1..FFFF for
 nonzero admitted byte requests. FND-CONFIG-211's allocation wrappers
 supply a nonnegative byte increment no greater than FFFF0, or zero
 or an alignment increment 1..15. With any unsigned S and O, those
@@ -121,6 +121,6 @@ Read 060B..0639 and its negative branch through shared 064D..066A,
 checking negation carry, offset carry/borrow, segment contribution and
 final nibble masking. Re-read 1831's 1841..1858 additions and signed
 branches, keeping the later far-bound predicates separate. Compare
-FND-CONFIG-210's byte-to-paragraph admission and FND-CONFIG-211's
+FND-CONFIG-223's byte-to-paragraph admission and FND-CONFIG-211's
 request argument widths and ranges. Derive examples as static arithmetic
 only; retain other callers and bound producers as open evidence.
