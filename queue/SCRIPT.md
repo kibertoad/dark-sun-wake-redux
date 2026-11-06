@@ -24,6 +24,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-047 binds the other literal key-99 TALK registrations to
   GPL/239 and the equal-key replacement/regional pruning interfaces;
   establish their actual ordering/retention rather than assuming a unique key.
+  FND-SCRIPT-048 binds the startup gate's saved low-count byte and fresh
+  region argument: retain actual callback/child/frame admission, region-one
+  history after the region-50 reset, ready state and loader/cache conditions.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
