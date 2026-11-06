@@ -11,7 +11,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 172C:2DF8..172C:3197
-tool: resident_listing.py at d6f285da; Python 3.12.10, Capstone distribution 5.0.9; FND-CONFIG-113/175 copy interfaces; Ghidra 12.1.3 bounded decompiler attempt lacked containing functions
+tool: resident_listing.py at d6f285da; Python 3.12.10, Capstone distribution 5.0.9; FND-CONFIG-113/175 copy interfaces; Ghidra 12.1.3 bounded matches in repaired resident project, following the older snapshot's missing functions
 environment: null
 ---
 
@@ -88,6 +88,17 @@ node rather than linking the remainder of the free chain into the list.
 
 ## Interpretation
 
+Subsequent bounded decompiler matching in the repaired
+INST-single-20261103b project finds all six connected function entries.
+Its allocation/link contexts agree with the detached-record and failed
+occupied-position cases above; each inserter's context shows the linking
+call followed by the position's FFFF test. This resolves the older
+snapshot's missing-function limitation for these bodies. It does not
+establish accurate inferred calling conventions: the linker view infers
+extra arguments at one pop call, whereas the instruction reading fixes
+the pop's inputs and AX result. Segment bindings, widths and exact copy
+counts continue to come from the instructions and evidenced interfaces.
+
 The blanket statement that exhaustion plus a missing key registers nothing
 is false for occupied insertion positions. The rule's existing linking
 procedure already implied that overwrite, but its edge-case prose denied
@@ -122,6 +133,18 @@ INST-resident-20261103a, program DSUN.EXE, at 172C:3106 and 172C:314F
 reported no containing function for either. Headless returned zero but
 the script diagnostics supply no decompiler evidence. The retained
 trigger-empty-pool-decompile.log records that limitation; no project was
-modified to manufacture a successful result. This assessment uses bounded
-instruction/reference reading instead. No original game or emulated call
-was run, and no original-derived output is committed.
+modified to manufacture a successful result.
+
+For the successful follow-up, select the already repaired project
+GAME_DIR/analysis/inventory-reconcile-20261103/projects/INST-single-20261103b,
+program DSUN.EXE, read-only with analysis disabled. Run the same bounded
+matcher at 172C:3106 with pattern314f and 172C:314F with patterns032d
+and0xffff; retain trigger-current-project-decompile.log beside the earlier
+report. Run it at 172C:2EA1, 2F46, 3026 and 2DF8 with patterns3106
+and the non-FFFF comparison; retain trigger-current-inserters-decompile.log.
+Require all six containing-function markers and actual matches, not just
+headless exit zero. The starts are already in the declared entries and
+committed inventory. No function was added or project modified for this
+retry. Bounded instruction/reference reading remains decisive where the
+decompiler infers a signature or storage representation. No original game
+or emulated call was run, and no original-derived output is committed.

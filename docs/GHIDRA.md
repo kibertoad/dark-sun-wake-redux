@@ -155,6 +155,22 @@ New-Item -ItemType Directory -Path $wakeProjectRoot | Out-Null
 
 Retain that project only locally and reuse it for focused scripts:
 
+Before querying a retained project, check which saved view supplied the
+current inventory or finding's provenance. A containing-function failure in
+an older snapshot does not establish a decompiler limitation in the repaired
+view. Check existing declared entries and inventory starts, then the retained
+export logs for the project and program names; retry the evidenced current
+view read-only before adding tooling or recreating functions. Do not modify
+a canonical project merely to make a query succeed. Check script diagnostics
+and function/match controls even when headless returns zero.
+
+For the trigger insertion bodies in FND-SCRIPT-050, the repaired resident
+view `GAME_DIR/analysis/inventory-reconcile-20261103/projects/INST-single-20261103b`
+with program `DSUN.EXE` has the declared functions; the older
+`INST-resident-20261103a` snapshot does not. This was checked read-only on
+2026-11-06 using the existing bounded decompiler matcher. Keep the report
+and earlier failed query in the finding's approved local evidence store.
+
 ```powershell
 & "$wakeGhidraHome\support\analyzeHeadless.bat" `
   $wakeProjectRoot DarkSunWakeAnalysis `
