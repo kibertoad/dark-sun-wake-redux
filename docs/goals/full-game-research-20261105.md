@@ -36,22 +36,25 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 1be5a507 -NoRestore`
-  passed with declared skips: 1977 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 95a90642 -NoRestore`
+  passed with declared skips: 1978 entries, 208 parity rows, five deviations.
   Integration at 7f387a81 passed build and 758 .NET tests. Set project-local
   EVIDENCE_PYTHON for gates, hooks and tool-dependency lookup.
 - All ten selected entries are reviewed; selection and assessments remain in
   the research commit messages. FMT-PARTY-007 is the closure trial, with its
   queue-backed ownership/dependency map in 4d210fc1. Current obligations are
   authoritative in the queue, not this handover. No complete reading or
-  answered queue deletion was added by FND-PARTY-298/299.
-- Next Q-PARTY-134, FMT-PARTY-007: actual getter outcome/content transitions,
-  active vector state, retained number/frame and queue admission. Reuse
-  FND-PARTY-287 through 299, FND-ITEM-057 and SRC-RUSTDOS-181 before new
-  reading. The latest helper reading has bounded Ghidra controls and complete
-  owned instruction verification; its earlier missed literal controls remain
-  diagnostic. Keep source/release correspondence and external-state limits.
-  Do not restart its resolved helper-result or pointer-residue calculations.
+  answered queue deletion was added by FND-PARTY-298 through 300.
+- Next Q-PARTY-134, FMT-PARTY-007: remaining actual original-number producers
+  for FND-PARTY-286's six bindings, beyond FND-PARTY-287/288's settled
+  intrinsic domains. Reuse existing caller reports before another reading.
+  FND-PARTY-300 splits getter-pair binding, helper preservation and queue
+  handoff into Q-PARTY-135/136/137. This raises PARTY Static 56 to 59 as
+  a split, not answers. Next ID 138; queue/PARTY.md is at 1000 lines.
+  Their settling conditions preserve all unresolved scope. Reuse
+  FND-PARTY-289 through 300, FND-ITEM-057 and SRC-RUSTDOS-181; do not
+  restart resolved helper-result, cache-operand or pointer-residue work.
+  Retain missed decompiler controls, source/release and external-state limits.
 - Then Q-PARTY-124, FMT-PARTY-007: eighty other direct sites plus the separate
   repeated-hook and indirect/bypass obligations; Q-PARTY-134 owns three clients.
   Reuse FND-PARTY-264/265/267 through 285. Keep alternate DS:19C5 pointer
