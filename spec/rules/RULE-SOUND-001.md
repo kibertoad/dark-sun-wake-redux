@@ -4,7 +4,7 @@ title: A sound effect plays the BVOC resource of its number, or the installed SO
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SOUND-001, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-013, FND-SOUND-049, FND-CONFIG-005]
+evidence: [FND-SOUND-001, FND-SOUND-006, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-013, FND-SOUND-049, FND-SOUND-050, FND-CONFIG-005]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-007, FMT-SOUND-001, FMT-CONFIG-001, FMT-CONFIG-003]
@@ -82,8 +82,9 @@ None known.
   `fn_38FF_05B5`, `fn_56BD_0034`, `fn_4611_0177` and `fn_4654_04FE` do beyond looking up, testing
   for and playing a sample. FND-SOUND-049 records fn_4654_04FE's local card/mode gates,
   unsigned low-index remapping and unchanged forwarding of its last two words; actual
-  card/mode/record/frame correspondence, fn_4654_056A playback and the meaning of 6,000/6,001
-  remain Q-SOUND-002. The local gates alone do not establish a reachable contradiction
+  card/mode/record/frame correspondence remains Q-SOUND-002. FND-SOUND-050 establishes
+  6000/6001 as record-default selectors and records fn_4654_056A's local type gates;
+  explicit-value domains, driver parameter meanings and actual playback remain Q-SOUND-002. The local gates alone do not establish a reachable contradiction
   of this caller model.
 - Whether `g_57E0_1435`, `unk_05` of `PREF`, is the Preferences sound-effects switch
   (`sound_effects_on`), and at what rate and volume the library plays the samples (FMT-CONFIG-003,

@@ -7,12 +7,12 @@ Next ID: Q-SOUND-011
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a
   voice file or a `BVOC` resource: at what rate and volume, through which driver, and what do the
   library routines the two rules call check, play and stop? Settles it: `4611:0177`,
-  actual card/mode/record/frame admission for `4654:04FE` and its `4654:056A` child after FND-SOUND-049's local gate/remap/forwarding contract, including the meaning of 6,000 and 6,001, `4611:0051`, `4611:03A5`, `49E9:00FD`,
+  actual card/mode/record/frame admission for `4654:04FE` and its `4654:056A` child after FND-SOUND-049's local gate/remap/forwarding contract, applying FND-SOUND-050's recorded type gates and default-selector meaning of 6,000/6,001 while retaining actual state/register/frame correspondence, explicit-value domains and downstream driver/output semantics, `4611:0051`, `4611:03A5`, `49E9:00FD`,
   `49E9:0142`, `38FF:05B5` and `56BD:0034`, and the volume routine `45E1:0097` that the startup
   passes `unk_03` of `PREF` to. Tried: searches of both executables for a VOC signature, a `.VOC`
   extension, a helper launch and a BIOS wait (FND-SOUND-003, FND-SOUND-005), the helper's port
   output (FND-SOUND-004), and the effect and speech routines (FND-SOUND-007, FND-SOUND-008), which
-  show which files play but not how. FND-SOUND-049 removes the unknown local checks, unsigned index boundary and argument forwarding of 4654:04FE; actual state/storage correspondence and downstream playback/units remain. Blocks: slice 7.
+  show which files play but not how. FND-SOUND-049 removes the unknown local checks, unsigned index boundary and argument forwarding of 4654:04FE; actual state/storage correspondence and downstream playback/units remain. FND-SOUND-050 settles 6000/6001 as record-default selectors across the three parameter children and classifies 056A's local type gates, publications and conditional zero/three exclusion. Retain actual admission, explicit-value application, driver meanings, native output and the other named helpers. Blocks: slice 7.
 - Q-SOUND-003. RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: Which effects do the 19 other callers of the
   sound-effect routine play, and when; which lines do overlays 187 and 204 speak; and what are
   `g_57E0_0D9C`, `g_57E0_6554`, `g_57E0_14E8`, `g_57E0_4263` and `g_57E0_4275` for? Settles it:
