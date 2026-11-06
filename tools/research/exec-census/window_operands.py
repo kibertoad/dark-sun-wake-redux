@@ -160,7 +160,12 @@ for routine, start, end in ranges:
         starts.add(ins.address)
         covered.update(range(ins.address, ins.address + ins.size))
         name = ins.mnemonic.split()[-1]
-        if name.startswith(("stos", "movs")):
+        # MOVSX and SSE MOVSD are not string copies. Capstone's MOVS
+        # string forms have two memory operands, unlike scalar SSE MOVSD.
+        if name in {"stosb", "stosw", "stosd", "stosq"} or (
+                name in {"movsb", "movsw", "movsd", "movsq"}
+                and len(ins.operands) == 2
+                and all(o.type == X86_OP_MEM for o in ins.operands)):
             strings[routine] = strings.get(routine, 0) + 1
         for w, text in hits(ins):
             found[w].append((routine, f"  {place(ins.address, routine)} [{routine}] {ins.mnemonic} {ins.op_str}  -- {text}"))
