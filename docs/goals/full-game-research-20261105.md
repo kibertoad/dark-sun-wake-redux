@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 992824ae -NoRestore` passed
-  with declared skips: 1968 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 47e35d46 -NoRestore` passed
+  with declared skips: 1970 entries, 208 parity rows,
   five deviations. Integration at a7a68e14 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -58,10 +58,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-286; eighty other sites remain Q-PARTY-124. No answer counted.
   FND-PARTY-287 assesses the script-cast arithmetic; retain its explicit
   preservation conditions. FND-PARTY-288 assesses reflected-cast producer
-  domains. FND-PARTY-289/290/291 assess DI interfaces. Next Q-PARTY-134:
-  inspect rust-dos v1.8.1 src/interrupts/int21.rs and reached helpers for
-  AH=3F/40/42, retaining saved-word/guard conditions. GitHub blob
-  b632f75598ff84f34753031ab8f9fc367982756d is a source lead, not proof.
+  domains. FND-PARTY-289 through 292 assess DI interfaces; SRC-RUSTDOS-181
+  records exact public-runtime provenance and limits. Next Q-PARTY-134:
+  actual vector/ordinary-file admission, saved-memory and intervening-handler
+  conditions. Source/release correspondence and original-platform scope remain.
   FND-CONFIG-223 replaces 210's reproduction endpoints; reuse its ranges.
   Keep the alternative producer and queue number/index/kind lifetime open.
   FND-PARTY-280 replaces 110; retain its corrected capacity/null branches.
