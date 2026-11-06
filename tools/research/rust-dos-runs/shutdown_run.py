@@ -1,4 +1,4 @@
-"""Fixed saved-map F3/Quit observation; no guest writes or arbitrary targets."""
+"""Fixed saved-map F3/Quit; optional named dirty setup, no arbitrary targets."""
 import hashlib
 import json
 import os
@@ -21,6 +21,7 @@ from checkpoint_rng import Recorder
 from startup_window import wait_for_stop
 from shutdown_snapshot import capture
 from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
+from shutdown_dirty import seed_active, Preparation
 
 
 class QuitFlow:
@@ -75,9 +76,16 @@ def write_request(registers):
             "source": f'{int(registers["ds"], 16):04X}:{int(registers["dx"], 16):04X}'}
 
 
+def controlled_stage(arguments):
+    if (len(arguments) not in (2, 3)
+            or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in arguments[:2])
+            or len(arguments) == 3 and arguments[2] != "dirty-active"):
+        raise SystemExit("usage: shutdown_run.py <native-save-source-run> <new-run-name> [dirty-active]")
+    return len(arguments) == 3
+
+
 def main():
-    if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
-        raise SystemExit("usage: shutdown_run.py <native-save-source-run> <new-run-name>")
+    dirty_stage = controlled_stage(sys.argv[1:])
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -97,7 +105,7 @@ def main():
         emulator_config=RustDosConfig(media=(Media("D", game / "game.ins", "iso"),),
             deterministic=True, cycles="15000", sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1),
             ultrasound=None), readiness_timeout=60.0)
-    report = {"source": sys.argv[1], "load_mapping_stop": meta["load_mapping_stop"],
+    report = {"source": sys.argv[1], "controlled_dirty": dirty_stage, "load_mapping_stop": meta["load_mapping_stop"],
               "inputs": [], "draws": [], "writes": [], "events": [], "passed": False,
               "limits": "fixed saved-map Quit; observed requests/results only; stops before DOS termination"}
     with RustDosSession(settings) as session:
@@ -131,6 +139,11 @@ def main():
             close_all, prep = rng.address(0x38FF, 0x2B5), rng.address(0x37FC, 0x8FB)
             terminate = rng.address(0x1000, 0x1A5)
             pending_write = None
+            preparation = Preparation(delta)
+            prep_return = rng.address(0x38FF, 0x324)
+            commit_request, commit_result = rng.address(0x44DE, 0x305), rng.address(0x44DE, 0x307)
+            pending_commit = None
+            report["commit_requests"] = []
             slot_before, slot_after = rng.address(0x1425, 0x16AB), rng.address(0x1425, 0x16AF)
             cleanup_entry = rng.address(0x1425, 0x0454)
             stream_stops = (rng.address(0x1000, 0x3F1E), rng.address(0x1000, 0x2F30))
@@ -161,6 +174,10 @@ def main():
                     report["entry"] = capture(session.client, stop, delta)
                     if report["entry"]["status"] != 0:
                         raise ValueError("Quit reached a nonzero-status exit")
+                    if dirty_stage:
+                        report["writes"].append(seed_active(session, stop, delta))
+                        for target in (prep_return, commit_request, commit_result):
+                            session.client.set_breakpoint(target)
                     report["write_requests"] = []
                     for target in (*requests, close_all, prep, terminate, slot_before, slot_after, cleanup_entry, *stream_stops):
                         session.client.set_breakpoint(target)
@@ -197,6 +214,23 @@ def main():
                     after = rng.address(seg, off + 2)
                     session.client.set_breakpoint(after)
                     pending_write = after, len(report["write_requests"]) - 1
+                elif dirty_stage and flow.phase == "shutdown" and address == prep_return:
+                    if pending_commit is not None or pending_write is not None:
+                        raise ValueError("preparation returned with incomplete native result")
+                    preparation.returned(session.client, stop)
+                elif dirty_stage and flow.phase == "shutdown" and address == commit_request:
+                    if (preparation.pending is None or pending_commit is not None
+                            or int(stop["registers"]["ax"], 16) >> 8 != 0x68):
+                        raise ValueError("commit lacks preparation or AH68 request")
+                    report["commit_requests"].append({"handle": int(stop["registers"]["bx"], 16), "stop": stop})
+                    pending_commit = len(report["commit_requests"]) - 1
+                elif dirty_stage and flow.phase == "shutdown" and address == commit_result:
+                    if pending_commit is None:
+                        raise ValueError("commit result lacks request")
+                    report["commit_requests"][pending_commit]["result"] = {
+                        "ax": stop["registers"]["ax"],
+                        "carry": bool(int(stop["registers"]["flags"], 16) & 1)}
+                    pending_commit = None
                 elif flow.phase == "shutdown" and address in (close_all, prep):
                     r = stop["registers"]
                     body = checked_read(session.client, int(r["ss"], 16), int(r["sp"], 16), 8)
@@ -206,9 +240,12 @@ def main():
                         off, seg = argument & 0xFFFF, argument >> 16
                         item["record"] = {"io_handle": struct.unpack("<H", checked_read(session.client, seg, off + 4, 2))[0],
                                           "dirty": checked_read(session.client, seg, off + 0x2C, 1)[0]}
+                        if dirty_stage:
+                            preparation.entry(item, stop)
                     report["events"].append(item)
                 elif flow.phase == "shutdown" and address == terminate:
                     if (pending_write is not None or pending_slot is not None
+                            or pending_commit is not None or preparation.pending is not None
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)

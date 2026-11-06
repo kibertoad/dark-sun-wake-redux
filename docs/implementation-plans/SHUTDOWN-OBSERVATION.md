@@ -82,6 +82,16 @@ a precise capability failure. A seeded case cannot establish an ordinary
 producer history, filename/handle binding, durability or whole-entry closure;
 those remaining Q-SAVE-007 obligations stay open.
 
+The implemented opt-in invocation is `shutdown_run.py <native-save-source-run>
+<new-run-name> dirty-active`; omit the stage for the clean observer. Run
+`check_shutdown_dirty.py` alongside the existing shutdown snapshot, call and
+runner controls with the locked evidence Python before integration. The
+controlled observer pairs the fixed close-worker preparation return and
+the final commit service's interrupt request/result. Unsupported callers,
+nested preparation and incomplete native results stop with retained evidence.
+Synthetic success does not admit this new stage for an original-game run;
+the first bounded attempt must record its actual capability and limits.
+
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
 request/result/file-change distinctions, and narrows the rule/queue only
