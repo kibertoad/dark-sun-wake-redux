@@ -291,6 +291,15 @@ GAME_DIR/captures/rust-dos-load-entry/v181-script-save-slot-20261106/.
 Reproduce with load_entry.py v181-q063-native-save-input-20261104
 <fresh-output-name> saved-script-conversion using the pinned interpreter.
 This does not observe the earlier SAVE/38 transfer destination.
+The separate fixed saved-trigger-transfer stage in FND-SCRIPT-061 admits
+that earlier request, selected plain directory row, complete 2600-byte
+private-span equality and matching reader-local/prepared/live pointer words
+at request entry, selection and matched core return. It stops there, before
+conversion. Output is
+GAME_DIR/captures/rust-dos-load-entry/v181-trigger-transfer-20261106/;
+reproduce with load_entry.py v181-q063-native-save-input-20261104
+<fresh-output-name> saved-trigger-transfer using the pinned interpreter.
+Its samples do not prove continuous lifetime or failed-transfer behavior.
 The stage still stops before the reader caller consumes AL; file provenance,
 continuous lifetime, other inputs/failures and completed loading remain open.
 Guarded writes were not reattempted under these new pins.

@@ -28,3 +28,8 @@ unsupported lengths. Run the tooling gate before using the new stage.
 Exit: controls pass and the fixed stage records these comparisons or a
 specific refusal. A native result requires its own finding and establishes
 only the observed route/boundaries, not continuous lifetime or failure paths.
+
+Native result: FND-SCRIPT-061 records the accepted fixed route, matching
+three pointer fields at entry/selection/return and all 2600 selected bytes.
+The session stopped before conversion; later preservation and other
+inputs/failures remain Q-SCRIPT-025.

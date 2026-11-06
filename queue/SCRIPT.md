@@ -122,6 +122,10 @@ Next ID: Q-SCRIPT-026
   FND-SCRIPT-060 excludes zero entry-offset operands in the eight counted
   shipped top-level registration families; retain native/restored/partial
   zero-entry states and the converter's zero case, not that decoded source set.
+  FND-SCRIPT-061 admits earlier SAVE/38 entry/selection/return pointer equality
+  and a source-equal 2600-byte transfer in one native route. Retain intervening
+  child effects, continuous preservation and other inputs/failures; do not
+  combine its separate run with FND-SCRIPT-058 into one continuous trace.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
