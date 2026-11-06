@@ -6,12 +6,17 @@ Next ID: Q-SCRIPT-025
 
 - Q-SCRIPT-024. RULE-SCRIPT-004, RULE-SCRIPT-011, RULE-SOUND-003:
   Which admitted entry/state paths reach GPL/37's rejected atom at 0D38?
-  Settles it: actual producers/use of shipped GPLI entry 168 (GPL/37 0A41),
-  current entry-map lifetime or independent entries to 0D29..0D37; the
+  Settles it: actual MAS/1 execution and 0135 registration admission/retention,
+  ready TALK-list state and normalized key -99 selecting its record after
+  FND-SCRIPT-045 binds the direct GPL/37 0A41 producer/consumer. Retain
+  converted-entry-168/map lifetime and independent entries to 0D29..0D37; the
   kind-nine-value-32/global-flag-24 histories on the 0A41 route, menu
   selection/flag retention, and pre-error postamble child/cursor/frame
   admission. FND-SCRIPT-043 resolves local stop/skip/menu-return routes;
   FND-SCRIPT-044 binds entry 168 separately from entry 167 at 0001.
+  FND-SCRIPT-045 binds MAS/1's regional TALK registration and native head/
+  key consumer; reuse Q-SCRIPT-019 for pool/storage admission, preserving
+  actual key normalization, replacement/pruning and restored record scope.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
