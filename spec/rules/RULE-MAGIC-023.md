@@ -4,7 +4,7 @@ title: A cast samples up to 250 area points by its DATA record's effect row, as 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-052, FND-RNG-026, FND-RNG-051, FND-PARTY-106, FND-PARTY-100, FND-RNG-012, FND-RNG-035, FND-PARTY-112]
+evidence: [FND-RNG-094, FND-RNG-026, FND-RNG-051, FND-PARTY-106, FND-PARTY-100, FND-RNG-012, FND-RNG-035, FND-PARTY-112]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-MAGIC-016]
@@ -21,7 +21,7 @@ is 30000, which is the amount itself. Then it passes the points and the amount t
 ## When it runs
 
 When the cast routine overlay 193 `+003C` applies a `DATA` record whose byte `+0x17` is not
-`0xFF`, after its own steps up to `+0362` (FND-RNG-052). `a` and `g` are those of FND-RNG-051.
+`0xFF`, after its own steps up to `+0362` (FND-RNG-094). `a` and `g` are those of FND-RNG-051.
 
 ## Parameters
 
@@ -153,7 +153,7 @@ define turn_scan(a0, a1, w, h, c1, c2, k, factor, out, cap) -> INT16:
 
 Division truncates toward zero and `>>` is arithmetic, as in RULE-RNG-001. `random_between` and
 `roll_sum` are RULE-RNG-001's; overlay 173 `+2A5D`, which `+0617` calls for the amount, is
-`roll_sum` plus its third argument, here 0 (FND-PARTY-100, FND-RNG-052). `R.word_0C`, `R.word_0E`
+`roll_sum` plus its third argument, here 0 (FND-PARTY-100, FND-RNG-094). `R.word_0C`, `R.word_0E`
 and `R.word_10` are the row's words at `+0x0C`, `+0x0E` and `+0x10`. The draws come in the order shown: every point's draws in `sample_area`, then the
 amount's.
 
@@ -187,4 +187,4 @@ None known.
   the readers `fn_573B_00E8` and `fn_573B_0093` do with the points and the amount, including
   whether they draw, what reads `g_57E0_29EB`, which `fn_362C_06B9` sets, what the pairs of
   `g_4DA1_0060` hold, and what the bytes of `effect_rows` this rule does not use stand for
-  (FND-RNG-052, Q-MAGIC-017).
+  (FND-RNG-094, Q-MAGIC-017).

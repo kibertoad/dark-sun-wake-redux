@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-052
 title: Overlay 193 +0617 samples a cast's area through overlay 179 +0000 by the mode of its DATA record's effect row, rolls the row's dice plus a per-a bonus times the row's word 0x0C, and hands the points to one of two readers
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-094]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

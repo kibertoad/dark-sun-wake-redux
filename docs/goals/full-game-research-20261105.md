@@ -52,7 +52,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-272 excludes two name getters, leaving 83 other direct sites
   plus repeated-hook preservation. FND-PARTY-273 bounds all 112 canonical
   effect-row words for object dice; the count remains 83. Next Q-PARTY-124:
-  row-index producers, including FND-RNG-052's DATA-73 signed -38 selector;
+  row-index producers, including FND-RNG-094's DATA-73 signed -38 selector;
   do not assume every index names a valid row. Other word-input paths remain.
   Reuse the exact caller set and six incoming bindings. FND-EXE-641
   corrects 611's power-name predicate; its other routines/citations survive.
@@ -91,7 +91,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   this adoption makes no research claim about those inputs.
 - Then Q-PARTY-120, FMT-PARTY-006, immediate-handler input/child
   preservation. Review FND-ITEM-099/100/101, FND-COMBAT-034/037 and
-  FND-MAGIC-019/FND-RNG-052; choose a named remaining child or producer.
+  FND-MAGIC-019/FND-RNG-094; choose a named remaining child or producer.
 - Q-PARTY-116 retains the publication/use-time question and depends on
   Q-PARTY-120/121/122/123 and Q-PARTY-119. Q-PARTY-122 owns unload and
   descriptor/refresh preservation; Q-PARTY-123 deferred queue/slot lifetime.

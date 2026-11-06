@@ -54,7 +54,7 @@ it stores on a fresh start.
 **Overlay 193 `+0413`** is in the cast routine `+003C`, whose `DATA` number is its word argument at
 `bp+0xA` (in `DI`). At `+017C` it tests its byte argument at `bp+0x1A`: when 0 it makes two calls
 of `2C5F:0A22` and jumps to `+041B`, past the reseed. Otherwise every path reaches `+035A`. There,
-when the record's byte `+0x17` is not `0xFF` it calls `+0617` (FND-RNG-052) and goes on at `+03DD`
+when the record's byte `+0x17` is not `0xFF` it calls `+0617` (FND-RNG-094) and goes on at `+03DD`
 when the effect row's byte 2 has low four bits 1, and otherwise to `+05C9`; when byte `+0x17` is
 `0xFF` it calls overlay 197 `+3315` if bit 0 of the record's word `+0x11` is set and goes on at
 `+03DD`, which then takes it to `+0405`. At `+0405` it calls overlay 204 `+0000` with magnitude 4,
