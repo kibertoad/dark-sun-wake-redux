@@ -21,7 +21,7 @@ its cost is taken from the pool even when that leaves the pool below 0.
 
 ## When it runs
 
-Overlay 193 `+003C`, which runs a queued record (FND-PARTY-107), calls it at `+046B` for `DATA`
+Overlay 193 `+003C`, which runs a queued record (FND-PARTY-328), calls it at `+046B` for `DATA`
 71, with one entry for a single target or the list overlay 208 `+0000` builds (FND-RNG-040).
 
 ## Parameters

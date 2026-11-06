@@ -4,7 +4,7 @@ title: A target whose record byte 0x0E is 13 ends the hit of a DATA record with 
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-122, FND-PARTY-107, FND-RNG-035, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-122, FND-PARTY-328, FND-RNG-035, FND-COMBAT-022, FND-COMBAT-023, FND-COMBAT-025, FND-EXPLORE-001, FND-EXPLORE-002, FND-COMBAT-052]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]

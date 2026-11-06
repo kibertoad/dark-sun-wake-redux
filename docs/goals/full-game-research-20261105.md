@@ -93,7 +93,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   Q-SAVE-002/008/009 closed (FND-SAVE-041/042/045/046/047).
   Q-SAVE-007 reuses FND-SAVE-043/044. Next Q-PARTY-137: review
-  FND-PARTY-107/288, queue index/kind producers and connected runner handoff.
+  FND-PARTY-328/288, queue index/kind producers and connected runner handoff.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.

@@ -4,7 +4,7 @@ title: When the hit routine's byte flag is set, a target of details kind 8 and l
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-107, FND-PARTY-081, FND-COMBAT-022, FND-EXPLORE-002, FND-RNG-089, FND-COMBAT-023]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-328, FND-PARTY-081, FND-COMBAT-022, FND-EXPLORE-002, FND-RNG-089, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]

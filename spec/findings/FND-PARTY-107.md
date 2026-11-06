@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-107
 title: The hit routine's call in overlay 179 +11DC's queue branch is never taken, and overlay 193 +003C passes its third argument as the item, which overlay 179 +12B1's queue and overlay 193 +0000 fill with fixed DATA numbers other than 104 and 225 or with computed ones
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-328]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

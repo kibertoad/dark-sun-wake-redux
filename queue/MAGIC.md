@@ -64,7 +64,7 @@ Next ID: Q-MAGIC-030
 - Q-MAGIC-009. RULE-MAGIC-009: What does overlay 179 `+1304` do with the 2d6 total and its other
   seven arguments, and what does `DATA` 308 do when the cast queue runs it? Settles it: a reading of
   `+1304` from entry to return and of overlay 193 `+003C` for a queued record of `DATA` 308.
-  Tried: FND-RNG-040 reads the call and FND-PARTY-107 the queue. Blocks: slices 4-5.
+  Tried: FND-RNG-040 reads the call and FND-PARTY-328 the queue. Blocks: slices 4-5.
 - Q-MAGIC-010. RULE-MAGIC-011: What do overlay 172 `+0A73`, `+0D44` and `+1140` and overlay 211
   `+159B` and `+1C46` do with `class_11_check`'s result, which slots do they pass, and what do word
   `+0x0E` of a details record, `g_4C4F_00B2` and the block bits it tests stand for? Settles it:

@@ -4,7 +4,7 @@ title: A target with bit 0x80 of its effect block byte 9 that saves against a ca
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-099, FND-PARTY-107, FND-COMBAT-022, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-081, FND-RNG-044, FND-RNG-089, FND-COMBAT-023, FND-COMBAT-052]
+evidence: [FND-RNG-040, FND-PARTY-112, FND-PARTY-099, FND-PARTY-328, FND-COMBAT-022, FND-EXPLORE-001, FND-EXPLORE-002, FND-PARTY-081, FND-RNG-044, FND-RNG-089, FND-COMBAT-023, FND-COMBAT-052]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001]
@@ -75,7 +75,7 @@ None known.
 ## Open questions
 
 - What overlay 179 `+1304` (`fn_56A7_0089`) does with the total, and what `DATA` 308 does when the
-  queue runs it, given that FND-PARTY-107 has the queue run overlay 193 `+003C` with a `DATA`
+  queue runs it, given that FND-PARTY-328 has the queue run overlay 193 `+003C` with a `DATA`
   number of -1 for such a record (FND-RNG-040, Q-MAGIC-009).
 - What bit 0x80 of block byte 9, bit 0x100 of the mask, details byte `+0x12` 9 and
   `fn_2D40_35EF` stand for (FND-RNG-040, Q-MAGIC-008).
