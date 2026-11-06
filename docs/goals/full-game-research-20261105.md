@@ -35,15 +35,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 33da9807
-  -NoRestore` passed: 2037 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 211ea53c
+  -NoRestore` passed: 2038 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
   The plan has 54 assignments, 25 shared, sixteen open obligations,
-  6959 unassigned rows and zero accepted readings. The updated plan reporter passes
+  6959 unassigned rows and zero accepted readings. Reporter passes
   with zero errors/stale inventories/unmeasured files. Only owner-excluded
   DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
   none closes a question. No complete reading or answered deletion was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
@@ -64,7 +64,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Independent `docs/research-closure-sound-playback.json`: 34 assigned,
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
-  Counts are non-additive; no status/closure changes.
+  Counts non-additive; no status/closure changes.
 - FMT-SOUND-002 review baseline 26785998 remains supported, no complete
   reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
   literal/raw accesses, 064 for list/address equations, 065 for shipped
@@ -84,7 +84,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-074 binds four known transition-call tuples/results;
   FND-SOUND-075/076 bound command-line/health inputs. Q-SOUND-004 retains
   actual argv/startup, SAVE/18/resource/frame/health/script histories
-  and excluded writers.
+  and excluded writers. FND-SOUND-077 maps shipped request-52 sites;
+  next ten variable inputs, dynamic selector, decode gap and scheduling.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
@@ -136,4 +137,4 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   DOSBOX/DOSBox.exe lacks an inventory in the raw reporter.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
-  Findings give reproduction.
+
