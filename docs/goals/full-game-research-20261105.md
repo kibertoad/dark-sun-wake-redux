@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d447505f
-  -NoRestore` passed: 2035 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 42e5154f
+  -NoRestore` passed: 2036 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -82,7 +82,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-SOUND-012 gap 1BF3:4889..4C09 ownership/490D binding after
   FND-SOUND-073 excludes tested encoded entries. Split, not closure;
   FND-SOUND-074 binds four known transition-call tuples/results;
-  Q-SOUND-004 retains actual SAVE/18/resource/frame histories and excluded writers.
+  FND-SOUND-075 bounds command-line parsing. Q-SOUND-004 retains actual
+  argv/startup, SAVE/18/resource/frame histories and excluded writers.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
@@ -134,4 +135,4 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   DOSBOX/DOSBox.exe lacks an inventory in the raw reporter.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
   handler-census-20261106/, item-removal-20261104/ and disc-adv-survey-20261104/.
-  Findings give reproduction details.
+  Findings give reproduction.
