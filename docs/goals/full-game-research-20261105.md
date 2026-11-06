@@ -35,7 +35,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 963aa90e
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 26785998
   -NoRestore` passed: 2021 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
@@ -65,12 +65,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
   Counts are not additive with other plans; no status or closure changes.
+- FMT-SOUND-002 existing-evidence review at baseline 26785998 is complete:
+  FND-SOUND-011/012/013 do not qualify for a whole-entry declaration.
+  The entry maps known shared roots and Q-SOUND-004/011. Next Q-SOUND-011:
+  controlled DJ.DAT/count/retry/record-pointer access census, preserving
+  undecided aliases/indirects. No generic I/O-success demand for layout alone.
 - Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166:
   dispatch/defaults, preference, state transitions, query/stop, file/refill,
   descriptor and capability contracts. Actual histories, bounds, driver and
   interrupt effects/output remain. Preserve selector differences and gates.
-  Prioritize Q-RNG-040: the submission cleanup can shift DS to count high.
-  Children do not compensate; capability-disabled submission has no interrupt.
+  Q-RNG-040 retains FND-SOUND-056/059's conditional frame route.
   FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
   before restoring SI, never restores DS, and can return through a conditional
   invalid-slot route without another driver child. FND-SOUND-060 controls eleven direct service sites and names the
