@@ -35,11 +35,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d01beea4 -NoRestore`
-  passed with declared skips: 2019 entries, 208 parity rows, five deviations.
-  Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
-  build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
-  require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed with
+  pinned EVIDENCE_PYTHON: 2019 entries, 208 parity rows, five deviations,
+  selected controls and 758 .NET tests. Research selection correctly refused
+  the new unmapped ownership JSON; integration supplies required acceptance.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
@@ -62,6 +61,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
   
+- Independent `docs/research-closure-sound-playback.json`: 34 assigned,
+  eight shared, eight open obligations, 6979 unassigned across eight
+  inventories; zero accepted readings/errors/stale or unmeasured files.
+  Counts are not additive with other plans; no status or closure changes.
 - Q-SOUND-002 reuses FND-SOUND-049 through 059 and FND-CONFIG-166:
   dispatch/defaults, preference, state transitions, query/stop, file/refill,
   descriptor and capability contracts. Actual histories, bounds, driver and
@@ -80,22 +83,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-322 binds the known exit callback route; FND-PARTY-323 resolves
   the named unchanged alias candidate. Next changed/computed incoming forms
   and actual interval/frame admission, not that excluded raw-word pair.
-  FND-PARTY-324 classifies literal mode producers. Next actual excluded mode
-  writers and between-read preservation; FND-PARTY-325 classifies raw
-  candidate owner streams. Tooling af49cea8 adds overlay_near_patterns.py;
-  its synthetic and source controls pass. FND-PARTY-326 records the reviewed
-  six-control source case in getter-mode-overlay-near-reviewed.txt under
-  handler-census-20261106/. Next excluded far/indirect/computed/modified
-  incoming forms and actual state/frame retention; do not repeat the settled
-  same-overlay near-pattern component. FND-PARTY-327 narrows declared
-  segment/raw-offset pair forms for the resident candidate. Q-PARTY-136
-  now keeps a compact remaining-obligation record; prior detail is retained
-  at 1f9c33e8 and in findings. Next actual runtime-built/indirect/transformed
-  entries and state/frame preservation, not the excluded pair forms. Reuse the known zero/one
-  producer domain without claiming an unconditional runtime invariant;
-  apply conditional nonreturn contracts without dismissing reentrant exit
-  readers or changed-frame/nonlocal rejoining. Newly identified rows
-  4734:010F, 49DE:000F and 0x00067902 remain unassigned in the map.
+  FND-PARTY-324 through 327 classify literal mode producers and exclude
+  bounded raw candidate entry forms. Reuse their reports and the compact
+  Q-PARTY-136 conditions; next computed/changed routing, backing and frames.
+  Preserve reentrant readers and nonlocal/changed-frame possibilities.
   Q-PARTY-134 retains actual number-state histories and snapshot/reload
   conditions. Reuse FND-PARTY-287/288 and 301 through 313 plus
   FND-COMBAT-087/088/090/091/092/093; do not reread the classified fixed
