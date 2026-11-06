@@ -25,6 +25,12 @@ Next ID: Q-SAVE-008
   copy to the counted writer, including the independent small-write0285
   control and dirty publication after payload failure. No new census or
   native write result is implied by that connected evidence review.
+  FND-SAVE-030 resolves stored exit hook3F14's four-record traversal and
+  its2F13/3DCC/3EDA write gates. Retain actual3676 publication, record
+  counts/flags/handle targets and native outcomes, not an unread generic
+  stream-flush body. The distinct167B:0029 slot/delete route reuses
+  FND-EXE-558/559 and retains actual slot targets. Current load reports
+  do not observe+2C at shutdown; that admission requires new evidence.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
