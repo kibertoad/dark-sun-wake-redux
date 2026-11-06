@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -35,7 +35,11 @@ Archive cleanup also consumes `archive_pending_metadata`, the byte at
 runtime archive record offset `0x2C`: zero skips preparation's file
 requests, while nonzero selects its checked header/directory write and
 commit sequence. Success clears it; a failed check retains it without
-rolling back earlier requests (FND-SAVE-028, FND-COMBAT-124).
+rolling back earlier requests (FND-SAVE-028, FND-COMBAT-124). A controlled
+Quit with this byte explicitly seeded nonzero observed full native header/
+directory writes, carry-clear commit and a successful preparation return
+with the byte cleared (FND-SAVE-034). This does not establish ordinary
+dirty-state reachability.
 
 ## Procedure
 

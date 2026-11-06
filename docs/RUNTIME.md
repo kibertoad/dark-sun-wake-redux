@@ -52,6 +52,16 @@ entry breakpoint, incoming argument, expected far-return frame and paired
 normal rejoin. These fixed parts are agent; arbitrary/other target entries,
 dirty writes and internal native effects remain unverified. The session closed.
 
+The controlled stage passed in v181-quit-dirty-active-20261106 under
+that capture root (FND-SAVE-034). The fixed active-head named-byte
+write, including expected-old/readback guards, is now agent under the
+current pins. So are the two observed full-count native write results,
+the AH68 request/result and five paired preparation returns. This admits
+only that controlled pending-metadata setup, not arbitrary writes or an
+ordinary dirty-state history. Failure cases, other fields/callers and actual
+DOS termination remain unverified. The owned session closed and released
+its lock. Reports and writable copies remain in that private run directory.
+
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;
 an untested part is not admitted by a historical success. A save state
@@ -446,7 +456,7 @@ Revalidate any further required part before admitting a new run.
 | Send mouse input | agent, left/right only | 2026-10-19: separate completed motion and click operations reached character and conversation controls (FND-UI-054), using virtual 320 x 200 coordinates. Middle button and held modifiers have only v1.7.2 provenance (FND-PARTY-204, FND-PARTY-206) and are not currently admitted. | A current attempt for each additional gesture. |
 | Send keyboard input | agent, Esc and 2 only | 2026-10-19: Esc returned from Create Characters to Start; 2 selected occupied slot 1 as leader in Play (FND-UI-054). Other keys and held modifiers retain historical provenance only. | A current attempt for another required key or modifier. |
 | Read memory and set breakpoints | agent, named fields and declared stops | 2026-10-19: current window/handler, party kinds/box records, seed, callback arguments and strict restore fields were read; generator, setter and native input stops were reached (FND-UI-054). 2026-10-25: once-breakpoints on all 854 overlay trampolines at a time, with return addresses read from the stack, ran from play-ready (FND-EXE-632); breakpoints kept armed on indirect transfers, with operand addresses formed from the stop's registers, and memory reads of saved vectors (FND-RNG-065); write watchpoints over 115 ranges of 1 to 4 bytes, with the stack walked at a stop (FND-RNG-067); armed breakpoints counting 13 branch addresses, at most 50 hits each because every stop opens new TCP connections and a run with uncapped counts used up the local ephemeral ports (FND-RNG-075). | A field or stop outside the tested contract. |
-| Write supported memory fields | none, current pin untested | Earlier guarded hit-point writes are recorded by FND-PARTY-212 under v1.7.2. The fresh probes make no writes. | A current guarded-write capability attempt. |
+| Write supported memory fields | agent for the fixed active-head archive_pending_metadata setup only | FND-SAVE-034 verifies expected-old/readback under current pins. Earlier hit-point writes in FND-PARTY-212 remain historical. | Other fields need their own current guarded-write capability attempt. |
 | Load a patched save | person | Not tried. The owner can place a save in the installation's save slots and load it from the game's menu. | A live session that asks for it. |
 | Capture frames and sound | agent, frames only; person, frames only | 2026-10-19: `screenshot()` produced 640 x 400 PNGs and independent strict restores reproduced the checked frames (FND-UI-054). Host audio stayed muted; sound capture is untested. Owner screenshots retain their own DOSBox provenance. | A sound capture from a session-package run. |
 | Play back a recording the original made | none | The game has no recording feature the spec knows of, and DOSBox 0.74-2 does not replay input. | A finding that the game records and replays input. |

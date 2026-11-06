@@ -6,8 +6,8 @@ Next ID: Q-SAVE-008
 
 - Q-SAVE-007. RULE-SAVE-001: Can the Quit shutdown route write a saved
   game or working archive through a reached callback or callee?
-  Settles it: establish actual shutdown record/handle/dirty state and
-  external outcomes, and classify remaining computed callback/target,
+  Settles it: establish ordinary dirty-state producer histories and their
+  shutdown handle/file bindings and external outcomes; classify remaining computed callback/target,
   service-selector and save-producing branches. Reuse FND-SAVE-028/029's
   dirty-close write chain and explicit-Save022C/0285 control; no generic
   transfer control remains missing. Preserve unsearched streams and
@@ -59,6 +59,13 @@ Next ID: Q-SAVE-008
   Do not retain a post-resume different-target explanation for that recorded
   call. Dirty/other-state and other-target cases, internal native effects
   and unmonitored mechanisms remain; this does not close the whole item.
+  FND-SAVE-034 removes the unexercised conditional dirty-close outcome:
+  one explicitly seeded active record reached full-count native header/
+  directory writes, carry-clear commit and AX0 preparation with dirty0.
+  The private RGN032.GFF hash changed while three other monitored files
+  did not. Retain ordinary producer reachability, failure cases, handle/file
+  binding, durability and other mechanisms; do not request another seeded
+  success merely to re-establish this conditional outcome.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
