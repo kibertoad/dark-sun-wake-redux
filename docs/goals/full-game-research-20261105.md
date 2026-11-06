@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e97916c6
-  -NoRestore` passed: 2098 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 006a18ef
+  -NoRestore` passed: 2099 entries, 208 parity rows, five deviations.
   Tooling: 46 controls, 758 .NET tests passed.
   Pinned EVIDENCE_PYTHON required.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -49,7 +49,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Plan: 54 assignments, 25 shared, sixteen open obligations,
   6959 unassigned rows and zero accepted readings. Reporter passes
   with zero errors/stale inventories/unmeasured files. Only owner-excluded
-  DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
+  DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND components track Q-PARTY-136;
   none closed a question during map adoption; no complete reading was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
   the third batch is 96077cf3.
 - Three timed batches are complete; commit messages
@@ -93,7 +93,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   Q-SAVE-002/008/009 closed (FND-SAVE-041/042/045/046/047).
   Q-SAVE-007 reuses FND-SAVE-043/044. Next Q-PARTY-137: review
-  FND-PARTY-328/288, queue index/kind producers and connected runner handoff.
+  FND-PARTY-328/288; next actual kind/index/record admission and excluded
+  queue writers. Do not repeat the literal-index query as an absence proof.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
