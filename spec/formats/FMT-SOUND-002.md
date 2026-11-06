@@ -92,7 +92,9 @@ busy/stop interface, including error-sentinel classification and conditional
 cleanup; it does not establish external success or table lifetime.
 FND-SOUND-069 supplies local FM acquisition/cleanup/start interfaces with
 explicit flag and source-pointer conditions, leaving their actual bindings
-and effect on the music-table buffer open.
+and effect on the music-table buffer open. FND-SOUND-070 resolves the
+known source-versus-sequence-block relationship as separate setup arguments,
+retaining actual extents, lifetime and aliases.
 
 The known inventory roots in coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv are
 2834:043B (acquisition), 2834:000C (selection), 2834:0508 (retry state),
