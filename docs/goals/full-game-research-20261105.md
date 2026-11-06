@@ -35,10 +35,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed with
-  pinned EVIDENCE_PYTHON: 2019 entries, 208 parity rows, five deviations,
-  selected controls and 758 .NET tests. Research selection correctly refused
-  the new unmapped ownership JSON; integration supplies required acceptance.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e88d0ef8
+  -NoRestore` passed: 2020 entries, 208 parity rows, five deviations.
+  Prior ownership-map integration passed selected controls and 758 .NET tests.
+  Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
@@ -65,7 +65,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
   Counts are not additive with other plans; no status or closure changes.
-- Q-SOUND-002 reuses FND-SOUND-049 through 059 and FND-CONFIG-166:
+- Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166:
   dispatch/defaults, preference, state transitions, query/stop, file/refill,
   descriptor and capability contracts. Actual histories, bounds, driver and
   interrupt effects/output remain. Preserve selector differences and gates.
@@ -73,8 +73,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Children do not compensate; capability-disabled submission has no interrupt.
   FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
   before restoring SI, never restores DS, and can return through a conditional
-  invalid-slot route without another driver child. Next admission
-  and later reseeding/restoration routes; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
+  invalid-slot route without another driver child. FND-SOUND-060 controls eleven direct service sites and names the
+  same-invocation 201 +0767 -> +075F repeat edge. Next actual service
+  admission, nonzero AL, offset-loop callee/frame and DS effects; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
   counts remain. Q-RNG-029 retains actual graphics SS-frame/page admission. No new closures.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
