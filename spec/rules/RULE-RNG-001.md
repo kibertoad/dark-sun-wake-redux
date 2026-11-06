@@ -184,6 +184,12 @@ None known.
 
 ## Open questions
 
+- Q-RNG-040: FND-SOUND-056 identifies a conditional stack-cleanup mismatch
+  in 4842:182E. FND-RNG-061's push/pop observation alone is insufficient
+  to establish DS preservation there; actual driver/frame admission and
+  later routes to reseeding callers must be assessed before extending the
+  census model to this case. No actual changed reseeding input is yet proved.
+
 - Which date and time the DOS services return to the clock helper, the conversion's only caller,
   which passes them from its own frame (FND-RNG-009, FND-RNG-014..015, FND-RNG-057). FND-RNG-023 settles local
   date-before-time sampling without a coherence retry; external service
