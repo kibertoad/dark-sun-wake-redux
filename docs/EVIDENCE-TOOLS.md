@@ -157,6 +157,19 @@ matches only a checkout with Windows line endings.
 DOSBox is excluded by the owner's scope clarification in `docs/DECISIONS.md`;
 its historical inventory is archived under `docs/host-analysis/` and the
 baseline excludes it through `tools/evidence/research-scope.json`.
+The disc aliases `CD:SOUND_DS.EXE` and `CD:CHARTRAN.EXE` now have
+metadata inventories under `coverage/BLD-GOG-EN-1.1/@CD/`. Their inventory,
+regions and provenance bytes are identical to the installed counterparts.
+The build manifest records equal size and XXH3-128 for both shipped pairs;
+CHARTRAN also records equal unpacked size/hash, matching its existing
+unpacked-snapshot provenance. This reuses those validated snapshots rather
+than claiming a new disc import, a second independent reading or new code.
+Reproduce the association by checking those manifest identities, then copying
+all three metadata files from each installed inventory to its `@CD` path.
+Keep the original snapshot/tool/exporter provenance; do not relabel it as a
+new analysis. Counts per manifest file include these duplicate associations;
+unique binary understanding and accepted readings do not increase.
+
 The two DSUN inventories
 come from the reconciliation path below. It clips an overlay body only to the
 code range that holds its entry, and only after a finding shows that nothing

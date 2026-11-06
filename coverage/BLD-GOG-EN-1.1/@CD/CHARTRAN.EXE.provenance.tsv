@@ -1,0 +1,13 @@
+key	value
+xxh3	a2804715759141397dca547934213843
+source_md5	5be995d9819355c103dd57fbd44c6791
+analysis_tool	Ghidra
+analysis_version	12.1.3
+snapshot	CHARTRAN-unpacked-20261008
+exporter_revision	28ffd9e2f7a195e9d2d6db7f522b4301f736c48cec3a5f9221dd73a1b77f4725
+region_mode	initialized
+functions	283
+summed_body_bytes	33350
+unique_body_bytes	33350
+body_bytes_outside_regions	0
+entries_without_instruction	0

@@ -239,11 +239,11 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   cast-window and APFM rows to PARTY/UI, including shared selection callbacks.
   It also assigns the identified timer restoration/reset, sound callback and
   initialization rows to PARTY/TIME/SOUND from FND-PARTY-316 through 320.
-  The current map assigns 54 unique rows, 25 shared; 6323 remain unassigned
-  across the six-inventory denominator. Sixteen open metadata obligations
+  The current map assigns 54 unique rows, 25 shared; 6959 remain unassigned
+  across the eight-inventory denominator. Sixteen open metadata obligations
   include eight newly explicit TIME/SOUND checklist components of Q-PARTY-136,
   not eight new research questions or answered dependencies. Accepted readings
-  remain zero and three inventories remain missing. This map's per-area counts
+  remain zero; the raw reporter lacks only the owner-excluded DOSBox inventory. This map's per-area counts
   are non-additive and do not replace the original four-root map above.
   Its open obligations reference Q-PARTY-134/135/136/137; it does not replace
   this entry's four-root map, the separate SAVE/COMBAT map or their denominators.
@@ -260,11 +260,14 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   describe ownership, not accepted readings. Further reached functions
   have no ownership assignment in this entry's map until identified by the
   census; the other 3,227 installed-DSUN rows remain unassigned here.
-  The fresh pinned report measures 6,377 rows across six inventories;
-  this entry's four-root map leaves 6,373 unassigned across that denominator,
+  The current pinned report measures 7,013 rows across eight inventories;
+  this entry's four-root map leaves 7,009 unassigned across that denominator,
   independently of the separate SAVE/COMBAT ownership assessment.
-  Missing inventories remain `CD:CHARTRAN.EXE`, `CD:SOUND_DS.EXE` and
-  `DOSBOX/DOSBox.exe`; no installed result establishes their behavior.
+  The byte-identical disc CHARTRAN/SOUND_DS metadata associations reuse the
+  existing snapshots as docs/EVIDENCE-TOOLS.md describes; no independent
+  disc reading follows. The raw reporter still lacks `DOSBOX/DOSBox.exe`,
+  excluded from game research by the recorded owner scope decision. No
+  missing-inventory file is inferred to read the table.
   There are no unmeasured inventories or coverage problems in that report,
   and no accepted complete-reading functions. A missing-inventory file is
   not asserted to read this table merely because it is unmeasured.
