@@ -387,6 +387,11 @@ Next ID: Q-CONFIG-014
   named setup requests under the retained header/offset bindings; actual
   heap-state admission and backing remain here. Resolve each remaining
   mechanism against the span/marker claim, not every unrelated heap caller.
+  FND-CONFIG-225 assigns the sixteen inventoried explicit control stores and
+  classifies ordinary nested saved-DS publications, including the copy branch's
+  reload before release. Retain computed/bulk/physical aliases, reentry and
+  changed incoming/callee segment effects; do not repeat the controlled
+  direct-store census or assume a nested write necessarily changes its value.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
