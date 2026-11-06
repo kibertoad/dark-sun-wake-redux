@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 5a1a77ed
-  -NoRestore` passed: 2097 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e97916c6
+  -NoRestore` passed: 2098 entries, 208 parity rows, five deviations.
   Tooling: 46 controls, 758 .NET tests passed.
   Pinned EVIDENCE_PYTHON required.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -62,7 +62,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   classifies four selector calls and excludes the tested setter incoming forms;
   FND-PARTY-312 excludes two encoded routes under its conditions. Eight plan
   obligations, 6349 unassigned rows and three missing inventories remained then.
-  Activity: two findings, four commits. There is no demonstrated topic-closure speedup.
+  Activity: two findings, four commits. That comparison demonstrated no closure speedup.
   
 - Independent `docs/research-closure-sound-playback.json`: 34 assigned,
   eight shared, eight open obligations, 6979 unassigned across eight
@@ -91,8 +91,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
   Q-SCRIPT-019/024/025, Q-CONFIG-008/013, Q-SAVE-007: FND-SCRIPT-053..065, FND-CONFIG-224..233, FND-SAVE-027..033/035/037..044; post-error: Q-COMBAT-059,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
-  Q-SAVE-008/009 closed (FND-SAVE-041/042). Q-SAVE-007 reuses FND-SAVE-043/044. Q-SAVE-002 narrowed by
-  FND-SAVE-045/046; next identifier-consumer audit, retaining indirect accesses.
+  Q-SAVE-002/008/009 closed (FND-SAVE-041/042/045/046/047).
+  Q-SAVE-007 reuses FND-SAVE-043/044. Next Q-PARTY-137: review
+  FND-PARTY-107/288, queue index/kind producers and connected runner handoff.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
@@ -140,10 +141,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-PARTY-003/005 narrowed. Assessment ends at 1a382f6f; map at 4d210fc1.
   
 - Inventory denominator: 7013 rows across eight inventories, including
-  two byte-identical disc associations from 7a8b8ec1. Their 636 rows add no
+  two byte-identical disc associations. Their 636 rows add no
   independent understanding. The original FMT map assigns four and
-  leaves 7009 unassigned; the separate SAVE/COMBAT map assigns nine. Keep
-  historical report denominators. CD:CHARTRAN.EXE and CD:SOUND_DS.EXE now
+  leaves 7009 unassigned; the separate SAVE/COMBAT map assigns nine. Keep historical denominators. CD:CHARTRAN.EXE and CD:SOUND_DS.EXE now
   reuse validated metadata with unchanged provenance; only owner-excluded
   DOSBOX/DOSBox.exe lacks an inventory in the raw reporter.
 - Retained local stores: GAME_DIR/analysis/class-table-closure-20261106/,
