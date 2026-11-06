@@ -35,7 +35,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince aa68664b
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e0c60110
   -NoRestore` passed: 2080 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
