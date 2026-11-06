@@ -44,7 +44,10 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4AE5:08EB..4AE5:09CB
-tool: tools/research/exec-census/resident_listing.py at dd0ce3fe, 52a64a27 and 32446397; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:029B..4AE5:031B
+tool: tools/research/exec-census/resident_listing.py at dd0ce3fe, 52a64a27, 32446397 and 885408dc; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
 environment: null
 ---
 
@@ -307,6 +310,58 @@ changed headers, other writers and observation epochs remain concrete
 Q-PARTY-137 conditions. A completed allocator result must not be used as
 proof of the uninterrupted registration history of its two-store append.
 
+### Allocator scalar updates have a separate target-word domain
+
+The registered scalar destination set also distinguishes preserved
+control slots from deliberately changed header loaders. For all 49
+registered headers and both fixed cache records, none of the allocator's
+word stores overlaps manager +0080/+0082/+0084 or the far notification
+at +0086..+008A. Nor does it overlap either fixed cache record's loader
+word +0C: its own record writes use +08, +0A and +0E. Uniform relocation
+preserves these comparisons under the existing nonwrapping bindings.
+
+For each registered header, the only scalar destination in that set
+which overlaps its loader word +18 is that same header's +18 store.
+Other offsets in that header, other registered headers and the fixed
+cache records do not alias it. Checking that own +18 overlap is a
+positive control for the whole-set interval comparison, not a claim
+that all candidate writers in the program have been searched.
+
+The connected value sources of those header-loader stores are:
+
+| Stage | Value written to header +18 |
+|---|---|
+| Descriptor initializer +02E5, for a kept header not excluded by byte +1A=FF | File loader 04C6 |
+| Borrow-path selector +0CF1 | BP loaded from selected cache record +0C at +0C53 |
+| Second selector +0CF1 | File loader 04C6 loaded into BP at +0C94 |
+| Supplied header at +0CBE | Cache record +0C reloaded into AX at +0CBB |
+
+Thus an admitted EMS record initialized to 0A4B, together with headers
+whose initial loader words are in {04C6, 0A4B}, retains that header
+loader value domain under the allocator's own scalar updates. This
+holds for every selected header, not only the supplied header. The
+second selector's BP literal is not the source of the final supplied-
+header assignment, because the record word is reloaded after BP restore.
+The record loader itself is preserved by the allocator's scalar stores.
+
+This is conditional domain preservation, not input validation. The
+allocator does not test its record's loader word against an allowlist.
+A corrupted or differently bound record word can be copied by the first
+selector and final store; an untouched foreign header target can remain
+foreign. The initializer must actually have run for the headers used:
+shipped header +18 words are initially zero, and excluded/uninitialized
+headers cannot silently receive the completed-initialization contract.
+A record initialized for extended memory similarly needs its own setup
+and target evidence; current EMS selection alone is not a historical
+proof about every header.
+
+Under the same scalar/segment conditions, a changed manager hook or
+notification cannot be attributed to one of these allocator scalar
+stores. It needs another mechanism, such as an actual segment/graph
+change, setup or external writer, string/copy/fixup/native effect, or
+asynchronous transfer. Those mechanisms remain Q-PARTY-137; no universal
+immutable-target or successful native-load claim follows from this result.
+
 ## Interpretation
 
 The selected overlay hook is a no-op or one of two specific copy paths,
@@ -377,3 +432,12 @@ Follow the zero initialization and every +0E assignment through
 FND-EXE-240/241's selector/tail results. Distinguish a fixed cache-record
 tail from a header, and the completed append from the interval between
 its link and clear. No original or emulated call was executed.
+
+For target-word separation, enumerate the registered header destinations
+at offsets 0E/14/16/18 and fixed-record destinations at 08/0A/0E using
+the same registered() mapping as above. Compare two-byte stores with
+manager control slots, both record +0C words and each header +18 word.
+Require the same-header +18 positive overlap and absence at the other
+control slots. Read `4AE5:029B..4AE5:031B` and the connected allocator
+through `4AE5:0CD5` at 885408dc; retain FND-EXE-239/240/241/561/563
+for entry and setup conditions. This adds no original run or new census.
