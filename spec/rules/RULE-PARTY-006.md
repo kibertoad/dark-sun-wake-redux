@@ -115,6 +115,6 @@ None known.
   Under rust-dos START GAME reached the supplied party (FND-PARTY-186). (No item: under GOG's
   DOSBox the outcome rests on that DOS, which the session package does not run.)
 - Whether the program ends after a failed `CHARSAVE.GFF` open depends on the operating system
-  carrying out the run time's terminate request (FND-CONFIG-062, FND-PARTY-034); a run without
+  carrying out the run time's terminate request (FND-CONFIG-224, FND-PARTY-034); a run without
   the file would show it (No item: agents cannot run the game, and no owner session asks for a
   broken installation).

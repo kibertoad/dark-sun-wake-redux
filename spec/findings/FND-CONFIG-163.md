@@ -72,7 +72,7 @@ recorded separately in FND-CONFIG-061.
 Entry 019E issues interrupt 21h with AH equal to 4C and
 AL loaded from its supplied stack argument. This is the
 termination request already identified in the runtime
-path of FND-CONFIG-061 and FND-CONFIG-062. The request
+path of FND-CONFIG-061 and FND-CONFIG-224. The request
 is at file offset `0x000053A5`. If it returns, the local
 continuation changes CX and DX and jumps to 02B3; that
 fallback is not characterized here. No ordinary return

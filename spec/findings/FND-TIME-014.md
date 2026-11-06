@@ -54,7 +54,7 @@ driver asks for no timer slot. Channel 0 runs at 10,000 µs from the first alloc
 FLI and at 1,000 µs from then on, through the start menu and into play, since releasing the FLI
 slot does not choose a new period. So every `wait_ms` call of the installed game runs at 1,000 µs,
 the rate FND-TIME-011 measured. A launch without `-L` ends on the missing `RESFLOP.GFF`
-(FND-CONFIG-062), so the installed files cannot reach the music driver install by another launch.
+(FND-CONFIG-224), so the installed files cannot reach the music driver install by another launch.
 
 ## Alternatives
 

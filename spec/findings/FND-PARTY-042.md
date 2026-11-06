@@ -33,7 +33,7 @@ every path passes, in this order:
 2. the open of `GPLDATA.GFF` at `0x000674A9`, through overlay 182 `+0000`, which calls
    `38FF:0066` (FND-SCRIPT-003); when it returns 0 the routine formats the not-found message and
    calls its `+0867`, which passes it to `4448:002C`, and so to `1000:03DF` with status 1
-   (FND-CONFIG-062);
+   (FND-CONFIG-224);
 3. the `DARKSAVE.GFF` and `DARKRUN.GFF` paths built through `2D40:3DC2` and passed to
    `4544:0000`, then the opens of `RGN0FF.GFF`, `OBJEX.GFF`, and `RESOURCE.GFF` or `RESFLOP.GFF`, each with the same failure
    call;

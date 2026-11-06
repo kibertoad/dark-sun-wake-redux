@@ -70,7 +70,7 @@ The initial byte remains one unless another effect changes it.
 At the shared failure branch, a local far call to 046F
 runs cleanup before a near argument DS:2670 is passed
 to 56B2:0034. FND-CONFIG-184 reads that cleanup's
-ordered gates and writes. FND-CONFIG-062 previously
+ordered gates and writes. FND-CONFIG-224 previously
 traces the error helper through a runtime process-termination
 request. If both calls return, the body returns AL zero.
 A returning failure therefore does not itself stop the

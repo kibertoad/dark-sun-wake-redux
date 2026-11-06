@@ -69,7 +69,7 @@ The only direct call of `1000:0361` is at `0x0006733D` in overlay 180, with `0x0
 the fixup makes trampoline `56B2:002A` and so overlay 180 `+0848`. That routine, the first time
 the byte at `DS:09E6` is 0, sets it to 1 and passes the message at `DS:0BFE` ("Ctrl-Break pressed
 by user. Game aborted") to `+0867`, which passes it to `4448:002C`; that routine calls
-`1000:3603` with it and then `1000:03DF` with 1 (FND-CONFIG-062). `+0848` returns 1. A `reach` run from
+`1000:3603` with it and then `1000:03DF` with 1 (FND-CONFIG-224). `+0848` returns 1. A `reach` run from
 `+0848` with the same targets reaches none of them.
 
 The report also lists 87 interrupts, each taken to return, and 5 gaps and 4 contested

@@ -44,7 +44,7 @@ words one and 00003100, stores returned DX:AX there,
 and re-tests the field. Still null passes near DS:2A1C
 to error helper 56B2:0034, then takes the local return
 if that helper returns. The error helper's termination
-request is bounded in FND-CONFIG-062. This is not a
+request is bounded in FND-CONFIG-224. This is not a
 native allocation or termination observation.
 
 The admitted pointer path calls local far 01CD, then

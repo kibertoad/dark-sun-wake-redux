@@ -64,7 +64,7 @@ In the installed `DSUN.EXE`, with `DS` the data segment `57E0`:
   word at `4E71:0001`, calls `1BF3:2973` with 3 (twice when that word is not `0xFFFF`, setting it
   to `0xFFFF` in between), clears the byte at `DS:1462`, and calls `4448:0002` with its first
   argument and the far pointer after it. `4448:0002` calls `1000:3DB6` with the format and the
-  address of the arguments after it, then `1000:03DF` with 1. FND-CONFIG-062 reads
+  address of the arguments after it, then `1000:03DF` with 1. FND-CONFIG-224 reads
   `1000:03DF` as reaching the run time's cleanup and the DOS terminate-process request.
 - **The callers.** The open routine's trampoline `56E9:0052` is the target of nine far calls in
   overlay code. One is at `0x00068EE0` in the party loader of FND-PARTY-013, the instruction
@@ -97,7 +97,7 @@ table outside `CHARSAVE.GFF`, and fails, so `2D40:000A` returns `0xFFFF` for tha
   of the name prefixes the program's directory. Which copy `cloud_saves` holds, if any, depends
   on what earlier sessions wrote.
 - A failed open is reported and play continues: ruled out unless `1000:03DF`'s terminate request
-  returns; the operating system's handling of it was not observed (FND-CONFIG-062).
+  returns; the operating system's handling of it was not observed (FND-CONFIG-224).
 - `argv[0]` holds the full path of the program only from DOS 3 on and as the C run time builds
   it; that construction was not read here. With an `argv[0]` that has no `\` or `:`,
   `DS:44F2` is empty and the name is opened in the current directory.

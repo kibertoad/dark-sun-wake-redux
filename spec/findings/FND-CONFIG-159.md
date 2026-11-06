@@ -35,7 +35,7 @@ for the archive-state question.
 On its nonzero branch it calls 4734:0063 and retains the
 returned far pointer in its local stack buffer. FND-CONFIG-005
 identifies that callee's SOUND.CFG acquisition. A zero
-pointer calls the local termination helper in FND-CONFIG-062;
+pointer calls the local termination helper in FND-CONFIG-224;
 if that helper returns, this body continues with the retained
 zero pointer rather than returning success or failure here.
 

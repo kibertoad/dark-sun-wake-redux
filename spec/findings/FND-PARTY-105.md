@@ -67,7 +67,7 @@ it is not `0xFFFF`, clears the byte at `DS:1462` and calls `4448:002C` with its 
 (`+086A..+08A2`), as its neighbour `+08A3` does with `4448:0002` (FND-PARTY-034). `4448:002C` calls
 `1000:3603`, which writes the text through `1000:345B` to the stream at `DS:3692`, and then
 `1000:03DF` with 1, which reaches the run time's cleanup and the DOS terminate request
-(FND-CONFIG-062).
+(FND-CONFIG-224).
 
 **Other vector setters.** A search of the file's bytes for `mov ax, 0x25nn` finds the
 start-up request for vector 0 and the four that put back vectors 0, 4, 5 and 6 at exit

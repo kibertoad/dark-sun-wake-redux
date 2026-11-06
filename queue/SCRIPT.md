@@ -135,6 +135,10 @@ Next ID: Q-SCRIPT-026
   allocation AL zero is not assigned to the transfer-success byte. Retain
   actual diagnostic/heap/release effects, field histories and bitmap/map aliases
   that can reach trigger, table or frame state before conversion.
+  FND-CONFIG-224 excludes the bitmap-allocation diagnostic's ordinary return
+  under preserved exit arguments/frames, including a returning terminate
+  interrupt. Retain changed argument/frame or nonlocal mechanisms; ordinary
+  numbered resource-read failure remains a separate admitted local path.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to

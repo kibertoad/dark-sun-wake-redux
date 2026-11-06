@@ -110,6 +110,12 @@ No queue closure or complete-reading declaration follows.
 
 ## Alternatives
 
+FND-CONFIG-224 subsequently resolves the diagnostic's selected exit branch:
+with its fixed arguments and frames preserved, it has no ordinary return
+to this reader, even if the terminate interrupt returns. The hypothetical
+post-diagnostic continuation above needs changed arguments/frames or another
+nonlocal mechanism, not merely a normal failed allocation.
+
 A null allocation does not imply a null secondary pointer: that field
 has no store on the helper's null branch. A returning diagnostic is not
 an assignment to BP-1. A release wrapper's returned zero does not clear

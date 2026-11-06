@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-062
 title: A failed startup resource-archive open reaches the runtime termination request
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-224]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

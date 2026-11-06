@@ -59,7 +59,7 @@ That numeric handle is not the far record pointer.
 At `0x000675D4`, AL zero enters a failure branch that
 formats the existing missing-file pattern with the directory
 and OBJEX.GFF name and calls local target 0867, file offset
-`0x00067A47`. FND-CONFIG-062 reads that shared helper's
+`0x00067A47`. FND-CONFIG-224 reads that shared helper's
 runtime termination request. AL nonzero skips the failure
 branch. If the termination helper returns, the failure
 branch also falls through; the code alone does not prove
@@ -123,7 +123,7 @@ operand, both result branches and order relative to setup.
 Resolve wrapper 56BD:002F and read it through its far return,
 including argument widths and the FFFF comparison. Combine
 its open call with FND-CONFIG-037 and FND-CONFIG-067,
-its failure helper with FND-CONFIG-062, and its conditional
+its failure helper with FND-CONFIG-224, and its conditional
 lookup route with FND-CONFIG-040 and FND-CONFIG-153.
 Do not replace the open or intervening-state conditions
 with the installed catalog alone.
