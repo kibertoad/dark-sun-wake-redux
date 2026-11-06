@@ -62,6 +62,11 @@ per-call bound. Its report remains under captures/rust-dos-save-retry;
 the owned emulator closed and machine lock was released. No completed-copy
 capability is admitted. The correction reads the already bounded directory
 in chunks and keeps the original single-read limit unchanged.
+The ordinary Quit observer also has a fixed `retried-save` source stage:
+it requires a checked retry-map, no guest seed or retry lock, successful
+writer/copy evidence and the same pending working record. Its source root
+is captures/rust-dos-save-retry, with the existing restore guards and
+fixed pending watch. This later-close stage is not yet runtime-admitted.
 
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while

@@ -24,6 +24,7 @@ from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
 from shutdown_dirty import seed_active, Preparation
 from shutdown_xms import XmsCleanup, OFFSETS as XMS_OFFSETS, NATIVE_ENTRY as XMS_ENTRY
 from save_failure_fields import pending_watch, pending_change
+import retry_metadata
 
 
 class QuitFlow:
@@ -81,8 +82,8 @@ def write_request(registers):
 def controlled_stage(arguments):
     if (len(arguments) not in (2, 3)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in arguments[:2])
-            or len(arguments) == 3 and arguments[2] not in ("dirty-active", "failed-save")):
-        raise SystemExit("usage: shutdown_run.py <source-run> <new-run-name> [dirty-active|failed-save]")
+            or len(arguments) == 3 and arguments[2] not in ("dirty-active", "failed-save", "retried-save")):
+        raise SystemExit("usage: shutdown_run.py <source-run> <new-run-name> [dirty-active|failed-save|retried-save]")
     return len(arguments) == 3 and arguments[2] == "dirty-active"
 
 
@@ -108,14 +109,16 @@ def failed_source(meta):
 
 def main():
     dirty_stage = controlled_stage(sys.argv[1:])
-    failure_stage = len(sys.argv) == 4 and sys.argv[3] == "failed-save"
+    retry_stage = len(sys.argv) == 4 and sys.argv[3] == "retried-save"
+    failure_stage = len(sys.argv) == 4 and sys.argv[3] in ("failed-save","retried-save")
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    source = game / ("captures/rust-dos-save-failure" if failure_stage else "captures/rust-dos-native-save") / sys.argv[1]
-    meta = json.loads((source / ("failure.json" if failure_stage else "native-save.json")).read_text(encoding="utf-8"))
-    failed_record = failed_source(meta) if failure_stage else None
-    state = read_saved_state(source, "failed-map" if failure_stage else "saved-map")
+    source = game / ("captures/rust-dos-save-retry" if retry_stage else
+        "captures/rust-dos-save-failure" if failure_stage else "captures/rust-dos-native-save") / sys.argv[1]
+    meta = json.loads((source / ("retry.json" if retry_stage else "failure.json" if failure_stage else "native-save.json")).read_text(encoding="utf-8"))
+    failed_record = retry_metadata.source_record(meta) if retry_stage else failed_source(meta) if failure_stage else None
+    state = read_saved_state(source, "retry-map" if retry_stage else "failed-map" if failure_stage else "saved-map")
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
@@ -129,7 +132,7 @@ def main():
         emulator_config=RustDosConfig(media=(Media("D", game / "game.ins", "iso"),),
             deterministic=True, cycles="15000", sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1),
             ultrasound=None), readiness_timeout=60.0)
-    report = {"source": sys.argv[1], "controlled_dirty": dirty_stage, "failed_save_source": failure_stage,
+    report = {"source": sys.argv[1], "controlled_dirty": dirty_stage, "failed_save_source": failure_stage and not retry_stage, "retried_save_source":retry_stage,
               "load_mapping_stop": meta["load_mapping_stop"],
               "inputs": [], "draws": [], "writes": [], "events": [], "passed": False,
               "limits": "fixed saved-map Quit; observed requests/results only; stops before DOS termination"}
@@ -298,6 +301,8 @@ def main():
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)
+                    if retry_stage:
+                        report["metadata_after"]={name:retry_metadata.disk(run,name) for name in ("DARKRUN.GFF","SAVE02.SAV")}
                     report["passed"] = True
                     break
                 elif address == poll and flow.phase != "shutdown":

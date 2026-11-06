@@ -1,10 +1,11 @@
 """Synthetic directory-bound and same-record controls for Save retry."""
+import copy
 import struct
 import tempfile
 import unittest
 from pathlib import Path
 
-from retry_metadata import disk, memory, summary
+from retry_metadata import disk, memory, summary, source_record
 from check_failed_save import Memory
 
 
@@ -13,6 +14,24 @@ class RetryMetadataControls(unittest.TestCase):
         self.header=struct.pack("<4s6I",b"GFFI",0x30000,28,128,20,0,1)
         self.directory=b"synthetic-directory!"
         self.directory=self.directory.ljust(20,b".")
+
+    def test_retry_checkpoint_requires_unseeded_success_and_same_record(self):
+        r={"pointer":"7100:0100","io_handle":7,"options":2,"flags":0,"handle":1,"dirty":1}
+        meta={"retry":True,"passed":True,"writes":[],"fault":{"record":r,"write_result":{"carry":False}},
+            "resource_result":{"ax":"0000"},"numbered_result":{"success_byte":1},
+            "copy_entry":{"ownership":0},"checkpoint":{"name":"retry-map","checked":True},
+            "post_failed_map":{"record":r},"files_after":{"SAVE02.SAV":{"exists":True}}}
+        self.assertEqual(source_record(meta),r)
+        for case in ("seed","failure","lock","ownership","checkpoint","changed","clean"):
+            bad=copy.deepcopy(meta)
+            if case=="seed": bad["writes"]=[{"field":"synthetic"}]
+            elif case=="failure": bad["fault"]["write_result"]["carry"]=True
+            elif case=="lock": bad["fault"]["lock"]={}
+            elif case=="ownership": bad["copy_entry"]["ownership"]=1
+            elif case=="checkpoint": bad["checkpoint"]["checked"]=False
+            elif case=="changed": bad["post_failed_map"]["record"]=dict(r,io_handle=8)
+            else: bad["post_failed_map"]["record"]=dict(r,dirty=0)
+            with self.assertRaises(ValueError,msg=case): source_record(bad)
 
     def test_disk_matches_metadata_without_equating_payloads(self):
         with tempfile.TemporaryDirectory() as name:

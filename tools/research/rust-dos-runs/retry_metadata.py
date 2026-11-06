@@ -7,6 +7,25 @@ from private_payload_lock import LIMIT
 from save_failure_fields import record
 
 
+def source_record(meta):
+    if (meta.get("retry") is not True or meta.get("passed") is not True or meta.get("writes")!=[]
+            or "lock" in meta.get("fault",{})
+            or meta.get("fault",{}).get("write_result",{}).get("carry") is not False
+            or meta.get("resource_result",{}).get("ax")!="0000"
+            or meta.get("numbered_result",{}).get("success_byte")!=1
+            or meta.get("copy_entry",{}).get("ownership")!=0
+            or meta.get("checkpoint",{}).get("name")!="retry-map"
+            or meta.get("checkpoint",{}).get("checked") is not True
+            or meta.get("files_after",{}).get("SAVE02.SAV",{}).get("exists") is not True):
+        raise ValueError("retry source lacks successful unseeded ownership-zero copy")
+    original=meta["fault"]["record"]
+    current=meta["post_failed_map"]["record"]
+    if current.get("dirty")!=1 or any(current.get(k)!=original.get(k)
+            for k in ("pointer","io_handle","options","flags","handle")):
+        raise ValueError("retry source lost its same pending working record")
+    return current
+
+
 def summary(header, directory):
     if len(header) != 28 or header[:4] != b"GFFI":
         raise ValueError("unsupported GFF header")
