@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-019, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -57,7 +57,9 @@ choice whose Quit branch clears `DS:1462`. That zero value makes the
 resident main loop return at its next continuation check; the startup
 path then runs the shutdown routine registered with `atexit`, which closes
 sound, video, the timer and the archives, and submits a DOS terminate
-request (FND-SAVE-012, FND-SAVE-019). Nothing on that path saves the game.
+request (FND-SAVE-012, FND-SAVE-027). The recorded local exit sequence
+does not show a save operation; writes reached through unresolved callbacks
+and callees remain unexcluded (Q-SAVE-007).
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
 game once it has saved (FND-SAVE-018).
 
@@ -86,4 +88,7 @@ None known.
 
 ## Open questions
 
-None known.
+- Can the Quit shutdown route write a saved game or working archive through
+  a reached callback or callee? The local sequence has no explicit save,
+  but its transitive no-write claim lacks a complete mechanism and target
+  audit (FND-SAVE-027, Q-SAVE-007).

@@ -368,6 +368,11 @@ Next ID: Q-CONFIG-014
   later-reader or reinitialization/exit admission; do not assume cleanup
   nulls A0ED, A043 or the graphics-record root. Its literal field census
   retains computed/bulk/physical aliases and excluded incoming streams.
+  FND-SAVE-027 binds the known post-cleanup interrupt-table restore to
+  source4DE7:0002 and its DF-sensitive1024-byte forward interval.
+  Retain actual source/DF/vector and subsequent callback admission;
+  it is not a file-output call or a passive continuation. Q-SAVE-007
+  separately owns the unsupported transitive no-save claim.
   Q-CONFIG-013 now owns the shared allocation/header contract formerly
   accumulated here, retaining FND-CONFIG-209/211/212/223 and all their
   heap/link/bound, caller-range, direction-flag and runtime obligations.

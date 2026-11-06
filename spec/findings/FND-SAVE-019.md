@@ -1,9 +1,9 @@
 ---
 id: FND-SAVE-019
 title: The exit after the main loop runs two atexit routines, one exit procedure, the runtime's vector restore and DOS function 4Ch; none of them writes a saved game, DARKRUN.GFF or CHARSAVE.GFF
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SAVE-027]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
