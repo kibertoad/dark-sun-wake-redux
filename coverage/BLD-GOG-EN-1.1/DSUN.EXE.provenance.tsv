@@ -10,7 +10,8 @@ overlay_body_clip_revision	1c38149e3ed55693336abfe94ad35c76c9c4e9548bccb7531ba24
 join_revision	69dddc01fcc141559be6223c54b01357f070e339211c95448ee04057b015841c
 region_mode	initialized
 functions	3230
-summed_body_bytes	484530
-unique_body_bytes	484530
+summed_body_bytes	484563
+unique_body_bytes	484563
 body_bytes_outside_regions	0
 entries_without_instruction	0
+body_range_repair	FND-PARTY-278: source-verified 3F96:070E body extended through 0755; +33 bytes, no overlapping owner; narrow export of INST-single-20261103b reassigns 31 instruction and 2 undefined bytes from outside to inside the body, preserving analyzer classifications.

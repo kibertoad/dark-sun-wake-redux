@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -92,6 +92,10 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   and finds no tested direct incoming call to any of the 34 interiors.
   Nine resident nearby-word pairs, jumps and excluded target forms remain;
   the missed Ghidra store control supplies no negative ownership proof.
+  FND-PARTY-278 accounts for all nine pairs as unrelated operands or
+  descriptor fields. Its 33-byte inventory-body repair changes this map's
+  current hash but no function count or assignment. The retained writer
+  census is unchanged; computed/copied/remote targets and jumps remain.
   FND-PARTY-267 excludes 105 direct literal non-DATA request setups from
   number tracing. FND-PARTY-268 classifies its thirteen variable sites
   into five local non-DATA choices, four known-caller non-DATA bindings
@@ -125,7 +129,7 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   Its queue condition is authoritative; this map does not repeat it or
   declare any of those obligations complete.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
-  SHA-256 `69555e580c3964e90ec43822629c29e3b909ecc264353b4dec0ccc82bdbf76ea`.
+  SHA-256 `baac52b88e23a72661cfc2caaf4c19c8c08b1cdce2c23d04e3d2ad402f553477`.
   Known owned roots are `0x0006F640` (overlay 185 accessor, shared with
   RULE-PARTY-013's experience-table use) and `0x0006BA1E` (overlay 183
   selection caller, shared with RULE-PARTY-009 and generation level setting).
