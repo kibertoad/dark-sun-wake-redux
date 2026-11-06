@@ -41,7 +41,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 15F3:06B6..15F3:0851
-tool: tools/research/exec-census/resident_listing.py at dd0ce3fe and 52a64a27; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
+tool: tools/research/exec-census/resident_listing.py at dd0ce3fe and 52a64a27; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
 environment: null
 ---
 
@@ -188,6 +188,60 @@ and the original census's unsearched mechanisms remain Q-PARTY-137.
 The measured default notification in FND-PARTY-335 is a point binding,
 not proof that these conditions hold throughout the first handoff.
 
+### Scalar cache metadata has a finite separation contract
+
+FND-EXE-239/240/241 identifies the allocator's own scalar destinations:
+words +08/+0A/+0E of the selected fixed cache record, and words
++0E/+14/+16/+18 of the supplied or walked overlay headers. FMT-EXE-003
+registers all 49 source header segments, from 565C through 57DD.
+The existing fingerprint-checked registered mapping confirms that full
+set; it does not infer header registration from a live link value.
+
+For these scalar writes, the conservative header-field envelope is
+565CE..57DEE, covering offsets +0E through +1D in every registered
+header. The two fixed sixteen-byte cache records have the combined
+envelope 55E10..55E30. The queue/kind span is 4DA10..4DA70.
+All ranges are half-open. Both metadata envelopes are strictly above
+the queue and below the beginning of the SS window when SS=57E0.
+No choice of a saved word's offset within that admitted SS window can
+make one of these scalar destinations its storage.
+
+Uniform relocation preserves these comparisons while the segment and
+physical-address ranges do not wrap. For the observed delta -0A46:
+
+| Region | Runtime linear envelope |
+|---|---|
+| Registered-header cache scalar fields | 4C16E..4D98E |
+| Fixed cache records | 4B9B0..4B9D0 |
+| Queue and dispatch kinds | 435B0..43610 |
+| Observed SS window | 4D9A0..5D9A0 |
+
+This whole-set exclusion does not require a particular cache-chain order
+or every node to have the same contents. It requires that each reached
+header destination belongs to the registered set, the supplied header is
+registered, the cache record retains its fixed segment, and SS/queue
+retain the mapped identities. Own relinking among those headers and the
+fixed record keeps the scalar destination class inside these envelopes.
+A cycle can prevent return without making an in-class scalar store an
+alias of the queue or stack. A null/foreign header used as a writable
+node, a changed segment or an adjusted out-of-class destination cannot
+use this exclusion.
+
+In particular, under those input and no-interference conditions the
+allocator's own scalar writes cannot overwrite its saved BP at entry
+SS:(S-4), its saved DS, or the handler/runner's saved words. The allocator
+and its three direct children contain no native request or external
+callback; native/notification activity in the outer EMS routine occurs
+after allocator return. This closes the own-scalar-write alias case for
+that admitted registered graph, without proving graph termination or
+actual reflection-time registration and segment preservation.
+
+The frame walker's SS-relative stores/exchange, trampoline string writes,
+code moves/fixups, DOS reads, EMS page copies and external/asynchronous
+writers are different mechanisms. They are not bounded by these metadata
+envelopes. Retain their actual destination/count/frame conditions rather
+than reusing a generic cache-metadata warning for this classified case.
+
 ## Interpretation
 
 The selected overlay hook is a no-op or one of two specific copy paths,
@@ -242,3 +296,12 @@ additional resident ranges listed above. Use FND-EXE-397 and
 FND-RNG-019/066 for their connected request/constructor entry context.
 Distinguish entry DS, an explicit later reload, and DS after a reached
 native or driver call. No original game ran for this classification.
+
+For the scalar separation result, use FMT-EXE-003's full registered
+header set and the fingerprint-checked registered() mapping in
+loaded_headers.py at 448da523. Take the minimum header segment times
+16 plus 0E and maximum times 16 plus 1E, then compare the fixed cache,
+queue and admitted SS intervals above. Apply one common relocation
+delta to segment identities, not to offsets. Reuse FND-EXE-239/240/241
+for the complete own scalar-write set. No new original run, byte-pattern
+negative search or assumed native target is involved.
