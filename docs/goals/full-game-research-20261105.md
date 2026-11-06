@@ -34,15 +34,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince fbdb3cf5
-  -NoRestore` passed: 2039 entries, 208 parity rows, five deviations.
-  Prior ownership-map integration passed selected controls and 758 .NET tests.
-  Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
+- Stage: Slices. Research Audit remains unmet. 
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 12d0a417
+  -NoRestore` passed: 2040 entries, 208 parity rows, five deviations.
+  Prior integration passed controls and 758 .NET tests.
+  Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
   remains the closure trial; its original four-root map is separate from the
   new `docs/research-closure-cast-window.json` plan introduced at 02e2d875.
-  The plan has 54 assignments, 25 shared, sixteen open obligations,
+  Plan: 54 assignments, 25 shared, sixteen open obligations,
   6959 unassigned rows and zero accepted readings. Reporter passes
   with zero errors/stale inventories/unmeasured files. Only owner-excluded
   DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
@@ -85,8 +85,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-075/076 bound command-line/health inputs. Q-SOUND-004 retains
   actual argv/startup, SAVE/18/resource/frame/health/script histories
   and excluded writers. FND-SOUND-077 maps shipped request-52 sites;
-  FND-SOUND-078 bounds eight formulas; next path/backing/bypass admission,
-  two carried locals, dynamic selector, decode gap and scheduling.
+  FND-SOUND-078/079 bound formulas/tested literal entries and carried routes;
+  next other entries/backing, GPL15 helper, GPL18 local save/restore,
+  dynamic selector, decode gap and scheduling.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
