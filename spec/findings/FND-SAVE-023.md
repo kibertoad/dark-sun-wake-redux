@@ -70,6 +70,11 @@ load and after a region change. The game state never uses the numbered form.
 
 ## Alternatives
 
+FND-SCRIPT-060 subsequently excludes a zero entry-offset operand from
+1687 counted top-level sites in eight shipped trigger-registration families.
+It qualifies the unchecked-source question below, without excluding native,
+restored, partial or other unindexed zero-entry trigger states.
+
 FND-COMBAT-151 subsequently qualifies the reverse routine's machine-width
 scan bound, near-local DS/SS relationship, size/data identity and failure
 cleanup paths. The normal shipped-table mapping is not a universal runtime

@@ -119,6 +119,9 @@ Next ID: Q-SCRIPT-026
   native route, not earlier SAVE/38 I/O or continuous lifetime. FND-SCRIPT-059
   settles the inventoried explicit-displacement table-access mechanisms;
   retain its computed/bulk/raw exclusions and child preservation conditions.
+  FND-SCRIPT-060 excludes zero entry-offset operands in the eight counted
+  shipped top-level registration families; retain native/restored/partial
+  zero-entry states and the converter's zero case, not that decoded source set.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
