@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 5b227a5e -NoRestore`
-  passed with declared skips: 2002 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 0a455348 -NoRestore`
+  passed with declared skips: 2003 entries, 208 parity rows, five deviations.
   Integration for 7a8b8ec1 passed build, 203 JavaScript and 758 .NET tests.
   New provenance/ownership paths require separate integration acceptance.
   Set project-local EVIDENCE_PYTHON for gates, hooks and dependency lookup.
@@ -64,12 +64,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the comparison revision. There is no demonstrated topic-closure speedup.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
-  and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 323,
+  and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 324,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
   root/mode/ready admission, saved-frame and excluded pointer histories.
   FND-PARTY-322 binds the known exit callback route; FND-PARTY-323 resolves
   the named unchanged alias candidate. Next changed/computed incoming forms
-  and actual interval/frame admission, not that excluded raw-word pair;
+  and actual interval/frame admission, not that excluded raw-word pair.
+  FND-PARTY-324 classifies literal mode producers. Next actual excluded mode
+  writers/raw candidates and between-read preservation; reuse the known
+  zero/one producer domain without claiming an unconditional runtime invariant;
   apply conditional nonreturn contracts without dismissing reentrant exit
   readers or changed-frame/nonlocal rejoining. Newly identified rows
   4734:010F, 49DE:000F and 0x00067902 remain unassigned in the map.
