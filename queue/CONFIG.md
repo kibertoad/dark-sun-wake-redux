@@ -402,6 +402,11 @@ Next ID: Q-CONFIG-014
   predecessor/successor admission, especially the following header's word-two
   state overwritten unconditionally by splitting; payload-only disjointness
   and fixed decompiler DS aliases do not settle those inputs.
+  FND-CONFIG-228 reads the original consistency checker and three direct
+  diagnostic consumers: selected adjacency/backlink/range and word-sum checks
+  do not prove full membership or the closing backlink, and the break query
+  can change state. Retain actual gameplay caller/bypass and backing evidence;
+  do not substitute checker status2 for the unresolved heap invariants.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
