@@ -22,6 +22,7 @@ from startup_window import wait_for_stop
 from shutdown_snapshot import capture
 from shutdown_calls import slot_call, slot_entry, slot_return, stream_use
 from shutdown_dirty import seed_active, Preparation
+from shutdown_xms import XmsCleanup, OFFSETS as XMS_OFFSETS, NATIVE_ENTRY as XMS_ENTRY
 
 
 class QuitFlow:
@@ -149,6 +150,9 @@ def main():
             stream_stops = (rng.address(0x1000, 0x3F1E), rng.address(0x1000, 0x2F30))
             pending_slot = None
             report["cleanup_calls"], report["stream_uses"] = [], []
+            report["xms_calls"] = []
+            xms = XmsCleanup(delta, report["xms_calls"])
+            xms_stops = (*tuple(rng.address(0x15F3, off) for off in XMS_OFFSETS), XMS_ENTRY)
             for index in range(4096):
                 observed, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
                 stop = observed.stop
@@ -194,13 +198,21 @@ def main():
                         raise ValueError("cleanup entry lacks a unique observed slot call")
                     item = report["cleanup_calls"][pending_slot]
                     item["callee_entry"] = slot_entry(session.client, stop, delta, item)
+                    for target in xms_stops:
+                        session.client.set_breakpoint(target)
+                elif flow.phase == "shutdown" and address in xms_stops:
+                    if pending_slot is None or "callee_entry" not in report["cleanup_calls"][pending_slot]:
+                        raise ValueError("XMS boundary lacks observed type-three cleanup")
+                    xms.observe(session.client, stop, report["cleanup_calls"][pending_slot]["callee_entry"])
                 elif flow.phase == "shutdown" and address == slot_after:
                     if pending_slot is None:
                         raise ValueError("slot return lacks observed call")
                     item = report["cleanup_calls"][pending_slot]
-                    if "callee_entry" not in item:
+                    if "callee_entry" not in item or xms.current is not None:
                         raise ValueError("slot return lacks fixed callee-entry observation")
                     item["result"] = slot_return(stop, delta, item)
+                    for target in xms_stops:
+                        session.client.remove_breakpoints(target)
                     pending_slot = None
                 elif flow.phase == "shutdown" and address in stream_stops:
                     report["stream_uses"].append(stream_use(session.client, stop, delta))
@@ -245,7 +257,7 @@ def main():
                     report["events"].append(item)
                 elif flow.phase == "shutdown" and address == terminate:
                     if (pending_write is not None or pending_slot is not None
-                            or pending_commit is not None or preparation.pending is not None
+                            or pending_commit is not None or preparation.pending is not None or xms.current is not None
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)
