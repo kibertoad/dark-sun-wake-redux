@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 211ea53c
-  -NoRestore` passed: 2038 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince fbdb3cf5
+  -NoRestore` passed: 2039 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -48,7 +48,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
   none closes a question. No complete reading or answered deletion was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
   the third batch is 96077cf3.
-- All three timed closure-focused batches are complete; commit messages
+- Three timed batches are complete; commit messages
   retain research, tooling, checks and handover timings.
   PARTY/UI comparison:
   02e2d87549c20763b6951b505d1a73ff9a47a821 to
@@ -64,7 +64,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - Independent `docs/research-closure-sound-playback.json`: 34 assigned,
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
-  Counts non-additive; no status/closure changes.
+  Counts non-additive; no closures.
 - FMT-SOUND-002 review baseline 26785998 remains supported, no complete
   reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
   literal/raw accesses, 064 for list/address equations, 065 for shipped
@@ -81,11 +81,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   supersedes 012. FND-SOUND-072 classifies three raw interiors; next
   Q-SOUND-012 gap 1BF3:4889..4C09 ownership/490D binding after
   FND-SOUND-073 excludes tested encoded entries. Split, not closure;
-  FND-SOUND-074 binds four known transition-call tuples/results;
+  FND-SOUND-074 binds transition-call tuples/results;
   FND-SOUND-075/076 bound command-line/health inputs. Q-SOUND-004 retains
   actual argv/startup, SAVE/18/resource/frame/health/script histories
   and excluded writers. FND-SOUND-077 maps shipped request-52 sites;
-  next ten variable inputs, dynamic selector, decode gap and scheduling.
+  FND-SOUND-078 bounds eight formulas; next path/backing/bypass admission,
+  two carried locals, dynamic selector, decode gap and scheduling.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
