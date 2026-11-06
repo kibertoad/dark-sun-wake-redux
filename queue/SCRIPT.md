@@ -144,6 +144,10 @@ Next ID: Q-SCRIPT-026
   its explicit prefix/preservation conditions. Retain actual selected lengths,
   produced bytes, live destination identity and reached child/alias effects,
   not an invented 2600-byte minimum or prefix-bounded conversion pass.
+  FND-SCRIPT-065 connects source-equal SAVE/38 transfer, equal conversion input
+  and predicted output before release/at reader return in one native route.
+  Retain temporary/intervening writes, allocation ownership, other inputs and
+  failed/skipped/short-transfer admission; the samples are not a continuous audit.
   Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
   Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to

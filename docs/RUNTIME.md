@@ -300,6 +300,17 @@ GAME_DIR/captures/rust-dos-load-entry/v181-trigger-transfer-20261106/;
 reproduce with load_entry.py v181-q063-native-save-input-20261104
 <fresh-output-name> saved-trigger-transfer using the pinned interpreter.
 Its samples do not prove continuous lifetime or failed-transfer behavior.
+The fixed saved-trigger-conversion stage in FND-SCRIPT-065 connects those
+transfer checks to the pre-conversion pointer/2600-byte input and predicted
+output before release and at reader return within one run. Reproduce with
+load_entry.py v181-q063-native-save-input-20261104 <fresh-output-name>
+saved-trigger-conversion. Accepted output is
+GAME_DIR/captures/rust-dos-load-entry/v181-trigger-conversion-fixed-20261106/.
+The earlier v181-trigger-conversion-20261106 directory retains a stopped
+overlap-extent tooling diagnostic. The accepted run's target38 expected
+hash uses the legacy private_span_sha256 key with an explicit prediction
+basis; dfdf8fba renames that output key only. These samples admit the
+normal route, not continuous lifetime or other inputs/failures.
 The stage still stops before the reader caller consumes AL; file provenance,
 continuous lifetime, other inputs/failures and completed loading remain open.
 Guarded writes were not reattempted under these new pins.

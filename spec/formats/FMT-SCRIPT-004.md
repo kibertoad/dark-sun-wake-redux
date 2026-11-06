@@ -9,7 +9,7 @@ byte_order: little
 size: 13
 text: false
 definition: fmt_script_004.ksy
-evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152, FND-SCRIPT-058, FND-SCRIPT-061, FND-SCRIPT-064]
+evidence: [FND-SCRIPT-013, FND-SCRIPT-014, FND-SCRIPT-015, FND-SCRIPT-017, FND-SCRIPT-038, FND-SCRIPT-028, FND-CONFIG-156, FND-SAVE-015, FND-SAVE-021, FND-SAVE-023, FND-SCRIPT-031, FND-COMBAT-152, FND-SCRIPT-058, FND-SCRIPT-061, FND-SCRIPT-064, FND-SCRIPT-065]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-008]
@@ -61,6 +61,11 @@ reader-local, prepared and live pointer words agree at request entry,
 selection and matched core return, and all 2600 destination bytes equal
 the selected private-file span. That run stops before conversion; these
 separate observations do not constitute one continuous lifetime trace.
+FND-SCRIPT-065 connects those sampled relationships in one native run:
+the verified transfer bytes equal the later conversion input, and the
+predicted output equals all2600 bytes before release and at reader return.
+It still does not establish uninterrupted allocation lifetime between stops
+or other restored/failure states.
 
 FND-CONFIG-156 locates allocation in the initializer reached through 565C:0020.
 On its nonpositive-status initialization path, the known caller supplies 200;

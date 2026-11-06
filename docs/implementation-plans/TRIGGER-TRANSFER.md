@@ -60,3 +60,8 @@ Admit that fixed extent for overlap arithmetic only; the map reader's
 12544/1568-byte input limits stay unchanged. Add overlapping, disjoint,
 wrapping and unsupported-size controls before retrying with fresh output.
 The stopped attempt remains a tooling diagnostic, not a conversion result.
+
+Accepted connected result: FND-SCRIPT-065 records one run with source-equal
+transfer, matching pointer/input at the later conversion snapshot, and
+predicted output before release and at reader return. Its limits and the
+historical prediction-hash field label are recorded in that finding.
