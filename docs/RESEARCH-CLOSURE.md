@@ -165,3 +165,15 @@ Read connected behavior in a supported decompiler with cross-references and call
 For the three batches after the one that commits the map, each taking one closure objective, record elapsed research, tooling, validation and handover time separately, including failed checks and retries, in each batch's commit message above its trailers, under the limits [Batches](../vendor/upstream/work-protocol.md#batches) (lines 203-423) sets for any such measurement. Keep elapsed time apart from active effort, and commit counts apart from both; none of them proves overhead alone. After the first two of those closure-focused batches, compare their outcomes with the assessment baseline at exact revisions over the same scope: qualifying complete readings, answered queue items and removed caller, writer and indirect-transfer obligations, each with its evidence, then the remaining obligations and inventory gaps, then counts of findings and commits as activity. The handover (`docs/HANDOVER.md`, or the goal file's own handover) records the two revisions compared and the result, naming entries, queue items and evidence by ID and giving counts, without saying what the research found. Report a lack of closure there and change the next objective. The evidence threshold stays where it is, and no success quota applies.
 
 This is a human review procedure. Existing reporters validate only their documented inputs; they do not check this worksheet's judgments.
+
+## Cast-window dependency ownership
+
+`docs/research-closure-cast-window.json` is a partial metadata ownership plan
+for already identified PARTY/UI functions supporting Q-PARTY-134 and its
+Q-PARTY-135/136/137 dependencies. It keeps all four obligation kinds open for
+both areas. Run `node tools/Report-ResearchClosure.mjs --plan
+docs/research-closure-cast-window.json --json` for the current assessment.
+Its shared counts are non-additive and its unassigned functions remain
+visible. It does not replace the four-root map in FMT-PARTY-007 or the
+SAVE/COMBAT numbered-load plan. No combined count across those plans is
+claimed, and no assignment declares a complete reading.

@@ -1,0 +1,296 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "UI",
+      "scope": "APFM record selection, construction and callback-field effects used by cast-window producer admission in FMT-PARTY-007. Other UI functions and unassigned functions remain outside this partial map."
+    },
+    {
+      "id": "PARTY",
+      "scope": "Known cast-window and last-cast number-producer paths assessed for Q-PARTY-134, with getter and preservation dependencies Q-PARTY-135/136/137. No closure claim for PARTY as a whole."
+    }
+  ],
+  "inventories": [
+    {
+      "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
+      "sha256": "820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2",
+      "assignments": [
+        {
+          "start": "3A8E:02B3",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3A8E:060D",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "39D1:049C",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3D72:0635",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3D72:0515",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:000B",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:0068",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:0097",
+          "areas": [
+            "UI"
+          ],
+          "reason": "Containing inventory row also includes the reviewed interior text-getter entry 3F96:00D6; no separate inventory function is asserted."
+        },
+        {
+          "start": "3F96:0211",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:025E",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:02AB",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:02F8",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3F96:0755",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3CFA:0006",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3CFA:00DA",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3CFA:0423",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3CFA:0586",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "28C9:2A81",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "28C9:2ABD",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "4328:0B4C",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "0x00095E10",
+          "areas": [
+            "PARTY"
+          ]
+        },
+        {
+          "start": "0x000960C5",
+          "areas": [
+            "PARTY"
+          ]
+        },
+        {
+          "start": "0x0009662B",
+          "areas": [
+            "PARTY"
+          ]
+        },
+        {
+          "start": "0x00096F04",
+          "areas": [
+            "PARTY"
+          ]
+        },
+        {
+          "start": "0x0009785F",
+          "areas": [
+            "PARTY"
+          ]
+        },
+        {
+          "start": "0x000788E9",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared character-selection or last-cast callback: UI owns event/record presentation interfaces; PARTY owns selected-member and number-production state. Assignment is not a complete reading."
+        },
+        {
+          "start": "0x000790C9",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared character-selection or last-cast callback: UI owns event/record presentation interfaces; PARTY owns selected-member and number-production state. Assignment is not a complete reading."
+        },
+        {
+          "start": "0x0005A051",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared character-selection or last-cast callback: UI owns event/record presentation interfaces; PARTY owns selected-member and number-production state. Assignment is not a complete reading."
+        }
+      ]
+    }
+  ],
+  "obligations": [
+    {
+      "id": "apfm-caller-admission",
+      "area": "UI",
+      "kind": "callers",
+      "question": "Which caller and input histories admit the reviewed constructor, paint, text and record-selection contracts during the member-switch interval, including alternate entries?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-136"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "apfm-record-state",
+      "area": "UI",
+      "kind": "state-producers",
+      "question": "Which actual record/table/backing and changed field or mode histories defeat the unchanged-shipped-APFM exclusion, beyond the named conditional preservation contracts?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "apfm-indirect-admission",
+      "area": "UI",
+      "kind": "indirect-transfers",
+      "question": "Which changed callback fields, setter inputs, table bindings or excluded transfers can reach the number-producing handler before its later count clear?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-136"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "apfm-remaining-evidence",
+      "area": "UI",
+      "kind": "remaining-evidence",
+      "question": "What segment, frame, buffer, guard and external-state evidence remains necessary to apply the reviewed local APFM effect contracts to the actual interval?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-136"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "cast-producer-callers",
+      "area": "PARTY",
+      "kind": "callers",
+      "question": "Which actual caller and input histories remain for the three clients and six direct bindings after the recorded intrinsic-domain and case-bypass exclusions?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "cast-producer-state",
+      "area": "PARTY",
+      "kind": "state-producers",
+      "question": "Which current/stored number, last-cast/list word, member/mode/count and getter-pair or queue-record histories can supply DATA 1001 under retained handoff conditions?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-135",
+        "Q-PARTY-136",
+        "Q-PARTY-137"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "cast-producer-transfers",
+      "area": "PARTY",
+      "kind": "indirect-transfers",
+      "question": "Which indirect, jump, bypass and changed callback inputs remain outside the controlled direct bindings and intended registration domains?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-136"
+      ],
+      "evidence": []
+    },
+    {
+      "id": "cast-producer-evidence",
+      "area": "PARTY",
+      "kind": "remaining-evidence",
+      "question": "Which actual runtime routing, storage preservation and source correspondence conditions remain after reusing the scoped static contracts, without assuming a native event or successful acquisition?",
+      "state": "open",
+      "queue": [
+        "Q-PARTY-134",
+        "Q-PARTY-135",
+        "Q-PARTY-136",
+        "Q-PARTY-137"
+      ],
+      "evidence": []
+    }
+  ]
+}

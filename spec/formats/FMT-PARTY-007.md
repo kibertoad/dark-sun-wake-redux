@@ -211,6 +211,12 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   distinct lookup/hit records and publication before constructor success.
   Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.
+  The separate metadata-only ownership plan
+  `docs/research-closure-cast-window.json` assigns the already identified
+  cast-window and APFM rows to PARTY/UI, including shared selection callbacks.
+  Its open obligations reference Q-PARTY-134/135/136/137; it does not replace
+  this entry's four-root map, the separate SAVE/COMBAT map or their denominators.
+  Assignment and cited coverage do not establish complete readings.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
   SHA-256 `820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2`.
   Known owned roots are `0x0006F640` (overlay 185 accessor, shared with
