@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 095c78f2 -NoRestore` passed:
-  2114 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  `Test.ps1 -Research -ChangedSince c007e2b7 -NoRestore` passed:
+  2115 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen new boundary controls passed. Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
@@ -55,10 +55,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   candidate decoding does not establish callers or callback argument identity.
   Reuse FND-EXE-587's connected setter/forwarder/argument/consumer census
   and FND-CONFIG-163's guard conditions; these are reconciled into Q-EXE-033.
-  Do not reread local window callback stores. Next compare remaining
-  first-transfer groups against FND-EXE-588, including control setters,
-  then isolate unmatched branch/copy/consumer candidates. Retain destination
-  aliasing, excluded writers/histories and header-relevant target effects.
+  Reuse FND-EXE-588's application-frame census. FND-EXE-644 resolves all
+  nine first-jump candidate joins; do not repeat those local paths.
+  Next match the 144 first-call candidates to the retained caller/argument
+  censuses in FND-EXE-579/583/585/586/587/588. Consumer-family coverage
+  is separate from verifying each candidate's argument and instruction start.
+  Retain destination aliasing, excluded writers/histories and header-relevant
+  target effects. Use FND-PARTY-156/EXE-626 for per-slot callbacks.
   Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
