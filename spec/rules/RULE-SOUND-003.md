@@ -240,3 +240,8 @@ None known.
 - Q-SOUND-004 retains actual startup-region admission after FND-SOUND-075:
   the ordered command-line gate and numeric store are read, but they supply
   no region-range validation or proof of later startup preservation.
+
+- Q-SOUND-004 retains actual health-record and script histories after
+  FND-SOUND-076: the known aggregation and request-52 override do not
+  clamp the byte to 1..10, and ordinary tick selection reloads it after
+  recomputation. Backing, ordering and excluded writers remain open.

@@ -71,7 +71,10 @@ Next ID: Q-SOUND-013
   retention, state-4 admission and excluded callers/writers. FND-SOUND-075
   settles the local command-line branch: ordered key gating and a low-word
   numeric store without a region bound; actual argv/segment admission and
-  subsequent startup preservation remain. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
+  subsequent startup preservation remain. FND-SOUND-076 settles known
+  health aggregation/override and tick forwarding; retain actual record
+  input histories, script ordering, backing and excluded health writers
+  rather than an assumed 1..10 field domain. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
   local disc-start, response-table writes and request-status ordering; track
   publication ignores start-request failure. Actual handler/output, table
