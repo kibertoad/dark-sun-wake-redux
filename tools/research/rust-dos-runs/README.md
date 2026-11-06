@@ -1,5 +1,12 @@
 # rust-dos runs
 
+`shutdown_snapshot.py` is a named read-only helper, not a launcher. Its
+ordinary-exit-entry admission, field bounds and staged runner work are in
+[SHUTDOWN-OBSERVATION](../../../docs/implementation-plans/SHUTDOWN-OBSERVATION.md).
+Run its synthetic controls with the evidence Python and
+`-I tools/research/rust-dos-runs/check_shutdown_snapshot.py`. No runtime
+capability or shutdown result is admitted by those controls.
+
 Agent runs of the installed `DSUN.EXE` through `dinorefurb-dosbox-session`
 (`RustDosSession`, the pinned rust-dos, host sound muted), as `docs/RUNTIME.md`
 describes. Run them from the repository root with the evidence Python and
