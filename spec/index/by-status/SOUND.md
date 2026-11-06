@@ -22,15 +22,16 @@ Entries by status.
 
 ## superseded
 
-1 entries.
+2 entries.
 
 | ID | Title |
 |---|---|
 | [FND-SOUND-018](../../findings/FND-SOUND-018.md) | The nineteen disc ADV files share a Copy header and bounded function directories containing 598 entries |
+| [FND-SOUND-028](../../findings/FND-SOUND-028.md) | Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists |
 
 ## recorded
 
-28 entries.
+46 entries.
 
 | ID | Title |
 |---|---|
@@ -60,8 +61,26 @@ Entries by status.
 | [FND-SOUND-025](../../findings/FND-SOUND-025.md) | Setup's decimal count path converts the installed 13 and minus-one tokens without a sentinel shortcut |
 | [FND-SOUND-026](../../findings/FND-SOUND-026.md) | Setup count allocations zero-extend and round requests, and group clearing covers the requested span |
 | [FND-SOUND-027](../../findings/FND-SOUND-027.md) | Setup's plain string formatter preserves short label bytes and appends one terminator |
-| [FND-SOUND-028](../../findings/FND-SOUND-028.md) | Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists |
 | [FND-SOUND-029](../../findings/FND-SOUND-029.md) | Installed setup record strings and list counts fit the mapped field gaps, with one missing and duplicate primary-key exception |
+| [FND-SOUND-030](../../findings/FND-SOUND-030.md) | Setup byte reader separates unsigned buffered bytes from failure and retains distinct refill flags |
+| [FND-SOUND-031](../../findings/FND-SOUND-031.md) | Setup lower reader translates CR and end markers while retaining conditional DOS errors and position results |
+| [FND-SOUND-032](../../findings/FND-SOUND-032.md) | Setup stream flush separates nonnegative reset paths from negative-count writeback |
+| [FND-SOUND-033](../../findings/FND-SOUND-033.md) | Setup's binary open and startup stream initializer produce a conditional buffered path without text translation |
+| [FND-SOUND-034](../../findings/FND-SOUND-034.md) | Installed setup input spans fit local buffers but thirty-two hexadecimal alternate addresses lose their suffix before scanning |
+| [FND-SOUND-035](../../findings/FND-SOUND-035.md) | Setup numeric extraction distinguishes no token, unassigned sign tokens and a successful zero-valued bare hexadecimal prefix |
+| [FND-SOUND-036](../../findings/FND-SOUND-036.md) | Setup numeric overflow still assigns a word and bracketed-value failure retains partial copying |
+| [FND-SOUND-037](../../findings/FND-SOUND-037.md) | Setup record dispatch retains scalar mapping and consumes nonpositive jumper lookups without changing jumper bits |
+| [FND-SOUND-038](../../findings/FND-SOUND-038.md) | All installed setup records fit the counted source bands, including two consumed unrecognized jumper keys |
+| [FND-SOUND-039](../../findings/FND-SOUND-039.md) | Two fresh setup utility runs return successful parse counts and group pointers with distinct data and stack segments |
+| [FND-SOUND-040](../../findings/FND-SOUND-040.md) | Setup group allocation size is stored in the first prefix word before the offset-four payload |
+| [FND-SOUND-041](../../findings/FND-SOUND-041.md) | Two fresh setup parser returns match every populated record byte and the predicted group size headers |
+| [FND-SOUND-042](../../findings/FND-SOUND-042.md) | Setup stream construction failure closes the handle and clears active fields while exhausted lookup can inspect two extra slots |
+| [FND-SOUND-043](../../findings/FND-SOUND-043.md) | Setup lower write separates raw DOS output from translated chunks and retains word arithmetic on short writes |
+| [FND-SOUND-044](../../findings/FND-SOUND-044.md) | Setup error normalization maps its bounded table to nonnegative results and preserves the negative-input bypass |
+| [FND-SOUND-045](../../findings/FND-SOUND-045.md) | Setup error-state literal census identifies a create-mode selector consumer and retains normalized-word boundary candidates |
+| [FND-SOUND-046](../../findings/FND-SOUND-046.md) | Setup error-word boundary candidates have no supported direct-transfer entries and overlap a driver-function stub |
+| [FND-SOUND-047](../../findings/FND-SOUND-047.md) | Setup hands off chunk words and a playback byte while CardGroup four substitutes the DMA summary argument |
+| [FND-SOUND-048](../../findings/FND-SOUND-048.md) | Setup plain signed-word formatting produces bounded decimal text and turns the CardGroup sentinel into minus one |
 
 ## Open questions
 
