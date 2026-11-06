@@ -579,3 +579,16 @@ After shared support is reviewed and explicitly adopted, validate the exact
 rendered config, owned startup and actual producer/cleanup state before
 admitting any alternate-profile runtime part. Default-profile checkpoints
 are not proof of a different profile's behavior.
+
+## Fixed registered-delete observation
+
+The default-profile shutdown observer now has read-only points for the
+registered library callback, its deletion-wrapper entry, native AH41
+request/result and normalized return. It requires the captured registered
+target, known caller/frame/path argument, equal bounded request path,
+restored registers and the wrapper's conditional error-word/AX/carry mapping.
+This extension is not yet runtime-admitted; its first actual attempt must
+validate those parts. No arbitrary host path is opened and no guest field
+is written. The static point check uses resident_listing.py over the two
+already established FND-EXE-558/559 ranges; its retained listing is
+GAME_DIR/analysis/handler-census-20261106/registered-delete-observer-points.txt.

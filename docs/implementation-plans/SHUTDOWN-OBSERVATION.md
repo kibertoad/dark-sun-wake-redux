@@ -184,3 +184,32 @@ only after that new source contract has been explicitly admitted. Tooling
 exit is passing controls and integration; runtime admission remains a
 separate actual attempt. The research exit answers Q-SAVE-008 or records
 the precise remaining evidence, with no status promotion from tooling.
+
+## Registered cleanup deletion
+
+For Q-SAVE-007, observe the existing checked saved-map ordinary F3/Quit
+under the default emulator profile. Reuse FND-EXE-558/559's connected
+callback and deletion wrapper, FND-SAVE-040's slot linkage and the fixed
+shutdown observer. The finite objective is the actual argument/request
+path, native deletion result, normalized wrapper return and fixed-file
+comparison for this one scenario; other callback/stream states remain open.
+
+Bind the reached registered callback to its captured exit-table entry and
+ordinary exit caller frame. At deletion-wrapper entry, require that
+callback's known return and stack displacement, the fixed DS:4022 path
+argument and preserved SS/BP. Retain a bounded terminated path without
+reading an arbitrary host path. Require the native AH41 point to use the
+same pointer/path and pair its immediately following result. Verify the
+wrapper's actual return frame, restored registers, zero/FFFF AX mapping,
+cleared carry and conditional error-word outcome. The callback's static
+remaining instructions discard the result; do not combine native and
+normalized results or infer deletion success from cleared wrapper carry.
+
+The probe makes no guest write, fault input, alternate config or direct
+host file operation. Existing private-drive/session ownership and mute
+settings remain mandatory. Synthetic controls reject mismatched callback,
+argument, frame, native selector/path and unpaired/incorrect result; cover
+native success and failure mappings. Tooling runs integration before an
+actual capability attempt. A passing run removes only the default-scenario
+native-delete path/result obligation, not the whole shutdown reading or
+all file effects. Original-derived paths/reports stay in GAME_DIR.

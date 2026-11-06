@@ -25,6 +25,7 @@ from shutdown_dirty import seed_active, Preparation
 from shutdown_xms import XmsCleanup, OFFSETS as XMS_OFFSETS, NATIVE_ENTRY as XMS_ENTRY
 from save_failure_fields import pending_watch, pending_change
 import retry_metadata
+from shutdown_delete import RegisteredDelete
 
 
 class QuitFlow:
@@ -183,6 +184,8 @@ def main():
             report["cleanup_calls"], report["stream_uses"] = [], []
             report["xms_calls"] = []
             xms = XmsCleanup(delta, report["xms_calls"])
+            report["delete_calls"] = []
+            deletion = RegisteredDelete(delta,report["delete_calls"])
             xms_stops = (*tuple(rng.address(0x15F3, off) for off in XMS_OFFSETS), XMS_ENTRY)
             for index in range(4096):
                 observed, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
@@ -223,9 +226,11 @@ def main():
                         for target in (prep_return, commit_request, commit_result):
                             session.client.set_breakpoint(target)
                     report["write_requests"] = []
-                    for target in (*requests, close_all, prep, terminate, slot_before, slot_after, cleanup_entry, *stream_stops):
+                    for target in (*requests, close_all, prep, terminate, slot_before, slot_after, cleanup_entry, *stream_stops, *deletion.stops):
                         session.client.set_breakpoint(target)
                     session.client.remove_breakpoints(poll)
+                elif flow.phase == "shutdown" and address in deletion.stops:
+                    deletion.observe(session.client,stop,report["entry"]["callbacks"])
                 elif flow.phase == "shutdown" and address == slot_before:
                     if pending_slot is not None:
                         raise ValueError("nested slot call outside fixed pairing")
@@ -298,6 +303,7 @@ def main():
                 elif flow.phase == "shutdown" and address == terminate:
                     if (pending_write is not None or pending_slot is not None
                             or pending_commit is not None or preparation.pending is not None or xms.current is not None
+                            or deletion.current is not None or len(report["delete_calls"])!=1
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x4C):
                         raise ValueError("incomplete write result or wrong termination service")
                     report["files_after"] = file_states(run)
