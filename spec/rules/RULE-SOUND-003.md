@@ -254,3 +254,7 @@ None known.
 - FND-SOUND-078 bounds eight adjacent random producers for the variable
   health requests; Q-SOUND-004 retains path/backing admission, bypassing
   entries and the two carried-local histories rather than unread formulas.
+
+- FND-SOUND-079 excludes the tested top-level literal assignment bypasses
+  and binds the two carried-local routes. Q-SOUND-004 retains other entry
+  mechanisms, helper/frame admission and saved-local preservation.

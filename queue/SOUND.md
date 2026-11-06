@@ -78,8 +78,10 @@ Next ID: Q-SOUND-013
   37 shipped literal script writers: 27 fixed values and ten local-variable
   inputs. FND-SOUND-078 bounds eight adjacent random-assignment paths and
   identifies the two carried-local producer sets. Remaining script input
-  scope is admission/backing and assignment-bypassing entries for those
-  eight paths, GPL/15 0131 and GPL/18 0769 carried-local histories,
+  scope is admission/backing and entries outside FND-SOUND-079's tested
+  top-level literal transfers for those eight paths; GPL/15 0131 retains
+  its 01B3 helper/returned-local binding and GPL/18 0769 its producer
+  calls, local-five selection and request-29/30 save/restore bindings,
   GPL/27 01C8 dynamic selection, GPL/37 0D39..0D58 decode gap, actual
   scheduling and excluded script/native producers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
