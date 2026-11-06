@@ -1,6 +1,6 @@
 ---
 id: SRC-RUSTDOS-181
-title: rust-dos v1.8.1 file-service register and vector source snapshot
+title: rust-dos v1.8.1 file-service, vector and XMS source snapshot
 superseded_by: []
 author: dividebysandwich and rust-dos contributors
 date: unknown
@@ -30,6 +30,19 @@ The older SRC-RUSTDOS-172 remains evidence for its historical revision.
 | src/instructions/control.rs | 209..234 | Software-interrupt dispatch. |
 | src/cpu/fault.rs | 217..241 | Real-mode vector lookup and interrupt frame. |
 | src/bios.rs | 9..17, 102..109, 145..183 | Default HLE and IRET vector mapping versus separately booted DOS. |
+| src/interrupts/int2f.rs | 30..37 | XMS installation result and entry pointer query. |
+| src/dos_data.rs | 19, 75..78, 171..173 | Fixed DOS segment, XMS entry offset and physical address calculation. |
+| src/xms.rs | 21..26, 299..309, 324..327, 406..417 | Entry installation, result convention, AH selection and free-handle branch. |
+
+The XMS files were additionally read at the same exact source commit on
+2026-11-06 for Q-SAVE-007. Installation query4300 returns AL80; query4310
+returns ES:BX=0160:1F00. Function0A takes DX as its memory-block handle.
+An invalid or locked block reports AX0 and an error in BL; a valid unlocked
+block is removed from the allocation and resident-handle records, then
+reports AX1. The bounded branch makes no file-service request. This is
+the source's own interface, not proof of every active guest hook or of
+source/release build correspondence. FND-SAVE-036 separately records a
+current native query, entered service and reported result.
 
 The ordinary-file branches for read/write/seek publish AX and carry,
 with seek also publishing DX. Neither those branches nor their
@@ -70,5 +83,5 @@ None identified in the bounded reading. The release binary has not
 been independently matched to this source tree. Actual guest routing,
 device handles, intervening handlers, invalid/paged memory, retries,
 stack/PSP aliases and original-platform behavior remain outside this
-contract. No emulator or original game ran, and no source-only result
+contract. The source reading itself ran no emulator or original game; no source-only result
 raises an original evidence status or declares a complete reading.

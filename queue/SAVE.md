@@ -79,6 +79,12 @@ Next ID: Q-SAVE-008
   Do not investigate that ordinary return as a way to reach later F3/Quit;
   preexisting-open and nonfatal paths remain, as do changed frames/arguments
   and nonlocal transfers. Fatal cleanup is distinct from status0 Quit.
+  FND-SAVE-036 binds the fixed type-three slot call to the live XMS entry
+  query, equal used pointer, actual native entry0160:1F00 and reported
+  free-handle success for argument1, followed by normal dispatcher rejoin.
+  Do not retain a generic unidentified native API or different entered
+  target for that recorded transfer. Other targets/hooks, changed state
+  and unmonitored effects remain; XMS handle1 is not a file/archive binding.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does

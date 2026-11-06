@@ -62,6 +62,15 @@ ordinary dirty-state history. Failure cases, other fields/callers and actual
 DOS termination remain unverified. The owned session closed and released
 its lock. Reports and writable copies remain in that private run directory.
 
+The XMS linkage extension passed in v181-quit-xms-entry-20261106 under
+the same capture root (FND-SAVE-036). Its installation/entry queries,
+free-call pointer and handle reads, fixed0160:1F00 native-entry frame and
+paired return are agent under the current pins. The fixed scenario entered
+that service with function0A/handle1 and returned AX1. This admits neither
+arbitrary native targets nor other hooks, functions or handles. The run
+made no guest setup write or RNG draw, stopped before DOS termination,
+and closed its owned session and lock normally.
+
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;
 an untested part is not admitted by a historical success. A save state
