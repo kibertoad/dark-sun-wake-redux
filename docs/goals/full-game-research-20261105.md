@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Research -ChangedSince 9104ff27 -NoRestore` passed:
-  2126 entries, 208 parity rows, five deviations. Prior integration passed
+  `Test.ps1 -Research -ChangedSince c43c6a15 -NoRestore` passed:
+  2128 entries, 208 parity rows, five deviations. Prior integration passed
   all Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
   and supported escalation for child processes. The fixed startup observer
@@ -49,11 +49,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Reuse FND-EXE-653 for the transfer cohort and FND-PARTY-339/FND-EXE-654
   for the outside-manager writer/constructor-point assessment. Do not repeat
   those local classifications or generalize stopped points to continuous DS.
-  After two batches without closure, change the next objective to Q-EXE-033:
-  review the runtime-error continuation behind the retained five gap bytes
-  and four contested starts, using FND-EXE-578 and existing exit readings.
-  Determine the actual instruction/data/continuation boundary before proposing
-  any profile annotation; retain the old model and do not silently cut paths.
+  Reuse FND-EXE-655 for the runtime-error entry/data/conditional-exit
+  assessment and FND-PARTY-343, which replaces 044. Do not repeat that
+  source reading or strengthen its conditional nonreturn claim.
+  Next Q-EXE-033 follow-up is tooling: reconcile the installed inventory's
+  combined error row with the independently established entry and inline
+  span, using an isolated Ghidra/export path. Preserve unaffected rows,
+  provenance and the old reach model; assess all ownership hashes after
+  any inventory edit. An export repair does not itself remove CFG gaps.
   Reuse FND-EXE-647's retained model/report under
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json. Do not repeat
   the 153-pair argument/boundary classification in FND-EXE-644/645/647.
@@ -67,9 +70,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Blocked 4; Next ID 38. The split answers no question. After map commit
   9517ca97, time research/tooling/checks/handover separately for the next three
   closure batches and compare outcomes after two against that revision.
-  FND-EXE-653/654 are the first two; one timed batch remains. Their records
-  disclose unmeasured bootstrap/early-check portions rather than estimating
-  active effort or claiming a measured overhead improvement.
+  FND-EXE-653/654/655 complete the three timed batches after that map.
+  Timing records disclose unmeasured bootstrap/early-check portions; they
+  are not active-effort or measured-overhead improvement claims.
 - FMT-PARTY-007 remains the first-handoff trial after the ten-entry assessment.
   Next Q-PARTY-137: actual publication-to-first-handoff backing/frame/native
   preservation, reusing PARTY-288/328..331/337..341 and paused observations
