@@ -411,6 +411,11 @@ Next ID: Q-CONFIG-014
   result. Retain other actual gameplay caller/bypass and backing evidence,
   including near-cursor DS/SS binding; do not substitute checker status2
   or the query total for the unresolved heap invariants.
+  FND-CONFIG-230 composes nonterminal predecessor/successor coalescing,
+  insertion/unlink writes and ordinary DS/SS restoration. Retain actual
+  membership, positive counts, no-adjacent-free successors, physical
+  separation and saved-slot stability, plus terminal/native effects;
+  do not reopen the composed merge bodies as unspecified callee behavior.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
