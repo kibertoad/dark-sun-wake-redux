@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -60,6 +60,16 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   callbacks: registration and immediate consumers do not dereference them
   as header data. Their downstream manager/reporter effects and other
   computed or aliased pointers remain within the census obligations.
+  FND-EXE-587 already supplies the connected window/global callback
+  setter, forwarder, argument and indirect-call reading. In particular,
+  its three window setters store the callback value at record +F5/+F9/+FD;
+  treating that callback argument as an unread header-data dereference
+  would repeat resolved local work. This does not establish that every
+  destination record is disjoint from a header, exclude adjusted-base or
+  block-copy writers, or admit all saved/restored callback histories.
+  Its stated exclusions remain. FND-CONFIG-163 retains the shared guard
+  helper's termination/native/cleanup conditions: the callback-store
+  continuation is not proof that a guard call returns normally.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
   unresolved target/access mechanisms. A complete-reading declaration
