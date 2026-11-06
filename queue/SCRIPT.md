@@ -70,6 +70,9 @@ Next ID: Q-SCRIPT-025
   remaining content producers/preservation rather than assuming one terminal link.
   FND-SCRIPT-050 settles the local free-pop detachment and empty/occupied
   exhaustion effects; actual list/pointer/storage admission remains here.
+  FND-SCRIPT-053 verifies the allocation flag through its second descriptor
+  alias; retain its actual domain/history, including the unequal zero/one
+  allocator/checker gates. Reject the earlier missed-control empty reports.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
