@@ -41,7 +41,10 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 15F3:06B6..15F3:0851
-tool: tools/research/exec-census/resident_listing.py at dd0ce3fe and 52a64a27; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:08EB..4AE5:09CB
+tool: tools/research/exec-census/resident_listing.py at dd0ce3fe, 52a64a27 and 32446397; registered source mapping through loaded_headers.py at 448da523; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
 environment: null
 ---
 
@@ -242,6 +245,68 @@ writers are different mechanisms. They are not bounded by these metadata
 envelopes. Retain their actual destination/count/frame conditions rather
 than reusing a generic cache-metadata warning for this classified case.
 
+### Cache-link assignments preserve a named identity domain
+
+Let R be the registered overlay-header set and K the selected fixed
+cache record. With the admitted manager DS, successful EMS setup stores
+0A4B in manager +014C and zero in +014E at +09A2/+09A8, then enables
+EMS and installs its hook. Since the EMS record begins at manager +0140,
+this initializes its loader word +0C and empty chain head +0E. It does
+not initialize every overlay header's +0E. Earlier setup/native return
+and segment conditions remain part of this initialization claim.
+
+For the allocator, require the initial chain reachable from K:+0E to
+contain registered headers or null, a registered supplied header h,
+unchanged code/register/stack bindings, and no outside writes. The
+complete connected link-update set then has these value sources:
+
+| Update | Source of the new link value |
+|---|---|
+| Borrow-path replacement of K:+0E at +0C68 | The selected registered header's existing next link |
+| Cut at selected header +0E, +0C6B | Zero |
+| Borrow-path tail append, +0C75 | The old K:+0E retained in DX |
+| Second-selection replacement of K:+0E, +0CA4 | The selected registered header's existing next link |
+| Final tail append, +0CC7 | Supplied header h, retained in DX |
+| Supplied header clear, +0CCE | Zero returned by the tail traversal |
+
+The selector returns the segment of its last qualifying traversed
+header, not an allocated position. The tail helper returns the final
+registered header as ES, or K itself for an empty chain, with AX zero.
+Thus K is an allowed scalar-store destination without being a header
+link value. The borrow-path DX capture comes from the old chain head;
+that helper does not explicitly change DX. These sources are all in
+R or zero under the stated bindings. Size/wrap arithmetic chooses the
+selection and positions but does not manufacture a new link segment.
+The scalar separation contract above protects the allocator's saved
+segments from these own writes under its mapped SS conditions.
+
+For an invocation that completes, rotation/removal of registered chain
+parts and append/clear of h leave the returned reachable chain inside
+R or null. This does not establish termination, absence of duplicate
+members, exclusive membership in one cache or native payload validity.
+The conclusion is conditional on the initial chain and supplied-header
+admission, not a census excluding all other link writers.
+
+There is a distinct intermediate-state requirement. The final append
+at +0CC7 happens before h:+0E is cleared at +0CCE. If h was outside
+the initial reachable chain and its old link was foreign, the newly
+linked intermediate graph can expose that stale link before the clear.
+There is no own traversal or callback between these two stores, so
+that stale link is not consumed by this invocation's own tail walk.
+An asynchronous or reentrant reader is not excluded by that fact.
+An observer that reaches this intermediate graph needs h's old link in R
+or zero as well; otherwise it cannot use the post-return domain result.
+Whether any reader reaches that interval is a separate caller/reentrancy
+question, not an observed reader in this static analysis.
+
+Under that stronger initial link condition, every own relink also keeps
+the intermediate reachable graph in the registered identity domain.
+That remains a domain result, not an acyclicity or ordering result.
+Changed/native DS/ES/DX, overwritten save slots, foreign initial links,
+changed headers, other writers and observation epochs remain concrete
+Q-PARTY-137 conditions. A completed allocator result must not be used as
+proof of the uninterrupted registration history of its two-store append.
+
 ## Interpretation
 
 The selected overlay hook is a no-op or one of two specific copy paths,
@@ -305,3 +370,10 @@ queue and admitted SS intervals above. Apply one common relocation
 delta to segment identities, not to offsets. Reuse FND-EXE-239/240/241
 for the complete own scalar-write set. No new original run, byte-pattern
 negative search or assumed native target is involved.
+
+For the link-domain result, read `4AE5:08EB..4AE5:09CB` and
+`4AE5:0C2E..4AE5:0D11` with resident_listing.py at 32446397.
+Follow the zero initialization and every +0E assignment through
+FND-EXE-240/241's selector/tail results. Distinguish a fixed cache-record
+tail from a header, and the completed append from the interval between
+its link and clear. No original or emulated call was executed.
