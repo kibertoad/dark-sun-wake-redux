@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-SAVE-036, FND-SAVE-037, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-SAVE-036, FND-SAVE-037, FND-SAVE-038, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -113,6 +113,12 @@ save-success test. Actual pending metadata and preservation to later Quit
 remain unadmitted; a writer failure can also occur before publishing it
 (FND-SAVE-037).
 
+The writer's returning cleanup suffix retains its saved failure result
+across reverse conversion. That converter's GPLI reads can prepare the
+supplying archive, or an earlier indexed-probed archive; they do not
+unconditionally flush the active working record. Resetting the separate
+archive error word is not pending-byte clearing (FND-SAVE-038).
+
 The region-update failure and archive-close-error branches in
 FND-COMBAT-044/084 call the shared fatal diagnostic. With its fixed
 arguments and frame preserved, that diagnostic selects status1 shutdown
@@ -144,6 +150,13 @@ is shown.
 None known.
 
 ## Open questions
+
+- For the failed-Save route, either the pending working record survives
+  the named return/UI interval and can be prepared at later shutdown,
+  or an intervening preparation, close or nonreturning failure prevents
+  that continuation. The close bypass and provider-dependent preparation
+  are read; actual same-record history and file outcome remain open
+  (FND-SAVE-037, FND-SAVE-038, Q-SAVE-009).
 
 - Which saved-game or working-archive files, if any, are affected by the
   known pending-write and registered slot/delete routes on actual Quit

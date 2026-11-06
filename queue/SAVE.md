@@ -1,13 +1,13 @@
 # SAVE
 
-Next ID: Q-SAVE-009
+Next ID: Q-SAVE-010
 
 ## Static
 
 - Q-SAVE-007. RULE-SAVE-001: Can the Quit shutdown route write a saved
   game or working archive through a reached callback or callee?
   Settles it: establish ordinary pending-state histories through flag8-clear
-  updates, the failed-Save interval identified by FND-SAVE-037, other dirty producers or
+  updates, Q-SAVE-009's failed-Save outcome, other dirty producers or
   later field changes, and their shutdown handle/file
   bindings and external outcomes; classify remaining computed callback/target,
   service-selector and save-producing branches. Reuse FND-SAVE-028/029's
@@ -91,6 +91,18 @@ Next ID: Q-SAVE-009
   Establish an actual post-publication failure and same pending record through
   reverse conversion, message/callback work and later Quit, not an unread
   unconditional close tail. Initial writer rejection need not create dirtiness.
+  FND-SAVE-038 resolves the return suffix's explicit preparation/result
+  contract: bitmap release precedes reverse conversion; the writer returns
+  its saved failure byte afterward. GPLI data reads prepare their local
+  provider, with possible earlier indexed-probe preparation; missing GPLI
+  type/plain-number paths do not themselves prepare that probed record.
+  Establish the working record's actual GPLI path and preparation events,
+  then disjoint bitmap/table/chain/trigger/stack/release-metadata spans and
+  later message/callback preservation. Error-word reset is not dirty clearing
+  or a replacement writer success result; do not reread those mechanisms.
+  The remaining failed-Save interval is now Q-SAVE-009, preserving the
+  same-record, lookup, release, message/callback and file-outcome conditions.
+  This separation answers nothing by itself; the other mechanisms stay here.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-008. RULE-SAVE-002: Can explicit Save reuse an already-open
@@ -104,6 +116,26 @@ Next ID: Q-SAVE-009
   skips the wrapper close and reaches the copy. FND-SAVE-035 supplies the
   option/flag distinction and FND-COMBAT-113 the copier. This is not evidence
   of an actual stale-directory save. Blocks: none.
+
+- Q-SAVE-009. RULE-SAVE-001: Can a failed explicit Save leave its working
+  record pending through the returning UI continuation and a subsequent
+  ordinary Quit or the existing save-and-exit mark branch?
+  Settles it: admit one post-publication writer failure on a named working
+  record and its close-ownership state; follow that same record through bitmap
+  release, both GPLI lookup/preparation paths, conversion and table release,
+  the failure message, callback buffer release and the DS:627C branch.
+  Bind any remaining pending state at shutdown preparation to its native
+  request/result and file target. Alternatively, establish a step that always
+  prepares/closes that record or prevents the normal continuation under the
+  declared input domain; keep uncovered domains explicit. Audit the actual
+  directory/provider path, indexed probes, named writable/release spans and
+  frame/record identity, not an unspecified extra flush helper.
+  FND-SAVE-037 establishes the wrapper's failure close/copy bypass and the
+  callback's independent exit-mark test. FND-SAVE-038 fixes suffix order,
+  provider/indexed preparation opportunities and separate failure/error/dirty
+  state. FND-SAVE-034 is controlled seeded success, not ordinary failure
+  admission. This item carries Q-SAVE-007's remaining failed-Save interval;
+  the split is not a closure. Blocks: RULE-SAVE-001's exit file effects.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
   its top bit mean? Settles it: the code that gives a new character its identifier. Tried:
