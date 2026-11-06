@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince ce4c96d1
-  -NoRestore` passed: 2055 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 90de12fc
+  -NoRestore` passed: 2056 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -86,7 +86,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   dynamic selector, decode gap and scheduling.
 - RULE-SCRIPT-004: FND-SCRIPT-042/049;
   RULE-SCRIPT-008: FND-SCRIPT-050 (docs/GHIDRA.md); TALK admission: FND-SCRIPT-043..049/051/052.
-  Q-SCRIPT-019/024: FND-SCRIPT-053/054, pool/key/entry admission; Q-COMBAT-059 owns post-error effects,
+  Q-SCRIPT-019/024: FND-SCRIPT-053..055, pool/key/entry admission; Q-COMBAT-059 owns post-error effects,
   reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
   No complete reading/closure.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
