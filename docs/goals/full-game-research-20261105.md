@@ -39,10 +39,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 885408dc -NoRestore` passed on
-  1ce5b886's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
+  `Test.ps1 -Research -ChangedSince 1bb1ae74 -NoRestore` passed on
+  df80467d's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
+- FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
+  readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
+  reuse FND-EXE-567/582 and FND-RNG-066/096.
+  Q-EXE-034 owns general return admission.
+  EXE Static 2, Source 1, Blocked 4; Next ID 35. No ownership assigned.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
   Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
   reusing FND-PARTY-288/328..336 and the extended FND-PARTY-335 paused
