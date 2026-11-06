@@ -39,93 +39,65 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Research -ChangedSince eb1bb188 -NoRestore` passed:
-  2124 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
-  thirteen pointer-boundary and twenty segment-overlap controls passed.
-  Prior snapshot controls remain passing.
-  Existing argument-count, Kaitai and generated-comparison skips remain.
-  Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
-- FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
-  readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
-  reuse FND-EXE-567/582, FND-RNG-066/096 and FND-PARTY-342.
-  Reuse FND-EXE-644/645's finite 153-pair local classification with
-  its decoder/frame limits; do not repeat it.
-  FND-EXE-646 corrects the retained timer caller and replaces 585;
-  its driver/timer survey is retained, not newly executed.
-  FND-EXE-647 positively matches all 306 pushes and 160 consumer/helper
-  call starts in the declared-root model. All six controls pass per cohort;
-  the inside-call-byte control is distinguished. Do not repeat the boundaries.
-  Preserve 50 unresolved transfers, five gaps, four contested decodes and
-  false negativeUsable; source models do not admit every live predecessor/frame.
-  FND-EXE-648 and FND-CONFIG-234 now carry the concrete window
-  producer/cleanup and resource-output contracts; 234 replaces 038.
-  FND-EXE-649 now supplies the conditional direct break-producer and
-  fresh-header address contract. Reuse it and CONFIG-211/212/225/226/231;
-  do not reopen those bodies as unspecified normalization behavior.
-  FND-EXE-650 narrows free-list address confinement to actual segment/
-  link domains and nonwrapping extent producers; full heap validity is
-  separate unless it changes header accesses. Reuse its two conditional
-  escape cases rather than rereading merge/unlink bodies.
-  Reuse FND-EXE-651 for all five direct release arguments and the input
-  flag history; reuse FND-EXE-652 for fixed-segment copy-window exclusion.
-  Next Q-EXE-033: actual buffer/free-link segment histories, reusing INPUT-016,
-  CONFIG-225/227/230 and EXE-296/297. Keep callback intervals separate.
-  Reporter 23fa5697 preserves legacy exact-start scope; --overlap has
-  positive byte-extent controls. Existing exact-start findings are not
-  silently upgraded to overlapping-write exclusions.
-  Retained reports are GAME_DIR/analysis/window-4da0-* (648) and
-  heap-break-canonical-callers-20261107.txt (649).
-  No complete reading or queue answer added. Other mechanisms remain.
-  Never extend recorded findings in place;
+  `Test.ps1 -Integration -NoRestore` passed all Node checks and 758 .NET
+  tests: 2124 entries, 208 parity rows, five deviations. Existing argument-count,
+  Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
+  and supported escalation for child processes. No original run this session.
+- FMT-EXE-003 remains supported, with zero accepted readings. Resume
+  Q-EXE-037: reconcile the retained fifty unresolved sites in
+  GAME_DIR/analysis/header-pointer-reach-report-20261106.json with
+  FND-EXE-575/578..588 before further target reading. Choose a finite
+  header-relevant cohort, preserving FND-EXE-647's model limits and the historical
+  49-site versus current 50-site distinction. Do not repeat the 153-pair
+  argument/boundary classification in FND-EXE-644/645/647.
+  Q-EXE-033 now owns the additional-mechanism census; Q-EXE-035 destination
+  aliases; Q-EXE-036 actual heap/buffer address domains; Q-EXE-034 general
+  return admission. Reuse FND-EXE-648..652, FND-CONFIG-225/226/227/230/231/234
+  and FND-PARTY-342. Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
-  Q-EXE-034 owns general return admission.
-  EXE Static 2, Source 1, Blocked 4; Next ID 35. No ownership assigned.
-- FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
-  Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
-  reusing FND-PARTY-288/328..331/337..341 and FND-PARTY-340 paused observations. Next evidence must address the publication-to-first-handoff
-  interval; do not repeat baseline snapshots. Reuse FND-PARTY-337's
-  kind-specific handoff contracts and FND-PARTY-338's
-  connected BP/upward-chain contracts and FND-PARTY-339's retained
-  candidate/scalar/link/target-domain contracts; reuse those rather than
-  repeat their own-update classifications. Next initialization and non-scalar/
-  native preservation:
-  actual initial and supplied-header link histories, any reached
-  link-before-clear reader, and handler stack ordering/node spacing,
-  different-chain frame writes, native BP/DS and
-  copy/frame preservation, incoming/captured-segment and target admission.
-  Preserve the indexed/block/string/adjusted-pointer and alternate-entry exclusions.
-  Read docs/RUNTIME.md first. No retained reflection checkpoint was located;
-  checkpoint_rng.py admits sound and script-52 callers only. Do not use
-  the older untraced indirect-target runner to supply the missing interval. Q-PARTY-138 separately retains other
-  roots, other client index changes, nested drains and later iterations.
-  Reuse FND-PARTY-341 before further route classification. The split
-  at 56319392 answered no question and added no complete reading.
-  PARTY Static 60, Emulated call 0, Agent run 2, Live session 3, Source 0,
-  Blocked 0; Next ID 139. queue/PARTY.md remains at 1000 lines.
-- Then Q-PARTY-136: actual shutdown root/mode/ready admission, saved frames,
-  changed/computed routing and excluded pointer histories. Reuse
-  FND-PARTY-289..296/314..327, FND-RNG-081/082/093/095,
-  FND-EXE-551/588. Q-PARTY-134 retains actual number-state histories and
-  snapshot/reload conditions; reuse FND-PARTY-287/288/301..313 and
-  FND-COMBAT-087/088/090..093. Q-PARTY-135 retains getter-pair admission.
-  Then Q-PARTY-124's eighty other direct sites and repeated/indirect
-  preservation obligations; reuse FND-PARTY-264/265/267..285/295/296.
-  Q-PARTY-121/120/116 and their dependencies retain separate contracts.
-- Independent SOUND work: Q-SOUND-011 uses FND-SOUND-061..066;
-  Q-SOUND-004 uses 067..071/074..081 and retains actual admission,
-  lifetime, GPL15 helper, GPL18 allocation/cleanup, dynamic selector,
-  decode gap and scheduling. Q-SOUND-012 retains ownership/490D binding
-  after 072/073. Q-SOUND-002 retains playback admission after 049..060.
-  Q-RNG-040 retains actual frame/residency/service/converter admission
-  after FND-RNG-096..098; Q-RNG-029 retains graphics frame/page admission.
-- Script/save follow-up: Q-SCRIPT-019/024/025, Q-CONFIG-008/013,
-  Q-SAVE-007 reuse FND-SCRIPT-053..065, FND-CONFIG-224..233,
-  FND-SAVE-027..033/035/037..044. Q-COMBAT-059 owns post-error work.
-  Q-SCRIPT-015 retains initialized-block postconditions. Q-SCRIPT-005
-  and Q-SAVE-002/008/009 have answered deletions; no complete reading.
-- Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 reuse FND-SOUND-030..048,
-  docs/RUNTIME.md and corrected profile 595c7602; DSUN-only reporters
-  do not admit setup inputs.
+  docs/research-closure-overlay-headers.json assigns forty rows, twenty-five
+  shared, with thirteen open checklist obligations. EXE Static 5, Source 1,
+  Blocked 4; Next ID 38. The split answers no question. After map commit
+  9517ca97, time research/tooling/checks/handover separately for the next three
+  closure batches and compare outcomes after two against that revision.
+- FMT-PARTY-007 remains the first-handoff trial after the ten-entry assessment.
+  Next Q-PARTY-137: actual publication-to-first-handoff backing/frame/native
+  preservation, reusing PARTY-288/328..331/337..341 and paused observations
+  in PARTY-340. Do not repeat baseline snapshots or conditional interfaces.
+  Preserve initial/supplied link histories, link-before-clear readers, stack
+  ordering/spacing, different-chain writes, native BP/DS, copy/frame and
+  incoming/captured-segment/target admission. Q-PARTY-138 retains other roots,
+  index changes, nested drains and later iterations. Read docs/RUNTIME.md;
+  no retained reflection checkpoint was located. checkpoint_rng.py admits
+  sound/script-52 only; never use the older untraced indirect-target runner.
+  Then Q-PARTY-136 actual shutdown root/mode/ready and saved-frame admission;
+  reuse PARTY-289..296/314..327, RNG-081/082/093/095 and EXE-551/588.
+  Q-PARTY-134 retains number-state histories after PARTY-287/288/301..313
+  and COMBAT-087/088/090..093; Q-PARTY-135 retains getter admission.
+  Q-PARTY-124 retains eighty other sites after PARTY-264/265/267..285/295/296.
+  Q-PARTY-121/120/116 remain separate. PARTY Static 60, Emulated call 0,
+  Agent run 2, Live session 3, Source 0, Blocked 0; Next ID 139.
+  queue/PARTY.md remains at 1000 lines.
+- Independent SOUND: Q-SOUND-011 reuses SOUND-061..066; Q-SOUND-004
+  reuses 067..071/074..081 and retains admission/lifetime, GPL15/GPL18,
+  dynamic selector, decode gap and scheduling. Q-SOUND-012 retains ownership/
+  490D binding after 072/073; Q-SOUND-002 admission after 049..060.
+  Q-RNG-040 retains frame/residency/service/converter admission after
+  RNG-096..098; Q-RNG-029 retains graphics frame/page admission.
+- Script/save: Q-SCRIPT-019/024/025, Q-CONFIG-008/013 and Q-SAVE-007
+  reuse SCRIPT-053..065, CONFIG-224..234 and SAVE-027..033/035/037..044.
+  Q-COMBAT-059 owns post-error work; Q-SCRIPT-015 retains initialized-block
+  postconditions. Q-SCRIPT-005 and Q-SAVE-002/008/009 have answered deletions,
+  with no complete reading.
+- Setup: Q-CONFIG-006/011/012 and Q-SOUND-010 reuse SOUND-030..048,
+  docs/RUNTIME.md and corrected profile 595c7602. DSUN-only reporters do
+  not admit setup inputs.
+
+EXE comparison f2031798ada3d66604bab1ee4e92c85929d4f8c4 to
+9517ca97f2745d2249fe948950fa1fcaef564173: zero new findings, accepted-reading
+changes or answered items; three queue additions are splits. The new plan has
+6973 unassigned functions, zero errors/stale/unmeasured inventories and the
+owner-excluded DOSBox inventory gap. Other plans remain independent.
 
 Measurement context: cast-window plan has 54 assigned, 25 shared,
 16 open obligations, 6959 unassigned, zero accepted readings/errors/stale
@@ -133,7 +105,7 @@ or unmeasured inventories. Sound-playback plan independently has 34 assigned,
 eight shared, eight open obligations and 6979 unassigned. Counts are
 non-additive. Eight inventories total 7013 rows; 636 disc-associated rows
 add no independent understanding. Owner-excluded DOSBox lacks a raw inventory.
-FMT map assigns four; SAVE/COMBAT nine.
+FMT-PARTY-007 map assigns four; SAVE/COMBAT nine.
 
 Three timed batches after 02e2d875 are FND-PARTY-311/312/313, ending
 96077cf3. PARTY/UI comparison 02e2d87549c20763b6951b505d1a73ff9a47a821
