@@ -32,6 +32,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-051 excludes entry167/offset0001's listed literal connection
   to the pre-gap postamble. Preserve entry168 and independent computed,
   restored or changed entries, not the excluded literal route or failed77 query.
+  FND-SCRIPT-052 settles the twelve counted decoded producer families:
+  retain entry mechanisms outside that census, not additional literal or
+  computed source operands within its 3565 paired sites.
   Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
   reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
   Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
