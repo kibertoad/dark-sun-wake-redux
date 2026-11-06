@@ -95,7 +95,7 @@ walk's inputs are applied again.
 - The walk is one walk from 21 entries; code it does not reach is decoded only as Ghidra decodes
   it, with the wrong near targets corrected.
 - The four one-byte holes in function bodies are left as Ghidra computes them.
-- FND-IMAGE-011, FND-IMAGE-012, FND-PARTY-044, FND-RNG-056 and FND-RNG-061 name rows of the
+- FND-IMAGE-011, FND-IMAGE-012, FND-PARTY-044, FND-RNG-056 and FND-RNG-096 name rows of the
   earlier inventories that this one no longer has; what they record about those inventories is
   unchanged.
 

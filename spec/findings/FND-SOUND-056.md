@@ -88,7 +88,7 @@ A matching PUSH DS and POP DS alone therefore does not prove
 DS restoration on this path. Interrupt/nonlocal or modified-frame
 behavior is not established by this conditional stack calculation.
 
-FND-RNG-061 records the push/pop sites while its census-based
+FND-RNG-096 records the push/pop sites while its census-based
 interpretation concerns DS at later reseeding callers. This finding
 does not establish a native path from this submission to those
 callers, but requires a frame-aware review before that local

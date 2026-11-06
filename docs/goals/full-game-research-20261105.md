@@ -71,7 +71,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
   before restoring SI, never restores DS, and can return through a conditional
   invalid-slot route without another driver child. Next admission
-  and later reseeding/restoration routes; FND-RNG-061's own dispatch exclusions
+  and later reseeding/restoration routes; FND-RNG-096's own dispatch exclusions
   remain material. No whole sound question or complete reading is closed.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,

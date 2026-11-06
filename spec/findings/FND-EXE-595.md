@@ -90,7 +90,7 @@ Export each copy twice with `ExportResearchBaseline.java` and the regions of the
 `node tools/evidence/join-overlay-views.mjs <config> <staging>`, expecting `2707:048E` and
 `6F0E:1A7C`. Then, in `tools/research/exec-census/`, `inventory_boundaries.py <dsun> <inv> --walk
 <walk table> 1BF3:40DD 1BF3:40E4` and `walk_inventory_coverage.py <dsun> <inv> <walk report>`,
-with FND-RNG-061's routine table and FND-RNG-058's report; the same two commands on the earlier
-inventory give FND-EXE-593's and FND-RNG-061's counts. Logs, exports, the join configuration and
+with FND-RNG-096's routine table and FND-RNG-058's report; the same two commands on the earlier
+inventory give FND-EXE-593's and FND-RNG-096's counts. Logs, exports, the join configuration and
 the reports are kept under `GAME_DIR/analysis/exe-inventory-20261021/restage/r2/`. Nothing was
 executed.

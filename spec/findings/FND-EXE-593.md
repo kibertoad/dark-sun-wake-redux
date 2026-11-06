@@ -39,13 +39,13 @@ cover trampoline bytes:
 | 128 | start a trampoline and cover more than its five bytes: up to 17 trampolines (`5799:0057`), the next header's trampolines (`5664:0025`, through `566A:0025`), or resident code (`56A2:002A` also holds `3F96:0386..3F96:03C2`, `5699:0043` also `3F96:039A`) |
 | 1 | `5671:00C7` starts two bytes into a trampoline and covers three |
 
-656 trampolines start no row, and 81 lie in no row. The census rows FND-RNG-061 names,
+656 trampolines start no row, and 81 lie in no row. The census rows FND-RNG-096 names,
 `5664:0025`, `56A2:002A`, `56BD:0089` and `5773:002F`, are of the third kind and `5699:003E` of
 the second; their decoded instructions after `int 0x3f` are the trampolines' `target` and
 `unk_04` bytes and the next trampolines' bytes (`5664:0020..5664:0060` for the first).
 
 **1BF3:40DD.** The row `1BF3:3C90` ends at `1BF3:40DC`, the first byte of the two-byte `add di, dx`
-at `1BF3:40DC`, and the row `1BF3:40DD` covers `1BF3:40DD..1BF3:423F` (FND-RNG-061). No byte of
+at `1BF3:40DC`, and the row `1BF3:40DD` covers `1BF3:40DD..1BF3:423F` (FND-RNG-096). No byte of
 segment `1BF3`'s rows begins a near call, near jump, short jump, conditional jump or loop
 (`E8`, `E9`, `EB`, `70..7F`, `E0..E3`, `0F 80..8F`) whose target is `1BF3:40DD` or `1BF3:40DC`; the
 control target `1BF3:40E4` is found as the `jmp short` at `1BF3:40D2`, an instruction start of
@@ -53,17 +53,17 @@ the row's linear decode (`1BF3:40D2..1BF3:40E4`). No far call in the load image 
 and no near call after `push cs` targets `1BF3:40DD`; the controls find the far call of `1BF3:3C90`
 at file offset `0x35857` and the four far calls and one near call of `1BF3:738F`. No 16-bit word
 of the file equals 0x40DD; the control `1BF3:61CC` finds its offset word at file offset
-`0x172F0`. FND-RNG-061's walk from `1BF3:3C90` decodes `1BF3:40DC`, `1BF3:40E4` and the `retf` at
+`0x172F0`. FND-RNG-096's walk from `1BF3:3C90` decodes `1BF3:40DC`, `1BF3:40E4` and the `retf` at
 `1BF3:423E` (`1BF3:3C90..1BF3:423F`).
 
 **Walk routines.** Of the 2124 routines of FND-RNG-058's walk, as `walk_routine_table.py` writes
-them (FND-RNG-061), 1837 start an inventory row, 3 start inside a row's ranges (`1000:01A7`,
+them (FND-RNG-096), 1837 start an inventory row, 3 start inside a row's ranges (`1000:01A7`,
 `4842:0774`, `4842:083F`) and 284 start in no row: 157 in segment `172C`, the overlay manager's 24 in `4AE5`,
 16 in `1BF3` (`1BF3:639B` among them), 15 in `1000` (`1000:1D66`, `1000:2877` and `1000:29AA` to
 `1000:2B6A` among them), 15 in `4842` (the timer handler `4842:040C` and 14 after it), 4 in `44B6`,
 3 in `28C9`, `289B:02AE` and `289B:02BD`, one each in `1425`, `277B`, `2C5F`, `2D40`, `371D`,
 `3EBE`, `3F96`, `409B`, `4420`, `44D0` and `55CE`, and 37 in overlay code, among them `0x00075560`
-(1848 bytes), `0x00096F04` (1622) and `0x00098200` (1564). FND-RNG-061 counts 27,443
+(1848 bytes), `0x00096F04` (1622) and `0x00098200` (1564). FND-RNG-096 counts 27,443
 of the walk's 165,558 instructions outside every inventory range.
 
 ## Interpretation
@@ -83,7 +83,7 @@ or misassigns.
 ## Alternatives
 
 - A computed transfer could still reach `1BF3:40DD`; none of the walk's resolved transfers does,
-  and the walk from `1BF3:3C90` has none unresolved (FND-RNG-061).
+  and the walk from `1BF3:3C90` has none unresolved (FND-RNG-096).
 - A walk routine start inside a row may be a second entry of that row's routine; the three
   were not read.
 - Rows outside the trampolines and the walk were not compared with any other decode.
@@ -92,7 +92,7 @@ or misassigns.
 ## How to reproduce
 
 With the locked evidence Python, in `tools/research/exec-census/`, `<dsun>` the installed
-`DSUN.EXE`, `<inv>` `../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` and `<walk>` FND-RNG-061's
+`DSUN.EXE`, `<inv>` `../../../coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv` and `<walk>` FND-RNG-096's
 routine table: `inventory_boundaries.py <dsun> <inv> --walk <walk> 1BF3:40DD 1BF3:40E4
 1BF3:40DC`; `direct_callers.py <dsun> 1BF3:40DD 1BF3:3C90 1BF3:738F`; `far_pointer_words.py <dsun>
 1BF3:40DD 1BF3:3C90 1BF3:61CC`. Outputs are kept under

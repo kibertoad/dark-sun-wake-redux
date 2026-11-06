@@ -55,7 +55,7 @@ explain a mismatch. This does not prove their full preservation: the
 reporter does not follow children, interrupts, overlay loading, unresolved
 transfers or runtime-written instructions. It does not detect every
 possible decode failure or establish ownership for arbitrary linear bytes.
-FND-RNG-061's abstract DS model also assumes a value for SS in some
+FND-RNG-096's abstract DS model also assumes a value for SS in some
 transfers and treats overlay calls specially; its final clock-path result
 cannot simply be applied to these item paths.
 

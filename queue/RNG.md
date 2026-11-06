@@ -15,7 +15,7 @@ Next ID: Q-RNG-041
   DS or exclude this submission state. Tried: FND-SOUND-056 shows that
   184D removes four bytes after one word argument to ordinary-RETF 0F57,
   conditionally shifting the final DS pop to the local count high word.
-  FND-RNG-061's matching push/pop sites alone do not settle this frame
+  FND-RNG-096's matching push/pop sites alone do not settle this frame
   consequence. FND-SOUND-057 removes ordinary child-cleanup ambiguity: no
   compensation occurs, and capability-disabled 0F92 returns without an
   interrupt. FND-SOUND-058 identifies the known cached capability producer
@@ -23,7 +23,8 @@ Next ID: Q-RNG-041
   remain. FND-SOUND-059 settles the immediate caller: no DS restoration,
   returned SI controls the loop, and an invalid-slot continuation can
   return without a restoring child. Actual state admission and later
-  reseeding/restoration routes remain. Blocks: complete seed-source reading.
+  reseeding/restoration routes remain. FND-RNG-096 withdraws the universal
+  DS/SS inference while retaining historical counts and query scopes. Blocks: complete seed-source reading.
 
 - Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
   `0x25` to `0x2C`, which name `4C13:0369` and the words below it, and with what values? Settles it:
@@ -88,7 +89,7 @@ Next ID: Q-RNG-041
   `+111A`'s return by special attack 13 pass 293 with the byte set among the combatants' routes;
   FND-RNG-062 finds a monster's byte `+0x0E` copied unchanged from its `RDFF` object's combatant
   chunk, no shipped `SAVE` resource, and 6 only in `RDFF` 428 and 13 only in `RDFF` 430.
-  FND-RNG-009, FND-RNG-010, FND-RNG-014, FND-RNG-015, FND-RNG-021 and FND-RNG-061 answer the
+  FND-RNG-009, FND-RNG-010, FND-RNG-014, FND-RNG-015, FND-RNG-021 and FND-RNG-096 answer the
   startup path, the second root and the near buffer. Blocks: reproducible seeding and
   Q-PARTY-081's later recorded gameplay run.
 - Q-RNG-025. RULE-RNG-001, RULE-VIDEO-005: Can the party's target cursor cast `DATA` 293 with the
@@ -108,15 +109,14 @@ Next ID: Q-RNG-041
   FND-RNG-018, FND-RNG-019 and FND-RNG-020 read the calendar bodies, globals, initializers,
   constructor and timezone frames, which establish local sites only. Tried: FND-RNG-058 answers
   the direct reader/writer part with a census of displacement and literal-pointer operands from
-  all 21 established entries, and FND-RNG-061 finds DS equal to SS at the helper's callers; the
+  all 21 established entries, and FND-RNG-096 retains DS/SS equality as conditional on the model; the
   computed-store and unresolved-transfer parts moved to Q-RNG-029 and Q-RNG-030. Blocks: complete
   seed-source reading.
 - Q-RNG-029. RULE-RNG-001: Does a computed or segment-aliased store on FND-RNG-058's walk, other
   than its string stores and copy helpers, write the clock conversion's storage (the windows
   Q-RNG-005 lists)? Settles it: each store whose address is formed from a register or a segment
   other than DS on that walk, shown to miss the windows or listed with what it writes. Tried:
-  FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-061 finds DS
-  equal to SS at the helper's callers. Split from Q-RNG-005. Tried: FND-RNG-067 watches the
+  FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-096 retains unresolved dispatch/segment propagation. Split from Q-RNG-005. Tried: FND-RNG-067 watches the
   windows during 40 s of play from the two-character checkpoint and finds one change, the store
   of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
   not taken. Blocks: complete seed-source reading.

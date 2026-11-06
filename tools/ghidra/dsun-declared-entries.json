@@ -4,7 +4,7 @@
  "about": "Declared function entries ApplyDeclaredEntries.java applies before the DSUN.EXE views are exported. resident and overlay list the starts of FND-RNG-058's walk routines that start no row of the inventory FND-EXE-593 checked (inventory_boundaries.py --walk, kinds none and inside); overlay also lists the overlay routines that an FMT-EXE-004 trampoline enters and that started no row (FND-EXE-599); overlay entries are shipped-file offsets. remove lists starts that are not routine entries, with the function, if any, whose decode holds their bytes and the listing range to decode again from that function; resident starts are segment:offset and apply to the resident view, overlay starts are file offsets and apply to the overlay view. notRows lists walk routines that get no row, with the reason.",
  "evidence": [
   "FND-EXE-593",
-  "FND-RNG-061",
+  "FND-RNG-096",
   "FND-EXE-597",
   "FND-EXE-599",
   "FND-EXE-636",

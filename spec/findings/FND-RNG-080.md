@@ -71,7 +71,7 @@ segment's clock windows.
 
 The sweep is linear from the segment's start and could miss a store hidden by a wrong decoding;
 it found every writer the allocator's own reads lead to. The frames are on the stack, which shares
-the data segment (FND-RNG-061) and lies above the windows that Q-RNG-005 lists in the runs read so
+the data segment (FND-RNG-096) and lies above the windows that Q-RNG-005 lists in the runs read so
 far (FND-COMBAT-056).
 
 ## How to reproduce

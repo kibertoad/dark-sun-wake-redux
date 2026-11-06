@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-061
 title: No call or interrupt the two DS censuses list as made with DS changed leads to overlay 193 +003C, overlay 201 +05D5 or overlay 204 +1F06 except the main routine's call, so DS equals SS at their entry after startup under the censuses' rules
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-096]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

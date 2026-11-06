@@ -14,7 +14,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4842:03BC..4842:040C
-tool: resident_listing.py at 7f06e5ca; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-055/056/057/058 and FND-RNG-061
+tool: resident_listing.py at 7f06e5ca; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-055/056/057/058 and FND-RNG-096
 environment: null
 ---
 
@@ -73,7 +73,7 @@ Other admitted handles can select children whose effects remain open.
 
 ### Relation to the old census
 
-FND-RNG-061 explicitly records that its second walk does not
+FND-RNG-096 explicitly records that its second walk does not
 decode 182E and that neither of its two censuses flags a call
 of 03F4. The first includes the driver-table bodies as inventory
 rows. Its reported push/pop sites in 182E do not prove restoration
@@ -111,6 +111,6 @@ revision above. Retain sound-refill-postsubmission-frame.txt under
 GAME_DIR/analysis/handler-census-20261106/. Combine the known
 wrapper frame with the caller's 0127..0176 continuation, tracking
 current versus entry DS and SI separately. Check the unsigned slot
-rejection and DX:AX-zero dispatch path. Reuse FND-RNG-061's own
+rejection and DX:AX-zero dispatch path. Reuse FND-RNG-096's own
 model/exclusion statements rather than rerunning unchanged censuses.
 No original game, emulator session or emulated call was used.
