@@ -59,6 +59,29 @@ following arbitrary pointers. Test wrong return pairs, stack displacement
 and changed arguments. Entry/return observations do not certify all internal
 native effects or continuous preservation.
 
+A separate controlled-dirty tooling extension may seed only the evidenced
+`archive_pending_metadata` byte of the active archive record, after the
+ordinary exit-entry snapshot. This is an explicit exception to the clean
+runner's no-seeding contract, exposed through a fixed opt-in stage rather
+than arbitrary addresses, bytes or calls. Require a valid bounded snapshot,
+active record equal to the linked head, a zero old byte, and option mask
+`0x0002` present. Bind the write to that same record's named field through
+the session package's paused/quiescent field contract, expected-old digest
+and readback guards. Reject inconsistent state instead of repairing it.
+Use only the private restored drive; preserve the canonical checkpoint and
+licensed inputs. Record the setup write explicitly in the retained report.
+
+Observe the same record at preparation entry and return, native write
+requests and results, the final commit request/result and the dirty byte's
+resulting value. Retain failures and partial writes; file hashes alone do
+not prove that no requests occurred. Synthetic controls must reject wrong
+record identity, missing option, nonzero old byte and unsupported stages,
+and verify the one-byte guarded write and preparation-result pairing.
+The exit is a state-admitted report of this conditional close contract or
+a precise capability failure. A seeded case cannot establish an ordinary
+producer history, filename/handle binding, durability or whole-entry closure;
+those remaining Q-SAVE-007 obligations stay open.
+
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
 request/result/file-change distinctions, and narrows the rule/queue only
