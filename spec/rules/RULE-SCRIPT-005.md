@@ -4,7 +4,7 @@ title: Script variables start at 0
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-026, FND-PARTY-241, FND-PARTY-040, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-031, FND-SAVE-008, FND-SAVE-022, FND-COMBAT-034, FND-COMBAT-035, SRC-LIBGFF-839B11D]
+evidence: [FND-SCRIPT-026, FND-PARTY-241, FND-PARTY-040, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-031, FND-SAVE-008, FND-SAVE-022, FND-COMBAT-034, FND-COMBAT-035, FND-SOUND-080, SRC-LIBGFF-839B11D]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-004]
@@ -67,6 +67,12 @@ Every variable of those kinds is 0, and every string is empty.
 - A script keeps its local variables across a call of another script only by copying them out
   with request 29 of instruction `0x22` before the call and back with request 30 after it; the
   shipped scripts do so (FND-SCRIPT-026).
+- Requests 29 and 30 copy the four local blocks to and from one fixed
+  533-byte snapshot. There is no nesting index: another save replaces the
+  snapshot. Restore uses the current variable-block pointers and does not
+  restore those pointer values. Successful preservation requires intact,
+  independent buffers and unchanged saved bytes; the helpers do not validate
+  those conditions [FND-SOUND-080].
 - The interpreter does not clear the global variables after the set-up. The resident
   reset tests current `DS:13FB` at `277B:0330`: zero skips the reset. Nonzero
   enters a cleanup loop while `DS:264E` is unsigned greater than zero, then

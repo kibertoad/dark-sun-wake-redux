@@ -81,7 +81,10 @@ Next ID: Q-SOUND-013
   scope is admission/backing and entries outside FND-SOUND-079's tested
   top-level literal transfers for those eight paths; GPL/15 0131 retains
   its 01B3 helper/returned-local binding and GPL/18 0769 its producer
-  calls, local-five selection and request-29/30 save/restore bindings,
+  calls and local-five selection. FND-SOUND-080 settles the fixed-snapshot
+  interface and excludes explicit GPL/21 nested backup/direct script calls;
+  retain snapshot 4E71:0216..0218, current 4C13:0337 backing, other
+  native/callback writers and the restore continuation,
   GPL/27 01C8 dynamic selection, GPL/37 0D39..0D58 decode gap, actual
   scheduling and excluded script/native producers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records
