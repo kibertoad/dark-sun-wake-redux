@@ -30,6 +30,8 @@ def snapshot(client, delta):
     head = int.from_bytes(checked_read(client,ds,0x5AF5,2),"little")
     off, seg = struct.unpack("<HH",checked_read(client,ds,0x40C0,4))
     trigger = f"{seg:04X}:{off:04X}"
+    save_off, save_seg = struct.unpack("<HH",checked_read(client,ds,0x1612,4))
+    save_slot = f"{save_seg:04X}:{save_off:04X}"
     nodes, seen, index = [],set(),head
     while index!=0xFFFF:
         if not 0<=index<48 or index in seen:
@@ -39,7 +41,8 @@ def snapshot(client, delta):
         link = int.from_bytes(checked_read(client,0x4F49+delta,0x8B5+19*index,1),"little",signed=True)
         nodes.append({"slot":index,"pairs":pairs,"next":link})
         index = link&0xFFFF
-    return {"head":head,"trigger_pointer":trigger,"nodes":nodes},blob(client,trigger,2600)
+    return {"head":head,"trigger_pointer":trigger,"save_slot_pointer":save_slot,
+            "save_slot_matches_trigger":save_slot==trigger,"nodes":nodes},blob(client,trigger,2600)
 
 
 def prediction(table, nodes, trigger):
@@ -80,6 +83,9 @@ def comparison(state, trigger, before, nodes, expected):
     if len(trigger)!=2600 or len(expected)!=2600:
         raise ValueError("conversion comparison has a short trigger block")
     return {"same_bindings":state["head"]==before["head"] and state["trigger_pointer"]==before["trigger_pointer"],
+            "same_save_slot":state["save_slot_pointer"]==before["save_slot_pointer"],
+            "save_slot_pointer":state["save_slot_pointer"],
+            "save_slot_matches_trigger":state["save_slot_matches_trigger"],
             "chain_equal":state["nodes"]==nodes,"trigger_equal":trigger==expected,
             "different_trigger_bytes":sum(a!=b for a,b in zip(trigger,expected)),
             "trigger_sha256":hashlib.sha256(trigger).hexdigest(),"expected_sha256":hashlib.sha256(expected).hexdigest()}

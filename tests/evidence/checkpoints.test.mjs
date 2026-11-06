@@ -904,18 +904,20 @@ en,et,stats=script_restore.prediction(table,nodes,trigger)
 assert en[0]['pairs']==[10,12,7,7] and en[1]==nodes[1]
 assert struct.unpack_from('<2H',et,0)==(10,7) and et[13:]==trigger[13:]
 assert stats['pairs_matched']==2 and stats['pairs_unmatched']==2 and stats['triggers_matched']==1
-before={'head':3,'trigger_pointer':'2000:0020','nodes':nodes}
+before={'head':3,'trigger_pointer':'2000:0020','save_slot_pointer':'2000:0020',
+        'save_slot_matches_trigger':True,'nodes':nodes}
 after={**before,'nodes':en}
 assert script_restore.comparison(after,et,before,en,et)['chain_equal']
 assert not script_restore.comparison(before,trigger,before,en,et)['trigger_equal']
 rejects(lambda: script_restore.prediction(table[:-1],nodes,trigger))
 rejects(lambda: script_restore.address_range('2000:FF00',2600))
 class ConversionMemory:
-    head=3; link=1
+    head=3; link=1; save_slot=(0x20,0x2000)
     def read_memory(self,address,size):
         seg,off=(int(x,16) for x in address.split(':'))
         if address=='57E0:5AF5': return NS(data=self.head.to_bytes(2,'little'))
         if address=='57E0:40C0': return NS(data=struct.pack('<HH',0x20,0x2000))
+        if address=='57E0:1612': return NS(data=struct.pack('<HH',*self.save_slot))
         for node in nodes:
             if seg==0x4F49 and off==0x8AB+19*node['slot']: return NS(data=struct.pack('<4H',*node['pairs']))
             if seg==0x4F49 and off==0x8B5+19*node['slot']: return NS(data=bytes([self.link if node['slot']==3 else 255]))
@@ -923,6 +925,17 @@ class ConversionMemory:
         raise AssertionError((address,size))
 cm=ConversionMemory(); captured,raw=script_restore.snapshot(cm,0)
 assert captured==before and raw==trigger
+assert script_restore.comparison(captured,raw,before,nodes,raw)['same_save_slot']
+for slot in ((0x40,0x2000),(0,0)):
+    cm.save_slot=slot
+    changed,raw=script_restore.snapshot(cm,0)
+    result=script_restore.comparison(changed,raw,before,nodes,raw)
+    assert result['same_bindings'] and not result['same_save_slot']
+    assert not result['save_slot_matches_trigger']
+    # Repeating an independently mismatched slot preserves its own value,
+    # while still reporting that it does not match the live pool.
+    assert script_restore.comparison(changed,raw,changed,nodes,raw)['same_save_slot']
+cm.save_slot=(0x20,0x2000)
 cm.head=48; rejects(lambda: script_restore.snapshot(cm,0)); cm.head=3
 cm.link=3; rejects(lambda: script_restore.snapshot(cm,0)); cm.link=254; rejects(lambda: script_restore.snapshot(cm,0))
 class ConversionFrames:
