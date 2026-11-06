@@ -87,7 +87,9 @@ Q-SOUND-004 retains mode-2 use and the selected song's dispatch/track meaning;
 physical playback success is not inferred from the encoded song field.
 FND-SOUND-067 records local song-plus-one forwarding and disc-request
 publication/status contracts; external handler/output and actual child
-heap/frame aliases remain unresolved.
+heap/frame aliases remain unresolved. FND-SOUND-068 bounds the related
+busy/stop interface, including error-sentinel classification and conditional
+cleanup; it does not establish external success or table lifetime.
 
 The known inventory roots in coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv are
 2834:043B (acquisition), 2834:000C (selection), 2834:0508 (retry state),
