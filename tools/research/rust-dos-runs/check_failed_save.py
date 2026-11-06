@@ -1,0 +1,104 @@
+"""Synthetic payload, private lock and failed-checkpoint controls; no game."""
+import copy
+import os
+from pathlib import Path
+import struct
+import sys
+import tempfile
+import unittest
+
+sys.path.insert(0,str(Path(__file__).resolve().parent))
+from check_shutdown_snapshot import Memory
+from private_payload_lock import PrivatePayloadLock, LIMIT
+from save_failure_fields import payload
+from shutdown_run import controlled_stage, failed_source
+
+
+class FailureControls(unittest.TestCase):
+    def setUp(self):
+        self.memory=Memory()
+        m=self.memory
+        m.put(0x57E0,0xFE00,struct.pack("<3H",0xFF00,0x4E8,0x37FC))
+        m.put(0x57E0,0xFF00,struct.pack("<3H",0xFF80,0x9D8,0x7000))
+        m.put(0x57E0,0xFF06,struct.pack("<4I",0x72000100,14,int.from_bytes(b"SAVE","little"),1))
+        m.put(0x57E0,0xFEEC,struct.pack("<I",512))
+        m.put(0x7000,0x9D3,struct.pack("<BHH",0x9A,0xE8,0x37FC))
+        m.put(0x7100,0x104,struct.pack("<HH",7,2))
+        m.put(0x7100,0x128,struct.pack("<I",12))
+        self.published={"provider":"7100:0100","provider_handle":12,"io_handle":7}
+        self.archive={"active":{"pointer":"7100:0100"},"working_handle":12}
+        self.stop={"reason":"breakpoint","cs_ip":"44DE:0285","registers":{
+            "ss":"57E0","bp":"FE00","ax":"4000","bx":"0007","cx":"000E",
+            "ds":"7200","dx":"0100","system":{"mode":"real"}}}
+
+    def capture(self):
+        return payload(self.memory,self.stop,0,self.published,self.archive)
+
+    def test_named_payload_parent_and_span(self):
+        r=self.capture()
+        self.assertEqual((r["position"],r["length"],r["number"]),(512,14,1))
+        self.assertEqual((r["resource_bp"],r["numbered_bp"]),(0xFF00,0xFF80))
+        self.assertEqual(r["record"]["io_handle"],7)
+
+    def test_header_write_other_record_and_wrapping_span_rejected(self):
+        for case in ("header","readonly","through","span","number","handle","active"):
+            self.setUp()
+            if case=="header": self.memory.put(0x57E0,0xFE02,struct.pack("<H",0x955))
+            elif case=="readonly": self.memory.put(0x7100,0x106,b"\x00\x00")
+            elif case=="through": self.memory.put(0x7100,0x124,struct.pack("<I",8))
+            elif case=="span": self.memory.put(0x57E0,0xFEEC,struct.pack("<I",LIMIT-1))
+            elif case=="number": self.memory.put(0x57E0,0xFF12,struct.pack("<I",2))
+            elif case=="handle": self.stop["registers"]["bx"]="0008"
+            else: self.archive["active"]["pointer"]="7200:0100"
+            with self.assertRaises(ValueError,msg=case): self.capture()
+
+    @unittest.skipUnless(os.name=="nt","Windows mandatory byte-range lock")
+    def test_real_lock_denies_write_and_releases_on_exception(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run=Path(directory)/"rust-dos-save-failure"/"synthetic"
+            (run/"drive-c").mkdir(parents=True)
+            target=run/"drive-c/DARKRUN.GFF"
+            target.write_bytes(b"synthetic")
+            lock=PrivatePayloadLock(run)
+            with self.assertRaisesRegex(RuntimeError,"synthetic exit"):
+                with lock:
+                    with target.open("r+b",buffering=0) as other:
+                        with self.assertRaises(OSError): other.write(b"x")
+                    raise RuntimeError("synthetic exit")
+            self.assertFalse(lock.locked)
+            self.assertEqual(target.read_bytes(),b"synthetic")
+            with target.open("r+b",buffering=0) as other:
+                self.assertEqual(other.write(b"x"),1)
+
+    @unittest.skipUnless(os.name=="nt","Windows lock path guard")
+    def test_missing_wrong_root_and_nonfile_fail_before_lock(self):
+        with tempfile.TemporaryDirectory() as directory:
+            run=Path(directory)/"wrong-root"/"synthetic"
+            with self.assertRaisesRegex(ValueError,"root"): PrivatePayloadLock(run).acquire()
+            run=Path(directory)/"rust-dos-save-failure"/"synthetic"
+            (run/"drive-c").mkdir(parents=True)
+            with self.assertRaises(ValueError): PrivatePayloadLock(run).acquire()
+            (run/"drive-c/DARKRUN.GFF").mkdir()
+            with self.assertRaises(ValueError): PrivatePayloadLock(run).acquire()
+
+    def test_failed_source_requires_real_result_and_same_pending_record(self):
+        record={"pointer":"7100:0100","io_handle":7,"options":2,"flags":0,"handle":12,"dirty":1}
+        meta={"passed":True,"writes":[],"fault":{"record":copy.deepcopy(record),"lock":{
+            "file":"drive-c/DARKRUN.GFF","start":0,"length":LIMIT,"acquired":True,"released":True},
+            "write_result":{"ax":"0005","carry":True}},"resource_result":{"ax":"FFFF","record":record},
+            "numbered_result":{"success_byte":0,"record":record},"post_failed_map":{"record":record},
+            "files_after":{"SAVE02.SAV":{"exists":False}}}
+        self.assertEqual(failed_source(meta),record)
+        self.assertFalse(controlled_stage(["source","run","failed-save"]))
+        for case in ("locked","success","dirty","changed","copied"):
+            bad=copy.deepcopy(meta)
+            if case=="locked": bad["fault"]["lock"]["released"]=False
+            elif case=="success": bad["fault"]["write_result"]["carry"]=False
+            elif case=="dirty": bad["post_failed_map"]["record"]["dirty"]=0
+            elif case=="changed": bad["post_failed_map"]["record"]["handle"]=13
+            else: bad["files_after"]["SAVE02.SAV"]["exists"]=True
+            with self.assertRaises(ValueError,msg=case): failed_source(bad)
+
+
+if __name__=="__main__":
+    unittest.main()

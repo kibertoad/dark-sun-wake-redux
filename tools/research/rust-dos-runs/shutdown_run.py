@@ -80,19 +80,41 @@ def write_request(registers):
 def controlled_stage(arguments):
     if (len(arguments) not in (2, 3)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in arguments[:2])
-            or len(arguments) == 3 and arguments[2] != "dirty-active"):
-        raise SystemExit("usage: shutdown_run.py <native-save-source-run> <new-run-name> [dirty-active]")
-    return len(arguments) == 3
+            or len(arguments) == 3 and arguments[2] not in ("dirty-active", "failed-save")):
+        raise SystemExit("usage: shutdown_run.py <source-run> <new-run-name> [dirty-active|failed-save]")
+    return len(arguments) == 3 and arguments[2] == "dirty-active"
+
+
+def failed_source(meta):
+    lock = meta.get("fault", {}).get("lock", {})
+    if (meta.get("passed") is not True or meta.get("writes") != []
+            or lock.get("file") != "drive-c/DARKRUN.GFF" or lock.get("acquired") is not True
+            or lock.get("start") != 0 or lock.get("length") != 128*1024*1024
+            or lock.get("released") is not True
+            or not meta.get("fault", {}).get("write_result", {}).get("carry")
+            or meta.get("resource_result", {}).get("ax") != "FFFF"
+            or meta.get("resource_result", {}).get("record", {}).get("dirty") != 1
+            or meta.get("numbered_result", {}).get("success_byte") != 0
+            or meta.get("numbered_result", {}).get("record", {}).get("dirty") != 1
+            or meta.get("post_failed_map", {}).get("record", {}).get("dirty") != 1
+            or meta.get("files_after", {}).get("SAVE02.SAV", {}).get("exists") is not False):
+        raise ValueError("failed-Save source lacks released-lock native failure and pending-map evidence")
+    original, current = meta["fault"]["record"], meta["post_failed_map"]["record"]
+    if any(current.get(key) != original.get(key) for key in ("pointer","io_handle","options","flags","handle")):
+        raise ValueError("failed-Save working-record identity changed")
+    return current
 
 
 def main():
     dirty_stage = controlled_stage(sys.argv[1:])
+    failure_stage = len(sys.argv) == 4 and sys.argv[3] == "failed-save"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    source = game / "captures/rust-dos-native-save" / sys.argv[1]
-    meta = json.loads((source / "native-save.json").read_text(encoding="utf-8"))
-    state = read_saved_state(source, "saved-map")
+    source = game / ("captures/rust-dos-save-failure" if failure_stage else "captures/rust-dos-native-save") / sys.argv[1]
+    meta = json.loads((source / ("failure.json" if failure_stage else "native-save.json")).read_text(encoding="utf-8"))
+    failed_record = failed_source(meta) if failure_stage else None
+    state = read_saved_state(source, "failed-map" if failure_stage else "saved-map")
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
@@ -106,7 +128,8 @@ def main():
         emulator_config=RustDosConfig(media=(Media("D", game / "game.ins", "iso"),),
             deterministic=True, cycles="15000", sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1),
             ultrasound=None), readiness_timeout=60.0)
-    report = {"source": sys.argv[1], "controlled_dirty": dirty_stage, "load_mapping_stop": meta["load_mapping_stop"],
+    report = {"source": sys.argv[1], "controlled_dirty": dirty_stage, "failed_save_source": failure_stage,
+              "load_mapping_stop": meta["load_mapping_stop"],
               "inputs": [], "draws": [], "writes": [], "events": [], "passed": False,
               "limits": "fixed saved-map Quit; observed requests/results only; stops before DOS termination"}
     with RustDosSession(settings) as session:
@@ -178,6 +201,13 @@ def main():
                     report["entry"] = capture(session.client, stop, delta)
                     if report["entry"]["status"] != 0:
                         raise ValueError("Quit reached a nonzero-status exit")
+                    if failed_record is not None:
+                        expected = {key:failed_record[key] for key in ("pointer","io_handle","options","handle","dirty")}
+                        if expected not in report["entry"]["archives"]:
+                            raise ValueError("failed working record differs at ordinary exit entry")
+                        report["failed_record_binding"] = expected
+                        for target in (prep_return, commit_request, commit_result):
+                            session.client.set_breakpoint(target)
                     if dirty_stage:
                         report["writes"].append(seed_active(session, stop, delta))
                         for target in (prep_return, commit_request, commit_result):
@@ -226,17 +256,17 @@ def main():
                     after = rng.address(seg, off + 2)
                     session.client.set_breakpoint(after)
                     pending_write = after, len(report["write_requests"]) - 1
-                elif dirty_stage and flow.phase == "shutdown" and address == prep_return:
+                elif (dirty_stage or failure_stage) and flow.phase == "shutdown" and address == prep_return:
                     if pending_commit is not None or pending_write is not None:
                         raise ValueError("preparation returned with incomplete native result")
                     preparation.returned(session.client, stop)
-                elif dirty_stage and flow.phase == "shutdown" and address == commit_request:
+                elif (dirty_stage or failure_stage) and flow.phase == "shutdown" and address == commit_request:
                     if (preparation.pending is None or pending_commit is not None
                             or int(stop["registers"]["ax"], 16) >> 8 != 0x68):
                         raise ValueError("commit lacks preparation or AH68 request")
                     report["commit_requests"].append({"handle": int(stop["registers"]["bx"], 16), "stop": stop})
                     pending_commit = len(report["commit_requests"]) - 1
-                elif dirty_stage and flow.phase == "shutdown" and address == commit_result:
+                elif (dirty_stage or failure_stage) and flow.phase == "shutdown" and address == commit_result:
                     if pending_commit is None:
                         raise ValueError("commit result lacks request")
                     report["commit_requests"][pending_commit]["result"] = {
@@ -252,7 +282,7 @@ def main():
                         off, seg = argument & 0xFFFF, argument >> 16
                         item["record"] = {"io_handle": struct.unpack("<H", checked_read(session.client, seg, off + 4, 2))[0],
                                           "dirty": checked_read(session.client, seg, off + 0x2C, 1)[0]}
-                        if dirty_stage:
+                        if dirty_stage or failure_stage:
                             preparation.entry(item, stop)
                     report["events"].append(item)
                 elif flow.phase == "shutdown" and address == terminate:

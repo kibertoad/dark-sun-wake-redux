@@ -109,6 +109,38 @@ Synthetic controls cover ordering, selectors, frame binding and mismatches.
 The native exit is a linked request/result report or a precise capability
 failure; API identification alone is not an external no-file-effects proof.
 
+The failed-Save extension serves Q-SAVE-009 with a native file-error input,
+not a guest-field seed. A fixed runner restores the verified play-ready
+checkpoint, follows the admitted F1/Enter Save flow and observes the
+working-file open/publication using the existing archive-origin guards.
+At the first SAVE/1 payload AH40 request, require its resource-writer frame,
+same active record/native handle, writable option2 without write-through,
+and a payload span inside128MiB. Acquire a nonblocking Windows byte-range
+lock only on that owned run's private drive-c/DARKRUN.GFF. The fixed
+128MiB range covers that request; no arbitrary file or range is exposed.
+Release it at the observed interrupt result, before continuing guest code,
+and close the lock handle in every failure path. Leave the canonical source,
+checkpoint, other files and host protections untouched.
+
+First verify lock denial and post-unlock success with a synthetic file and
+two independent handles. Validate path/link/size bounds and the payload
+caller/handle/span checks. An inability to acquire the lock stops the attempt;
+do not substitute a fake result or guest memory/register write. The first
+native attempt must record whether the service actually failed, not assume
+that host locking affects the emulator's backing operation.
+
+Record the native request/result, resource-writer error/pending state,
+preparation calls, numbered-writer returning flag and Save-screen rejoin.
+Follow the same record into an admitted map/input state and record whether
+it remains pending, with no numbered save copied. Only after lock release,
+retain a failed-map checkpoint with exact state/frame/file verification.
+The ordinary Quit observer may consume this named checkpoint through a
+fixed failed-save stage and the same restore guards; no arbitrary checkpoint
+root is accepted. Distinguish the controlled filesystem-failure cause from
+uncontrolled field corruption and from normal successful saving. A positive
+Q-SAVE-009 answer needs the same pending record and bound file outcome at
+later shutdown; a local failure or a checkpoint alone does not close it.
+
 The final research batch attempts only admitted runtime parts, records
 versions, exact source/checkpoint identity, state/control observations and
 request/result/file-change distinctions, and narrows the rule/queue only
