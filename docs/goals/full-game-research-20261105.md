@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 1e1aa28f -NoRestore` passed
-  with declared skips: 1974 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 726b3beb -NoRestore` passed
+  with declared skips: 1975 entries, 208 parity rows,
   five deviations. Integration at 7f387a81 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -63,6 +63,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   actual route/file admission: alternate DS:19C5 pointer histories and broader
   selector writes after FND-PARTY-296. Reuse its low-word census and
   address-residue exclusion; no heap-segment proof is needed for offset four.
+  FND-PARTY-297 narrows mask-10 reflection to getter binding/failure;
+  its mask-20 continuation and other producer paths remain Q-PARTY-134.
   FND-PARTY-294 reuses fixed and known dynamic-call exclusions.
   The handler inventory and twelve census profiles
   are repaired; all profile controls pass. docs/EVIDENCE-TOOLS.md records
