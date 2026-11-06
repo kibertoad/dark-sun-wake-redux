@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 32446397 -NoRestore` passed on
-  936cad39's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
+  `Test.ps1 -Research -ChangedSince 885408dc -NoRestore` passed on
+  1ce5b886's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
@@ -50,7 +50,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   interval; do not repeat baseline snapshots. Reuse FND-PARTY-332's
   kind-specific handoff contracts and FND-PARTY-333's
   connected BP/upward-chain contracts and FND-PARTY-334's retained
-  candidate/scalar/link-domain contracts; next
+  candidate/scalar/link/target-domain contracts; reuse those rather than
+  repeat their own-update classifications. Next initialization and non-scalar/
+  native preservation:
   actual initial and supplied-header link histories, any reached
   link-before-clear reader, and handler stack ordering/node spacing,
   different-chain frame writes, native BP/DS and
