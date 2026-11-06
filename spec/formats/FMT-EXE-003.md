@@ -50,100 +50,46 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 
 ## Open questions
 
-- Which additional direct, computed or indirect readers/writers can interpret
-  or alter these resident headers beyond the known manager routes
-  (Q-EXE-033)? FND-EXE-003/004 covers all shipped records and trampolines
-  in both editions; FND-EXE-520/561/562/563/566 supplies the known manager
-  field uses. FND-EXE-567's relocated/fixup census explicitly excludes
-  runtime-computed segments and does not prove all header accesses known.
-  FND-PARTY-342 classifies its two retained signal-table pointers as stored
-  callbacks: registration and immediate consumers do not dereference them
-  as header data. Their downstream manager/reporter effects and other
-  computed or aliased pointers remain within the census obligations.
-  FND-EXE-587 already supplies the connected window/global callback
-  setter, forwarder, argument and indirect-call reading. In particular,
-  its three window setters store the callback value at record +F5/+F9/+FD;
-  treating that callback argument as an unread header-data dereference
-  would repeat resolved local work. This does not establish that every
-  destination record is disjoint from a header, exclude adjusted-base or
-  block-copy writers, or admit all saved/restored callback histories.
-  Its stated exclusions remain. FND-CONFIG-163 retains the shared guard
-  helper's termination/native/cleanup conditions: the callback-store
-  continuation is not proof that a guard call returns normally.
-  FND-EXE-588 supplies the application-frame setter/forwarder and callback
-  census, retaining tag/record-construction, block-copy and computed-pointer
-  exclusions. FND-EXE-644 resolves the nine first-jump candidates in the
-  retained overlay pointer report as local callback argument forwarding;
-  the branch joins themselves add no unread header-data dereference.
-  Actual route admission, destination aliasing and reached callback effects
-  remain distinct from that finite immediate-use result.
-  FND-EXE-645 matches the other 144 first-call candidates one-to-one to
-  the expected relocated callback arguments, including sixteen cases
-  after a structure-copy helper. Together the findings classify this
-  finite 153-pair set under their decoder/frame models; they do not prove
-  every instruction start, predecessor, native frame or alias condition.
-  Reuse that correspondence rather than repeating the local slot census.
-  FND-EXE-647 supplies positive exact instruction-start matches for all
-  306 source pushes and 160 consumer/helper calls in the declared-root
-  model. Its six controls pass and its inside-call-byte control stays
-  distinct. The model's 50 unresolved transfers, five gaps, four contested
-  decodes and false negativeUsable remain; these positive matches are not
-  actual predecessor/frame/native admission or an exhaustive access proof.
-  FND-EXE-648 gives the concrete 4DA0:0000 destination's initial source
-  value, two allocation-derived publication paths and close-before-clear
-  interval. FND-CONFIG-234 shows reader failure can leave its published
-  allocation returned by the wrapper. Remaining questions for that route
-  concern the actual allocation/header address domain and concrete writers
-  or callbacks across the named intervals, not an unnamed pointer producer.
-  FND-EXE-649 composes the recorded direct break publishers into a
-  conditional canonical current-pair/lower-bound invariant. Under its
-  startup/data/frame and excluded-writer conditions, fresh allocation
-  header stores lie above the resident overlay domain. A checked next
-  break alone is insufficient; its noncanonical counterexample is not an
-  admitted game state. Free-list returns, actual bindings, cached history
-  and later header-relevant effects remain separate.
-  FND-EXE-650 separates free-list address confinement from complete heap
-  validity. The relevant remaining inputs are the actual root and followed
-  link/release/predecessor segment domains and nonwrapping count/end
-  producers. A high root alone does not exclude a foreign link; a high
-  selected segment alone does not exclude a wrapped tail. Full reciprocity,
-  termination or checker success is not an additional obligation unless it
-  can change the described header access. Actual input histories and the
-  excluded writer/alias mechanisms remain.
-  FND-EXE-651 classifies the five reported direct release argument sources.
-  These are forwarded/existing pointers, a saved original allocation, a
-  computed remainder and post-callee input-buffer fields. The input flag's
-  zero-start supplied-buffer history bypasses release under its stated
-  bindings; retained or changed flag/pointer histories can differ. Actual
-  source domains, copy-frame separation, remainder extent and implicit
-  buffer-writer effects remain, not an unspecified release callee.
-  FND-EXE-652 gives the packet writer's fixed-segment copy spans and
-  sufficient whole-window separation conditions. Actual captured segments,
-  mapping and preserved frame/code/shared-field histories remain; a complete
-  ring-correctness proof is not independently required for that exclusion.
-  Other excluded header-access mechanisms remain separate.
-  FND-EXE-582 resolves retained direct target sources under its stated
-  direct-store limits, leaving indexed, copied, string/block and other
-  unresolved target/access mechanisms. A complete-reading declaration
-  cannot treat these exclusions as evidence of no further readers/writers.
-  Acquisition success and unrelated service behavior are not added to the
-  representation claim; a service remains relevant where its effects can
-  select a header, alter a field/extent or change a described interpretation.
+- Which additional header-access mechanisms remain beyond the known manager
+  routes (Q-EXE-033)? Reuse the shipped-record and field-use findings and
+  FND-EXE-644/645/647's finite callback-pair classification. Their controls,
+  unresolved transfers, gaps, contested decodes and excluded access mechanisms
+  remain; known local classifications are not a whole-program negative.
+  Ownership is explicit in docs/research-closure-overlay-headers.json,
+  pinned to coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv. Its assignments are metadata,
+  not complete readings; its report retains every unassigned/shared function,
+  inventory gap and out-of-scope row. Other editions' unassigned rows remain.
+- Can callback-record destinations alias these resident headers (Q-EXE-035)?
+  Reuse FND-EXE-587/588/648 for the window/application-frame stores and
+  concrete publication/cleanup intervals. FND-CONFIG-234 distinguishes an
+  output allocation from successful I/O. Actual record and cached-pointer
+  histories, aliases and intervening writers remain in that queue item.
+- Do the actual shared heap and input-buffer histories exclude these headers
+  from their accesses (Q-EXE-036)? Reuse FND-EXE-649/650/651/652's explicit
+  address contracts and exclusions. The wider heap service remains a
+  dependency owned by CONFIG; unrelated span/backing or ring claims
+  are not added to this entry's header-access question.
+  The map shares the retained heap/wrapper functions with CONFIG and the
+  buffer/normalizer/startup functions with INPUT where applicable. The
+  inventoried 39D1:0009 body contains the retained 00F1 entry path; assigning
+  that row does not claim its unreviewed prefix or other paths fully read.
+- Which downstream signal/window/application-frame callback effects can
+  select, alter or reinterpret these headers (Q-EXE-037)? Reuse
+  FND-PARTY-342 and FND-EXE-582/587/588 for known arguments, setters and
+  consumers, preserving their unresolved target and writer mechanisms.
+  FND-CONFIG-163's guard/native/cleanup conditions remain. The map does
+  not assign every callback target or loader outside its listed functions;
+  those unassigned rows and unresolved targets remain visible obligations.
 - Under which actual caller/frame and loader conditions does the return
-  trap realize the saved-offset/innermost-frame restoration described by
-  the +00/+02 fields (Q-EXE-034)? FND-PARTY-338 gives the first eligible
-  frame, zero/odd/sentinel cases, a sufficient upward-chain own-write
-  contract and precise native BP/save-word conditions. FND-PARTY-339
-  supplies bounded cache interfaces and scalar/link/target/copy domains.
-  These conditional contracts do not establish every actual handler graph,
-  successful rejoin, native binding or reached asynchronous effect.
-  The narrower reflected-handoff trial remains separate; answering that
-  one root alone would not settle this entry's general return behavior.
-  Retain the runtime field claims together with their representation;
-  moving their proof obligations here neither answers nor drops them.
+  trap implement the saved-offset/innermost-frame restoration described by
+  +00/+02 (Q-EXE-034)? Reuse FND-PARTY-338/339's conditional frame/link,
+  cache, target and copy contracts. They do not admit every handler graph,
+  native BP/save-word binding, successful rejoin or asynchronous effect.
+  The narrower reflected-handoff trial in FMT-PARTY-007 remains separate.
 
-The whole-entry evidence assessment at baseline 1bb1ae74 found no
-qualifying undeclared complete reading. Layout coverage is separate from
-code reader/writer completeness and the claimed runtime return behavior.
-The entry remains supported; these obligations are not an ownership
-assignment or a declaration of fully read manager functions.
+The whole-entry assessment at baseline 1bb1ae74 found no qualifying
+undeclared complete reading. The subsequent scope split answers no question
+and removes no unresolved claim. The entry remains supported, with no
+complete-reading declaration; layout coverage, ownership assignments and
+runtime return behavior require their own evidence. These obligations retain
+all field claims together with their representation.

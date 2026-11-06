@@ -1,0 +1,527 @@
+{
+  "version": 1,
+  "areas": [
+    {
+      "id": "EXE",
+      "scope": "Resident overlay-header field access and return behavior in FMT-EXE-003, with the named callback, heap and input-buffer dependencies; no ownership or completeness claim for all executable code."
+    },
+    {
+      "id": "CONFIG",
+      "scope": "Shared heap/wrapper and selected buffer setup producers relevant to Q-CONFIG-013 and the narrower Q-EXE-036 address exclusion; unrelated setup behavior remains outside this partial map."
+    },
+    {
+      "id": "INPUT",
+      "scope": "The retained queue setup, cleanup, flush, writer and pointer-normalization paths only as dependencies of Q-EXE-036 header exclusion. General input rules and unassigned functions are outside this map."
+    }
+  ],
+  "inventories": [
+    {
+      "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
+      "sha256": "820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2",
+      "assignments": [
+        {
+          "start": "4AE5:0010",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:0140",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:029B",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:03E8",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:0421",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:04C6",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:04F4",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:055A",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:05A4",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:061F",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:0672",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:06B1",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:06E4",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:0753",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "4AE5:075F",
+          "areas": [
+            "EXE"
+          ]
+        },
+        {
+          "start": "1000:1367",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:13CA",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:143B",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1464",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:149B",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:14C4",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1528",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1582",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:15A5",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1622",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:169E",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1702",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:177C",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:17F2",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:1831",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "1000:18D0",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared heap service: EXE owns header-address exclusion; CONFIG owns returned-span and initialization contracts. Ownership is not complete-reading evidence."
+        },
+        {
+          "start": "444C:0008",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared allocation/release wrapper: EXE owns header alias effects; CONFIG owns the service contract and selected setup callers."
+        },
+        {
+          "start": "444C:0092",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared allocation/release wrapper: EXE owns header alias effects; CONFIG owns the service contract and selected setup callers."
+        },
+        {
+          "start": "444C:00FA",
+          "areas": [
+            "EXE",
+            "CONFIG"
+          ],
+          "reason": "Shared allocation/release wrapper: EXE owns header alias effects; CONFIG owns the service contract and selected setup callers."
+        },
+        {
+          "start": "4464:0024",
+          "areas": [
+            "EXE",
+            "INPUT"
+          ],
+          "reason": "Shared input-buffer path: EXE owns possible header aliases; INPUT owns the packet-buffer state and lifecycle. Other INPUT semantics remain outside this partial map."
+        },
+        {
+          "start": "4464:0083",
+          "areas": [
+            "EXE",
+            "INPUT"
+          ],
+          "reason": "Shared input-buffer path: EXE owns possible header aliases; INPUT owns the packet-buffer state and lifecycle. Other INPUT semantics remain outside this partial map."
+        },
+        {
+          "start": "4464:014E",
+          "areas": [
+            "EXE",
+            "INPUT"
+          ],
+          "reason": "Shared input-buffer path: EXE owns possible header aliases; INPUT owns the packet-buffer state and lifecycle. Other INPUT semantics remain outside this partial map."
+        },
+        {
+          "start": "4464:0230",
+          "areas": [
+            "EXE",
+            "INPUT"
+          ],
+          "reason": "Shared input-buffer path: EXE owns possible header aliases; INPUT owns the packet-buffer state and lifecycle. Other INPUT semantics remain outside this partial map."
+        },
+        {
+          "start": "39D1:0009",
+          "areas": [
+            "EXE",
+            "CONFIG",
+            "INPUT"
+          ],
+          "reason": "Shared buffer producer or pointer normalizer: EXE owns header exclusion, CONFIG the setup/allocation interface, INPUT the queue destination. Assigning a whole inventoried row does not establish every entry or branch."
+        },
+        {
+          "start": "45CD:0000",
+          "areas": [
+            "EXE",
+            "CONFIG",
+            "INPUT"
+          ],
+          "reason": "Shared buffer producer or pointer normalizer: EXE owns header exclusion, CONFIG the setup/allocation interface, INPUT the queue destination. Assigning a whole inventoried row does not establish every entry or branch."
+        }
+      ]
+    }
+  ],
+  "obligations": [
+    {
+      "id": "header-access-census",
+      "area": "EXE",
+      "kind": "callers",
+      "question": "Which additional instruction-qualified header-access mechanisms remain beyond the controlled local callback-pair set?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-033"
+      ],
+      "evidence": [
+        "FND-EXE-567",
+        "FND-EXE-582",
+        "FND-EXE-644",
+        "FND-EXE-645",
+        "FND-EXE-647"
+      ]
+    },
+    {
+      "id": "callback-destination-aliases",
+      "area": "EXE",
+      "kind": "state-producers",
+      "question": "Can actual callback-record and cached-pointer histories make their destination stores alias resident headers?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-035"
+      ],
+      "evidence": [
+        "FND-EXE-587",
+        "FND-EXE-588",
+        "FND-EXE-648",
+        "FND-CONFIG-234"
+      ]
+    },
+    {
+      "id": "heap-buffer-header-domains",
+      "area": "EXE",
+      "kind": "state-producers",
+      "question": "Do actual heap and buffer segment histories meet the recorded header-exclusion conditions?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-036"
+      ],
+      "evidence": [
+        "FND-EXE-649",
+        "FND-EXE-650",
+        "FND-EXE-651",
+        "FND-EXE-652"
+      ]
+    },
+    {
+      "id": "header-relevant-callback-effects",
+      "area": "EXE",
+      "kind": "indirect-transfers",
+      "question": "Which actual stored targets and reached effects select, alter or reinterpret a documented resident header?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-037"
+      ],
+      "evidence": [
+        "FND-PARTY-342",
+        "FND-EXE-587",
+        "FND-EXE-588",
+        "FND-CONFIG-163"
+      ]
+    },
+    {
+      "id": "general-return-admission",
+      "area": "EXE",
+      "kind": "remaining-evidence",
+      "question": "Which actual handler frame, loader and native conditions establish the general saved-return field claims?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-034"
+      ],
+      "evidence": [
+        "FND-EXE-562",
+        "FND-PARTY-338",
+        "FND-PARTY-339"
+      ]
+    },
+    {
+      "id": "shared-heap-callers",
+      "area": "CONFIG",
+      "kind": "callers",
+      "question": "Which selected setup/FONT/script requests and consumed return widths admit the shared allocation span?",
+      "state": "open",
+      "queue": [
+        "Q-CONFIG-013"
+      ],
+      "evidence": [
+        "FND-CONFIG-225",
+        "FND-CONFIG-226",
+        "FND-CONFIG-227",
+        "FND-EXE-293"
+      ]
+    },
+    {
+      "id": "shared-heap-state-producers",
+      "area": "CONFIG",
+      "kind": "state-producers",
+      "question": "Which actual root, link, count, bound, saved-segment and lifetime states admit the recorded heap transitions?",
+      "state": "open",
+      "queue": [
+        "Q-CONFIG-013"
+      ],
+      "evidence": [
+        "FND-CONFIG-225",
+        "FND-CONFIG-226",
+        "FND-CONFIG-227",
+        "FND-EXE-293"
+      ]
+    },
+    {
+      "id": "shared-heap-indirect-transfers",
+      "area": "CONFIG",
+      "kind": "indirect-transfers",
+      "question": "Which reached indirect or external effects can change the selected returned spans or marker writes?",
+      "state": "open",
+      "queue": [
+        "Q-CONFIG-013"
+      ],
+      "evidence": [
+        "FND-CONFIG-225",
+        "FND-CONFIG-226",
+        "FND-CONFIG-227",
+        "FND-EXE-293"
+      ]
+    },
+    {
+      "id": "shared-heap-remaining-evidence",
+      "area": "CONFIG",
+      "kind": "remaining-evidence",
+      "question": "Which backing, segment-wrap, service and failure-continuation evidence remains for the selected shared heap contract?",
+      "state": "open",
+      "queue": [
+        "Q-CONFIG-013"
+      ],
+      "evidence": [
+        "FND-CONFIG-225",
+        "FND-CONFIG-226",
+        "FND-CONFIG-227",
+        "FND-EXE-293"
+      ]
+    },
+    {
+      "id": "input-header-alias-callers",
+      "area": "INPUT",
+      "kind": "callers",
+      "question": "Which actual setup and packet-copy routes admit the buffer segments used by the header-exclusion question?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-036"
+      ],
+      "evidence": [
+        "FND-EXE-292",
+        "FND-EXE-293",
+        "FND-EXE-651",
+        "FND-EXE-652"
+      ]
+    },
+    {
+      "id": "input-header-alias-state-producers",
+      "area": "INPUT",
+      "kind": "state-producers",
+      "question": "Which actual saved-pointer, ownership flag, cleanup and lifetime histories preserve each captured buffer segment?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-036"
+      ],
+      "evidence": [
+        "FND-EXE-292",
+        "FND-EXE-293",
+        "FND-EXE-651",
+        "FND-EXE-652"
+      ]
+    },
+    {
+      "id": "input-header-alias-indirect-transfers",
+      "area": "INPUT",
+      "kind": "indirect-transfers",
+      "question": "Which intervening callback, native or excluded writer effects can replace the captured input-buffer destination?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-036"
+      ],
+      "evidence": [
+        "FND-EXE-292",
+        "FND-EXE-293",
+        "FND-EXE-651",
+        "FND-EXE-652"
+      ]
+    },
+    {
+      "id": "input-header-alias-remaining-evidence",
+      "area": "INPUT",
+      "kind": "remaining-evidence",
+      "question": "Do the actual destination segment, address mapping and frame/code/field bindings meet the recorded copy-window exclusion?",
+      "state": "open",
+      "queue": [
+        "Q-EXE-036"
+      ],
+      "evidence": [
+        "FND-EXE-292",
+        "FND-EXE-293",
+        "FND-EXE-651",
+        "FND-EXE-652"
+      ]
+    }
+  ]
+}
