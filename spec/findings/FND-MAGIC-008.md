@@ -51,7 +51,7 @@ word `+0`, the slot that caused it in word `+2`, the source number in word `+4` 
 
 **`+0134`** (`+0134..+0196`) takes `m` and `p`. It returns 0 for `m` of 4 or more and when bit 0 of
 `m`'s `psionic_ranks` byte for `p` is clear; otherwise 1 when byte 2 of `p` is at most the word
-`+0x02` of `m`'s combatant (unsigned), and 0 when it is above (FND-EXE-611).
+`+0x02` of `m`'s combatant (unsigned), and 0 when it is above (FND-EXE-641).
 
 **`+03CD`** (`+03CD..+050E`, trampoline `5691:0048`) takes a slot `s` and returns at once for `s`
 of 4 or more. It sets a local `u` to `s` once (`+03D8`), then for each power `p` from 0 to 33:

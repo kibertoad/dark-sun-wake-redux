@@ -30,7 +30,7 @@ environment: null
 Overlay offsets `+x` are at file `0x6D090 + x` for overlay 184 and `0x99260 + x` for 213. Segment
 `4E4F` starts at file `0x436F0` (FND-PARTY-081 gives `4E4F:00FE` at `0x437EE`). Overlay 176
 `+064E` sets a power's rank to 1, `+0586` raises a nonzero rank below 30 by 1, `+0674` clears the
-rank, all keeping bit 0 (FND-PARTY-104, FND-EXE-611). `direct_callers.py <dsun> 176+064E 176+0586
+rank, all keeping bit 0 (FND-PARTY-104, FND-EXE-641). `direct_callers.py <dsun> 176+064E 176+0586
 176+0674` finds `+064E` called from overlay 184 `+1940` and `+196E`, overlay 209 `+111B`, overlay
 213 `+08BC` and the resident `29C8:00A6`; `+0586` from overlay 209 `+10FB` and overlay 213 `+0865`;
 `+0674` from overlay 184 `+1913`.

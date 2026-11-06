@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-611
 title: The 7 routines of overlay 176 that no entry placed test whether a member's power in effect can be kept, derive four bytes from a signed byte, clear a known power's rank, return a power's cost or third byte, do nothing, and return the name of a power's DATA record
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-641]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

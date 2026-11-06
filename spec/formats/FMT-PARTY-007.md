@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -67,8 +67,11 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   misses a control and supplies no negative proof for those routes.
   FND-PARTY-265 excludes positive 1001 at the equipment hook's first
   guarded DATA-getter request, not at every nonliteral caller. The repeated
-  call still needs selector/frame preservation; the getter's other 85
-  direct sites, indirect clients and separate DATA request routes remain.
+  call still needs selector/frame preservation. FND-PARTY-272 excludes
+  two further name-helper requests by local bounds, leaving 83 other
+  direct sites. Three of those admit formal word 1001 locally and need
+  their actual incoming argument bindings. Indirect clients and separate
+  DATA request routes remain.
   FND-PARTY-267 excludes 105 direct literal non-DATA request setups from
   number tracing. FND-PARTY-268 classifies its thirteen variable sites
   into five local non-DATA choices, four known-caller non-DATA bindings

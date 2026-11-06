@@ -34,7 +34,7 @@ holds `score_code` in bits 0 to 2 and `adjust` as the signed byte shifted right 
 `+0x19 + score_code` of the combatant record (FND-RNG-042), where `+0x1B` is constitution,
 `+0x1C` intelligence and `+0x1D` wisdom (FND-PARTY-161), so codes 2, 3 and 4 are those three
 scores. The name of power `p` is the text at `+0x20` of `DATA` resource `235 + p` of
-`RESOURCE.GFF` (FND-EXE-611 `+0AF8`); the 34 names run in the manual's printed order, Detonate
+`RESOURCE.GFF` (FND-EXE-641 `+0AF8`); the 34 names run in the manual's printed order, Detonate
 (`DETONATE`) to Thought Shield (`THOUGHT SHIELD`), with these spellings that differ from the
 manual's: 7 `ENERGY CONTROL` (Energy Containment), 8 `LIFE DRAIN` (Life Draining), 13 `CELLULAR
 ADJUSTMENT` (Cell Adjustment), 29 `PSIONIC MIND BAR` (Mind Bar).
