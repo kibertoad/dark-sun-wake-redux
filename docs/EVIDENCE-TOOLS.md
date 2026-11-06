@@ -1,5 +1,25 @@
 # Bounded evidence tools
 
+## Overlay near-transfer pattern query
+
+`tools/research/exec-census/overlay_near_patterns.py` serves Q-PARTY-136's
+alternate-entry audit. Existing `direct_callers.py` searches calls, while
+`inventory_boundaries.py` searches branches in resident inventory rows;
+this query adds raw near call/jump/Jcc/loop patterns across explicitly named
+overlay code regions. It excludes fixup data, far/indirect/table/dynamic and
+operand-size-32 transfers. Inventory-start labels do not establish reachability.
+
+Run it with the locked Python, installed DSUN.EXE, the installed inventory,
+decimal-descriptor/hex-offset targets and one independently established
+`--control DESCRIPTOR+OFFSET@FILE_SITE` per overlay. All controls must match
+a decoded inventory instruction start before any result is printed. Failed
+controls reject the query. Reports include source identity, normalized
+inventory hash, module/distribution decoder versions, exact code bounds,
+controls and exclusions. Keep reports in GAME_DIR. Synthetic tests cover
+signed displacements, 16-bit IP wrap, truncated instructions, operand-interior
+patterns and rejected controls; the tooling commit alone establishes no
+game behavior or absence claim.
+
 ## Type-50 first-item Look inputs
 
 `dotnet run --project tools/DarkSunWakeRedux.Inspect -- rdff-look-census ARCHIVE CONTROLS_JSON`
