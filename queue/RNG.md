@@ -9,7 +9,8 @@ Next ID: Q-RNG-041
   earlier census model? Settles it: actual driver/descriptor/frame admission
   for 4842:182E after FND-SOUND-057's ordinary child-frame contracts,
   actual image/068C result and cache-epoch admission after FND-SOUND-058,
-  excluded capability writers, interrupt-affected frames and subsequent routes to overlay
+  excluded capability writers, interrupt-affected frames and routes beyond FND-SOUND-059's immediate
+  refill-caller continuation to overlay
   193 +003C, 201 +05D5 or 204 +1F06; determine whether those routes restore
   DS or exclude this submission state. Tried: FND-SOUND-056 shows that
   184D removes four bytes after one word argument to ordinary-RETF 0F57,
@@ -19,8 +20,10 @@ Next ID: Q-RNG-041
   compensation occurs, and capability-disabled 0F92 returns without an
   interrupt. FND-SOUND-058 identifies the known cached capability producer
   as the image-call/068C path; actual result, epoch and excluded writers
-  remain. Actual admission and subsequent reseeding/restoration routes
-  remain. Blocks: complete seed-source reading.
+  remain. FND-SOUND-059 settles the immediate caller: no DS restoration,
+  returned SI controls the loop, and an invalid-slot continuation can
+  return without a restoring child. Actual state admission and later
+  reseeding/restoration routes remain. Blocks: complete seed-source reading.
 
 - Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
   `0x25` to `0x2C`, which name `4C13:0369` and the words below it, and with what values? Settles it:
