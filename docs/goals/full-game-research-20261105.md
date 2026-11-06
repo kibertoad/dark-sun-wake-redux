@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 8b1658c3
-  -NoRestore` passed: 2027 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 3017f348
+  -NoRestore` passed: 2028 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -65,19 +65,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   eight shared, eight open obligations, 6979 unassigned across eight
   inventories; zero accepted readings/errors/stale or unmeasured files.
   Counts are not additive with other plans; no status or closure changes.
-- FMT-SOUND-002 existing-evidence review at baseline 26785998 is complete:
-  FND-SOUND-011/012/013 do not qualify for a whole-entry declaration.
-  The entry maps known shared roots and Q-SOUND-004/011. Next Q-SOUND-011:
-  FND-SOUND-061 settles the literal field-window component and loader
-  branches. FND-SOUND-062 classifies the eight field candidates as two loader
-  interiors/six combat-table data locations. FND-SOUND-063 resolves all four exact-name interiors. Next computed/
-  aliased filename/table addresses, overlapping writes and indirect/alternate
-  entries. FND-SOUND-064 now records four computed DS list writers,
-  mixed DS/SS reads, word-offset indexing and conditional capacities.
-  FND-SOUND-065 resolves shipped population: nine startup fallbacks and
-  combat lists four/three/three. FND-SOUND-066 bounds RNG children to
-  fixed state/stack writes and local DS/ES preservation. Next actual
-  state/table/list/frame aliasing, changed inputs and excluded accesses. No generic I/O-success demand for layout alone.
+- FMT-SOUND-002 review baseline 26785998 remains supported, no complete
+  reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
+  literal/raw accesses, 064 for list/address equations, 065 for shipped
+  populations and 066 for RNG-child interfaces. Next actual state/table/list/
+  frame aliases and excluded computed/indirect accesses; no generic I/O-success
+  demand for layout alone. FND-SOUND-067 records song/disc request interfaces:
+  publication ignores request failure. Q-SOUND-004 retains actual status,
+  response/table/frame/handler admission, output, mode-two and FM behavior.
 - Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166;
   actual histories, bounds, driver/interrupt effects and output remain.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
