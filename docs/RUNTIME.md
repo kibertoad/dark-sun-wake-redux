@@ -556,3 +556,26 @@ status or startup-to-transfer/caller admission changes merely from these tests.
 See tools/emu/README.md and docs/VALIDATION.md.
 
 Output retention follows [ANALYSIS-OUTPUTS](ANALYSIS-OUTPUTS.md). [WINDOWS-PROBES](WINDOWS-PROBES.md) is a reference for Windows guest projects and changes none of this DOS restoration's recorded capabilities or capture restrictions.
+
+## Controlled memory profiles
+
+On 2026-11-06, inspecting the pinned session1.0.0 RustDosConfig dataclass
+confirmed that it has no memory-size or EMS setting. The package owns its
+config and refuses a replacement --config argument. The rust-dos1.8.1
+source at3bdb0eff305cf827c07414ce30b9616ef450562c exposes memsize and ems
+through configuration; its run-subcommand memory option is not a global
+debugger-frontend option. No XMS toggle was identified or requested.
+
+The file-backed producer and cleanup in FND-EXE-398 are a candidate for
+controlled memory-profile research under Q-SAVE-007, reusing the record
+sequence and manager in FND-EXE-403/406. No alternate profile was run,
+and changing a profile is not assumed to reach that producer. This
+specific package configuration capability is unavailable; existing static
+work and default-profile sessions remain available. No guest seed,
+package patch or config substitution was used to bypass the limitation.
+
+Reported as [toolkit issue552](https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/552).
+After shared support is reviewed and explicitly adopted, validate the exact
+rendered config, owned startup and actual producer/cleanup state before
+admitting any alternate-profile runtime part. Default-profile checkpoints
+are not proof of a different profile's behavior.
