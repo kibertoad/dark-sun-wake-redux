@@ -9,7 +9,7 @@ byte_order: little
 size: 2
 text: false
 definition: fmt_save_001.ksy
-evidence: [FND-PARTY-011, FND-SAVE-046, FND-SAVE-001, FND-SAVE-002, FND-SAVE-045]
+evidence: [FND-PARTY-011, FND-SAVE-046, FND-SAVE-001, FND-SAVE-002, FND-SAVE-045, FND-SAVE-047]
 conflicting: []
 split_with: []
 related: []
@@ -40,8 +40,17 @@ all creation or transfer histories.
 
 ## Enumerations and flags
 
-No independent flag interpretation of bit 15 is established. The normal
-allocator uses high-bit-set whole-word candidates [FND-SAVE-045].
+The normal allocator uses high-bit-set whole-word candidates [FND-SAVE-045].
+When used by the object-reference selector, such a word is a signed-negative
+key: the service searches active objects for a whole-word field-zero match.
+A nonnegative input instead names a direct slot. Kind-two field zero is the
+combatant's character identifier under the recorded getter conditions.
+The companion key-normalization service leaves negative keys unchanged and
+converts nonnegative slots through that getter. Bit 15 therefore selects the
+key side of these reference interfaces; it is retained during equality,
+not stripped to recover a slot. No party-membership or player-control meaning is assigned, and no exhaustive
+claim about other consumers is made
+[FND-SAVE-047].
 
 ## Differences between builds
 
@@ -52,17 +61,11 @@ None known. The disc's copy of `CHARSAVE.GFF` holds no `CACT` resource [FND-SAVE
 The eleven `CACT` resources, 29 to 39, of the installed `CHARSAVE.GFF`: seven hold 0 and four hold
 an identifier [FND-SAVE-001].
 
+The identified producer and reference interpretation do not constitute an
+all-reader/writer complete reading. Actual getter metadata/width/record
+admission and arbitrary transfer histories are not established by this format
+entry [FND-SAVE-045, FND-SAVE-046, FND-SAVE-047].
+
 ## Open questions
 
-- Q-SAVE-002: the normal producer is identified by FND-SAVE-045 and its
-  persistence input by FND-SAVE-046. Determine whether bit 15 has separate
-  meaning in identifier consumers, or merely belongs to an opaque identifier
-  namespace. The allocator's high-bit-set range and full-word equality tests
-  support the latter locally but do not rule out a separate interpretation
-  elsewhere. Identify actual identifier consumers and relevant writers,
-  including transfer inputs, and inspect their bit tests, conversions and
-  comparisons. An observed bit-dependent consumer would disprove the purely
-  opaque interpretation; a complete relevant consumer audit is needed to
-  exclude one. Preserve computed and indirect accesses not covered by a
-  literal search. Generation UI admission belongs to Q-PARTY-130; unknown
-  effects on this identifier contract remain obligations here.
+None.
