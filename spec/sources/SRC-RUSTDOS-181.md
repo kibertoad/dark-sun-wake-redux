@@ -1,6 +1,6 @@
 ---
 id: SRC-RUSTDOS-181
-title: rust-dos v1.8.1 file-service register source snapshot
+title: rust-dos v1.8.1 file-service register and vector source snapshot
 superseded_by: []
 author: dividebysandwich and rust-dos contributors
 date: unknown
@@ -29,7 +29,7 @@ The older SRC-RUSTDOS-172 remains evidence for its historical revision.
 | src/diskio.rs | 169..218 | Delayed service return and wait loop. |
 | src/instructions/control.rs | 209..234 | Software-interrupt dispatch. |
 | src/cpu/fault.rs | 217..241 | Real-mode vector lookup and interrupt frame. |
-| src/bios.rs | 9..17, 145..183 | Default HLE vector mapping versus separately booted DOS. |
+| src/bios.rs | 9..17, 102..109, 145..183 | Default HLE and IRET vector mapping versus separately booted DOS. |
 
 The ordinary-file branches for read/write/seek publish AX and carry,
 with seek also publishing DX. Neither those branches nor their
@@ -55,6 +55,12 @@ service. A separately booted DOS or a guest-replaced vector follows
 another route. The source therefore supplies a conditional interface
 contract for this exact built-in implementation, not an all-DOS ABI
 claim or proof of the active guest vector.
+
+For FND-PARTY-298, the same source's default vector four remains
+F000:FF53: it starts at the common IRET pointer and is absent from
+the service list and later overrides. Offset bit fifteen is set.
+This describes the source's initial table, not a live original-game
+state or a verified source-to-release correspondence.
 
 ## Known errors
 
