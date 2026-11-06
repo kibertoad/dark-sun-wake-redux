@@ -35,7 +35,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 12d0a417
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 26ea7126
   -NoRestore` passed: 2040 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
@@ -46,7 +46,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   6959 unassigned rows and zero accepted readings. Reporter passes
   with zero errors/stale inventories/unmeasured files. Only owner-excluded
   DOSBox lacks a raw-reporter inventory. Eight TIME/SOUND checklist components make Q-PARTY-136 explicit;
-  none closes a question. No complete reading or answered deletion was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
+  none closed a question during map adoption; no complete reading was added. FND-PARTY-311/312/313 are the three timed batches after the new map;
   the third batch is 96077cf3.
 - Three timed batches are complete; commit messages
   retain research, tooling, checks and handover timings.
@@ -69,14 +69,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
   literal/raw accesses, 064 for list/address equations, 065 for shipped
   populations and 066 for RNG-child interfaces. Next actual state/table/list/
-  frame aliases and excluded computed/indirect accesses;  FND-SOUND-067 records song/disc request interfaces:
-  publication ignores request failure. Q-SOUND-004 retains actual status,
-  response/table/frame/handler admission, output, mode-two and FM behavior.
-  FND-SOUND-068 settles local busy/stop and cleanup: FFFF can satisfy
-  the disc busy bit test. FND-SOUND-069 settles local FM tag selection,
-  cleanup and start forwarding; next actual failure-flag producers,
-  source/block extents/lifetimes and status/target/handle/release histories.
-  FND-SOUND-070 resolves setup arguments; patch-loop/other writers remain.
+  frame aliases and excluded computed/indirect accesses. Q-SOUND-004
+  reuses FND-SOUND-067 through 070 for playback interfaces; next actual
+  status/response/target/heap/frame admission, source/block lifetime,
+  failure-flag producers, patch-loop termination and external output.
   FND-SOUND-071
   supersedes 012. FND-SOUND-072 classifies three raw interiors; next
   Q-SOUND-012 gap 1BF3:4889..4C09 ownership/490D binding after
@@ -88,6 +84,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-078/079 bound formulas/tested literal entries and carried routes;
   next other entries/backing, GPL15 helper, GPL18 local save/restore,
   dynamic selector, decode gap and scheduling.
+- Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
+  FND-SAVE-008/022 and FND-COMBAT-034/035 at this checkpoint.
+  RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
+  Q-SCRIPT-015 retains initialized-block postconditions. No new findings.
 - Q-SOUND-002 retains actual playback admission beyond
   FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
