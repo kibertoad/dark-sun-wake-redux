@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-039, FND-SAVE-035, FND-SAVE-040, FND-SAVE-037, FND-SAVE-038, FND-SAVE-041, FND-SAVE-043, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-039, FND-SAVE-035, FND-SAVE-040, FND-SAVE-037, FND-SAVE-038, FND-SAVE-041, FND-SAVE-043, FND-SAVE-044, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -91,6 +91,11 @@ each native result was AX2 with carry set. The wrapper returned FFFF
 with carry clear and stored error2, which its caller did not test.
 All four monitored private files retained their hashes. Nonempty paths
 and other states remain outside that observation (FND-SAVE-043).
+The known startup constructor builds a separate local VMSHELL.TMP
+pathname from its directory prefix for its file-backed record, under the
+recorded valid-short-string conditions. This is not an observed publication
+to the stored cleanup-path field or an admitted file-backed native handle
+(FND-SAVE-044).
 One fixed saved-map Quit run observed five clean records at archive
 preparation and unchanged hashes for DARKRUN.GFF, CHARSAVE.GFF,
 SAVE02.SAV and RGN032.GFF before the termination request. No monitored

@@ -107,11 +107,18 @@ Next ID: Q-SAVE-010
   then ordinary Quit writes and clears it. That existential case needs no
   further generic alias/provider exclusion. Other state histories, targets
   and mechanisms remain here; the whole exit-side reading is incomplete.
-  FND-SAVE-043 answers the default-scenario delete obligation: both known
+  Tried: FND-SAVE-043 answers the default-scenario delete obligation: both known
   callback callers used the same empty path, native AX2/carry set mapped
   to wrapper FFFF/carry clear, and four monitored files were unchanged.
   Retain nonempty-path admission and other mechanisms; do not re-request
   that scenario's caller/path/native-result binding as unspecified.
+  Tried: FND-SAVE-044 binds the known constructor caller's quantity95 and
+  conditional local VMSHELL.TMP name, separately from cleanup's stored
+  pathname. Its controlled raw index retains undecoded/transfer gaps and
+  establishes no absence proof. Remaining publication audit names actual
+  reloaded slot-index ranges, FND-EXE-405 copy/append extents and aliases,
+  other computed/block writes and native file-backed selection/results;
+  do not assume the constructed local name was copied into the cleanup field.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
