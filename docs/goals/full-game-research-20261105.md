@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 01976df8
-  -NoRestore` passed: 2041 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince fbcb4d90
+  -NoRestore` passed: 2042 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -82,8 +82,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   actual argv/startup, SAVE/18/resource/frame/health/script histories
   and excluded writers. FND-SOUND-077 maps shipped request-52 sites;
   FND-SOUND-078/079 bound formulas/tested literal entries and carried routes;
-  FND-SOUND-080 bounds the fixed snapshot/GPL21 instructions; next other
-  entries/backing, GPL15 helper, GPL18 snapshot/pointer/child preservation,
+  FND-SOUND-080/081 bound snapshot/GPL21 and tested pointer aliases;
+  next other entries/backing, GPL15 helper, actual GPL18 pointer
+  allocation/cleanup admission and snapshot/child preservation,
   dynamic selector, decode gap and scheduling.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
