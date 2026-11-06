@@ -76,6 +76,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-054 settles the state-gated working cleanup, unconditional
   global/pool publications and separate cached-result clear; retain actual
   failure/partial-allocation/retry histories rather than assuming full teardown.
+  FND-SCRIPT-055 resolves the four local allocation-check stages and their
+  different outer/cached returns; retain actual allocator responses, phase,
+  pointer independence and later-use histories, not those classified branches.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.

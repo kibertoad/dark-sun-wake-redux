@@ -118,6 +118,12 @@ player-visible consequence.
 
 ## Alternatives
 
+FND-SCRIPT-055 subsequently composes the failure stages through both
+return layers: the two early outer allocation checks return FFFF directly,
+while the two inner failures reach outer cleanup and return zero under
+the recorded guard, result-word and preservation conditions. The inner
+FFFF return is not a universal cached-FF outcome for every failure.
+
 FND-CONFIG-160 subsequently reads the script call's status gate
 and local entry/reset order. FND-SCRIPT-020 bounds its reset;
 FND-SCRIPT-019 corrects the cache and transfer contracts. Full
