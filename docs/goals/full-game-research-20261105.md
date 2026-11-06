@@ -36,20 +36,22 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c6a03172
-  -NoRestore` passed with declared skips: 1940 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 44dd935c
+  -NoRestore` passed with declared skips: 1942 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
   remain in the research commit messages. FMT-PARTY-007 is the closure trial;
   its queue-backed ownership/dependency map is committed in 4d210fc1.
-  All three trial batches record FND-PARTY-264/265/266 and narrow
+  All three trial batches record FND-PARTY-264/265/267 and narrow
   Q-PARTY-124; none closes a question or declares a complete reading.
   Separate elapsed timings are in their commit messages; template adoption
   is excluded. No earlier comparable timing proves a speedup.
-  Next objective: classify FND-PARTY-267's thirteen remaining variable-type
-  sites under Q-PARTY-124, reusing existing service/caller findings before
-  new code reading. Keep the separate getter-number and indirect gaps.
+  Follow-up FND-PARTY-268 narrows Q-PARTY-124 to four type domains;
+  FND-PARTY-267 supersedes the earlier census label. Next: those four
+  domains under Q-PARTY-124, reusing its recorded sources/controls before
+  more code. Keep the separate getter-number and indirect gaps, including
+  the exploratory raw/Ghidra caller discrepancy retained in FND-PARTY-268.
 - Assessment baseline: fa2a30bd904434e18ac242b3e76116c63ad16951.
   Historical comparison: 9288f86e584db97ee980feb714f6b05c2e430fc5 to
   589b6fce9dfed6f0497ac6506466225b014d570f. The assessment review
