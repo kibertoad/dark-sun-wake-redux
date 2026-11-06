@@ -74,7 +74,10 @@ as loader interiors or combat-table data; FND-SOUND-063 classifies the
 four exact-name interiors. Excluded computed/aliased/indirect mechanisms
 and actual bindings remain. FND-SOUND-064 narrows the known selector
 computed-access component to its four DS list stores, mixed DS/SS reads,
-word-offset calculation and explicit capacity/population conditions. A missing
+word-offset calculation and explicit capacity/population conditions.
+FND-SOUND-065 supplies nonempty shipped populations of nine mode-one
+fallbacks and four/three/three mode-three records, retaining actual
+loaded-byte and frame/binding conditions. A missing
 access could change a field's extent, signedness or interpretation. Unknown
 computed/indirect accesses remain obligations. Successful generic I/O and
 unrelated playback output are not themselves layout claims of this entry.

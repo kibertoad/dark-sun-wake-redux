@@ -9,7 +9,8 @@ Next ID: Q-SOUND-012
   aliases and indirect accesses outside the known loader/selector?
   Settles it: actual BP/frame-to-DS backing and interval exclusions for
   FND-SOUND-064's four computed list writers and DS/SS read paths, changed
-  count/list-byte and empty-list admission, plus other computed/aliased
+  count/list-byte admission beyond FND-SOUND-065's nonempty shipped lists,
+  plus other computed/aliased
   filename/table addresses, overlapping writes, indirect accesses and
   alternate-entry mechanisms; identify
   actual field/extent bindings beyond the controlled literal component,
@@ -31,7 +32,11 @@ Next ID: Q-SOUND-012
   remains unclassified. FND-SOUND-064 identifies local record/list address
   equations, four computed byte stores, conditional 38-byte list capacities
   and direct procedure callers. Actual frame/DS/ES and list population,
-  plus other excluded mechanisms, remain. Blocks: complete
+  plus other excluded mechanisms, remain. FND-SOUND-065 establishes
+  shipped list populations: nine mode-one fallbacks and mode-three lists
+  of four/three/three, including a populated health-eight first-list read
+  under the recorded frame/binding conditions. Actual preservation and
+  changed input domains remain. Blocks: complete
   FMT-SOUND-002 reading; slice 7.
 
 - Q-SOUND-002. FMT-SOUND-001, RULE-SOUND-001, RULE-SOUND-002, RULE-VIDEO-001: How does the sound library play a
