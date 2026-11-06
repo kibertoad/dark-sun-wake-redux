@@ -39,14 +39,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Research -ChangedSince 55fbe24d -NoRestore` passed on
-  fcf79e83's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 55fbe24d passed 758 .NET tests; six new and five existing snapshot controls passed.
+  `Test.ps1 -Research -ChangedSince 448da523 -NoRestore` passed on
+  d213a00b's tree: 2107 entries, 208 parity rows, five deviations. Tooling integration at 448da523 passed 758 .NET tests; eight new and eleven prior snapshot controls passed.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
   Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
   reusing FND-PARTY-288/328..336 and the extended FND-PARTY-335 paused
-  observation. Read docs/RUNTIME.md before extending the native interval. Q-PARTY-138 separately retains other
+  observations. Next evidence must address the publication-to-first-handoff
+  interval; do not repeat baseline snapshots. Read docs/RUNTIME.md first. Q-PARTY-138 separately retains other
   roots, other client index changes, nested drains and later iterations.
   Reuse FND-PARTY-336 before further route classification. The split
   at 56319392 answered no question and added no complete reading.
