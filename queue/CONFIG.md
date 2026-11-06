@@ -358,6 +358,10 @@ Next ID: Q-CONFIG-014
   FND-CONFIG-208 connects the pointer acquisition wrapper to the
   shared archive reader and distinguishes signature/reader output paths.
   Archive producers, reader storage, aliases and FONT lifetime remain open.
+  FND-CONFIG-232 settles ASCII byte lookup capacity for the unchanged
+  shipped FONT at offset four and classifies every high-byte address.
+  Retain actual text/pointer/table identity and lifetime, rather than an
+  unclassified byte-index range or a universal zero-extended lookup model.
   Q-CONFIG-013 now owns the shared allocation/header contract formerly
   accumulated here, retaining FND-CONFIG-209/211/212/223 and all their
   heap/link/bound, caller-range, direction-flag and runtime obligations.
@@ -420,6 +424,11 @@ Next ID: Q-CONFIG-014
   pairs and metadata publication before17F2, including persistence on local
   bounds rejection. Retain actual bound/header/link/alias and native-result
   admission, not an assumed transactional rollback or unspecified terminal body.
+  FND-CONFIG-232 settles the unchanged shipped FONT/100 length8299's
+  request8300, paragraph count519 and no-wrap fill/marker/transfer arithmetic
+  under the retained offset-four/header binding. Retain actual selected
+  record/length, DF, heap/backing and lifetime admission, not an arbitrary
+  unknown request range for that named unchanged resource.
   Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
   complete reading is implied. Message/FONT acquisition and later use remain
   Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
