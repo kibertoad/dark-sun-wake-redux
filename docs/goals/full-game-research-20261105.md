@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 39f0c577
-  -NoRestore` passed with declared skips: 1952 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 18e24bc1
+  -NoRestore` passed with declared skips: 1953 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -52,10 +52,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-272 excludes two name getters, leaving 83 other direct sites
   plus repeated-hook preservation. FND-PARTY-273/274 bound canonical and
   wrapped byte-domain source words and relocations; the count remains 83.
-  FND-PARTY-275/276 exclude 36 constant writer results and direct -38
-  operand forms. Next Q-PARTY-124: 27 inventory value matches and 18
-  unclassified raw candidates; sixteen prefix interiors retain incoming
-  bypass obligations. Keep larger/block/indexed/copied/alias exclusions.
+  FND-PARTY-275/276 exclude 36 constants/direct -38 forms. FND-PARTY-277
+  classifies all 34 interiors and removes tested direct incoming calls.
+  Next Q-PARTY-124: its nine nearby pointer pairs; keep 27 inventory value
+  matches, unsearched incoming transfers and block/indexed/copied/aliases.
   FND-RNG-094 corrects the wrapped address. Other word-input paths remain.
   Reuse the exact caller set and six incoming bindings. FND-EXE-641
   corrects 611's power-name predicate; its other routines/citations survive.
