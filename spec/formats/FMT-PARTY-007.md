@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286, FND-PARTY-287, FND-PARTY-288, FND-PARTY-289, FND-PARTY-290, FND-PARTY-291, FND-PARTY-292, FND-PARTY-293, FND-PARTY-294, FND-PARTY-295, FND-PARTY-296, FND-PARTY-297, FND-PARTY-298, FND-PARTY-299, FND-PARTY-300, FND-PARTY-301, FND-PARTY-302, FND-PARTY-303, FND-PARTY-304, FND-PARTY-305, FND-PARTY-306, FND-PARTY-307]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286, FND-PARTY-287, FND-PARTY-288, FND-PARTY-289, FND-PARTY-290, FND-PARTY-291, FND-PARTY-292, FND-PARTY-293, FND-PARTY-294, FND-PARTY-295, FND-PARTY-296, FND-PARTY-297, FND-PARTY-298, FND-PARTY-299, FND-PARTY-300, FND-PARTY-301, FND-PARTY-302, FND-PARTY-303, FND-PARTY-304, FND-PARTY-305, FND-PARTY-306, FND-PARTY-307, FND-PARTY-308]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -198,6 +198,8 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   and build-before-count ordering; callback admission and later state remain.
   FND-PARTY-307 settles member publication before redraw/empty-record testing
   and the cast handler's later zero-mode clear; interval/later admission remains.
+  FND-PARTY-308 resolves the state brackets' own counter/refresh behavior;
+  actual reached graphics callback targets and interval admission remain.
   Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
