@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 18e24bc1
-  -NoRestore` passed with declared skips: 1953 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Integration -NoRestore` passed
+  with declared skips: 1954 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -52,10 +52,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-272 excludes two name getters, leaving 83 other direct sites
   plus repeated-hook preservation. FND-PARTY-273/274 bound canonical and
   wrapped byte-domain source words and relocations; the count remains 83.
-  FND-PARTY-275/276 exclude 36 constants/direct -38 forms. FND-PARTY-277
-  classifies all 34 interiors and removes tested direct incoming calls.
-  Next Q-PARTY-124: its nine nearby pointer pairs; keep 27 inventory value
-  matches, unsearched incoming transfers and block/indexed/copied/aliases.
+  FND-PARTY-275 through 278 exclude 36 constants, classify all 34
+  interiors and account for tested calls/nearby pairs. Next Q-PARTY-124:
+  27 inventory values; start with 211+1AEF's 9D79 count (FND-PARTY-110/243).
+  Keep unsearched transfers and block/indexed/copied/alias mechanisms.
+  FND-PARTY-278 repairs 33 body bytes and sidecars, preserving two
+  analyzer-undefined bytes. Current map hashes and assessment are refreshed;
+  no errors/stale hashes or new functions/readings. Integration was required.
   FND-RNG-094 corrects the wrapped address. Other word-input paths remain.
   Reuse the exact caller set and six incoming bindings. FND-EXE-641
   corrects 611's power-name predicate; its other routines/citations survive.
