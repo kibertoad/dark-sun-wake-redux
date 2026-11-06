@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. Research Audit remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 7aac4cce
-  -NoRestore` passed: 2044 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince c55e6711
+  -NoRestore` passed: 2045 entries, 208 parity rows, five deviations.
   Prior integration passed controls and 758 .NET tests.
   Pinned EVIDENCE_PYTHON; unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -75,7 +75,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   supersedes 012. FND-SOUND-072 classifies three raw interiors; next
   Q-SOUND-012 gap 1BF3:4889..4C09 ownership/490D binding after
   FND-SOUND-073 excludes tested encoded entries. Split, not closure;
-  FND-SOUND-074 binds transition-call tuples/results;
+  FND-SOUND-074 binds transition calls;
   FND-SOUND-075/076 bound command-line/health inputs. Q-SOUND-004 retains
   actual argv/startup, SAVE/18/resource/frame/health/script histories
   and excluded writers. FND-SOUND-077 maps shipped request-52 sites;
@@ -85,9 +85,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   allocation/cleanup admission and snapshot/child preservation,
   dynamic selector, decode gap and scheduling.
 - FND-SCRIPT-042 corrects RULE-SCRIPT-004 error scratch/continuation;
-  FND-SCRIPT-043 bounds GPL37 stop/skip/menu routes. Q-SCRIPT-024
-  retains actual entry/state, postamble/error and cursor/frame admission.
-  Split from Q-SOUND-004; no complete reading.
+  FND-SCRIPT-043/044 bind GPL37 routes/index. Q-SCRIPT-024 retains
+  entry-168/state admission; Q-COMBAT-059 owns post-error effects,
+  reusing FND-COMBAT-103/109 and Q-SCRIPT-003/018.
+  No complete reading/closure.
 - Q-SCRIPT-005 answered and deleted using FND-SCRIPT-031/026,
   FND-SAVE-008/022 and FND-COMBAT-034/035 at 457c4022.
   RULE-SCRIPT-005 remains supported/Code partial; no complete reading.
