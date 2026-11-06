@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-07,
-  `Test.ps1 -Research -ChangedSince 1922a19b -NoRestore` passed:
-  2121 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  `Test.ps1 -Research -ChangedSince 04ed7816 -NoRestore` passed:
+  2122 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen pointer-boundary and twenty segment-overlap controls passed.
   Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
@@ -48,9 +48,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 - FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
   readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
   reuse FND-EXE-567/582, FND-RNG-066/096 and FND-PARTY-342.
-  Immediate signal-pointer use is classified. FND-EXE-644/645 completes
-  local pair/argument classification of the finite 153 overlay candidates
-  under the retained decoder/frame model. Do not repeat those classifications.
+  Reuse FND-EXE-644/645's finite 153-pair local classification with
+  its decoder/frame limits; do not repeat it.
   FND-EXE-646 corrects the retained timer caller and replaces 585;
   its driver/timer survey is retained, not newly executed.
   FND-EXE-647 positively matches all 306 pushes and 160 consumer/helper
@@ -63,12 +62,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-EXE-649 now supplies the conditional direct break-producer and
   fresh-header address contract. Reuse it and CONFIG-211/212/225/226/231;
   do not reopen those bodies as unspecified normalization behavior.
-  Next Q-EXE-033: isolate the free-list exact/tail returned-segment
-  domain, reusing CONFIG-227/230 and Q-CONFIG-013's existing assessment.
-  Identify concrete segment/count producers and wrap or foreign-link
-  mechanisms; preserve actual membership, field/frame/segment binding and
-  excluded-writer admission. Keep cached lifetime and concrete callbacks
-  across EXE-648's intervals separate from fresh header addresses.
+  FND-EXE-650 narrows free-list address confinement to actual segment/
+  link domains and nonwrapping extent producers; full heap validity is
+  separate unless it changes header accesses. Reuse its two conditional
+  escape cases rather than rereading merge/unlink bodies.
+  Next Q-EXE-033: audit reported 149B release-caller argument provenance
+  and actual free-link producers, reusing CONFIG-165/167/225/227/230 and
+  EXE-296/297. Name released P, neighbor/link/count domains and excluded
+  mutations. Keep cached histories and EXE-648's callback intervals separate.
   Reporter 23fa5697 preserves legacy exact-start scope; --overlap has
   positive byte-extent controls. Existing exact-start findings are not
   silently upgraded to overlapping-write exclusions.
