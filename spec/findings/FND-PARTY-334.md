@@ -23,7 +23,25 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4AE5:11A9..4AE5:1257
-tool: tools/research/exec-census/resident_listing.py at dd0ce3fe; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 1000:0000..1000:0163
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 1000:01B0..1000:0220
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 1000:2877..1000:290A
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 1000:2932..1000:298E
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 1000:29AA..1000:2A07
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 15F3:06B6..15F3:0851
+tool: tools/research/exec-census/resident_listing.py at dd0ce3fe and 52a64a27; locked Python 3.12.10 with Capstone distribution 5.0.9; cache interfaces in FND-EXE-235/236/239/240/241/259/563/564 and notification in FND-PARTY-333
 environment: null
 ---
 
@@ -118,6 +136,58 @@ or failure to a carry result; the outer copy branch transfers on carry
 set to the same error route. Descriptor stores and the native payload
 write are distinct mechanisms with distinct backing requirements.
 
+### Retained direct target-slot candidates outside the manager
+
+FND-EXE-582 retains nine direct-store candidates outside manager CS
+4AE5 for offsets 0080..0088. This connected classification reuses that
+positive candidate set and FND-EXE-236's known manager writers. It is
+not a new negative census: indexed, adjusted-pointer, string/block,
+alternate-entry, interrupt and other excluded forms remain excluded.
+
+| Retained sites | Meaning on the established stream | Effective segment condition |
+|---|---|---|
+| 1000:01DD and 01E1 | Save BX and ES returned by DOS get-vector 3506 into words 0080/0082 | Current DS after the native query; startup supplies the game data segment before its call, but native DS preservation remains a condition |
+| 1000:2981 and 2987 | Publish argument count and near argument-vector pointer into 0084/0086 | DS reloaded from CS:2875, the entry DS captured by 1000:2877 |
+| 1000:2A03 | Publish the constructed environment array's near root from DS:3920 into 0088 | Constructor's current DS after its allocations and restored source-copy segment; it is not forced to manager DS by this store |
+| 15F3:073F, 0743 and 074B | Fill request fields with BX, ES and DI at 0084/0086/0080 | DS is set from CS at 06C0/06C2; a prior odd-byte driver call can intervene |
+| 15F3:0821 | Fill the second request's low count word at 0088 | DS is set from CS at 0775/0777; prior odd-byte driver calls can intervene |
+
+The ordinary startup call at 1000:0025 follows loading DS from the
+relocated game-data literal, before manager setup. Within 01B0 the
+four get-vector requests precede installing the interrupt-zero vector.
+There is no own DS assignment before the two retained stores; saving
+DS on entry restores it only at exit, not after each native query.
+Therefore these stores are not an unconditional manager-hook update,
+but their native segment condition cannot be erased by the startup label.
+
+The argument constructor explicitly captures incoming DS in CS:2875.
+After its parsing/copy branches it reloads that captured segment before
+the two publication stores. FND-RNG-066 binds its known startup-record
+entry; FND-RNG-019 supplies the separate environment constructor and
+allocation interfaces. A changed capture slot, wrong incoming segment,
+changed allocator effects or bypass entry retains its own condition.
+FND-RNG-020's historical constructor observations are not new runtime
+admission under current pins.
+
+For either 15F3 routine, a retained nonzero even count reaches the bulk
+stores without an intervening child call after setting DS from CS. Under
+that normal mapped entry and unchanged segment state, these stores
+therefore target its self-segment request records, disjoint from manager
+55CE at the same offsets. Zero count skips the bulk stores. On an odd
+count, the documented staging branches can call through DS:00B8 first;
+there is no DS reload before the later bulk stores. A final POP DS at
+routine exit does not prove the segment used by those intermediate
+stores. Driver DS and returned count/control state remain required for
+those branches. FND-EXE-397 supplies the complete staging behavior.
+
+All nine retained candidates now have a named destination role and
+segment condition. This removes their unexplained equal-offset status;
+it does not prove global absence of manager-slot writers. Native/driver
+segment changes, different incoming or captured DS, alternate execution
+and the original census's unsearched mechanisms remain Q-PARTY-137.
+The measured default notification in FND-PARTY-335 is a point binding,
+not proof that these conditions hold throughout the first handoff.
+
 ## Interpretation
 
 The selected overlay hook is a no-op or one of two specific copy paths,
@@ -164,3 +234,11 @@ FND-EXE-259 for native move descriptor arithmetic, FND-EXE-563/564 for
 known setup producers, and FND-PARTY-333 for the default notification.
 Retain all actual input, graph, target, memory and asynchronous conditions.
 No original game ran and no original-derived listing or payload is committed.
+
+For the retained outside-manager candidates, reuse FND-EXE-582's nine
+positive sites and FND-EXE-236's manager controls rather than count a
+new negative census. With resident_listing.py at 52a64a27 read the six
+additional resident ranges listed above. Use FND-EXE-397 and
+FND-RNG-019/066 for their connected request/constructor entry context.
+Distinguish entry DS, an explicit later reload, and DS after a reached
+native or driver call. No original game ran for this classification.
