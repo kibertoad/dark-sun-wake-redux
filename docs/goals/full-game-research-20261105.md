@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 8729386a
-  -NoRestore` passed: 2022 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e641366b
+  -NoRestore` passed: 2023 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -69,8 +69,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-011/012/013 do not qualify for a whole-entry declaration.
   The entry maps known shared roots and Q-SOUND-004/011. Next Q-SOUND-011:
   FND-SOUND-061 settles the literal field-window component and loader
-  branches. Next eight raw field candidates, name candidates and excluded
-  aliases/indirects; preserve signed-count and partial-read/cleanup ordering. No generic I/O-success demand for layout alone.
+  branches. FND-SOUND-062 classifies the eight field candidates as two loader
+  interiors/six combat-table data locations. Next four exact-name interiors
+  and excluded aliases/indirects; keep wide/exact census scopes distinct. No generic I/O-success demand for layout alone.
 - Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166;
   actual histories, bounds, driver/interrupt effects and output remain.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
