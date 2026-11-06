@@ -20,7 +20,19 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 1000:02FC..1000:02FD
-tool: tools/research/exec-census/resident_listing.py at 8f183c45; locked Python 3.12.10 with Capstone distribution 5.0.9; existing overlay interfaces in FND-EXE-226/234/562/566 and queue continuation in FND-PARTY-332
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:03E8..4AE5:04F4
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:055A..4AE5:07C5
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:09CB..4AE5:0AB5
+  - build: BLD-GOG-EN-1.1
+    file: DSUN.EXE
+    address: 4AE5:0C22..4AE5:0D27
+tool: tools/research/exec-census/resident_listing.py at 8f183c45 and 7d00e02e; locked Python 3.12.10 with Capstone distribution 5.0.9; existing overlay interfaces in FND-EXE-226/234/562/566 and queue continuation in FND-PARTY-332
 environment: null
 ---
 
@@ -106,6 +118,59 @@ cast queue/index still requires actual SS, graph and header/buffer bounds.
 FND-EXE-566 retains allocation, movement, file-read and cache-hook effects;
 this reading does not establish that those effects preserve the queue.
 
+### BP through the connected load continuation
+
+A connected reread follows +05A4 through allocation, wrap/move,
+append, jump/trap rewriting and probation, together with the file-backed
+load/fixup path and both directions of the EMS transfer interface.
+For these named paths, the internal routines that explicitly replace BP
+are the frame walker and cache allocator. Their normal restoration
+sources are concrete, not a general callee-register convention:
+
+| Routine | Own BP use | Normal restoration source |
+|---|---|---|
+| +075F frame walker | +0767 replaces BP with the next cleared-low-bit link | +0762 saves BP, +0782 pops it; for entry SP S the saved word is SS:(S-4), after the preceding CX push |
+| +0C2E cache allocator | +0C53 loads its cache procedure word; +0C94 substitutes the file-loader offset for a chain update | +0C31 saves BP after DS, +0CA8 pops it; for entry SP S the saved word is SS:(S-4) |
+
+The allocator's +0C22, +0CD5 and +0D04 children do not explicitly
+assign BP. The latter two traverse cache-header links; they can fail
+to terminate and write header fields, so ordinary return and separation
+from the saved word remain conditions. The allocator restores BP before
+its remaining +0D04 call and own final return. It does not intentionally
+return its temporary loader-selector value as the caller's BP.
+
+The named allocation/move/append/probation and rewrite routines do not
+introduce another own BP replacement beyond the walker calls. This
+includes wrap-around's stack of header segments and the file load/fixup
+helpers. Their memory writes still need the admitted graph, source and
+stack backing; absence of an explicit register assignment does not
+exclude overwriting a saved word or a return frame. The walker's
+SS-relative rewrite stores and wrapper exchange retain FND-EXE-234's
+alias and first-match conditions.
+
+The remaining native boundaries are specific. File-backed loading at
++04C6 reaches DOS seek/read requests through +03E8 (INT21 at +03F0
+and +040C). EMS write and read paths reach INT67 at +09F7/+0A19/
++0A40 and +0A51/+0A85/+0AAA respectively. These routines provide no
+surrounding BP save/restore of their own for those native requests.
+The connected BP result therefore requires native BP preservation,
+correct SS/SP and saved storage, and ordinary returns at those sites;
+IRET or a carry/status gate alone supplies no such proof.
+
+The selected default notification is the already-read RETF leaf. The
+near hook is covered here only when it selects the EMS branch or the
+no-copy return under its recorded flags. The selected header's own
+near load target at +18 is a separate binding: this reread covers
++04C6 file loading and +0A4B EMS loading. Extended-memory loading,
+a changed +18/+80/+86 target, changed mode, nonlocal failure or an
+asynchronous handler is not silently assigned the same BP contract.
+
+Thus a successful selected header-return load preserves the handler's
+BP through these connected ordinary paths if the two named save slots,
+native BP and target/stack conditions hold. This supplies the previously
+unspecified restoration mechanisms for FND-PARTY-333's H argument;
+it does not establish their actual reflection-time admission.
+
 ## Interpretation
 
 The normal return-trap mechanism has a concrete conditional frame rejoin
@@ -150,3 +215,11 @@ saved IP/CS and both exchanges by field role; check zero/one/odd links
 and the nonzero first-match condition. This is a static frame derivation,
 not a seeded execution or observed runtime restore. No original game ran
 and no source-derived listing or memory dump is committed.
+
+For the connected BP continuation, use resident_listing.py at 7d00e02e
+with `4AE5:03E8..4AE5:04F4`, `4AE5:04F4..4AE5:055A`,
+`4AE5:055A..4AE5:07C5`, `4AE5:09CB..4AE5:0AB5` and
+`4AE5:0C22..4AE5:0D27`. Reuse FND-EXE-234/239/240/241/566
+and FND-PARTY-334 for the connected interfaces. Separate a restored BP
+register from its saved word's preservation and from native BP effects.
+No original game ran for this reread.
