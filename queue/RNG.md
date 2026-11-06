@@ -7,13 +7,17 @@ Next ID: Q-RNG-041
 - Q-RNG-040. RULE-RNG-001: Does the conditional saved-register mismatch in
   DIGPAK descriptor submission change DS at a reseeding caller despite the
   earlier census model? Settles it: actual driver/descriptor/frame admission
-  for 4842:182E, complete 05EF/0F92 effects and subsequent routes to overlay
+  for 4842:182E after FND-SOUND-057's ordinary child-frame contracts,
+  capability-word production, interrupt-affected frames and subsequent routes to overlay
   193 +003C, 201 +05D5 or 204 +1F06; determine whether those routes restore
   DS or exclude this submission state. Tried: FND-SOUND-056 shows that
   184D removes four bytes after one word argument to ordinary-RETF 0F57,
   conditionally shifting the final DS pop to the local count high word.
   FND-RNG-061's matching push/pop sites alone do not settle this frame
-  consequence. Blocks: complete seed-source reading.
+  consequence. FND-SOUND-057 removes ordinary child-cleanup ambiguity: no
+  compensation occurs, and capability-disabled 0F92 returns without an
+  interrupt. Actual admission and subsequent reseeding/restoration routes
+  remain. Blocks: complete seed-source reading.
 
 - Q-RNG-039. RULE-RNG-001, BUG-COMBAT-001: Does any shipped script write a kind-9 variable from
   `0x25` to `0x2C`, which name `4C13:0369` and the words below it, and with what values? Settles it:
