@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-EXE-650, FND-EXE-651, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -110,6 +110,13 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   termination or checker success is not an additional obligation unless it
   can change the described header access. Actual input histories and the
   excluded writer/alias mechanisms remain.
+  FND-EXE-651 classifies the five reported direct release argument sources.
+  These are forwarded/existing pointers, a saved original allocation, a
+  computed remainder and post-callee input-buffer fields. The input flag's
+  zero-start supplied-buffer history bypasses release under its stated
+  bindings; retained or changed flag/pointer histories can differ. Actual
+  source domains, copy-frame separation, remainder extent and implicit
+  buffer-writer effects remain, not an unspecified release callee.
   Other excluded header-access mechanisms remain separate.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
