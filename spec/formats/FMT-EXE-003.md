@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-EXE-587, FND-EXE-588, FND-EXE-644, FND-EXE-645, FND-EXE-647, FND-EXE-648, FND-EXE-649, FND-CONFIG-234, FND-CONFIG-163, FND-PARTY-338, FND-PARTY-339, FND-PARTY-342]
 conflicting: []
 split_with: []
 related: []
@@ -95,6 +95,13 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   allocation returned by the wrapper. Remaining questions for that route
   concern the actual allocation/header address domain and concrete writers
   or callbacks across the named intervals, not an unnamed pointer producer.
+  FND-EXE-649 composes the recorded direct break publishers into a
+  conditional canonical current-pair/lower-bound invariant. Under its
+  startup/data/frame and excluded-writer conditions, fresh allocation
+  header stores lie above the resident overlay domain. A checked next
+  break alone is insufficient; its noncanonical counterexample is not an
+  admitted game state. Free-list returns, actual bindings, cached history
+  and later header-relevant effects remain separate.
   Other excluded header-access mechanisms remain separate.
   FND-EXE-582 resolves retained direct target sources under its stated
   direct-store limits, leaving indexed, copied, string/block and other
