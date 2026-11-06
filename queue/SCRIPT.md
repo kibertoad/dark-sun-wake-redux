@@ -79,6 +79,9 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-055 resolves the four local allocation-check stages and their
   different outer/cached returns; retain actual allocator responses, phase,
   pointer independence and later-use histories, not those classified branches.
+  FND-SCRIPT-056 bounds all twelve named request/marker arithmetic cases;
+  reuse Q-CONFIG-008's shared heap/header/bound obligations and retain
+  actual capacity, pointer preservation and lifetime at these trigger uses.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
