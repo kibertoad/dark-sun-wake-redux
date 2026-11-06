@@ -250,3 +250,7 @@ None known.
   FND-SOUND-077's 37 literal health-override sites: ten take local variables,
   one other call has a dynamic function selector, and GPL/37 has a decode
   gap. The 27 fixed-value sites alone do not establish a universal domain.
+
+- FND-SOUND-078 bounds eight adjacent random producers for the variable
+  health requests; Q-SOUND-004 retains path/backing admission, bypassing
+  entries and the two carried-local histories rather than unread formulas.
