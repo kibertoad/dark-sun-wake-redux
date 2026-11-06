@@ -85,6 +85,11 @@ None known.
 
 ## Open questions
 
+- Whether the explicit Save wrapper's reused-open branch can copy pending
+  metadata's older on-disk directory before preparation. Its own branch
+  skips close, but actual preexisting-open state and intervening preparation
+  remain unadmitted (FND-SAVE-037, Q-SAVE-008).
+
 - Actual shared top/selection and storage lifetime at a load remain
   Q-COMBAT-046 and Q-COMBAT-063. Loaded zero and literal writer searches
   do not establish every later value; nonzero top does not prove valid

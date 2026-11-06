@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-621
 title: The 6 routines of overlay 192 that no entry placed read one save file's description into a list row, list the SAVE??.SAV files into the ten rows, end the Save and Load window's draw, save a game, and write a row's text into its button or the name box
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-642]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

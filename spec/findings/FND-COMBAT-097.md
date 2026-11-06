@@ -120,7 +120,7 @@ The description occupies the row from +50 onward, nominally 45 bytes
 within a 125-byte record. The actual STXT length, transfer bytes and
 table extent still need their own admission. The lack of a capacity
 argument is not evidence that an ordinary read exceeds the row. The
-list builder's row-index limit is separately retained by FND-EXE-621;
+list builder's row-index limit is separately retained by FND-EXE-642;
 this finding does not assume every parsed filename supplies a valid index.
 No complete-reading declaration or native row/lifetime observation is made.
 
@@ -138,5 +138,5 @@ their far addresses passed to callees and the full-width close argument.
 Follow DI from the open and read results through the zero/FFFF tests;
 do not substitute close AX for DI or assume its preservation. Compare
 the existing row semantics in FND-SAVE-007, caller/index context in
-FND-EXE-621 and list/close conditions in FND-COMBAT-096. No game
+FND-EXE-642 and list/close conditions in FND-COMBAT-096. No game
 process or emulated function call is used.

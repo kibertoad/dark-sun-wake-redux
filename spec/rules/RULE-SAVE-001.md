@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-SAVE-036, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-SAVE-036, FND-SAVE-037, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -100,9 +100,18 @@ service with function0A and memory handle1, and observed AX1 success
 before the same normal rejoin (FND-SAVE-036). This handle is distinct
 from a DOS file or archive handle.
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
-game once it has saved (FND-SAVE-018).
+game after the action returns, without checking its success result
+(FND-SAVE-018, FND-SAVE-037).
 
 ## Edge cases
+
+If explicit Save's numbered writer returns AL0, its wrapper skips its
+working-archive close and numbered-file copy, then the Save-screen caller
+requests the ordinary failure message. After a returning message and
+record-buffer release, the callback consumes the exit mark without a
+save-success test. Actual pending metadata and preservation to later Quit
+remain unadmitted; a writer failure can also occur before publishing it
+(FND-SAVE-037).
 
 The region-update failure and archive-close-error branches in
 FND-COMBAT-044/084 call the shared fatal diagnostic. With its fixed

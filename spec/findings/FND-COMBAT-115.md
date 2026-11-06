@@ -33,7 +33,7 @@ environment: null
 ## Observation
 
 Q-COMBAT-063 needs the source pathname supplied by the selected save
-record. FND-EXE-621 already reads overlay 192 +00F2's complete builder,
+record. FND-EXE-642 already reads overlay 192 +00F2's complete builder,
 including its missing upper index test; this finding reuses that body
 and resolves the numeric-parser and DOS find-helper assumptions left in
 its Alternatives. It does not repeat the builder as a new discovery.
@@ -62,7 +62,7 @@ conditional local arithmetic cases, not observed filenames.
 
 The builder decrements only AX, copies it to SI and tests signed SI
 for negativity. It does not inspect returned DX or require two consumed
-digits. As already recorded in FND-EXE-621, it does not compare a
+digits. As already recorded in FND-EXE-642, it does not compare a
 nonnegative SI with its incoming record count. That count bounds the
 initial clearing loop only. An admitted parsed value one selects row
 zero; ten selects nine; zero becomes FFFF and skips the row write.

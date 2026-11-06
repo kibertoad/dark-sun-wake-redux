@@ -17,7 +17,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     offset: 0x0007D6AC..0x0007D6FB
-tool: tools/research/exec-census/overlay_listing.py at 7c8db0b3; existing action and record mapping FND-UI-037, FND-SAVE-005/022 and FND-EXE-621
+tool: tools/research/exec-census/overlay_listing.py at 7c8db0b3; existing action and record mapping FND-UI-037, FND-SAVE-005/022 and FND-EXE-642
 environment: null
 ---
 
@@ -74,7 +74,7 @@ at +0654. SI preservation and stable frame/segments across the earlier
 children remain conditions on S. Actual path termination/capacity and
 normalization remain Q-COMBAT-063 with FND-COMBAT-113/114/115.
 
-FND-EXE-621 gives the ordinary ten-record allocation. If T+S is admitted
+FND-EXE-642 gives the ordinary ten-record allocation. If T+S is admitted
 as an ordinary index 0..9, the path begins at one of offsets 0,125,...,
 1125 from that allocation's base. That conditional bound does not prove
 T+S is in range, that the base addition does not wrap, that any row is
@@ -127,7 +127,7 @@ half-open ranges. +0B21 is the established action target in FND-UI-037;
 this finding does not decode tables as instructions or assign new event
 targets. Track each row/top/base reread separately, word multiplication
 and addition, the +0654 path push and the later +0BFB release. Compare
-FND-SAVE-005/022 and FND-EXE-621 instead of rediscovering their records.
+FND-SAVE-005/022 and FND-EXE-642 instead of rediscovering their records.
 Retain restore-selected-path-lifetime.txt only under
 GAME_DIR/analysis/hit-incoming-20261104/. No original path, save or listing
 is committed, and no original program is executed.

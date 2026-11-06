@@ -1,13 +1,13 @@
 # SAVE
 
-Next ID: Q-SAVE-008
+Next ID: Q-SAVE-009
 
 ## Static
 
 - Q-SAVE-007. RULE-SAVE-001: Can the Quit shutdown route write a saved
   game or working archive through a reached callback or callee?
   Settles it: establish ordinary pending-state histories through flag8-clear
-  updates, nonfatal writer/preparation failures, other dirty producers or
+  updates, the failed-Save interval identified by FND-SAVE-037, other dirty producers or
   later field changes, and their shutdown handle/file
   bindings and external outcomes; classify remaining computed callback/target,
   service-selector and save-producing branches. Reuse FND-SAVE-028/029's
@@ -85,7 +85,25 @@ Next ID: Q-SAVE-008
   Do not retain a generic unidentified native API or different entered
   target for that recorded transfer. Other targets/hooks, changed state
   and unmonitored effects remain; XMS handle1 is not a file/archive binding.
+  FND-SAVE-037 answers explicit Save's local failure cleanup: writer AL0
+  bypasses the wrapper's close and numbered copy, then requests the ordinary
+  failure message; the callback's exit-mark test does not inspect save success.
+  Establish an actual post-publication failure and same pending record through
+  reverse conversion, message/callback work and later Quit, not an unread
+  unconditional close tail. Initial writer rejection need not create dirtiness.
   Blocks: completing RULE-SAVE-001's exit-side reading.
+
+- Q-SAVE-008. RULE-SAVE-002: Can explicit Save reuse an already-open
+  working archive with pending metadata and copy an older on-disk directory
+  to the numbered save before that metadata is prepared?
+  Settles it: admit the preexisting-open DS:167A/DS:144E history, matching
+  active record and pending state at the resource update and copy; establish
+  preparation or its absence across the writer's conversion/cleanup children,
+  and compare copied directory/payload relationships and later close results.
+  FND-SAVE-037 reads the local branch: nonzero writer AL with saved ownership0
+  skips the wrapper close and reaches the copy. FND-SAVE-035 supplies the
+  option/flag distinction and FND-COMBAT-113 the copier. This is not evidence
+  of an actual stale-directory save. Blocks: none.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
   its top bit mean? Settles it: the code that gives a new character its identifier. Tried:

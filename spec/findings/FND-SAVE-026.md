@@ -27,7 +27,7 @@ locations:
     file: DSUN.EXE
     kind: file-data
     offset: 0x000416C0..0x000416C8
-tool: tools/research/exec-census/segment_offset_refs.py, segment_references.py and overlay_listing.py at b41b9e0c; existing builder FND-EXE-621 and path lifetime FND-COMBAT-129
+tool: tools/research/exec-census/segment_offset_refs.py, segment_references.py and overlay_listing.py at b41b9e0c; existing builder FND-EXE-642 and path lifetime FND-COMBAT-129
 environment: null
 ---
 
@@ -94,7 +94,7 @@ actual capacity and a returning diagnostic are not inferred here.
 It requests the selected row's control state, calls builder +00F2 with
 count ten, then calls +0D58 for each row 0..9. Finally it calls +0DF4
 with the current selected row. Its own body neither resets shared top
-nor validates selected row against the array extent. FND-EXE-621 and
+nor validates selected row against the array extent. FND-EXE-642 and
 FND-COMBAT-115 describe builder clearing and filename-derived writes;
 the filename parser's missing upper gate does not allocate extra rows.
 

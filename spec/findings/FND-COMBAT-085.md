@@ -60,7 +60,7 @@ keyboard or rendered-selection observations. Save mode takes only one
 movement or wrap and does not search the markers.
 
 The no-argument entry +0000 explicitly stores mode one; +0015 stores
-zero. Both call shared setup +024B. FND-UI-036 and FND-EXE-621 already
+zero. Both call shared setup +024B. FND-UI-036 and FND-EXE-642 already
 identify these mode producers; FND-UI-051 supplies the setup and handler
 registration census. The segment-field candidate search for 50AF:0004
 returns sixteen windows: these two store windows and fourteen read/test
