@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -ChangedSince 31b114ad
-  -NoRestore` passed with declared skips: 1944 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince e980ffef
+  -NoRestore` passed with declared skips: 1945 entries, 208 parity rows,
   five deviations. Integration at 58490e2d passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
@@ -47,11 +47,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Q-PARTY-124; none closes a question or declares a complete reading.
   Separate elapsed timings are in their commit messages; template adoption
   is excluded. No earlier comparable timing proves a speedup.
-  FND-PARTY-267 corrects the earlier census label; FND-PARTY-268/269/270
-  narrow type routes and direct prefix writers. Next Q-PARTY-124:
-  live child-tag provider/writers, reusing FND-COMBAT-089 and FND-UI-002.
-  Prefix computed/alias/block/alternate-stream writes and segment
-  preservation after main remain, alongside getter-number/indirect gaps.
+  FND-PARTY-267 corrects the earlier census label; FND-PARTY-268 through
+  271 narrow type routes, prefix writers and direct window providers/stores.
+  Next Q-PARTY-124: classify the other 85 direct getter number domains
+  from retained FND-PARTY-265 reports before extending generic children.
+  Remaining type mechanisms include prefix/segment preservation, indirect
+  bindings and window pointer/F2/F3/type/number changes via helper/alias
+  effects or provider/transfer identity. Q-PARTY-124 keeps their scope.
   Raw/Ghidra discrepancies are not reachability proofs. No question closes.
   Local reporter counter fixed in 5764eabf: MOVSX/scalar SSE MOVSD are
   excluded; eleven synthetic controls pass and operand results are unchanged.
