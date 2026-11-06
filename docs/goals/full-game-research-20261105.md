@@ -36,17 +36,15 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet; no owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince aa8a8321 -NoRestore` passed
-  with declared skips: 1967 entries, 208 parity rows,
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 992824ae -NoRestore` passed
+  with declared skips: 1968 entries, 208 parity rows,
   five deviations. Integration at a7a68e14 passed build and 758 .NET tests. Use project-local
   EVIDENCE_PYTHON for gates and hooks.
 - All ten selected entries are reviewed; their selection and assessments
   remain in the research commit messages. FMT-PARTY-007 is the closure trial;
   its queue-backed ownership/dependency map is committed in 4d210fc1.
-  All three trial batches record FND-PARTY-264/265/267 and narrow
-  Q-PARTY-124; none closes a question or declares a complete reading.
-  Separate elapsed timings are in their commit messages; template adoption
-  is excluded. No earlier comparable timing proves a speedup.
+  Trial results/timings: FND-PARTY-264/265/267 and their commits;
+  no topic closure, complete reading or proven speedup.
   FND-PARTY-267 corrects the earlier census label; FND-PARTY-268 through
   271 narrow type routes, prefix writers and direct window providers/stores.
   FND-PARTY-272 excludes two name getters, leaving 83 other direct sites
@@ -60,9 +58,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-PARTY-286; eighty other sites remain Q-PARTY-124. No answer counted.
   FND-PARTY-287 assesses the script-cast arithmetic; retain its explicit
   preservation conditions. FND-PARTY-288 assesses reflected-cast producer
-  domains. FND-PARTY-289/290 assess the DI interfaces. Next audit transfer
-  targets 44DE:0002/0064/022C/02F8 and reached interrupt contracts for
-  Q-PARTY-134, retaining named saved-word and guard conditions.
+  domains. FND-PARTY-289/290/291 assess DI interfaces. Next Q-PARTY-134:
+  inspect rust-dos v1.8.1 src/interrupts/int21.rs and reached helpers for
+  AH=3F/40/42, retaining saved-word/guard conditions. GitHub blob
+  b632f75598ff84f34753031ab8f9fc367982756d is a source lead, not proof.
   FND-CONFIG-223 replaces 210's reproduction endpoints; reuse its ranges.
   Keep the alternative producer and queue number/index/kind lifetime open.
   FND-PARTY-280 replaces 110; retain its corrected capacity/null branches.
