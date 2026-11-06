@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince cc9cac6e -NoRestore`
-  passed with declared skips: 2018 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince d01beea4 -NoRestore`
+  passed with declared skips: 2019 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -71,8 +71,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   FND-SOUND-059 resolves the immediate refill caller: it uses returned SI
   before restoring SI, never restores DS, and can return through a conditional
   invalid-slot route without another driver child. Next admission
-  and later reseeding/restoration routes; FND-RNG-096 withdraws universal DS/SS equality;
-  historical counts remain, with missing old reports explicitly recorded. No new closures.
+  and later reseeding/restoration routes; FND-RNG-096/097 withdraw blanket segment/frame exclusions; historical
+  counts remain. Q-RNG-029 retains actual graphics SS-frame/page admission. No new closures.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
