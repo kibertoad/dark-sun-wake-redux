@@ -33,3 +33,23 @@ Native result: FND-SCRIPT-061 records the accepted fixed route, matching
 three pointer fields at entry/selection/return and all 2600 selected bytes.
 The session stopped before conversion; later preservation and other
 inputs/failures remain Q-SCRIPT-025.
+
+## Connected conversion observation
+
+Add a separate fixed saved-trigger-conversion stage combining the existing
+SAVE/38 and script-conversion observations in one admitted saved-map run.
+Keep the existing transfer-only stage's early stop. Cache the verified
+2600-byte private transfer reference in the probe, then require the current
+trigger pointer and all input bytes at the existing pre-conversion snapshot
+to match it. At matched reader return compare SAVE/38's destination against
+the converter prediction, not the serialized source bytes. Keep the earlier
+transfer's private-span comparison separately recorded.
+
+Reuse the established breakpoint, provider, mapping, frame, table, muted
+session and owned-process controls. Add no guest write, input, arbitrary
+address or breakpoint. Synthetic controls must reject duplicate/late source
+binding, wrong lengths, changed pointers or changed input bytes. Run the
+tooling gate before a native attempt. Exit requires one run to connect the
+verified transfer, conversion input and predicted output at the sampled
+boundaries. This still does not establish continuous lifetime, all writes
+between stops, other inputs or failure behavior.

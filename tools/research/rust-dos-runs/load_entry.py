@@ -285,15 +285,17 @@ def caller_cleanup_jump(code):
 def main():
     if (len(sys.argv) not in (3, 4) or
             any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]) or
-            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-trigger-transfer", "saved-items", "saved-caller-epilogue", "saved-map-writer"))):
-        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-trigger-transfer|saved-items|saved-caller-epilogue|saved-map-writer]")
+            (len(sys.argv) == 4 and sys.argv[3] not in ("down", "down-return", "load-call", "copy-inputs", "copy-return", "load-return", "saved-copy-return", "saved-reader-entry", "saved-providers", "saved-payloads", "saved-origin", "saved-reader-return", "saved-map-request", "saved-objects", "saved-script-conversion", "saved-trigger-transfer", "saved-trigger-conversion", "saved-items", "saved-caller-epilogue", "saved-map-writer"))):
+        raise SystemExit("usage: load_entry.py <source-run> <new-run-name> [down|down-return|load-call|copy-inputs|copy-return|load-return|saved-copy-return|saved-reader-entry|saved-providers|saved-payloads|saved-origin|saved-reader-return|saved-map-request|saved-objects|saved-script-conversion|saved-trigger-transfer|saved-trigger-conversion|saved-items|saved-caller-epilogue|saved-map-writer]")
     navigation = len(sys.argv) == 4
     observe_trigger_transfer = navigation and sys.argv[3] == "saved-trigger-transfer"
+    observe_trigger_conversion = navigation and sys.argv[3] == "saved-trigger-conversion"
+    observe_trigger_targets = observe_trigger_transfer or observe_trigger_conversion
     observe_objects = navigation and sys.argv[3] == "saved-objects"
     observe_writer = navigation and sys.argv[3] == "saved-map-writer"
     observe_caller = observe_writer or navigation and sys.argv[3] == "saved-caller-epilogue"
     observe_items = observe_caller or navigation and sys.argv[3] == "saved-items"
-    observe_scripts = observe_items or navigation and sys.argv[3] == "saved-script-conversion"
+    observe_scripts = observe_trigger_conversion or observe_items or navigation and sys.argv[3] == "saved-script-conversion"
     observe_map = observe_objects or observe_scripts or navigation and sys.argv[3] == "saved-map-request"
     observe_reader_return = observe_trigger_transfer or observe_map or navigation and sys.argv[3] == "saved-reader-return"
     observe_origin = observe_reader_return or navigation and sys.argv[3] == "saved-origin"
@@ -438,16 +440,21 @@ def main():
                             map_step["reader_return_comparison"] = map_restore.comparison(map_restore.read(session.client,map_step["selected"]["destination"],12544),map_prediction)
                             map_step["reader_return_state"] = current_map
                             map_step["same_binding"] = current_map["map"] == map_step["selected"]["destination"]
-                        if set(reference_payloads) != {24,26}:
-                            raise ValueError("reader returned without both admitted target transfers")
+                        if set(reference_payloads) != ({24,26,38} if observe_trigger_conversion else {24,26}):
+                            raise ValueError("reader returned without the admitted target transfers")
                         samples = []
                         for step in report["resource_requests"]:
                             number = step["request"]["number"]
-                            sample = request_provider.payload(session.client, step["selected"], number, reference_payloads[number])
+                            expected = script_trace.expected_trigger if number==38 else reference_payloads[number]
+                            sample = request_provider.payload(session.client, step["selected"], number, expected)
                             slot = checked_read(session.client, 0x57E0+delta, 0x157E+4*(number-1), 4)
                             off, seg = struct.unpack("<HH", slot)
                             sample.update({"number": number, "source_slot": f"{seg:04X}:{off:04X}",
                                            "same_binding": f"{seg:04X}:{off:04X}" == step["selected"]["destination"]})
+                            if number==38:
+                                sample["basis"] = "reverse-conversion prediction"
+                                if not sample["equal"] or not sample["same_binding"]:
+                                    raise ValueError("SAVE38 reader-return output differs from predicted conversion")
                             samples.append(sample)
                         report["reader_return"] = {"stop": stop, "al": int(stop["registers"]["ax"],16)&0xFF,
                                                    "targets": samples, "archive": archive_fields(session.client, delta)}
@@ -500,7 +507,7 @@ def main():
                 if observe_providers and stop["reason"] == "breakpoint" and stop["cs_ip"] == provider_entry:
                     if target_request is not None:
                         raise ValueError("nested resource request while observing a target")
-                    target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta, include_trigger=observe_trigger_transfer)
+                    target_request = request_provider.request(session.client, stop["registers"], 0x38FF + delta, include_trigger=observe_trigger_targets)
                     if target_request is None and observe_map and open_report=="region_open":
                         target_request = map_restore.request(session.client,stop["registers"],delta)
                         if target_request is not None:
@@ -512,7 +519,7 @@ def main():
                             record()
                             continue
                     if target_request is not None:
-                        target_order = (24, 26, 38) if observe_trigger_transfer else (24, 26)
+                        target_order = (24, 26, 38) if observe_trigger_targets else (24, 26)
                         target_index = len(report["resource_requests"])
                         expected_number = target_order[target_index] if target_index < len(target_order) else None
                         if target_request["number"] != expected_number:
@@ -615,8 +622,10 @@ def main():
                             if (not bindings["equal"] or bindings["destination_slot"] != step["selected"]["destination"]
                                     or bindings != step["trigger_entry_bindings"]):
                                 raise ValueError("SAVE38 returned binding differs from its transfer entry")
-                            report["passed"] = True
-                            break
+                            if observe_trigger_transfer:
+                                report["passed"] = True
+                                break
+                            script_trace.admit_trigger_transfer(step["selected"]["destination"], expected)
                         if target_request["number"] == 26:
                             if not observe_reader_return:
                                 report["passed"] = True

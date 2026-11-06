@@ -979,6 +979,18 @@ class ConversionFrames:
     def set_breakpoint(self,*args,**kwargs): self.operations.append(('break',args))
     def remove_breakpoints(self,*args): self.operations.append(('unbreak',args))
 cf=ConversionFrames(); st=script_restore.ScriptTrace(cf,0)
+linked=script_restore.ScriptTrace(cf,0)
+rejects(lambda: linked.check_trigger_input({'trigger_pointer':'2000:0020'},b'x'*2600))
+rejects(lambda: linked.admit_trigger_transfer('2000:0020',b'x'*2599))
+rejects(lambda: linked.admit_trigger_transfer('FFFF:0000',b'x'*2600))
+linked.admit_trigger_transfer('2000:0020',b'x'*2600)
+assert linked.check_trigger_input({'trigger_pointer':'2000:0020'},b'x'*2600)['equal']
+rejects(lambda: linked.check_trigger_input({'trigger_pointer':'2000:0022'},b'x'*2600))
+rejects(lambda: linked.check_trigger_input({'trigger_pointer':'2000:0020'},b'y'*2600))
+rejects(lambda: linked.check_trigger_input({'trigger_pointer':'2000:0020'},b'x'*2599))
+rejects(lambda: linked.admit_trigger_transfer('2000:0020',b'x'*2600))
+late=script_restore.ScriptTrace(cf,0); late.converter={}
+rejects(lambda: late.admit_trigger_transfer('2000:0020',b'x'*2600))
 qregs={'ss':'57E0','ds':'57E0','sp':'0200','bp':'0240','ax':'0000'}
 rejects(lambda: st.handle(os_stop('38FF:05B5',{**qregs,'ds':'1000'})))
 assert st.handle(os_stop('38FF:05B5',qregs))

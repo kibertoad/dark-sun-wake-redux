@@ -97,6 +97,7 @@ class ScriptTrace:
         self.report = {}
         self.converter = self.query = self.core = None
         self.before = self.expected_nodes = self.expected_trigger = None
+        self.transfer_reference = None
         self.size_entry,self.size_selection,self.size_end = (self.address(0x38FF,off) for off in (0x5B5,0x548,0x613))
         self.core_entry,self.selection,self.core_end = (self.address(0x38FF,off) for off in (0x7B1,0x94A,0x9D4))
         self.release = self.address(0x444C,0x92)
@@ -104,6 +105,24 @@ class ScriptTrace:
 
     def address(self, seg, off):
         return f"{seg+self.delta:04X}:{off:04X}"
+
+    def admit_trigger_transfer(self, destination, payload):
+        if self.transfer_reference is not None or self.converter is not None or len(payload)!=2600:
+            raise ValueError("trigger transfer reference is duplicate, late or outside its fixed extent")
+        address_range(destination,2600)
+        self.transfer_reference = (destination,bytes(payload))
+
+    def check_trigger_input(self, state, trigger):
+        if self.transfer_reference is None or len(trigger)!=2600:
+            raise ValueError("conversion lacks its fixed trigger transfer reference")
+        destination,expected = self.transfer_reference
+        comparison = {"same_binding":state["trigger_pointer"]==destination,"equal":trigger==expected,
+                      "count":2600,"reference_sha256":hashlib.sha256(expected).hexdigest(),
+                      "input_sha256":hashlib.sha256(trigger).hexdigest()}
+        self.report["trigger_transfer_input"] = comparison
+        if not comparison["same_binding"] or not comparison["equal"]:
+            raise ValueError("conversion input differs from its admitted SAVE38 transfer")
+        return comparison
 
     def local(self, displacement, size):
         return checked_read(self.client,self.converter["ss"],self.converter["bp"]+displacement,size)
@@ -191,6 +210,8 @@ class ScriptTrace:
                 raise ValueError("GPLI data result lacks the admitted successful span")
             table = blob(client,destination,7896)
             self.before,trigger = snapshot(client,self.delta)
+            if self.transfer_reference is not None:
+                self.check_trigger_input(self.before,trigger)
             self.expected_nodes,self.expected_trigger,stats = prediction(table,self.before["nodes"],trigger)
             spans = {"table":(destination,7896),"triggers":(self.before["trigger_pointer"],2600),
                      "locals":(f"{self.converter['ss']:04X}:{self.converter['bp']-14:04X}",14)}
