@@ -25,7 +25,11 @@ Next ID: Q-RNG-041
   return without a restoring child. Actual state admission and later
   reseeding/restoration routes remain, now including FND-SOUND-060's
   explicit 201 +0767 -> +075F repeat edge: actual active-service admission,
-  nonzero AL, offset-loop input/frame and callee DS effects must be settled.
+  nonzero AL and the loaded/trap trampoline state must be settled.
+  FND-RNG-098 removes the local prefix ambiguity: no DS reload or
+  mode/count gate precedes the first clock request on the loaded-jump
+  route. Retain actual SS-frame/DS-buffer backing, service/converter
+  effects and final seed-store binding.
   Other direct caller continuations and excluded incoming forms remain.
   FND-RNG-096 withdraws the universal
   DS/SS inference while retaining historical counts and query scopes. Blocks: complete seed-source reading.
