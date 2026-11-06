@@ -107,6 +107,20 @@ FND-PARTY-278 body repair and other region classifications are retained.
 Current ownership hashes are refreshed and assessed separately; the new
 handler remains unassigned there. This is mapping, not a complete reading.
 
+The twelve `tools/research/exec-census/q007_dsun*census.json` profiles now
+include this handler as a root and its interior callback at 1000:2C46 as an
+instruction control. A root cannot serve as its own instruction control.
+Regenerate each configuration with `reach_config.py DSUN.EXE INVENTORY_TSV
+OUT_JSON QUERY_JSON`, then run the pinned engine's `reach OUT_JSON` command.
+Keep configurations and reports in GAME_DIR/analysis/handler-census-20261106/.
+The before/after base comparison uses the same repaired inventory and engine
+19.10.0: 21 to 22 starts, 1362 to 1363 routines, 105588 to 105647
+instructions, and 83 to 84 unresolved transfers. Both retain five gaps,
+four contested sites and `negativeUsable: false`; neither hits its limit.
+The new interior control passes and remains an unresolved computed call.
+These are tooling acceptance measurements, not a research conclusion or a
+comparison against the older engine used for historical findings.
+
 `tools/ghidra/Measure-ResearchBaseline.ps1` runs the pinned Protocol's
 denominator audit for the configured build. Supply `-GameDirectory`, an
 outside-repository `-OutputDirectory`, `-GhidraHome` and `-JavaHome` from
