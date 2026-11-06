@@ -26,6 +26,15 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
+The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
+stopped during return-segment relocation after7 observations, before any
+file lock, payload fault or guest setup write. The probe had not installed
+its initial Save-return breakpoint, so removing it was refused. This is a
+tooling failure and admits no native write-error or failed-map capability.
+The owned session closed and its run lock was released. Retained under
+GAME_DIR/captures/rust-dos-save-failure/. The next tooling revision arms
+that return and its relocation watch together, with a synthetic control.
+
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while
 the modal waited. Its bounded continuation was paused and the owned session

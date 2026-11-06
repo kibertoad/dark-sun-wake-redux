@@ -27,6 +27,16 @@ from request_provider import frame
 import archive_origin
 
 
+def arm_save_return(client, registers):
+    destination = save_return(client, registers)
+    ss, sp = int(registers["ss"],16), int(registers["sp"],16)
+    checked_read(client,ss,sp+2,2)
+    watch = f"{ss:04X}:{sp+2:04X}"
+    client.set_watchpoint(watch,2)
+    client.set_breakpoint(destination,once=True)
+    return destination,watch
+
+
 def main():
     if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
         raise SystemExit("usage: failed_save.py <play-ready-source-run> <new-run-name>")
@@ -112,11 +122,8 @@ def main():
                     if ui["load_mode"] or ui["selected_row"] != 1 or ui["list_top"]:
                         raise ValueError("failed Save reached another row/mode")
                     report["save_entry"] = stop
-                    destination = save_return(session.client, stop["registers"])
                     session.client.remove_breakpoints(root)
-                    watch = f"{stop['registers']['ss']}:{int(stop['registers']['sp'],16)+2:04X}"
-                    checked_read(session.client, int(stop["registers"]["ss"], 16), int(stop["registers"]["sp"],16)+2, 2)
-                    session.client.set_watchpoint(watch, 2)
+                    destination,watch = arm_save_return(session.client,stop["registers"])
                     for site in (open_entry, write_at, resource_return, prep):
                         session.client.set_breakpoint(site)
                     phase = "saving"

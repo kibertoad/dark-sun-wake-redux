@@ -12,6 +12,7 @@ from check_shutdown_snapshot import Memory
 from private_payload_lock import PrivatePayloadLock, LIMIT
 from save_failure_fields import payload
 from shutdown_run import controlled_stage, failed_source
+from failed_save import arm_save_return
 
 
 class FailureControls(unittest.TestCase):
@@ -39,6 +40,21 @@ class FailureControls(unittest.TestCase):
         self.assertEqual((r["position"],r["length"],r["number"]),(512,14,1))
         self.assertEqual((r["resource_bp"],r["numbered_bp"]),(0xFF00,0xFF80))
         self.assertEqual(r["record"]["io_handle"],7)
+
+    def test_initial_return_is_armed_before_relocation(self):
+        class Client(Memory):
+            def __init__(self):
+                super().__init__()
+                self.breakpoints={}
+                self.watches={}
+            def set_breakpoint(self,address,once=False): self.breakpoints[address]=once
+            def set_watchpoint(self,address,length): self.watches[address]=length
+        client=Client()
+        client.put(0x57E0,0xFF90,struct.pack("<3H",0xBF2,0x6506,1))
+        destination,watch=arm_save_return(client,{"ss":"57E0","sp":"FF90"})
+        self.assertEqual(destination,"6506:0BF2")
+        self.assertEqual(client.breakpoints,{destination:True})
+        self.assertEqual(client.watches,{watch:2})
 
     def test_header_write_other_record_and_wrapping_span_rejected(self):
         for case in ("header","readonly","through","span","number","handle","active"):
