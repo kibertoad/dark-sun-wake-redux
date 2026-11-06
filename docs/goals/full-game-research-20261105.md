@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 656417ff -NoRestore`
-  passed with declared skips: 2007 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince def2e405 -NoRestore`
+  passed with declared skips: 2008 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -63,11 +63,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Activity: two findings and four commits (two research, two handovers) through
   the comparison revision. There is no demonstrated topic-closure speedup.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
-- Related existing-evidence review found no fully answered SOUND/CONFIG item.
-  Q-SOUND-002 now reuses FND-SOUND-049 for the complete local 4654:04FE
-  interface. Next actual card/mode/record/frame admission and 4654:056A's
-  playback/argument-units contract; do not reinterpret forwarded 6000/6001
-  as rate or volume without evidence. RULE-SOUND-001 remains supported.
+- Q-SOUND-002 reuses FND-SOUND-049/050 for the wrapper, local dispatch
+  and default-selector contracts. The 6000/6001 meaning is answered; next
+  actual card/mode/type/record/frame admission, explicit-value domains,
+  driver selector meanings and original output. Preserve the conditional
+  zero/three gate exclusion and distinct explicit/default selector paths.
+  RULE-SOUND-001 remains supported; no whole sound question is closed.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
   and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
