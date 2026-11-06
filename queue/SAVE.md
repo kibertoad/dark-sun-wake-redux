@@ -40,6 +40,13 @@ Next ID: Q-SAVE-008
   retain other targets, native zero-count/close/delete outcomes and actual
   handle/path identity. Do not reread007F as an unspecified cleanup callee
   or treat an uninitialized byte's zero-count request as a payload snapshot.
+  FND-SAVE-031 admits one fixed saved-map Quit: five clean records at
+  entry and actual08FB preparations, a known type-three slot0 target at
+  entry, no hits at four monitored write sites, and unchanged hashes for
+  four private files up to the termination request. Retain dirty shutdowns,
+  actual per-call slot preservation, handle/file bindings and unmonitored
+  callbacks/services; do not repeat an unqualified missing clean-state
+  observation or extrapolate this one run to all Quit paths.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does

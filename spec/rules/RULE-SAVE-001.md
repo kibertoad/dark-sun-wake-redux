@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -70,6 +70,11 @@ a cleanup target that requests positioning, a zero-count write and close;
 it ignores the positioning and write results before closing. Those requests
 do not establish the affected live file, a successful deletion, or the OS's
 zero-count behavior (FND-EXE-398, FND-EXE-558, FND-EXE-559).
+One fixed saved-map Quit run observed five clean records at archive
+preparation and unchanged hashes for DARKRUN.GFF, CHARSAVE.GFF,
+SAVE02.SAV and RGN032.GFF before the termination request. No monitored
+write site hit in that interval; this does not establish other shutdown
+states or all file effects (FND-SAVE-031).
 Answering Save sets `DS:627C`, after which the Save Game screen ends the
 game once it has saved (FND-SAVE-018).
 

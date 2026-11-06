@@ -32,9 +32,15 @@ the modal waited. Its bounded continuation was paused and the owned session
 closed, with no RNG draws or guest writes and no exit-entry snapshot.
 Retained: GAME_DIR/captures/rust-dos-shutdown/v181-quit-entry-20261106/.
 This failed attempt does not admit the F3/Quit or shutdown-observation part.
-The corrected runner polls the modal event-fetch entry documented by
-FND-COMBAT-051 and retains UI/input state in its report; a fresh attempt
-must verify that changed flow. Existing restore/read capabilities remain.
+The corrected event-fetch runner subsequently passed the fixed F3/Quit
+flow in v181-quit-event-poll-20261106 under that same capture root.
+FND-SAVE-031 records its accepted evidence: verified input delivery,
+ordinary exit entry, named archive/slot/stream reads and reached preparation
+stops, then the pre-termination breakpoint and fixed private-file hashes.
+These fixed parts are agent under session1.0.0/rust-dos1.8.1. No draw or
+guest write occurred. Native write-result capture remains unverified because
+no monitored write request hit; dirty shutdowns, every indirect slot call
+and actual DOS termination are also unverified. Both sessions closed.
 
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;
