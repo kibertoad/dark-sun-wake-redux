@@ -189,6 +189,70 @@
             "PARTY"
           ],
           "reason": "Shared character-selection or last-cast callback: UI owns event/record presentation interfaces; PARTY owns selected-member and number-production state. Assignment is not a complete reading."
+        },
+        {
+          "start": "3BA6:0B5C",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3BA6:0FA4",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3BA6:12B8",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "3BA6:13A4",
+          "areas": [
+            "UI"
+          ]
+        },
+        {
+          "start": "0x000929DA",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00092A83",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00092EA2",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x00092F81",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
+        },
+        {
+          "start": "0x0009304D",
+          "areas": [
+            "UI",
+            "PARTY"
+          ],
+          "reason": "Shared cursor setup or input path: UI owns cursor/coordinate and record-selection interfaces; PARTY owns number publication and use. Assignment does not assert a complete reading."
         }
       ]
     }
@@ -198,13 +262,16 @@
       "id": "apfm-caller-admission",
       "area": "UI",
       "kind": "callers",
-      "question": "Which caller and input histories admit the reviewed constructor, paint, text and record-selection contracts during the member-switch interval, including alternate entries?",
+      "question": "Which actual caller/input histories and excluded transfers admit the reviewed record-selection contracts after the encoded selector/menu caller classification and unchanged-shipped-graph exclusions?",
       "state": "open",
       "queue": [
         "Q-PARTY-134",
         "Q-PARTY-136"
       ],
-      "evidence": []
+      "evidence": [
+        "FND-PARTY-311",
+        "FND-PARTY-312"
+      ]
     },
     {
       "id": "apfm-record-state",
@@ -256,7 +323,7 @@
       "id": "cast-producer-state",
       "area": "PARTY",
       "kind": "state-producers",
-      "question": "Which current/stored number, last-cast/list word, member/mode/count and getter-pair or queue-record histories can supply DATA 1001 under retained handoff conditions?",
+      "question": "Which actual setup argument/DI, initial/restored or pre-setup, subsequent-publication and excluded-write histories supply the cursor number, and which last-cast/list, getter-pair and queue-record histories remain? Known literal overlap writes and local record-pointer type reads are classified; equality across reloads still requires preservation.",
       "state": "open",
       "queue": [
         "Q-PARTY-134",
@@ -264,7 +331,9 @@
         "Q-PARTY-136",
         "Q-PARTY-137"
       ],
-      "evidence": []
+      "evidence": [
+        "FND-PARTY-313"
+      ]
     },
     {
       "id": "cast-producer-transfers",
