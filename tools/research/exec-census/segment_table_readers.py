@@ -1,7 +1,7 @@
 """Lists the relocated segment words that name DSUN.EXE's segment table or the overlay manager's
 data segment (FND-EXE-567).
 
-Usage: python -I segment_table_readers.py PATH_TO_DSUN.EXE
+Usage: python -I segment_table_readers.py PATH_TO_DSUN.EXE [--pointer-sites]
 
 Checks the installed DSUN.EXE's size and XXH3-128 and applies its MZ relocations for a load
 image at segment 0x1000. For every relocation whose word becomes 0x55E8 (the segment table,
@@ -24,6 +24,13 @@ import sys
 import xxhash
 from capstone import CS_ARCH_X86, CS_MODE_16, Cs
 from capstone.x86 import X86_OP_MEM
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from header_pointer_candidates import report
+
+if len(sys.argv) not in (2, 3) or (len(sys.argv) == 3 and sys.argv[2] != '--pointer-sites'):
+    raise SystemExit('usage: segment_table_readers.py PATH_TO_DSUN.EXE [--pointer-sites]')
+pointer_sites = len(sys.argv) == 3
 
 SIZE, XXH3 = 634416, "e296af55ba2ecde7e77f555c90f33d0b"
 TARGETS = {0x55E8: "segment table", 0x55CE: "manager data"}
@@ -107,6 +114,10 @@ for i, s in enumerate(segs):
             t = int(ins[1].op_str, 16)
             if t >= 0x20 and (t - 0x20) % 5 == 0 and t < 0x20 + 5 * count:
                 pointers += 1
+                if pointer_sites:
+                    print('POINTER-CANDIDATE ' + report(
+                        i, f, body[code:code + code_size], target + 0x1000, t,
+                        f - 1 + ins[0].size + ins[1].size))
                 continue
         odd.append((i, f))
 print(f"-- overlay fixups naming a header: {far} far-transfer operands, {pointers} far pointers to a trampoline,"
