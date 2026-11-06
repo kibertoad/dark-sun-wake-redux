@@ -38,9 +38,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Stage: Slices; Audit unmet. Last gate: 2026-11-06,
-  `Test.ps1 -Integration -NoRestore` passed:
-  2120 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+- Stage: Slices; Audit unmet. Last gate: 2026-11-07,
+  `Test.ps1 -Research -ChangedSince 1922a19b -NoRestore` passed:
+  2121 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
   thirteen pointer-boundary and twenty segment-overlap controls passed.
   Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
@@ -60,16 +60,20 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   false negativeUsable; source models do not admit every live predecessor/frame.
   FND-EXE-648 and FND-CONFIG-234 now carry the concrete window
   producer/cleanup and resource-output contracts; 234 replaces 038.
-  Next Q-EXE-033: inspect Q-CONFIG-013's existing allocation/header
-  assessment before more 444C:0008 reading. Select the remaining address/
-  span admission relevant to allocation(1,count) and resident-header overlap;
-  keep unrelated resource rendering outside the contract. Retain cached
-  pointer history and concrete callbacks/writers across FND-EXE-648's
-  publication/cleanup intervals. Do not repeat local producer/clear paths.
+  FND-EXE-649 now supplies the conditional direct break-producer and
+  fresh-header address contract. Reuse it and CONFIG-211/212/225/226/231;
+  do not reopen those bodies as unspecified normalization behavior.
+  Next Q-EXE-033: isolate the free-list exact/tail returned-segment
+  domain, reusing CONFIG-227/230 and Q-CONFIG-013's existing assessment.
+  Identify concrete segment/count producers and wrap or foreign-link
+  mechanisms; preserve actual membership, field/frame/segment binding and
+  excluded-writer admission. Keep cached lifetime and concrete callbacks
+  across EXE-648's intervals separate from fresh header addresses.
   Reporter 23fa5697 preserves legacy exact-start scope; --overlap has
   positive byte-extent controls. Existing exact-start findings are not
   silently upgraded to overlapping-write exclusions.
-  Retained reports are GAME_DIR/analysis/window-4da0-* as named in 648.
+  Retained reports are GAME_DIR/analysis/window-4da0-* (648) and
+  heap-break-canonical-callers-20261107.txt (649).
   No complete reading or queue answer added. Other mechanisms remain.
   Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
