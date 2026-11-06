@@ -341,5 +341,6 @@ None known.
 - Where the entries of `global_name_pointers` other than `0x20` to `0x24` point (Q-SCRIPT-014).
 - What `fn_5702_00B1` does after reporting an error, and what reads `g_4C0E_0002` (Q-SCRIPT-003).
 
-- Whether GPL/37 reaches its rejected atom and what the error/cursor/frame
-  continuation permits in its current handler (FND-SCRIPT-042, Q-SCRIPT-024).
+- Actual entry-168 and pre-rejection state admission to GPL/37's rejected
+  atom (FND-SCRIPT-043/044, Q-SCRIPT-024), with post-rejection operand,
+  stream and stop effects held by Q-COMBAT-059 and shared Q-SCRIPT-003.

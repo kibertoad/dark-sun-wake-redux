@@ -113,6 +113,7 @@ None known.
 
 ## Open questions
 
-- The reached opcode-77 continuation after GPL/37's rejected first atom,
-  including retained parameter addresses and error effects
-  (FND-SCRIPT-042, Q-SCRIPT-024).
+- Actual opcode-77 entry through GPL/37's public binding and pre-error
+  state (FND-SCRIPT-043/044, Q-SCRIPT-024), with post-rejection parameter
+  addresses, error and write effects held by Q-COMBAT-059 (FND-COMBAT-103,
+  FND-SCRIPT-042).

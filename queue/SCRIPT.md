@@ -5,23 +5,20 @@ Next ID: Q-SCRIPT-025
 ## Static
 
 - Q-SCRIPT-024. RULE-SCRIPT-004, RULE-SCRIPT-011, RULE-SOUND-003:
-  Which admitted paths reach GPL/37 0D37, and what happens after its first
-  rejected expression atom through the error and opcode-77 continuation?
-  Settles it: actual entry to GPL/37 0A41 or independent entries to
-  its 0D29..0D37 postamble, and the kind-nine-value-32/global-flag-24
-  histories for the 0A41 route; direct 0B01-to-0D29 continuation or menu
-  selection/flag retention through the seven-row loop; returning postamble
-  children, cursor/frame/operand-address retention and shared Q-SCRIPT-003
-  error effects determining whether parameter decoding and byte mutation
-  continue. FND-SCRIPT-043 resolves the local stop/skip/menu-return routes;
-  the later 0D58 menu target does not itself bypass the postamble.
-  This controls the interpretation and reachability of the 0D39..0D58
-  script-census gap; do not silently replace B3 with B1 or assume zero.
-  Tried: separated from Q-SOUND-004's retained decode-gap obligation.
-  FND-SCRIPT-042 establishes the distinct native dispatch, uninitialized
-  scratch and missing local stop gates. FND-SCRIPT-043 binds the local
-  routine's conditional paths; actual entry, states and continuations remain.
-  The original split answered no part by deletion. Blocks: slices 3-7.
+  Which admitted entry/state paths reach GPL/37's rejected atom at 0D38?
+  Settles it: actual producers/use of shipped GPLI entry 168 (GPL/37 0A41),
+  current entry-map lifetime or independent entries to 0D29..0D37; the
+  kind-nine-value-32/global-flag-24 histories on the 0A41 route, menu
+  selection/flag retention, and pre-error postamble child/cursor/frame
+  admission. FND-SCRIPT-043 resolves local stop/skip/menu-return routes;
+  FND-SCRIPT-044 binds entry 168 separately from entry 167 at 0001.
+  Post-rejection error/operand-write/stop continuation remains Q-COMBAT-059,
+  reusing shared Q-SCRIPT-003 and hook Q-SCRIPT-018, not a second reading.
+  Tried: separated from Q-SOUND-004's decode-gap obligation. FND-SCRIPT-042
+  corrects scratch/continuation semantics; FND-COMBAT-103/109 already cover
+  the native gap mechanism. FND-SCRIPT-044 reconciles that shared ownership
+  without answering transferred conditions. Preserve original B3 and
+  alternative incoming representations. Blocks: slices 3-7.
 - Q-SCRIPT-018. RULE-SCRIPT-002, RULE-COMBAT-007: Which targets can the optional opcode hook call?
   Settles it: admission and ordering of the DS:193E-gated setup assignment;
   remaining admitted writers of the four-byte field at 57E0:02F6 beyond
