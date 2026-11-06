@@ -4,7 +4,7 @@ title: The number and file name of a saved game
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008, FND-SAVE-009, FND-SAVE-015, FND-SAVE-020, FND-SAVE-021, FND-SAVE-022, FND-SAVE-023, FND-SAVE-026]
+evidence: [FND-SAVE-004, FND-SAVE-005, FND-SAVE-006, FND-SAVE-007, FND-SAVE-008, FND-SAVE-009, FND-SAVE-015, FND-SAVE-020, FND-SAVE-021, FND-SAVE-022, FND-SAVE-023, FND-SAVE-026, FND-SAVE-037, FND-SAVE-042]
 conflicting: []
 split_with: []
 related: []
@@ -18,7 +18,7 @@ in the game's directory, with n in two digits, and its game state is `GREQ` reso
 position to the shared list top. That index is not independently bounded
 to the ten-record request (FND-SAVE-026). The list
 reader requests `STXT/1` from an available `SAVEnn.SAV` archive for its description
-(FND-SAVE-007). Saving updates the working `DARKRUN.GFF` archive's `SAVE` resource group and
+(FND-SAVE-007). The normal newly-opened success path updates the working `DARKRUN.GFF` archive's `SAVE` resource group and
 `STXT/1` description, then copies it to the numbered file (FND-SAVE-008).
 It then selects `CHARSAVE.GFF` for the `PREF/100` and `GREQ/n` writes
 (FND-SAVE-009). A `SAVEnn.SAV` therefore holds `SAVE/1` to `SAVE/61`, `STXT/1`, `ETME/0` and, for
@@ -65,6 +65,16 @@ of more than two digits. The list search does not bound the number it reads from
 `SAVE11.SAV` or higher in the directory is stored past the ten list records (FND-SAVE-020). A load
 whose copy fails still applies the slot's `PREF` and `GREQ` (FND-SAVE-022).
 
+A successful Save can reuse an archive left open and pending by a prior
+failed Save. With saved ownership0 its wrapper skips close and copies
+the on-disk working file before preparing current metadata. In the
+observed case, the numbered file was byte-identical to that source,
+whose header retained directory offset959/size32 while live metadata
+held offset37108/size800. Later ordinary Quit wrote the current metadata
+to DARKRUN.GFF and cleared its pending byte, but left SAVE02.SAV
+unchanged. No valid old directory or loadable numbered snapshot follows
+from the stale header/extent comparison (FND-SAVE-037, FND-SAVE-042).
+
 `save_list_top` is zero in the loaded image. Known stored-character-list
 writers can change it, including a count-minus-ten clamp that can store
 29 for count 39. Save/Load does not itself reset it or enlarge its requested
@@ -84,11 +94,6 @@ SRC-MANUAL-1994, page 14: the Save Game screen has slots, of which a free one sa
 None known.
 
 ## Open questions
-
-- Whether the explicit Save wrapper's reused-open branch can copy pending
-  metadata's older on-disk directory before preparation. Its own branch
-  skips close, but actual preexisting-open state and intervening preparation
-  remain unadmitted (FND-SAVE-037, Q-SAVE-008).
 
 - Actual shared top/selection and storage lifetime at a load remain
   Q-COMBAT-046 and Q-COMBAT-063. Loaded zero and literal writer searches

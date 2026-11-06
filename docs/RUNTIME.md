@@ -66,7 +66,14 @@ The ordinary Quit observer also has a fixed `retried-save` source stage:
 it requires a checked retry-map, no guest seed or retry lock, successful
 writer/copy evidence and the same pending working record. Its source root
 is captures/rust-dos-save-retry, with the existing restore guards and
-fixed pending watch. This later-close stage is not yet runtime-admitted.
+fixed pending watch. The corrected retry passed at0b88cb7d in
+captures/rust-dos-save-retry/v181-q008-reused-save-b-20261106;
+its copy metadata and checked retry-map parts are agent under current
+pins. Atc8d925e3 the later-close stage also passed in
+captures/rust-dos-shutdown/v181-q008-reused-save-quit-20261106.
+Its fixed source restore, ordinary input and native metadata write/commit
+parts are agent (FND-SAVE-042). Both owned sessions closed and released
+locks. This does not admit arbitrary sources or establish save loadability.
 
 On 2026-11-06 the first fixed shutdown observer restored the verified
 saved-map and issued F3, but its builder breakpoint did not recur while

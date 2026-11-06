@@ -107,18 +107,6 @@ Next ID: Q-SAVE-010
   and mechanisms remain here; the whole exit-side reading is incomplete.
   Blocks: completing RULE-SAVE-001's exit-side reading.
 
-- Q-SAVE-008. RULE-SAVE-002: Can explicit Save reuse an already-open
-  working archive with pending metadata and copy an older on-disk directory
-  to the numbered save before that metadata is prepared?
-  Settles it: admit the preexisting-open DS:167A/DS:144E history, matching
-  active record and pending state at the resource update and copy; establish
-  preparation or its absence across the writer's conversion/cleanup children,
-  and compare copied directory/payload relationships and later close results.
-  FND-SAVE-037 reads the local branch: nonzero writer AL with saved ownership0
-  skips the wrapper close and reaches the copy. FND-SAVE-035 supplies the
-  option/flag distinction and FND-COMBAT-113 the copier. This is not evidence
-  of an actual stale-directory save. Blocks: none.
-
 - Q-SAVE-002. FMT-SAVE-001: Where does a character's `CACT` identifier come from, and what does
   its top bit mean? Settles it: the code that gives a new character its identifier. Tried:
   comparing every 16-bit window of both families with the `CHAR` resource numbers, which finds
