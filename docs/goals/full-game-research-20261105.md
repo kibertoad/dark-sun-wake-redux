@@ -36,8 +36,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices. The full research Audit condition remains unmet. No owner
   acceptance of inaccessible evidence or instruction to stop is recorded.
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 48baf1f3 -NoRestore`
-  passed with declared skips: 2005 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 1f9c33e8 -NoRestore`
+  passed with declared skips: 2006 entries, 208 parity rows, five deviations.
   Tooling af49cea8 passed selected controls; integration for 7a8b8ec1 passed
   build, 203 JavaScript and 758 .NET tests. New provenance/ownership paths
   require separate integration acceptance. Set EVIDENCE_PYTHON for gates.
@@ -64,7 +64,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   the comparison revision. There is no demonstrated topic-closure speedup.
   The third objective was DS:9BE2 producer history; remaining MENU admission stays open.
 - Next Q-PARTY-136, FMT-PARTY-007: use the queue's remaining conditions
-  and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 326,
+  and plan obligations. Reuse FND-PARTY-289 through 296, 314 through 327,
   FND-RNG-081/082/093/095 and FND-EXE-551/588. Next ordinary shutdown
   root/mode/ready admission, saved-frame and excluded pointer histories.
   FND-PARTY-322 binds the known exit callback route; FND-PARTY-323 resolves
@@ -77,7 +77,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   six-control source case in getter-mode-overlay-near-reviewed.txt under
   handler-census-20261106/. Next excluded far/indirect/computed/modified
   incoming forms and actual state/frame retention; do not repeat the settled
-  same-overlay near-pattern component. Reuse the known zero/one
+  same-overlay near-pattern component. FND-PARTY-327 narrows declared
+  segment/raw-offset pair forms for the resident candidate. Q-PARTY-136
+  now keeps a compact remaining-obligation record; prior detail is retained
+  at 1f9c33e8 and in findings. Next actual runtime-built/indirect/transformed
+  entries and state/frame preservation, not the excluded pair forms. Reuse the known zero/one
   producer domain without claiming an unconditional runtime invariant;
   apply conditional nonreturn contracts without dismissing reentrant exit
   readers or changed-frame/nonlocal rejoining. Newly identified rows
