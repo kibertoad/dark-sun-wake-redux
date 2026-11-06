@@ -40,15 +40,20 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 - Stage: Slices; Audit unmet. Last gate: 2026-11-06,
   `Test.ps1 -Research -ChangedSince 035caf90 -NoRestore` passed:
-  2114 entries, 208 parity rows, five deviations. Integration at 448da523
-  passed 758 .NET tests and nineteen snapshot controls.
+  2114 entries, 208 parity rows, five deviations. Latest header-pointer tooling integration passed 758 .NET tests;
+  thirteen new boundary controls passed. Prior snapshot controls remain passing.
   Existing argument-count, Kaitai and generated-comparison skips remain.
   Use pinned EVIDENCE_PYTHON and supported escalation for child processes.
 - FMT-EXE-003 review 1bb1ae74 to df80467d: supported, zero accepted
   readings; Q-EXE-033/034 added, none answered. Next Q-EXE-033:
   reuse FND-EXE-567/582, FND-RNG-066/096 and FND-PARTY-342.
   Immediate signal-pointer use is classified; retain transitive effects
-  and computed/aliased mechanisms. Never extend recorded findings in place;
+  and computed/aliased mechanisms. Next review the 153 unique overlay
+  candidates in GAME_DIR/analysis/header-pointer-candidates-20261106.txt:
+  144 first-call and nine first-jump candidates, twenty transfer forms.
+  Use segment_table_readers.py --pointer-sites and its finite tooling plan;
+  candidate decoding does not establish callers or callback argument identity.
+  Reuse FND-CONFIG-030/078/124 before reading window callback consumers. Never extend recorded findings in place;
   factual additions/corrections require whole-entry replacement.
   Q-EXE-034 owns general return admission.
   EXE Static 2, Source 1, Blocked 4; Next ID 35. No ownership assigned.
