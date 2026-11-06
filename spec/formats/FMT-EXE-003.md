@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-333, FND-PARTY-334]
 conflicting: []
 split_with: []
 related: []
@@ -50,4 +50,34 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
 
 ## Open questions
 
-None known.
+- Which additional direct, computed or indirect readers/writers can interpret
+  or alter these resident headers beyond the known manager routes
+  (Q-EXE-033)? FND-EXE-003/004 covers all shipped records and trampolines
+  in both editions; FND-EXE-520/561/562/563/566 supplies the known manager
+  field uses. FND-EXE-567's relocated/fixup census explicitly excludes
+  runtime-computed segments and does not prove all header accesses known.
+  FND-EXE-582 resolves retained direct target sources under its stated
+  direct-store limits, leaving indexed, copied, string/block and other
+  unresolved target/access mechanisms. A complete-reading declaration
+  cannot treat these exclusions as evidence of no further readers/writers.
+  Acquisition success and unrelated service behavior are not added to the
+  representation claim; a service remains relevant where its effects can
+  select a header, alter a field/extent or change a described interpretation.
+- Under which actual caller/frame and loader conditions does the return
+  trap realize the saved-offset/innermost-frame restoration described by
+  the +00/+02 fields (Q-EXE-034)? FND-PARTY-333 gives the first eligible
+  frame, zero/odd/sentinel cases, a sufficient upward-chain own-write
+  contract and precise native BP/save-word conditions. FND-PARTY-334
+  supplies bounded cache interfaces and scalar/link/target/copy domains.
+  These conditional contracts do not establish every actual handler graph,
+  successful rejoin, native binding or reached asynchronous effect.
+  The narrower reflected-handoff trial remains separate; answering that
+  one root alone would not settle this entry's general return behavior.
+  Retain the runtime field claims together with their representation;
+  moving their proof obligations here neither answers nor drops them.
+
+The whole-entry evidence assessment at baseline 1bb1ae74 found no
+qualifying undeclared complete reading. Layout coverage is separate from
+code reader/writer completeness and the claimed runtime return behavior.
+The entry remains supported; these obligations are not an ownership
+assignment or a declaration of fully read manager functions.
