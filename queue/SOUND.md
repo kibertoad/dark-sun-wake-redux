@@ -84,7 +84,11 @@ Next ID: Q-SOUND-013
   calls and local-five selection. FND-SOUND-080 settles the fixed-snapshot
   interface and excludes explicit GPL/21 nested backup/direct script calls;
   retain snapshot 4E71:0216..0218, current 4C13:0337 backing, other
-  native/callback writers and the restore continuation,
+  native/callback writers and the restore continuation. FND-SOUND-081
+  classifies all four nearby saved-word alias-pair candidates and binds
+  allocation/current-pointer publication plus the returning +0422 cleanup
+  clear; remaining lifetime scope includes actual release admission between
+  save and restore, other aliases and excluded computed/bulk writers,
   GPL/27 01C8 dynamic selection, GPL/37 0D39..0D58 decode gap, actual
   scheduling and excluded script/native producers. Tried: a search for stores to `music_mode`, which finds only `2834:000C` and the two
   speech calls of `2834:0001` (FND-SOUND-071). FND-SOUND-067 records

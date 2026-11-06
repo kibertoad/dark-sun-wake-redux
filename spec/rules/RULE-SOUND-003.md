@@ -258,3 +258,7 @@ None known.
 - FND-SOUND-079 excludes the tested top-level literal assignment bypasses
   and binds the two carried-local routes. Q-SOUND-004 retains other entry
   mechanisms, helper/frame admission and saved-local preservation.
+
+- FND-SOUND-081 classifies the nearby snapshot-word alias pairs and records
+  allocation and cleanup publication of the current local-number pointer.
+  Q-SOUND-004 retains its actual lifetime and other writer mechanisms.
