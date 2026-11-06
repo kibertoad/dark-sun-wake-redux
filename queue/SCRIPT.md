@@ -88,6 +88,10 @@ Next ID: Q-SCRIPT-025
   FND-SCRIPT-058 admits copied-slot/live-pointer equality at three sampled
   post-transfer conversion/return boundaries in one native route; retain
   earlier SAVE/38 transfer identity, continuous lifetime and other phases/failures.
+  FND-SCRIPT-059 settles the listed explicit-displacement table-access census:
+  preparation owns its fifteen stores, reader/writer use indexed reads, and
+  the CS jump table is unrelated. Retain raw ownership, computed/bulk aliases
+  and child preservation, including the reader's reload after its optional fill.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
