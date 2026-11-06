@@ -164,12 +164,13 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   admission remain. Public source does not establish original-platform behavior.
   FND-PARTY-293 excludes the verified known setter-call branches as
   vector-21 replacement requests. Other mechanisms remain; its newly
-  identified 123-byte handler is absent from the current inventory and
-  requires metadata/export repair before the denominator can include it.
+  identified 123-byte handler is now declared and inventoried after the
+  isolated exporter repair in docs/EVIDENCE-TOOLS.md. This changes the
+  mapping denominator, not accepted readings or the callback obligations.
   Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.
   Ownership is tied to `coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv`, LF-normalized
-  SHA-256 `baac52b88e23a72661cfc2caaf4c19c8c08b1cdce2c23d04e3d2ad402f553477`.
+  SHA-256 `820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2`.
   Known owned roots are `0x0006F640` (overlay 185 accessor, shared with
   RULE-PARTY-013's experience-table use) and `0x0006BA1E` (overlay 183
   selection caller, shared with RULE-PARTY-009 and generation level setting).
@@ -179,9 +180,9 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   success are not absorbed into the table contract. These four assignments
   describe ownership, not accepted readings. Further reached functions
   have no ownership assignment in this entry's map until identified by the
-  census; the other 3,226 installed-DSUN rows remain unassigned here.
-  The fresh pinned report measures 6,376 rows across six inventories;
-  this entry's four-root map leaves 6,372 unassigned across that denominator,
+  census; the other 3,227 installed-DSUN rows remain unassigned here.
+  The fresh pinned report measures 6,377 rows across six inventories;
+  this entry's four-root map leaves 6,373 unassigned across that denominator,
   independently of the separate SAVE/COMBAT ownership assessment.
   Missing inventories remain `CD:CHARTRAN.EXE`, `CD:SOUND_DS.EXE` and
   `DOSBOX/DOSBox.exe`; no installed result establishes their behavior.

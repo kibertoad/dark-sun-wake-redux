@@ -1,5 +1,5 @@
 kind	start	size	instructions	instructions_outside	data	data_outside	undefined	undefined_outside
-region	1000:0000	16985	16034	0	74	74	877	877
+region	1000:0000	16985	16157	0	74	74	754	754
 region	1425:0009	7386	7361	0	0	0	25	25
 region	15F3:0003	2184	2045	0	52	52	87	87
 region	167B:000B	416	416	0	0	0	0	0

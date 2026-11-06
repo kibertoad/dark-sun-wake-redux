@@ -13,7 +13,7 @@
   "inventories": [
     {
       "path": "coverage/BLD-GOG-EN-1.1/DSUN.EXE.tsv",
-      "sha256": "baac52b88e23a72661cfc2caaf4c19c8c08b1cdce2c23d04e3d2ad402f553477",
+      "sha256": "820b317d56cb74114699a8e295b0e93e961900a4b2d7d493fb2240b4daa6afa2",
       "assignments": [
         {
           "start": "31E0:0E1B",

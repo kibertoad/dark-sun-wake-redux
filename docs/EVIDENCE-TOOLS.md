@@ -78,6 +78,35 @@ before reuse. Far-call and relocated-pair classifications are unchanged.
 
 ## Measured work baseline
 
+### Declared handler supplement, 2026-11-06
+
+FND-PARTY-293 supplies the source-bound 1000:2BDB..2C56 handler.
+The entry is added to dsun-declared-entries.json. ApplyDeclaredEntries.java
+on an isolated copy of INST-single-20261103b creates exactly one function
+of 123 bytes, with 235 existing declarations and zero failures. The
+canonical snapshot remains unchanged. Reports and the repaired copy are
+under GAME_DIR/analysis/handler-inventory-20261106/.
+
+Reproduce with the existing headless scripts and pinned Ghidra: export
+1000:0000..4259 and 1000:2BDB..2C56 before applying the resident
+declarations; apply ApplyDeclaredEntries.java with the committed declaration
+file; export the main region and the narrow handler again, exporting the
+handler twice to separate stems. ExportResearchBaseline.java receives the
+installed XXH3, snapshot INST-handler-20261106, its own SHA-256,
+mode initialized and verified source MD5 90b09ee26f2bc3a8d20063712636241c.
+Require its completion markers and identical inventory/provenance/region
+files for the duplicate narrow exports, not just headless exit zero.
+
+The measured main-region function count changes 211 to 212; every old
+body is unchanged. The region's instruction bytes change 16034 to 16157
+and undefined bytes 877 to 754, with data bytes 74 unchanged. All 123
+new body bytes are now decoded instructions, with no body outside the
+region or entry missing an instruction. The joined inventory adds only
+this row: 3231 functions and 484686 union-counted body bytes. Its existing
+FND-PARTY-278 body repair and other region classifications are retained.
+Current ownership hashes are refreshed and assessed separately; the new
+handler remains unassigned there. This is mapping, not a complete reading.
+
 `tools/ghidra/Measure-ResearchBaseline.ps1` runs the pinned Protocol's
 denominator audit for the configured build. Supply `-GameDirectory`, an
 outside-repository `-OutputDirectory`, `-GhidraHome` and `-JavaHome` from
