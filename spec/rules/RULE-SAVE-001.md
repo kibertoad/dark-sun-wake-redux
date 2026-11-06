@@ -4,7 +4,7 @@ title: The F1 and F2 screens and F3 exit choice
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
+evidence: [FND-SAVE-010, FND-SAVE-012, FND-SAVE-018, FND-SAVE-027, FND-SAVE-028, FND-SAVE-030, FND-SAVE-031, FND-SAVE-032, FND-SAVE-033, FND-SAVE-034, FND-SAVE-035, FND-CONFIG-224, FND-COMBAT-044, FND-COMBAT-084, FND-COMBAT-124, FND-EXE-398, FND-EXE-558, FND-EXE-559, FND-SAVE-025, FND-UI-035, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [SCR-UI-013, SCR-UI-014]
@@ -100,6 +100,15 @@ game once it has saved (FND-SAVE-018).
 
 ## Edge cases
 
+The region-update failure and archive-close-error branches in
+FND-COMBAT-044/084 call the shared fatal diagnostic. With its fixed
+arguments and frame preserved, that diagnostic selects status1 shutdown
+and has no ordinary return to play, even if the DOS termination interrupt
+returns (FND-CONFIG-224). Such a failure is distinct from the status0
+F3/Quit flow observed in FND-SAVE-031..034. Changed exit arguments,
+frames and nonlocal transfers remain separate conditions; a normally
+returning diagnostic is not an additional ordinary Quit producer path.
+
 The screen that runs the key consumer can pass a routine that releases
 its windows and buffers; the consumer calls it before `F1` or `F2` opens
 a screen, on Esc, and on the Save and Quit answers. With such a routine,
@@ -125,9 +134,12 @@ None known.
 
 - Which saved-game or working-archive files, if any, are affected by the
   known pending-write and registered slot/delete routes on actual Quit
-  paths, and do other callback targets produce saves? Actual dirty records,
-  stream state, slot targets/arguments, handle/path identity and native
-  outcomes remain unresolved. The type-four slot's installed cleanup
+  paths, and do other callback targets produce saves? Ordinary pending-state
+  histories, other stream/slot states and targets, handle/path identity,
+  native failures and unmonitored mechanisms remain unresolved. The fixed
+  clean Quit and controlled seeded-dirty success are already observed
+  (FND-SAVE-031..035); the latter does not establish ordinary reachability.
+  The type-four slot's installed cleanup
   target and zero-count request sequence are already read; their live
   bindings and external effects are not (FND-SAVE-027, FND-SAVE-028,
   FND-SAVE-030, FND-EXE-398, FND-EXE-559, Q-SAVE-007).
