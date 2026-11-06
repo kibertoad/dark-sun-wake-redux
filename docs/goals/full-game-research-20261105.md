@@ -35,8 +35,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage: Slices. The full research Audit condition remains unmet. 
-- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 196e25f6
-  -NoRestore` passed: 2031 entries, 208 parity rows, five deviations.
+- Last gate: 2026-11-06, `Test.ps1 -Research -ChangedSince 887dba04
+  -NoRestore` passed: 2032 entries, 208 parity rows, five deviations.
   Prior ownership-map integration passed selected controls and 758 .NET tests.
   Use pinned EVIDENCE_PYTHON; new unmapped metadata needs integration.
 - Ten entries have existing-evidence assessments. FMT-PARTY-007
@@ -69,8 +69,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reading. Q-SOUND-011 reuses FND-SOUND-061/062/063 for classified
   literal/raw accesses, 064 for list/address equations, 065 for shipped
   populations and 066 for RNG-child interfaces. Next actual state/table/list/
-  frame aliases and excluded computed/indirect accesses; no generic I/O-success
-  demand for layout alone. FND-SOUND-067 records song/disc request interfaces:
+  frame aliases and excluded computed/indirect accesses;  FND-SOUND-067 records song/disc request interfaces:
   publication ignores request failure. Q-SOUND-004 retains actual status,
   response/table/frame/handler admission, output, mode-two and FM behavior.
   FND-SOUND-068 settles local busy/stop and cleanup: FFFF can satisfy
@@ -78,9 +77,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   cleanup and start forwarding; next actual failure-flag producers,
   source/block extents/lifetimes and status/target/handle/release histories.
   FND-SOUND-070 resolves 3458/344A as separate selector-0097 arguments;
-  patch-loop termination and excluded pointer writers remain.
-- Q-SOUND-002 reuses FND-SOUND-049 through 060 and FND-CONFIG-166;
-  actual histories, bounds, driver/interrupt effects and output remain.
+  patch-loop termination and excluded pointer writers remain. FND-SOUND-071
+  supersedes 012: five literal region stores, including two overlay-182
+  transition sites. Next actual region-argument/state histories and excluded
+  writers; mode-setter paragraph alias is not an extra function.
+- Q-SOUND-002 retains actual playback admission beyond
+  FND-SOUND-049..060/FND-CONFIG-166.
   Q-RNG-040 retains the conditional frame route, explicit 201 repeat edge
   and FND-RNG-098's loaded-jump prefix. Next actual SS/DS backing,
   residency, service/converter effects and final seed-store binding.
