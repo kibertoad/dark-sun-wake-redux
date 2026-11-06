@@ -1,5 +1,6 @@
 """Fixed paused overlay/queue metadata; caller verifies the source and restore."""
 import struct
+from frame_links import observe
 
 
 def capture(client, stop, delta):
@@ -51,5 +52,6 @@ def capture(client, stop, delta):
                   if ssend <= 0x100000 else None,
               "buffer_disjoint": (last * 16 <= qstart or qend <= first * 16)
                   if 0 < first < last else None,
-              "limits": "paused checkpoint only; no chain validity or later-state preservation"}
+              "frame_links": observe(read, regs["ss"], regs["bp"]),
+              "limits": "paused checkpoint only; observed links do not prove frame validity or later-state preservation"}
     return result

@@ -20,3 +20,19 @@ register/mapping rejection. Run those controls and Test.ps1 -Integration
 before commit. Then verify the existing play-ready checkpoint in a new owned,
 muted pinned session without resuming the guest, and record the actual result
 in a separate research batch; a failed capability remains a specific gap.
+
+## Saved-frame link observation
+
+For Q-PARTY-137, extend only the admitted paused snapshot with the SS:BP
+link walk documented by FND-EXE-234 and FND-PARTY-333. Start at the
+reported BP; read each link word, stop on zero or one, clear the low bit
+for the next offset, and observe return offset/segment only for a nonzero
+even link. Follow at most 64 nodes, detect cycles, and report a specific
+limit or crossing instead of guessing. No writes, guest continuation,
+arbitrary starting address or frame repair. A snapshot is not admission
+of the later interrupt frame or proof that saved returns are genuine.
+
+Controls cover zero/one termination, odd links skipping comparison fields,
+even links and return fields, cycles, the node cap, short reads and physical
+or segment crossings. Keep outputs local; run controls and integration
+before commit. Actual paused observations are a separate research batch.
