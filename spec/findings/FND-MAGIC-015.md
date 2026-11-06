@@ -100,7 +100,7 @@ FND-PARTY-249).
 
 - Calls of `+37A5` through its trampoline built at run time are outside `direct_callers.py`.
 - A change of the bytes at `DS:0656` at run time would change `+09C5`; no store to them was
-  searched for here. FND-PARTY-110 and FND-MAGIC-004 read the same table as fixed.
+  searched for here. FND-PARTY-280 and FND-MAGIC-004 read the same table as fixed.
 - What the item with word `0x10` 313 is, and what its word `+0x0E` bytes mean, stays with
   Q-PARTY-106 (FND-PARTY-249).
 

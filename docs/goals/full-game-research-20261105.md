@@ -54,7 +54,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   wrapped byte-domain source words and relocations; the count remains 83.
   FND-PARTY-275 through 278 exclude 36 constants, classify all 34
   interiors and account for tested calls/nearby pairs. Next Q-PARTY-124:
-  27 inventory values; start with 211+1AEF's 9D79 count (FND-PARTY-110/243).
+  27 inventory values; start with 211+1AEF's 9D79 count (FND-PARTY-280/243).
   Keep unsearched transfers and block/indexed/copied/alias mechanisms.
   FND-PARTY-278 repairs 33 body bytes and sidecars, preserving two
   analyzer-undefined bytes. Current map hashes and assessment are refreshed;

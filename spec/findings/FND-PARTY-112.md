@@ -53,7 +53,7 @@ for `c` at `bp-0x30` and one for `t` at `bp-0x20`; below, "byte `k` of the block
 From overlay 193 `+003C`, `m` is the word at `+0x1A` of `DATA i` (FND-PARTY-107's call at
 `+04DE`). `data_bytes.py` gives, for both `DATA` 104 and `DATA` 225, the word at `+0x1A` as 0x100,
 the word at `+0x11` as 0x4000, the byte at `+0x17` as -1, and the word at `+1` as -2; their
-levels by overlay 177 `+09C5` are 9 and 7 (FND-PARTY-110). Below, "the type" is byte `+0x0F` of
+levels by overlay 177 `+09C5` are 9 and 7 (FND-PARTY-280). Below, "the type" is byte `+0x0F` of
 `t`'s FMT-COMBAT-001 record and "the type word" the word at `DS:2588 + 2 * type`.
 
 **Overlay 197 `+0E8F`** returns 1 when `2D40:3E64` does not find `t`; when the type word is

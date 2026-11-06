@@ -4,7 +4,7 @@ title: Which spheres of cleric spells a priest may cast
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-004, FND-MAGIC-012, FND-MAGIC-003, FND-PARTY-110, FND-PARTY-073, FND-PARTY-161, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-004, FND-MAGIC-012, FND-MAGIC-003, FND-PARTY-280, FND-PARTY-073, FND-PARTY-161, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-003, RULE-MAGIC-001]
@@ -29,7 +29,7 @@ screen (SCR-UI-009) and counts the member's priest spells (RULE-MAGIC-001).
 
 `positions`, the member's class codes (FMT-PARTY-001 `classes`: 1 to 4 Cleric, 5 to 8 Druid, 13 to
 16 Ranger, each group in the order air, earth, fire, water), with the positions the list builder
-passes over removed (FND-PARTY-110, FND-PARTY-258). `spell`, a priest spell number from 115 to 234.
+passes over removed (FND-PARTY-280, FND-PARTY-258). `spell`, a priest spell number from 115 to 234.
 
 ## Inputs
 

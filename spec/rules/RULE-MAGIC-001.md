@@ -4,7 +4,7 @@ title: How many spells of each level a caster can cast before resting
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-MAGIC-015, FND-MAGIC-016, FND-MAGIC-017, FND-MAGIC-018, FND-PARTY-110, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
+evidence: [FND-MAGIC-002, FND-MAGIC-003, FND-MAGIC-006, FND-MAGIC-011, FND-MAGIC-013, FND-MAGIC-015, FND-MAGIC-016, FND-MAGIC-017, FND-MAGIC-018, FND-PARTY-280, FND-PARTY-111, FND-PARTY-258, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: []

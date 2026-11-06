@@ -75,7 +75,7 @@ ranger entries enter one instruction later, after the 0x20.
 bytes at `+0x20` of `DATA` resource `n` of `RESOURCE.GFF` (as FND-PARTY-163 reads names), the
 level overlay 177 `+09C5` gives it, and the byte at `51F1:07D3 + n`. `+09C5` returns the greatest
 `c` from 1 to 10 whose byte at `DS:0660 + c` is not above `n` (`+09DA..+0A19`); those bytes are 115,
-127, 143, 165, 189, 208, 216, 231, 232 and 233 (FND-PARTY-110).
+127, 143, 165, 189, 208, 216, 231, 232 and 233 (FND-PARTY-280).
 
 | Spell | `DATA` name | Level | Byte |
 | --- | --- | --- | --- |
@@ -234,7 +234,7 @@ instead and the sphere bytes are not read (`+0511..+0516`, `+0599..+05AC`).
 Overlay 177 `+0400` with an even kind and a level `L` from 1 tries each spell from the byte at
 `DS:0660 + L` up to, not including, the byte at `DS:0661 + L` and stores those `+050A` admits;
 on a 22nd admitted spell it returns 21 without storing it (`+0466..+0483`). `direct_callers.py
-<dsun> 177+0400` finds its far callers at overlay 211 `+1AAD` (the Use list, FND-PARTY-110),
+<dsun> 177+0400` finds its far callers at overlay 211 `+1AAD` (the Use list, FND-PARTY-280),
 overlay 211 `+1F35` (the window's level search, FND-MAGIC-003) and overlay 173 `+14F6`, which
 passes kind 3 and level -1, so all spells 0 to 234 (`+14E9..+14FB`).
 
@@ -322,12 +322,12 @@ It reads the same bits as spheres, so the bytes are spheres for the hit as well 
   far pointers), but a segment computed by arithmetic or a far pointer copied out of those routines
   is not covered.
 - Whether `DATA` numbers 115 to 234 are the same numbering as the cast list's spell numbers rests
-  on FND-PARTY-110 and FND-PARTY-163, which pass the list's number to the hit routine as a `DATA`
+  on FND-PARTY-280 and FND-PARTY-163, which pass the list's number to the hit routine as a `DATA`
   number; the names fit the levels and spheres throughout.
 - `+0B00` reads the class bytes from the details record numbered by the slot and the origin and
   level bytes from the one numbered by the combatant word `+0x04`; for a party slot these are
   taken to be the same record, which was not checked here. Which positions count for a dual-classed
-  human is FND-PARTY-110's and FND-PARTY-258's reading and was not re-derived.
+  human is FND-PARTY-280's and FND-PARTY-258's reading and was not re-derived.
 - What byte `+0x0E` 0x0A and the byte at `bp-5` of overlay 197 `+111A` stand for was not read.
 - What overlay 173 `+14F6` does with its list of all spells was not read.
 - Code 19's mask 0x3F would admit every priest spell; no character of FMT-PARTY-001 has code 19.

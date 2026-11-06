@@ -7,7 +7,7 @@ superseded_by: []
 impact: crash
 intent: unintended
 player_reliance: unknown
-evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-110, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242, FND-PARTY-243]
+evidence: [FND-PARTY-082, FND-PARTY-105, FND-PARTY-096, FND-PARTY-108, FND-PARTY-109, FND-PARTY-280, FND-PARTY-111, FND-PARTY-112, FND-PARTY-113, FND-PARTY-114, FND-PARTY-115, FND-PARTY-116, FND-PARTY-119, FND-PARTY-120, FND-PARTY-121, FND-PARTY-122, FND-PARTY-237, FND-PARTY-241, FND-PARTY-242, FND-PARTY-243]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-013, FMT-PARTY-001]
@@ -44,7 +44,7 @@ FND-PARTY-108), which no shipped script calls with code 59 (FND-PARTY-237). Both
 companion of the caster while a Shift key is held (FND-PARTY-109). A party member with a druid
 class at priest level 13 to 15 has spell 225 in its cast list and level 7 spells to cast, so it
 can drain another party member; spell 104 needs level 9 wizard spells, which a Preserver capped at
-level 15 never gets (FND-PARTY-110, FND-PARTY-111). The levels stay at 15 or below in the game's
+level 15 never gets (FND-PARTY-280, FND-PARTY-111). The levels stay at 15 or below in the game's
 stores and the shipped party list, no path found lets an `OBJEX` actor with a higher Preserver
 level take a party slot, and the byte `DS:13F8` that lifts the limit is set only behind the
 `-k911` debug switch (FND-PARTY-116, FND-PARTY-119, FND-PARTY-120). No enemy casts either

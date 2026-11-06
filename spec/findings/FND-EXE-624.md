@@ -36,7 +36,7 @@ by the row that holds them. A row is one of the 33-byte rows at `4D62:0000`, at 
 belongs to, or -1 for a free row; the 15 words from `+2` count the prepared spells at the 15
 positions of the slot's spell list, which `+0059` fills (FND-PARTY-151); and byte `+0x20` holds
 the value the byte `DS:0655` had when the row was taken. `DS:0655` is also the first byte of the
-level bounds that FND-PARTY-110 reads at `DS:0655 + L`.
+level bounds that FND-PARTY-280 reads at `DS:0655 + L`.
 
 | Offset | File range | Trampoline | What it does |
 | --- | --- | --- | --- |
@@ -55,10 +55,10 @@ The rows hold the prepared spells of the combatants that cast from a spell list 
 `+0C36` takes one spell off its count when the slot casts it. When all 28 rows are in use,
 `+027F` is meant to reuse the row taken longest ago, but its search starts from 0, so it frees an
 arbitrary row given by stale stack contents, which may be out of range. `+033B` clears every row,
-from two resident paths. `+0A1E` sorts a spell number into the ranges of FND-PARTY-110: 1 for the
+from two resident paths. `+0A1E` sorts a spell number into the ranges of FND-PARTY-280: 1 for the
 wizard spells below 115, 2 for the priest spells from 115 to 234, and 0 for the psionic powers
 and other numbers. Since `+0000` increments `DS:0655`, each new row also raises the first level
-bound of FND-PARTY-110, 0 in the file, by one. The names stay `fn_177_<offset>` until a reading shows what the fields and tables are.
+bound of FND-PARTY-280, 0 in the file, by one. The names stay `fn_177_<offset>` until a reading shows what the fields and tables are.
 
 ## Alternatives
 
@@ -68,7 +68,7 @@ resident routines around `28C9:21CC` and `28C9:31B2` are not read here beyond wh
 gives; `+03A4` is read only as far as returning the index, 0 to 14, of `n` in the list at the far
 pointer `529C:0014 + 4 * k`, or -1 for `k` 13 or more or `n` not found. Whether more than 28 slots
 ever ask for a row in play, which is when the eviction fault would show, is not settled here. The
-reading of `+0A1E`'s results as wizard and priest rests on FND-PARTY-110's ranges.
+reading of `+0A1E`'s results as wizard and priest rests on FND-PARTY-280's ranges.
 
 ## How to reproduce
 

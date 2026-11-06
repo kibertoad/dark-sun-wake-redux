@@ -67,7 +67,7 @@ to 22 it takes the first level for which overlay 177 `+0400` of the slot, a null
 kind and the level returns nonzero, or 0 when none does; unless `DS:13F8` is not 0 it lowers the
 result to `+208C` of the slot and the kind (`+1F0F..+1F78`). Overlay 177 `+050A` admits a priest
 spell (115 to 234) to the list only when its level from `+09C5` is not above `+208C` of the slot
-and 2 (FND-PARTY-110).
+and 2 (FND-PARTY-280).
 
 **The level the cast carries.** At overlay 211 `+1645..+1673` the window pushes `+1FB5` of the
 slot and the spell as the fourth argument of overlay 193 `+2290`, and at `+1718..+1741` as the

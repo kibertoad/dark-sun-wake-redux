@@ -1,9 +1,9 @@
 ---
 id: FND-PARTY-110
 title: The party's cast list holds a spell below 115 when the slot's SPST bit for it is set, and a spell from 115 to 234 when one of the slot's classes has the spell's sphere bit and the spell's level is within the slot's priest spell level; DATA 104 is a level 9 wizard spell and DATA 225 a level 7 druid spell
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-PARTY-280]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

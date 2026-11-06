@@ -168,7 +168,7 @@ A Preserver of level 10 or more makes one more call, to a routine that returns a
 looks like a cut feature.
 
 The game keeps no memorized spells. A wizard knows the spells set in its `SPST` bits
-(`4D62:039C + 15 * slot`, FND-PARTY-104, FND-PARTY-110) and a priest every spell of its spheres
+(`4D62:039C + 15 * slot`, FND-PARTY-104, FND-PARTY-280) and a priest every spell of its spheres
 (FND-MAGIC-004); a rest sets each level's pool to a count and a cast takes one from the pool of
 its level, so any known spell of a level can be cast while that level's pool is above 0.
 

@@ -84,7 +84,7 @@ spells 104, 105 and 225; the bytes for 66 to 114 are all 0.
 **Its caller.** Overlay 173 `+1595` is `+0000`'s one caller. It passes the object `si` and the
 list and count that overlay 177 `+0400` fills for `si`, with the far pointer to the list, kind 3
 and level -1, which take the spells 0 to 234 that overlay 177 `+050A` accepts (`+14E9..+159D`,
-FND-PARTY-110). For an object of 4 or more `+050A` returns whether overlay 177 `+0BC8` of the
+FND-PARTY-280). For an object of 4 or more `+050A` returns whether overlay 177 `+0BC8` of the
 object and the spell is above 0 (`+050A..+05B7`). **`+0BC8`** takes the byte at `+0x38` of the
 object's FMT-COMBAT-002 record, finds the spell's index in list `b` of that byte through `+03A4`,
 and returns the word at `4D62:0002 + 0x21 * r + 2 * index`, `r` being the row overlay 177 `+0000`

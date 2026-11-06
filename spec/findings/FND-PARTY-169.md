@@ -93,7 +93,7 @@ FND-PARTY-164), these calls:
    1 when the result is 5 or more.
 
 **The power list.** Overlay 211 `+1A4F` fills the cast list of kind 3 through overlay 211 `+1DBC`
-(FND-PARTY-110). `+1DBC` takes the powers from the byte at `DS:066C + d` up to the byte at
+(FND-PARTY-280). `+1DBC` takes the powers from the byte at `DS:066C + d` up to the byte at
 `DS:066D + d` for a discipline `d` from 0 to 2 and keeps each power `p` for which overlay 176
 `+0000` of the slot and `p` returns nonzero (`+1DBC..+1E3F`). `+0000` returns 1 for a slot of 4 or
 more, and otherwise whether bits 1 to 7 of the byte at `4E71:09CD + 0x22 * slot + p` are nonzero

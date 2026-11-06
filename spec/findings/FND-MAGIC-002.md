@@ -86,7 +86,7 @@ it walks the class positions 0 to 2 (`+05D4..+07A5`):
 
 `+0A45` (listed `+0A45..+0AD9`, words at `cs:0ADA`) returns 1 for a spell below 115 only for
 codes 11 and 18, and for spell 115, whose byte at `51F1:07D3 + 115` is 0x30, for codes 1 to 8, 13
-to 16 and 19 (FND-PARTY-110). So kind 1 adds the Preserver positions and kind 2 every Cleric,
+to 16 and 19 (FND-PARTY-280). So kind 1 adds the Preserver positions and kind 2 every Cleric,
 Druid and Ranger position. `27E5:04A0` of the slot and 4 returns byte `+0x1D` of the same
 combatant record, or 9 when the slot is 9999 or more, the byte at `4F49:0C33 + 3 * slot` is not 2
 or the combatant number is 9999 or more (`27E5:04A0..27E5:04F1`).

@@ -42,7 +42,7 @@ environment: null
 Overlay offsets are written `descriptor +offset`; file offsets are those of the installed
 `DSUN.EXE`. Overlay 211 `+10F4` casts a spell of kind 1 only when the byte at
 `DS:4469 + 34 * slot + L` is not 0, and of kind 2 when the byte at `DS:4474 + 34 * slot + L` is not
-0, `L` being the byte at `DS:43E0 + slot` or `DS:43E4 + slot` (FND-PARTY-109, FND-PARTY-110).
+0, `L` being the byte at `DS:43E0 + slot` or `DS:43E4 + slot` (FND-PARTY-109, FND-PARTY-280).
 
 **Writers of the counts.** `immediate_search.py` finds the displacements `0x4469` and `0x4474`
 written only by overlay 177 `+0CB3`, which moves one spell of the highest level with a count from
@@ -57,7 +57,7 @@ displacements `0x446A` and `0x4475` only in overlay 182 `+0B52`. **Overlay 182 `
 **Overlay 177 `+05B7`** takes a slot, a kind `k` and a level `L`. For a slot below 4 when the byte
 at `DS:13F8` is 1 it returns 19. Otherwise it adds, over the three class bytes at `+0x1B` of the
 slot's FMT-COMBAT-002 record that are not 0, skipping the second and third as overlay 177 `+0B00`
-does (FND-PARTY-110), those whose class overlay 177 `+0A45` accepts for spell 8 when bit 0 of `k`
+does (FND-PARTY-280), those whose class overlay 177 `+0A45` accepts for spell 8 when bit 0 of `k`
 is set or for spell 115 when bit 1 is set, the value of overlay 177 `+0910` for the class code,
 the pair of the class's level byte at `+0x1E` and `27E5:04A0` of the slot and 4, and `L`
 (`+05B7..+07AE`).

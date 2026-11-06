@@ -68,8 +68,8 @@ over codes 1 to 4 (`+1FBD..+2050`).
 passes over a position whose class byte is 0, and over a position `k` other than 0 of a human whose
 level is not below position 0's level (`+05FD..+0698`). `+07AF` does the same (`+07EB..+0882`), and
 `+0B00`, which returns 1 when `+0A45` accepts the spell for the class of some position, the same
-(`+0B0A..+0BBD`, FND-PARTY-110). FND-PARTY-111 reads `+05B7` as the count of spells per level and
-FND-PARTY-110 reads `+0A45` as the class test of the cast list; `+07AF` returns the greatest level
+(`+0B0A..+0BBD`, FND-PARTY-280). FND-PARTY-111 reads `+05B7` as the count of spells per level and
+FND-PARTY-280 reads `+0A45` as the class test of the cast list; `+07AF` returns the greatest level
 of the positions whose class `+0A45` accepts for the spell (FND-MAGIC-003).
 
 **Overlay 176 `+076C`** (trampoline `5691:0061`) takes a party slot `s` and a class code `c`. For
@@ -103,7 +103,7 @@ in the DUAL window (FND-PARTY-161), which shows `NO OTHER CLASSES AVAILABLE` whe
 
 ## Alternatives
 
-This replaces FND-PARTY-162, which said FND-PARTY-110 and FND-PARTY-111 read overlay 177 `+07AF` as a
+This replaces FND-PARTY-162, which said FND-PARTY-280 and FND-PARTY-111 read overlay 177 `+07AF` as a
 count of spells per level; neither reads it, and it returns a class level.
 
 - The calls of `27E5:00C1` in the load image and overlays 173 and 197, and what overlays 174, 197,
