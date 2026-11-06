@@ -159,6 +159,15 @@ The same fixed probe's named equipment-flag read was verified under these
 pins in v181-q118-main-flag-20261104, retained under the same capture root
 (FND-ITEM-071). It requires the exact main stop and relocated DS before
 reading one byte; no continuation, input or guest write is admitted.
+On 2026-11-07 the unchanged fixed clock_source.py also passed under session
+1.0.0/rust-dos v1.8.1 in
+GAME_DIR/captures/rust-dos-clock-source/v181-q037-constructor-point-20261107/.
+Its existing constructor allocation/return stops, caller/root metadata checks
+and final pre-seeding boundary are agent under these pins. FND-EXE-654 uses
+only the constructor point. No input, guest setup write, RNG draw, arbitrary
+profile or continuous native-register preservation capability is admitted.
+The owned session closed and released its run lock.
+
 On the same date, startup_window.py regenerated the opener checkpoint under
 these pins, and restore_opener.py restored it in a second owned process at
 the declared opener call and reached its return. Both saves used file checks;
