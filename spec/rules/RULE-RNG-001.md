@@ -199,7 +199,8 @@ None known.
   only read on a walk from every established entry, its offset record is written only by the
   timezone initializer and its environment root only by the startup constructor (FND-RNG-019..020,
   FND-RNG-058); writes through pointers formed elsewhere remain Q-RNG-005 and Q-RNG-029; the
-  copies of segment `2707` write only video memory (FND-RNG-079, FND-RNG-080), the timer
+  segment `2707` copies have conditional page destinations and separate SS-frame
+  stores whose actual overlap remains open (FND-RNG-079, FND-RNG-097, Q-RNG-005, Q-RNG-029), the timer
   callbacks in the program's own code write none of the windows (FND-RNG-081), and the sound
   drivers' timer function and function `0xC1` write only their frames, their own images, the
   sequence blocks on the far heap under admitted heap-state conditions and,

@@ -14,7 +14,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 371D:071E..371D:0770
-tool: tools/research/exec-census/resident_listing.py at ac2485e3; Python 3.12.10, Capstone 5.0.7; composition with FND-ITEM-073, FND-PARTY-033, FND-RNG-080 and FND-REGION-006
+tool: tools/research/exec-census/resident_listing.py at ac2485e3; Python 3.12.10, Capstone 5.0.7; composition with FND-ITEM-073, FND-PARTY-033, FND-RNG-097 and FND-REGION-006
 environment: null
 ---
 
@@ -52,7 +52,7 @@ zero double word, terrain drawing through 362C:04BF with page, aligned
 rectangle and origin, and 31BA:000E with origin, that handle and literal
 three. It then requests release through 2D40:3BD1. FND-REGION-006
 describes the terrain request's separate map/TILE behavior; FND-PARTY-033
-and FND-RNG-080 describe sub-entry aliasing and release prerequisites.
+and FND-RNG-097 describe sub-entry aliasing and release prerequisites.
 The current routine does not test these children's results.
 
 ### Optional continuation and cleanup

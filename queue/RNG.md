@@ -119,7 +119,9 @@ Next ID: Q-RNG-041
   FND-RNG-058 covers only displacement and literal-pointer operands, and FND-RNG-096 retains unresolved dispatch/segment propagation. Split from Q-RNG-005. Tried: FND-RNG-067 watches the
   windows during 40 s of play from the two-character checkpoint and finds one change, the store
   of `2D40:2F34` that FND-RNG-068 reads at `DS:3956`; the census of the other computed stores is
-  not taken. Blocks: complete seed-source reading.
+  not taken. FND-RNG-097 withdraws the blanket graphics/frame exclusion: retain
+  actual page histories and SS-frame bounds/aliases for the 2707 stores.
+  Blocks: complete seed-source reading.
 - Q-RNG-031. RULE-RNG-001, BUG-COMBAT-001: Can a call of the copy routines `1000:0452` or
   `1000:3F5A` put 9999 in `DS:426D` or `4C13:0369`? Settles it: for the 38 calls whose destination
   is a far pointer in memory or an argument, and for `2D40:093F`'s index and `1AA0:0625`'s base

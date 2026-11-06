@@ -1,9 +1,9 @@
 ---
 id: FND-RNG-080
 title: The page words that 1BF3:42FB returns hold only segments from A000 to AFFB or page offsets, and the cases of the segment 2707 jump tables write only through ES set from them and their own stack frames
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-RNG-097]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
