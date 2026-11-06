@@ -291,15 +291,6 @@ Next ID: Q-SCRIPT-024
   Settles it: `fn_172C_31B7`, the routines `1000:406D`, `1000:3FC1` and `2D40:0B14` it calls,
   the string at `4C10:0000`, and the writers of the slot word at `4C13:0369`. Tried: split from
   Q-SCRIPT-004; FND-SCRIPT-010 reads the call. Blocks: slice 3.
-- Q-SCRIPT-005. RULE-SCRIPT-005: When does the main routine's clear of the
-  global variable blocks at `277B:035D` run, and does loading a saved game the
-  player made replace the global and local variable blocks? Settles it: the
-  condition that leads `277B` to `277B:0330`, and which selector the player's
-  save and load requests pass to overlay 187's save loop (FND-COMBAT-034),
-  which writes entries 29 to 36 only for selector 0. Tried: FND-SCRIPT-026
-  reads the allocation, the set-up clear, the local clear on a script switch,
-  requests 29 and 30, and the save table entries, and takes the counts and
-  the local reset timing out of this item. Blocks: slices 3-6.
 - Q-SCRIPT-014. RULE-SCRIPT-004: What do the entries `0x25` to `0x2E` of
   `global_name_pointers` hold? Settles it: the writers of the words between
   `4C13:0357` and `4C13:0369` that entries `0x25` to `0x2C` point at, and the

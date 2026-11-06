@@ -4,7 +4,7 @@ title: Script variables start at 0
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SCRIPT-026, FND-PARTY-241, FND-PARTY-040, FND-SCRIPT-009, FND-SCRIPT-010, SRC-LIBGFF-839B11D]
+evidence: [FND-SCRIPT-026, FND-PARTY-241, FND-PARTY-040, FND-SCRIPT-009, FND-SCRIPT-010, FND-SCRIPT-031, FND-SAVE-008, FND-SAVE-022, FND-COMBAT-034, FND-COMBAT-035, SRC-LIBGFF-839B11D]
 conflicting: []
 split_with: []
 related: [RULE-SCRIPT-004]
@@ -67,9 +67,45 @@ Every variable of those kinds is 0, and every string is empty.
 - A script keeps its local variables across a call of another script only by copying them out
   with request 29 of instruction `0x22` before the call and back with request 30 after it; the
   shipped scripts do so (FND-SCRIPT-026).
-- The interpreter does not clear the global variables after the set-up. The main routine clears
-  them, without the locals, at `277B:035D` (FND-PARTY-241), and loading a saved game that holds
-  them replaces them whole [FND-PARTY-241, FND-SCRIPT-026].
+- The interpreter does not clear the global variables after the set-up. The resident
+  reset tests current `DS:13FB` at `277B:0330`: zero skips the reset. Nonzero
+  enters a cleanup loop while `DS:264E` is unsigned greater than zero, then
+  makes the two setup calls before reaching the global clear at `277B:035D`.
+  On the returning continuation it clears the four global blocks, without
+  clearing the locals there [FND-SCRIPT-031, FND-SCRIPT-026, FND-PARTY-241].
+  This is conditional reset ordering, not a guarantee that the cleanup loop
+  terminates or that its children preserve the pointers.
+- The player Save Game wrapper calls the numbered writer with selector zero;
+  the player Load Game wrapper calls the numbered reader with selector zero
+  after its working-archive preparation [FND-SAVE-008, FND-SAVE-022]. Selector
+  zero admits all 61 source entries; region-specific nonzero selectors admit
+  only the first 17 [FND-COMBAT-034, FND-COMBAT-035]. Thus the player's
+  numbered path includes both the global and local variable blocks, not just
+  the globals. The source-table entries 29..36 (zero-based) are rebound to
+  the eight variable pointers by the preparation routine [FND-SCRIPT-026]:
+
+  | SAVE resource | Variable block | Recorded byte count |
+  |---|---|---|
+  | 30 | Global flags | 101 |
+  | 31 | Global numbers | 400 |
+  | 32 | Global big numbers | 80 |
+  | 33 | Global strings | 420 |
+  | 34 | Local flags | 9 |
+  | 35 | Local numbers | 64 |
+  | 36 | Local big numbers | 40 |
+  | 37 | Local strings | 420 |
+
+  These are the recorded source bindings and lengths, not an enforced
+  saved-file schema. With those bindings and successful corresponding
+  transfers, the load replaces both sets of block bytes. The reader requests
+  whole resources into the supplied destinations, can stop after a failed
+  read and does not roll back earlier writes; a failed transfer need not
+  leave its destination unchanged [FND-COMBAT-035]. Save write results are
+  not all checked, so a requested save is not proof of complete persistence
+  [FND-SAVE-008]. No atomic round trip or unconditional post-load value is
+  inferred. Later interpreter switches still apply the local-clear rule;
+  the variable-block restore is not a restore of all interpreter metadata
+  [FND-SCRIPT-026].
 
 ## What the sources say
 
@@ -84,6 +120,7 @@ None known.
 
 ## Open questions
 
-- When the main routine's clear at `277B:035D` runs, and which saves hold the variable blocks
-  (FND-COMBAT-034 writes them only for selector 0), so whether loading a saved game the player
-  made replaces the local variables too (Q-SCRIPT-005).
+- Actual initialized-block postconditions under the admitted allocation,
+  pointer and fill bindings still need the cases held by Q-SCRIPT-015.
+  The reset guard and player save/load selector question is answered above;
+  it does not establish this whole entry or guarantee a successful load.
