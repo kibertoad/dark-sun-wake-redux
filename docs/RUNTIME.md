@@ -26,6 +26,16 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
+On 2026-11-06 the first fixed shutdown observer restored the verified
+saved-map and issued F3, but its builder breakpoint did not recur while
+the modal waited. Its bounded continuation was paused and the owned session
+closed, with no RNG draws or guest writes and no exit-entry snapshot.
+Retained: GAME_DIR/captures/rust-dos-shutdown/v181-quit-entry-20261106/.
+This failed attempt does not admit the F3/Quit or shutdown-observation part.
+The corrected runner polls the modal event-fetch entry documented by
+FND-COMBAT-051 and retains UI/input state in its report; a fresh attempt
+must verify that changed flow. Existing restore/read capabilities remain.
+
 The historical per-part attempts below retain their rust-dos v1.7.2 and
 session-version provenance. The v1.7.5 attempts below remain historical;
 an untested part is not admitted by a historical success. A save state

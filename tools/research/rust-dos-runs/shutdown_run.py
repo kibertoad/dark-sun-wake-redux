@@ -114,7 +114,9 @@ def main():
                 raise ValueError("shutdown source differs from admitted saved-map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             report["files_before"] = file_states(run)
-            poll = rng.address(0x39D1, 0x97D)
+            # FND-COMBAT-051's choice loop fetches events here; the builder
+            # stop used by native_save does not recur while the modal waits.
+            poll = rng.address(0x39D1, 0x854)
             exit_root = rng.address(0x1000, 0x388)
             generator, setter = rng.address(0x1000, 0x822), rng.address(0x1000, 0x811)
             for address in (poll, exit_root, generator, setter):
@@ -129,13 +131,14 @@ def main():
             terminate = rng.address(0x1000, 0x1A5)
             pending_write = None
             for index in range(4096):
-                observed, exhausted = wait_for_stop(session, session.continue_())
+                observed, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
                 stop = observed.stop
                 report["last_stop"], report["observations"] = stop, index + 1
                 if exhausted or stop.get("reason") != "breakpoint":
                     raise RuntimeError("shutdown continuation did not reach a declared breakpoint")
                 address = stop["cs_ip"]
                 delivery = observe_delivery(session, key, delivery)
+                report["last_delivery"] = {"key": key_name, "state": delivery.state}
                 if address == generator:
                     report["draws"].append(rng.record(session, stop))
                 elif address == setter:
@@ -184,6 +187,7 @@ def main():
                     break
                 elif address == poll and flow.phase != "shutdown":
                     current = snapshot(session.client, delta)
+                    report["ui_state"] = current
                     next_key = flow.poll(current, delivery.state == "done")
                     if next_key:
                         report["inputs"].append({"key": key_name, "delivery": delivery.detail})
