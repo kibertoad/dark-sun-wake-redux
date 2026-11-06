@@ -1,6 +1,6 @@
 # CONFIG
 
-Next ID: Q-CONFIG-013
+Next ID: Q-CONFIG-014
 
 ## Static
 
@@ -358,25 +358,40 @@ Next ID: Q-CONFIG-013
   FND-CONFIG-208 connects the pointer acquisition wrapper to the
   shared archive reader and distinguishes signature/reader output paths.
   Archive producers, reader storage, aliases and FONT lifetime remain open.
-  FND-CONFIG-209 resolves the allocation wrapper's product-plus-one
-  request and header-derived marker, retaining runtime allocation/header
-  contracts, admitted counts, storage aliases and resource lifetime.
-  FND-CONFIG-223 resolves runtime product/chunk clearing and the local
-  heap-entry admission branches; lower heap effects, header/state producers,
-  direction-flag provenance and returned capacity remain open.
-  FND-CONFIG-211 resolves named allocation header writers, tail splitting
-  and prior-pointer request returns; heap/link/bound producers, arithmetic
-  helper inputs, runtime outcomes and segment-wrap conditions remain open.
-  FND-CONFIG-212 resolves selected request arithmetic and signed versus
-  normalized address gates; other caller ranges, break/bound writers, heap
-  state and runtime outcomes remain open.
-  Runtime metadata,
-  bound/slot writers and actual interrupt outcomes remain open.
+  Q-CONFIG-013 now owns the shared allocation/header contract formerly
+  accumulated here, retaining FND-CONFIG-209/211/212/223 and all their
+  heap/link/bound, caller-range, direction-flag and runtime obligations.
+  Message/FONT selection, caller-specific aliases, later resource lifetime
+  and other runtime metadata/bound/slot writers remain in this item.
   Tried: FND-COMBAT-169 admits source-equal FNFO buffers, widths/selectors, scratch 520,
   selected 523 and finite disjoint pools at one paused saved-map boundary. FND-COMBAT-171
   adds exact equality of all 1530 live shared item-type bytes with canonical ALL/4 at that
   boundary. Provider identity, use-time admission and preservation through later calls remain.
   Blocks: completing the named entry readings.
+
+- Q-CONFIG-013. RULE-CONFIG-005, RULE-SCRIPT-002, FMT-SCRIPT-004,
+  RULE-SCRIPT-008: What allocation, header and returned-span contract do
+  the shared heap entry and wrappers supply to the recorded FONT and
+  script-setup requests, including zero and partial/failure outcomes?
+  Settles it: connect 1000:15A5 and reached heap helpers to the selected
+  header/paragraph count and returned pointer consumed by 444C:00FA and
+  the FONT wrapper. Establish root/free-list/header/link/break/bound producers,
+  their field widths and aliases; request ranges of the named callers;
+  direction-flag and segment-wrap conditions; indirect targets, DOS/service
+  outcomes and failure continuations that change these returned spans or
+  marker writes. Classify invalid and null results rather than requiring
+  every allocation to succeed. Do not infer capacity from request size alone.
+  FND-CONFIG-209/211/212/223 and FND-EXE-272/293/294 supply the recorded
+  wrapper, arithmetic, ordinary exact/split/new-memory header and return paths.
+  FND-SCRIPT-056 removes arithmetic rejection/marker wrap for its twelve
+  named setup requests under the retained header/offset bindings; actual
+  heap-state admission and backing remain here. Resolve each remaining
+  mechanism against the span/marker claim, not every unrelated heap caller.
+  Tried: split from Q-CONFIG-008's shared-service dependency; no answer or
+  complete reading is implied. Message/FONT acquisition and later use remain
+  Q-CONFIG-008; script phase/publication/later use remain Q-SCRIPT-019;
+  restore destination/live-pointer identity is Q-SCRIPT-025.
+  Blocks: completing the named entry readings and slices 2-4.
 
 - Q-CONFIG-010. RULE-CONFIG-005: Can later state changes prevent
   `WIND/10501` acquisition or registration during an ordinary message?

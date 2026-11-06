@@ -84,9 +84,16 @@ current capacity or pointer lifetime.
 
 ## Open questions
 
-- Which admitted allocation, failure, replacement and restore states leave valid
-  storage for all 200 records when they are used (Q-SCRIPT-019). The concrete
+- Which setup, bypass, reset and cleanup states reach trigger uses, including
+  null, partial or stale storage and list bindings (Q-SCRIPT-019). The concrete
   allocation and save bindings above do not establish live capacity or lifetime.
+- What the shared heap and allocation wrappers actually supply to the named
+  requests, including header/extent, zero and failure outcomes (Q-CONFIG-013).
+  This is separate from phase-specific publication and later use.
+- Which prepared, transfer-local and live buffers selector-zero restoration
+  and reverse conversion use, and how skipped or failed transfers affect their
+  identity and contents (Q-SCRIPT-025). The sampled native equality does not
+  establish earlier transfer identity or continuous preservation.
 - Whether additional incoming routes reach the entry-point conversions outside
   the known save writer and reader calls (Q-SCRIPT-020). FND-SCRIPT-030's
   adjacent relocated-pair result does not exclude computed, unrelocated,

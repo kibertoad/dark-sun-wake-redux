@@ -69,6 +69,10 @@ None known.
 
 ## Open questions
 
+- What allocation/header/span contract backs the recorded FONT acquisition,
+  including zero and failure results (Q-CONFIG-013). The shared heap question
+  is separated from Q-CONFIG-008's message/FONT selection and later lifetime;
+  neither question is answered by that separation.
 - Whether another path imposes an upper limit on `message_delay_value`, and
   whether a new game replaces the loaded-image value 50 (Q-CONFIG-007).
   One reading is that 50 remains the starting value; another is that new-game

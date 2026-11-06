@@ -232,5 +232,10 @@ None known.
   source-prefix and pointer bindings for these local insertion postconditions
   (Q-SCRIPT-019). FND-SCRIPT-050 answers the local pop/link and exhausted
   insertion branches, without proving their native admission.
+- What span and header the shared allocator supplies to the named setup
+  requests, including zero and failure results (Q-CONFIG-013), and which
+  buffer/contents selector-zero restoration leaves for later registration
+  (Q-SCRIPT-025). These dependencies retain their unresolved states; neither
+  asks that every original allocation or restore succeed.
 - Whether anything runs the lists at `g_4C10_0007` and `g_4C10_000B`, which `0x69` and `0x6B` fill:
   the only walker found for them, `1695:0235`, has no direct caller (FND-SCRIPT-028; Q-SCRIPT-016).

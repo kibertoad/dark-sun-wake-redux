@@ -1,6 +1,6 @@
 # SCRIPT
 
-Next ID: Q-SCRIPT-025
+Next ID: Q-SCRIPT-026
 
 ## Static
 
@@ -59,11 +59,13 @@ Next ID: Q-SCRIPT-025
   FND-CONFIG-136 and FND-EXE-586 removes the initial-value, known binding,
   argument producer and registered local-body questions from Settles it;
   setup admission, later writers and lifetime remain above. Blocks: slices 2-4.
-- Q-SCRIPT-019. FMT-SCRIPT-004, RULE-SCRIPT-008: Which admitted states provide valid storage
-  for the 200 trigger records at their uses?
-  Settles it: allocation/failure and bypass admission, actual extent and
-  initialized contents, pointer replacement/alias/lifetime and save/restore
-  destinations reaching the setup, walkers and converters. Keep allocation
+- Q-SCRIPT-019. FMT-SCRIPT-004, RULE-SCRIPT-008: Which setup, bypass, reset and
+  cleanup states reach trigger uses, and what initialized or invalid storage
+  and list bindings do those paths leave?
+  Settles it: phase/caller admission, initialized contents, pointer publication,
+  replacement/alias/lifetime and list/head/source-prefix independence reaching
+  setup, walkers and inserters. Classify null, partial and stale states rather
+  than assuming every use has valid storage. Keep allocation
   suppression, zero pointers and the low-byte failure-check asymmetry explicit.
   The qualified local allocation/reset link transformations are already
   FND-CONFIG-156 and FND-SCRIPT-031; establish actual phase admission and
@@ -80,18 +82,13 @@ Next ID: Q-SCRIPT-025
   different outer/cached returns; retain actual allocator responses, phase,
   pointer independence and later-use histories, not those classified branches.
   FND-SCRIPT-056 bounds all twelve named request/marker arithmetic cases;
-  reuse Q-CONFIG-008's shared heap/header/bound obligations and retain
-  actual capacity, pointer preservation and lifetime at these trigger uses.
+  reuse Q-CONFIG-013's shared heap/header/bound contract; retain phase-specific
+  capacity admission, pointer preservation and lifetime at these trigger uses.
   FND-SCRIPT-057 binds the direct pointer publications and separate SAVE/38
-  table copy; retain their actual ordering/word preservation, copied-slot
-  lifetime, computed/indexed/bulk aliases and transfer/converter identity.
-  FND-SCRIPT-058 admits copied-slot/live-pointer equality at three sampled
-  post-transfer conversion/return boundaries in one native route; retain
-  earlier SAVE/38 transfer identity, continuous lifetime and other phases/failures.
-  FND-SCRIPT-059 settles the listed explicit-displacement table-access census:
-  preparation owns its fifteen stores, reader/writer use indexed reads, and
-  the CS jump table is unrelated. Retain raw ownership, computed/bulk aliases
-  and child preservation, including the reader's reload after its optional fill.
+  table copy; retain publication ordering/word preservation and computed/
+  indexed/bulk aliases here. Q-SCRIPT-025 now owns copied-slot preservation
+  and transfer/converter identity, retaining FND-SCRIPT-057/058/059. These
+  shared dependencies are not answered by transferring their scope.
   Tried: separated while closing Q-SCRIPT-001. FND-CONFIG-156 supplies the
   200-times-thirteen request, pointer store and local failures; FND-SAVE-015
   and FND-SAVE-021 supply the selector-zero SAVE/38 binding and length.
@@ -100,6 +97,30 @@ Next ID: Q-SCRIPT-025
   from allocation's FFFF overwrite, retaining its cleanup-loop and child-return
   conditions. The local reset transformation is removed from the unknowns;
   actual phase, pointer/capacity/lifetime and later-use admission remain above.
+- Q-SCRIPT-025. FMT-SCRIPT-004, RULE-SCRIPT-008: When selector-zero restoration
+  reaches SAVE/38 and reverse conversion, which buffer does each use, when
+  can their bindings differ, and what do skipped or failed transfers leave?
+  Settles it: read the connected preparation +0D1A, reader +0A6C,
+  complete-resource service and converter +1829 across the selector-zero
+  transaction. Track live pool DS:40C0, prepared slot DS:1612 and reader-local
+  in/out pointer separately, including null skips, earlier resource failures,
+  the optional DS:67B7-equality fill and fresh slot reload, buffer changes on
+  failed I/O, and conversion after failed reads. Establish the relevant slot/
+  pointer writers and reached child effects between those reads: indexed
+  destinations, computed segments/offsets, bulk aliases, raw candidates lacking
+  established entries and indirect transfers. A result must classify equal,
+  changed, null and stale bindings where admitted, not assume all phases share
+  one live buffer. Keep shared heap/backing under Q-CONFIG-013 and setup/
+  cleanup publication admission under Q-SCRIPT-019.
+  FND-SAVE-015/021/023 and FND-COMBAT-035 supply the resource/slot bindings,
+  complete-resource request and local non-copy-back/continuation contract.
+  FND-SCRIPT-057 distinguishes publication from preparation. FND-SCRIPT-058
+  admits equality at three post-transfer conversion/return samples in one
+  native route, not earlier SAVE/38 I/O or continuous lifetime. FND-SCRIPT-059
+  settles the inventoried explicit-displacement table-access mechanisms;
+  retain its computed/bulk/raw exclusions and child preservation conditions.
+  Tried: split from Q-SCRIPT-019; no claim is answered or promoted by the split.
+  Blocks: slices 2-4 and the named entry readings.
 - Q-SCRIPT-020. FMT-SCRIPT-003, FMT-SCRIPT-004: Are there incoming routes to
   either GPLI conversion outside the known save writer and reader calls?
   Settles it: computed, unrelocated, split and runtime-constructed targets,

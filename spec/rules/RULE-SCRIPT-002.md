@@ -259,6 +259,10 @@ None known.
 
 ## Open questions
 
+- What the shared heap and wrappers return to the recorded script-setup
+  requests, including extent/header, null and failure outcomes (Q-CONFIG-013).
+  This supplies the backing contract; caller-specific state and later
+  script/cache use remain with their existing questions.
 - What `fn_172C_31ED` and `fn_5702_00B1` leave under admitted state and
   child effects, including whether the latter returns (Q-SCRIPT-003).
 - Whether dispatch retains a null hook or the known registered target, or
