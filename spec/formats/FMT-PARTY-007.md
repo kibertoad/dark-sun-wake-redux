@@ -9,7 +9,7 @@ byte_order: little
 size: 576
 text: false
 definition: fmt_party_007.ksy
-evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286, FND-PARTY-287, FND-PARTY-288, FND-PARTY-289, FND-PARTY-290, FND-PARTY-291, FND-PARTY-292, FND-PARTY-293, FND-PARTY-294, FND-PARTY-295, FND-PARTY-296, FND-PARTY-297, FND-PARTY-298, FND-PARTY-299, FND-PARTY-300, FND-PARTY-301, FND-PARTY-302, FND-PARTY-303, FND-PARTY-304, FND-PARTY-305, FND-PARTY-306, FND-PARTY-307, FND-PARTY-308, FND-PARTY-309, FND-PARTY-310, FND-PARTY-311, FND-PARTY-312, FND-PARTY-313, FND-PARTY-314, FND-PARTY-315, FND-PARTY-316, FND-PARTY-317, FND-PARTY-318, FND-PARTY-319, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-COMBAT-087, FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, FND-COMBAT-092, FND-COMBAT-093, FND-PARTY-328, FND-PARTY-329, FND-PARTY-330, FND-PARTY-331, FND-PARTY-332, FND-PARTY-333, FND-PARTY-334, FND-PARTY-335, FND-PARTY-336]
+evidence: [FND-PARTY-058, FND-PARTY-068, FND-PARTY-264, FND-PARTY-265, FND-PARTY-267, FND-PARTY-268, FND-PARTY-269, FND-PARTY-270, FND-PARTY-271, FND-PARTY-272, FND-PARTY-273, FND-PARTY-274, FND-PARTY-275, FND-PARTY-276, FND-PARTY-277, FND-PARTY-278, FND-PARTY-279, FND-PARTY-281, FND-PARTY-282, FND-PARTY-283, FND-PARTY-284, FND-PARTY-285, FND-PARTY-286, FND-PARTY-287, FND-PARTY-288, FND-PARTY-289, FND-PARTY-290, FND-PARTY-291, FND-PARTY-292, FND-PARTY-293, FND-PARTY-294, FND-PARTY-295, FND-PARTY-296, FND-PARTY-297, FND-PARTY-298, FND-PARTY-299, FND-PARTY-300, FND-PARTY-301, FND-PARTY-302, FND-PARTY-303, FND-PARTY-304, FND-PARTY-305, FND-PARTY-306, FND-PARTY-307, FND-PARTY-308, FND-PARTY-309, FND-PARTY-310, FND-PARTY-311, FND-PARTY-312, FND-PARTY-313, FND-PARTY-314, FND-PARTY-315, FND-PARTY-316, FND-PARTY-317, FND-PARTY-318, FND-PARTY-319, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-COMBAT-087, FND-COMBAT-088, FND-COMBAT-090, FND-COMBAT-091, FND-COMBAT-092, FND-COMBAT-093, FND-PARTY-328, FND-PARTY-329, FND-PARTY-330, FND-PARTY-331, FND-PARTY-337, FND-PARTY-338, FND-PARTY-339, FND-PARTY-340, FND-PARTY-341]
 conflicting: []
 split_with: []
 related: [RULE-PARTY-009]
@@ -258,19 +258,19 @@ every row that is not all 0. The two reads in overlay 183 `+0A3E` are the only o
   changed SAVE records/pointers and variable backing remain Q-PARTY-137.
   FND-PARTY-331 binds both direct SPST callers: retained byte-loop inputs
   differ from the selected-load full-word reload; their actual state remains Q-PARTY-137.
-  FND-PARTY-332 binds the reflected direct-return root to its first drain;
+  FND-PARTY-337 binds the reflected direct-return root to its first drain;
   normal hit-tail/resource helpers are skipped there. Both selected kinds
   forward the saved number; actual backing/transfers remain Q-PARTY-137.
-  FND-PARTY-333 supplies the admitted header-return first-frame rejoin and
+  FND-PARTY-338 supplies the admitted header-return first-frame rejoin and
   default notification leaf; actual graph/backing/loader effects remain Q-PARTY-137.
-  FND-PARTY-334 classifies both cache-hook copy backends and descriptor/link
+  FND-PARTY-339 classifies both cache-hook copy backends and descriptor/link
   writes; actual EMS window, native move and backing remain Q-PARTY-137.
-  FND-PARTY-335 observes the strict play-ready baseline with EMS selected,
+  FND-PARTY-340 observes the strict play-ready baseline with EMS selected,
   an empty queue and disjoint buffer/SS windows; later preservation remains Q-PARTY-137.
   Q-PARTY-137 now keeps the first reflected handoff; Q-PARTY-138 preserves
   other roots, client-side enqueue/nested drain and later iterations. This
   evidence-boundary split answers neither item and drops no writer obligation.
-  FND-PARTY-336 records the post-client index transition and cast tail;
+  FND-PARTY-341 records the post-client index transition and cast tail;
   actual enqueue/nested-drain admission remains Q-PARTY-138.
   Their queue conditions are authoritative; this map does not repeat it or
   declare any of those obligations complete.

@@ -81,7 +81,7 @@ instructions. No inferred decompiler signature supplies a success test.
 
 ### Clearing the retained result does not clear every failure mechanism
 
-FND-EXE-614 already identifies wrapper overlay188 +0491. Its complete
+FND-EXE-643 already identifies wrapper overlay188 +0491. Its complete
 body calls +0174 and then clears byteDS:193D before returning. The
 known direct caller is overlay180 +07AA. The controlled direct-call query
 also recovers the initializer's +0165 and wrapper's +0494 calls to +0174.
@@ -89,7 +89,7 @@ Computed calls remain outside this query.
 
 An exact displacement window for DS:193D recovers the setup wrapper's
 two reads and returned-AL store at +046C, plus +0491's zero store.
-Both producer sites agree with independent FND-CONFIG-149/FND-EXE-614
+Both producer sites agree with independent FND-CONFIG-149/FND-EXE-643
 controls. Its one raw extra candidate starts inside the established
 returned-AL store instruction; it is not another established writer.
 Adjacent wider writes, indexed/aliased destinations and other mechanisms

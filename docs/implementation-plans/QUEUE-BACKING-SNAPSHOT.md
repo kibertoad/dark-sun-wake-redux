@@ -1,6 +1,6 @@
 # Paused queue-backing snapshot
 
-Tooling for Q-PARTY-137 and FMT-PARTY-007, following FND-PARTY-332/333/334.
+Tooling for Q-PARTY-137 and FMT-PARTY-007, following FND-PARTY-337..339.
 Extend the existing strict checkpoint verifier for its admitted play/play-ready
 states with fixed read-only overlay fields: mode, EMS window/handle, native
 move target/handle/base, hook targets and buffer bounds. Also record the
@@ -24,7 +24,7 @@ in a separate research batch; a failed capability remains a specific gap.
 ## Saved-frame link observation
 
 For Q-PARTY-137, extend only the admitted paused snapshot with the SS:BP
-link walk documented by FND-EXE-234 and FND-PARTY-333. Start at the
+link walk documented by FND-EXE-234 and FND-PARTY-338. Start at the
 reported BP; read each link word, stop on zero or one, clear the low bit
 for the next offset, and observe return offset/segment only for a nonzero
 even link. Follow at most 64 nodes, detect cycles, and report a specific

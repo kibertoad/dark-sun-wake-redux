@@ -61,7 +61,7 @@ FND-SCRIPT-028. `direct_callers.py` finds these far calls and no others:
 | `1695:01D1` | `2D40:1179`, in the walk planner `2D40:10AE` | the slot, its cell, and kind 0 for the leader `4C13:0369`, 1 for another slot below 4, 2 otherwise, on each plan from the current cell (FND-EXPLORE-014) |
 | | `31E0:02F6`, in `31E0:0121` | after `2D40:32C5` places an object, while `DS:0DAB` is not 0 |
 | | overlay 182 `+1497` | each party slot 0 to 3 whose type byte is 2, after the region's script |
-| | overlay 188 `+0974` | instruction `0x5E` moving an object to a cell of the current region (FND-EXE-614) |
+| | overlay 188 `+0974` | instruction `0x5E` moving an object to a cell of the current region (FND-EXE-643) |
 | `1695:0290` | overlay 178 `+0B74`, overlay 191 `+0C94`, overlay 175 `+0CAE` | `(DS:426D, DS:1A32)`: the object window's GET button, taking an item off the ground, closing a container window with an item held |
 | `1695:0218` | overlay 178 `+032F`, `+0B93` | `(DS:426D, slot)` after `2C5F:018C(slot, 1)`: a click whose action is talk, the TALK button |
 | `1695:02AD` | overlay 173 `+2286` | `(attacker, target)` at the end of the attack routine `+1CC1`, on each path |

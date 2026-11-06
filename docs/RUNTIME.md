@@ -612,7 +612,7 @@ admitted play/play-ready stages. The strict play-ready verification passed
 at captures/rust-dos-regenerated/v181-q137-overlay-backing-20261106-play-ready/,
 with source v181-q046-play-ready-20261104: exact restored state/frame/time,
 checked files, deliberate IRQ mismatch refusal and identical named backing
-across the same-process roundtrip. FND-PARTY-335 records the observation.
+across the same-process roundtrip. FND-PARTY-340 records the observation.
 This admits those paused named reads and comparisons only, without input,
 guest continuation or setup writes. It does not admit a reflection probe,
 BP-chain validation, a cache copy or interval preservation. Five synthetic
@@ -624,7 +624,7 @@ link graph, with a 64-node bound and explicit cycle/crossing/limit results.
 The new strict verification in
 captures/rust-dos-regenerated/v181-q137-frame-links-20261106-play-ready/
 passed with an identical observation across the same-process roundtrip;
-FND-PARTY-335 records the result. These bounded read-only link and return
+FND-PARTY-340 records the result. These bounded read-only link and return
 field observations are agent for the admitted paused states. They do not
 validate frame authenticity or later interrupt-entry links. Six new
 synthetic controls, five existing backing controls and integration passed.
@@ -636,7 +636,7 @@ header queue through registered FMT-EXE-003 links, bounded to the 49
 fingerprint-checked source headers and code sizes. The strict observation
 in captures/rust-dos-regenerated/v181-q137-loaded-headers-20261106-play-ready/
 passed with identical loaded-queue metadata after checked roundtrip
-(FND-PARTY-335). These registered metadata reads and point range comparisons
+(FND-PARTY-340). These registered metadata reads and point range comparisons
 are agent; cache lists, later graph preservation and native transfers are
 not admitted by them. Eight new controls, eleven prior snapshot controls
 and full integration passed. The owned muted session closed without

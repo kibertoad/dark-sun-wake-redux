@@ -50,11 +50,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   EXE Static 2, Source 1, Blocked 4; Next ID 35. No ownership assigned.
 - FMT-PARTY-007 remains the closure trial. Ten existing entries were assessed.
   Next Q-PARTY-137: actual first-handoff backing/frame/native preservation,
-  reusing FND-PARTY-288/328..336 and the extended FND-PARTY-335 paused
+  reusing FND-PARTY-288/328..331/337..341 and the extended FND-PARTY-340 paused
   observations. Next evidence must address the publication-to-first-handoff
-  interval; do not repeat baseline snapshots. Reuse FND-PARTY-332's
-  kind-specific handoff contracts and FND-PARTY-333's
-  connected BP/upward-chain contracts and FND-PARTY-334's retained
+  interval; do not repeat baseline snapshots. Reuse FND-PARTY-337's
+  kind-specific handoff contracts and FND-PARTY-338's
+  connected BP/upward-chain contracts and FND-PARTY-339's retained
   candidate/scalar/link/target-domain contracts; reuse those rather than
   repeat their own-update classifications. Next initialization and non-scalar/
   native preservation:
@@ -67,7 +67,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   checkpoint_rng.py admits sound and script-52 callers only. Do not use
   the older untraced indirect-target runner to supply the missing interval. Q-PARTY-138 separately retains other
   roots, other client index changes, nested drains and later iterations.
-  Reuse FND-PARTY-336 before further route classification. The split
+  Reuse FND-PARTY-341 before further route classification. The split
   at 56319392 answered no question and added no complete reading.
   PARTY Static 60, Emulated call 0, Agent run 2, Live session 3, Source 0,
   Blocked 0; Next ID 139. queue/PARTY.md remains at 1000 lines.

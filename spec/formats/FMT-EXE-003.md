@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_exe_003.ksy
-evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-333, FND-PARTY-334]
+evidence: [FND-EXE-002, FND-EXE-003, FND-EXE-004, FND-EXE-520, FND-EXE-561, FND-EXE-562, FND-EXE-563, FND-EXE-565, FND-EXE-566, FND-EXE-567, FND-EXE-582, FND-PARTY-338, FND-PARTY-339]
 conflicting: []
 split_with: []
 related: []
@@ -65,9 +65,9 @@ inside its overlay's code [FND-EXE-003, FND-EXE-004].
   select a header, alter a field/extent or change a described interpretation.
 - Under which actual caller/frame and loader conditions does the return
   trap realize the saved-offset/innermost-frame restoration described by
-  the +00/+02 fields (Q-EXE-034)? FND-PARTY-333 gives the first eligible
+  the +00/+02 fields (Q-EXE-034)? FND-PARTY-338 gives the first eligible
   frame, zero/odd/sentinel cases, a sufficient upward-chain own-write
-  contract and precise native BP/save-word conditions. FND-PARTY-334
+  contract and precise native BP/save-word conditions. FND-PARTY-339
   supplies bounded cache interfaces and scalar/link/target/copy domains.
   These conditional contracts do not establish every actual handler graph,
   successful rejoin, native binding or reached asynchronous effect.

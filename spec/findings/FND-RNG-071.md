@@ -35,7 +35,7 @@ chooses the list head `DS:56EF` for slots `0x140` to `0x207` and `DS:56F1` other
 `2D40:0CC2` with the slot and the head, then overlay 188 `+1876` (trampoline `5702:0106`) with the
 slot. `2D40:0CC2` returns without a store for a slot below 5 or of `0x208` or more
 (`2D40:0CD3..0CDC`). Overlay 188 `+1876` sets word `+4` to 0 in each 19-byte slot record 5 to
-`0x2F` whose word `+0` is the slot and word `+4` is not 15 (FND-EXE-614).
+`0x2F` whose word `+0` is the slot and word `+4` is not 15 (FND-EXE-643).
 
 **`2D40:3D4C(9999, r)`.** It returns at once when `r` is 9999 or more or the byte at
 `4F49:0C33 + 3 × r` is 0. Otherwise, for each slot record 0 to `0x2F` at `4F49:08A3` whose word

@@ -1,9 +1,9 @@
 ---
 id: FND-EXE-614
 title: The 32 routines of overlay 188 that no entry placed are script-instruction helpers that move an object to a region and cell, find a free cell near a point, move items between holders, read a number or text typed into the dialog, ask a yes or no question, add dialog lines, roll a thief skill with a modifier, save and restore the move records of slots 5 to 0x2F, and stop a script
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-EXE-643]
 recorded_by: kibertoad
 reproduced_by: []
 method: static
