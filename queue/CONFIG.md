@@ -114,6 +114,10 @@ Next ID: Q-CONFIG-015
     actual nonzero block segments, valid slot handles, completed registration,
     serialized histories and interference/other writers; pending release needs
     its selector-2F event and cleanup return, not merely a timer invocation.
+    FND-SOUND-090 reads initialization's count clear and implicit eight-slot
+    reset before children. Retain actual entry/completion and serialization,
+    later initialization/child effects, remaining computed/block/alias writes
+    and the unresolved 2FF0 callback; the literal census is not negative proof.
     Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
@@ -157,6 +161,10 @@ Next ID: Q-CONFIG-015
     the event-dependent pending consumer. Initial source count/slots and the
     admitted completed transitions are consistent; actual histories, backing,
     invalid/partial calls and interference remain. No whole queue closure.
+    Tried: FND-SOUND-090 connects the controlled literal census with the
+    initializer's implicit stores. Its reached reset prefix establishes zero
+    count/occupancy; actual timing, later effects and omitted mechanisms remain.
+    No complete reading or answered deletion is claimed.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

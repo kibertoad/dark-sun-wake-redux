@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -75,6 +75,11 @@ None known.
 
 ## Open questions
 
+- Q-CONFIG-014: FND-SOUND-090 reads initialization's reached count/slot
+  reset prefix, including implicit stores outside the direct writer list.
+  Retain actual entry timing, later initialization effects and other
+  computed/block/alias or callback writers. The controlled literal census
+  retains candidates and unresolved transfers; it proves no global absence.
 - Q-CONFIG-014: FND-SOUND-089 reads the known count-lifecycle transitions
   and conditional preservation relation. Retain actual completed/serialized
   histories, nonzero block segments, valid slot handles, selected event and
