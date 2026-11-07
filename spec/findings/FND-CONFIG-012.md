@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-012
 title: The saved PREF byte at offset 2 feeds the sound library's music-level setting
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-236]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

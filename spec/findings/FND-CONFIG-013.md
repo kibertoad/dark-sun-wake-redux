@@ -40,7 +40,7 @@ before a drawing call. When the limit is zero it skips the first division.
 
 The music limit `DS:26B6` is copied from the unmodified request `DS:26B4`
 when the sound library's returned level is smaller, both after loading and
-after a music-enable change (FND-SAVE-005, FND-CONFIG-012). The installed
+after a music-enable change (FND-SAVE-005, FND-CONFIG-236). The installed
 `PREF/100` holds 255 in both bytes (FND-CONFIG-001).
 
 ## Interpretation

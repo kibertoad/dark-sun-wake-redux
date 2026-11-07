@@ -27,7 +27,7 @@ Two instructions with this displacement write the byte:
 | File offset | Write path |
 |---|---|
 | `0x0007D987` | Load Game copies `PREF/100` offset `0x02` from its local resource buffer (FND-SAVE-005). |
-| `0x0008B27E` | Preferences entry stores the sound-library getter's return when the master and music-enable gates are nonzero (FND-CONFIG-012). |
+| `0x0008B27E` | Preferences entry stores the sound-library getter's return when the master and music-enable gates are nonzero (FND-CONFIG-236). |
 
 The file-header match at `0x0000168E` is outside loaded code, and the
 resident match at `0x0000D485` is the low word of a near-call displacement.
@@ -40,7 +40,7 @@ candidate with this literal displacement writes `DS:26B4`.
 This inventory identifies no separate literal write from a music-volume
 arrow or a new-game initialization branch. It agrees with the bounded
 Preferences dispatcher reading in FND-CONFIG-010 and the getter path in
-FND-CONFIG-012.
+FND-CONFIG-236.
 
 ## Alternatives
 
@@ -57,4 +57,4 @@ hits with the MZ header and the overlay code ranges reported by
 `ReportFbovOverlayMap.ps1`. Inspect bounded 16-bit instruction contexts at
 the ten loaded-code candidates, distinguishing the two `A2` writes at
 `0x0007D987` and `0x0008B27E` from reads and instruction-interior bytes.
-Compare the paths with FND-SAVE-005 and FND-CONFIG-012.
+Compare the paths with FND-SAVE-005 and FND-CONFIG-236.

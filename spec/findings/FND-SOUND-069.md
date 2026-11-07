@@ -20,7 +20,7 @@ locations:
   - build: BLD-GOG-EN-1.1
     file: DSUN.EXE
     address: 4A32:0310..4A32:0338
-tool: resident_listing.py and window_operands.py at db6e5beb; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-013/068, FND-PARTY-268/269/321 and FND-CONFIG-012
+tool: resident_listing.py and window_operands.py at db6e5beb; Python 3.12.10, Capstone distribution 5.0.9, xxhash 4.0.1; FND-SOUND-013/068, FND-PARTY-268/269/321 and FND-CONFIG-236
 environment: null
 ---
 
@@ -100,7 +100,7 @@ clear DS:3440 or establish release of a particular backing buffer.
 0310 returns immediately for configuration word +8 equal to 71.
 Otherwise it requests 4842:0CF4 with DS:343E/DS:3440 and copies
 current 3440 to DS:3464 after return without inspecting success.
-FND-CONFIG-012 records the subsequent volume-helper contract.
+FND-CONFIG-236 records the subsequent volume-helper contract.
 Actual sequence/driver and release effects remain Q-SOUND-004.
 
 ### Failure-flag census component

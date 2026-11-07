@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-219
 title: None of the 13 Preferences buttons writes the music level, which the screen only reads from the sound library on entry and draws as a bar
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-235]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

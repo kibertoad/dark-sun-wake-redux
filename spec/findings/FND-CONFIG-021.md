@@ -39,7 +39,7 @@ first block's four settings are passed as one group to two calls, and the
 second block's first word can select I/O ports. This does not yet identify
 which block belongs to music or digital sound. The value at `0x32` affects
 later string and file calls, as well as the music-level cap already
-recorded in FND-CONFIG-012.
+recorded in FND-CONFIG-236.
 
 ## Alternatives
 

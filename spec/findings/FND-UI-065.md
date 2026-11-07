@@ -91,7 +91,7 @@ overlay 190 `+139B` sends it to `+1953`, which calls the passed close routine (F
 
 A click on Music on or off draws the music level, or an empty bar, in the bar beside the
 message-delay arrows, where it stays until a delay arrow or a full redraw draws the message
-delay there again; the screen has no other music bar (FND-CONFIG-219). Volume up pressed while
+delay there again; the screen has no other music bar (FND-CONFIG-235). Volume up pressed while
 effects are off turns them on at volume 8 whatever volume was stored. The difficulty arrows play
 a sound per difficulty. Music, effects, animation and voice clicks do not call the flush, so
 their changes appear at the next page flip. While the About text is shown, the voice button

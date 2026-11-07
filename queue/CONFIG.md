@@ -8,12 +8,16 @@ Next ID: Q-CONFIG-014
   RULE-CONFIG-004, SCR-UI-007: What initializes the settings for a new game, does any path
   synchronize the saved speech gate and runtime voice button state, and can
   music volume be adjusted elsewhere? Settles it:
-  bounded readings of the sound-library consumers, new-game initialization and voice
-  synchronization paths. Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
+  establish new-game setting producers and later voice-gate synchronization.
+  For RULE-CONFIG-003 retain actual configuration/slot/sequence admission,
+  driver-return and write effects, and computed/copied music-level writers;
+  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps rather
+  than rereading them. Search mechanisms and exclusions must be explicit.
+  Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
   renderer (FND-CONFIG-009, FND-UI-033), Preferences hover routine (FND-UI-034)
   and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
   music/effects enable and animation-state fields and the ordinary button steps.
-  FND-CONFIG-012 identifies byte `0x02` as the sound library's music-level
+  FND-CONFIG-236 identifies byte `0x02` as the sound library's music-level
   request; FND-CONFIG-013 identifies byte `0x04` as the music bar's denominator.
   FND-CONFIG-014 shows that the launcher and Preferences button change the
   runtime voice gate while save/load carries the other gate, and playback
@@ -37,8 +41,14 @@ Next ID: Q-CONFIG-014
   key writes either voice byte. These readings
   do not identify new-game values, the writer of the animation lock,
   any synchronization beyond those paths or another music-level control.
-  FND-CONFIG-219 reads all 13 Preferences buttons and finds that none writes
-  the music level. Blocks:
+  FND-CONFIG-235 replaces the direct-store review and withdraws its former
+  global no-control conclusion. Settles it also requires the getter's admitted
+  driver state/result after FND-CONFIG-236 resolves its local sentinel exits
+  and setter signed clamps; retain concrete slot/table/sequence admission and
+  music-level writes through the inspected controls'
+  callees, computed destinations or block copies; name each searched mechanism
+  and retain exclusions. This affects RULE-CONFIG-003's saved-byte readback and
+  any claim excluding other controls, not unrelated sound-service behavior. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
