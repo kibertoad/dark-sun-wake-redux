@@ -39,17 +39,23 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Integration -NoRestore passed Node checks and 758 .NET tests;
-  2128 entries, 208 parity rows, five deviations. Existing argument-count,
+  Test.ps1 -Research -ChangedSince 636538f8 -NoRestore passed;
+  2130 entries, 208 parity rows, five deviations. Prior integration passed
+  Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
   and supported child-process escalation. No owned orphans found.
 - Tooling 9bf24367 completes the installed runtime-error entry/data repair.
   Reuse docs/EVIDENCE-TOOLS.md, its independent verifier and FND-EXE-655 /
   FND-PARTY-343. Nine synthetic rejection controls pass. Canonical projects,
   disc inventories and reach assumptions are unchanged. No CFG gap, queue
-  question or complete reading closes. Next: audit stalled-contract selection
-  and service evidence, choose a tractable connected contract within priority
-  order, and refine findings by supersession. Do not repeat isolated helper walks.
+  question or complete reading closes. Connected review c84724fa supersedes
+  CONFIG-219 with 235 and CONFIG-012 with 236. RULE-CONFIG-003 stays supported.
+  Reuse the entry/getter/setter/result-consumer review and EXE-646/RNG-082's
+  dispatch interface. Q-CONFIG-002 retains driver/slot/sequence admission,
+  callee effects and computed/copied writers. Next assess the finite driver
+  return/write contract using existing ADV readers and retained reports.
+  Do not repeat local getter exits or setter clamps, claim universal absence
+  of controls, or hide missing table/far-transfer/alias obligations.
 - FMT-EXE-003 remains supported. Reuse EXE-644/645/647's 153-pair assessment
   and GAME_DIR/analysis/header-pointer-reach-report-20261106.json, preserving
   fifty unresolved transfers, five gaps, four contested sites and false
@@ -100,4 +106,5 @@ PARTY-264/265 removed two bounded components. Keep historical denominators.
 
 Retained stores: GAME_DIR/analysis/class-table-closure-20261106/,
 handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/
-and runtime-error-inventory-20261107/. Read docs/RUNTIME.md before runs.
+runtime-error-inventory-20261107/ and music-level-contract-20261107/.
+Read docs/RUNTIME.md before runs.
