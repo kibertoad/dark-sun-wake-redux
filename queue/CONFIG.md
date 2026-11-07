@@ -129,6 +129,12 @@ Next ID: Q-CONFIG-015
     release and digital-setup children; distinguish first startup from
     teardown/reinitialization. Those local driver/block gates are no longer
     unread. Prioritize actual profile admission before more driver internals.
+    FND-SOUND-093 classifies the size-only pre-setup producer and paired
+    retained-buffer admission: both-null and stable both-nonnull routes
+    invoke no release in that region. Retain actual pointer/reuse-byte
+    histories before the tests; release callback/default metadata, return and
+    gate effects apply to reached mixed-pointer paths. Do not carry a generic
+    heap blocker across the admitted no-release path.
     Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
@@ -184,6 +190,10 @@ Next ID: Q-CONFIG-015
     identity, enable setter/callers and installation/allocation bypasses.
     The known profile selects no music-driver work if gate state survives;
     actual histories and intervening effects remain. No whole queue closure.
+    Tried: FND-SOUND-093 removes unread retained-buffer release selection
+    and size-producer effects. Both-null leaves the reuse byte unchanged;
+    mixed cleanup reloads the second pointer after its first child. Actual
+    preceding histories and reached child effects remain. No queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
