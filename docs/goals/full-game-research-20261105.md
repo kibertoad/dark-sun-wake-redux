@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince 636538f8 -NoRestore passed;
-  2130 entries, 208 parity rows, five deviations. Prior integration passed
+  Test.ps1 -Research -ChangedSince 32ed354b -NoRestore passed;
+  2131 entries, 208 parity rows, five deviations. Prior integration passed
   Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
   and supported child-process escalation. No owned orphans found.
@@ -52,10 +52,18 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   CONFIG-219 with 235 and CONFIG-012 with 236. RULE-CONFIG-003 stays supported.
   Reuse the entry/getter/setter/result-consumer review and EXE-646/RNG-082's
   dispatch interface. Q-CONFIG-002 retains driver/slot/sequence admission,
-  callee effects and computed/copied writers. Next assess the finite driver
-  return/write contract using existing ADV readers and retained reports.
-  Do not repeat local getter exits or setter clamps, claim universal absence
-  of controls, or hide missing table/far-transfer/alias obligations.
+  callee effects and computed/copied writers. Review 1e870e55 adds CONFIG-237;
+  reuse its ten Copy-driver query/immediate-setter contracts and conditional
+  ADV 11 registration/reset. The embedded ADV functions lack a committed
+  inventory; the six DSUN claim nodes do not reassign independent JSON plans.
+  Do not repeat query fields, getter exits, setter clamps or initial reset stores.
+  Next Q-CONFIG-002: review remaining setup admission with SOUND-070's
+  separate source/control-block argument contract already reused. Assess its
+  finite patch-enumeration return condition before another caller walk; retain
+  actual slot/payload/frame/lifetime and changed-table obligations. No global
+  absence of controls or whole reading is proved. After this claim map, time
+  research/tooling/checks/handover for three batches and compare after two
+  against 32ed354b. Do not call another helper a closure.
 - FMT-EXE-003 remains supported. Reuse EXE-644/645/647's 153-pair assessment
   and GAME_DIR/analysis/header-pointer-reach-report-20261106.json, preserving
   fifty unresolved transfers, five gaps, four contested sites and false
@@ -106,5 +114,6 @@ PARTY-264/265 removed two bounded components. Keep historical denominators.
 
 Retained stores: GAME_DIR/analysis/class-table-closure-20261106/,
 handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/
-runtime-error-inventory-20261107/ and music-level-contract-20261107/.
+runtime-error-inventory-20261107/, music-level-contract-20261107/ and
+music-driver-contract-20261107/.
 Read docs/RUNTIME.md before runs.
