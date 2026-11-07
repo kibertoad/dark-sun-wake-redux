@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince 32ed354b -NoRestore passed;
-  2131 entries, 208 parity rows, five deviations. Prior integration passed
+  Test.ps1 -Research -ChangedSince c5dc0943 -NoRestore passed;
+  2132 entries, 208 parity rows, five deviations. Prior integration passed
   Node checks and 758 .NET tests. Existing argument-count,
   Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
   and supported child-process escalation. No owned orphans found.
@@ -57,13 +57,14 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   ADV 11 registration/reset. The embedded ADV functions lack a committed
   inventory; the six DSUN claim nodes do not reassign independent JSON plans.
   Do not repeat query fields, getter exits, setter clamps or initial reset stores.
-  Next Q-CONFIG-002: review remaining setup admission with SOUND-082's
-  separate source/control-block argument contract already reused. Assess its
-  finite patch-enumeration return condition before another caller walk; retain
-  actual slot/payload/frame/lifetime and changed-table obligations. No global
-  absence of controls or whole reading is proved. After this claim map, time
-  research/tooling/checks/handover for three batches and compare after two
-  against 32ed354b. Do not call another helper a closure.
+  Q-CONFIG-002 now reuses SOUND-082's connected setup-progress assessment;
+  do not repeat its local enumeration/installation/eviction reading or equate
+  conditional paths with actual shipped-state admission. Next assess actual
+  TIMB count/backing/stop-key and cache flag/arena/retention evidence, checking
+  existing readers and reports first. Preserve slot/frame/lifetime and table
+  obligations. No global no-control or whole-reading claim is proved.
+  SOUND-082 is the first timed batch after 1e870e55; two remain. Compare after
+  the second against 32ed354b. Do not call another helper a closure.
 - FMT-EXE-003 remains supported. Reuse EXE-644/645/647's 153-pair assessment
   and GAME_DIR/analysis/header-pointer-reach-report-20261106.json, preserving
   fifty unresolved transfers, five gaps, four contested sites and false
@@ -84,7 +85,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   other sites; 121/120/116 stay separate. PARTY Static60, Agent2, Live3, Next139;
   queue/PARTY.md is 1000 lines. No retained reflection checkpoint located.
   checkpoint_rng.py admits sound/script-52 only; no older untraced runner.
-- Other work: SOUND-011 reuses SOUND-061..066; SOUND-004 067..071/074..081;
+- Other work: SOUND-011 reuses SOUND-061..066; SOUND-004 067..069/071/074..082;
   SOUND-012 072/073; SOUND-002 049..060. RNG-040 retains frame/service/converter
   admission after RNG-096..098; RNG-029 graphics admission. SCRIPT-019/024/025,
   CONFIG-008/013 and SAVE-007 reuse SCRIPT-053..065, CONFIG-224..234 and
@@ -115,5 +116,5 @@ PARTY-264/265 removed two bounded components. Keep historical denominators.
 Retained stores: GAME_DIR/analysis/class-table-closure-20261106/,
 handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/
 runtime-error-inventory-20261107/, music-level-contract-20261107/ and
-music-driver-contract-20261107/.
+music-driver-contract-20261107/ and patch-enumeration-20261107/.
 Read docs/RUNTIME.md before runs.
