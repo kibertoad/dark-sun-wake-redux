@@ -106,7 +106,12 @@ Next ID: Q-CONFIG-015
     sentinel bypass and admitted non-playing start: with stable table/binding,
     valid disjoint sequence/frame storage it resets level to 100, sets state
     one and preserves the game's handle words. Retain actual entry-state and
-    storage admission, already-playing cleanup through 2C9F/2CF3/2635,
+    storage admission and active already-playing cleanup. FND-SOUND-087
+    settles quiet restart for empty note slots and inactive signed flags;
+    retain actual note/flag histories, 2C1D count/occupied-slot consistency,
+    mapping values and all selected registered blocks. Reuse the local
+    2CF3/2635/2483/25FA/3F01 contracts; active 1B1D/1B88 descendants and
+    their return/write/alias effects remain unread, along with
     other/missing driver targets and later setters; do not reread the local
     sentinel/fresh-start/reset bundle. Retain nonliteral/block/alias writes,
     unknown entries and actual segment/storage histories outside the census.
@@ -130,6 +135,10 @@ Next ID: Q-CONFIG-015
     Tried: FND-SOUND-086 connects selected ADV 11 AA start with its reset and
     stop boundary. The sentinel and admitted fresh-start cases no longer need
     a child-effects reading; restart cleanup and actual state histories remain.
+    Tried: FND-SOUND-087 removes quiet-restart effects and active local
+    flag/count/dispatch classification. Remapping selects other registered
+    blocks, so active preservation needs their backing and count/slot
+    admission as well as descendant effects. No whole reading or queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
