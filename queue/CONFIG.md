@@ -11,8 +11,12 @@ Next ID: Q-CONFIG-014
   establish new-game setting producers and later voice-gate synchronization.
   For RULE-CONFIG-003 retain actual configuration/slot/sequence admission,
   driver-return and write effects, and computed/copied music-level writers;
-  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps rather
-  than rereading them. Search mechanisms and exclusions must be explicit.
+  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps, and
+  FND-CONFIG-237's Copy-driver query fields, immediate writes and ADV 11 reset
+  stores. Establish actual registration/payload/storage admission and later
+  current/target writers, changed or missing function tables and reached sound
+  update effects; those local field identities are no longer unread.
+  Search mechanisms and exclusions must be explicit.
   Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
   renderer (FND-CONFIG-009, FND-UI-033), Preferences hover routine (FND-UI-034)
   and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
@@ -48,7 +52,15 @@ Next ID: Q-CONFIG-014
   music-level writes through the inspected controls'
   callees, computed destinations or block copies; name each searched mechanism
   and retain exclusions. This affects RULE-CONFIG-003's saved-byte readback and
-  any claim excluding other controls, not unrelated sound-service behavior. Blocks:
+  any claim excluding other controls, not unrelated sound-service behavior.
+  Tried: FND-CONFIG-237 reads the selected AE/AF/B1 tables and connected local
+  bodies across ten Copy drivers, distinguishing current and target level;
+  ADV 11 registration/reset supplies conditional initial writes of 100. It
+  removes the unspecified query-word and immediate/reset-writer conditions,
+  not actual slot/payload/lifetime admission. Six absent-entry resources and
+  the unparsed ADV 10 table remain explicit. Masked-query flag restoration
+  uses an overlapping IRET stream, verified separately from Ghidra's listing.
+  No whole item closure or complete reading follows. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

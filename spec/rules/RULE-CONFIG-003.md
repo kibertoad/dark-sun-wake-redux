@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -46,6 +46,15 @@ when music is enabled, or zero otherwise, to the top bar. Full redraw uses
 that position for message delay instead (FND-UI-065). Effects through the
 getter and subsequent callees remain unresolved.
 
+In the ten inspected Copy drivers with the query interface, the getter's
+driver query returns the selected sequence's current level word, distinct
+from its target level. Preferences keeps the low byte. The game's duration-zero
+setter request writes both words before downstream update. ADV 11's successful
+registration/reset path initializes both words to 100; that conditional write
+does not establish the saved setting's new-game default or bypass the getter's
+state rejection. Frame/record aliasing and later effects remain unresolved
+(FND-CONFIG-237).
+
 ## Edge cases
 
 - With either entry gate off, this entry path does not store a getter result.
@@ -66,8 +75,26 @@ None known.
 
 ## Open questions
 
-- Which admitted driver states and callee effects determine `fn_4A6E_011F`'s result,
+- Which admitted driver/sequence bindings and writer histories reach `fn_4A6E_011F`,
   whether the button paths can change `music_level` through indirect or copied
   writes, and whether another control changes saved or audible music level.
-  The direct-store census does not exclude these mechanisms
-  (FND-CONFIG-236, FND-CONFIG-029, FND-CONFIG-235, Q-CONFIG-002).
+  The direct-store census does not exclude these mechanisms.
+  The local Copy-driver query fields and ADV 11 reset stores are already read;
+  retain actual registration/payload/storage admission, later field writers,
+  changed or missing function tables and reached update effects
+  (FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-029, FND-CONFIG-235, Q-CONFIG-002).
+  - Dependency ownership: CONFIG owns this readback contract and resident
+    getter/setter rows `4A6E:011F` and `4A6E:0064`; UI shares the Preferences
+    entry/dispatcher rows `0x0008B240` and `0x0008B32E`. SOUND/RNG share
+    lookup/dispatch rows `4842:03BC` and `4842:03F4` and sequence lifecycle.
+    These six rows are present in the installed DSUN.EXE inventory; ownership
+    here does not declare a complete reading or reassign the separate JSON plans.
+  - Q-CONFIG-002 retains caller/frame admission, sequence publication/reset
+    success and later current/target writers, and actual indirect slot/table
+    targets. The thirty native driver entries read in FND-CONFIG-237 have no
+    committed function inventory for the embedded ADV code; do not count them
+    as inventoried DSUN functions. Shared helpers and other unassigned functions
+    remain visible in the independent closure assessments.
+  - Native frames remain Q-CONFIG-001. Audible output is not established by
+    the stored-level readback; retain Q-CONFIG-002 for that separate question
+    without expanding this rule into the whole playback subsystem.
