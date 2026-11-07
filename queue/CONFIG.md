@@ -135,6 +135,13 @@ Next ID: Q-CONFIG-015
     histories before the tests; release callback/default metadata, return and
     gate effects apply to reached mixed-pointer paths. Do not carry a generic
     heap blocker across the admitted no-release path.
+    FND-SOUND-094 reads configuration-callback selection and the known
+    2660:052D ordinary return words. The caller tests AX, while both known
+    failure paths return AL zero with AX=4E00; its exact-zero error successor
+    is excluded for that admitted target/continuation. Retain actual pointer/
+    target histories, nonreturning paths and device/table/write preservation;
+    passing the word test is not device success. No-call paths incur no
+    callback execution effects.
     Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
@@ -194,6 +201,10 @@ Next ID: Q-CONFIG-015
     and size-producer effects. Both-null leaves the reuse byte unchanged;
     mixed cleanup reloads the second pointer after its first child. Actual
     preceding histories and reached child effects remain. No queue closure.
+    Tried: FND-SOUND-094 removes the known callback's unread return-result
+    propagation and its exact-zero error fork under the admitted binding.
+    Callback failure can continue into startup; actual backing, prior state
+    and external effects remain. No complete reading or queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
