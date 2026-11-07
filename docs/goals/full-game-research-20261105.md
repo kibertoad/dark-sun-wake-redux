@@ -39,71 +39,67 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince c5dc0943 -NoRestore passed;
-  2132 entries, 208 parity rows, five deviations. Prior integration passed
-  Node checks and 758 .NET tests. Existing argument-count,
-  Kaitai and generated-comparison skips remain. Use pinned EVIDENCE_PYTHON
-  and supported child-process escalation. No owned orphans found.
-- Tooling 9bf24367 completes the installed runtime-error entry/data repair.
-  Reuse docs/EVIDENCE-TOOLS.md, its independent verifier and FND-EXE-655 /
-  FND-PARTY-343. Nine synthetic rejection controls pass. Canonical projects,
-  disc inventories and reach assumptions are unchanged. No CFG gap, queue
-  question or complete reading closes. Connected review c84724fa supersedes
-  CONFIG-219 with 235 and CONFIG-012 with 236. RULE-CONFIG-003 stays supported.
-  Reuse the entry/getter/setter/result-consumer review and EXE-646/RNG-082's
-  dispatch interface. Q-CONFIG-002 retains driver/slot/sequence admission,
-  callee effects and computed/copied writers. Review 1e870e55 adds CONFIG-237;
-  reuse its ten Copy-driver query/immediate-setter contracts and conditional
-  ADV 11 registration/reset. The embedded ADV functions lack a committed
-  inventory; the six DSUN claim nodes do not reassign independent JSON plans.
-  Do not repeat query fields, getter exits, setter clamps or initial reset stores.
-  Q-CONFIG-002 now reuses SOUND-082's connected setup-progress assessment;
-  do not repeat its local enumeration/installation/eviction reading or equate
-  conditional paths with actual shipped-state admission. Next assess actual
-  TIMB count/backing/stop-key and cache flag/arena/retention evidence, checking
-  existing readers and reports first. Preserve slot/frame/lifetime and table
-  obligations. No global no-control or whole-reading claim is proved.
-  SOUND-082 is the first timed batch after 1e870e55; two remain. Compare after
-  the second against 32ed354b. Do not call another helper a closure.
-- FMT-EXE-003 remains supported. Reuse EXE-644/645/647's 153-pair assessment
-  and GAME_DIR/analysis/header-pointer-reach-report-20261106.json, preserving
-  fifty unresolved transfers, five gaps, four contested sites and false
-  negativeUsable. Q-EXE-033 owns additional mechanisms; 034 return admission;
-  035 destination aliases; 036 heap/buffer domains; 037 callback effects.
-  Reuse EXE-648..654, CONFIG-225/226/227/230/231/234 and PARTY-339/342.
-  No stopped-point observation proves continuous segment identity. EXE Static5,
-  Source1, Blocked4, Next38. Recorded findings require whole-entry supersession.
-- FMT-PARTY-007 first-handoff trial remains unresolved. Q-PARTY-137 retains
-  publication-to-handoff backing/frame/native preservation; reuse
-  PARTY-288/328..331/337..341 and PARTY-340 paused observations. Preserve
-  initial/supplied link histories, link-before-clear readers, frame/order,
+  Test.ps1 -Research -ChangedSince 546c0483 -NoRestore passed;
+  2133 entries,208 parity rows,five deviations. Prior integration passed Node
+  checks and 758 .NET tests. Existing argument-count, Kaitai and generated
+  skips remain. Use pinned EVIDENCE_PYTHON and supported child-process
+  escalation. No owned orphans found.
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
+  SOUND-082/083; do not repeat local getter/setter/query/reset/cache-progress
+  or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
+  split from Q-CONFIG-002, which retains initialization/voice/other controls.
+  CONFIG Static10,Live2,Blocked1,Next15. This is a split, not an answer.
+  Next Q-CONFIG-014: assess actual alternate setup sources/callers using
+  SOUND-082 and RNG-082's existing argument/producer evidence. Preserve other
+  media, runtime-record/configuration, frame/lifetime and target obligations.
+  Embedded ADV functions lack committed inventories; six named DSUN claim
+  nodes do not reassign JSON plans. SOUND-082/083 are two timed batches after
+  1e870e55; one remains. Preserve timing qualifications in their commits.
+- FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
+  GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
+  transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
+  and tooling9bf24367 settle the installed entry/data mapping only. Canonical
+  projects, disc inventories and reach assumptions are unchanged. EXE-648..654,
+  CONFIG-225/226/227/230/231/234 and PARTY-339/342 remain relevant.
+  Q-EXE-033 additional mechanisms;034 return admission;035 aliases;036 buffer
+  domains;037 callback effects. EXE Static5,Source1,Blocked4,Next38. No stopped
+  point proves continuous segment identity. Never extend recorded findings;
+  use whole-entry supersession.
+- FMT-PARTY-007: Q-PARTY-137 retains first-handoff backing/frame/native
+  preservation after PARTY-288/328..331/337..341 and paused PARTY-340.
+  Preserve initial/supplied links, link-before-clear readers, spacing/frame,
   different-chain writes, native segments and copy/target admission.
   Q-PARTY-138 retains other roots/index changes/nested drains/later iterations.
-  Q-PARTY-136 retains shutdown root/mode/ready/frame admission after
-  PARTY-289..296/314..327, RNG-081/082/093/095 and EXE-551/588.
-  Q-PARTY-134 retains number-state histories; 135 getter admission; 124 eighty
-  other sites; 121/120/116 stay separate. PARTY Static60, Agent2, Live3, Next139;
-  queue/PARTY.md is 1000 lines. No retained reflection checkpoint located.
-  checkpoint_rng.py admits sound/script-52 only; no older untraced runner.
-- Other work: SOUND-011 reuses SOUND-061..066; SOUND-004 067..069/071/074..082;
-  SOUND-012 072/073; SOUND-002 049..060. RNG-040 retains frame/service/converter
-  admission after RNG-096..098; RNG-029 graphics admission. SCRIPT-019/024/025,
-  CONFIG-008/013 and SAVE-007 reuse SCRIPT-053..065, CONFIG-224..234 and
-  SAVE-027..033/035/037..044. COMBAT-059 owns post-error work. SCRIPT-015
-  initialized-block postconditions remain. Setup CONFIG-006/011/012 and
-  SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
+  Q-PARTY-136 retains shutdown admission after PARTY-289..296/314..327,
+  RNG-081/082/093/095 and EXE-551/588. Q-PARTY-134 retains number histories;
+  135 getter;124 eighty other sites;121/120/116 stay separate.
+  PARTY Static60,Agent2,Live3,Next139; queue/PARTY.md is 1000 lines.
+  No reflection checkpoint located. checkpoint_rng.py admits sound/script-52
+  only; never use the older untraced runner. Read docs/RUNTIME.md.
+- Other work: SOUND-011 reuses SOUND-061..066;004 067..069/071/074..083;
+  012 072/073;002 049..060. RNG-040 retains admission after096..098;029 graphics.
+  SCRIPT-019/024/025, CONFIG-008/013 and SAVE-007 reuse SCRIPT-053..065,
+  CONFIG-224..237 and SAVE-027..033/035/037..044. COMBAT-059 owns post-error
+  work; SCRIPT-015 initialized-block conditions remain. Setup CONFIG-006/011/012
+  and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-EXE comparison 9517ca97f2745d2249fe948950fa1fcaef564173 to
-6ab3d0dfcdab6674968d295a17d64c7fb96a14f3: zero accepted-reading changes,
-answered deletions or whole obligations closed; Q-EXE-037 narrowed with
-EXE-653/654. Two findings/four commits are activity, not proven speedup.
-EXE-653/654/655 complete three timed batches, with disclosed unmeasured
-portions. Current overlay map:42 assigned,25 shared,6972 unassigned,13 open.
-Cast:54/25/6960/16; sound:34/8/6980/8; numbered-load assigns9. All reports
-have zero accepted readings/errors/stale/unmeasured inventories. Eight
-inventories total7014 rows; disc-associated636 add no independent understanding.
-Owner-excluded DOSBox lacks raw inventory. Plan counts are non-additive.
+CONFIG/UI/SOUND comparison 32ed354bee9523fc4ec0ccc42535779a75ed6155 to 449cda07447dc17c05fbcfdbbe843f1677cb4799:
+zero complete-reading changes, answered deletions or whole mapped obligations
+closed. CONFIG-237 and SOUND-082/083 narrow Q-CONFIG-002/014 and Q-SOUND-004.
+Q-CONFIG-014 is an unanswered split. Three findings/five commits include the
+map batch and are activity; no closure speedup proved. Timed subset c5dc0943ecddf4385eb90f8421f653b62ef77901
+to 449cda07447dc17c05fbcfdbbe843f1677cb4799 adds two findings in three commits, with no answers/readings.
+
+Earlier EXE comparison 9517ca97f2745d2249fe948950fa1fcaef564173 to
+6ab3d0dfcdab6674968d295a17d64c7fb96a14f3: zero readings/answers/whole
+obligations closed; EXE-653/654 narrow Q-EXE-037; two findings/four commits
+activity. EXE-653/654/655 complete three qualified timed batches.
+Current overlay map:42 assigned,25 shared,6972 unassigned,13 open;
+cast54/25/6960/16; sound34/8/6980/8; numbered-load assigns9. All have zero
+accepted readings/errors/stale/unmeasured inventories. Eight inventories total
+7014 rows; disc-associated636 add no independent understanding. Owner-excluded
+DOSBox lacks raw inventory. Counts are non-additive; embedded ADV is outside them.
 
 Historical PARTY/UI comparison 02e2d87549c20763b6951b505d1a73ff9a47a821 to
 127bdb98e3293b64826dd81f167a4086578a1f54: zero readings/answers/whole
@@ -113,8 +109,8 @@ fa2a30bd904434e18ac242b3e76116c63ad16951 to
 56f71d560e4700bd7967646ebeed2153137554d6 also zero readings/answers;
 PARTY-264/265 removed two bounded components. Keep historical denominators.
 
-Retained stores: GAME_DIR/analysis/class-table-closure-20261106/,
-handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/
-runtime-error-inventory-20261107/, music-level-contract-20261107/ and
-music-driver-contract-20261107/ and patch-enumeration-20261107/.
-Read docs/RUNTIME.md before runs.
+Retained stores under GAME_DIR/analysis/: class-table-closure-20261106/,
+handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
+runtime-error-inventory-20261107/, music-level-contract-20261107/,
+music-driver-contract-20261107/, patch-enumeration-20261107/ and
+sequence-input-census-20261107/.
