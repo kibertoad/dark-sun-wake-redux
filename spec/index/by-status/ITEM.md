@@ -39,7 +39,7 @@ Entries by status.
 
 ## recorded
 
-71 entries.
+102 entries.
 
 | ID | Title |
 |---|---|
@@ -114,6 +114,37 @@ Entries by status.
 | [FND-ITEM-070](../../findings/FND-ITEM-070.md) | Startup explicitly clears the equipment flag while nominal save spans do not prove later restore preservation |
 | [FND-ITEM-071](../../findings/FND-ITEM-071.md) | The equipment flag is zero at main entry after the observed startup initialization |
 | [FND-ITEM-072](../../findings/FND-ITEM-072.md) | Canonical equipment effects always have a nonsentinel sound request although 85 of their 186 requests return at the sentinel gate |
+| [FND-ITEM-073](../../findings/FND-ITEM-073.md) | Effect-row removal rescans compacted rows and prepares a bounded deferred unload packet after partial removal |
+| [FND-ITEM-074](../../findings/FND-ITEM-074.md) | Shipped queue bounds admit overlap-preserving odd and even insertion shifts under retained storage |
+| [FND-ITEM-075](../../findings/FND-ITEM-075.md) | Due kind-three events snapshot the slot before dequeue and reenter removal with zero independently of the payload mode byte |
+| [FND-ITEM-076](../../findings/FND-ITEM-076.md) | Effect removal clears conditional map masks while the middle cell helper reads before its child coordinate gate |
+| [FND-ITEM-077](../../findings/FND-ITEM-077.md) | Removal redraw clips and aligns its rectangle but returns success after later capture failures |
+| [FND-ITEM-078](../../findings/FND-ITEM-078.md) | Unload removes a placement index before a flagged-row residual scan can bypass slot cleanup |
+| [FND-ITEM-079](../../findings/FND-ITEM-079.md) | Later unload cleanup removes linked flagged rows before kind-specific movement and the final cleanup request |
+| [FND-ITEM-080](../../findings/FND-ITEM-080.md) | Common slot cleanup decrements descriptor counts before deletion and fills the object after release requests |
+| [FND-ITEM-081](../../findings/FND-ITEM-081.md) | Animation descriptor acquisition has distinct guarded number-hit, unguarded content-hit and fresh count producers |
+| [FND-ITEM-082](../../findings/FND-ITEM-082.md) | Animation acquisition callers select automatically and publish failures while descriptor decrement skips zero |
+| [FND-ITEM-083](../../findings/FND-ITEM-083.md) | Eviction cleanup gates descriptor decrement on a saved handle and clears the object after kind-two child requests |
+| [FND-ITEM-084](../../findings/FND-ITEM-084.md) | Image refresh recursively visits linked slots and publishes a cache handle before dimension reads |
+| [FND-ITEM-085](../../findings/FND-ITEM-085.md) | Dimension pointer helper normalizes signed displacement arithmetic without reading or validating data |
+| [FND-ITEM-086](../../findings/FND-ITEM-086.md) | Bitmap provider returns hit indices after unchecked reload and publishes miss fields before count admission |
+| [FND-ITEM-087](../../findings/FND-ITEM-087.md) | Bitmap reload publishes allocation before transfer and pool exhaustion requests global reset |
+| [FND-ITEM-088](../../findings/FND-ITEM-088.md) | Bitmap reclamation ranks resident ages and counts requested-release sizes before unconditional consolidation |
+| [FND-ITEM-089](../../findings/FND-ITEM-089.md) | Bitmap release clears residency before pool updates and consolidation resets the pool bound after unchecked moves |
+| [FND-ITEM-090](../../findings/FND-ITEM-090.md) | Bitmap backing transfers split word counts across linked blocks and return the first error without rollback |
+| [FND-ITEM-091](../../findings/FND-ITEM-091.md) | Backing-transfer validator checks only offset arithmetic and zero-count placement |
+| [FND-ITEM-092](../../findings/FND-ITEM-092.md) | Known bitmap backend callbacks have distinct success mappings rather than a uniform complete-transfer guarantee |
+| [FND-ITEM-093](../../findings/FND-ITEM-093.md) | A zero-count constructor searching a retained zero key returns the uncounted boundary for nonzero coordinates |
+| [FND-ITEM-094](../../findings/FND-ITEM-094.md) | ETAB loading clears storage before read success and recount propagates flags by normalized slot identity |
+| [FND-ITEM-095](../../findings/FND-ITEM-095.md) | Exact shipped ETAB loads produce positive counts and a cleared trailing sentinel rather than the fresh zero-count case |
+| [FND-ITEM-096](../../findings/FND-ITEM-096.md) | Ordinary placement increments count before insertion and directly publishes the returned entry index |
+| [FND-ITEM-097](../../findings/FND-ITEM-097.md) | Ordinary placement publishes a counted row when its initialized old-count position survives loading |
+| [FND-ITEM-098](../../findings/FND-ITEM-098.md) | Effect-slot production performs ordinary placement and immediate handling before sampled effect-row construction |
+| [FND-ITEM-099](../../findings/FND-ITEM-099.md) | Immediate effect handling decodes a signed effect byte and gates casts through target-list and distance results |
+| [FND-ITEM-100](../../findings/FND-ITEM-100.md) | Rectangle target enumeration has signed class gates and capacity-free four-byte insertion |
+| [FND-ITEM-101](../../findings/FND-ITEM-101.md) | Target distance uses wrapped deltas, fixed-point scaling and shared coordinate scratch |
+| [FND-ITEM-102](../../findings/FND-ITEM-102.md) | Placement collision adjustment has a finite word-coordinate walk under a stable bounded placed table |
+| [FND-ITEM-103](../../findings/FND-ITEM-103.md) | Temporary-slot handoff copies the initialized entry index and normal loader completion clears direction flag |
 
 ## Open questions
 
