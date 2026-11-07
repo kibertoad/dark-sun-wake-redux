@@ -1,6 +1,6 @@
 # CONFIG
 
-Next ID: Q-CONFIG-014
+Next ID: Q-CONFIG-015
 
 ## Static
 
@@ -9,19 +9,10 @@ Next ID: Q-CONFIG-014
   synchronize the saved speech gate and runtime voice button state, and can
   music volume be adjusted elsewhere? Settles it:
   establish new-game setting producers and later voice-gate synchronization.
-  For RULE-CONFIG-003 retain actual configuration/slot/sequence admission,
-  driver-return and write effects, and computed/copied music-level writers;
-  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps, and
-  FND-CONFIG-237's Copy-driver query fields, immediate writes and ADV 11 reset
-  stores. Establish actual registration/payload/storage admission and later
-  current/target writers, changed or missing function tables and reached sound
-  update effects; those local field identities are no longer unread.
-  Search mechanisms and exclusions must be explicit.
-  For the selected ADV 11 setup branch, reuse FND-SOUND-082's query/lookup/
-  install/eviction contract. Establish actual TIMB count/backing and stop-key
-  admission, cache membership/eligibility and arena size/used-byte state,
-  and retention across patch-reader, driver and release calls. A finite list
-  or returned sequence handle alone does not prove setup reaches publication.
+  Other volume-control and sound-library output questions remain here.
+  Q-CONFIG-014 now owns the independently answerable Preferences readback
+  contract and its caller/state/target admission. This split preserves the
+  evidence and unresolved mechanisms; it answers none of them.
   Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
   renderer (FND-CONFIG-009, FND-UI-033), Preferences hover routine (FND-UI-034)
   and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
@@ -72,8 +63,45 @@ Next ID: Q-CONFIG-014
   the zero-count query is post-tested, not an empty scan. This removes the
   unspecified local enumeration behavior; actual count, flag/retention, arena,
   alias and caller admission remain above. The conditional no-progress path
-  was not run or established as reachable in shipped play. Blocks:
+  was not run or established as reachable in shipped play.
+  Tried: FND-SOUND-083 checks all twenty-six manifested installed GFF
+  directories with plain/indexed positives and finds none of the four song
+  types requested here. It composes the known missing-type failure with the
+  ordinary pre-setup epilogue. Installed TIMB payload parsing for those arms
+  is not the remaining obligation; media/runtime-record/configuration and
+  bypass/other-caller admission stay above. No universal unreachability or
+  whole item closure follows. Blocks:
   slice 3.
+
+- Q-CONFIG-014. RULE-CONFIG-003: What value and state does the Preferences
+  entry obtain from music-level readback on its admitted caller/driver paths?
+  Settles it: complete the entry/getter/driver-result/byte-store contract with
+  actual configuration, frame, driver/sequence and storage admission, all
+  relevant writer histories and indirect targets. Reuse the existing local
+  branches and source restrictions below; do not grow this into unrelated
+  audible output or new-game defaults. Unknown effects on the readback state
+  remain obligations until resolved, including those shared with Q-CONFIG-002.
+  For RULE-CONFIG-003 retain actual configuration/slot/sequence admission,
+  driver-return and write effects, and computed/copied music-level writers;
+  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps, and
+  FND-CONFIG-237's Copy-driver query fields, immediate writes and ADV 11 reset
+  stores. Establish actual registration/payload/storage admission and later
+  current/target writers, changed or missing function tables and reached sound
+  update effects; those local field identities are no longer unread.
+  Search mechanisms and exclusions must be explicit.
+  FND-SOUND-083 excludes the four ordinary song-request arms from obtaining
+  sequence payloads in the faithful, validated installed archive set. Establish
+  actual archive-record/configuration admission and other media, bypass or
+  independent setup sources before extending TIMB parsing. For paths that do
+  reach ADV 11 setup, reuse FND-SOUND-082 and retain actual TIMB count/backing/
+  stop-key, cache flags/retention and arena state across the patch handoff.
+  A finite list or sequence handle alone does not prove setup publication.
+  Inherited evidence: FND-CONFIG-235/236/237 and FND-SOUND-082/083; the
+  research attempts remain under parent Q-CONFIG-002. The current finding
+  supplies the installed-input restriction, not live state or a complete
+  reading. Q-CONFIG-002 keeps initialization, voice synchronization and other
+  controls/output questions. Native screen frames remain Q-CONFIG-001.
+  Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
   the message-delay word, and does a new game replace the loaded-image value

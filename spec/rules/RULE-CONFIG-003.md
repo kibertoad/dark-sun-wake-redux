@@ -76,24 +76,26 @@ None known.
 ## Open questions
 
 - Which admitted driver/sequence bindings and writer histories reach `fn_4A6E_011F`,
-  whether the button paths can change `music_level` through indirect or copied
-  writes, and whether another control changes saved or audible music level.
+  including effects through the button paths' indirect or copied writes.
   The direct-store census does not exclude these mechanisms.
   The local Copy-driver query fields and ADV 11 reset stores are already read;
   retain actual registration/payload/storage admission, later field writers,
   changed or missing function tables and reached update effects. The selected
   setup path's patch loop requires cache-membership progress: ADV 11 rescans
-  missing keys and its install request can retry unchanged. Actual TIMB
-  count/backing, cache flags/retention and arena admission remain required
+  missing keys and its install request can retry unchanged. FND-SOUND-083
+  excludes a matching payload in the validated installed set for the four
+  ordinary song-request arms. Preserve other media, runtime records and
+  bypass/independent setup entries. TIMB, cache and arena admission remain
+  required for paths that actually supply setup data
   (FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-029, FND-CONFIG-235,
-  FND-SOUND-082, Q-CONFIG-002).
+  FND-SOUND-082, FND-SOUND-083, Q-CONFIG-014).
   - Dependency ownership: CONFIG owns this readback contract and resident
     getter/setter rows `4A6E:011F` and `4A6E:0064`; UI shares the Preferences
     entry/dispatcher rows `0x0008B240` and `0x0008B32E`. SOUND/RNG share
     lookup/dispatch rows `4842:03BC` and `4842:03F4` and sequence lifecycle.
     These six rows are present in the installed DSUN.EXE inventory; ownership
     here does not declare a complete reading or reassign the separate JSON plans.
-  - Q-CONFIG-002 retains caller/frame admission, sequence publication/reset
+  - Q-CONFIG-014 retains caller/frame admission, sequence publication/reset
     success and later current/target writers, and actual indirect slot/table
     targets. The thirty native driver entries read in FND-CONFIG-237 have no
     committed function inventory for the embedded ADV code; do not count them
@@ -102,3 +104,7 @@ None known.
   - Native frames remain Q-CONFIG-001. Audible output is not established by
     the stored-level readback; retain Q-CONFIG-002 for that separate question
     without expanding this rule into the whole playback subsystem.
+- Whether another control changes saved or audible music level remains a
+  separate discovery/output question (FND-CONFIG-029, FND-CONFIG-235,
+  Q-CONFIG-002). Any unresolved effect on readback storage also remains
+  Q-CONFIG-014; separation alone excludes no writer or indirect mechanism.

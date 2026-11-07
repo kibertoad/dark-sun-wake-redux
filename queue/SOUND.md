@@ -61,7 +61,11 @@ Next ID: Q-SOUND-013
   a register, actual track/response/status/table/frame admission and external
   handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, actual FM tag/configuration, failure-flag and 3458/344A pointer
   source/block extents and lifetime after FND-SOUND-082's separate-argument
-  setup binding and FND-SOUND-069's acquisition/cleanup/start contracts, actual status/query/stop/release and target/frame admission
+  setup binding and FND-SOUND-069's acquisition/cleanup/start contracts.
+  FND-SOUND-083 settles absence of the four requested song tags in the validated
+  installed archive set; retain other media/runtime records and bypass/other
+  setup entries rather than parsing nonexistent installed payloads. Also retain
+  actual status/query/stop/release and target/frame admission
   after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and actual region-argument/state histories for the five literal
   region sites in FND-SOUND-071, including overlay 182 +15FC/+16B5,
   plus the computed SAVE/18 producer identified by FND-SOUND-074. The
