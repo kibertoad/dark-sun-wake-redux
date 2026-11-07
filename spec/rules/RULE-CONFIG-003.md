@@ -81,8 +81,12 @@ None known.
   The direct-store census does not exclude these mechanisms.
   The local Copy-driver query fields and ADV 11 reset stores are already read;
   retain actual registration/payload/storage admission, later field writers,
-  changed or missing function tables and reached update effects
-  (FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-029, FND-CONFIG-235, Q-CONFIG-002).
+  changed or missing function tables and reached update effects. The selected
+  setup path's patch loop requires cache-membership progress: ADV 11 rescans
+  missing keys and its install request can retry unchanged. Actual TIMB
+  count/backing, cache flags/retention and arena admission remain required
+  (FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-029, FND-CONFIG-235,
+  FND-SOUND-082, Q-CONFIG-002).
   - Dependency ownership: CONFIG owns this readback contract and resident
     getter/setter rows `4A6E:011F` and `4A6E:0064`; UI shares the Preferences
     entry/dispatcher rows `0x0008B240` and `0x0008B32E`. SOUND/RNG share

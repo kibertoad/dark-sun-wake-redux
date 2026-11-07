@@ -17,6 +17,11 @@ Next ID: Q-CONFIG-014
   current/target writers, changed or missing function tables and reached sound
   update effects; those local field identities are no longer unread.
   Search mechanisms and exclusions must be explicit.
+  For the selected ADV 11 setup branch, reuse FND-SOUND-082's query/lookup/
+  install/eviction contract. Establish actual TIMB count/backing and stop-key
+  admission, cache membership/eligibility and arena size/used-byte state,
+  and retention across patch-reader, driver and release calls. A finite list
+  or returned sequence handle alone does not prove setup reaches publication.
   Tried: the save/load copies (FND-SAVE-004, FND-SAVE-005),
   renderer (FND-CONFIG-009, FND-UI-033), Preferences hover routine (FND-UI-034)
   and button dispatcher (FND-CONFIG-010) identify the difficulty, effect-volume,
@@ -60,7 +65,14 @@ Next ID: Q-CONFIG-014
   not actual slot/payload/lifetime admission. Six absent-entry resources and
   the unparsed ADV 10 table remain explicit. Masked-query flag restoration
   uses an overlapping IRET stream, verified separately from Ghidra's listing.
-  No whole item closure or complete reading follows. Blocks:
+  No whole item closure or complete reading follows.
+  Tried: FND-SOUND-082 resolves the selected query's progress mechanism:
+  it rescans missing cache membership rather than advancing a cursor. The
+  connected installer/evictor has an unchanged retry when no entry is eligible;
+  the zero-count query is post-tested, not an empty scan. This removes the
+  unspecified local enumeration behavior; actual count, flag/retention, arena,
+  alias and caller admission remain above. The conditional no-progress path
+  was not run or established as reachable in shipped play. Blocks:
   slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

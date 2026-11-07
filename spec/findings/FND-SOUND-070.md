@@ -1,9 +1,9 @@
 ---
 id: FND-SOUND-070
 title: Sequence setup passes resource data and the allocated sequence block as separate driver arguments
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-SOUND-082]
 recorded_by: codex
 reproduced_by: []
 method: static

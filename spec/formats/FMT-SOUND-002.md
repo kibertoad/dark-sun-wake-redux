@@ -92,7 +92,7 @@ busy/stop interface, including error-sentinel classification and conditional
 cleanup; it does not establish external success or table lifetime.
 FND-SOUND-069 supplies local FM acquisition/cleanup/start interfaces with
 explicit flag and source-pointer conditions, leaving their actual bindings
-and effect on the music-table buffer open. FND-SOUND-070 resolves the
+and effect on the music-table buffer open. FND-SOUND-082 resolves the
 known source-versus-sequence-block relationship as separate setup arguments,
 retaining actual extents, lifetime and aliases.
 

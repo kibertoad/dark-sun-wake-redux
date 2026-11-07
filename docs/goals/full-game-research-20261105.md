@@ -57,7 +57,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   ADV 11 registration/reset. The embedded ADV functions lack a committed
   inventory; the six DSUN claim nodes do not reassign independent JSON plans.
   Do not repeat query fields, getter exits, setter clamps or initial reset stores.
-  Next Q-CONFIG-002: review remaining setup admission with SOUND-070's
+  Next Q-CONFIG-002: review remaining setup admission with SOUND-082's
   separate source/control-block argument contract already reused. Assess its
   finite patch-enumeration return condition before another caller walk; retain
   actual slot/payload/frame/lifetime and changed-table obligations. No global

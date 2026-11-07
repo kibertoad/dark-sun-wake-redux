@@ -60,7 +60,7 @@ Next ID: Q-SOUND-013
   track or an FM song start and end? Settles it: the writers of `music_mode` through a pointer or
   a register, actual track/response/status/table/frame admission and external
   handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, actual FM tag/configuration, failure-flag and 3458/344A pointer
-  source/block extents and lifetime after FND-SOUND-070's separate-argument
+  source/block extents and lifetime after FND-SOUND-082's separate-argument
   setup binding and FND-SOUND-069's acquisition/cleanup/start contracts, actual status/query/stop/release and target/frame admission
   after FND-SOUND-068's local `4ABF:01E5`/`4A32:0185` contracts, and actual region-argument/state histories for the five literal
   region sites in FND-SOUND-071, including overlay 182 +15FC/+16B5,
@@ -101,7 +101,7 @@ Next ID: Q-SOUND-013
   FND-SOUND-069 settles local FM tag selection, resource-interface reuse,
   prior cleanup and start forwarding. Actual load failure does not locally
   set the tested flag; retain excluded flag producers, source/sequence pointer
-  extents/lifetimes and query/handle/release/output evidence. FND-SOUND-070
+  extents/lifetimes and query/handle/release/output evidence. FND-SOUND-082
   resolves the local 3458/344A relationship as separate arguments to driver
   selector 0097 and records literal allocation/release components. Actual
   driver/block/source binding, patch-loop termination and excluded pointer
