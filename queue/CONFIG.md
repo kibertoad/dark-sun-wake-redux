@@ -98,7 +98,13 @@ Next ID: Q-CONFIG-015
     DS:3464. Their stable-configuration gates exclude setup locally. Retain
     changed configuration/binding, entry after those gates and any child or
     computed/copied propagation into readback state; do not reread their local
-    argument/result classification. For paths that do
+    argument/result classification. FND-SOUND-085 classifies the listed literal
+    handle writers and source-initialized FFFF words: do not repeat that scan
+    with unchanged inputs. Establish which initial/prior 3440 value survives
+    acquisition failure and the start request's child effects before its
+    unchecked post-call copy into 3464; retain nonliteral/block/alias writes,
+    unknown entries and actual segment/storage histories outside the census.
+    For paths that do
   reach ADV 11 setup, reuse FND-SOUND-082 and retain actual TIMB count/backing/
   stop-key, cache flags/retention and arena state across the patch handoff.
   A finite list or sequence handle alone does not prove setup publication.
@@ -111,6 +117,10 @@ Next ID: Q-CONFIG-015
     shared payload/control-block producers and result consumer. The known
     direct-site classification is answered; indirect entry and state history
     prevent a complete readback result. This does not close the queue item.
+    Tried: FND-SOUND-085 removes unread literal handle producers and initialized
+    source words. The source-word reload after start and uncleared source on
+    acquisition failure distinguish initial sentinel and retained-handle cases;
+    actual intervening writers/children remain unproved. No queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

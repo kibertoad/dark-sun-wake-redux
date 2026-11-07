@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -75,6 +75,13 @@ None known.
 
 ## Open questions
 
+- Q-CONFIG-014: FND-SOUND-085 classifies the inventoried literal handle
+  writers and initialized source values. The known start publication reloads
+  its source after the child without testing success; failed acquisition does
+  not clear that source. Establish actual initial/prior handle histories and
+  intervening child effects, nonliteral/block/alias writes and segment/storage
+  admission. Initial FFFF plus unchanged source yields the getter's sentinel
+  exit; this conditional case does not establish a universal runtime default.
 - Q-CONFIG-014: FND-SOUND-084 classifies both alternate known direct setup
   calls. They reuse the shared payload, explicitly store a different handle
   from the getter's, and cannot reach setup with unchanged configuration
