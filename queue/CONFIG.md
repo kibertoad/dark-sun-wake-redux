@@ -91,8 +91,14 @@ Next ID: Q-CONFIG-015
   Search mechanisms and exclusions must be explicit.
   FND-SOUND-083 excludes the four ordinary song-request arms from obtaining
   sequence payloads in the faithful, validated installed archive set. Establish
-  actual archive-record/configuration admission and other media, bypass or
-  independent setup sources before extending TIMB parsing. For paths that do
+    actual archive-record/configuration admission and other media, bypass or
+    indirect setup sources before extending TIMB parsing. FND-SOUND-084
+    classifies both remaining known direct setup sites: neither constructs a
+    separate payload; both explicitly publish DS:3442 rather than getter handle
+    DS:3464. Their stable-configuration gates exclude setup locally. Retain
+    changed configuration/binding, entry after those gates and any child or
+    computed/copied propagation into readback state; do not reread their local
+    argument/result classification. For paths that do
   reach ADV 11 setup, reuse FND-SOUND-082 and retain actual TIMB count/backing/
   stop-key, cache flags/retention and arena state across the patch handoff.
   A finite list or sequence handle alone does not prove setup publication.
@@ -101,6 +107,10 @@ Next ID: Q-CONFIG-015
   supplies the installed-input restriction, not live state or a complete
   reading. Q-CONFIG-002 keeps initialization, voice synchronization and other
   controls/output questions. Native screen frames remain Q-CONFIG-001.
+    Tried: FND-SOUND-084 connects the two alternate direct callers with their
+    shared payload/control-block producers and result consumer. The known
+    direct-site classification is answered; indirect entry and state history
+    prevent a complete readback result. This does not close the queue item.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
