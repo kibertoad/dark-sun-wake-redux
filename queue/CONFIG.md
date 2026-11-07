@@ -108,7 +108,13 @@ Next ID: Q-CONFIG-015
     one and preserves the game's handle words. Retain actual entry-state and
     storage admission and active already-playing cleanup. FND-SOUND-087
     settles quiet restart for empty note slots and inactive signed flags;
-    retain actual note/flag histories, 2C1D count/occupied-slot consistency,
+    retain actual note/flag histories and 2C1D count/occupied-slot admission.
+    FND-SOUND-089 reads the local registration/release/pending-removal
+    transitions and their conditional count-preservation relation. Establish
+    actual nonzero block segments, valid slot handles, completed registration,
+    serialized histories and interference/other writers; pending release needs
+    its selector-2F event and cleanup return, not merely a timer invocation.
+    Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
     1B1D/1B88/output-helper reading: retain actual voice/channel/assignment
@@ -147,6 +153,10 @@ Next ID: Q-CONFIG-015
     helper. The finite software-effect bundle is classified; actual indices,
     code/frame/data separation and state histories remain admission work,
     rather than another unknown child. No whole queue closure is claimed.
+    Tried: FND-SOUND-089 removes unread count-lifecycle transitions, including
+    the event-dependent pending consumer. Initial source count/slots and the
+    admitted completed transitions are consistent; actual histories, backing,
+    invalid/partial calls and interference remain. No whole queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
