@@ -39,22 +39,22 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince 546c0483 -NoRestore passed;
-  2133 entries,208 parity rows,five deviations. Prior integration passed Node
+  Test.ps1 -Research -ChangedSince bacdf20e -NoRestore passed;
+  2134 entries,208 parity rows,five deviations. Prior integration passed Node
   checks and 758 .NET tests. Existing argument-count, Kaitai and generated
   skips remain. Use pinned EVIDENCE_PYTHON and supported child-process
   escalation. No owned orphans found.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
-  SOUND-082/083; do not repeat local getter/setter/query/reset/cache-progress
+  SOUND-082/083/084; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15. This is a split, not an answer.
-  Next Q-CONFIG-014: assess actual alternate setup sources/callers using
-  SOUND-082 and RNG-082's existing argument/producer evidence. Preserve other
-  media, runtime-record/configuration, frame/lifetime and target obligations.
+  Next Q-CONFIG-014: select a concrete getter-handle producer/propagation
+  obligation using SOUND-084 and RNG-082. Preserve other media,
+  runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV functions lack committed inventories; six named DSUN claim
-  nodes do not reassign JSON plans. SOUND-082/083 are two timed batches after
-  1e870e55; one remains. Preserve timing qualifications in their commits.
+  nodes do not reassign JSON plans. SOUND-082/083/084 complete three timed
+  batches after 1e870e55. Preserve timing qualifications in their commits.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
   transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
@@ -90,6 +90,9 @@ closed. CONFIG-237 and SOUND-082/083 narrow Q-CONFIG-002/014 and Q-SOUND-004.
 Q-CONFIG-014 is an unanswered split. Three findings/five commits include the
 map batch and are activity; no closure speedup proved. Timed subset c5dc0943ecddf4385eb90f8421f653b62ef77901
 to 449cda07447dc17c05fbcfdbbe843f1677cb4799 adds two findings in three commits, with no answers/readings.
+Subsequent e2e20b6e adds SOUND-084's bounded caller classification, no
+answered deletion or complete reading. Validation11.130s; research/drafting
+upper bound4m30s includes context overhead. No closure speedup proved.
 
 Earlier EXE comparison 9517ca97f2745d2249fe948950fa1fcaef564173 to
 6ab3d0dfcdab6674968d295a17d64c7fb96a14f3: zero readings/answers/whole
