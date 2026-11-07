@@ -612,6 +612,21 @@ Implicit operands and relative branch targets are excluded. Controls reject raw
 starts; scan/result caps keep partial coverage and incomplete groups explicit.
 See the pinned guide for the exact contract and exclusions.
 
+For Q-CONFIG-014's embedded ADV 11 table/count audit,
+`tools/research/exec-census/adv_literal_operands.py RESOURCE.GFF` verifies
+the installed archive and selected resource identities, then structurally
+decodes direct near transfers from first-match function-table entries.
+It scans every resource offset for literal operands overlapping the fixed
+293B..295D window, retaining non-start candidates and unresolved transfers.
+Three independent table controls and five known read/indexed-write/count
+controls must pass. Run `--self-test` for synthetic offcut, operand extent,
+indexed access, duplicate table, indirect-transfer and refusal controls.
+Use the pinned evidence Python and retain JSON under GAME_DIR.
+Structural ownership is not native reachability; computed/implicit/block
+accesses and physical aliases remain excluded, and `negativeUsable` is
+always false. This complements the DSUN-only operand readers and does not
+replace their source contracts or count embedded driver code as inventoried.
+
 `x86-callees` reads a bounded established-entry graph breadth-first, distinguishing
 shared-node reuse from a verified cycle-closing route. Per-caller references to
 `calleeSummaries` retain reachable memory observations, assumptions and unresolved
