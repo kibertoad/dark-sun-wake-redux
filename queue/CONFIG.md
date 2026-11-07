@@ -102,7 +102,13 @@ Next ID: Q-CONFIG-015
     handle writers and source-initialized FFFF words: do not repeat that scan
     with unchanged inputs. Establish which initial/prior 3440 value survives
     acquisition failure and the start request's child effects before its
-    unchecked post-call copy into 3464; retain nonliteral/block/alias writes,
+    unchecked post-call copy into 3464. FND-SOUND-086 settles ADV 11's
+    sentinel bypass and admitted non-playing start: with stable table/binding,
+    valid disjoint sequence/frame storage it resets level to 100, sets state
+    one and preserves the game's handle words. Retain actual entry-state and
+    storage admission, already-playing cleanup through 2C9F/2CF3/2635,
+    other/missing driver targets and later setters; do not reread the local
+    sentinel/fresh-start/reset bundle. Retain nonliteral/block/alias writes,
     unknown entries and actual segment/storage histories outside the census.
     For paths that do
   reach ADV 11 setup, reuse FND-SOUND-082 and retain actual TIMB count/backing/
@@ -121,6 +127,9 @@ Next ID: Q-CONFIG-015
     source words. The source-word reload after start and uncleared source on
     acquisition failure distinguish initial sentinel and retained-handle cases;
     actual intervening writers/children remain unproved. No queue closure.
+    Tried: FND-SOUND-086 connects selected ADV 11 AA start with its reset and
+    stop boundary. The sentinel and admitted fresh-start cases no longer need
+    a child-effects reading; restart cleanup and actual state histories remain.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

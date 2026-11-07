@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -75,6 +75,12 @@ None known.
 
 ## Open questions
 
+- Q-CONFIG-014: FND-SOUND-086 bounds ADV 11's sentinel/fresh-start effects
+  with stable admitted slot/sequence/frame bindings and disjoint storage.
+  Fresh start resets current/target level to 100 and sets state one; later
+  setters prevent inferring an actual Preferences value from that write alone.
+  Retain actual state admission, already-playing cleanup effects and other
+  driver targets. The local fresh-start/reset bundle is no longer unread.
 - Q-CONFIG-014: FND-SOUND-085 classifies the inventoried literal handle
   writers and initialized source values. The known start publication reloads
   its source after the child without testing success; failed acquisition does
