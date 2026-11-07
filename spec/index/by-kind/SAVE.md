@@ -24,7 +24,7 @@ Entries by kind.
 
 ## findings
 
-26 entries.
+47 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -46,7 +46,7 @@ Entries by kind.
 | [FND-SAVE-016](../../findings/FND-SAVE-016.md) | A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF; the null table entries are filled from run-time pointers before each save and load | superseded |
 | [FND-SAVE-017](../../findings/FND-SAVE-017.md) | Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned | superseded |
 | [FND-SAVE-018](../../findings/FND-SAVE-018.md) | The key dispatcher's callback is a release routine its caller passes, called before F1 and F2 open a screen, on Esc and on the exit choice's Save and Quit; Save from the exit choice sets DS:627C, which makes the Save screen end the game and which nothing clears | recorded |
-| [FND-SAVE-019](../../findings/FND-SAVE-019.md) | The exit after the main loop runs two atexit routines, one exit procedure, the runtime's vector restore and DOS function 4Ch; none of them writes a saved game, DARKRUN.GFF or CHARSAVE.GFF | recorded |
+| [FND-SAVE-019](../../findings/FND-SAVE-019.md) | The exit after the main loop runs two atexit routines, one exit procedure, the runtime's vector restore and DOS function 4Ch; none of them writes a saved game, DARKRUN.GFF or CHARSAVE.GFF | superseded |
 | [FND-SAVE-020](../../findings/FND-SAVE-020.md) | The Save and Load list search finds SAVE??.SAV files and puts each in the record its two digits minus 1 name, with no upper bound; the window fills its ten rows from save_list_top, which overlay 192 never writes | recorded |
 | [FND-SAVE-021](../../findings/FND-SAVE-021.md) | A saved game's file holds SAVE resources 1 to 61, STXT 1, ETME 0 and the per-region SAVE resources 61r+1 to 61r+17 that each region change writes into DARKRUN.GFF, with script entry points in GPLI form; the null table entries are filled from run-time pointers before each save and load | recorded |
 | [FND-SAVE-022](../../findings/FND-SAVE-022.md) | Loading copies SAVEnn.SAV over DARKRUN.GFF, reads SAVE 1 to 61 and the region's GMAP flags from it, re-places the objects, restores the script entry points, resets the party's slots, then reads PREF and GREQ from CHARSAVE.GFF whatever the copy returned | recorded |
@@ -54,6 +54,27 @@ Entries by kind.
 | [FND-SAVE-024](../../findings/FND-SAVE-024.md) | Only the stored-character list of overlay 171 writes save_list_top, leaving its page start there when it closes, so the Save and Load screens open at that page | superseded |
 | [FND-SAVE-025](../../findings/FND-SAVE-025.md) | After Save is answered to the F3 exit choice and the Save Game screen is left with EXIT, DS:627C stays 1 and the next completed save or load ends the game | recorded |
 | [FND-SAVE-026](../../findings/FND-SAVE-026.md) | Shared character-list top indexes a ten-record save list without establishing valid later save pages | recorded |
+| [FND-SAVE-027](../../findings/FND-SAVE-027.md) | The recorded shutdown route restores callbacks and interrupt tables but does not exclude writes behind unresolved callees | recorded |
+| [FND-SAVE-028](../../findings/FND-SAVE-028.md) | Shutdown close-all can request pending archive metadata writes through the existing dirty-record preparation path | recorded |
+| [FND-SAVE-029](../../findings/FND-SAVE-029.md) | Explicit Save supplies independent counted-write controls through resource payload updates and the numbered-file copy | recorded |
+| [FND-SAVE-030](../../findings/FND-SAVE-030.md) | The runtime's stored stream-exit hook conditionally flushes four fixed records through a separate DOS-write route | recorded |
+| [FND-SAVE-031](../../findings/FND-SAVE-031.md) | One fixed saved-map Quit closes five clean archives with no monitored write requests and unchanged hashes for four private files | recorded |
+| [FND-SAVE-032](../../findings/FND-SAVE-032.md) | One fixed Quit observes its type-three slot argument and return and all four stream counts at their actual use points | recorded |
+| [FND-SAVE-033](../../findings/FND-SAVE-033.md) | The fixed Quit cleanup transfer enters the observed type-three callee with the same argument and expected far-return frame | recorded |
+| [FND-SAVE-034](../../findings/FND-SAVE-034.md) | Controlled dirty Quit writes metadata and clears its pending byte after native success | superseded |
+| [FND-SAVE-035](../../findings/FND-SAVE-035.md) | Resource updates can return pending metadata when write-through is absent or an error bypasses preparation | recorded |
+| [FND-SAVE-036](../../findings/FND-SAVE-036.md) | The observed type-three Quit cleanup enters the queried XMS driver with free-handle request one and reports success | superseded |
+| [FND-SAVE-037](../../findings/FND-SAVE-037.md) | A zero numbered-writer result bypasses explicit Save's close and copy before the ordinary failure-message continuation | recorded |
+| [FND-SAVE-038](../../findings/FND-SAVE-038.md) | Failed Save returns its retained flag after reverse conversion whose resource reads prepare their supplying or indexed-probed archive | recorded |
+| [FND-SAVE-039](../../findings/FND-SAVE-039.md) | Controlled dirty Quit writes metadata and clears its pending byte after native success | recorded |
+| [FND-SAVE-040](../../findings/FND-SAVE-040.md) | The observed type-three Quit cleanup enters the queried XMS driver with free-handle request one and reports success | recorded |
+| [FND-SAVE-041](../../findings/FND-SAVE-041.md) | A failed native Save leaves working metadata pending until ordinary Quit writes and clears it | recorded |
+| [FND-SAVE-042](../../findings/FND-SAVE-042.md) | A successful reused-open Save copies unprepared working metadata and later Quit updates only the working file | recorded |
+| [FND-SAVE-043](../../findings/FND-SAVE-043.md) | Both known cleanup invocations request deletion of an empty path and normalize the native error to FFFF | recorded |
+| [FND-SAVE-044](../../findings/FND-SAVE-044.md) | Startup constructs a separate VMSHELL fallback pathname while controlled offset queries retain cleanup-path publication gaps | recorded |
+| [FND-SAVE-045](../../findings/FND-SAVE-045.md) | Character generation allocates a full-word identifier against four party slots and 39 stored identifiers | recorded |
+| [FND-SAVE-046](../../findings/FND-SAVE-046.md) | Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN | recorded |
+| [FND-SAVE-047](../../findings/FND-SAVE-047.md) | Character identifiers occupy the negative key side of the object-reference selector | recorded |
 
 ## bugs
 

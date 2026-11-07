@@ -22,16 +22,18 @@ Entries by status.
 
 ## superseded
 
-2 entries.
+4 entries.
 
 | ID | Title |
 |---|---|
+| [FND-SOUND-012](../../findings/FND-SOUND-012.md) | Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health |
 | [FND-SOUND-018](../../findings/FND-SOUND-018.md) | The nineteen disc ADV files share a Copy header and bounded function directories containing 598 entries |
 | [FND-SOUND-028](../../findings/FND-SOUND-028.md) | Setup record dispatch maps scalar fields and counted alternate, flag and jumper sublists |
+| [FND-SOUND-070](../../findings/FND-SOUND-070.md) | Sequence setup passes resource data and the allocated sequence block as separate driver arguments |
 
 ## recorded
 
-46 entries.
+90 entries.
 
 | ID | Title |
 |---|---|
@@ -46,7 +48,6 @@ Entries by status.
 | [FND-SOUND-009](../../findings/FND-SOUND-009.md) | The script's sound opcode calls the sound-effect routine and its music opcode calls a routine that does nothing |
 | [FND-SOUND-010](../../findings/FND-SOUND-010.md) | Command-line switches turn sound, digital sound and speech on or off and set the install type |
 | [FND-SOUND-011](../../findings/FND-SOUND-011.md) | At startup the game reads SOUND.CFG and DJ.DAT, a table of 38 six-byte music records |
-| [FND-SOUND-012](../../findings/FND-SOUND-012.md) | Once per pass of the main loop the game picks a music track from DJ.DAT by region, music mode and party health |
 | [FND-SOUND-013](../../findings/FND-SOUND-013.md) | The music routine plays song n as audio track n + 1 of the disc when SOUND.CFG asks for disc music |
 | [FND-SOUND-014](../../findings/FND-SOUND-014.md) | The six PLYL resources are lists of byte pairs ending in 0 or 100, the shape an uncalled playlist routine reads |
 | [FND-SOUND-015](../../findings/FND-SOUND-015.md) | CSEQ resource 1000 is an Extended MIDI file with one sequence that sets a tempo, loops and plays no note |
@@ -81,6 +82,51 @@ Entries by status.
 | [FND-SOUND-046](../../findings/FND-SOUND-046.md) | Setup error-word boundary candidates have no supported direct-transfer entries and overlap a driver-function stub |
 | [FND-SOUND-047](../../findings/FND-SOUND-047.md) | Setup hands off chunk words and a playback byte while CardGroup four substitutes the DMA summary argument |
 | [FND-SOUND-048](../../findings/FND-SOUND-048.md) | Setup plain signed-word formatting produces bounded decimal text and turns the CardGroup sentinel into minus one |
+| [FND-SOUND-049](../../findings/FND-SOUND-049.md) | Resource sound wrapper gates card and library mode, conditionally remaps low indices, and forwards three words |
+| [FND-SOUND-050](../../findings/FND-SOUND-050.md) | Resource playback dispatch uses type-specific gates and treats 6000 and 6001 as record-default selectors |
+| [FND-SOUND-051](../../findings/FND-SOUND-051.md) | The startup preference helper clamps a byte and publishes a record-relative sound adjustment |
+| [FND-SOUND-052](../../findings/FND-SOUND-052.md) | Sound-state and stop wrappers test driver state two and do not verify stop completion |
+| [FND-SOUND-053](../../findings/FND-SOUND-053.md) | Known DIGPAK software-state writers distinguish start admission from stop and parser termination |
+| [FND-SOUND-054](../../findings/FND-SOUND-054.md) | File-sound start publishes preparation state before opening its persistent handle |
+| [FND-SOUND-055](../../findings/FND-SOUND-055.md) | File-sound refill debits requested bytes before accepting non-error short reads |
+| [FND-SOUND-056](../../findings/FND-SOUND-056.md) | DIGPAK descriptor staging clears slot state while direct submission has a distinct stack-cleanup caveat |
+| [FND-SOUND-057](../../findings/FND-SOUND-057.md) | Submission children do not compensate the descriptor wrapper cleanup and capability-disabled submission makes no interrupt |
+| [FND-SOUND-058](../../findings/FND-SOUND-058.md) | DIGPAK capability gates use a cached interrupt result rather than a locally fixed mask |
+| [FND-SOUND-059](../../findings/FND-SOUND-059.md) | Refill uses post-submission DS and SI before its own return and does not restore DS |
+| [FND-SOUND-060](../../findings/FND-SOUND-060.md) | Eleven direct refill-service sites include a repeat route inside the overlay-201 reseeding caller |
+| [FND-SOUND-061](../../findings/FND-SOUND-061.md) | Music-table literal accesses concentrate in loader and selector while failure paths preserve mutated globals |
+| [FND-SOUND-062](../../findings/FND-SOUND-062.md) | Music-table field candidates decode loader interiors or combat-table data and the exact filename query retains four interiors |
+| [FND-SOUND-063](../../findings/FND-SOUND-063.md) | All four exact music-filename candidates begin inside unrelated established instructions |
+| [FND-SOUND-064](../../findings/FND-SOUND-064.md) | Music-selector computed list stores use DS for BP-derived offsets and table indexing wraps within the held segment |
+| [FND-SOUND-065](../../findings/FND-SOUND-065.md) | Shipped DJ.DAT provides nine startup fallbacks and nonempty combat lists of four three and three records |
+| [FND-SOUND-066](../../findings/FND-SOUND-066.md) | Music-selector RNG children have bounded local writes and preserve segment bindings under intact frames |
+| [FND-SOUND-067](../../findings/FND-SOUND-067.md) | Disc-song interface publishes track after unchecked request and separates packet status from audible success |
+| [FND-SOUND-068](../../findings/FND-SOUND-068.md) | Music busy status can accept a request error sentinel while stop uses distinct disc and sequence cleanup paths |
+| [FND-SOUND-069](../../findings/FND-SOUND-069.md) | FM acquisition selects sequence tags but local load failure does not set the caller-tested flag |
+| [FND-SOUND-071](../../findings/FND-SOUND-071.md) | Music selection uses the recorded DJ table fields and the literal region-writer census includes two overlay-182 transition stores |
+| [FND-SOUND-072](../../findings/FND-SOUND-072.md) | Exact music-mode and region census has three instruction interiors and one unresolved gap candidate |
+| [FND-SOUND-073](../../findings/FND-SOUND-073.md) | Tested encoded incoming forms do not bind the music-region gap candidate or provisional lookup reader |
+| [FND-SOUND-074](../../findings/FND-SOUND-074.md) | Region transition callers distinguish restored current-region reloads from incoming region arguments and failure-controlled rebuild flags |
+| [FND-SOUND-075](../../findings/FND-SOUND-075.md) | Command-line region selection stores a wrapping low word from an ordered gated suffix parse without a region bound |
+| [FND-SOUND-076](../../findings/FND-SOUND-076.md) | Music health input is recomputed with wrapping unsigned division before selection and script request 52 can overwrite its byte |
+| [FND-SOUND-077](../../findings/FND-SOUND-077.md) | Shipped scripts contain 37 literal music-health override requests with 27 constant values and ten local-variable values |
+| [FND-SOUND-078](../../findings/FND-SOUND-078.md) | Eight variable health requests have adjacent bounded random assignments while two carry earlier local values |
+| [FND-SOUND-079](../../findings/FND-SOUND-079.md) | Top-level literal transfers do not bypass eight health assignments and GPL18 carries its value through producer and saved-local calls |
+| [FND-SOUND-080](../../findings/FND-SOUND-080.md) | Local-variable backup uses one fixed snapshot and GPL21 contains no explicit nested backup or cross-script call |
+| [FND-SOUND-081](../../findings/FND-SOUND-081.md) | Four raw snapshot aliases pair call and stack-test bytes while local-number cleanup explicitly clears the current pointer |
+| [FND-SOUND-082](../../findings/FND-SOUND-082.md) | Sequence setup requires patch-cache progress because ADV 11 rescans missing instruments and installation can retry unchanged |
+| [FND-SOUND-083](../../findings/FND-SOUND-083.md) | Installed song sequence requests have no matching shipped archive table |
+| [FND-SOUND-084](../../findings/FND-SOUND-084.md) | The two alternate known sequence setup calls share the playback payload and publish a separate handle |
+| [FND-SOUND-085](../../findings/FND-SOUND-085.md) | Literal sequence-handle writers separate initial sentinels, unchecked start publication and stop clearing |
+| [FND-SOUND-086](../../findings/FND-SOUND-086.md) | ADV 11 start separates sentinel bypass, fresh reset and already-playing cleanup |
+| [FND-SOUND-087](../../findings/FND-SOUND-087.md) | Restart cleanup admits a quiet case but active channel remapping traverses registered sequences |
+| [FND-SOUND-088](../../findings/FND-SOUND-088.md) | ADV 11 active voice cleanup closes at driver-data writes and fixed-count port output |
+| [FND-SOUND-089](../../findings/FND-SOUND-089.md) | ADV 11 registration and release preserve slot count conditionally, with event-dependent deferred removal |
+| [FND-SOUND-090](../../findings/FND-SOUND-090.md) | ADV 11 initialization resets count and all registered slots before child calls |
+| [FND-SOUND-091](../../findings/FND-SOUND-091.md) | Known music callback binds saved game DS and can request a sequence branch through the current driver slot |
+| [FND-SOUND-092](../../findings/FND-SOUND-092.md) | Installed sound flags clear the local music-enable gate before driver installation and sequence allocation |
+| [FND-SOUND-093](../../findings/FND-SOUND-093.md) | Startup size configuration does not allocate buffers, and paired retained-buffer state selects release |
+| [FND-SOUND-094](../../findings/FND-SOUND-094.md) | Known disc-initialization failures return a nonzero word despite a zero result byte |
 
 ## Open questions
 

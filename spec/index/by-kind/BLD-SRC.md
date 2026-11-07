@@ -14,7 +14,7 @@ Entries by kind.
 
 ## sources
 
-14 entries.
+15 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -28,6 +28,7 @@ Entries by kind.
 | [SRC-OPENDS-5C6CBD7](../../sources/SRC-OPENDS-5C6CBD7.md) | OpenDS, a Dark Sun reverse-engineering project with a GPL disassembler, commit 5c6cbd7 | None |
 | [SRC-README-1.1](../../sources/SRC-README-1.1.md) | README.TXT for version 1.1, shipped with the GOG release | None |
 | [SRC-RUSTDOS-172](../../sources/SRC-RUSTDOS-172.md) | rust-dos v1.7.2 clock service source snapshot | None |
+| [SRC-RUSTDOS-181](../../sources/SRC-RUSTDOS-181.md) | rust-dos v1.8.1 file-service, vector and XMS source snapshot | None |
 | [SRC-WIN32-ATOMS](../../sources/SRC-WIN32-ATOMS.md) | Microsoft Win32 local atom API contracts | None |
 | [SRC-WIN32-X86-ABI](../../sources/SRC-WIN32-X86-ABI.md) | Microsoft Win32 x86 flat-mode and calling-convention contract | None |
 | [SRC-XIPH-OGG-VORBIS](../../sources/SRC-XIPH-OGG-VORBIS.md) | Xiph Ogg framing and Vorbis I specifications | None |

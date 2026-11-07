@@ -40,7 +40,7 @@ Entries by status.
 
 ## recorded
 
-39 entries.
+63 entries.
 
 | ID | Title |
 |---|---|
@@ -83,6 +83,30 @@ Entries by status.
 | [FND-SCRIPT-039](../../findings/FND-SCRIPT-039.md) | The decoded registration radius domain has 381 small literals and one local-variable operand |
 | [FND-SCRIPT-040](../../findings/FND-SCRIPT-040.md) | The preserved GPL two-twenty-three callback sequence supplies radii five four and two then skips re-registration |
 | [FND-SCRIPT-041](../../findings/FND-SCRIPT-041.md) | A preserved public-entry local reset bounds the variable radius for every counter value |
+| [FND-SCRIPT-042](../../findings/FND-SCRIPT-042.md) | Rejected expression atoms retain an uninitialized scratch value and returning error calls do not locally suppress opcode77 mutation |
+| [FND-SCRIPT-043](../../findings/FND-SCRIPT-043.md) | GPL37 has conditional stop and menu-return routes into the rejected-atom postamble |
+| [FND-SCRIPT-044](../../findings/FND-SCRIPT-044.md) | Shipped GPLI entries 167 and 168 bind GPL37 entry 0001 and its rejected-atom routine at 0A41 |
+| [FND-SCRIPT-045](../../findings/FND-SCRIPT-045.md) | MAS1 registers GPL37 0A41 as the region TALK trigger for normalized key minus99 |
+| [FND-SCRIPT-046](../../findings/FND-SCRIPT-046.md) | Object99 has one shipped ETAB placement in Limbo and does not itself establish the region1 TALK key |
+| [FND-SCRIPT-047](../../findings/FND-SCRIPT-047.md) | Key minus99 selects different TALK entries under regional registration and replacement |
+| [FND-SCRIPT-048](../../findings/FND-SCRIPT-048.md) | The startup region-script gate retains an early unsigned count test and reloads the region at dispatch |
+| [FND-SCRIPT-049](../../findings/FND-SCRIPT-049.md) | GPL37's early stop reads combat state through system variable32 and its later branch uses a shared global flag |
+| [FND-SCRIPT-050](../../findings/FND-SCRIPT-050.md) | Trigger allocation detaches a free record and exhausted insertion overwrites an occupied position |
+| [FND-SCRIPT-051](../../findings/FND-SCRIPT-051.md) | GPL37 entry0001 has no listed literal route to entry0A41's pre-gap postamble |
+| [FND-SCRIPT-052](../../findings/FND-SCRIPT-052.md) | Twelve counted script-entry producer families supply only the two known GPL37 pairs |
+| [FND-SCRIPT-053](../../findings/FND-SCRIPT-053.md) | Trigger allocation flag references use a later descriptor alias and its check is not a general nonzero-failure test |
+| [FND-SCRIPT-054](../../findings/FND-SCRIPT-054.md) | Script cleanup clears cached setup separately from the state-gated working buffers and allocation failure flag |
+| [FND-SCRIPT-055](../../findings/FND-SCRIPT-055.md) | Early and inner script allocation failures reach different cached result bytes |
+| [FND-SCRIPT-056](../../findings/FND-SCRIPT-056.md) | The twelve script setup requests fit the recorded heap arithmetic without establishing live capacity |
+| [FND-SCRIPT-057](../../findings/FND-SCRIPT-057.md) | Trigger-pool pointer publication and save-table binding are separate phases |
+| [FND-SCRIPT-058](../../findings/FND-SCRIPT-058.md) | One native reverse conversion retains matching prepared SAVE38 and live trigger pointer words at three sampled boundaries |
+| [FND-SCRIPT-059](../../findings/FND-SCRIPT-059.md) | The inventoried save-pointer-table operands separate preparation stores from indexed transfer reads |
+| [FND-SCRIPT-060](../../findings/FND-SCRIPT-060.md) | Eight counted shipped trigger-registration families have no zero entry-offset operand |
+| [FND-SCRIPT-061](../../findings/FND-SCRIPT-061.md) | One native SAVE38 transfer uses matching reader-local prepared and live trigger pointers and copies the selected 2600-byte private-file span |
+| [FND-SCRIPT-062](../../findings/FND-SCRIPT-062.md) | Reverse conversion after failed restoration can reinterpret a retained ordinary trigger offset as a GPLI entry number |
+| [FND-SCRIPT-063](../../findings/FND-SCRIPT-063.md) | Restore bitmap allocation and cleanup update the primary pointer without clearing the secondary pointer on null or release paths |
+| [FND-SCRIPT-064](../../findings/FND-SCRIPT-064.md) | Short selected trigger resources and short I/O returns leave different restore flags but can both supply mixed records to reverse conversion |
+| [FND-SCRIPT-065](../../findings/FND-SCRIPT-065.md) | One native run connects the verified SAVE38 payload to unchanged conversion input and predicted trigger output at reader return |
 
 ## Open questions
 
@@ -103,5 +127,6 @@ Entries whose Open questions section says more than None known.
 | [RULE-SCRIPT-008](../../rules/RULE-SCRIPT-008.md) | The script instructions that register triggers | supported |
 | [RULE-SCRIPT-009](../../rules/RULE-SCRIPT-009.md) | The script trace instructions | supported |
 | [RULE-SCRIPT-010](../../rules/RULE-SCRIPT-010.md) | Script-cache lookup and resource transfer | supported |
+| [RULE-SCRIPT-011](../../rules/RULE-SCRIPT-011.md) | The script instructions that change a variable in place | supported |
 | [RULE-SCRIPT-012](../../rules/RULE-SCRIPT-012.md) | Function 41 of script opcode 0x22 rolls a saving throw for each slot its target names and returns how many saved | supported |
 | [RULE-SCRIPT-013](../../rules/RULE-SCRIPT-013.md) | The game runs the first script trigger whose cell, box, key or key pair matches an event, and a region change drops the triggers the region set | supported |

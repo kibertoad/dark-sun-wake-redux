@@ -10,7 +10,7 @@ For each entry, the entries and glossary terms that cite or relate to it, and th
 | [FMT-TEXT-002](../../formats/FMT-TEXT-002.md) | [FMT-TEXT-001](../../formats/FMT-TEXT-001.md) (body) |
 | [FMT-TEXT-003](../../formats/FMT-TEXT-003.md) | [FND-ITEM-008](../../findings/FND-ITEM-008.md) (body) |
 | [FMT-TEXT-004](../../formats/FMT-TEXT-004.md) | [RULE-CONFIG-002](../../rules/RULE-CONFIG-002.md) (body), [SCR-UI-007](../../screens/SCR-UI-007.md) (body), [difficulty](../../glossary/difficulty.md) (glossary) |
-| [FND-TEXT-001](../../findings/FND-TEXT-001.md) | [FMT-TEXT-001](../../formats/FMT-TEXT-001.md) (body, evidence), [FMT-TEXT-002](../../formats/FMT-TEXT-002.md) (body, evidence) |
+| [FND-TEXT-001](../../findings/FND-TEXT-001.md) | [FMT-TEXT-001](../../formats/FMT-TEXT-001.md) (body, evidence), [FMT-TEXT-002](../../formats/FMT-TEXT-002.md) (body, evidence), [FND-CONFIG-232](../../findings/FND-CONFIG-232.md) (body) |
 | [FND-TEXT-002](../../findings/FND-TEXT-002.md) | [FMT-TEXT-001](../../formats/FMT-TEXT-001.md) (body) |
 | [FND-TEXT-003](../../findings/FND-TEXT-003.md) | [FMT-TEXT-003](../../formats/FMT-TEXT-003.md) (body, evidence) |
 | [FND-TEXT-004](../../findings/FND-TEXT-004.md) | [FND-TEXT-007](../../findings/FND-TEXT-007.md) (body) |
