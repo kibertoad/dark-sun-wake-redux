@@ -123,6 +123,12 @@ Next ID: Q-CONFIG-015
     writers, other targets and branch-table count/backing/offset admission.
     The literal census still records an unresolved transfer and is not
     negative proof of actual target preservation.
+    FND-SOUND-092 reads the installed-profile bit-08 override and three
+    zero-enable bypasses. Establish actual loaded configuration, ready-byte/
+    caller admission and gate/slot preservation across the named callback,
+    release and digital-setup children; distinguish first startup from
+    teardown/reinitialization. Those local driver/block gates are no longer
+    unread. Prioritize actual profile admission before more driver internals.
     Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
@@ -174,6 +180,10 @@ Next ID: Q-CONFIG-015
     and its selected B5 child. The known software contract is read; actual
     slot/target/DS histories and branch backing remain, including zero-count
     post-tested scanning. No complete reading or answered deletion follows.
+    Tried: FND-SOUND-092 connects existing startup findings with current source
+    identity, enable setter/callers and installation/allocation bypasses.
+    The known profile selects no music-driver work if gate state survives;
+    actual histories and intervening effects remain. No whole queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
