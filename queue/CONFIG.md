@@ -110,8 +110,12 @@ Next ID: Q-CONFIG-015
     settles quiet restart for empty note slots and inactive signed flags;
     retain actual note/flag histories, 2C1D count/occupied-slot consistency,
     mapping values and all selected registered blocks. Reuse the local
-    2CF3/2635/2483/25FA/3F01 contracts; active 1B1D/1B88 descendants and
-    their return/write/alias effects remain unread, along with
+    2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
+    1B1D/1B88/output-helper reading: retain actual voice/channel/assignment
+    indices, stable code and valid driver-data/frame write domains disjoint
+    from game handles, plus port-instruction completion and asynchronous
+    effects relevant to readback. Those descendants are no longer unread.
+    Retain
     other/missing driver targets and later setters; do not reread the local
     sentinel/fresh-start/reset bundle. Retain nonliteral/block/alias writes,
     unknown entries and actual segment/storage histories outside the census.
@@ -139,6 +143,10 @@ Next ID: Q-CONFIG-015
     flag/count/dispatch classification. Remapping selects other registered
     blocks, so active preservation needs their backing and count/slot
     admission as well as descendant effects. No whole reading or queue closure.
+    Tried: FND-SOUND-088 reads both voice roots and every connected output
+    helper. The finite software-effect bundle is classified; actual indices,
+    code/frame/data separation and state histories remain admission work,
+    rather than another unknown child. No whole queue closure is claimed.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
