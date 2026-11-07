@@ -39,18 +39,18 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince e3c6e842 -NoRestore passed;
-  2142 entries,208 parity rows,five deviations. Integration a0f58c56 passed Node
+  Test.ps1 -Research -ChangedSince 377bc237 -NoRestore passed;
+  2143 entries,208 parity rows,five deviations. Integration a0f58c56 passed Node
   checks and 758 .NET tests. Existing argument-count, Kaitai and generated
   skips remain. Use pinned EVIDENCE_PYTHON and supported child-process
   escalation. No owned orphans found.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
-  SOUND-082..092; do not repeat local getter/setter/query/reset/cache-progress
+  SOUND-082..093; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15. This is a split, not an answer.
-  Next Q-CONFIG-014: startup gate/slot preservation across named children
-  using SOUND-092, RNG-093/095 and PARTY-320; reuse known profile branches.
+  Next Q-CONFIG-014: configuration-callback admission before paired tests,
+  using SOUND-093/EXE-583; reached mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV functions lack committed inventories; six named DSUN claim
@@ -95,7 +95,7 @@ to 449cda07447dc17c05fbcfdbbe843f1677cb4799 adds two findings in three commits, 
 Subsequent e2e20b6e adds SOUND-084's bounded caller classification, no
 answered deletion or complete reading. Validation11.130s; research/drafting
 upper bound4m30s includes context overhead. No closure speedup proved.
-Then b82c828e/d9be5332/357e1055/032a2905/dd71422f/d3b266c3/6e59cf25/26d90650 add SOUND-085..092's producer/start/
+Then b82c828e/d9be5332/357e1055/032a2905/dd71422f/d3b266c3/6e59cf25/26d90650/60a23cd6 add SOUND-085..093's producer/start/
 cleanup classifications, no readings or answered deletions. Keep histories
 and census exclusions.
 Upstream recovery report awaits explicit posting approval after automatic-review rejection.
