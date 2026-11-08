@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_006.ksy
-evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092]
+evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258]
 conflicting: []
 split_with: []
 related: []
@@ -22,6 +22,13 @@ The corrected replacement for FMT-CONFIG-001. FND-CONFIG-257 distinguishes actua
 [FND-CONFIG-005, FND-CONFIG-019]. The loader does not validate the 59-byte layout. The meanings below
 come from the shipped file, its matching record and the parser-to-output handoff
 [FND-CONFIG-257, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047].
+
+The constructor words are not necessarily the final settings written to the
+file. The later adjustment can replace address, IRQ and DMA words according
+to eight record masks and a separate mode word. It selects list results
+before applying them, and specialized results follow shared results in the
+apply order (FND-CONFIG-258). Actual dialog/count/index and storage admission
+remain conditions. This does not change the byte offsets or widths below.
 
 | Offset | Size | Type | Name | Meaning | Status | Evidence |
 |---|---|---|---|---|---|---|
@@ -73,6 +80,9 @@ The one installed file [FND-CONFIG-257].
   FMT-CONFIG-002 and the name/loader contract in FND-SOUND-020. Record and
   output span, aliasing, incoming selection and child preservation remain
   conditions, not established lifetime claims.
+  The later14A2:0087 adjustment and14A2:0AA5 initial-index helper are also in
+  that inventory. FND-CONFIG-258 supplies their local mapping and order;
+  actual returned indices, changed masks and label/frame lifetime remain open.
   DSUN.EXE roots 4734:0063, 47B9:0236 and initializer4734:0133 are in its
   corresponding inventory. Resource selector47B9:0334 and digital setup
   49EC:015F from FND-CONFIG-024 share sound-driver helpers; their canonical
