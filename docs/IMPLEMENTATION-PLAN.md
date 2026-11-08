@@ -1,6 +1,6 @@
 # Implementation plan
 
-Readback value-history tooling (Q-CONFIG-014) follows the [restored Preferences plan](implementation-plans/PREFERENCES-READBACK-OBSERVATION.md#value-history) and [fresh startup plan](implementation-plans/DISC-STARTUP-OBSERVATION.md#value-history): fixed named watches, synthetic failure controls and Test.ps1 are its tooling exit; native capability requires separate research attempts.
+Readback value-history tooling (Q-CONFIG-014) follows the [restored Preferences plan](implementation-plans/PREFERENCES-READBACK-OBSERVATION.md#value-history), [fresh startup plan](implementation-plans/DISC-STARTUP-OBSERVATION.md#value-history) and [continuous Preferences route](implementation-plans/FRESH-PREFERENCES-HISTORY.md): fixed watches, synthetic controls and Test.ps1 are its tooling exit; native capability requires separate research attempts.
 
 ## Issue 5 FONT and allocation producer handoffs
 

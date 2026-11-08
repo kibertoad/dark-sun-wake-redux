@@ -159,6 +159,93 @@ class Readback:
         return item
 
 
+def observe_readback(session, delta, report, retain, history=None, seed_expected=None):
+    """Fixed Tab/getter/store route, shared by restored and fresh observers."""
+    rng, trace, flow = Recorder(delta), Readback(delta), MenuFlow()
+    generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
+    poll, getter = input_poll(session.client, delta), rng.address(0x4A6E, 0x011F)
+    for site in (generator, setter, poll, getter):
+        session.client.set_breakpoint(site)
+    operation = session.send_input("key", {"key": "tab", "hold_ms": 100})
+    delivery, input_name, recorded = None, "tab", False
+    for index in range(512):
+        ob, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
+        stop = ob.stop
+        report["last_stop"], report["stops"] = stop, index + 1
+        retain()
+        if exhausted or stop.get("reason") not in (("breakpoint", "watchpoint") if history else ("breakpoint",)):
+            raise ValueError("Preferences did not reach a declared instruction stop")
+        if stop.get("cs_ip") == setter or (stop.get("cs_ip") == generator and stop.get("reason") != "breakpoint"):
+            raise ValueError("unadmitted Preferences RNG/seed boundary")
+        if seed_expected is not None and int.from_bytes(checked_read(session.client, 0x57E0 + delta, 0x384A, 4), "little") != seed_expected:
+            raise ValueError("Preferences seed differs from recorded chain")
+        if history:
+            if stop["reason"] == "watchpoint":
+                history.changed(session.client, stop)
+            else:
+                history._stop(stop)
+                history.check(session.client)
+                history.sequence, history.time = stop["seq"], stop["emu_ns"]
+        delivery = observe_delivery(session, operation, delivery)
+        report["last_delivery"] = {"input": input_name, "state": delivery.state}
+        if not recorded and delivery.state == "done":
+            report["inputs"].append({"input": input_name, "delivery": delivery.detail})
+            recorded = True
+        site = stop["cs_ip"]
+        if history and stop["reason"] == "watchpoint":
+            if trace.caller is None or trace.phase != "store" or site != f"{trace.caller:04X}:0041":
+                continue
+        if stop["reason"] == "breakpoint" and site == generator:
+            draw = rng.record(session, stop)
+            if seed_expected is not None:
+                if draw["seed_before"] != seed_expected:
+                    raise ValueError("Preferences draw seed does not join previous state")
+                seed_expected = draw["seed_after"]
+            report["draws"].append(draw)
+            if history:
+                history._stop(session.stop)
+                history.check(session.client)
+                history.sequence, history.time = session.stop["seq"], session.stop["emu_ns"]
+        elif site == setter:
+            raise ValueError("unadmitted Preferences reseeding")
+        elif site == poll:
+            current = snapshot(session.client, delta)
+            report["ui_state"] = current
+            action = flow.poll(current, delivery.state == "done")
+            if action:
+                input_name = action
+                operation = (session.send_input("mouse", {"action": "move", "x": 160, "y": 101, "coords": "virtual"})
+                             if action == "move" else select_preferences(session, poll))
+                delivery, recorded = None, False
+                print(action, flush=True)
+        elif site == getter:
+            if flow.phase != "getter":
+                raise ValueError("Preferences getter reached before its fixed input route")
+            report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
+            for offset in ((0x003E,) if history else (0x003E, 0x0041)):
+                session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
+            print("getter-entry", flush=True)
+        elif trace.caller is not None and site == f"{trace.caller:04X}:003E":
+            report["readback"].append({"phase": "return", **trace.returned(session.client, stop)})
+            if history and report["readback"][-1]["music_level"] == trace.result & 0xFF:
+                session.client.set_breakpoint(f"{trace.caller:04X}:0041", once=True)
+        elif trace.caller is not None and site == f"{trace.caller:04X}:0041":
+            report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
+            if delivery.state != "done":
+                raise ValueError("Preferences click delivery incomplete at endpoint")
+            if history:
+                history.finish(session.client)
+                history.close(session.client)
+                history.complete()
+            report["passed"] = True
+            break
+        else:
+            raise ValueError("unadmitted Preferences stop")
+        retain()
+    else:
+        raise ValueError("Preferences exceeds512 named stops")
+
+
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
@@ -178,7 +265,6 @@ def main():
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
-    rng, trace, flow = Recorder(delta), Readback(delta), MenuFlow()
     run = game / "captures/rust-dos-preferences-readback" / sys.argv[2]
     if run.exists():
         raise ValueError("Preferences readback run already exists")
@@ -208,75 +294,7 @@ def main():
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             if history:
                 history.arm(session.client, stop)
-            generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
-            poll, getter = input_poll(session.client, delta), rng.address(0x4A6E, 0x011F)
-            for site in (generator, setter, poll, getter):
-                session.client.set_breakpoint(site)
-            operation = session.send_input("key", {"key": "tab", "hold_ms": 100})
-            delivery, input_name, recorded = None, "tab", False
-            for index in range(512):
-                ob, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
-                stop = ob.stop
-                report["last_stop"], report["stops"] = stop, index + 1
-                retain()
-                if exhausted or stop.get("reason") not in (("breakpoint", "watchpoint") if history else ("breakpoint",)):
-                    raise ValueError("Preferences did not reach a declared instruction stop")
-                if history:
-                    if stop["reason"] == "watchpoint":
-                        history.changed(session.client, stop)
-                    else:
-                        history.check(session.client)
-                delivery = observe_delivery(session, operation, delivery)
-                report["last_delivery"] = {"input": input_name, "state": delivery.state}
-                if not recorded and delivery.state == "done":
-                    report["inputs"].append({"input": input_name, "delivery": delivery.detail})
-                    recorded = True
-                site = stop["cs_ip"]
-                if history and stop["reason"] == "watchpoint":
-                    if trace.caller is None or trace.phase != "store" or site != f"{trace.caller:04X}:0041":
-                        continue
-                if stop["reason"] == "breakpoint" and site == generator:
-                    report["draws"].append(rng.record(session, stop))
-                    if history:
-                        history.check(session.client)
-                elif site == setter:
-                    raise ValueError("unadmitted Preferences reseeding")
-                elif site == poll:
-                    current = snapshot(session.client, delta)
-                    report["ui_state"] = current
-                    action = flow.poll(current, delivery.state == "done")
-                    if action:
-                        input_name = action
-                        operation = (session.send_input("mouse", {"action": "move", "x": 160, "y": 101, "coords": "virtual"})
-                                     if action == "move" else select_preferences(session, poll))
-                        delivery, recorded = None, False
-                        print(action, flush=True)
-                elif site == getter:
-                    if flow.phase != "getter":
-                        raise ValueError("Preferences getter reached before its fixed input route")
-                    report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
-                    for offset in ((0x003E,) if history else (0x003E, 0x0041)):
-                        session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
-                    print("getter-entry", flush=True)
-                elif trace.caller is not None and site == f"{trace.caller:04X}:003E":
-                    report["readback"].append({"phase": "return", **trace.returned(session.client, stop)})
-                    if history and report["readback"][-1]["music_level"] == trace.result & 0xFF:
-                        session.client.set_breakpoint(f"{trace.caller:04X}:0041", once=True)
-                elif trace.caller is not None and site == f"{trace.caller:04X}:0041":
-                    report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
-                    if delivery.state != "done":
-                        raise ValueError("Preferences click delivery incomplete at endpoint")
-                    if history:
-                        history.finish(session.client)
-                        history.close(session.client)
-                        history.complete()
-                    report["passed"] = True
-                    break
-                else:
-                    raise ValueError("unadmitted Preferences stop")
-                retain()
-            else:
-                raise ValueError("Preferences exceeds512 named stops")
+            observe_readback(session, delta, report, retain, history)
         except Exception as error:
             report["error"] = str(error)
             raise

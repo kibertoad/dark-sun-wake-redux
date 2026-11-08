@@ -127,10 +127,12 @@ def snapshot(client, stop, delta):
     return result
 
 
-def observe(session, delta, report, save, history=None, through_opener=False):
+def observe(session, delta, report, save, history=None, through_opener=False, through_preferences=False):
     """No arbitrary stops: bounded startup through the fixed music gate only."""
     if through_opener and history is None:
         raise ValueError("opener continuation requires the fixed startup history")
+    if through_preferences and (not through_opener or history is None):
+        raise ValueError("fresh Preferences requires the fixed opener history")
     sites = {address(seg, off, delta) for seg, off in SITES}
     # FND-RNG-001/010: fail before either a draw or a new seed can execute.
     guards = {address(0x1000, off, delta) for off in (0x0822, 0x0811)}
@@ -184,7 +186,10 @@ def observe(session, delta, report, save, history=None, through_opener=False):
                 for site in sorted(sites):
                     session.client.remove_breakpoints(site)
                 observe_opener(session, delta, report, save, history)
-            if history:
+            if through_preferences:
+                from fresh_preferences import observe_fresh_preferences
+                observe_fresh_preferences(session, delta, report, save, history)
+            elif history:
                 history.finish(session.client)
                 history.close(session.client)
                 history.complete()
@@ -196,10 +201,11 @@ def observe(session, delta, report, save, history=None, through_opener=False):
 
 def main():
     if (len(sys.argv) not in (2, 3) or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])
-            or len(sys.argv) == 3 and sys.argv[2] not in ("history", "opener-history")):
-        raise SystemExit("usage: disc_startup.py <new-run-name> [history|opener-history]")
+            or len(sys.argv) == 3 and sys.argv[2] not in ("history", "opener-history", "preferences-history")):
+        raise SystemExit("usage: disc_startup.py <new-run-name> [history|opener-history|preferences-history]")
     history_mode = len(sys.argv) == 3
-    through_opener = history_mode and sys.argv[2] == "opener-history"
+    through_preferences = history_mode and sys.argv[2] == "preferences-history"
+    through_opener = history_mode and sys.argv[2] in ("opener-history", "preferences-history")
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     expected = config["original"]["analysisExecutable"]
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR", Path(expected["path"]).parent)).resolve()
@@ -229,17 +235,24 @@ def main():
                 raise ValueError("unexpected disc startup program entry")
             delta = int(session.entry["registers"]["cs"], 16) - 0x1000
             if history_mode:
-                history = StartupHistory(delta)
+                if through_preferences:
+                    from fresh_preferences import FreshHistory
+                    history = FreshHistory(delta)
+                else:
+                    history = StartupHistory(delta)
                 if through_opener:
                     history.report["limits"] = "fixed program-entry-to-opener-call changed values; no unchanged writes, intra-instruction effects or later map/readback history"
                     report["limits"] = "fixed startup through native seed and pre-opener call; no continuous segment identity, heap extent or audible-output proof"
+                if through_preferences:
+                    history.report["limits"] = "fixed fresh program-entry-to-Preferences-store changed values; no unchanged writes, intra-instruction effects or other paths"
+                    report["limits"] = "fixed fresh startup/menu/map/getter route; no continuous segment identity, heap extent, later Preferences or audible-output proof"
                 report["value_history"] = history.report
                 history.arm(session.client, session.entry)
             seed = session.client.read_memory(address(0x57E0, 0x384A, delta), 4).data
             if len(seed) != 4:
                 raise ValueError("short initial RNG state")
             report["initial_rng_state"] = seed.hex()
-            observe(session, delta, report, save, history, through_opener)
+            observe(session, delta, report, save, history, through_opener, through_preferences)
         except Exception as error:
             report["error"] = str(error)
             save()
