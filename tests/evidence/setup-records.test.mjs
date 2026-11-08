@@ -230,6 +230,50 @@ o=copy.deepcopy(objects);o['selector']=1;reject(lambda:require_notice_profile(o)
 `, 'tools/research/rust-dos-runs');
 });
 
+test('notice input endpoints bind poll arguments, selected state and the live caller return without expired locals', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_input,address
+loaded=0x05BA;entry={'ss':0x22D0,'sp':0x0DE2}
+class Memory:
+    def __init__(self):self.short=False;self.drift=False;self.bad=False;self.seen={}
+    def read_memory(self,where,size):
+        self.seen[where,size]=self.seen.get((where,size),0)+1
+        values={'22D0:F674':bytes([255,255]),'22D0:0DDC':bytes(2),
+                '22D0:0DC4':struct.pack('<H',13),
+                '22D0:0DE6':struct.pack('<4H',0xAF36,0x13F0,0xD244,0x13F0)}
+        value=values[where];assert len(value)==size
+        if self.bad or self.drift and self.seen[where,size]>1:value=bytes([123])*size
+        return NS(data=value[:-1] if self.short else value)
+def stop(phase):
+    site,sp={'poll':((0x190F,0x0554),0xF674),'selected':((0x190F,0x0724),0xF676),
+             'returned':((0x164C,0x050D),0x0DE6)}[phase]
+    return {'reason':'breakpoint','cs_ip':address(loaded,*site),
+            'registers':{'ds':'13F0','ss':'22D0','sp':f'{sp:04X}','bp':'0DE0','ax':'000D'}}
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported notice input admitted')
+for phase in ('poll','selected','returned'):
+    m=Memory();s=stop(phase);r=observe_notice_input(m,s,loaded,entry,phase)
+    assert r['ax']==13 and r['phase']==phase
+    for attr in ('short','drift','bad'):
+        m=Memory();setattr(m,attr,True);reject(lambda:observe_notice_input(m,s,loaded,entry,phase))
+    for key,value in [('ds','0000'),('ss','0000'),('sp','0000')]:
+        bad=copy.deepcopy(s);bad['registers'][key]=value
+        reject(lambda:observe_notice_input(Memory(),bad,loaded,entry,phase))
+    s['cs_ip']=address(loaded,0x190F,0x054B)
+    reject(lambda:observe_notice_input(Memory(),s,loaded,entry,phase))
+s=stop('poll');s['registers']['bp']='0DE2'
+reject(lambda:observe_notice_input(Memory(),s,loaded,entry,'poll'))
+s=stop('returned');s['registers']['bp']='0000'
+assert observe_notice_input(Memory(),s,loaded,entry,'returned')['ax']==13
+reject(lambda:observe_notice_input(Memory(),s,loaded,entry,'unknown'))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

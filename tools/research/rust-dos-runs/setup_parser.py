@@ -463,6 +463,36 @@ def observe_notice_poll(client, stop, loaded, objects, texts):
             "prefixes_retained": body == texts["body"] and choices == texts["choices"]}, {"body": body, "choices": choices}
 
 
+def observe_notice_input(client, stop, loaded, entry, phase):
+    sites = {"poll": (0x190F, 0x0554), "selected": (0x190F, 0x0724), "returned": (0x164C, 0x050D)}
+    if phase not in sites:
+        raise ValueError("unsupported notice input phase")
+    ds = loaded + 0x1E36 - 0x1000
+    ss, sp = (word_register(stop, key) for key in ("ss", "sp"))
+    bp = (entry["sp"] - 2) & 0xFFFF
+    expected_sp = entry["sp"] + 4 if phase == "returned" else (bp - (0x176C if phase == "poll" else 0x176A)) & 0xFFFF
+    if (stop.get("reason") != "breakpoint" or stop.get("cs_ip") != address(loaded, *sites[phase])
+            or word_register(stop, "ds") != ds or ss != entry["ss"] or sp != expected_sp
+            or phase != "returned" and word_register(stop, "bp") != bp):
+        raise ValueError("unsupported notice input stop or frame")
+    if phase == "returned":
+        spans = [(ss, sp, 8)]
+    elif phase == "poll":
+        spans = [(ss, sp, 2)]
+    else:
+        spans = [(ss, (bp - 4) & 0xFFFF, 2), (ss, (bp - 0x1C) & 0xFFFF, 2)]
+    first = [checked_read(client, *span) for span in spans]
+    if [checked_read(client, *span) for span in spans] != first:
+        raise ValueError("notice input fields changed while paused")
+    if phase == "returned" and struct.unpack("<4H", first[0]) != (0xAF36, ds, 0xD244, ds):
+        raise ValueError("notice return arguments changed")
+    if phase == "poll" and first[0] != bytes([255, 255]):
+        raise ValueError("notice poll mode differs")
+    if phase == "selected" and [struct.unpack("<H", value)[0] for value in first] != [0, 13]:
+        raise ValueError("notice selected-return state differs")
+    return {"phase": phase, "ax": word_register(stop, "ax"), "ss": ss, "sp": sp}
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -473,13 +503,14 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter]")
     labels_profile = len(sys.argv) == 3
-    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll")
-    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll")
-    poll_profile = labels_profile and sys.argv[2] == "--notice-poll"
+    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter")
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter")
+    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter")
+    enter_profile = labels_profile and sys.argv[2] == "--notice-enter"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -588,6 +619,44 @@ def main():
                         (run / f"notice-{name}-poll-native.bin").write_bytes(body)
                     (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                     print(json.dumps({"notice_poll": report["notice_poll"]}), flush=True)
+                    if enter_profile:
+                        poll = report["notice_poll"]
+                        if (poll["locals"]["selector"] != 0 or poll["locals"]["choice_rows"] != 1
+                                or poll["registration_count"] != 1 or poll["input_mode"] != 0xFFFF
+                                or not all(poll[key] for key in ("selector_retained", "style_retained", "prefixes_retained"))):
+                            raise ValueError("unsupported notice Enter baseline")
+                        report["notice_input"] = {"event": {"key": "enter", "hold_ms": 1}, "stops": []}
+                        delivery = session.send_input("key", report["notice_input"]["event"])
+                        report["notice_input"]["operation"] = delivery.op
+                        for _ in range(256):
+                            operation = session.continue_(until=address(loaded, 0x190F, 0x0554))
+                            observed = wait_same_operation(session, operation)
+                            report["last_stop"] = observed.stop
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                            value = observe_notice_input(session.client, observed.stop, loaded, report["notice_objects"]["entry"], "poll")
+                            report["notice_input"]["stops"].append(value)
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                            if value["ax"] != 0xFFFF:
+                                break
+                        else:
+                            raise ValueError("notice Enter poll budget exhausted; no second event sent")
+                        if value["ax"] != 13:
+                            raise ValueError("notice Enter produced an unsupported poll result")
+                        session.client.remove_breakpoints(address(loaded, 0x190F, 0x0554))
+                        for phase, site in (("selected", (0x190F, 0x0724)), ("returned", (0x164C, 0x050D))):
+                            if phase == "returned":
+                                for offset in (0x0724, 0x02C6):
+                                    session.client.remove_breakpoints(address(loaded, 0x190F, offset))
+                            operation = session.continue_(until=address(loaded, *site))
+                            observed = wait_same_operation(session, operation)
+                            report["last_stop"] = observed.stop
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                            report["notice_input"][phase] = observe_notice_input(session.client, observed.stop, loaded, report["notice_objects"]["entry"], phase)
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                        delivered = session.observe(delivery, timeout=1)
+                        report["notice_input"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
+                        (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                        print(json.dumps({"notice_input": report["notice_input"]}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")

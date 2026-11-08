@@ -312,3 +312,26 @@ address, short reads and prefix/local drift. Exit: tooling gate passes;
 separate paired attempts record actual pre-input row/frame state or a specific
 guard. Native drawing, input, return and simultaneous allocation ownership
 remain distinct from reaching this endpoint.
+
+For Q-SOUND-010 after FND-SOUND-105, add --notice-enter as a fixed input
+capability attempt. Require105's pre-poll selector/count/registration and
+retained objects/prefixes, with modeFFFF. EXE-487/488 provide the keyboard
+poll route; EXE-486 provides the000D exit. Queue exactly one session key
+event, enter held1ms, retaining its input-operation handle. Continue to
+190F:0554 after03D7 returns but before argument cleanup. Up to256 stops
+may reportFFFF; never resend or restart an outstanding operation. At each
+stop require exact DS/SS/BP and wrapped SP=(BP-176C) modulo65536,
+read only the incoming mode word and AX, and retain the numeric sequence.
+Any non-FFFF other than000D stops the attempt as unsupported. On000D,
+continue only to the already armed0724 selected-return boundary. Require
+the original wrapped frame, selector zero and poll local000D there.
+Then remove0724/02C6 guards and continue only to102's caller164C:050D.
+Require original SS, SP=entry SP+4 and unchanged eight argument bytes;
+read returned AX without following expired frame locals. Keep early/driver
+guards throughout. Observe the same input handle once more for delivery
+status without resuming merely to finish release; pending is not delivered.
+Retain every stop before validation. No mouse, second key, guest write,
+driver or chooser continuation. Synthetic controls cover out-of-order/wrong
+stops, frame/argument drift, unexpected input words and selected-return
+state. Exit: tooling gate passes; separate fresh attempts record guest poll,
+normal caller return and delivery status or the precise guard/budget limit.
