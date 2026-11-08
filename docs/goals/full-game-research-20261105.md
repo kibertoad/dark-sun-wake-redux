@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 4cd6dee1 -NoRestore passed:
-  2171 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince a390f4c8 -NoRestore passed:
+  2173 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -55,7 +55,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reuse CONFIG-243..257, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
   Earlier timed closure measures remain at7307ac04.
-  Fixed full fresh route at7f5baded passed twice with66 focused controls;
+  Fresh-route evidence: CONFIG-248;
   use FRESH-PREFERENCES-HISTORY and docs/RUNTIME.md. Do not repeat the
   answered fixed startup-to-store history without a new question.
   Legacy restored mode and early prefix modes remain bounded separately;
@@ -75,12 +75,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-CONFIG-005, FMT-CONFIG-006: select the next coherent producer
-  from the retained EC/EE census, prioritizing the installed card7A route.
-  Reuse CONFIG-257..261 and SOUND-021/022/037 before another reading.
-  Keep20 other EC/18 EE sites, input/count/index/frame admission and drivers
+- Next Q-CONFIG-005, FMT-CONFIG-006: finish the remaining paired producer
+  families158E:0006,15FD:000F,1783:02F0 from the retained EC/EE census.
+  Reuse CONFIG-257..263 and SOUND-021/022/037 before another reading.
+  Keep6 other EC/6 EE sites, input/count/index/frame admission and drivers
   open. Do not repeat the answered local adjustment, group marker,
-  card7C producer or2713 conversion. Auxiliary03D3 report is unreviewed.
+  card7C/BLASTER/6A producers or2713 conversion. Auxiliary03D3 report is unreviewed.
   Existing-evidence review of FMT-CONFIG-006's predecessor at e88f47af/ae824c69
   ended at e0f597ab; declaration gap none qualifying. CONFIG-257 and
   FMT-CONFIG-006 replace their predecessors at15782e02.
@@ -114,9 +114,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Current88eed0ee to20cb8942: zero qualifying readings or answered deletions;
-Q-CONFIG-005 narrowed by CONFIG-258..261. Four findings/four research
-commits; unchanged inventory/ownership denominators. No completion promotion.
+Currentcbd886c3 toa65efde2: zero qualifying readings or answered deletions;
+Q-CONFIG-005 narrowed by CONFIG-262/263. Fourteen EC/twelve EE sites assigned
+conditional contracts in the unchanged controlled cohorts; six of each remain.
+Two findings/two research commits; unchanged inventory/ownership denominators.
 Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -134,7 +135,6 @@ accepted readings/errors/stale/unmeasured inventories. Eight inventories total
 7014 rows; disc-associated636 add no independent understanding. Owner-excluded
 DOSBox lacks raw inventory. Counts are non-additive; embedded ADV is outside them.
 
-Historical PARTY/UI comparisons and denominators remain at e88f47af.
 
 Current: GAME_DIR/analysis/descriptor-pair-consumers-20261108/,
 preferences-root-contract-20261108/ and
@@ -156,3 +156,5 @@ Current static: GAME_DIR/analysis/config-block-construction-20261108/,
 SETUP-blocks.gpr, constructors-ghidra.log and record-settings-producer-ghidra.log.
 Reuse record-marker, extended-record-copy and source-word-conversion reports;
 ec-query.json/ee-query.json retain the controlled candidate cohorts.
+Reuse blaster-source and partial-register reports (CONFIG-262/263).
+remaining-extended-producers-ghidra.log has three unreviewed family bodies.
