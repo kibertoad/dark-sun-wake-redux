@@ -116,8 +116,15 @@ Next ID: Q-CONFIG-015
   zero/frame model the outer exit has no finite ordinary return: do not demand
   blanket state preservation across it as a returning getter child. Retain
   reentrant exit-time readers, actual ready/mode/callback-table histories,
-  changed-frame/nonlocal rejoining and other entry mechanisms; PARTY-322's
-  separated alias-word candidate at file 47BE2/47BEA remains unclassified.
+  changed-frame/nonlocal rejoining and other entry mechanisms. FND-PARTY-323
+  excludes PARTY-322's unchanged separated alias-word pair: both words are
+  relocated and the loaded pair does not name shutdown. Retain later mutation,
+  arithmetic, different pairing and excluded pointer mechanisms instead.
+  FND-PARTY-324/325/326/327 already classify the known mode producers, three
+  operand-interior write-like candidates and their modeled near/far entry
+  forms. Reuse the finite source regions, controls and exclusions; retain
+  actual between-read mode history, adjusted-pointer/block/string writers,
+  physical aliases, changed code and unqueried incoming-transfer forms.
   Initializer children and state histories are independently required, not
   excluded by that conditional exit result. Local alternate helper bodies and
   registered caller identity are no longer unread obligations.
@@ -290,9 +297,15 @@ Next ID: Q-CONFIG-015
     FND-CONFIG-149/155/159 with SOUND-092/093 to this readback contract.
     It removes generic unread alternate-helper/caller and ordinarily returning
     exit-route preservation requirements under the findings' stated model.
-    Reentrant readers, the separated alias candidate, actual state/registration
+    Reentrant readers, then-unclassified alias candidate, state/registration
     history, changed frames and excluded entries remain. No whole-entry
     complete_reading qualifies; do not reread these local lifecycle bodies.
+    Tried: later-evidence review applies FND-PARTY-323..327. The named
+    unchanged shutdown pair and known mode-write/candidate meanings are
+    already settled; remove them as unread readback obligations. Retain the
+    findings' excluded transfer/writer mechanisms, actual mode and callback
+    histories and reentrant readers. No new original-code reading or whole
+    complete_reading declaration was needed for this correction.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
