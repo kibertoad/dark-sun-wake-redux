@@ -140,6 +140,20 @@ close normally. Other windows/handlers, global-hook and keyboard/reentrant
 routes, between-stop changes and later returns remain unadmitted. The plan's
 Direct dispatcher admission section gives the fixed scope and controls.
 
+The fixed `keyboard` mode was attempted three times on 2026-11-08 in siblings
+v181-q014-keyboard-a-20261108/, b and c (same full prefix/date). The corrected
+b/c named records match. Strict restore and Tab/menu readiness pass; P key-down
+produces native event6/key1970 and reaches the declared P state query and turn
+comparison. These three named reads and the P key-down recognition are agent
+under current pins (FND-CONFIG-252). The full state result is two and the
+sampled turn word9999, so the observer refuses its positive-path continuation
+before the comparison executes. Overall/keyboard/history completion remain
+false; P release/full delivery, rejection epilogue, callback, post-child reload
+and opener/getter/store on this route are unadmitted. No guest writes or new
+seed occur; one admitted draw is recorded. All owned muted sessions close
+normally. Use the plan's Forwarded P-key gate and callback admission section;
+do not repeat the unchanged positive-route attempt without new evidence.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

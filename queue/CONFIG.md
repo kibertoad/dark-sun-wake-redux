@@ -89,7 +89,11 @@ Next ID: Q-CONFIG-015
   field identities or unchanged controlled censuses. Remaining obligations:
 
   Caller and incoming transfers: other parent/event/frame and keyboard
-  post-child gate/key states, including exit-time reentrant reads. CONFIG-251
+  callback/post-child key states on an admitted turn path, including reentrant reads.
+  CONFIG-252 supplies actual forwarded-P/state/turn samples for the checked
+  menu profile: turn9999 prevents admitting the positive route. Retain its
+  actual rejection/epilogue and P completion, or a naturally admitted turn<4
+  state and its producers before callback/reload/opener observation. CONFIG-251
   admits the fixed window-specific call/window/target and menu-frame join;
   CONFIG-250 supplies its later menu/post-close/nested-frame samples. Retain
   between-sample writes and reuse CONFIG-249's bindings, not another local reading;
@@ -314,6 +318,9 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-251 directly admits that window-specific call, copied
     event, live menu/handler and following frame in two matching runs. Other
     roots, keyboard/reentrant paths and between-stop/unmonitored effects remain.
+    Tried: FND-CONFIG-252 records matching forwarded-P/state-query/turn samples
+    with mode2 and turn9999, ending before comparison execution. No callback,
+    reloaded key, opener or completed P delivery is admitted; do not retry unchanged.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
