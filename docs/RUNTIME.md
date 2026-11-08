@@ -39,6 +39,18 @@ PREFERENCES-READBACK-OBSERVATION records the scope and command. This admits
 no uninterrupted fresh-startup history, other callers/driver paths, later UI,
 audible output or rebuild parity.
 
+The optional fixed `history` mode passed twice under current pins on
+2026-11-08, in sibling v181-q014-history-a-20261108/ and
+v181-q014-history-b-20261108/. Strict restores and the same admitted input
+route armed nine named nonoverlapping value-change ranges through the paired
+store. Both reports have one positive music-byte watch event at the exact
+post-store boundary, matching final paired snapshots, complete watch cleanup
+and no guest setup writes. This fixed byte-watch delivery and associated
+named reads are agent. Untriggered word/pointer ranges are not independent
+positive mutation-delivery tests. No fresh-startup, arbitrary-address,
+unchanged-write or intra-instruction history capability is admitted.
+FND-CONFIG-245 records behavior and limits; the observer plan gives the command.
+
 Retain the sibling v181-q014-preferences-a/b/c/d-20261108 reports as failed
 capability attempts. The a attempt used the modal-choice poll and exhausted
 its same-operation observation budget. The b attempt exhausted 512 builder

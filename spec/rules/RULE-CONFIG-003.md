@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-CONFIG-242, FND-CONFIG-243, FND-CONFIG-244, FND-CONFIG-149, FND-CONFIG-155, FND-CONFIG-159, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-CONFIG-242, FND-CONFIG-243, FND-CONFIG-244, FND-CONFIG-245, FND-CONFIG-149, FND-CONFIG-155, FND-CONFIG-159, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -82,6 +82,14 @@ message-delay buttons (FND-CONFIG-235).
 None known.
 
 ## Open questions
+
+- Q-CONFIG-014: FND-CONFIG-245 supplies a repeated fixed watch interval
+  from strict play-ready restore through the paired byte store. Its positive
+  music-byte change and named-value reports narrow that restored route only.
+  Retain fresh-startup history, other callers/non-sentinel paths, later and
+  unmonitored state, same-value/intra-instruction effects and the existing
+  alias, writer and reentrant-entry obligations. Untriggered watches are not
+  independent mutation-delivery controls for every width.
 
 - Q-CONFIG-014: FND-CONFIG-244 resolves the named cross-row pair for
   the admitted ordinary descriptor-walk/fixup consumers. Retain other or

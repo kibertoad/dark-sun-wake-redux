@@ -177,7 +177,12 @@ Next ID: Q-CONFIG-015
   writers, actual extent/response freshness and uninterrupted startup-to-entry
   histories. Do not repeat the default-profile callback or restored pair
   without a new question; other configurations/targets/reinitialization stay
-  outside those observations. Inherited research attempts remain under
+  outside those observations.
+  FND-CONFIG-245 adds the fixed restored-map named-value history and positive
+  byte-watch event; remove that unobserved-interval requirement on its exact
+  route. Retain fresh startup, other paths, later/unmonitored state, same-value
+  and intra-instruction effects and untriggered-width delivery limits.
+  Inherited research attempts remain under
   Q-CONFIG-002, which keeps initialization, voice synchronization and other
   controls/output. Native frames remain Q-CONFIG-001.
     Tried: FND-SOUND-084 connects the two alternate direct callers with their
@@ -277,6 +282,10 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-244 connects both ordinary descriptor consumers and
     the fixup offset producer. Their field roles do not construct this pair;
     excluded readers/bindings and actual caller/state histories remain.
+    Tried: FND-CONFIG-245 supplies two matching fixed history reports from
+    strict restore through the paired store, with a positive byte mutation.
+    Fresh startup, other paths and unmonitored/same-value/intra-instruction
+    effects remain; untriggered word/pointer watches are not positive controls.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
