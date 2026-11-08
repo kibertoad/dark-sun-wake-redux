@@ -25,7 +25,9 @@ Preferences button route. Verify main's relocated call to FND-UI-010/054's
 key-event builder before arming that poll; the modal choice loop is a separate
 routine. Send Tab, await a ready WIND/10500 at that named builder stop,
 move to virtual(160,101), await motion delivery and recheck
-that menu and selected BUTN/10303, then send one left click. Remove the UI
+that menu and selected BUTN/10303, then send one left click. Delivery alone
+does not establish native selection: keep waiting at the builder when the
+selection has not yet updated, within the same stop cap. Remove the UI
 poll before that click and wait only on the getter/RNG guards: repeated
 builder stops are unnecessary while the button's hold/release completes.
 Keep the stop budget and gesture unchanged. Never retry an input because observation

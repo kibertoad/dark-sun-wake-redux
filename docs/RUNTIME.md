@@ -45,6 +45,12 @@ No readback or click-completion capability follows. That owned session also
 closed and released its lock; retain the sibling b directory. The next
 tooling revision removes the poll after checked pointer selection, before
 the unchanged click; getter/RNG guards and the stop budget remain unchanged.
+The c attempt verified motion delivery at a ready menu but stopped with a
+null selected control at builder entry, before clicking. A delivered input
+operation does not prove that the native builder has consumed its packet.
+The corrected flow waits for BUTN/10303 within the existing cap; it neither
+clicks an unmatched control nor repeats motion. Retain the sibling c report.
+That owned session closed and released its lock. No getter capability follows.
 
 The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
 in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and

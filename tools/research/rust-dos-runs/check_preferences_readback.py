@@ -67,13 +67,15 @@ class Controls(unittest.TestCase):
         self.assertEqual(calls, [("remove", "39D1:097D"),
             ("mouse", {"action": "click", "button": "left", "hold_ms": 100})])
 
-    def test_motion_must_land_on_the_declared_preferences_button(self):
+    def test_motion_waits_for_the_native_preferences_button_after_delivery(self):
         for control in (None, {"tag": "BUTN", "number": 10304}, {"tag": "WIND", "number": 10303}):
             flow, state = MenuFlow(), window(10500)
             flow.poll(state, True)
             state["selected_control"] = control
-            with self.assertRaisesRegex(ValueError, "Preferences control"):
-                flow.poll(state, True)
+            self.assertIsNone(flow.poll(state, True))
+            self.assertEqual(flow.phase, "move")
+            state["selected_control"] = {"tag": "BUTN", "number": 10303}
+            self.assertEqual(flow.poll(state, True), "click")
 
     def test_poll_admission_requires_main_call_not_the_choice_loop(self):
         memory = Memory()

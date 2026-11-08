@@ -48,7 +48,7 @@ class MenuFlow:
         if self.phase in ("menu", "move") and delivery_done and ready(state, 10500):
             action = "move" if self.phase == "menu" else "click"
             if action == "click" and state.get("selected_control") != {"tag": "BUTN", "number": 10303}:
-                raise ValueError("delivered pointer is not on the Preferences control")
+                return None
             self.phase = "move" if action == "move" else "getter"
             return action
         return None
