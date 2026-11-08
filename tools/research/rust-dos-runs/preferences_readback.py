@@ -293,19 +293,24 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
-            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard", "keyboard-rejection")):
+            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard", "keyboard-rejection", "saved-keyboard")):
         raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch|keyboard|keyboard-rejection]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
-    source = game / "captures/rust-dos-regenerated" / sys.argv[1]
-    meta = json.loads((source / "regeneration.json").read_text(encoding="utf-8"))
-    controls = [c for c in meta["checkpoints"] if c["name"] == "play-ready" and c["checked"]]
-    if len(controls) != 1:
-        raise ValueError("source lacks a unique checked play-ready checkpoint")
-    control = controls[0]
-    state = read_saved_state(source, "play-ready")
+    saved_keyboard = len(sys.argv) == 4 and sys.argv[3] == "saved-keyboard"
+    source = game / ("captures/rust-dos-native-save" if saved_keyboard else "captures/rust-dos-regenerated") / sys.argv[1]
+    meta = json.loads((source / ("native-save.json" if saved_keyboard else "regeneration.json")).read_text(encoding="utf-8"))
+    if saved_keyboard:
+        from preferences_saved import source_control, verify_save, SavedKeyTrace
+        control = source_control(meta)
+    else:
+        controls = [c for c in meta["checkpoints"] if c["name"] == "play-ready" and c["checked"]]
+        if len(controls) != 1:
+            raise ValueError("source lacks a unique checked play-ready checkpoint")
+        control = controls[0]
+    state = read_saved_state(source, "saved-map" if saved_keyboard else "play-ready")
     verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
     admit_state(state)
     delta = mapping(meta["load_mapping_stop"])
@@ -323,6 +328,9 @@ def main():
     history = ValueHistory(delta) if history_mode else None
     parent = None
     keyboard = None
+    if saved_keyboard:
+        keyboard = SavedKeyTrace(delta)
+        report["keyboard"] = keyboard.report
     if len(sys.argv) == 4 and sys.argv[3] == "keyboard-rejection":
         from preferences_rejection import RejectionTrace, RejectionHistory
         keyboard, history = RejectionTrace(delta), RejectionHistory(delta)
@@ -351,6 +359,9 @@ def main():
                     or not input_map_ready(session.client, delta, current, fields(session.client, delta))):
                 raise ValueError("Preferences source differs from the admitted input map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
+            if saved_keyboard:
+                report["native_save"] = verify_save(run, meta)
+                keyboard.baseline(session.client, stop)
             if history:
                 history.arm(session.client, stop)
             if getattr(keyboard, "EXPECT_REJECTION", False): keyboard.baseline(session.client, stop)

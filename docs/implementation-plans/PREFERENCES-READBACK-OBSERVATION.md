@@ -279,3 +279,21 @@ before tooling commit. Separate research repeats the completed rejection
 twice and records actual capabilities. Positive callback/reload admission
 still needs a naturally admitted turn state and its producers; other roots,
 branches, between-stop changes and driver/storage obligations remain open.
+
+## Native post-Save forwarded keyboard candidate
+
+For Q-CONFIG-014, add fixed `saved-keyboard` source selection only: the
+checked `saved-map` checkpoint from native_save.py, produced by completed
+F1/Enter Save without setup writes (FND-COMBAT-140). FND-COMBAT-063 and
+FND-COMBAT-064 describe the ordinary combat-off leader-to-turn producer.
+Require successful source metadata, no writes, completed F1/Enter inputs,
+checked checkpoint, strict pinned restore, identical frame and map snapshot,
+and matching private SAVE02.SAV digest. Read actual mode, signed turn,
+leader and combat at restore; require mode1, combat0, turn=leader in0..3.
+Never seed these fields. Reuse the existing Tab/P1ms ten-point KeyTrace and
+positive ValueHistory getter/store contract, including all caller checks.
+Unknown bindings or stops refuse admission; no arbitrary relocation fallback.
+Synthetic controls cover source admission, changed save and rejected baseline.
+Run prior controls and Research gate before tooling commit. Separate research
+repeats the native candidate twice and records only observed admission;
+other callers, continuous state history and driver/storage questions stay open.
