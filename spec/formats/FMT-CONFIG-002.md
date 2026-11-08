@@ -9,7 +9,7 @@ byte_order: null
 size: null
 text: true
 definition: null
-evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042, FND-SOUND-043, FND-SOUND-044, FND-SOUND-045, FND-SOUND-046, FND-SOUND-047, FND-SOUND-048, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099]
+evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-006, FND-CONFIG-007, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-030, FND-SOUND-031, FND-SOUND-032, FND-SOUND-033, FND-SOUND-034, FND-SOUND-035, FND-SOUND-036, FND-SOUND-038, FND-SOUND-039, FND-SOUND-040, FND-SOUND-041, FND-SOUND-042, FND-SOUND-043, FND-SOUND-044, FND-SOUND-045, FND-SOUND-046, FND-SOUND-047, FND-SOUND-048, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100]
 conflicting: []
 split_with: []
 related: []
@@ -229,3 +229,8 @@ Every line of the installed file and of the disc's copy [FND-CONFIG-007].
   FND-SOUND-099 assigns the mode-request and geometry/copy-gate producers.
   The loaded enabling word is1, but queried width/rows, copy synchronization
   and retained mode/flag state still require native/history admission.
+
+  FND-SOUND-100 verifies both fresh post-label endpoints: all26 written
+  prefixes and populated records match the projection, with six disjoint
+  modeled allocation headers. Intermediate and later lifetime, vector/chooser
+  state and native index admission remain Q-SOUND-010.

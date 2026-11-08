@@ -324,7 +324,19 @@ first-prefix size reads and populated record comparisons at that same
 return (FND-SOUND-041). These fixed reads are agent. All headers must
 match the predicted bounds before populated payload reads; negative-count
 payloads, slack, second-prefix words and later lifetime remain outside
-the probe. No additional continuation or input capability is admitted.
+the probe. Those attempts admit only the parser endpoint.
+
+On 2026-11-09, two fresh fixed "--labels" attempts reached the post-label
+stop before producer dispatch (FND-SOUND-100). Launch/continuation to that
+stop and named record/label reads there are agent under the same two-file,
+muted, no-input/write contract. Both runs checked all six modeled first
+headers, all populated records and only written printable label prefixes;
+slot tails, negative payloads and slack were unread. Retained runs under
+the same setup-parser root are v181-setup-labels-20261109-a/ and sibling b/.
+Reproduce with setup_parser.py <new-run-name> --labels. Intervening notice
+and allocation-failure guards remain mandatory. Producer execution, later
+chooser/input, continuous lifetime, vector and BIOS preservation are not
+admitted by these endpoint attempts. Both owned sessions closed.
 
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies

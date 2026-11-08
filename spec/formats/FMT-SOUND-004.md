@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100]
 conflicting: []
 split_with: []
 related: []
@@ -88,3 +88,8 @@ selection or successful driver initialization.
   FND-SOUND-099 assigns the mode-request and geometry/copy-gate producers.
   The loaded enabling word is1, but queried width/rows, copy synchronization
   and retained mode/flag state still require native/history admission.
+
+  FND-SOUND-100 verifies both fresh post-label endpoints: all26 written
+  prefixes and populated records match the projection, with six disjoint
+  modeled allocation headers. Intermediate and later lifetime, vector/chooser
+  state and native index admission remain Q-SOUND-010.

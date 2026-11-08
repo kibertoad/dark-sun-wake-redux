@@ -168,9 +168,9 @@ Next ID: Q-SOUND-013
   Blocks: complete loader interpretation of FMT-SOUND-004.
 - Q-SOUND-010. FMT-SOUND-004, FMT-CONFIG-002: What actual row/index,
   storage and continuation contract admits setup's list-choice result?
-  Settles it: later group lifetime beyond FND-SOUND-041's populated-record
-  and modeled extent endpoint; heap/break/state admission for the remaining
-  label/vector/chooser allocations;
+  Settles it: intermediate and later group/label lifetime beyond FND-SOUND-100's
+  post-label endpoint; heap/break/state history and remaining vector/chooser
+  allocations;
   retained far-zero vector storage; chooser BIOS SI/DI/ES, port progress,
   actual mode/extent/history after099, scrolling scratch/coordinate and
   backing/frame admission after097/098, and
@@ -229,6 +229,7 @@ Next ID: Q-SOUND-013
   Tried: FND-SOUND-097 binds completion to the registered ordinal, AL-only poll rejection, transformed-byte final test and cleanup-before-return; drawing/backing/mode/interrupt preservation, table/frame aliases and native delivery remain. Reuse EXE-487/488/489; their helper contracts are not new gaps.
   Tried: FND-SOUND-098 settles attribute setters, rectangle gates/count/direction and local copy/delay saves. BIOS SI/DI/ES, port termination, scrolling scratch/coordinates, heap/backing spans and native lifetime remain; caller saves alone do not admit the BIOS branch.
   Tried: FND-SOUND-099 assigns all five controlled geometry/gate writes to1783 and binds startup/mode requests. Queried AL/AH,0040:0084, prefix/native BL, DEC7 retention and excluded access remain; requested03 alone does not establish80 columns or copy synchronization.
+  Tried: FND-SOUND-100 verifies all26 written label prefixes, all populated records and six modeled headers at two fresh post-label stops. Positive label allocation/prefix coherence at that endpoint is settled; intermediate and later heap/alias/vector/chooser lifetime remains.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
