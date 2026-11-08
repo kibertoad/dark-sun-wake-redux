@@ -379,6 +379,18 @@ Both contexts closed normally without input/writes or poll continuation.
 No keyboard/mouse delivery, notice return, chooser continuation, continuous
 preservation or live allocation ownership is admitted by this endpoint.
 
+On2026-11-09 --notice-enter atb866dcf2 observed one Enter event followed
+by guest poll000D and notice caller return0000 twice (FND-SOUND-106).
+Runs v181-notice-enter-20261109-b/ and sibling c/ are under the setup-parser
+root. Sibling a/ at5d8a1f7a is a retained host sequencing diagnostic after
+its guest000D, not a caller-return result. This fixed event/guest-result/
+return observation is agent with the105 baseline and named0554/0724/
+164C:050D guards. The complete input operation remained pending at the
+final caller stop in both corrected attempts: full press/release delivery
+is unverified. Both contexts closed without further input, writes or
+producer/driver/chooser continuation. Do not reuse this as completed input
+or general keyboard capability; a longer route must resolve pending delivery.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,

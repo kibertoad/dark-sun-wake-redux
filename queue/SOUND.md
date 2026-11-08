@@ -172,8 +172,9 @@ Next ID: Q-SOUND-013
   post-label endpoint; heap/break/state history and remaining vector/chooser
   allocations;
   far-zero storage/history from101's endpoint to use; intervening190F guard
-  input/return/continuation and object/frame retention after105's fixed
-  native pre-poll profile and102's caller binding;
+  complete input delivery and later continuation/object/frame retention
+  after106's observed notice return with pending event,105's fixed native
+  pre-poll profile and102's caller binding;
   simultaneous allocation lifetime/alias and deeper-stack admission after
   103's prologue/earlier-block intersection and105's wrapped-frame endpoint;
   chooser BIOS SI/DI/ES, port progress,
@@ -240,6 +241,7 @@ Next ID: Q-SOUND-013
   Tried: FND-SOUND-103 rules out a nonwrapping handler frame under102's observed entry state. Its upper interval intersects100's earlier negative record-block model; simultaneous lifetime/alias and child/deeper-stack admission remain. This does not observe continuation or a native overwrite.
   Tried: FND-SOUND-104 verifies both fixed object pointers, selector zero, six style words,99-byte body and one eight-byte choice in two fresh guard observations. Entry object/termination uncertainty is removed for this profile; retention, wrapped consumption, native input and continuation remain.
   Tried: FND-SOUND-105 reaches the first pre-poll stop twice with matching wrapped BP/SP, three body rows, one registered choice and retained entry objects/prefixes. Construction reachability and those endpoint counts are removed from Settles it; input/return, later retention and live allocation ownership remain.
+  Tried: FND-SOUND-106 observes000D after one Enter and normal caller return0000 in two corrected fresh attempts; the original host diagnostic remains partial. Fixed guest input/return reachability is removed from Settles it; event completion is pending at return, with later delivery/continuation and retention still open.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
