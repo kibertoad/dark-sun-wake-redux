@@ -180,6 +180,16 @@ check refuses it; the rejected pair is not retained. Overall completion,
 paired getter return/store and completed P delivery remain unadmitted. No
 guest writes or RNG draws occur. Owned watches and muted sessions close.
 
+Corrected diagnostic sibling c retains the outer pair4CD9:0000. With the
+exact unloaded-header representation from FND-EXE-562 checked by tooling
+16a6fba8, siblings d/e admit ten positive keyboard samples and the actual
+paired getter return/store, music100 to255 (FND-CONFIG-255). These named
+reads, trap/saved-offset checks and positive byte-watch delivery are agent.
+P is still pending at the store, so overall/keyboard/history completion
+remain false; neither run resumes beyond that endpoint. Completed P and a
+later native endpoint remain unadmitted, as do continuous relocation/frame
+histories and other roots. No guest writes or RNG draws; owned sessions close.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

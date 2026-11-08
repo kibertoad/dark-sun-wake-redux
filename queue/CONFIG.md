@@ -93,7 +93,8 @@ Next ID: Q-CONFIG-015
   CONFIG-252/253 supply actual gate and completed rejection/epilogue/P delivery
   for the checked menu profile, plus a pre-input baseline. CONFIG-254 admits
   native post-Save turn1 and callback/reload/opener samples; retain nested
-  outer-pair lifetime/relocation, getter/store/P completion and writer histories. CONFIG-251
+  outer-pair continuous history and P completion; CONFIG-255 admits sampled
+  header representation and paired getter/store. Writer histories remain. CONFIG-251
   admits the fixed window-specific call/window/target and menu-frame join;
   CONFIG-250 supplies its later menu/post-close/nested-frame samples. Retain
   between-sample writes and reuse CONFIG-249's bindings, not another local reading;
@@ -327,6 +328,9 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-254 reuses COMBAT-063/064/140's ordinary producer/state;
     two runs admit turn1 through callback/reload/opener, then refuse the getter's
     outer pair. Retain actual changed pair/lifetime, getter/store/P completion.
+    Tried: FND-CONFIG-255 admits the declared unloaded-header pair and paired
+    getter/store with music100 to255; P remains pending. Retain completed delivery,
+    later native endpoint, continuous frame/writer histories and other paths.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
