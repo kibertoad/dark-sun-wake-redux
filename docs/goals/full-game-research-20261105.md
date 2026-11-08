@@ -39,19 +39,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch.
-- Stage Slices. Test.ps1 -Research -ChangedSince ebb74e68 -NoRestore passed:
-  2149 entries,208 parity rows,five deviations, existing checker skips.
+- Stage Slices. Test.ps1 -Research -ChangedSince 67876b26 -NoRestore passed:
+  2150 entries,208 parity rows,five deviations, existing checker skips.
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..240 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..241 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: reset/removal callers and cleanup-to-slot lifetime,
+  Next Q-CONFIG-014: alternate reset/shutdown helper effects,
   retaining actual caller/table/frame, driver and writer histories.
-  CONFIG-240 is timed batch one of three; compare outcomes after batch two.
+  CONFIG-240/241 are timed batches one/two; one timed batch remains.
   Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
@@ -88,10 +88,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-CONFIG comparison 7b9b6636 to cea20c31: one finding, zero complete-reading
-changes or answered deletions; CONFIG-240 narrows Q-CONFIG-014. No inventory
-or ownership denominator changes. Batch-one wall seconds: research/drafting
-1448.6, new tooling0, selected validation11.7; handover drafting 17.6 seconds.
+CONFIG comparison 7b9b6636 to c4a02330: two findings, zero complete-reading
+changes or answered deletions; CONFIG-240/241 narrow Q-CONFIG-014. No inventory
+or ownership denominator changes. Wall seconds research/tooling/validation:
+batch one 1448.6/0/11.7, batch two 184.3/0/11.2; handovers 17.6/28.6 seconds.
 These exclude commit hooks and are not active-effort measurements.
 Earlier CONFIG-238/239 comparisons closed no whole readings or questions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -122,7 +122,7 @@ handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
 runtime-error-inventory-20261107/, music-level-contract-20261107/,
 music-driver-contract-20261107/, patch-enumeration-20261107/ and
 sequence-input-census-20261107/ and disc-table-contract-20261108/.
-Current: GAME_DIR/analysis/driver-slot-handoff-20261108/ and readback-interface-review-20261108/.
+Current: GAME_DIR/analysis/driver-slot-handoff-20261108/ and slot-lifecycle-20261108/.
 Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/
 and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
 Preferences: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/
