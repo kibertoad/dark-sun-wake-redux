@@ -118,3 +118,74 @@ class ParentTrace:
         if self.phase != "done" or len(self.report["events"]) != 5:
             raise ValueError("parent endpoint is incomplete")
         self.report["complete"] = True
+
+
+class DispatchTrace(ParentTrace):
+    """Only the known window-specific dispatch call, plus the parent samples."""
+    def arm(self, client):
+        site = self.address(0x39D1, 0x0802)
+        if checked_read(client, 0x39D1 + self.delta, 0x0802, 5) != bytes((0x26, 0xFF, 0x9F, 0xF5, 0)):
+            raise ValueError("dispatcher call instruction differs")
+        super().arm(client)
+        self.points[site] = "dispatch"
+        client.set_breakpoint(site, once=True)
+        self.phase, self.dispatch = "dispatch", None
+        self.report["limits"] = "fixed direct dispatcher and sampled menu/outer-return bindings; no other roots, continuous frame writes, keyboard path or later menu return"
+
+    def boundary(self, client, stop):
+        if self.points[stop["cs_ip"]] != "dispatch":
+            if self.points[stop["cs_ip"]] == "arm":
+                if self.dispatch is None:
+                    raise ValueError("menu arm lacks observed dispatcher call")
+                r = stop["registers"]
+                if (int(r["ss"], 16) != self.dispatch["ss"]
+                        or int(r["sp"], 16) != self.dispatch["sp"] - 10
+                        or int(r["bp"], 16) != self.dispatch["sp"] - 6):
+                    raise ValueError("menu arm does not join dispatcher frame")
+            super().boundary(client, stop)
+            if self.report["events"][-1]["phase"] == "arm":
+                item = self.report["events"][-1]
+                if (item["handler_return"] != self.address(0x39D1, 0x0807)
+                        or item["menu_pointers"] != [self.dispatch["window"]] * 2):
+                    raise ValueError("menu arm dispatcher return/window differs")
+            return
+        if self.phase != "dispatch" or stop.get("reason") != "breakpoint":
+            raise ValueError("dispatcher phase/reason differs")
+        r = stop.get("registers", {})
+        if (r.get("system", {}).get("mode") != "real"
+                or type(stop.get("seq")) is not int or stop["seq"] <= self.sequence
+                or type(stop.get("emu_ns")) is not int or stop["emu_ns"] < self.time):
+            raise ValueError("dispatcher requires ordered real-mode stop")
+        try:
+            ds, ss, sp, es, bx = (int(r[key], 16) for key in ("ds", "ss", "sp", "es", "bx"))
+        except (KeyError, TypeError, ValueError) as error:
+            raise ValueError("dispatcher registers missing") from error
+        if ds != 0x57E0 + self.delta or ss != ds or sp < 10:
+            raise ValueError("dispatcher data/stack binding differs")
+        kind, control = struct.unpack("<HH", checked_read(client, ss, sp, 4))
+        if (kind, control) != (2, 10303):
+            raise ValueError("dispatcher copied event differs")
+        pointers = [struct.unpack("<HH", checked_read(client, s, o, 4))
+                    for s, o in ((ds, 0x1431), (0x4E46 + self.delta, 0))]
+        if pointers != [(bx, es), (bx, es)] or (bx, es) == (0, 0):
+            raise ValueError("dispatcher window differs from live menu")
+        window = checked_read(client, es, bx, 12)
+        flags = int.from_bytes(checked_read(client, es, bx + 0x9E, 2), "little")
+        if window[:4] != b"WIND" or int.from_bytes(window[8:12], "little") != 10500 or flags & 0x1F != 8:
+            raise ValueError("dispatcher window is not ready Game Menu")
+        off, seg = struct.unpack("<HH", checked_read(client, es, bx + 0xF5, 4))
+        if (off, seg) != (0x0034, 0x56B9 + self.delta):
+            raise ValueError("dispatcher handler target differs")
+        item = {"phase": "dispatch", "reason": stop["reason"], "cs_ip": stop["cs_ip"],
+                "seq": stop["seq"], "emu_ns": stop["emu_ns"], "ss": ss, "sp": sp,
+                "event_kind": kind, "control": control, "window": f"{es:04X}:{bx:04X}",
+                "window_flags": flags, "handler": f"{seg:04X}:{off:04X}",
+                "loaded_menu": f"{self.menu:04X}:0000"}
+        self.report["events"].append(item)
+        self.dispatch, self.phase = item, "arm"
+        self.sequence, self.time = stop["seq"], stop["emu_ns"]
+
+    def complete(self):
+        if self.phase != "done" or len(self.report["events"]) != 6:
+            raise ValueError("dispatcher endpoint is incomplete")
+        self.report["complete"] = True

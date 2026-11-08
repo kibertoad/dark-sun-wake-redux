@@ -261,8 +261,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
-            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent")):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent]")
+            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch")):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
@@ -290,9 +290,9 @@ def main():
               "limits": "fixed restored-map getter/store; no continuous startup preservation, later UI, audible output or other caller proof"}
     history = ValueHistory(delta) if history_mode else None
     parent = None
-    if len(sys.argv) == 4 and sys.argv[3] == "parent":
-        from preferences_parent import ParentTrace
-        parent = ParentTrace(delta)
+    if len(sys.argv) == 4 and sys.argv[3] in ("parent", "dispatch"):
+        from preferences_parent import ParentTrace, DispatchTrace
+        parent = (DispatchTrace if sys.argv[3] == "dispatch" else ParentTrace)(delta)
         report["parent"] = parent.report
     if history:
         report["value_history"] = history.report

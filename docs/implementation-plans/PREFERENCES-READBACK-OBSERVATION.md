@@ -156,3 +156,34 @@ A separate research batch repeats the restored route twice, records actual
 capabilities and removes only this route's missing parent/event samples.
 Keyboard gates, other roots/entries, exit-time reentrancy, between-sample
 writes and the remaining driver/storage conditions stay open.
+
+## Direct dispatcher admission
+
+CONFIG-250's saved return matches the window-specific dispatch continuation,
+but does not observe that earlier call. Add only fixed `dispatch` mode to
+the same strict restored command. It retains parent/history observations
+and inserts one pre-call breakpoint at relocated39D1:0802 after native button
+selection and before the existing click. Reuse CONFIG-250's source operand
+reading and PARTY-078's copied event-by-value contract, not another census.
+
+Verify the declared instruction is the far window-handler call at ES:BX+F5.
+At that stop require real mode, expected DS/SS and bounded SP/ES/BX; read only
+the first two words of the already-copied event at SS:SP and the current
+window's tag/number/flags and handler pair. Require event2/control10303,
+WIND10500/current flags, and ES:BX equal to both known live menu pointers.
+Require that actual handler is the known resident menu trampoline, whose
+admitted jump names the loaded menu segment already bound by parent mode.
+Do not follow another target or continue an unexpected packet/call.
+
+Pair that actual call with the menu-arm stop: same SS/window, handler return
+at the declared dispatch continuation, SP decreased by ten and BP decreased
+by six from the pre-call SP under CONFIG-249's far-call/menu-prologue layout.
+Then retain the existing post-close, trampoline, getter/store and cleanup
+checks. Completion requires all six observations. No new input, writes,
+arbitrary target, later return or whole-entry claim. Keep other modes unchanged.
+Synthetic controls cover opcode, target/window/event bindings, real-mode and
+bounds checks, arm pairing, wrong/duplicate phase and incomplete endpoints;
+all prior controls and Test.ps1 must pass before tooling commit. Separate
+native research repeats this exact route twice and records only actual
+dispatcher/caller admission. Other roots, between-stop writes, keyboard/
+reentrant paths and remaining driver/storage obligations stay open.
