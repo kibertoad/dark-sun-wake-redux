@@ -753,23 +753,26 @@ Next ID: Q-CONFIG-015
   indirect changes and callers remain unread.
   Blocks: completing the named entry readings.
 
-- Q-CONFIG-005. FMT-CONFIG-001: What does the game's sound library read from each field of
-  `SOUND.CFG`, including its unexplained tail? Settles it: bounded readings
-  of the remaining consumers of the whole-file buffer and the setup writer.
-  Tried: comparison of the shipped file with `SOUND.INI` records names most
-  fields but not the tail (FND-CONFIG-003). FND-CONFIG-019 shows the file
-  entry loads bytes whole, without parsing fields; FND-CONFIG-020 identifies
-  direct uses of `0x08`, `0x0A`, `0x14` and `0x32` in initialization.
-  FND-CONFIG-021 adds the first four words as a group, another `0x08`
-  comparison, and further `0x14` and `0x32` branches. The receiving
-  routines' effects remain unread. FND-CONFIG-022 maps each tail
-  output to an input-record offset or a literal 4, but the source fields'
-  meanings remain open. FND-CONFIG-023 identifies bounded game-side reads
-  of `0x34..0x3A`, including alternative `ADV ` resource numbers, but the
-  remaining branch effects are still unresolved. FND-CONFIG-024 pairs each
-  `ADV ` number with a separate ten-byte settings block and shows bit
-  `0x01` of `0x14` gates the second pair; the device roles and input-record
-  field meanings remain open.
+- Q-CONFIG-005. FMT-CONFIG-001: What remaining settings-block construction,
+  source admission and game-side field effects determine `SOUND.CFG` behavior?
+  Settles it: complete setup1429:042D/063A's first-block/second-block writes and
+  selecting inputs; bound output/record aliasing, span and child lifetime before
+  1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
+  settle receiving setup/driver effects that assign block roles or consume tail
+  values, including pointer/block/implicit access outside literal censuses.
+  Retain file short-read/release results and changed loaded-buffer bindings.
+  Tried: FND-CONFIG-003 compares source records;019 loads whole bytes without
+  parsing;020 reads08/0A/14/32;021 adds the first four words, another08 test
+  and14/32 branches. Receiving routines' full effects remain unresolved.
+  FND-CONFIG-214 maps tail stores to record offsets or literal4 (replacing022).
+  FND-CONFIG-023 reads34..3A including ADV choices;024 pairs each ADV number
+  with a ten-byte settings block and bit01 of14 gates the second pair.
+  Tried: existing-evidence review reuses SOUND-020/037/047's exact tag-to-record
+  and tail/name-output mappings, including low-byte SamplePlaybackMode and
+  CardGroup summary argument;092 supplies the installed profile's conditional
+  driver bypass. These local mappings no longer need a reading. Remaining
+  constructor blocks, incoming storage, driver effects and implicit accesses above
+  are not settled by equal shipped values, resource names or partial censuses.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
