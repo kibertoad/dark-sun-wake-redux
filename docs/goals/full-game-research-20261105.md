@@ -39,18 +39,20 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch.
-- Stage Slices. Test.ps1 -Research -ChangedSince d5a7ccd7 -NoRestore passed:
-  2146 entries,208 parity rows,five deviations, existing checker skips.
+- Stage Slices. Test.ps1 -Research -ChangedSince bdd2f514 -NoRestore passed:
+  2147 entries,208 parity rows,five deviations, existing checker skips.
   Previous integration passed Node checks and 758 .NET tests.
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..238 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15.
-  Next Q-CONFIG-014: later startup-to-Preferences getter/store admission,
-  using CONFIG-235/236 and SOUND-095/096. Mixed release retains CONFIG-165/167.
+  Next Q-CONFIG-014: reassess RULE-CONFIG-003's whole-entry obligations using
+  CONFIG-235..238, retaining other gates/callers, driver and writer histories.
+  Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
+  Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV functions lack committed inventories; six named DSUN claim
@@ -85,20 +87,13 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-CONFIG/UI/SOUND comparison 32ed354bee9523fc4ec0ccc42535779a75ed6155 to 449cda07447dc17c05fbcfdbbe843f1677cb4799:
-zero complete-reading changes, answered deletions or whole mapped obligations
-closed. CONFIG-237 and SOUND-082/083 narrow Q-CONFIG-002/014 and Q-SOUND-004.
-Q-CONFIG-014 is an unanswered split. Three findings/five commits include the
-map batch and are activity; no closure speedup proved. Timed subset c5dc0943ecddf4385eb90f8421f653b62ef77901
-to 449cda07447dc17c05fbcfdbbe843f1677cb4799 adds two findings in three commits, with no answers/readings.
-Subsequent e2e20b6e adds SOUND-084's bounded caller classification, no
-answered deletion or complete reading. Validation11.130s; research/drafting
-upper bound4m30s includes context overhead. No closure speedup proved.
-Then SOUND-085..094 add producer/start/
-cleanup classifications, no readings or answered deletions. SOUND-095 narrows
-table admission without readings or answers. SOUND-096 narrows Q-CONFIG-014
-and Q-SOUND-004; no complete reading or answered deletion. Keep histories
-and census exclusions.
+CONFIG comparison 11d0b53e to b34bc437: one finding, six commits (five tooling,
+one research); zero complete-reading changes or answered deletions.
+FND-CONFIG-238 narrows Q-CONFIG-014; remaining caller/driver/writer/lifetime
+obligations stay open. No inventory or ownership-map denominator changes.
+Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
+this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
+retain their narrower conditions. Do not repeat answered local/native pairs.
 Upstream proposal: https://github.com/kibertoad/refurbished-dinosaurs/pull/133.
 
 Earlier EXE comparison 9517ca97f2745d2249fe948950fa1fcaef564173 to
@@ -126,3 +121,5 @@ music-driver-contract-20261107/, patch-enumeration-20261107/ and
 sequence-input-census-20261107/ and disc-table-contract-20261108/.
 Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/
 and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
+Preferences: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/
+and v181-q014-preferences-f-20261108/. Earlier a..d failures remain retained.
