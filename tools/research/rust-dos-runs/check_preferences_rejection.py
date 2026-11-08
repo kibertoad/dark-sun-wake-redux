@@ -100,8 +100,13 @@ class Controls(unittest.TestCase):
         actions = [(point("39D1:097D", 2), None), (point("6300:1A82", 4), None),
             (point("6300:1A87", 5), None), (point("6300:1A8E", 6), None),
             (point("6300:1EC9", 7), None), (point("6200:0039", 8, sp=0x3006, bp=0x3100), None),
-            (point("39D1:097D", 9, sp=0x4000, bp=0x4100), None)]
+            ({**point("2000:0100", 9, sp=0x4000, bp=0x4100), "reason": "time", "emu_ns": 1000016}, None)]
         session = Session(c, actions)
+        continuations = []
+        def resume(**kwargs):
+            continuations.append(kwargs)
+            return ("continue", 0)
+        session.continue_ = resume
         report = {"inputs": [], "draws": [], "readback": []}
         with patch("preferences_readback.snapshot", return_value=window(10500)), contextlib.redirect_stdout(io.StringIO()):
             observe_readback(session, 0, report, lambda: None, history, keyboard=trace)
@@ -111,6 +116,20 @@ class Controls(unittest.TestCase):
         self.assertEqual(len(report["inputs"]), 2)
         self.assertTrue(trace.report["complete"])
         self.assertTrue(history.report["complete"])
+        self.assertEqual(continuations[-1], {"until_ms": 1})
+        self.assertTrue(all(not item for item in continuations[:-1]))
+
+    def test_time_stops_cannot_hide_getter_or_precede_paired_return(self):
+        for phase, site, message in (("delivery", "4A6E:011F", "forbidden getter"),
+                                      ("unarmed", "2000:0100", "declared instruction")):
+            c, trace, history = prepared(), RejectionTrace(0), RejectionHistory(0)
+            history.arm(c, baseline()); trace.phase = phase
+            timed = {**point(site, 2), "reason": "time", "emu_ns": 1000016}
+            session = Session(c, [(timed, None)])
+            session.stop = baseline()
+            session.continue_ = lambda **kwargs: ("continue", 0)
+            with self.assertRaisesRegex(ValueError, message):
+                observe_readback(session, 0, {"inputs": [], "draws": [], "readback": []}, lambda: None, history, keyboard=trace)
 
 
 if __name__ == "__main__": unittest.main()

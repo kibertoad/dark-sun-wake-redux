@@ -169,14 +169,20 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
     operation = session.send_input("key", {"key": "tab", "hold_ms": 100})
     delivery, input_name, recorded = None, "tab", False
     for index in range(512):
-        ob, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
+        sampling = getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery"
+        continuation = (session.continue_(until_ms=session.stop["emu_ns"] // 1000000 + 1)
+                        if sampling else session.continue_())
+        ob, exhausted = wait_for_stop(session, continuation, attempts=2)
         stop = ob.stop
         report["last_stop"], report["stops"] = stop, index + 1
         retain()
-        if exhausted or stop.get("reason") not in (("breakpoint", "watchpoint") if history else ("breakpoint",)):
+        allowed = (("breakpoint", "watchpoint", "time") if sampling else ("breakpoint", "watchpoint")) if history else ("breakpoint",)
+        if exhausted or stop.get("reason") not in allowed:
             raise ValueError("Preferences did not reach a declared instruction stop")
         if stop.get("cs_ip") == setter or (stop.get("cs_ip") == generator and stop.get("reason") != "breakpoint"):
             raise ValueError("unadmitted Preferences RNG/seed boundary")
+        if getattr(keyboard, "EXPECT_REJECTION", False) and stop.get("cs_ip") == getter:
+            raise ValueError("rejection reached forbidden getter")
         if seed_expected is not None and int.from_bytes(checked_read(session.client, 0x57E0 + delta, 0x384A, 4), "little") != seed_expected:
             raise ValueError("Preferences seed differs from recorded chain")
         if history:
@@ -193,7 +199,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
         if keyboard and keyboard.is_site(stop):
             keyboard.boundary(session.client, stop)
             if getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery":
-                session.client.set_breakpoint(poll)
+                session.client.remove_breakpoints(poll)
             retain()
             continue
         delivery = observe_delivery(session, operation, delivery)
@@ -218,7 +224,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
                 history.sequence, history.time = session.stop["seq"], session.stop["emu_ns"]
         elif site == setter:
             raise ValueError("unadmitted Preferences reseeding")
-        elif site == poll:
+        elif site == poll or sampling and stop["reason"] == "time":
             current = snapshot(session.client, delta)
             report["ui_state"] = current
             if getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery":
