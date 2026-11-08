@@ -228,3 +228,6 @@ control passing and run Test.ps1 Research. Separate native research repeats
 the fixed route twice and narrows only actual observed keyboard admission.
 Other keys, callers, gate branches, reentrant paths, between-stop changes
 and remaining driver/storage mechanisms stay open.
+Retain each candidate named sample before applying a gate that can reject it,
+marking it unaccepted until all checks pass. A failed gate must preserve its
+actual selecting value without advancing phase or granting completion.

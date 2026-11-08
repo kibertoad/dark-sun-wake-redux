@@ -74,6 +74,8 @@ class KeyTrace:
         if phase != self.phase or stop.get("reason") != "breakpoint":
             raise ValueError("keyboard boundary phase/reason differs")
         item, pointers = self.sample(client, stop, phase)
+        item["accepted"] = False
+        self.report["events"].append(item)
         if phase == "state-call":
             if pointers[0] == (0, 0) or pointers[0] != pointers[1] or item["handler_return"] != f"{self.menu:04X}:0039":
                 raise ValueError("keyboard forwarded menu/frame differs")
@@ -95,7 +97,7 @@ class KeyTrace:
                 raise ValueError("keyboard outer opener frame differs")
             self.root_sp = item["sp"]
             self.outer(client, item)
-        self.report["events"].append(item)
+        item["accepted"] = True
         order = [p for _, p in self.OFFSETS] + ["trampoline", "getter"]
         self.phase = order[order.index(phase) + 1]
 

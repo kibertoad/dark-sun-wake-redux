@@ -80,6 +80,9 @@ class Controls(unittest.TestCase):
             if accepted: trace.boundary(c, point("6300:1A8E", 6))
             else:
                 with self.assertRaises(ValueError): trace.boundary(c, point("6300:1A8E", 6))
+                self.assertEqual(trace.report["events"][-1]["turn"], turn)
+                self.assertFalse(trace.report["events"][-1]["accepted"])
+                self.assertFalse(trace.report["complete"])
 
     def test_callback_key_frame_and_pointer_changes_refuse(self):
         for change in ("key", "sp", "pointer", "callback"):
