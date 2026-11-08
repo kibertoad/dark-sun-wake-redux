@@ -62,6 +62,10 @@ Next ID: Q-SOUND-013
   handler effects after FND-SOUND-067's local `2660:0250`/`2660:035E` contracts, actual FM tag/configuration, failure-flag and 3458/344A pointer
   source/block extents and lifetime after FND-SOUND-082's separate-argument
   setup binding and FND-SOUND-069's acquisition/cleanup/start contracts.
+  Reuse FND-SOUND-096's repeated fixed startup callback/metadata/allocation/
+  final-write admission through the first music gate. It supplies no later
+  track-start, fresh per-track response, heap extent, preservation or audible
+  result; those remain rather than repeating initial callback admission.
   FND-SOUND-083 settles absence of the four requested song tags in the validated
   installed archive set; retain other media/runtime records and bypass/other
   setup entries rather than parsing nonexistent installed payloads. Also retain

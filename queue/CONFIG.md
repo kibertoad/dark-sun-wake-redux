@@ -89,6 +89,15 @@ Next ID: Q-CONFIG-015
   current/target writers, changed or missing function tables and reached sound
   update effects; those local field identities are no longer unread.
   Search mechanisms and exclusions must be explicit.
+  FND-SOUND-096 admits the unchanged installed configuration and known disc
+  callback path in two native startups through the first music gate. Reuse
+  its actual metadata, allocation and paired final write, whose physical span
+  is disjoint from captured library fields. The observed gate is zero and
+  slot/getter handle FFFF. Remaining native work begins with
+  subsequent startup-to-Preferences getter/store admission, plus actual
+  extent/aliases, per-track response freshness and intervening writer histories.
+  Do not repeat default-profile callback admission without a new question;
+  other configurations, targets and reinitialization remain outside that run.
   FND-SOUND-083 excludes the four ordinary song-request arms from obtaining
   sequence payloads in the faithful, validated installed archive set. Establish
     actual archive-record/configuration admission and other media, bypass or
@@ -217,6 +226,11 @@ Next ID: Q-CONFIG-015
     the finite response, metadata-stability, extent and alias conditions above.
     External response and native storage admission prevent the connected
     bundle from proving startup/readback preservation. No queue closure.
+    Tried: FND-SOUND-096 supplies matching 54-event native first-startup
+    observations. Remove unobserved installed-profile callback entry, metadata
+    branch, allocation return and final-write occurrence from that route's
+    obligations. Later startup/getter state and continuous alias/extent histories
+    remain; this is neither whole-entry closure nor a gameplay replay.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

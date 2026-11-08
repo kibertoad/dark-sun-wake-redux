@@ -26,6 +26,18 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
+The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
+in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and
+v181-q014-disc-startup-b-20261108/. Fresh unchanged manifest-verified drives
+recorded 54 events at named initializer/callback/metadata/allocation/table-write
+and music-gate stops with the required real-mode DS/SS and return guards.
+These fixed startup, named-field and paired-write observation parts are agent
+under the current pins. Both RNG/seed guards stayed unhit; no input, guest
+writes, draws or captures occurred. Both owned sessions closed and released
+their lock. This admits neither later startup/getter access, continuous
+preservation, heap capacity nor audible output. FND-SOUND-096 records results;
+DISC-STARTUP-OBSERVATION records the fixed scope and command.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

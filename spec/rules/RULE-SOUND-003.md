@@ -4,7 +4,7 @@ title: Music is chosen from DJ.DAT by region at startup and by party health in c
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-SOUND-002, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-071, FND-SOUND-013, FND-RNG-011, FND-RNG-006, FND-CONFIG-005, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023]
+evidence: [FND-SOUND-002, FND-SOUND-007, FND-SOUND-008, FND-SOUND-009, FND-SOUND-010, FND-SOUND-011, FND-SOUND-071, FND-SOUND-013, FND-SOUND-067, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-RNG-011, FND-RNG-006, FND-CONFIG-005, FND-COMBAT-052, FND-COMBAT-022, FND-COMBAT-023]
 conflicting: []
 split_with: []
 related: [RULE-RNG-001, RULE-SOUND-002, FMT-SOUND-002, FMT-CONFIG-001, FMT-COMBAT-001, FMT-COMBAT-002]
@@ -214,6 +214,12 @@ None known.
 None known.
 
 ## Open questions
+
+- FND-SOUND-096 admits the known disc callback and its metadata/allocation/
+  final-write path through the first music gate in two unchanged installed
+  startups. Q-SOUND-004 retains later table/track/status/frame histories and
+  audible output; the enable and last-track fields alone prove no playback
+  success (FND-SOUND-067, FND-SOUND-094, FND-SOUND-095).
 
 - Whether other code sets `music_mode`, and so what chooses the songs of mode 2, the music of
   exploration after startup (FND-SOUND-071, Q-SOUND-004).
