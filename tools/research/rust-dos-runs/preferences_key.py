@@ -103,20 +103,22 @@ class KeyTrace:
 
     def outer(self, client, item):
         off, seg = struct.unpack("<HH", checked_read(client, item["ss"], self.root_sp, 4))
-        if (off, seg) != (0x1EC9, self.segment): raise ValueError("keyboard outer return differs")
         item["preferences_return"] = f"{seg:04X}:{off:04X}"
+        if (off, seg) != (0x1EC9, self.segment): raise ValueError("keyboard outer return differs")
 
     def nested(self, client, stop, phase):
         if self.phase != phase or stop.get("reason") not in (("breakpoint", "watchpoint") if phase == "store" else ("breakpoint",)):
             raise ValueError("keyboard nested phase/reason differs")
         item, pointers = self.sample(client, stop, phase)
+        item["accepted"] = False
+        self.report["events"].append(item)
         if item["bp"] != self.root_sp - 2 or item["sp"] != self.root_sp - (6 if phase == "getter" else 2) or pointers != [(0, 0), (0, 0)]:
             raise ValueError("keyboard nested stack/pointer binding differs")
         saved = int.from_bytes(checked_read(client, item["ss"], self.root_sp - 2, 2), "little")
         if saved != self.initial["bp"]: raise ValueError("keyboard saved parent BP differs")
         item["saved_parent_bp"] = saved
         self.outer(client, item)
-        self.report["events"].append(item)
+        item["accepted"] = True
         self.phase = "store" if phase == "getter" else "done"
 
     def complete(self):

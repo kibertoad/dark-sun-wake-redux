@@ -297,3 +297,10 @@ Synthetic controls cover source admission, changed save and rejected baseline.
 Run prior controls and Research gate before tooling commit. Separate research
 repeats the native candidate twice and records only observed admission;
 other callers, continuous state history and driver/storage questions stay open.
+
+CONFIG-254 reaches the getter but rejects its outer pair without retaining
+that pair. Extend diagnostic retention only: append nested candidate samples
+before their checks, mark unaccepted until all checks pass, and retain the
+actual outer pair before comparing it. Preserve strict expected bindings and
+phase/completion refusal. Synthetic controls require the rejected actual pair
+and no phase advance. No relocation following is authorized by this change.

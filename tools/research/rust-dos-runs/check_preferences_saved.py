@@ -1,5 +1,4 @@
 """Synthetic fixed post-Save source and natural turn admission controls."""
-from copy import deepcopy
 from pathlib import Path
 import struct
 import sys
@@ -7,7 +6,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from check_preferences_key import fixture, point
+from check_preferences_key import fixture, point, prefix
 from preferences_saved import source_control, verify_save, SavedKeyTrace
 
 
@@ -62,6 +61,18 @@ class Controls(unittest.TestCase):
             with self.assertRaises(ValueError): trace.baseline(c, stop)
             self.assertEqual(trace.report["baseline"]["turn"], turn)
         with self.assertRaises(ValueError): SavedKeyTrace(0).arm(fixture())
+
+    def test_rejected_outer_pair_retained(self):
+        c, stop = self.baseline()
+        trace = SavedKeyTrace(0); trace.baseline(c, stop)
+        prefix(c, trace)
+        c.put("57E0:2FEC", struct.pack("<HH", 0x1EC9, 0x6400))
+        with self.assertRaises(ValueError):
+            trace.nested(c, point("4A6E:011F", 12, sp=0x2FE6, bp=0x2FEA), "getter")
+        self.assertEqual(trace.report["events"][-1]["preferences_return"], "6400:1EC9")
+        self.assertFalse(trace.report["events"][-1]["accepted"])
+        self.assertEqual(trace.phase, "getter")
+        self.assertFalse(trace.report["complete"])
 
 
 if __name__ == "__main__": unittest.main()
