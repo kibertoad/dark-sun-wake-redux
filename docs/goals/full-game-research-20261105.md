@@ -39,32 +39,28 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 5b4d68ed -NoRestore passed:
-  2156 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince 7f5baded -NoRestore passed:
+  2157 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..247 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..248 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
-  CONFIG Static10,Live2,Blocked1,Next15; queue is 961 lines, all attempts retained.
+  CONFIG Static10,Live2,Blocked1,Next15; queue is 964 lines, all attempts retained.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: pre-opener call through map/Preferences history, plus
-  remaining reader/construction and caller/frame/reentrant mechanisms;
-  reuse CONFIG-243..247, EXE-249/520/561/567,
+  Next Q-CONFIG-014: remaining reader/construction, actual parent/root/event/
+  frame and reentrant mechanisms, plus non-sentinel driver/storage admission;
+  reuse CONFIG-243..248, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
-  Retain actual caller/table/frame, driver and writer histories.
+  Retain other caller/table/frame, driver and unmonitored writer histories.
   Three timed closure batches complete at 7307ac04, with qualified measures.
-  Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
-  Optional fixed history mode at26e891ad passed twice; use docs/RUNTIME.md
-  and PREFERENCES-READBACK-OBSERVATION. Do not repeat its admitted interval.
-  Fresh-prefix mode at8def4547 passed twice; use DISC-STARTUP-OBSERVATION.
-  Continuous pre-opener mode at5b4d68ed passed twice; earlier0c4625fe's
-  short-budget attempt is incomplete. Do not repeat the measured prefix.
-  Reuse startup_window.seed_caller, restore_opener.opener_mapping,
-  regenerate_checkpoints.snapshot/ready and checkpoint_rng.Recorder for
-  later fixed-route tooling; legacy stages restore separate sessions.
-  Do not join those separate observations into one history.
+  Fixed full fresh route at7f5baded passed twice with66 focused controls;
+  use FRESH-PREFERENCES-HISTORY and docs/RUNTIME.md. Do not repeat the
+  answered fixed startup-to-store history without a new question.
+  Legacy restored mode and early prefix modes remain bounded separately;
+  CONFIG-245/246/247 retain their limits and failed attempts.
+  Reuse the shared Preferences loop and checked field/frame/RNG helpers.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
@@ -105,8 +101,8 @@ zero complete-reading changes or answered deletions; Q-CONFIG-014 narrowed.
 No inventory/ownership denominator changes. Wall seconds research/tooling/
 validation: 1448.6/0/11.7,184.3/0/11.2,135.6/0/11.6. Handovers:17.6/28.6/55.3 seconds.
 These exclude commit hooks and are not active-effort measurements.
-Current 5152ae22 to 34c9695e: zero qualifying readings or answered deletions;
-CONFIG-247 narrows Q-CONFIG-014. One finding, two tooling and one research
+Current 6deaeba3 to 7907d801: zero qualifying readings or answered deletions;
+CONFIG-248 narrows Q-CONFIG-014. One finding, one tooling and one research
 commit; unchanged inventory/ownership denominators. Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -146,3 +142,5 @@ Fresh history: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-startup-history
 and v181-q014-startup-history-b-20261108/.
 Opener history: same root's v181-q014-opener-history-b-20261108/ and
 v181-q014-opener-history-c-20261108/ complete; sibling a remains incomplete.
+Full fresh history: same root's v181-q014-fresh-preferences-a-20261108/ and
+v181-q014-fresh-preferences-b-20261108/ complete. No owned probes/lock remain.
