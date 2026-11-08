@@ -402,6 +402,18 @@ contexts closed without further input/writes or guard bypass. Future work
 must preserve this pending-operation distinction and verify the distinct
 second object profile before allowing its construction or selection.
 
+The --second-wait profile at3d54de7b on2026-11-09 verifies the fixed
+164C:0C71 objects DS:3204/D244, guarded wrapped-frame construction at054B
+and continued0554 polling without new input (FND-SOUND-108). The original
+Enter operation completes while the second notice still returnsFFFF.
+This fixed construction, named reads and same-handle delivery observation
+are agent; no second selection/return or chooser continuation is admitted.
+Runs v181-second-wait-20261109-b/ and sibling c/ are under the setup-parser
+root; sibling a/ ata562fc64 ended its512-poll budget with delivery pending,
+not a native failure. The expanded cap is2048 polls. All contexts close
+without additional events or writes. Endpoint equality does not admit
+continuous lifetime, deeper-stack effects or live allocation ownership.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
