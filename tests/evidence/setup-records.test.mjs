@@ -312,6 +312,71 @@ assert r['boundary']=='notice' and r['entry']['canonical_return_segment']==0x164
 `, 'tools/research/rust-dos-runs');
 });
 
+test('second notice binds its own objects and variable prefixes, then waits on only the original input operation', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_objects,observe_notice_poll,require_notice_profile,wait_second_delivery,address
+loaded=0x1000;ds=0x1E36;ss=0x3000;bp=0x0DE0
+entry_stop={'reason':'breakpoint','cs_ip':'190F:0000',
+            'registers':{'ds':'1E36','ss':'3000','sp':'0DE2'}}
+class Memory:
+    def __init__(self):
+        self.data={}
+        def put(seg,off,body):
+            for i,b in enumerate(body):self.data[seg,off+i]=b
+        put(ss,0x0DE2,struct.pack('<6H',0x0C71,0x164C,0x3204,ds,0xD244,ds))
+        put(ds,0x3204,bytes(2));put(ds,0xD244,struct.pack('<6H',15,1,7,0,15,2))
+        put(ds,0x3206,b'A'+bytes([10])+b'B'+bytes([0]))
+        put(ds,0x3406,b'Y'+bytes([10])+b'N'+bytes([0]))
+        for delta in (4,6,10,20,22,28,30,32,34,36):put(ss,bp-delta,struct.pack('<H',2 if delta in (30,32,34) else 0))
+        put(ss,0xF67A,bytes(12));put(ss,0xF674,bytes([255,255]))
+        put(ds,0x18F6,struct.pack('<HH',65535,2))
+    def read_memory(self,where,size):
+        seg,off=(int(v,16) for v in where.split(':'))
+        return NS(data=bytes(self.data[seg,off+i] for i in range(size)))
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported second notice admitted')
+m=Memory();o,texts=observe_notice_objects(m,entry_stop,loaded,'second')
+assert o['entry']['return_ip']==0x0C71 and o['text']['choices']['row_lengths']==[1,1]
+require_notice_profile(o,'second')
+reject(lambda:observe_notice_objects(m,entry_stop,loaded))
+reject(lambda:observe_notice_objects(m,entry_stop,loaded,'arbitrary'))
+s=copy.deepcopy(entry_stop);s['cs_ip']='190F:054B';s['registers'].update(sp='F676',bp='0DE0')
+p,later=observe_notice_poll(m,s,loaded,o,texts,'second')
+assert p['prefixes_retained'] and p['registration_count']==2 and later==texts
+for key,value in [('selector',2),('style_words',[0]*6)]:
+    bad=copy.deepcopy(o);bad[key]=value;reject(lambda:require_notice_profile(bad,'second'))
+for rows in ([],[0],[40],[1]*5):
+    bad=copy.deepcopy(o);bad['text']['choices']['row_lengths']=rows
+    reject(lambda:require_notice_profile(bad,'second'))
+bad=copy.deepcopy(o);bad['text']['body']['row_lengths']=[70]
+reject(lambda:require_notice_profile(bad,'second'))
+delivery=object()
+class Session:
+    def __init__(self,done_after=2,state='done',ax='FFFF'):
+        self.client=Memory();self.n=0;self.done_after=done_after;self.state=state;self.ax=ax
+    def continue_(self,until):assert until=='190F:0554';self.n+=1;return NS(op=self.n)
+    def observe(self,op,timeout):
+        if op is delivery:
+            pending=self.n<self.done_after
+            return NS(pending=pending,state='pending' if pending else self.state)
+        stop=copy.deepcopy(s);stop['cs_ip']='190F:0554';stop['registers'].update(sp='F674',ax=self.ax)
+        return NS(pending=False,stop=stop)
+    def send_input(self,*args):raise AssertionError('second event sent')
+result={};session=Session();wait_second_delivery(session,loaded,o,p,delivery,result,lambda:None)
+assert session.n==2 and result['completed'] and len(result['polls'])==2
+assert result['polls'][0]['delivery']['pending'] and not result['polls'][1]['delivery']['pending']
+for session in (Session(done_after=513),Session(state='failed'),Session(ax='000D')):
+    reject(lambda:wait_second_delivery(session,loaded,o,p,delivery,{},lambda:None))
+bad=copy.deepcopy(p);bad['locals']['choice_rows']=1
+reject(lambda:wait_second_delivery(Session(),loaded,o,bad,delivery,{},lambda:None))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

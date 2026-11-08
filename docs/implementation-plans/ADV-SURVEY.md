@@ -356,3 +356,29 @@ caller relocation, short reads, drift and wrong frame/DS. Exit: tooling gate
 passes; separate fresh attempts record the next boundary and delivery status.
 This does not claim completed release in advance, chooser rows, original
 visual identity or continuous heap/vector/frame lifetime.
+
+For Q-SOUND-010 after FND-SOUND-107, add --second-wait. Reuse the
+single-event route to107's second guard and retain the original input handle.
+Admit only caller164C:0C71 with first object DS:3204 and style DS:D244,
+from107/CONFIG-262. Reuse the existing bounded selector/style/terminated
+prefix reader with an explicit first/second profile enum; no caller-supplied
+addresses. Before construction require selector in range, one through four
+nonempty choice rows each shorter than40 bytes, at most twelve body rows
+each shorter than70 bytes, and the existing fixed style words. These are
+probe admission limits, not general object capacities. Stop normally on an
+unsupported profile. Continue only to054B with return/rejection/early/driver
+guards, using the existing named wrapped-local observer with second-object
+bindings and prefix lengths derived from the admitted entry snapshot.
+Require constructed choice/registration counts and selector to match the
+entry profile, input modeFFFF and retained objects/prefixes before polling.
+With no new event, observe up to512 returns at0554, checking each fixed
+frame/mode and requiring AXFFFF. After each stop observe the same original
+input-operation handle without waiting for host time to advance it. Stop
+on done, a nonpending failure, unexpected guest result/guard or budget limit;
+never replay the input. Retain all stops and delivery states. Do not select
+or return from the second notice or enter a chooser. Synthetic controls
+cover second caller/pointers, variable bounded prefix spans, admission edges,
+count/selector mismatch, pending-to-done sequencing, wrong stops/results and
+budget/failure behavior. Exit: tooling gate passes; paired fresh research
+attempts record second objects/construction and actual delivery completion
+or the exact remaining boundary. Endpoint coherence is not lifetime proof.

@@ -1,7 +1,8 @@
 """Fixed SOUND_DS.EXE parser capability attempt; Q-CONFIG-006/011, Q-SOUND-010.
 
 Only two fingerprinted licensed files enter a private session drive. No
-arguments, input, guest writes, screenshots, driver use or gameplay is admitted.
+arguments, guest writes, screenshots, driver use or gameplay is admitted.
+Only the named notice-input profiles admit one fixed Enter event.
 Reports are original-derived and remain beneath the approved GAME_DIR.
 """
 import hashlib
@@ -376,22 +377,31 @@ def observe_notice_return(client, stop, loaded):
             "canonical_return_segment": canonical if 0 <= canonical <= 0xFFFF else None}
 
 
-def observe_notice_objects(client, stop, loaded):
+def notice_binding(profile):
+    if profile == "first":
+        return 0x050D, 0xAF36
+    if profile == "second":
+        return 0x0C71, 0x3204
+    raise ValueError("unsupported fixed notice profile")
+
+
+def observe_notice_objects(client, stop, loaded, profile="first"):
     """Only SOUND-102's two fixed objects; never resume the notice."""
     entry = observe_notice_return(client, stop, loaded)
-    if (entry["canonical_return_segment"], entry["return_ip"]) != (0x164C, 0x050D):
+    return_ip, object_offset = notice_binding(profile)
+    if (entry["canonical_return_segment"], entry["return_ip"]) != (0x164C, return_ip):
         raise ValueError("unsupported notice object caller")
     ds = loaded + 0x1E36 - 0x1000
     ss, sp = entry["ss"], entry["sp"]
     frame = checked_read(client, ss, sp, 12)
-    expected = (entry["return_ip"], entry["return_cs"], 0xAF36, ds, 0xD244, ds)
+    expected = (entry["return_ip"], entry["return_cs"], object_offset, ds, 0xD244, ds)
     if struct.unpack("<6H", frame) != expected:
         raise ValueError("unsupported notice object arguments")
-    selector = checked_read(client, ds, 0xAF36, 2)
+    selector = checked_read(client, ds, object_offset, 2)
     style = checked_read(client, ds, 0xD244, 12)
     payloads = {}
     summaries = {}
-    for name, start, cap in (("body", 0xAF38, 512), ("choices", 0xB138, 128)):
+    for name, start, cap in (("body", object_offset + 2, 512), ("choices", object_offset + 0x202, 128)):
         body = bytearray()
         for index in range(cap):
             value = checked_read(client, ds, start + index, 1)[0]
@@ -409,7 +419,7 @@ def observe_notice_objects(client, stop, loaded):
         summaries[name] = {"length": len(body) - 1, "lf_count": body.count(10),
                            "row_lengths": [len(row) for row in body[:-1].split(bytes([10]))],
                            "sha256": hashlib.sha256(body).hexdigest()}
-    if (checked_read(client, ds, 0xAF36, 2) != selector
+    if (checked_read(client, ds, object_offset, 2) != selector
             or checked_read(client, ds, 0xD244, 12) != style
             or checked_read(client, ss, sp, 12) != frame
             or observe_notice_return(client, stop, loaded) != entry):
@@ -418,16 +428,26 @@ def observe_notice_objects(client, stop, loaded):
             "style_words": list(struct.unpack("<6H", style)), "text": summaries}, payloads
 
 
-def require_notice_profile(objects):
+def require_notice_profile(objects, profile="first"):
+    notice_binding(profile)
+    if profile == "second":
+        body, choices = (objects["text"][key]["row_lengths"] for key in ("body", "choices"))
+        if (objects["style_words"] != [15, 1, 7, 0, 15, 2]
+                or not 1 <= len(body) <= 12 or any(not 0 <= n < 70 for n in body)
+                or not 1 <= len(choices) <= 4 or any(not 1 <= n < 40 for n in choices)
+                or not 0 <= objects["selector"] < len(choices)):
+            raise ValueError("unsupported second notice construction profile")
+        return
     if (objects["selector"] != 0 or objects["style_words"] != [15, 1, 7, 0, 15, 2]
             or [(objects["text"][name]["length"], objects["text"][name]["lf_count"])
                 for name in ("body", "choices")] != [(99, 2), (8, 0)]):
         raise ValueError("unsupported notice continuation profile")
 
 
-def observe_notice_poll(client, stop, loaded, objects, texts):
+def observe_notice_poll(client, stop, loaded, objects, texts, profile="first"):
     """EXE-485/486 fixed pre-input endpoint, separately bound wrapped locals."""
-    require_notice_profile(objects)
+    require_notice_profile(objects, profile)
+    _, object_offset = notice_binding(profile)
     entry = objects["entry"]
     ds = loaded + 0x1E36 - 0x1000
     ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
@@ -440,18 +460,22 @@ def observe_notice_poll(client, stop, loaded, objects, texts):
              ("registered_rows", 30), ("body_rows", 32), ("choice_rows", 34), ("accept_flag", 36))
     spans = [(ss, bp + 2, 12)] + [(ss, (bp - delta) & 0xFFFF, 2) for _, delta in names]
     spans += [(ss, (bp - 0x1766) & 0xFFFF, 12), (ds, 0x18F6, 4),
-              (ds, 0xAF36, 2), (ds, 0xD244, 12)]
-    for start, size in ((0xAF38, 100), (0xB138, 9)):
+              (ds, object_offset, 2), (ds, 0xD244, 12)]
+    sizes = (objects["text"]["body"]["length"] + 1, objects["text"]["choices"]["length"] + 1)
+    if not 1 <= sizes[0] <= 512 or not 1 <= sizes[1] <= 128:
+        raise ValueError("unsupported notice prefix sizes")
+    for start, size in ((object_offset + 2, sizes[0]), (object_offset + 0x202, sizes[1])):
         spans.extend((ds, start + i, min(16, size - i)) for i in range(0, size, 16))
     first = [checked_read(client, *span) for span in spans]
     if [checked_read(client, *span) for span in spans] != first:
         raise ValueError("notice poll fields changed while paused")
-    expected_frame = (entry["return_ip"], entry["return_cs"], 0xAF36, ds, 0xD244, ds)
+    expected_frame = (entry["return_ip"], entry["return_cs"], object_offset, ds, 0xD244, ds)
     if struct.unpack("<6H", first[0]) != expected_frame:
         raise ValueError("notice poll caller arguments changed")
-    body = b"".join(first[15:22])
-    choices = first[22]
-    if set(texts) != {"body", "choices"} or (len(texts["body"]), len(texts["choices"])) != (100, 9):
+    split = 15 + (sizes[0] + 15) // 16
+    body = b"".join(first[15:split])
+    choices = b"".join(first[split:])
+    if set(texts) != {"body", "choices"} or (len(texts["body"]), len(texts["choices"])) != sizes:
         raise ValueError("unsupported notice entry prefixes")
     return {"ss": ss, "sp": sp, "bp": bp,
             "locals": {name: struct.unpack("<H", first[i + 1])[0] for i, (name, _) in enumerate(names)},
@@ -512,6 +536,34 @@ def observe_notice_next(client, stop, loaded):
     return {"boundary": "chooser", "ss": ss, "sp": sp, "return_cs": cs, "return_ip": ip}
 
 
+def wait_second_delivery(session, loaded, objects, poll, delivery, result, retain):
+    count = len(objects["text"]["choices"]["row_lengths"])
+    if (poll["locals"]["choice_rows"] != count or poll["registration_count"] != count
+            or poll["locals"]["selector"] != objects["selector"] or poll["input_mode"] != 0xFFFF
+            or not all(poll[key] for key in ("selector_retained", "style_retained", "prefixes_retained"))):
+        raise ValueError("unsupported second notice wait baseline")
+    result["polls"] = []
+    for _ in range(512):
+        operation = session.continue_(until=address(loaded, 0x190F, 0x0554))
+        observed = wait_same_operation(session, operation)
+        result["last_stop"] = observed.stop
+        retain()
+        value = observe_notice_input(session.client, observed.stop, loaded, objects["entry"], "poll")
+        delivered = session.observe(delivery, timeout=0)
+        value["delivery"] = {"pending": delivered.pending, "state": delivered.state}
+        result["polls"].append(value)
+        retain()
+        if value["ax"] != 0xFFFF:
+            raise ValueError("unexpected guest result while waiting for original input release")
+        if delivered.state == "done" and not delivered.pending:
+            result["completed"] = True
+            retain()
+            return
+        if not delivered.pending:
+            raise ValueError("original input delivery failed at second notice")
+    raise ValueError("original input delivery budget exhausted at second notice")
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -522,15 +574,16 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next|--second-wait]")
     labels_profile = len(sys.argv) == 3
-    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
-    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
-    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next")
-    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next")
-    next_profile = labels_profile and sys.argv[2] == "--notice-next"
+    rows_profile = labels_profile and sys.argv[2] != "--labels"
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
+    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
+    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next", "--second-wait")
+    next_profile = labels_profile and sys.argv[2] in ("--notice-next", "--second-wait")
+    second_profile = labels_profile and sys.argv[2] == "--second-wait"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -559,6 +612,8 @@ def main():
         report["limits"] = "fixed parser and post-label endpoint only; no input, guest writes, frames, producers, drivers or gameplay"
     if rows_profile:
         report["limits"] = "fixed MainGroup chooser row endpoint; notice/driver guards; no input, guest writes, frames, event loop or gameplay"
+    if enter_profile:
+        report["limits"] = "fixed notice route with one Enter event; no additional input, guest writes, frames, driver use or gameplay"
     with RustDosSession(settings) as session:
         entry = session.entry
         report["entry"] = entry
@@ -687,6 +742,33 @@ def main():
                             report["notice_next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
                             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                             print(json.dumps({"notice_next": report["notice_next"]}), flush=True)
+                            if second_profile:
+                                objects, second_texts = observe_notice_objects(session.client, observed.stop, loaded, "second")
+                                report["second_notice"] = {"objects": objects}
+                                for name, body in second_texts.items():
+                                    (run / f"second-{name}-entry-native.bin").write_bytes(body)
+                                def retain_second():
+                                    if "last_stop" in report["second_notice"]:
+                                        report["last_stop"] = report["second_notice"]["last_stop"]
+                                    (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                                retain_second()
+                                require_notice_profile(objects, "second")
+                                for offset in (0x0724, 0x02C6):
+                                    session.client.set_breakpoint(address(loaded, 0x190F, offset))
+                                session.client.remove_breakpoints(address(loaded, 0x190F, 0))
+                                operation = session.continue_(until=address(loaded, 0x190F, 0x054B))
+                                observed = wait_same_operation(session, operation)
+                                report["last_stop"] = observed.stop
+                                retain_second()
+                                poll, later = observe_notice_poll(session.client, observed.stop, loaded, objects, second_texts, "second")
+                                report["second_notice"]["pre_poll"] = poll
+                                for name, body in later.items():
+                                    (run / f"second-{name}-poll-native.bin").write_bytes(body)
+                                retain_second()
+                                wait_second_delivery(session, loaded, objects, poll, delivery, report["second_notice"], retain_second)
+                                print(json.dumps({"second_notice": {"objects": objects, "pre_poll": poll,
+                                                                     "polls": len(report["second_notice"]["polls"]),
+                                                                     "completed": report["second_notice"].get("completed")}}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")
