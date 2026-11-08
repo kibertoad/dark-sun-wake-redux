@@ -26,37 +26,28 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
-The first preferences_readback.py attempt, v181-q014-preferences-a-20261108,
-strictly restored the current play-ready checkpoint and recorded one admitted
-sound-rule RNG draw. It then exhausted the same continuation's observation
-budget before reaching its configured poll. That poll was the modal Quit
-choice routine, not main's key-event builder. The last observed Tab delivery
-was pending; no getter/store observation or Preferences input capability is
-admitted. The owned session paused and closed, releasing its lock. Retain
-captures/rust-dos-preferences-readback/v181-q014-preferences-a-20261108/.
-The corrected tooling verifies main's relocated builder call before arming
-the poll and has a synthetic old-choice-target rejection control.
-The corrected b attempt reached the ready Game Menu, observed Tab and pointer
-motion delivered, and read selected BUTN/10303 at the fixed point. Those
-specific input/menu parts are agent. It exhausted512 builder stops while the
-click's last observed state was still pending, before a getter stop. Repeated
-polling had advanced less guest time than the fixed100ms hold required.
-No readback or click-completion capability follows. That owned session also
-closed and released its lock; retain the sibling b directory. The next
-tooling revision removes the poll after checked pointer selection, before
-the unchanged click; getter/RNG guards and the stop budget remain unchanged.
-The c attempt verified motion delivery at a ready menu but stopped with a
-null selected control at builder entry, before clicking. A delivered input
-operation does not prove that the native builder has consumed its packet.
-The corrected flow waits for BUTN/10303 within the existing cap; it neither
-clicks an unmatched control nor repeats motion. Retain the sibling c report.
-That owned session closed and released its lock. No getter capability follows.
-The d attempt reached the resident getter after the checked button selection,
-but rejected the subsequent caller admission because the tool read the overlay
-header prefix instead of FND-INPUT-012's entry trampoline8. No result/store
-pair was recorded. The corrected binding uses that actual trampoline and a
-synthetic header-substitution negative. Retain the sibling d report; its
-owned session closed and released its lock.
+preferences_readback.py passed twice on 2026-11-08 under current pins, in
+captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/ and
+v181-q014-preferences-f-20261108/. Both strictly restored the checked
+v181-q046-play-ready-20261104 checkpoint, delivered Tab/motion/left-click
+through the ready Game Menu and native BUTN/10303 selection, and paired the
+known getter's actual caller, return and byte store. Those fixed restore,
+input, named-read and paired-boundary parts are agent. Each recorded the
+same one admitted sound-rule draw and made no guest setup write. Both owned
+sessions closed and released their locks. FND-CONFIG-238 records behavior;
+PREFERENCES-READBACK-OBSERVATION records the scope and command. This admits
+no uninterrupted fresh-startup history, other callers/driver paths, later UI,
+audible output or rebuild parity.
+
+Retain the sibling v181-q014-preferences-a/b/c/d-20261108 reports as failed
+capability attempts. The a attempt used the modal-choice poll and exhausted
+its same-operation observation budget. The b attempt exhausted 512 builder
+stops before click completion. The c attempt stopped on native selection
+not yet updated after motion delivery. The d attempt reached the getter but
+mistook the overlay header prefix for the actual entry stub. None supplied
+a getter/store pair. All closed and released their locks. Current tooling
+verifies main's builder call, waits separately for native selection, removes
+the poll before clicking, and binds the actual Preferences entry trampoline.
 
 The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
 in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and

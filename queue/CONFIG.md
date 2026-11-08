@@ -93,9 +93,13 @@ Next ID: Q-CONFIG-015
   callback path in two native startups through the first music gate. Reuse
   its actual metadata, allocation and paired final write, whose physical span
   is disjoint from captured library fields. The observed gate is zero and
-  slot/getter handle FFFF. Remaining native work begins with
-  subsequent startup-to-Preferences getter/store admission, plus actual
-  extent/aliases, per-track response freshness and intervening writer histories.
+  slot/getter handle FFFF. FND-CONFIG-238 separately admits the actual
+  Preferences caller/frame, getter return 255 and byte store 100-to-255 on the
+  fixed restored play-ready route. Retain other gates/callers, non-sentinel
+  handle and driver-query admission, later/aliased writers and uninterrupted
+  startup-to-entry histories; a restored pair does not establish that history.
+  Also retain actual extent/aliases, per-track response freshness and
+  intervening writer histories for the earlier startup bundle.
   Do not repeat default-profile callback admission without a new question;
   other configurations, targets and reinitialization remain outside that run.
   FND-SOUND-083 excludes the four ordinary song-request arms from obtaining
@@ -231,6 +235,10 @@ Next ID: Q-CONFIG-015
     branch, allocation return and final-write occurrence from that route's
     obligations. Later startup/getter state and continuous alias/extent histories
     remain; this is neither whole-entry closure nor a gameplay replay.
+    Tried: FND-CONFIG-238 supplies two matching native caller/return/store
+    pairs and RNG records from the strict play-ready restore. Remove unread
+    entry-byte-store admission on that route; other callers/gates, non-sentinel
+    driver paths and continuous or later state histories remain. No queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

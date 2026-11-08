@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -61,6 +61,10 @@ state rejection. Frame/record aliasing and later effects remain unresolved
   A music-toggle redraw with music off uses zero (FND-CONFIG-235, FND-UI-065).
 - The driver's answer can be 255 for card ID 113 and for some unavailable drivers
   (FND-CONFIG-236).
+- Two strict restores of the fixed play-ready route observed entry store 255
+  over a previously held 100, with card ID 122, mode word 4 and getter handle
+  FFFF at the paired snapshots. This is not a bounded 0..100 setting or a
+  new-game default; later display and changes were not observed (FND-CONFIG-238).
 
 ## What the sources say
 
@@ -173,6 +177,10 @@ None known.
     metadata, allocation and final table-write admission. Q-CONFIG-014 retains
     unobserved writer/alias/extent conditions and the later startup-to-Preferences
     getter/store path. Equal captured values establish no continuous preservation.
+  - FND-CONFIG-238 supplies actual caller/frame, getter return and entry-byte
+    store on the fixed restored-map route. Q-CONFIG-014 retains other caller/
+    gate and non-sentinel driver admission, later or aliased writes, and the
+    uninterrupted startup history. Do not repeat this native pair as if unread.
   - Native frames remain Q-CONFIG-001. Audible output is not established by
     the stored-level readback; retain Q-CONFIG-002 for that separate question
     without expanding this rule into the whole playback subsystem.
