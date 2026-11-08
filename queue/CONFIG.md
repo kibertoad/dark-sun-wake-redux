@@ -91,6 +91,13 @@ Next ID: Q-CONFIG-015
   current/target writers, changed or missing function tables and reached sound
   update effects; those local field identities are no longer unread.
   Search mechanisms and exclusions must be explicit.
+  FND-CONFIG-242 supplies the installed getter's direct-call and neighboring
+  declared-segment/raw-offset-pair census, with the known Preferences call
+  as its sole target and independent positive control. Retain actual
+  Preferences root/event/frame admission and exit reentrancy; unqueried
+  jump/indirect/table/return entries, dynamic/copied/distant-pair pointers,
+  relocated-offset reuse and changed streams. These modeled forms are no
+  longer an unread caller census; they exclude no writer/lifetime history.
   FND-CONFIG-239 completes the normal installed-source interface partition:
   ten Copy resources have AE/AF/B1, six Copy resources lack them, and ADV 10
   selects a resident DIGPAK adapter that also lacks them. Remove an unread
@@ -306,6 +313,11 @@ Next ID: Q-CONFIG-015
     findings' excluded transfer/writer mechanisms, actual mode and callback
     histories and reentrant readers. No new original-code reading or whole
     complete_reading declaration was needed for this correction.
+    Tried: FND-CONFIG-242 classifies all candidates from the finite modeled
+    getter entry census. The sole target is the established Preferences call;
+    the other raw-offset words do not add an encoded target under that model.
+    Actual root/context/frame and reentrant-reader admission plus excluded
+    pointer/entry and writer mechanisms remain; no whole question closes.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
