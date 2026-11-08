@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_006.ksy
-evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258]
+evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258, FND-CONFIG-259]
 conflicting: []
 split_with: []
 related: []
@@ -83,6 +83,10 @@ The one installed file [FND-CONFIG-257].
   The later14A2:0087 adjustment and14A2:0AA5 initial-index helper are also in
   that inventory. FND-CONFIG-258 supplies their local mapping and order;
   actual returned indices, changed masks and label/frame lifetime remain open.
+  FND-CONFIG-259 adds17FB:00B0's conditional group-based EC marker and its
+  inventory-backed membership/index helpers. It populates no extended fields.
+  The22 other literal EC writes, excluded access mechanisms and actual
+  group/count/pointer preservation remain obligations, not immutable state.
   DSUN.EXE roots 4734:0063, 47B9:0236 and initializer4734:0133 are in its
   corresponding inventory. Resource selector47B9:0334 and digital setup
   49EC:015F from FND-CONFIG-024 share sound-driver helpers; their canonical

@@ -756,15 +756,15 @@ Next ID: Q-CONFIG-015
 - Q-CONFIG-005. FMT-CONFIG-006: What remaining settings-block construction,
   source admission and game-side field effects determine `SOUND.CFG` behavior?
   Settles it: admit setup1429:042D/063A's selecting input, EC/override and EE..FC
-  producers; admit14A2:0087's actual list indices/counts, label/frame and
+  producers beyond259's conditional group-marking path; classify its22 other EC writes.
+  Admit14A2:0087's actual list indices/counts, label/frame and
   output/record aliasing, span and child lifetime before
   1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
   settle receiving setup/driver effects that assign block roles or consume tail
   values, including pointer/block/implicit access outside literal censuses.
   Retain file short-read/release results and changed loaded-buffer bindings.
   Tried: FND-CONFIG-257 compares source records;019 loads whole bytes without parsing;
-  020 reads08/0A/14/32;021 adds the first four words, another08 test and14/32
-  branches. Receiving routines' full effects remain unresolved.
+  020 reads08/0A/14/32;021 adds the first four words, another08 test and14/32 branches. Receiving routines' full effects remain unresolved.
   FND-CONFIG-214 maps tail stores to record offsets or literal4 (replacing022);023 reads34..3A including ADV choices. 024 pairs each ADV number
   with a ten-byte settings block and bit01 of14 gates the second pair.
   Tried: existing-evidence review reuses SOUND-020/037/047's exact tag-to-record
@@ -773,7 +773,7 @@ Next ID: Q-CONFIG-015
   incoming storage, driver effects and implicit accesses above remain open.
   Tried: FND-CONFIG-257 settles both local constructors/overrides, replacing003's
   inference;258 settles adjustment mask/list/apply order and initial-index lookup.
-  Keep actual count/index/frame admission and the incoming/consumer gaps above.
+  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and controlled EC census; other writers and extended-field producers remain.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
