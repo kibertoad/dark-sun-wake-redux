@@ -104,6 +104,9 @@ Next ID: Q-CONFIG-015
   numerical pair at file 4B6D2/4B6D8 spans distinct descriptor fields; whether
   a consumer combines/transforms them as an incoming pointer remains open,
   alongside the previously excluded construction and transfer mechanisms.
+  FND-CONFIG-244 excludes construction by the admitted ordinary walk/fixup
+  consumers. Retain another/computed/copied reader, transformed fields,
+  changed bindings or alternate entries as the remaining pair mechanism.
   FND-CONFIG-239 completes the normal installed-source interface partition:
   ten Copy resources have AE/AF/B1, six Copy resources lack them, and ADV 10
   selects a resident DIGPAK adapter that also lacks them. Remove an unread
@@ -329,6 +332,9 @@ Next ID: Q-CONFIG-015
     whose numerical target survives loading; its actual consumption remains
     unestablished. Parent/event/child/frame and reentrant histories remain;
     local menu and P predicates no longer require another reading.
+    Tried: FND-CONFIG-244 connects both ordinary descriptor consumers and
+    the fixup offset producer. Their field roles do not construct this pair;
+    excluded readers/bindings and actual caller/state histories remain.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
