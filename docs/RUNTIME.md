@@ -86,6 +86,20 @@ The later startup/map/getter interval and unchanged/intra-instruction or
 unmonitored-state histories remain unadmitted. FND-CONFIG-246 records the
 exact ordering and limits; DISC-STARTUP-OBSERVATION gives the fixed command.
 
+The fixed `opener-history` mode additionally passed twice on 2026-11-08 in
+siblings v181-q014-opener-history-b-20261108/ and
+v181-q014-opener-history-c-20261108/. Its same nine watches stay active from
+fresh entry through the checked native seed call/return to the opener call,
+without a checkpoint restore, input or guest setup write. The native seed
+argument/result and opener argument reads, uninterrupted named watches and
+fixed continuation are agent under these pins (FND-CONFIG-247). This is no
+continuous native segment/seed-word history or later opener/map/getter access.
+The earlier sibling a attempt is incomplete: its short observation budget
+ended at a request stop during the cinematic interval. Corrected tooling
+5b4d68ed uses the existing startup-window bounded same-operation budget;
+neither exhaustion nor a pause is treated as reaching the opener. All three
+sessions closed with muted host output; derived logs remain local.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

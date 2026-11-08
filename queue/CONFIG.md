@@ -183,8 +183,10 @@ Next ID: Q-CONFIG-015
   route. Retain startup outside that restored interval, other paths, later/unmonitored state, same-value
   and intra-instruction effects and untriggered-width delivery limits.
   FND-CONFIG-246 adds the fixed fresh program-entry-to-first-music-gate
-  history and positive word/pointer mutations. Retain the later seed/opener/
-  map-to-Preferences interval as one unobserved history, plus other paths,
+  history and positive word/pointer mutations. FND-CONFIG-247 extends the
+  uninterrupted watches through the checked native seed call to the opener
+  boundary. Retain the later opener/map-to-Preferences interval as one
+  unobserved history, plus other paths,
   unmonitored/unchanged/intra-instruction state and remaining entry/readers.
   Inherited research attempts remain under
   Q-CONFIG-002, which keeps initialization, voice synchronization and other
@@ -293,6 +295,10 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-246 records two matching fresh-prefix histories and
     positive enable-word/pointer events. The later startup interval is not
     joined to CONFIG-245's separate restored-map observation.
+    Tried: FND-CONFIG-247's two matching continuous histories remove the
+    unobserved first-music-gate-to-opener interval for nine fixed fields.
+    The opener has not executed; later
+    map/Preferences continuity, other paths and unmonitored effects remain.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
