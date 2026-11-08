@@ -358,6 +358,16 @@ closed normally without input/writes or continuation beyond the guard.
 This reader is agent; argument/object reads, dismissal, input delivery and
 chooser continuation remain unverified. No general stack reader is admitted.
 
+Two fresh --notice-objects attempts using664e5a12 on2026-11-09 verified
+the fixed164C:050D caller's argument span, DS:AF36 selector, DS:D244
+six-word style and terminated text prefixes at object+2/+0202
+(FND-SOUND-104). Runs v181-notice-objects-20261109-a/ and sibling b/
+are under the setup-parser root. This fixed reader is agent with exact
+stop/DS/caller/pointer guards, bytewise caps and paused duplicate reads.
+Both sessions closed without input/writes or handler continuation. This
+does not admit arbitrary pointers, wrapped local-frame reads, poll/input,
+live allocation ownership or any continuation past190F:0000.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,

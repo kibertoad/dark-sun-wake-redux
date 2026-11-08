@@ -172,7 +172,8 @@ Next ID: Q-SOUND-013
   post-label endpoint; heap/break/state history and remaining vector/chooser
   allocations;
   far-zero storage/history from101's endpoint to use; intervening190F guard
-  input/object and continuation admission after102's caller binding;
+  input/continuation and object retention/consumption after104's fixed
+  native entry profile and102's caller binding;
   explicit wrapped-frame and simultaneous allocation lifetime/alias admission
   after103's prologue/earlier-block intersection;
   chooser BIOS SI/DI/ES, port progress,
@@ -237,6 +238,7 @@ Next ID: Q-SOUND-013
   Tried: FND-SOUND-101 observes matching mode03/80x25, direct-enabled/sync-zero and declared vector at two post-label endpoints. The chooser-use attempt stops at190F:0000 before entry; caller/action, supported input and later frame/vector retention are required before retry.
   Tried: FND-SOUND-102 binds the guard's incoming return to164C:050D in two fresh attempts, matching262's BLASTER notice call. Caller identification is removed from Settles it for this profile; native objects, dismissal/input, frame and continuation remain unverified.
   Tried: FND-SOUND-103 rules out a nonwrapping handler frame under102's observed entry state. Its upper interval intersects100's earlier negative record-block model; simultaneous lifetime/alias and child/deeper-stack admission remain. This does not observe continuation or a native overwrite.
+  Tried: FND-SOUND-104 verifies both fixed object pointers, selector zero, six style words,99-byte body and one eight-byte choice in two fresh guard observations. Entry object/termination uncertainty is removed for this profile; retention, wrapped consumption, native input and continuation remain.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
