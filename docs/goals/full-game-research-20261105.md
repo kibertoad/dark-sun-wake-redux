@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince f3b47bae -NoRestore passed:
-  2179 entries,208 parity rows,five deviations, existing skips (2026-11-09).
+- Stage Slices. Test.ps1 -Research -ChangedSince e18f988f -NoRestore passed:
+  2180 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,15 +75,16 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-CONFIG-005, FMT-CONFIG-006: constructor selection and actual
-  dialog/index/frame admission, source history and drivers.
+- Next Q-SOUND-010: held SI/DI/frame preservation across chooser drawing,
+  backing/mode/interrupt children; reuse SOUND-097's finite call boundary
+  and EXE-487/488/489. SOUND Static9,Live1; native table/input remains open.
+  Q-CONFIG-005 retains constructor/dialog admission, source history and drivers.
   Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
   constructors, adjustment, producers, dispatch/choice or03D3 readings.
   Retain59 walk gaps and excluded mechanisms; no presumed index-word dependence.
-  Existing-evidence review of FMT-CONFIG-006's predecessor at e88f47af/ae824c69
-  ended at e0f597ab; declaration gap none qualifying. CONFIG-257 and
-  FMT-CONFIG-006 replace their predecessors at15782e02.
-  Reuse SOUND-020/021/037/047/092. No CONFIG ownership JSON was added.
+  FMT-CONFIG-006 predecessor review ended at e0f597ab; none qualifying.
+  CONFIG-257/FMT-CONFIG-006 replace predecessors at15782e02.
+  No CONFIG ownership JSON.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
   transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
@@ -113,12 +114,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Current1b7a891f to85dad937: zero qualifying readings or answered deletions;
-Q-CONFIG-005 narrowed by CONFIG-267..269: dispatch/choice and03D3 obligations,
-then all20 literal index-word uses. Retain excluded-access relevance.
-Three findings/three research commits; unchanged inventory/ownership denominators.
-Earlier CONFIG-242..245/
-PARTY-323..327 comparisons remain in prior versions.
+Currente18f988f to37ce92fa: zero qualifying readings or answered deletions;
+Q-SOUND-010 narrowed by SOUND-097's event-binding obligation; remaining
+child/native admission stays explicit. One finding/one research commit;
+unchanged inventory/ownership denominators. Prior CONFIG comparison at e18f988f.
+Earlier CONFIG/PARTY comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -159,4 +159,5 @@ Reuse blaster-source and partial-register reports (CONFIG-262/263).
 remaining-extended-producers-ghidra.log, card7d-source-fields-ghidra.log,
 card81-file-helpers-ghidra.log and card82-file-instructions.txt are retained.
 Reuse producer-dispatch/selection and post-dispatch-state reports (CONFIG-267/268);
-index-ebce/index-ebd0 query/report/repeat/negative sets retain269's census.
+index-ebce/index-ebd0 sets retain269's census. chooser-continuation-ghidra.log
+and chooser-event-binding-instructions.txt retain SOUND-097; reuse EXE helper findings.
