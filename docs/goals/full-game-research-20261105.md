@@ -38,9 +38,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Active; Audit unmet. Unfinished reading below. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince e0f597ab -NoRestore passed:
-  2167 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
+- Stage Slices. Test.ps1 -Research -ChangedSince 4cd6dee1 -NoRestore passed:
+  2171 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,11 +75,12 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-CONFIG-005, FMT-CONFIG-006: finish the selected-record adjustment
-  contract at SOUND_DS14A2:0087, connecting its mask-selected list results,
-  mode argument and output writes to CONFIG-257 and SOUND-021/022.
-  Retained Ghidra report exists; reading is unfinished, with no new finding.
-  Keep EC/extended-field producers, incoming storage and driver effects open.
+- Next Q-CONFIG-005, FMT-CONFIG-006: select the next coherent producer
+  from the retained EC/EE census, prioritizing the installed card7A route.
+  Reuse CONFIG-257..261 and SOUND-021/022/037 before another reading.
+  Keep20 other EC/18 EE sites, input/count/index/frame admission and drivers
+  open. Do not repeat the answered local adjustment, group marker,
+  card7C producer or2713 conversion. Auxiliary03D3 report is unreviewed.
   Existing-evidence review of FMT-CONFIG-006's predecessor at e88f47af/ae824c69
   ended at e0f597ab; declaration gap none qualifying. CONFIG-257 and
   FMT-CONFIG-006 replace their predecessors at15782e02.
@@ -113,10 +114,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Current e88f47af to15782e02: zero qualifying readings or answered deletions;
-Q-CONFIG-014/005 narrowed by CONFIG-256/257 and the format review.
-Two findings, one tooling and three research commits; unchanged inventory/
-ownership denominators. FMT-CONFIG-006 replaces001; no completion promotion.
+Current88eed0ee to20cb8942: zero qualifying readings or answered deletions;
+Q-CONFIG-005 narrowed by CONFIG-258..261. Four findings/four research
+commits; unchanged inventory/ownership denominators. No completion promotion.
 Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -134,8 +134,7 @@ accepted readings/errors/stale/unmeasured inventories. Eight inventories total
 7014 rows; disc-associated636 add no independent understanding. Owner-excluded
 DOSBox lacks raw inventory. Counts are non-additive; embedded ADV is outside them.
 
-Historical PARTY/UI comparisons remain in this goal's e88f47af version;
-keep their original denominators and zero-reading/answer qualifications.
+Historical PARTY/UI comparisons and denominators remain at e88f47af.
 
 Current: GAME_DIR/analysis/descriptor-pair-consumers-20261108/,
 preferences-root-contract-20261108/ and
@@ -155,3 +154,5 @@ Saved-keyboard: same root's v181-q014-saved-key-a-20261108/ and siblings b..e
 incomplete; saved-ready-a/b complete (CONFIG-256). Source: COMBAT-140's saved-map.
 Current static: GAME_DIR/analysis/config-block-construction-20261108/,
 SETUP-blocks.gpr, constructors-ghidra.log and record-settings-producer-ghidra.log.
+Reuse record-marker, extended-record-copy and source-word-conversion reports;
+ec-query.json/ee-query.json retain the controlled candidate cohorts.
