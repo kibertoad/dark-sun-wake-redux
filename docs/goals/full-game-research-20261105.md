@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince a9cbebfe -NoRestore passed:
-  2176 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince f3b47bae -NoRestore passed:
+  2179 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,11 +75,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-CONFIG-005, FMT-CONFIG-006: upstream selection/producer lifetime,
-  including1861:0008/06DB, then input/count/index/frame and drivers.
-  Reuse CONFIG-257..266 and SOUND-020/021/022/037/047/092; do not repeat
-  constructors/adjustment, group marker, conversion or paired producers.
-  Retain59 walk gaps and excluded mechanisms. Auxiliary03D3 is unreviewed.
+- Next Q-CONFIG-005, FMT-CONFIG-006: constructor selection and actual
+  dialog/index/frame admission, source history and drivers.
+  Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
+  constructors, adjustment, producers, dispatch/choice or03D3 readings.
+  Retain59 walk gaps and excluded mechanisms; no presumed index-word dependence.
   Existing-evidence review of FMT-CONFIG-006's predecessor at e88f47af/ae824c69
   ended at e0f597ab; declaration gap none qualifying. CONFIG-257 and
   FMT-CONFIG-006 replace their predecessors at15782e02.
@@ -113,9 +113,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Currentcaaaf45c to44b88f78: zero qualifying readings or answered deletions;
-Q-CONFIG-005 narrowed by CONFIG-264..266; six EC/six EE sites assigned
-conditional contracts in unchanged cohorts. No literal writers remain unassigned.
+Current1b7a891f to85dad937: zero qualifying readings or answered deletions;
+Q-CONFIG-005 narrowed by CONFIG-267..269: dispatch/choice and03D3 obligations,
+then all20 literal index-word uses. Retain excluded-access relevance.
 Three findings/three research commits; unchanged inventory/ownership denominators.
 Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
@@ -158,4 +158,5 @@ ec-query.json/ee-query.json retain the controlled candidate cohorts.
 Reuse blaster-source and partial-register reports (CONFIG-262/263).
 remaining-extended-producers-ghidra.log, card7d-source-fields-ghidra.log,
 card81-file-helpers-ghidra.log and card82-file-instructions.txt are retained.
-Reuse CONFIG-264..266 before following upstream selection/lifetime.
+Reuse producer-dispatch/selection and post-dispatch-state reports (CONFIG-267/268);
+index-ebce/index-ebd0 query/report/repeat/negative sets retain269's census.
