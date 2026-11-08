@@ -40,7 +40,7 @@ controls plus full Test.ps1 must pass. Exit: working resident-call capability
 and conditional evidence. Full five-gap exits still require caller/input
 admission; existing game findings stay read-only.
 
-Current metadata tooling: [runtime-error boundary](implementation-plans/RUNTIME-ERROR-INVENTORY.md). Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md). Media Survey and fixed setup-parser capability contract: [disc audio](implementation-plans/DISC-AUDIO-SURVEY.md), [ADV/setup](implementation-plans/ADV-SURVEY.md); no driver execution.
+Current tooling: [fixed disc startup](implementation-plans/DISC-STARTUP-OBSERVATION.md), [runtime-error boundary](implementation-plans/RUNTIME-ERROR-INVENTORY.md). Completed bounded adoption plans: [archive](implementation-plans/COMPLETED-SHARED-ADOPTION.md). Media Survey and fixed setup-parser capability contract: [disc audio](implementation-plans/DISC-AUDIO-SURVEY.md), [ADV/setup](implementation-plans/ADV-SURVEY.md); no driver execution.
 ## Issue 5 callback writer candidate census
 
 Search the committed DSUN function inventory for encoded A119/A11B operands

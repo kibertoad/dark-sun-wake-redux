@@ -1,5 +1,15 @@
 # rust-dos runs
 
+`disc_startup.py <new-run-name>` is the fixed read-only Q-CONFIG-014 observer
+in [DISC-STARTUP-OBSERVATION](../../../docs/implementation-plans/DISC-STARTUP-OBSERVATION.md).
+It uses unchanged verified files and current pinned/muted session settings,
+guards RNG and seed boundaries, and stops at the documented music gate.
+Named callback, response and table-write point observations go only to
+GAME_DIR/captures/rust-dos-disc-startup/. It admits no input or guest writes.
+Run synthetic controls with the project evidence Python and
+`-I tools/research/rust-dos-runs/check_disc_startup.py` before a native attempt.
+Synthetic controls establish no native capability or game result.
+
 `shutdown_snapshot.py` is a named read-only helper, not a launcher. Its
 ordinary-exit-entry admission, field bounds and staged runner work are in
 [SHUTDOWN-OBSERVATION](../../../docs/implementation-plans/SHUTDOWN-OBSERVATION.md).
