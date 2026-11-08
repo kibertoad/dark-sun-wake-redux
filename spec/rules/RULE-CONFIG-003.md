@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -65,6 +65,10 @@ state rejection. Frame/record aliasing and later effects remain unresolved
   over a previously held 100, with card ID 122, mode word 4 and getter handle
   FFFF at the paired snapshots. This is not a bounded 0..100 setting or a
   new-game default; later display and changes were not observed (FND-CONFIG-238).
+- A reached status query on the unchanged, admitted DIGPAK adapter table
+  returns zero and selects getter result 255 before a current-level query.
+  Installed ADV 10 takes that distinct interface on the normal installer route;
+  it needs no Copy query table. Actual runtime bindings remain open (FND-CONFIG-239).
 
 ## What the sources say
 
@@ -78,6 +82,13 @@ message-delay buttons (FND-CONFIG-235).
 None known.
 
 ## Open questions
+
+- Whole-entry review FND-CONFIG-239 keeps RULE-CONFIG-003 supported, with
+  no qualifying complete-reading declaration. Q-CONFIG-014 still holds every
+  caller, relevant writer/lifetime and indirect-binding condition not settled
+  by the local readings or FND-CONFIG-238's one native route. The installed
+  source-interface partition, including ADV 10's adapter, is now read; repeating
+  its Copy-reader rejection is not a remaining query-interface obligation.
 
 - Q-CONFIG-014: FND-SOUND-094 resolves the known configuration callback's
   ordinary return-result propagation. Its zero failure byte can be a nonzero
@@ -159,12 +170,18 @@ None known.
     lookup/dispatch rows `4842:03BC` and `4842:03F4` and sequence lifecycle.
     These six rows are present in the installed DSUN.EXE inventory; ownership
     here does not declare a complete reading or reassign the separate JSON plans.
+    SOUND also owns installer row `4842:0A23`, shared here as the table-producer
+    dependency in FND-CONFIG-239. Its lookup consumers are the two shared rows
+    above. These seven known nodes are a partial map, not the whole reached graph.
   - Q-CONFIG-014 retains caller/frame admission, sequence publication/reset
     success and later current/target writers, and actual indirect slot/table
     targets. The thirty native driver entries read in FND-CONFIG-237 have no
     committed function inventory for the embedded ADV code; do not count them
     as inventoried DSUN functions. Shared helpers and other unassigned functions
     remain visible in the independent closure assessments.
+    ADV 10 has no committed native-code inventory either. Its ordinary query
+    adapter classification does not remove its other code or native writer/
+    callback effects from the remaining obligations (FND-CONFIG-239).
   - FND-SOUND-095 reads the configuration callback's local metadata/table
     write contract. Q-CONFIG-014 retains actual response freshness, stable
     first/last bytes, current table capacity and nonwrapping base, request/

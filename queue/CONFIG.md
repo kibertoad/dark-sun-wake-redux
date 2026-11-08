@@ -53,8 +53,10 @@ Next ID: Q-CONFIG-015
   bodies across ten Copy drivers, distinguishing current and target level;
   ADV 11 registration/reset supplies conditional initial writes of 100. It
   removes the unspecified query-word and immediate/reset-writer conditions,
-  not actual slot/payload/lifetime admission. Six absent-entry resources and
-  the unparsed ADV 10 table remain explicit. Masked-query flag restoration
+  not actual slot/payload/lifetime admission. Six absent-entry resources remain
+  explicit. FND-CONFIG-239 settles ADV 10's distinct ordinary DIGPAK adapter;
+  its Copy-reader rejection is not an unread query table on that path. Retain
+  runtime table replacement, aliases and other entry mechanisms. Masked-query flag restoration
   uses an overlapping IRET stream, verified separately from Ghidra's listing.
   No whole item closure or complete reading follows.
   Tried: FND-SOUND-082 resolves the selected query's progress mechanism:
@@ -89,6 +91,12 @@ Next ID: Q-CONFIG-015
   current/target writers, changed or missing function tables and reached sound
   update effects; those local field identities are no longer unread.
   Search mechanisms and exclusions must be explicit.
+  FND-CONFIG-239 completes the normal installed-source interface partition:
+  ten Copy resources have AE/AF/B1, six Copy resources lack them, and ADV 10
+  selects a resident DIGPAK adapter that also lacks them. Remove an unread
+  ADV 10 Copy table from that route's requirements. Actual slot/table
+  producers and later writes, frame/sequence backing and indirect or other
+  media admission remain, including effects outside those missing requests.
   FND-SOUND-096 admits the unchanged installed configuration and known disc
   callback path in two native startups through the first music gate. Reuse
   its actual metadata, allocation and paired final write, whose physical span
@@ -239,6 +247,12 @@ Next ID: Q-CONFIG-015
     pairs and RNG records from the strict play-ready restore. Remove unread
     entry-byte-store admission on that route; other callers/gates, non-sentinel
     driver paths and continuous or later state histories remain. No queue closure.
+    Tried: FND-CONFIG-239's whole-entry review and connected installer/lookup/
+    consumer reading remove the unclassified ordinary ADV 10 query-interface
+    obligation. No whole reading qualifies: caller censuses, relevant writer/
+    lifetime histories and current indirect bindings remain. The next connected
+    objective is the slot/table producer-to-query handoff, retaining all those
+    mechanisms and the admitted frame domains rather than rereading source tables.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
