@@ -39,22 +39,24 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince e6c3a9f7 -NoRestore passed:
-  2153 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince 26e891ad -NoRestore passed:
+  2154 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..244 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..245 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
-  CONFIG Static10,Live2,Blocked1,Next15; queue is 939 lines, all attempts retained.
+  CONFIG Static10,Live2,Blocked1,Next15; queue is 948 lines, all attempts retained.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: remaining reader/construction and actual caller/frame/
-  reentrant histories; reuse CONFIG-243/244, EXE-249/520/561/567,
+  Next Q-CONFIG-014: fresh-startup and remaining reader/construction,
+  caller/frame/reentrant histories; reuse CONFIG-243..245, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
   Retain actual caller/table/frame, driver and writer histories.
   Three timed closure batches complete at 7307ac04, with qualified measures.
   Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
+  Optional fixed history mode at26e891ad passed twice; use docs/RUNTIME.md
+  and PREFERENCES-READBACK-OBSERVATION. Do not repeat its admitted interval.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
@@ -95,10 +97,10 @@ zero complete-reading changes or answered deletions; Q-CONFIG-014 narrowed.
 No inventory/ownership denominator changes. Wall seconds research/tooling/
 validation: 1448.6/0/11.7,184.3/0/11.2,135.6/0/11.6. Handovers:17.6/28.6/55.3 seconds.
 These exclude commit hooks and are not active-effort measurements.
-Current e1004c2b to c99b8f6b: zero qualifying readings or answered deletions;
-CONFIG-244 narrows Q-CONFIG-014. One finding and two research commits,
-including queue consolidation; unchanged inventory/ownership denominators.
-Earlier CONFIG-242/243/PARTY-323..327 comparisons remain in prior versions.
+Current dba92a9b to 038acbd6: zero qualifying readings or answered deletions;
+CONFIG-245 narrows Q-CONFIG-014. One finding, one tooling and one research
+commit; unchanged inventory/ownership denominators. Earlier CONFIG-242..244/
+PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -131,3 +133,4 @@ Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-2026110
 and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
 Preferences: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/
 and v181-q014-preferences-f-20261108/. Earlier a..d failures remain retained.
+History: sibling v181-q014-history-a-20261108/ and v181-q014-history-b-20261108/.
