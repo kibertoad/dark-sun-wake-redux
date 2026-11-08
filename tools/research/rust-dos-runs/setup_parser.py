@@ -26,7 +26,8 @@ INPUTS = {"SOUND_DS.EXE": (204593, "236c2dc23c071eca421eb5b427caee57"),
           "SOUND.INI": (54669, "aecc7469098e0c188e0e3d056c5fd530")}
 # FND-SOUND-024/033 and FND-EXE-491; no arbitrary address or target input.
 PHASES = {"parser": (0x1AF6, 0x0001), "returned": (0x1ABD, 0x0021),
-          "labels": (0x1ABD, 0x0092)}
+          "labels": (0x1ABD, 0x0092), "chooser": (0x19CF, 0x009A),
+          "rows": (0x19CF, 0x025B)}
 GUARDS = ((0x1AF6, 0x0040), (0x1AF6, 0x0090), (0x1AF6, 0x00C1),
           (0x1AF6, 0x00F0), (0x1AF6, 0x011F),
           (0x1000, 0x4127), (0x1C08, 0x0A25))
@@ -256,6 +257,85 @@ def observe_labels(client, stop, loaded, projection, baseline):
                 row["equal"] for row in summaries.values() if row["compared_bytes"])}, payloads, record_native
 
 
+def word_register(stop, name):
+    value = int(stop.get("registers", {}).get(name, "-1"), 16)
+    if not 0 <= value <= 0xFFFF:
+        raise ValueError("setup needs declared word registers")
+    return value
+
+
+def signed_word(value):
+    return value - 0x10000 if value >= 0x8000 else value
+
+
+def observe_chooser(client, stop, loaded, projection, baseline, main_labels):
+    """Fixed MainGroup wrapper entry only, before the chooser makes a frame."""
+    fields = observe_fields(client, stop, loaded, "chooser")
+    if any(fields[key] != baseline[key] for key in ("counts", "groups", "mode")):
+        raise ValueError("chooser record bindings differ")
+    ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
+    if (bp < 0x400 or sp < 0x1DB4 or bp + 18 > 0x10000
+            or ss * 16 + bp + 18 > 0xA0000):
+        raise ValueError("unsupported chooser entry frame span")
+    frame = checked_read(client, ss, sp, 14)
+    ip, cs, initial, title_offset, title_segment, text_offset, text_segment = struct.unpack("<7H", frame)
+    wrapper = checked_read(client, ss, bp + 2, 16)
+    caller_ip, caller_cs, count, label_offset, label_segment, toff, tseg, index = struct.unpack("<8H", wrapper)
+    wanted = b"".join(row[:-1] + b"\n" for row in expected_labels(projection)["main"]) + b"\0"
+    if (f"{cs:04X}:{ip:04X}" != address(loaded, 0x19CF, 0x008F)
+            or f"{caller_cs:04X}:{caller_ip:04X}" != address(loaded, 0x1429, 0x0296)
+            or count != projection["counts"]["main"]
+            or {"offset": label_offset, "segment": label_segment} != main_labels
+            or (toff, tseg, index) != (title_offset, title_segment, initial)
+            or signed_word(initial) >= count or text_segment != ss
+            or text_offset != bp - 0x400 or sp + 14 > text_offset
+            or len(wanted) > 1024 or text_offset + len(wanted) > bp):
+        raise ValueError("unsupported chooser caller or source binding")
+    actual = client.read_memory(f"{ss:04X}:{text_offset:04X}", len(wanted)).data
+    if len(actual) != len(wanted):
+        raise ValueError("short chooser text read")
+    if (checked_read(client, ss, sp, 14) != frame
+            or checked_read(client, ss, bp + 2, 16) != wrapper
+            or observe_fields(client, stop, loaded, "chooser") != fields):
+        raise ValueError("chooser entry bindings changed while paused")
+    differences = [i for i, (a, b) in enumerate(zip(actual, wanted)) if a != b]
+    return {"bindings": fields, "ss": ss, "entry_sp": sp, "initial_index": signed_word(initial),
+            "source_count": count, "compared_bytes": len(wanted), "equal": not differences,
+            "expected_sha256": hashlib.sha256(wanted).hexdigest(),
+            "native_sha256": hashlib.sha256(actual).hexdigest(),
+            "differing_bytes": len(differences), "first_differing_offsets": differences[:32]}, (wanted, actual)
+
+
+def observe_rows(client, stop, loaded, entry):
+    """Fixed post-adjustment row endpoint; never follow vector/video pointers."""
+    fields = observe_fields(client, stop, loaded, "rows")
+    ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
+    if (ss != entry["ss"] or bp != entry["entry_sp"] - 2 or bp < 0x1DB2
+            or sp != bp - 0x1DB2
+            or any(fields[key] != entry["bindings"][key] for key in ("counts", "groups", "mode"))):
+        raise ValueError("unsupported chooser row frame or binding")
+    ds = loaded + 0x1E36 - 0x1000
+    spans = ((ss, bp - 0x1C, 4), (ds, 0xDEB8, 5), (ds, 0xDEBE, 11), (0, 0, 4))
+    first = tuple(checked_read(client, *span) for span in spans)
+    if (tuple(checked_read(client, *span) for span in spans) != first
+            or observe_fields(client, stop, loaded, "rows") != fields):
+        raise ValueError("chooser row fields changed while paused")
+    adjusted, iteration = struct.unpack("<hh", first[0])
+    mode, rows, columns, classification, sync, base, video, enabled = struct.unpack("<5B3H", first[2])
+    offset, segment = struct.unpack("<HH", first[3])
+    count = signed_word(word_register(stop, "si"))
+    index = signed_word(word_register(stop, "di"))
+    return {"row_count": count, "adjusted_count": adjusted, "comparison_iterations": iteration,
+            "source_count": entry["source_count"], "matches_source_count": count == entry["source_count"],
+            "current_index": index, "index_matches_entry": index == max(0, entry["initial_index"]),
+            "vector_zero": {"offset": offset, "segment": segment,
+                            "matches_declared_handler": (offset, segment) == (0x0174, loaded)},
+            "display": {"mode": mode, "rows": rows, "columns": columns,
+                        "classification": classification, "copy_sync": sync, "base_word": base,
+                        "video_segment": video, "direct_enabled": enabled,
+                        "window": dict(zip(("left", "top", "right", "bottom", "attribute"), first[1]))}}
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -266,10 +346,11 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] != "--labels"
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows]")
     labels_profile = len(sys.argv) == 3
+    rows_profile = labels_profile and sys.argv[2] == "--chooser-rows"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -296,6 +377,8 @@ def main():
               "limits": "fixed utility parser capability only; no gameplay, input, guest writes, frames, drivers or rule/RNG replay claim"}
     if labels_profile:
         report["limits"] = "fixed parser and post-label endpoint only; no input, guest writes, frames, producers, drivers or gameplay"
+    if rows_profile:
+        report["limits"] = "fixed MainGroup chooser row endpoint; notice/driver guards; no input, guest writes, frames, event loop or gameplay"
     with RustDosSession(settings) as session:
         entry = session.entry
         report["entry"] = entry
@@ -342,6 +425,27 @@ def main():
             print(json.dumps(labels), flush=True)
             if not labels["all_populated_equal"]:
                 raise RuntimeError("setup labels differ; local prefixes and report retained")
+        if rows_profile:
+            session.client.set_breakpoint(address(loaded, 0x190F, 0x0000))
+            operation = session.continue_(until=address(loaded, *PHASES["chooser"]))
+            observed = wait_same_operation(session, operation)
+            report["last_stop"] = observed.stop
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            chooser, (wanted, actual) = observe_chooser(session.client, observed.stop, loaded, projection,
+                                                     labels["bindings"], labels["groups"]["main"]["pointer"])
+            report["chooser_entry"] = chooser
+            (run / "chooser-text-expected.bin").write_bytes(wanted)
+            (run / "chooser-text-native.bin").write_bytes(actual)
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            if not chooser["equal"]:
+                raise RuntimeError("chooser text differs; prefixes and report retained")
+            operation = session.continue_(until=address(loaded, *PHASES["rows"]))
+            observed = wait_same_operation(session, operation)
+            report["last_stop"] = observed.stop
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            report["chooser_rows"] = observe_rows(session.client, observed.stop, loaded, chooser)
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            print(json.dumps(report["chooser_rows"]), flush=True)
         print("setup parser boundary observed; closing owned session", flush=True)
 
 

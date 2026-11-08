@@ -92,6 +92,80 @@ function check(code, directory) {
   assert.equal(result.status, 0, result.stderr || result.stdout);
 }
 
+test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
+  check(`
+import sys,struct
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_fields, observe_chooser, observe_rows, address, PHASES
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported chooser observation admitted')
+loaded=0x1000;ds=0x1E36;ss=0x3000;bp=0xF000;sp=0xEBEC
+counts={'main':2,'digital':1,'music_only':-1}
+projection={'counts':counts,'payloads':{'main':b'Alpha'+bytes(249)+b'Beta'+bytes(250),
+                                     'digital':b'Gamma'+bytes(249),'music_only':b''}}
+entry_stop={'reason':'breakpoint','cs_ip':address(loaded,*PHASES['chooser']),
+ 'registers':{'ds':f'{ds:04X}','ss':f'{ss:04X}','bp':f'{bp:04X}','sp':f'{sp:04X}','ax':'0000'}}
+row_bp=sp-2;row_sp=row_bp-0x1DB2
+rows_stop={'reason':'breakpoint','cs_ip':address(loaded,*PHASES['rows']),
+ 'registers':{**entry_stop['registers'],'bp':f'{row_bp:04X}','sp':f'{row_sp:04X}','si':'0002','di':'0000'}}
+class Memory:
+ def __init__(self):
+  self.data={f'{ds:04X}:EC74':struct.pack('<hhh',2,1,-1),
+    f'{ds:04X}:188C':struct.pack('<6H',4,0x4000,4,0x4200,4,0x4100),
+    f'{ds:04X}:1888':bytes(4),f'{ds:04X}:ECCC':struct.pack('<H',1),
+    f'{ss:04X}:{sp:04X}':struct.pack('<7H',0x8F,0x19CF,0,0x20,ds,bp-0x400,ss),
+    f'{ss:04X}:{bp+2:04X}':struct.pack('<8H',0x296,0x1429,2,4,0x5200,0x20,ds,0),
+    f'{ss:04X}:{bp-0x400:04X}':b'Alpha'+bytes([10])+b'Beta'+bytes([10,0]),
+    f'{ss:04X}:{row_bp-0x1C:04X}':struct.pack('<hh',2,2),
+    f'{ds:04X}:DEB8':bytes([0,0,79,24,7]),
+    f'{ds:04X}:DEBE':struct.pack('<5B3H',3,25,80,0,0,0,0xB800,1),
+    '0000:0000':struct.pack('<HH',0x174,loaded)}
+  self.text_reads=0;self.vector_reads=0;self.drift=False;self.short=None
+ def read_memory(self,where,size):
+  value=self.data[where];assert len(value)==size
+  if where==f'{ss:04X}:{bp-0x400:04X}':self.text_reads+=1
+  if where=='0000:0000':
+   self.vector_reads+=1
+   if self.drift and self.vector_reads>1:value=bytes(4)
+  if where==self.short:value=value[:-1]
+  return NS(data=value)
+m=Memory();baseline=observe_fields(m,entry_stop,loaded,'chooser')
+entry,pair=observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200})
+assert entry['equal'] and pair[0]==pair[1] and m.text_reads==1
+r=observe_rows(m,rows_stop,loaded,entry)
+assert r['row_count']==2 and r['matches_source_count'] and r['index_matches_entry']
+assert r['vector_zero']['matches_declared_handler'] and r['display']['columns']==80
+m=Memory();m.data['0000:0000']=bytes(4)
+assert not observe_rows(m,rows_stop,loaded,entry)['vector_zero']['matches_declared_handler']
+m=Memory();m.drift=True;reject(lambda:observe_rows(m,rows_stop,loaded,entry))
+for key in ['0000:0000',f'{ds:04X}:DEBE',f'{ss:04X}:{row_bp-0x1C:04X}']:
+ m=Memory();m.short=key;reject(lambda:observe_rows(m,rows_stop,loaded,entry))
+for reg,value in [('bp','0001'),('ss','3001'),('sp','0100')]:
+ bad={**rows_stop,'registers':{**rows_stop['registers'],reg:value}}
+ reject(lambda:observe_rows(Memory(),bad,loaded,entry))
+bad={**rows_stop,'registers':{**rows_stop['registers'],'si':'0000'}}
+assert not observe_rows(Memory(),bad,loaded,entry)['matches_source_count']
+for changed in [struct.pack('<7H',0x90,0x19CF,0,0x20,ds,bp-0x400,ss),
+                struct.pack('<7H',0x8F,0x19CF,2,0x20,ds,bp-0x400,ss),
+                struct.pack('<7H',0x8F,0x19CF,0,0x20,ds,bp-0x3FF,ss)]:
+ m=Memory();m.data[f'{ss:04X}:{sp:04X}']=changed
+ reject(lambda:observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+ assert m.text_reads==0
+m=Memory();m.data[f'{ss:04X}:{bp+2:04X}']=struct.pack('<8H',0x297,0x1429,2,4,0x5200,0x20,ds,0)
+reject(lambda:observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+m=Memory();m.data[f'{ss:04X}:{bp-0x400:04X}']=bytes(len(m.data[f'{ss:04X}:{bp-0x400:04X}']))
+r,pair=observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200})
+assert not r['equal'] and r['differing_bytes']>0
+m=Memory();m.short=f'{ss:04X}:{bp-0x400:04X}'
+reject(lambda:observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+bad={**entry_stop,'cs_ip':address(loaded,*PHASES['labels'])}
+reject(lambda:observe_chooser(Memory(),bad,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed setup boundary candidates preserve far aliases, relative forms and wrapped frame fetch', () => {
   check(`
 import sys, struct

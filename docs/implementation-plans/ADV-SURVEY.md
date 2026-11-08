@@ -214,3 +214,36 @@ mismatches and refusal to read negative groups or tails. Exit: selected tooling
 gate passes; a separate runtime/research batch makes two fresh attempts and
 records actual endpoint evidence or the specific blocking guard. A later
 endpoint does not prove intermediate lifetime or native chooser admission.
+
+For Q-SOUND-010's vector/cardinality condition, add a separate fixed
+`--chooser-rows` profile, implying the existing parser and post-label checks.
+FND-SOUND-021/022/097..100 supply its static attempt. After the verified
+post-label stop, arm190F:0000 as an unexpected-notice guard and continue
+only toward19CF:009A. Fixed source-detection/selection code may run on that
+path; existing early-error/driver guards remain armed. A notice, different
+caller or unsupported input profile stops the attempt without input/writes.
+At chooser entry require the far return19CF:008F, declared DS/SS mapping,
+the wrapper's far caller1429:0296 and MainGroup count/label bindings,
+initial index negative or within the populated MainGroup count, and the
+wrapper's text pointer SS:(incoming BP-0400). Compare only the expected
+bounded MainGroup names separated by LF and final NUL, at most1024 bytes;
+retain source/native text locally and stop on mismatch. No arbitrary caller,
+pointer, address, guest write or selectable continuation is admitted.
+
+Continue that same operation sequence only to19CF:025B, immediately after
+the retained row count replaces SI and before layout/backing allocation.
+Require SS unchanged and the chooser BP derived from its recorded entry SP;
+read only the named row count/index, adjusted-count/iteration locals, display
+state at DS:DEB8..DEBC andDEBE..DEC8 (SOUND-098/099), and interrupt-zero
+pointer0000:0000 (SOUND-022). Snapshot these fixed spans twice while paused,
+checking stop/register and named binding coherence. Report decoded fields and
+whether the vector equals the declared loaded handler, without requiring a
+match to preserve contradicting evidence. Do not follow vector or video-memory
+pointers, capture pixels, execute the event loop or claim preservation beyond
+these stops. Synthetic controls cover wrong caller/DS/SS/frame, wrapping or
+wrong text binding, malformed source names, text mismatch/short reads, count
+and index bounds, short fixed fields and paused drift. Exit: selected tooling
+gate passes; separate fresh capability/research attempts record actual entry,
+text, count/vector/mode evidence or the specific guard that prevents progress.
+Two successful attempts corroborate this bounded use point, not complete
+chooser return, BIOS preservation or all native histories.
