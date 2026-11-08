@@ -271,3 +271,22 @@ input or guest writes. Synthetic controls cover wrong stop/DS, malformed
 registers, stack bounds, short reads and drift, including a relocated load.
 Exit: selected tooling gate passes; a separate research attempt records the
 caller and checks the retained static callsite before planning continuation.
+
+For Q-SOUND-010 after FND-SOUND-102/103, add --notice-objects, which
+follows the same guarded chooser-entry attempt but never resumes its notice.
+At190F:0000 require102's canonical far return164C:050D and unchanged
+declared DS/SS/SP. Read the twelve-byte incoming return/argument span twice;
+require first object DS:AF36 and second DS:D244 from102's static callsite.
+Only then read the first object's selector word, the second object's six
+words (EXE-484..486), and terminated text at first-object+2 and+0202
+(EXE-483). Read one byte at a time, stopping at NUL, with observation caps
+512 and128 bytes respectively including NUL; caps are probe limits, not
+established allocation sizes. Reject missing terminators or bytes other than
+printable ASCII/LF. Repeat only the observed prefixes and fixed words, then
+recheck frame/return coherence. Retain text only in the local run directory;
+report lengths, LF counts, row-length profile and hashes without strings.
+No arbitrary pointer, wrapped frame read, input, write or continuation is
+admitted. Synthetic controls cover exact caller/arguments, short reads,
+drift, bad bytes and absent terminators. Exit: tooling gate passes; separate
+paired research attempts establish this bounded native object profile or
+record the precise unsupported case before any continuation is planned.

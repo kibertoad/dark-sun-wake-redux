@@ -376,6 +376,48 @@ def observe_notice_return(client, stop, loaded):
             "canonical_return_segment": canonical if 0 <= canonical <= 0xFFFF else None}
 
 
+def observe_notice_objects(client, stop, loaded):
+    """Only SOUND-102's two fixed objects; never resume the notice."""
+    entry = observe_notice_return(client, stop, loaded)
+    if (entry["canonical_return_segment"], entry["return_ip"]) != (0x164C, 0x050D):
+        raise ValueError("unsupported notice object caller")
+    ds = loaded + 0x1E36 - 0x1000
+    ss, sp = entry["ss"], entry["sp"]
+    frame = checked_read(client, ss, sp, 12)
+    expected = (entry["return_ip"], entry["return_cs"], 0xAF36, ds, 0xD244, ds)
+    if struct.unpack("<6H", frame) != expected:
+        raise ValueError("unsupported notice object arguments")
+    selector = checked_read(client, ds, 0xAF36, 2)
+    style = checked_read(client, ds, 0xD244, 12)
+    payloads = {}
+    summaries = {}
+    for name, start, cap in (("body", 0xAF38, 512), ("choices", 0xB138, 128)):
+        body = bytearray()
+        for index in range(cap):
+            value = checked_read(client, ds, start + index, 1)[0]
+            body.append(value)
+            if value == 0:
+                break
+            if value != 10 and not 32 <= value <= 126:
+                raise ValueError("unsupported notice text byte")
+        else:
+            raise ValueError("notice text exceeds observation cap")
+        for index, value in enumerate(body):
+            if checked_read(client, ds, start + index, 1)[0] != value:
+                raise ValueError("notice prefix changed while paused")
+        payloads[name] = bytes(body)
+        summaries[name] = {"length": len(body) - 1, "lf_count": body.count(10),
+                           "row_lengths": [len(row) for row in body[:-1].split(bytes([10]))],
+                           "sha256": hashlib.sha256(body).hexdigest()}
+    if (checked_read(client, ds, 0xAF36, 2) != selector
+            or checked_read(client, ds, 0xD244, 12) != style
+            or checked_read(client, ss, sp, 12) != frame
+            or observe_notice_return(client, stop, loaded) != entry):
+        raise ValueError("notice object bindings changed while paused")
+    return {"entry": entry, "selector": struct.unpack("<H", selector)[0],
+            "style_words": list(struct.unpack("<6H", style)), "text": summaries}, payloads
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -386,11 +428,12 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects]")
     labels_profile = len(sys.argv) == 3
-    rows_profile = labels_profile and sys.argv[2] == "--chooser-rows"
+    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects")
+    objects_profile = labels_profile and sys.argv[2] == "--notice-objects"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -476,9 +519,17 @@ def main():
             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
             if observed.stop.get("cs_ip") == address(loaded, 0x190F, 0):
                 report["notice_return"] = observe_notice_return(session.client, observed.stop, loaded)
+                if objects_profile:
+                    report["notice_objects"], texts = observe_notice_objects(session.client, observed.stop, loaded)
+                    for name, body in texts.items():
+                        (run / f"notice-{name}-native.bin").write_bytes(body)
                 (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                 print(json.dumps({"notice_return": report["notice_return"]}), flush=True)
+                if objects_profile:
+                    print(json.dumps({"notice_objects": report["notice_objects"]}), flush=True)
                 return
+            if objects_profile:
+                raise ValueError("notice object profile did not reach its fixed guard")
             chooser, (wanted, actual) = observe_chooser(session.client, observed.stop, loaded, projection,
                                                      labels["bindings"], labels["groups"]["main"]["pointer"])
             report["chooser_entry"] = chooser

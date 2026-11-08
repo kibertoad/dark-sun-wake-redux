@@ -123,6 +123,54 @@ reject(stop,Memory(short=True));reject(stop,Memory(drift=True))
 `, 'tools/research/rust-dos-runs');
 });
 
+test('notice objects require the fixed caller and arguments before bounded stable text reads', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_objects,address
+loaded=0x05BA;ds=0x13F0
+stop={'reason':'breakpoint','cs_ip':address(loaded,0x190F,0),
+      'registers':{'ds':'13F0','ss':'22D0','sp':'0DE2'}}
+class Memory:
+    def __init__(self):
+        self.frame=[0x050D,0x0C06,0xAF36,ds,0xD244,ds]
+        self.body=b'A'+bytes([10])+b'BC'+bytes([0]);self.choices=b'OK'+bytes([0])
+        self.short=False;self.drift=False;self.frame_drift=False;self.seen={};self.text_reads=0
+    def read_memory(self,where,size):
+        self.seen[where,size]=self.seen.get((where,size),0)+1
+        if where=='22D0:0DE2':
+            assert size in (4,12)
+            value=struct.pack('<6H',*self.frame)[:size]
+            if self.frame_drift and size==12 and self.seen[where,size]>1:value=bytes(size)
+        elif where==f'{ds:04X}:AF36':assert size==2;value=bytes(2)
+        elif where==f'{ds:04X}:D244':assert size==12;value=struct.pack('<6H',*range(6))
+        else:
+            assert size==1 and where.startswith(f'{ds:04X}:')
+            offset=int(where.split(':')[1],16);self.text_reads+=1
+            start,body=(0xAF38,self.body) if offset<0xB138 else (0xB138,self.choices)
+            index=offset-start;assert 0<=index<len(body)
+            value=body[index:index+1]
+            if self.drift and self.seen[where,size]>1:value=bytes([255])
+        return NS(data=value[:-1] if self.short else value)
+def reject(m):
+    try:observe_notice_objects(m,stop,loaded)
+    except ValueError:return
+    raise AssertionError('unsupported notice object profile admitted')
+m=Memory();r,p=observe_notice_objects(m,stop,loaded)
+assert r['selector']==0 and r['style_words']==list(range(6))
+assert r['text']['body']['row_lengths']==[1,2] and r['text']['body']['lf_count']==1
+assert p=={'body':m.body,'choices':m.choices} and m.text_reads==16
+for index,value in [(0,0x050E),(1,0x0C07),(2,0xAF38),(3,0),(4,0xD246),(5,0)]:
+    m=Memory();m.frame[index]=value;reject(m);assert m.text_reads==0
+for attr in ('short','drift','frame_drift'):
+    m=Memory();setattr(m,attr,True);reject(m)
+for body in (bytes([13,0]),bytes([127,0]),b'A'*512):
+    m=Memory();m.body=body;reject(m)
+m=Memory();m.choices=b'A'*128;reject(m)
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct
