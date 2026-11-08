@@ -338,6 +338,17 @@ and allocation-failure guards remain mandatory. Producer execution, later
 chooser/input, continuous lifetime, vector and BIOS preservation are not
 admitted by these endpoint attempts. Both owned sessions closed.
 
+On 2026-11-09, two further fresh --labels attempts verified fixed paused
+mode/window/geometry/copy-gate and interrupt-zero-pointer reads at the same
+post-label endpoint (FND-SOUND-101). Those named reads are agent; pointers
+are not followed. Runs are v181-setup-display-20261109-a/ and sibling b/
+under the setup-parser capture root. A separate fixed --chooser-rows
+attempt, v181-setup-rows-20261109-a/, reached its190F:0000 guard before
+chooser entry; no input or bypass followed. Chooser entry/row-use capability
+remains unverified, requiring the guard's caller/input/frame contract.
+Endpoint state does not admit retention to use or BIOS preservation.
+All three owned contexts closed.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
