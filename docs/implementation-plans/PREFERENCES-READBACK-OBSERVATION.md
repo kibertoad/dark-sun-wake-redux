@@ -67,7 +67,7 @@ path. It cannot close the whole entry from one checkpoint or promote parity.
 
 The optional fixed `history` mode is described under Value history below. It adds changed-value watches only
 for that plan's named fields between strict restore and the paired store.
-Native history capability remains unverified until a separate research attempt;
+FND-CONFIG-245 and docs/RUNTIME.md record the actual native history scope;
 an armed watch alone is not mutation-delivery evidence.
 
 Tooling control command: run `check_preferences_history.py` and

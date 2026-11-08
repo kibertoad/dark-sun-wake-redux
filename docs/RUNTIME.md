@@ -73,6 +73,19 @@ their lock. This admits neither later startup/getter access, continuous
 preservation, heap capacity nor audible output. FND-SOUND-096 records results;
 DISC-STARTUP-OBSERVATION records the fixed scope and command.
 
+disc_startup.py's optional fixed `history` mode passed twice on 2026-11-08,
+in sibling v181-q014-startup-history-a-20261108/ and
+v181-q014-startup-history-b-20261108/. From actual program entry to the
+existing first music gate it armed nine fixed fields, including internal
+enable and configuration pointer, with no derived watch target. Both runs
+retained 54 guarded startup snapshots and two positive, matching two-/four-
+byte watch events, then removed their owned watches and closed normally.
+This fixed word/pointer mutation delivery and named prefix reads are agent.
+No input, restored state, draw, guest write or seed mutation occurred.
+The later startup/map/getter interval and unchanged/intra-instruction or
+unmonitored-state histories remain unadmitted. FND-CONFIG-246 records the
+exact ordering and limits; DISC-STARTUP-OBSERVATION gives the fixed command.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

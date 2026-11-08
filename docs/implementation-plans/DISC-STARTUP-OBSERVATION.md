@@ -97,5 +97,5 @@ it does not join separately restored observations into one history.
 Synthetic commands use the checkout-local evidence Python with `-I`:
 check_startup_history.py, check_disc_startup.py,
 check_preferences_history.py and check_preferences_readback.py in
-tools/research/rust-dos-runs/. Native history capability remains unverified
-until the separate attempt; arming a range is not positive mutation delivery.
+tools/research/rust-dos-runs/. FND-CONFIG-246 and docs/RUNTIME.md record the
+actual native scope; arming a range alone is not positive mutation delivery.
