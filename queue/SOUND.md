@@ -172,7 +172,8 @@ Next ID: Q-SOUND-013
   post-label endpoint; heap/break/state history and remaining vector/chooser
   allocations;
   far-zero storage/history from101's endpoint to use; intervening190F guard
-  caller/input/frame admission; chooser BIOS SI/DI/ES, port progress,
+  input/object/frame and continuation admission after102's caller binding;
+  chooser BIOS SI/DI/ES, port progress,
   actual mode/extent retention after099/101, scrolling scratch/coordinate and
   backing/frame admission after097/098, and
   native reachability; and nonpositive, larger or other-label profiles
@@ -232,6 +233,7 @@ Next ID: Q-SOUND-013
   Tried: FND-SOUND-099 assigns all five controlled geometry/gate writes to1783 and binds startup/mode requests. Queried AL/AH,0040:0084, prefix/native BL, DEC7 retention and excluded access remain; requested03 alone does not establish80 columns or copy synchronization.
   Tried: FND-SOUND-100 verifies all26 written label prefixes, all populated records and six modeled headers at two fresh post-label stops. Positive label allocation/prefix coherence at that endpoint is settled; intermediate and later heap/alias/vector/chooser lifetime remains.
   Tried: FND-SOUND-101 observes matching mode03/80x25, direct-enabled/sync-zero and declared vector at two post-label endpoints. The chooser-use attempt stops at190F:0000 before entry; caller/action, supported input and later frame/vector retention are required before retry.
+  Tried: FND-SOUND-102 binds the guard's incoming return to164C:050D in two fresh attempts, matching262's BLASTER notice call. Caller identification is removed from Settles it for this profile; native objects, dismissal/input, frame and continuation remain unverified.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose

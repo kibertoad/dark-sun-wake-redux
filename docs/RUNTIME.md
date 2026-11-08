@@ -349,6 +349,15 @@ remains unverified, requiring the guard's caller/input/frame contract.
 Endpoint state does not admit retention to use or BIOS preservation.
 All three owned contexts closed.
 
+Two fresh --chooser-rows attempts using0993e110 on2026-11-09 admit only
+the four-byte incoming far-return read at the exact190F:0000 guard,
+with declared DS, bounded SS:SP and duplicate paused reads (FND-SOUND-102).
+Both identify canonical164C:050D. Runs v181-setup-guard-20261109-a/ and
+sibling b/ are under the same setup-parser capture root. Both contexts
+closed normally without input/writes or continuation beyond the guard.
+This reader is agent; argument/object reads, dismissal, input delivery and
+chooser continuation remain unverified. No general stack reader is admitted.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
