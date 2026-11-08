@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -161,6 +161,13 @@ None known.
     committed function inventory for the embedded ADV code; do not count them
     as inventoried DSUN functions. Shared helpers and other unassigned functions
     remain visible in the independent closure assessments.
+  - FND-SOUND-095 reads the configuration callback's local metadata/table
+    write contract. Q-CONFIG-014 retains actual response freshness, stable
+    first/last bytes, current table capacity and nonwrapping base, request/
+    allocation effects and disjointness from readback state. The final table
+    write has no local null guard even after no iterations or failed acquisition;
+    a reused table has no local size revalidation. Those local branches no
+    longer require another reading; native admission remains unresolved.
   - Native frames remain Q-CONFIG-001. Audible output is not established by
     the stored-level readback; retain Q-CONFIG-002 for that separate question
     without expanding this rule into the whole playback subsystem.

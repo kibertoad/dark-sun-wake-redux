@@ -142,6 +142,14 @@ Next ID: Q-CONFIG-015
     target histories, nonreturning paths and device/table/write preservation;
     passing the word test is not device success. No-call paths incur no
     callback execution effects.
+    FND-SOUND-095 reads metadata acceptance, per-track acquisition and final
+    table-write ordering. Establish fresh response bytes, stable first/last
+    metadata across children, and the current pointer's capacity for
+    7*(last+2) bytes with nonwrapping addressing and disjoint write domains.
+    Retain reused-table size history, ignored request/allocation outcomes,
+    actual heap/frame/segment admission and external writes. The final dword
+    write has no null guard after an empty loop or failed acquisition; those
+    local branches and their geometry are no longer unread.
     Retain
     mapping values and all selected registered blocks. Reuse the local
     2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
@@ -205,6 +213,10 @@ Next ID: Q-CONFIG-015
     propagation and its exact-zero error fork under the admitted binding.
     Callback failure can continue into startup; actual backing, prior state
     and external effects remain. No complete reading or queue closure.
+    Tried: FND-SOUND-095 replaces generic unread table-write ordering with
+    the finite response, metadata-stability, extent and alias conditions above.
+    External response and native storage admission prevent the connected
+    bundle from proving startup/readback preservation. No queue closure.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
