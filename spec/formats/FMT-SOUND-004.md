@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100, FND-SOUND-101, FND-SOUND-102, FND-SOUND-103, FND-SOUND-104]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100, FND-SOUND-101, FND-SOUND-102, FND-SOUND-103, FND-SOUND-104, FND-SOUND-105]
 conflicting: []
 split_with: []
 related: []
@@ -108,3 +108,8 @@ selection or successful driver initialization.
   FND-SOUND-104 verifies both fixed incoming objects, selector zero and
   terminated small text prefixes at two fresh guard stops. Their retention,
   wrapped-frame consumption and input/continuation remain Q-SOUND-010.
+
+  FND-SOUND-105 verifies the fixed notice's first pre-poll endpoint twice:
+  wrapped frame, three body rows, one registered choice and matching entry
+  objects/prefixes. Later retention, input/return and live allocation ownership
+  remain Q-SOUND-010; endpoint coherence is not continuous preservation.

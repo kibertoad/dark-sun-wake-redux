@@ -368,6 +368,17 @@ Both sessions closed without input/writes or handler continuation. This
 does not admit arbitrary pointers, wrapped local-frame reads, poll/input,
 live allocation ownership or any continuation past190F:0000.
 
+On2026-11-09 two --notice-poll attempts using350205cf verified the fixed
+104 object profile followed by190F:054B before its first poll argument
+push (FND-SOUND-105). Runs v181-notice-poll-20261109-a/ and sibling b/
+are under the setup-parser root. The profile removes only the verified
+notice-entry guard, retains early guards, and adds notice return/rejection
+guards. This fixed continuation and named wrapped-local/first-row reads
+are agent, requiring declared DS/SS and BP/SP derived from the saved entry.
+Both contexts closed normally without input/writes or poll continuation.
+No keyboard/mouse delivery, notice return, chooser continuation, continuous
+preservation or live allocation ownership is admitted by this endpoint.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
