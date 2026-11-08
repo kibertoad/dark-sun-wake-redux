@@ -97,7 +97,7 @@ test('fixed chooser row observations bind both callers, stack text, vector and p
 import sys,struct
 from types import SimpleNamespace as NS
 sys.path.insert(0,sys.argv[1])
-from setup_parser import observe_fields, observe_chooser, observe_rows, address, PHASES
+from setup_parser import observe_fields, observe_chooser, observe_rows, observe_label_display, address, PHASES
 def reject(fn):
     try:fn()
     except ValueError:return
@@ -138,6 +138,17 @@ assert entry['equal'] and pair[0]==pair[1] and m.text_reads==1
 r=observe_rows(m,rows_stop,loaded,entry)
 assert r['row_count']==2 and r['matches_source_count'] and r['index_matches_entry']
 assert r['vector_zero']['matches_declared_handler'] and r['display']['columns']==80
+label_stop={**entry_stop,'cs_ip':address(loaded,*PHASES['labels'])}
+m=Memory();label_fields=observe_fields(m,label_stop,loaded,'labels')
+assert observe_label_display(m,label_stop,loaded,label_fields)['display']['rows']==25
+m=Memory();m.data['0000:0000']=bytes(4)
+m.data[f'{ds:04X}:DEBE']=struct.pack('<5B3H',7,0,0,1,1,5,0xB000,0)
+r=observe_label_display(m,label_stop,loaded,label_fields)
+assert not r['vector_zero']['matches_declared_handler'] and r['display']['direct_enabled']==0
+m=Memory();m.drift=True;reject(lambda:observe_label_display(m,label_stop,loaded,label_fields))
+m=Memory();m.short=f'{ds:04X}:DEB8';reject(lambda:observe_label_display(m,label_stop,loaded,label_fields))
+reject(lambda:observe_label_display(Memory(),entry_stop,loaded,label_fields))
+reject(lambda:observe_label_display(Memory(),label_stop,loaded,{**label_fields,'mode':2}))
 m=Memory();m.data['0000:0000']=bytes(4)
 assert not observe_rows(m,rows_stop,loaded,entry)['vector_zero']['matches_declared_handler']
 m=Memory();m.drift=True;reject(lambda:observe_rows(m,rows_stop,loaded,entry))

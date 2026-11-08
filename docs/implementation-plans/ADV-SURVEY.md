@@ -247,3 +247,14 @@ gate passes; separate fresh capability/research attempts record actual entry,
 text, count/vector/mode evidence or the specific guard that prevents progress.
 Two successful attempts corroborate this bounded use point, not complete
 chooser return, BIOS preservation or all native histories.
+
+If a notice guard prevents the row-use attempt, retain that stopped attempt
+and its unresolved notice/caller/input obligation. Do not dismiss or bypass
+it under this no-input profile. Independently extend `--labels` to snapshot
+the same named display spans and interrupt-zero pointer at its already
+verified post-label stop. Require exact stop/DS and label bindings, take two
+paused copies, and reject short reads/drift. Synthetic controls must retain
+unexpected vector/mode values as observations rather than forcing the
+expected profile. A separate pair of fresh attempts may establish that
+endpoint state only; it does not admit persistence to the chooser or remove
+the notice/input obligation.

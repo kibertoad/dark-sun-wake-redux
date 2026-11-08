@@ -268,6 +268,27 @@ def signed_word(value):
     return value - 0x10000 if value >= 0x8000 else value
 
 
+def observe_label_display(client, stop, loaded, baseline):
+    """Fixed post-label state only; no pointer following or continuation."""
+    fields = observe_fields(client, stop, loaded, "labels")
+    if fields != baseline:
+        raise ValueError("post-label display needs matching named bindings")
+    ds = loaded + 0x1E36 - 0x1000
+    spans = ((ds, 0xDEB8, 5), (ds, 0xDEBE, 11), (0, 0, 4))
+    first = tuple(checked_read(client, *span) for span in spans)
+    if (tuple(checked_read(client, *span) for span in spans) != first
+            or observe_fields(client, stop, loaded, "labels") != fields):
+        raise ValueError("post-label display changed while paused")
+    mode, rows, columns, classification, sync, base, video, enabled = struct.unpack("<5B3H", first[1])
+    offset, segment = struct.unpack("<HH", first[2])
+    return {"vector_zero": {"offset": offset, "segment": segment,
+                            "matches_declared_handler": (offset, segment) == (0x0174, loaded)},
+            "display": {"mode": mode, "rows": rows, "columns": columns,
+                        "classification": classification, "copy_sync": sync, "base_word": base,
+                        "video_segment": video, "direct_enabled": enabled,
+                        "window": dict(zip(("left", "top", "right", "bottom", "attribute"), first[0]))}}
+
+
 def observe_chooser(client, stop, loaded, projection, baseline, main_labels):
     """Fixed MainGroup wrapper entry only, before the chooser makes a frame."""
     fields = observe_fields(client, stop, loaded, "chooser")
@@ -425,6 +446,9 @@ def main():
             print(json.dumps(labels), flush=True)
             if not labels["all_populated_equal"]:
                 raise RuntimeError("setup labels differ; local prefixes and report retained")
+            report["post_label_display"] = observe_label_display(session.client, observed.stop, loaded, labels["bindings"])
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            print(json.dumps(report["post_label_display"]), flush=True)
         if rows_profile:
             session.client.set_breakpoint(address(loaded, 0x190F, 0x0000))
             operation = session.continue_(until=address(loaded, *PHASES["chooser"]))
