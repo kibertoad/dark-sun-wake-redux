@@ -391,6 +391,17 @@ is unverified. Both contexts closed without further input, writes or
 producer/driver/chooser continuation. Do not reuse this as completed input
 or general keyboard capability; a longer route must resolve pending delivery.
 
+Two --notice-next attempts using5331aeac on2026-11-09 carried the same
+input handle beyond106's verified caller return to the next190F:0000
+guard (FND-SOUND-107). Runs v181-notice-next-20261109-a/ and sibling b/
+are under the setup-parser root. Both return frames identify164C:0C71;
+the original input remains pending at that stop. This fixed continuation
+and bounded incoming-return read are agent; no second invocation's objects,
+poll, input or return is admitted. No chooser entry was reached. Both
+contexts closed without further input/writes or guard bypass. Future work
+must preserve this pending-operation distinction and verify the distinct
+second object profile before allowing its construction or selection.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
