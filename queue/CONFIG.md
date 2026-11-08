@@ -90,6 +90,7 @@ Next ID: Q-CONFIG-015
 
   Caller and incoming transfers: actual Preferences parent/root/event/frame
   and post-child gate/key retention, including exit-time reentrant reads;
+  reuse FND-CONFIG-249's finite event/stack/close bindings, not another local reading;
   unqueried jump/indirect/table/return entries, dynamic/copied/distant-pair
   pointers, relocated-offset reuse and changed streams (FND-CONFIG-242/243).
   For the numerical cross-descriptor pair at file 4B6D2/4B6D8, establish
@@ -302,6 +303,9 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-248's two matching runs remove the unobserved fresh-startup-to-entry
     interval for nine fixed ranges on its admitted route. Other profiles,
     callers, unmonitored state and remaining reader/driver/storage effects stay open.
+    Tried: FND-CONFIG-249 supplies the finite menu event/parent/outer-return
+    frame contract. Actual values and post-child retention still need observation;
+    the static stack balance supplies no native preservation or other-entry proof.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
