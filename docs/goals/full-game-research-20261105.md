@@ -38,20 +38,19 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Stopped at owner request after wrap-up; full research remains unfinished.
-- Stage Slices; Audit unmet. Last gate 2026-11-07:
-  Test.ps1 -Research -ChangedSince 5f7d7c32 -NoRestore passed;
-  2144 entries,208 parity rows,five deviations. Final integration passed Node
-  checks and 758 .NET tests. Existing argument-count, Kaitai and generated
-  skips remain. Use pinned EVIDENCE_PYTHON and supported child-process
-  escalation. No owned orphans found.
+- Resumed 2026-11-08; standing goal active, Audit unmet. No unfinished batch.
+- Stage Slices. Test.ps1 -Research -ChangedSince f21c0f63 -NoRestore passed:
+  2145 entries,208 parity rows,five deviations, existing checker skips.
+  Previous integration passed Node checks and 758 .NET tests.
+  Set EVIDENCE_PYTHON to this checkout's artifacts/evidence-python/Scripts/python.exe;
+  inherited override selects another project's session package. Use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
-  SOUND-082..094; do not repeat local getter/setter/query/reset/cache-progress
+  SOUND-082..095; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15. This is a split, not an answer.
-  Next Q-CONFIG-014: callback track-table/request write admission using
-  SOUND-067/094; known result-width fork is read. Mixed release retains CONFIG-165/167.
+  Next Q-CONFIG-014: actual callback response/table-capacity and alias admission,
+  using SOUND-067/094/095. Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV functions lack committed inventories; six named DSUN claim
@@ -97,7 +96,8 @@ Subsequent e2e20b6e adds SOUND-084's bounded caller classification, no
 answered deletion or complete reading. Validation11.130s; research/drafting
 upper bound4m30s includes context overhead. No closure speedup proved.
 Then SOUND-085..094 add producer/start/
-cleanup classifications, no readings or answered deletions. Keep histories
+cleanup classifications, no readings or answered deletions. SOUND-095 narrows
+table admission without readings or answers. Keep histories
 and census exclusions.
 Upstream proposal: https://github.com/kibertoad/refurbished-dinosaurs/pull/133.
 
@@ -123,4 +123,4 @@ Retained stores under GAME_DIR/analysis/: class-table-closure-20261106/,
 handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
 runtime-error-inventory-20261107/, music-level-contract-20261107/,
 music-driver-contract-20261107/, patch-enumeration-20261107/ and
-sequence-input-census-20261107/.
+sequence-input-census-20261107/ and disc-table-contract-20261108/.
