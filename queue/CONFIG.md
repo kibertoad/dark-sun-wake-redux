@@ -756,7 +756,7 @@ Next ID: Q-CONFIG-015
 - Q-CONFIG-005. FMT-CONFIG-006: What remaining settings-block construction,
   source admission and game-side field effects determine `SOUND.CFG` behavior?
   Settles it: admit setup1429:042D/063A's selecting input, EC/override and EE..FC
-  producers beyond259's conditional group-marking path; classify its22 other EC writes.
+  producers beyond259/260's group/card7C paths; classify20 remaining EC and18 EE writes.
   Admit14A2:0087's actual list indices/counts, label/frame and
   output/record aliasing, span and child lifetime before
   1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
@@ -773,7 +773,7 @@ Next ID: Q-CONFIG-015
   incoming storage, driver effects and implicit accesses above remain open.
   Tried: FND-CONFIG-257 settles both local constructors/overrides, replacing003's
   inference;258 settles adjustment mask/list/apply order and initial-index lookup.
-  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and controlled EC census; other writers and extended-field producers remain.
+  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering; other writers, conversion grammar and storage admission remain.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
