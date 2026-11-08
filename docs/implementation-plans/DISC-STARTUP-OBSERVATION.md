@@ -99,3 +99,36 @@ check_startup_history.py, check_disc_startup.py,
 check_preferences_history.py and check_preferences_readback.py in
 tools/research/rust-dos-runs/. FND-CONFIG-246 and docs/RUNTIME.md record the
 actual native scope; arming a range alone is not positive mutation delivery.
+
+## Continuous history through the opener call
+
+Q-CONFIG-014 retains the gap after the first music gate. Add only the fixed
+`opener-history` mode: keep the same nine startup watches armed from program
+entry through the existing startup_window.py opener call boundary. Reuse
+FND-UI-039 and the admitted native seed-caller validation; do not restore a
+checkpoint, supply input, change guest memory, or accept arbitrary endpoints.
+After the existing music gate, remove its fourteen execution breakpoints,
+retain the RNG entry guard and seed-setter breakpoint, and accept exactly one
+native seed call. Require real mode, the known data/stack segment, bounded
+six-byte return/argument frame, and the startup trampoline and direct call
+checks already implemented by seed_caller. Record the native word argument
+and old seed, then require its validated return and equal resulting seed.
+Keep the setter guard active: reentry, any generator call, unknown stops,
+changed seed outside this call, or observation exhaustion fails closed.
+
+Keep watches active during every continuation, including the seed call.
+At each ordinary boundary recheck all watched values, record the named
+snapshot and require ordered real-mode stop metadata. Finish only at the
+known pre-call opener boundary with its word argument one and admitted DS/SS.
+No opener checkpoint is needed. Retain the exact observed caller/frame and
+native seed state; an argument taken from the game is not a guest seed write.
+Current watches cover changed values, not every write or continuous segments.
+
+Synthetic acceptance covers the complete seed-entry/return/opener sequence,
+interleaved watch events, seed-call frame/binding and short-read refusal,
+wrong seed result, second seed/generator/unknown-stop refusal, watch collisions
+with guarded boundaries, missing endpoint and cleanup. Preserve the legacy
+startup/history controls. Tooling exit is passing controls and Test.ps1.
+The separate research batch repeats the fresh continuous route twice and
+records actual scope in spec and RUNTIME; later opener/map/Preferences
+continuity and other paths remain open even when both runs agree.
