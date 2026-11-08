@@ -39,23 +39,25 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch.
-- Stage Slices. Test.ps1 -Research -ChangedSince bdd2f514 -NoRestore passed:
-  2147 entries,208 parity rows,five deviations, existing checker skips.
+- Stage Slices. Test.ps1 -Research -ChangedSince 21e06e41 -NoRestore passed:
+  2148 entries,208 parity rows,five deviations, existing checker skips.
   Previous integration passed Node checks and 758 .NET tests.
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..238 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..239 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15.
-  Next Q-CONFIG-014: reassess RULE-CONFIG-003's whole-entry obligations using
-  CONFIG-235..238, retaining other gates/callers, driver and writer histories.
+  Whole-entry review complete at 7b9b6636; no qualifying declaration.
+  Next Q-CONFIG-014: slot/table producer-to-query handoff, retaining other
+  gates/callers, driver and writer histories. Time research/tooling/validation/
+  handover separately for the next three batches; compare outcomes after two.
   Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
-  Embedded ADV functions lack committed inventories; six named DSUN claim
+  Embedded ADV functions lack committed inventories; seven named DSUN claim
   nodes do not reassign JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
@@ -87,8 +89,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-CONFIG comparison 11d0b53e to b34bc437: one finding, six commits (five tooling,
-one research); zero complete-reading changes or answered deletions.
+CONFIG comparison 21e06e41 to 7b9b6636: one finding/commit, zero complete-reading
+changes or answered deletions; FND-CONFIG-239 narrows Q-CONFIG-002/014.
+Previous 11d0b53e to b34bc437 added one finding/six commits, zero readings/answers.
 FND-CONFIG-238 narrows Q-CONFIG-014; remaining caller/driver/writer/lifetime
 obligations stay open. No inventory or ownership-map denominator changes.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -119,6 +122,7 @@ handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
 runtime-error-inventory-20261107/, music-level-contract-20261107/,
 music-driver-contract-20261107/, patch-enumeration-20261107/ and
 sequence-input-census-20261107/ and disc-table-contract-20261108/.
+Current review: GAME_DIR/analysis/readback-interface-review-20261108/.
 Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/
 and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
 Preferences: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/
