@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_006.ksy
-evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258, FND-CONFIG-259, FND-CONFIG-260, FND-CONFIG-261, FND-CONFIG-262, FND-CONFIG-263, FND-CONFIG-264, FND-CONFIG-265, FND-CONFIG-266]
+evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258, FND-CONFIG-259, FND-CONFIG-260, FND-CONFIG-261, FND-CONFIG-262, FND-CONFIG-263, FND-CONFIG-264, FND-CONFIG-265, FND-CONFIG-266, FND-CONFIG-267]
 conflicting: []
 split_with: []
 related: []
@@ -103,6 +103,12 @@ The one installed file [FND-CONFIG-257].
   path/field gates. All25 EC/20 EE census writes have local assignments;
   retained walk gaps, excluded mechanisms and actual
   group/count/pointer preservation remain obligations, not immutable state.
+  FND-CONFIG-267 settles local candidate suppression, marked-choice admission
+  and dispatch/fallback gates. The cross-group marker reads use MainGroup
+  indices; actual backing and choice results remain required. Explicit
+  selection ignores producer returns and has no81 arm, unlike fallback.
+  Neither dispatcher success nor candidate marks prove complete settings.
+  Retain03D3 effects, prior state and other entry mechanisms.
   DSUN.EXE roots 4734:0063, 47B9:0236 and initializer4734:0133 are in its
   corresponding inventory. Resource selector47B9:0334 and digital setup
   49EC:015F from FND-CONFIG-024 share sound-driver helpers; their canonical
