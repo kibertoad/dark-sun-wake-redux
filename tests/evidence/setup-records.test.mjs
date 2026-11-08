@@ -92,6 +92,37 @@ function check(code, directory) {
   assert.equal(result.status, 0, result.stderr || result.stdout);
 }
 
+test('notice guard reads only a stable bounded incoming far return at the declared entry', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_return,address
+loaded=0x05BA
+stop={'reason':'breakpoint','cs_ip':address(loaded,0x190F,0),
+      'registers':{'ds':'13F0','ss':'22D0','sp':'0DE2'}}
+class Memory:
+    def __init__(self,short=False,drift=False):self.calls=0;self.short=short;self.drift=drift
+    def read_memory(self,where,size):
+        assert where=='22D0:0DE2' and size==4
+        self.calls+=1
+        body=struct.pack('<HH',0x1234,0xAA0+self.calls*int(self.drift))
+        return NS(data=body[:3] if self.short else body)
+def reject(s,m=None):
+    try:observe_notice_return(m or Memory(),s,loaded)
+    except ValueError:return
+    raise AssertionError('unsupported notice return admitted')
+m=Memory();r=observe_notice_return(m,stop,loaded)
+assert m.calls==2 and r['return_ip']==0x1234 and r['return_cs']==0xAA0
+assert r['canonical_return_segment']==0x14E6
+for key,value in [('reason','paused'),('cs_ip',address(loaded,0x190F,1))]:
+    s=copy.deepcopy(stop);s[key]=value;reject(s)
+for key,value in [('ds','0000'),('ss','0000'),('ss','A000'),('sp','FFFD'),('sp','10000'),('sp','invalid')]:
+    s=copy.deepcopy(stop);s['registers'][key]=value;reject(s)
+reject(stop,Memory(short=True));reject(stop,Memory(drift=True))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

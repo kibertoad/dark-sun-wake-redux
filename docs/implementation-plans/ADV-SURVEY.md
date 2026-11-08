@@ -258,3 +258,16 @@ unexpected vector/mode values as observations rather than forcing the
 expected profile. A separate pair of fresh attempts may establish that
 endpoint state only; it does not admit persistence to the chooser or remove
 the notice/input obligation.
+
+For Q-SOUND-010 after FND-SOUND-101, extend the existing notice guard
+with a fixed incoming far-return observation only. FND-EXE-483 identifies
+190F:0000 as the entry before its prologue. Require that exact relocated
+breakpoint and declared DS, word SS/SP, a nonwrapping four-byte stack span
+above loaded data and below conventional-memory limit0xA0000. Read only
+SS:SP twice; reject short reads or drift. Report return CS/IP and its
+canonical segment when representable, without following the return target,
+arguments or any pointer. End this guarded attempt normally without resuming,
+input or guest writes. Synthetic controls cover wrong stop/DS, malformed
+registers, stack bounds, short reads and drift, including a relocated load.
+Exit: selected tooling gate passes; a separate research attempt records the
+caller and checks the retained static callsite before planning continuation.

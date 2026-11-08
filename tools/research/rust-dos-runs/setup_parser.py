@@ -357,6 +357,25 @@ def observe_rows(client, stop, loaded, entry):
                         "window": dict(zip(("left", "top", "right", "bottom", "attribute"), first[1]))}}
 
 
+def observe_notice_return(client, stop, loaded):
+    """FND-EXE-483 entry only: four stack bytes, no pointer following."""
+    if (stop.get("reason") != "breakpoint"
+            or stop.get("cs_ip") != address(loaded, 0x190F, 0)
+            or word_register(stop, "ds") != loaded + 0x1E36 - 0x1000):
+        raise ValueError("notice return needs declared stop and DS")
+    ss, sp = (word_register(stop, key) for key in ("ss", "sp"))
+    linear = ss * 16 + sp
+    if sp + 4 > 0x10000 or linear < (loaded + 0x1E36 - 0x1000) * 16 + 0xECCE or linear + 4 > 0xA0000:
+        raise ValueError("unsupported notice entry stack")
+    frame = checked_read(client, ss, sp, 4)
+    if checked_read(client, ss, sp, 4) != frame:
+        raise ValueError("notice return changed while paused")
+    ip, cs = struct.unpack("<HH", frame)
+    canonical = cs - loaded + 0x1000
+    return {"ss": ss, "sp": sp, "return_ip": ip, "return_cs": cs,
+            "canonical_return_segment": canonical if 0 <= canonical <= 0xFFFF else None}
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -455,6 +474,11 @@ def main():
             observed = wait_same_operation(session, operation)
             report["last_stop"] = observed.stop
             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            if observed.stop.get("cs_ip") == address(loaded, 0x190F, 0):
+                report["notice_return"] = observe_notice_return(session.client, observed.stop, loaded)
+                (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                print(json.dumps({"notice_return": report["notice_return"]}), flush=True)
+                return
             chooser, (wanted, actual) = observe_chooser(session.client, observed.stop, loaded, projection,
                                                      labels["bindings"], labels["groups"]["main"]["pointer"])
             report["chooser_entry"] = chooser
