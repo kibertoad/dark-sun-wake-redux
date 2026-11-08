@@ -77,167 +77,109 @@ Next ID: Q-CONFIG-015
 
 - Q-CONFIG-014. RULE-CONFIG-003: What value and state does the Preferences
   entry obtain from music-level readback on its admitted caller/driver paths?
-  Settles it: complete the entry/getter/driver-result/byte-store contract with
-  actual configuration, frame, driver/sequence and storage admission, all
-  relevant writer histories and indirect targets. Reuse the existing local
-  branches and source restrictions below; do not grow this into unrelated
-  audible output or new-game defaults. Unknown effects on the readback state
-  remain obligations until resolved, including those shared with Q-CONFIG-002.
-  For RULE-CONFIG-003 retain actual configuration/slot/sequence admission,
-  driver-return and write effects, and computed/copied music-level writers;
-  reuse FND-CONFIG-236's local sentinel exits and signed setter clamps, and
-  FND-CONFIG-237's Copy-driver query fields, immediate writes and ADV 11 reset
-  stores. Establish actual registration/payload/storage admission and later
-  current/target writers, changed or missing function tables and reached sound
-  update effects; those local field identities are no longer unread.
-  Search mechanisms and exclusions must be explicit.
-  FND-CONFIG-242 supplies the installed getter's direct-call and neighboring
-  declared-segment/raw-offset-pair census, with the known Preferences call
-  as its sole target and independent positive control. Retain actual
-  Preferences root/event/frame admission and exit reentrancy; unqueried
-  jump/indirect/table/return entries, dynamic/copied/distant-pair pointers,
-  relocated-offset reuse and changed streams. These modeled forms are no
-  longer an unread caller census; they exclude no writer/lifetime history.
-  FND-CONFIG-243 connects the two ordinary opener calls with their local
-  event/key gates, child/frame reload and readback order. Retain actual parent,
-  event/frame and child-state histories and exit-time reentrancy. The additional
-  numerical pair at file 4B6D2/4B6D8 spans distinct descriptor fields; whether
-  a consumer combines/transforms them as an incoming pointer remains open,
-  alongside the previously excluded construction and transfer mechanisms.
-  FND-CONFIG-244 excludes construction by the admitted ordinary walk/fixup
-  consumers. Retain another/computed/copied reader, transformed fields,
-  changed bindings or alternate entries as the remaining pair mechanism.
-  FND-CONFIG-239 completes the normal installed-source interface partition:
-  ten Copy resources have AE/AF/B1, six Copy resources lack them, and ADV 10
-  selects a resident DIGPAK adapter that also lacks them. Remove an unread
-  ADV 10 Copy table from that route's requirements. Actual slot/table
-  producers and later writes, frame/sequence backing and indirect or other
-  media admission remain, including effects outside those missing requests.
-  FND-CONFIG-240 connects ordinary Copy publication through selector 64's
-  sixteen installed descriptor providers and both caller-result stores.
-  Remove unread local publication/check order, source versions, descriptor
-  result propagation and caller destinations from the remaining work. Retain
-  actual image/table/slot/frame and compatibility-word admission; ADV 20's
-  DOS/environment/termination conditions; remaining lifecycle entry mechanisms,
-  reached cleanup effects and later writer/alias histories. Game slot-word clearing
-  alone does not admit library-table removal or image lifetime.
-  FND-CONFIG-241 identifies reset's bounded whole-array clear and both ordinary
-  reset/shutdown caller pairs. Retain actual backing and intervening writes,
-  actually reached alternate-helper effects, shutdown's selector-68 targets
-  and timer children, scratch/frame preservation and excluded removal entries.
-  A direct-call miss does not prove removal unreachable or table preservation.
-  Reuse FND-CONFIG-149/155/159, FND-SOUND-092/093 and
-  FND-PARTY-320/321/322 for the alternate initialization/shutdown bodies,
-  ready/mode predicates and known registered-exit route. Under their intact-
-  zero/frame model the outer exit has no finite ordinary return: do not demand
-  blanket state preservation across it as a returning getter child. Retain
-  reentrant exit-time readers, actual ready/mode/callback-table histories,
-  changed-frame/nonlocal rejoining and other entry mechanisms. FND-PARTY-323
-  excludes PARTY-322's unchanged separated alias-word pair: both words are
-  relocated and the loaded pair does not name shutdown. Retain later mutation,
-  arithmetic, different pairing and excluded pointer mechanisms instead.
-  FND-PARTY-324/325/326/327 already classify the known mode producers, three
-  operand-interior write-like candidates and their modeled near/far entry
-  forms. Reuse the finite source regions, controls and exclusions; retain
-  actual between-read mode history, adjusted-pointer/block/string writers,
-  physical aliases, changed code and unqueried incoming-transfer forms.
-  Initializer children and state histories are independently required, not
-  excluded by that conditional exit result. Local alternate helper bodies and
-  registered caller identity are no longer unread obligations.
-  FND-SOUND-096 admits the unchanged installed configuration and known disc
-  callback path in two native startups through the first music gate. Reuse
-  its actual metadata, allocation and paired final write, whose physical span
-  is disjoint from captured library fields. The observed gate is zero and
-  slot/getter handle FFFF. FND-CONFIG-238 separately admits the actual
-  Preferences caller/frame, getter return 255 and byte store 100-to-255 on the
-  fixed restored play-ready route. Retain other gates/callers, non-sentinel
-  handle and driver-query admission, later/aliased writers and uninterrupted
-  startup-to-entry histories; a restored pair does not establish that history.
-  Also retain actual extent/aliases, per-track response freshness and
-  intervening writer histories for the earlier startup bundle.
-  Do not repeat default-profile callback admission without a new question;
-  other configurations, targets and reinitialization remain outside that run.
-  FND-SOUND-083 excludes the four ordinary song-request arms from obtaining
-  sequence payloads in the faithful, validated installed archive set. Establish
-    actual archive-record/configuration admission and other media, bypass or
-    indirect setup sources before extending TIMB parsing. FND-SOUND-084
-    classifies both remaining known direct setup sites: neither constructs a
-    separate payload; both explicitly publish DS:3442 rather than getter handle
-    DS:3464. Their stable-configuration gates exclude setup locally. Retain
-    changed configuration/binding, entry after those gates and any child or
-    computed/copied propagation into readback state; do not reread their local
-    argument/result classification. FND-SOUND-085 classifies the listed literal
-    handle writers and source-initialized FFFF words: do not repeat that scan
-    with unchanged inputs. Establish which initial/prior 3440 value survives
-    acquisition failure and the start request's child effects before its
-    unchecked post-call copy into 3464. FND-SOUND-086 settles ADV 11's
-    sentinel bypass and admitted non-playing start: with stable table/binding,
-    valid disjoint sequence/frame storage it resets level to 100, sets state
-    one and preserves the game's handle words. Retain actual entry-state and
-    storage admission and active already-playing cleanup. FND-SOUND-087
-    settles quiet restart for empty note slots and inactive signed flags;
-    retain actual note/flag histories and 2C1D count/occupied-slot admission.
-    FND-SOUND-089 reads the local registration/release/pending-removal
-    transitions and their conditional count-preservation relation. Establish
-    actual nonzero block segments, valid slot handles, completed registration,
-    serialized histories and interference/other writers; pending release needs
-    its selector-2F event and cleanup return, not merely a timer invocation.
-    FND-SOUND-090 reads initialization's count clear and implicit eight-slot
-    reset before children. Retain actual entry/completion and serialization,
-    later initialization/child effects, remaining computed/block/alias writes
-    and actual 2FF0 target/DS binding. FND-SOUND-091 reads the known saved
-    game target and ADV 11 B5 branch semantics; do not leave that target as
-    an unread arbitrary callback. Retain registration success, slot/target/DS
-    writers, other targets and branch-table count/backing/offset admission.
-    The literal census still records an unresolved transfer and is not
-    negative proof of actual target preservation.
-    FND-SOUND-092 reads the installed-profile bit-08 override and three
-    zero-enable bypasses. Establish actual loaded configuration, ready-byte/
-    caller admission and gate/slot preservation across the named callback,
-    release and digital-setup children; distinguish first startup from
-    teardown/reinitialization. Those local driver/block gates are no longer
-    unread. Prioritize actual profile admission before more driver internals.
-    FND-SOUND-093 classifies the size-only pre-setup producer and paired
-    retained-buffer admission: both-null and stable both-nonnull routes
-    invoke no release in that region. Retain actual pointer/reuse-byte
-    histories before the tests; release callback/default metadata, return and
-    gate effects apply to reached mixed-pointer paths. Do not carry a generic
-    heap blocker across the admitted no-release path.
-    FND-SOUND-094 reads configuration-callback selection and the known
-    2660:052D ordinary return words. The caller tests AX, while both known
-    failure paths return AL zero with AX=4E00; its exact-zero error successor
-    is excluded for that admitted target/continuation. Retain actual pointer/
-    target histories, nonreturning paths and device/table/write preservation;
-    passing the word test is not device success. No-call paths incur no
-    callback execution effects.
-    FND-SOUND-095 reads metadata acceptance, per-track acquisition and final
-    table-write ordering. Establish fresh response bytes, stable first/last
-    metadata across children, and the current pointer's capacity for
-    7*(last+2) bytes with nonwrapping addressing and disjoint write domains.
-    Retain reused-table size history, ignored request/allocation outcomes,
-    actual heap/frame/segment admission and external writes. The final dword
-    write has no null guard after an empty loop or failed acquisition; those
-    local branches and their geometry are no longer unread.
-    Retain
-    mapping values and all selected registered blocks. Reuse the local
-    2CF3/2635/2483/25FA/3F01 contracts. FND-SOUND-088 closes the finite
-    1B1D/1B88/output-helper reading: retain actual voice/channel/assignment
-    indices, stable code and valid driver-data/frame write domains disjoint
-    from game handles, plus port-instruction completion and asynchronous
-    effects relevant to readback. Those descendants are no longer unread.
-    Retain
-    other/missing driver targets and later setters; do not reread the local
-    sentinel/fresh-start/reset bundle. Retain nonliteral/block/alias writes,
-    unknown entries and actual segment/storage histories outside the census.
-    For paths that do
-  reach ADV 11 setup, reuse FND-SOUND-082 and retain actual TIMB count/backing/
-  stop-key, cache flags/retention and arena state across the patch handoff.
-  A finite list or sequence handle alone does not prove setup publication.
-  Inherited evidence: FND-CONFIG-235/236/237 and FND-SOUND-082/083; the
-  research attempts remain under parent Q-CONFIG-002. The current finding
-  supplies the installed-input restriction, not live state or a complete
-  reading. Q-CONFIG-002 keeps initialization, voice synchronization and other
-  controls/output questions. Native screen frames remain Q-CONFIG-001.
+  Settles it: complete RULE-CONFIG-003's entry/getter/driver-result/byte-store
+  contract with actual configuration, caller/frame, driver/sequence and storage
+  admission, relevant writer/lifetime histories and indirect targets. Unknown
+  effects on readback remain blocking even when shared with Q-CONFIG-002.
+  Audible output, new-game defaults and native screen frames are separate.
+  Reuse FND-CONFIG-235..244's entry/getter/setter, source-interface, provider,
+  lifecycle and ordinary consumer contracts; FND-SOUND-082..096's setup, callback,
+  profile and state contracts; FND-PARTY-320..327 and FND-CONFIG-149/155/159's
+  lifecycle/producer/entry results. Do not repeat answered local branches,
+  field identities or unchanged controlled censuses. Remaining obligations:
+
+  Caller and incoming transfers: actual Preferences parent/root/event/frame
+  and post-child gate/key retention, including exit-time reentrant reads;
+  unqueried jump/indirect/table/return entries, dynamic/copied/distant-pair
+  pointers, relocated-offset reuse and changed streams (FND-CONFIG-242/243).
+  For the numerical cross-descriptor pair at file 4B6D2/4B6D8, establish
+  another/computed/copied reader, transformed fields, changed binding or
+  alternate entry that could invoke Preferences or change its inputs.
+  FND-CONFIG-244 excludes its admitted ordinary walk/fixup consumers. Preserve
+  each census's regions, mapping, controls and exclusions, not a global
+  absence claim from direct-call or pair misses.
+
+  Lifecycle: actual ready/mode/callback-table histories, reset/removal entry,
+  backing, intervening writes and reached alternate-helper/cleanup effects;
+  selector-68 driver and timer children and scratch/frame preservation
+  (FND-CONFIG-240/241, FND-PARTY-320..327). Under the recorded intact-zero/frame
+  model the known outer exit has no finite ordinary return: no blanket
+  preservation proof is needed across it as a returning getter child.
+  Reentrant exit readers, changed-frame/nonlocal rejoining and other entries
+  remain. The relocated shutdown pair excluded by FND-PARTY-323 is not the
+  different numerical pair retained by FND-CONFIG-243. Known binary mode stores
+  do not establish between-read histories or exclude adjusted-pointer,
+  block/string, physical-alias, changed-code or alternate-stream writers.
+
+  Binding and input: actual configuration/image/table/slot/frame and
+  compatibility-word admission; ADV 20 DOS/environment/direction/termination
+  conditions; later/aliased table writes and other media/indirect interfaces
+  (FND-CONFIG-237/239/240). Game slot-word clearing alone does not establish
+  library-table removal or image lifetime. Missing ordinary AE/AF/B1
+  requests do not exclude effects through other reached interfaces.
+
+  Sequence publication and lifetime: actual registration/payload/storage,
+  nonzero block segments and valid slot handles, completed registration,
+  serialized count/slot histories, interference and other writers; pending
+  release requires its selector-2F event and returning cleanup (FND-SOUND-089).
+  Retain actual initialization entry/completion, later child effects and
+  computed/block/alias writers (FND-SOUND-090). For reached ADV 11 setup retain
+  TIMB count/backing/stop-key, cache flags/retention and arena state across
+  patch handoff (FND-SOUND-082). A finite list/handle does not admit publication.
+
+  Setup sources and handles: actual archive-record/configuration admission,
+  other media or bypass/indirect payload sources before extending TIMB
+  parsing (FND-SOUND-083/084). Retain changed configuration/bindings, entry after
+  their gates and child/computed/copied propagation from alternate result
+  stores into readback. Establish which initial/prior source word 3440
+  survives acquisition failure and the start child's effects before its
+  unchecked post-call reload/copy into getter handle 3464 (FND-SOUND-085).
+  The alternate published word 3442 does not itself admit that getter handle.
+
+  Reached driver effects: actual entry-state and valid disjoint sequence/
+  frame domains for the sentinel/fresh-start/reset contracts, plus active
+  already-playing cleanup, note/flag histories and 2C1D count/occupied-slot
+  admission (FND-SOUND-086/087). Retain mapping values, all selected registered
+  blocks, actual voice/channel/assignment indices, stable code and driver-
+  data/frame domains disjoint from game handles; port completion and relevant
+  asynchronous effects (FND-SOUND-088). Reuse 2CF3/2635/2483/25FA/3F01 and
+  the finite 1B1D/1B88/output-helper reading. Other/missing targets and later
+  setters, nonliteral/block/alias writes and unknown entries remain.
+
+  Callback: actual registration success, saved target/DS and current slot
+  histories, other writers/targets and branch-table count/backing/offset
+  admission (FND-SOUND-090/091). The known saved game target and B5 semantics
+  are read; the literal census's unresolved transfer remains and gives no
+  negative proof of preservation.
+
+  Profile and startup children: actual loaded configuration, ready-byte/
+  caller and gate/slot history through callback, release and digital setup;
+  distinguish first startup from teardown/reinitialization (FND-SOUND-092).
+  Retain pointer/reuse-byte histories before retained-buffer tests. Callback/
+  default-release selection, metadata/backing, return and gate effects apply
+  to reached mixed-pointer paths, not a generic heap blocker across admitted
+  no-release paths (FND-SOUND-093, FND-CONFIG-165/167). For configuration callbacks
+  retain actual pointer/target histories, nonreturn and device/table/write
+  preservation; the known 2660:052D full-word failure test is read and does
+  not establish success. No-call paths incur no callback effects (FND-SOUND-094).
+
+  Table-write admission: fresh per-track response bytes, stable first/last
+  metadata across children, current pointer capacity for 7*(last+2) bytes,
+  nonwrapping addressing and disjoint write domains; reused-table size
+  history, ignored request/allocation outcomes, actual heap/frame/segment
+  admission and external writes (FND-SOUND-095). Its empty-loop/failure final
+  write geometry and lack of null guard are already read.
+
+  Native evidence limits: FND-SOUND-096 admits the unchanged configuration and
+  known disc callback through the first music gate; FND-CONFIG-238 separately
+  admits the restored Preferences caller/frame, result and byte store. Retain
+  other gates/callers, non-sentinel driver-query admission, later/aliased
+  writers, actual extent/response freshness and uninterrupted startup-to-entry
+  histories. Do not repeat the default-profile callback or restored pair
+  without a new question; other configurations/targets/reinitialization stay
+  outside those observations. Inherited research attempts remain under
+  Q-CONFIG-002, which keeps initialization, voice synchronization and other
+  controls/output. Native frames remain Q-CONFIG-001.
     Tried: FND-SOUND-084 connects the two alternate direct callers with their
     shared payload/control-block producers and result consumer. The known
     direct-site classification is answered; indirect entry and state history
