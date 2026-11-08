@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince fb493866 -NoRestore passed:
-  2181 entries,208 parity rows,five deviations, existing skips (2026-11-09).
+- Stage Slices. Test.ps1 -Research -ChangedSince 97f64346 -NoRestore passed:
+  2182 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,8 +75,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-SOUND-010: actual mode/geometry and backing/frame admission;
-  reuse SOUND-097/098's connected child boundary and EXE-487/488/489.
+- Next Q-SOUND-010: native query/history and backing/frame admission;
+  reuse SOUND-097..099's connected child boundary and EXE-487/488/489.
   SOUND Static9,Live1; BIOS SI/DI/ES, port progress and native input remain.
   Q-CONFIG-005 retains constructor/dialog admission, source history and drivers.
   Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
@@ -113,10 +113,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Currente18f988f to31a420b9: zero qualifying readings or answered deletions;
-Q-SOUND-010 narrowed by SOUND-097/098's event/local-child obligations;
-remaining native/storage admission stays explicit. Two findings/two research commits;
-unchanged inventory/ownership denominators. Prior CONFIG comparison at e18f988f.
+Current97f64346 to1066c16f: zero qualifying readings or answered deletions;
+Q-SOUND-010 narrowed by SOUND-099's five producer sites and mode forwarding;
+native/storage admission remains. One finding/one research commit;
+unchanged inventory/ownership denominators. Prior comparisons at97f64346/e18f988f.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -159,4 +159,4 @@ card81-file-helpers-ghidra.log and card82-file-instructions.txt are retained.
 Reuse producer-dispatch/selection and post-dispatch-state reports (CONFIG-267/268);
 index-ebce/index-ebd0 sets retain269's census. chooser-continuation-ghidra.log
 and chooser-event-binding-instructions.txt retain SOUND-097; reuse EXE helper findings.
-SOUND-098 names the retained display/backing/scroll reports.
+SOUND-098/099 name retained display/backing/state/census reports.
