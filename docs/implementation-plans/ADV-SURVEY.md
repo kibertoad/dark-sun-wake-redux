@@ -371,7 +371,7 @@ guards, using the existing named wrapped-local observer with second-object
 bindings and prefix lengths derived from the admitted entry snapshot.
 Require constructed choice/registration counts and selector to match the
 entry profile, input modeFFFF and retained objects/prefixes before polling.
-With no new event, observe up to512 returns at0554, checking each fixed
+With no new event, observe up to2048 returns at0554, checking each fixed
 frame/mode and requiring AXFFFF. After each stop observe the same original
 input-operation handle without waiting for host time to advance it. Stop
 on done, a nonpending failure, unexpected guest result/guard or budget limit;
@@ -382,3 +382,11 @@ count/selector mismatch, pending-to-done sequencing, wrong stops/results and
 budget/failure behavior. Exit: tooling gate passes; paired fresh research
 attempts record second objects/construction and actual delivery completion
 or the exact remaining boundary. Endpoint coherence is not lifetime proof.
+
+The first second-wait attempt's512 polls all returnedFFFF with delivery
+pending and final emulated time385494883ns; it ended its observation budget
+and closed. Retain it as a diagnostic, not failed native input. The expanded
+2048-poll profile additionally records emulated timestamps and delivery detail
+at each same-handle observation, to distinguish progress from a mere pending
+label. No restart of that terminal attempt or replay of its input is admitted;
+new attempts start fresh under the expanded tooling and keep all guards.

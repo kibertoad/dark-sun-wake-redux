@@ -363,14 +363,14 @@ class Session:
     def observe(self,op,timeout):
         if op is delivery:
             pending=self.n<self.done_after
-            return NS(pending=pending,state='pending' if pending else self.state)
+            return NS(pending=pending,state='pending' if pending else self.state,detail={})
         stop=copy.deepcopy(s);stop['cs_ip']='190F:0554';stop['registers'].update(sp='F674',ax=self.ax)
         return NS(pending=False,stop=stop)
     def send_input(self,*args):raise AssertionError('second event sent')
 result={};session=Session();wait_second_delivery(session,loaded,o,p,delivery,result,lambda:None)
 assert session.n==2 and result['completed'] and len(result['polls'])==2
 assert result['polls'][0]['delivery']['pending'] and not result['polls'][1]['delivery']['pending']
-for session in (Session(done_after=513),Session(state='failed'),Session(ax='000D')):
+for session in (Session(done_after=2049),Session(state='failed'),Session(ax='000D')):
     reject(lambda:wait_second_delivery(session,loaded,o,p,delivery,{},lambda:None))
 bad=copy.deepcopy(p);bad['locals']['choice_rows']=1
 reject(lambda:wait_second_delivery(Session(),loaded,o,bad,delivery,{},lambda:None))

@@ -543,14 +543,16 @@ def wait_second_delivery(session, loaded, objects, poll, delivery, result, retai
             or not all(poll[key] for key in ("selector_retained", "style_retained", "prefixes_retained"))):
         raise ValueError("unsupported second notice wait baseline")
     result["polls"] = []
-    for _ in range(512):
+    for _ in range(2048):
         operation = session.continue_(until=address(loaded, 0x190F, 0x0554))
         observed = wait_same_operation(session, operation)
         result["last_stop"] = observed.stop
         retain()
         value = observe_notice_input(session.client, observed.stop, loaded, objects["entry"], "poll")
+        value["emu_ns"] = observed.stop.get("emu_ns")
         delivered = session.observe(delivery, timeout=0)
         value["delivery"] = {"pending": delivered.pending, "state": delivered.state}
+        value["delivery_detail"] = delivered.detail
         result["polls"].append(value)
         retain()
         if value["ax"] != 0xFFFF:
