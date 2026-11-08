@@ -159,7 +159,7 @@ class Readback:
         return item
 
 
-def observe_readback(session, delta, report, retain, history=None, seed_expected=None):
+def observe_readback(session, delta, report, retain, history=None, seed_expected=None, parent=None):
     """Fixed Tab/getter/store route, shared by restored and fresh observers."""
     rng, trace, flow = Recorder(delta), Readback(delta), MenuFlow()
     generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
@@ -186,6 +186,10 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
                 history._stop(stop)
                 history.check(session.client)
                 history.sequence, history.time = stop["seq"], stop["emu_ns"]
+        if parent and parent.is_site(stop):
+            parent.boundary(session.client, stop)
+            retain()
+            continue
         delivery = observe_delivery(session, operation, delivery)
         report["last_delivery"] = {"input": input_name, "state": delivery.state}
         if not recorded and delivery.state == "done":
@@ -214,6 +218,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             action = flow.poll(current, delivery.state == "done")
             if action:
                 input_name = action
+                if parent and action == "click":
+                    parent.arm(session.client)
                 operation = (session.send_input("mouse", {"action": "move", "x": 160, "y": 101, "coords": "virtual"})
                              if action == "move" else select_preferences(session, poll))
                 delivery, recorded = None, False
@@ -222,6 +228,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             if flow.phase != "getter":
                 raise ValueError("Preferences getter reached before its fixed input route")
             report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
+            if parent:
+                parent.nested(session.client, stop, "getter")
             for offset in ((0x003E,) if history else (0x003E, 0x0041)):
                 session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
             print("getter-entry", flush=True)
@@ -231,12 +239,16 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
                 session.client.set_breakpoint(f"{trace.caller:04X}:0041", once=True)
         elif trace.caller is not None and site == f"{trace.caller:04X}:0041":
             report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
+            if parent:
+                parent.nested(session.client, stop, "store")
             if delivery.state != "done":
                 raise ValueError("Preferences click delivery incomplete at endpoint")
             if history:
                 history.finish(session.client)
                 history.close(session.client)
                 history.complete()
+            if parent:
+                parent.complete()
             report["passed"] = True
             break
         else:
@@ -249,8 +261,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
-            or len(sys.argv) == 4 and sys.argv[3] != "history"):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history]")
+            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent")):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
@@ -277,6 +289,11 @@ def main():
     report = {"source": sys.argv[1], "passed": False, "inputs": [], "draws": [], "writes": [], "readback": [],
               "limits": "fixed restored-map getter/store; no continuous startup preservation, later UI, audible output or other caller proof"}
     history = ValueHistory(delta) if history_mode else None
+    parent = None
+    if len(sys.argv) == 4 and sys.argv[3] == "parent":
+        from preferences_parent import ParentTrace
+        parent = ParentTrace(delta)
+        report["parent"] = parent.report
     if history:
         report["value_history"] = history.report
     with RustDosSession(settings) as session:
@@ -294,7 +311,7 @@ def main():
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             if history:
                 history.arm(session.client, stop)
-            observe_readback(session, delta, report, retain, history)
+            observe_readback(session, delta, report, retain, history, parent=parent)
         except Exception as error:
             report["error"] = str(error)
             raise

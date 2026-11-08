@@ -115,3 +115,44 @@ new and existing observer controls and the Research gate before tooling commit.
 Exit: documented bounded command and passing controls. A separate research
 batch attempts native observation with the pinned muted owned session, records
 the actual capability/result and narrows only the admitted interval.
+
+## Menu parent and event frame
+
+Q-CONFIG-014 retains actual menu parent/event and post-child admission after
+CONFIG-248. CONFIG-249 supplies the finite named frame bindings. Add only
+optional `parent` mode to the strict restored-map command, retaining its
+existing history, source/frame checks, input route, RNG recorder and endpoint.
+No fresh run, new gesture, guest write, arbitrary frame read or extra
+continuation after the paired byte store is admitted.
+
+After native selection of BUTN10303 and before its existing click, resolve
+the loaded menu handler through resident trampoline56B9:0034. Require its
+far jump to offset0 and verify the known call at menu+0281 targets5782:0048.
+Arm only menu+025E, menu+0281 and that fixed Preferences trampoline. At the
+arm, read event kind/control at SS:BP+6/+8, handler return at BP+2, SP/BP/SS,
+and the two known menu pointers DS:1431 and4E46:0000. Require kind2/control10303,
+the ordinary handler SP=BP-4, equal nonnull menu pointers, and bounded
+WIND10500 tag/number/flags reads while that backing is still live.
+
+At the pre-Preferences call require the same actual event/frame/handler
+return pair after the frame/flush/close children; require both menu pointers
+cleared and never dereference the old window again. At the resident
+Preferences trampoline require the native outer return menu:+0286, unchanged
+parent BP/SS and SP decreased by four. Do not assume a final jump was patched
+before this first trampoline entry. At the existing getter and store points,
+reuse Readback's actual loaded Preferences binding, require the CONFIG-249
+nested SP/BP relationships, saved parent BP and unchanged outer return/event
+slots. Record each actual stop, pair and named value; these are sampled frame
+observations, not a continuous frame-write or arbitrary-root census.
+
+Require all five parent observations, completed click, paired getter/store
+and owned watch cleanup before parent and overall completion. Reject wrong
+trampolines, calls, mode, segments, wraps, short reads, phase/frame/event
+changes, unexpected parent/watch collisions or a missing point. Keep the
+old commands/reports and fresh-route behavior unchanged unless parent mode
+is explicitly selected. Add synthetic controls for these boundaries and the
+shared-loop integration; run all focused controls and Test.ps1 Research.
+A separate research batch repeats the restored route twice, records actual
+capabilities and removes only this route's missing parent/event samples.
+Keyboard gates, other roots/entries, exit-time reentrancy, between-sample
+writes and the remaining driver/storage conditions stay open.
