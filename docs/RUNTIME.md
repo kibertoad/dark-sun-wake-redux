@@ -154,6 +154,21 @@ seed occur; one admitted draw is recorded. All owned muted sessions close
 normally. Use the plan's Forwarded P-key gate and callback admission section;
 do not repeat the unchanged positive-route attempt without new evidence.
 
+Fixed `keyboard-rejection` mode passed twice on 2026-11-08 in siblings
+v181-q014-rejection-c-20261108/ and v181-q014-rejection-d-20261108/.
+The strict restore's named mode/turn baseline, actual turn-rejection epilogue,
+matched menu return and completed Tab/P delivery with ready Game Menu10500
+are agent under current pins (FND-CONFIG-253). Post-return one-millisecond
+samples retain callback/opener/getter/RNG guards; readiness and delivery
+define completion. The explicit result is keyboard-turn-rejected and its
+no-change named history supplies no positive mutation control. No guest
+writes or seed changes occur; one checked draw is recorded and both owned
+muted sessions close normally. Earlier sibling a exhausts512 builder stops
+with P pending; b is refused on redundant breakpoint deletion. Both remain
+incomplete. The Native turn-rejection completion plan section gives the
+corrected fixed command/controls. A positive callback/reload/opener route,
+other states/roots and between-stop writer histories remain unadmitted.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed
