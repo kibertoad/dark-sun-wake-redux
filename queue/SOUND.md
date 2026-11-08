@@ -171,7 +171,7 @@ Next ID: Q-SOUND-013
   Settles it: later group lifetime beyond FND-SOUND-041's populated-record
   and modeled extent endpoint; heap/break/state admission for the remaining
   label/vector/chooser allocations;
-  retained far-zero vector storage; chooser child/frame preservation and
+  retained far-zero vector storage; chooser child/frame preservation after097's event-binding contract and
   native reachability; and nonpositive, larger or other-label profiles
   outside FND-SOUND-022's conditional local proof. Local cardinality/index,
   installed source profile, count conversion, allocation rounding/clearing
@@ -224,6 +224,7 @@ Next ID: Q-SOUND-013
   primary-key occurrence uncertainty across all 26 records. It preserves
   the first MainGroup record's missing DigitalAddress and duplicate Dma;
   actual context/order, heap spans, alias/retention and chooser state remain.
+  Tried: FND-SOUND-097 binds completion to the registered ordinal, AL-only poll rejection, transformed-byte final test and cleanup-before-return; drawing/backing/mode/interrupt preservation, table/frame aliases and native delivery remain. Reuse EXE-487/488/489; their helper contracts are not new gaps.
   Blocks: complete setup-selection interpretation of the named formats.
 - Q-SOUND-009. RULE-SOUND-004: Does any computed or bulk write change the voice tables at
   `DS:290A..291E`? Settles it: a census of block copies, string stores and computed stores whose
