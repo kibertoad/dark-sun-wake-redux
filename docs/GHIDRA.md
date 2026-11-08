@@ -437,4 +437,15 @@ fixture and expected bytes; never run it on a licensed program. Completion
 markers and classifications are checked because headless exit success can
 hide a script exception. This optional installed-Ghidra test needs no GAME_DIR.
 
+Ghidra 12.1.3 has a known x86 register-form segment-load display defect:
+opcode 8E with register addressing renders its operands in reverse order.
+The installed language definition's p-code assigns the segment register
+correctly. For FND-CONFIG-240's ADV 20 helper, verify direction from the
+encoding and independent Capstone decoding, not the displayed operand order
+or operand indices. The exact defect is already reported in upstream issues
+[9635](https://github.com/NationalSecurityAgency/ghidra/issues/9635) and
+[9739](https://github.com/NationalSecurityAgency/ghidra/issues/9739);
+no duplicate issue or local language patch was needed. This display limitation
+does not validate other decoded instructions or native segment admission.
+
 Bound each headless run in a dedicated output directory with provenance and an active marker. After committing its independently worded records and regeneration procedure, follow [ANALYSIS-OUTPUTS](ANALYSIS-OUTPUTS.md). Preserve canonical projects, inputs and unresolved reports.

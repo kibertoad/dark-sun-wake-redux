@@ -97,6 +97,14 @@ Next ID: Q-CONFIG-015
   ADV 10 Copy table from that route's requirements. Actual slot/table
   producers and later writes, frame/sequence backing and indirect or other
   media admission remain, including effects outside those missing requests.
+  FND-CONFIG-240 connects ordinary Copy publication through selector 64's
+  sixteen installed descriptor providers and both caller-result stores.
+  Remove unread local publication/check order, source versions, descriptor
+  result propagation and caller destinations from the remaining work. Retain
+  actual image/table/slot/frame and compatibility-word admission; ADV 20's
+  DOS/environment/termination conditions; reset/removal callers, cleanup
+  effects and continuous later writer/alias histories. Game slot-word clearing
+  alone does not admit library-table removal or image lifetime.
   FND-SOUND-096 admits the unchanged installed configuration and known disc
   callback path in two native startups through the first music gate. Reuse
   its actual metadata, allocation and paired final write, whose physical span
@@ -250,9 +258,14 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-239's whole-entry review and connected installer/lookup/
     consumer reading remove the unclassified ordinary ADV 10 query-interface
     obligation. No whole reading qualifies: caller censuses, relevant writer/
-    lifetime histories and current indirect bindings remain. The next connected
-    objective is the slot/table producer-to-query handoff, retaining all those
-    mechanisms and the admitted frame domains rather than rereading source tables.
+    lifetime histories and current indirect bindings remain.
+    Tried: FND-CONFIG-240 removes the local publication/provider/result part
+    of that handoff. All sixteen installed Copy descriptors report version 200;
+    ADV 20 discards its environment helper's result. Publication precedes the
+    installer's checks and caller result stores precede their failure tests.
+    Reset/removal callers and reached cleanup effects, actual slot/table/frame
+    preservation and sequence state remain. Next connect the lifecycle callers
+    to the library array rather than repeating descriptor/version readings.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
