@@ -6,6 +6,8 @@ from pathlib import Path
 import struct
 import sys
 import unittest
+from unittest.mock import patch
+from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from check_startup_history import Client, Scripted, entry, mutation
@@ -42,6 +44,16 @@ def actions():
 
 
 class Controls(unittest.TestCase):
+    def test_exhausted_same_operation_cannot_become_an_opener_result(self):
+        client, history, report = setup()
+        session = Scripted([], client)
+        with patch("opener_history.wait_for_stop", return_value=(SimpleNamespace(stop=stop("1234:0000", 10)), True)) as waiter:
+            with self.assertRaisesRegex(RuntimeError, "budget exhausted"):
+                observe_opener(session, 0, report, lambda: None, history)
+        waiter.assert_called_once_with(session, session.operations[0], attempts=10)
+        self.assertEqual(report["opener_events"], [])
+        self.assertFalse(history.report["complete"])
+
     def test_native_sequence_records_caller_seed_and_opener_without_writes(self):
         client, history, report = setup()
         session = Scripted(actions(), client)

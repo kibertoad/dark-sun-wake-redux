@@ -32,7 +32,7 @@ def observe_opener(session, delta, report, save, history):
     session.client.set_breakpoint(opener)
     for _ in range(200):
         operation = session.continue_()
-        observed, exhausted = wait_for_stop(session, operation, attempts=2)
+        observed, exhausted = wait_for_stop(session, operation, attempts=10)
         stop = report["last_stop"] = observed.stop
         save()
         if exhausted:

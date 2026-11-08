@@ -115,6 +115,10 @@ checks already implemented by seed_caller. Record the native word argument
 and old seed, then require its validated return and equal resulting seed.
 Keep the setter guard active: reentry, any generator call, unknown stops,
 changed seed outside this call, or observation exhaustion fails closed.
+Use startup_window.py's ten observations of at most thirty seconds per
+continuation, retaining the same operation handle. The short two-observation
+disc budget is insufficient for the cinematic interval after seeding; an
+exhausted attempt is retained incomplete, never resumed as a new operation.
 
 Keep watches active during every continuation, including the seed call.
 At each ordinary boundary recheck all watched values, record the named
