@@ -1,7 +1,8 @@
 """Fixed named-field value watches for Q-CONFIG-014; no guest writes.
 
-CONFIG-236/238 and SOUND-085/092 provide the fields and widths. A changed
-configuration pointer stops this observer; it cannot select new watch targets.
+CONFIG-236/238 and SOUND-085/092 provide the fields and widths. Restored
+mode freezes its configuration binding; startup mode watches that pointer
+only as data. Neither follows a changed pointer to select new watches.
 """
 import re
 import struct
@@ -10,6 +11,7 @@ from regenerate_checkpoints import checked_read
 
 
 class ValueHistory:
+    START_REASON = "load"
     FIELDS = (
         ("master_sound", 0x57E0, 0x13F7, 1),
         ("music_on", 0x57E0, 0x1436, 1),
@@ -41,10 +43,7 @@ class ValueHistory:
         return {name: int.from_bytes(checked_read(client, field["segment"], field["offset"], field["length"]), "little")
                 for name, field in self.fields.items()}
 
-    def arm(self, client, stop):
-        if self.previous is not None or self.fields or stop.get("reason") != "load":
-            raise ValueError("history must arm once at the admitted restore")
-        self._stop(stop)
+    def _spans(self, client):
         ds = 0x57E0 + self.delta
         off, seg = struct.unpack("<HH", checked_read(client, ds, 0x3411, 4))
         if seg == off == 0:
@@ -52,6 +51,13 @@ class ValueHistory:
         checked_read(client, seg, off, 59)
         spans = [(name, s + self.delta, o, length) for name, s, o, length in self.FIELDS]
         spans.append(("card_id", seg, off + 8, 2))
+        return spans
+
+    def arm(self, client, stop):
+        if self.previous is not None or self.fields or stop.get("reason") != self.START_REASON:
+            raise ValueError("history must arm once at its declared entry")
+        self._stop(stop)
+        spans = self._spans(client)
         occupied = []
         for name, segment, offset, length in spans:
             checked_read(client, segment, offset, length)
@@ -97,10 +103,13 @@ class ValueHistory:
                    for n, value in current.items() if value != self.previous[n]}
         self.report["changes"].append({"primary": name, "cs_ip": stop["cs_ip"],
                                       "seq": stop["seq"], "emu_ns": stop["emu_ns"], "values": changes})
-        if "configuration_pointer" in changes:
-            raise ValueError("history configuration pointer changed; no target following")
+        self._binding_change(changes)
         self.previous = current
         self.sequence, self.time = stop["seq"], stop["emu_ns"]
+
+    def _binding_change(self, changes):
+        if "configuration_pointer" in changes:
+            raise ValueError("history configuration pointer changed; no target following")
 
     def finish(self, client):
         self.check(client)
@@ -117,3 +126,38 @@ class ValueHistory:
         if self.armed or self.report["final"] is None:
             raise ValueError("history completion needs final values and watch cleanup")
         self.report["complete"] = True
+
+
+class StartupHistory(ValueHistory):
+    """One fixed fresh-program prefix; no derived watch or additional target."""
+    START_REASON = "program_start"
+    FIELDS = ValueHistory.FIELDS + (("driver_enable", 0x57E0, 0x3444, 2),)
+
+    def __init__(self, delta):
+        super().__init__(delta)
+        self.report["limits"] = "fixed program-entry-to-first-music-gate changed values; no unchanged writes, intra-instruction effects or later startup/readback history"
+
+    def _spans(self, client):
+        ds = 0x57E0 + self.delta
+        pointer = checked_read(client, ds, 0x3411, 4)
+        enabled = int.from_bytes(checked_read(client, ds, 0x3444, 2), "little")
+        if pointer != bytes(4) or enabled != 1:
+            raise ValueError("startup history source pointer/enable state differs")
+        return [(name, s + self.delta, o, length) for name, s, o, length in self.FIELDS]
+
+    def _binding_change(self, changes):
+        # Only fixed source fields are watched; a pointer value never changes them.
+        pass
+
+    def finish(self, client):
+        self.check(client)
+        pointer = any(event["primary"] == "configuration_pointer"
+                      and event["values"]["configuration_pointer"]["old"] == 0
+                      and event["values"]["configuration_pointer"]["new"] != 0
+                      for event in self.report["changes"])
+        enabled = any(event["primary"] == "driver_enable"
+                      and event["values"]["driver_enable"] == {"old": 1, "new": 0}
+                      for event in self.report["changes"])
+        if not pointer or not enabled:
+            raise ValueError("startup history lacks pointer/enable mutation controls")
+        self.report["final"] = dict(self.previous)

@@ -20,6 +20,7 @@ from dinorefurb_dosbox_session import (
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from probe_drive import prepare_drive, ROOT
 from startup_window import wait_for_stop
+from preferences_history import StartupHistory
 
 # FND-SOUND-092/094/095: only these instruction boundaries are observable.
 SITES = {
@@ -126,7 +127,7 @@ def snapshot(client, stop, delta):
     return result
 
 
-def observe(session, delta, report, save):
+def observe(session, delta, report, save, history=None):
     """No arbitrary stops: bounded startup through the fixed music gate only."""
     sites = {address(seg, off, delta) for seg, off in SITES}
     # FND-RNG-001/010: fail before either a draw or a new seed can execute.
@@ -144,6 +145,12 @@ def observe(session, delta, report, save):
             raise RuntimeError("disc startup observation budget exhausted")
         if observed.stop.get("cs_ip", "").upper() in guards:
             raise RuntimeError("disc startup reached the RNG/seed guard")
+        if history and observed.stop.get("reason") == "watchpoint":
+            history.changed(session.client, observed.stop)
+            save()
+            continue
+        if history:
+            history.check(session.client)
         captured = snapshot(session.client, observed.stop, delta)
         phase = captured["phase"]
         if not seen and phase != "initializer-entry":
@@ -170,6 +177,10 @@ def observe(session, delta, report, save):
         if phase == "music-gate":
             if pending_write is not None or "callback-gate" not in seen or "callback-join" not in seen:
                 raise ValueError("disc startup endpoint lacks its observed gate/join")
+            if history:
+                history.finish(session.client)
+                history.close(session.client)
+                history.complete()
             report["complete"] = True
             save()
             return
@@ -177,8 +188,10 @@ def observe(session, delta, report, save):
 
 
 def main():
-    if len(sys.argv) != 2 or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1]):
-        raise SystemExit("usage: disc_startup.py <new-run-name>")
+    if (len(sys.argv) not in (2, 3) or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])
+            or len(sys.argv) == 3 and sys.argv[2] != "history"):
+        raise SystemExit("usage: disc_startup.py <new-run-name> [history]")
+    history_mode = len(sys.argv) == 3
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     expected = config["original"]["analysisExecutable"]
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR", Path(expected["path"]).parent)).resolve()
@@ -199,6 +212,7 @@ def main():
     report = {"complete": False, "events": [], "draws": [], "inputs": [], "writes": [],
               "limits": "fixed startup point observations; no continuous preservation, heap extent or audible-output proof"}
     with RustDosSession(settings) as session:
+        history = None
         def save():
             (run / "disc-startup.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
         try:
@@ -206,15 +220,25 @@ def main():
             if session.entry["cs_ip"].split(":")[1].upper() != "0000":
                 raise ValueError("unexpected disc startup program entry")
             delta = int(session.entry["registers"]["cs"], 16) - 0x1000
+            if history_mode:
+                history = StartupHistory(delta)
+                report["value_history"] = history.report
+                history.arm(session.client, session.entry)
             seed = session.client.read_memory(address(0x57E0, 0x384A, delta), 4).data
             if len(seed) != 4:
                 raise ValueError("short initial RNG state")
             report["initial_rng_state"] = seed.hex()
-            observe(session, delta, report, save)
+            observe(session, delta, report, save, history)
         except Exception as error:
             report["error"] = str(error)
             save()
             raise
+        finally:
+            try:
+                if history:
+                    history.close(session.client)
+            finally:
+                save()
 
 
 if __name__ == "__main__":
