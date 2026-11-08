@@ -39,25 +39,24 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 76779199 -NoRestore passed:
-  2162 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince 16a6fba8 -NoRestore passed:
+  2164 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..253 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..255 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
-  CONFIG Static10,Live2,Blocked1,Next15; queue is 986 lines, all attempts retained.
+  CONFIG Static10,Live2,Blocked1,Next15; queue is 993 lines, all attempts retained.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: naturally admitted turn state and its producers for the
-  positive keyboard callback/reload/opener; review existing COMBAT/INPUT
-  writer evidence before another original reading. Keep earlier/between-stop history,
+  Next Q-CONFIG-014: completed P delivery and later native endpoint after
+  CONFIG-254/255; reuse COMBAT-063/064/140 and EXE-562 before new reading.
+  Keep earlier/between-stop frame/writer history,
   other parents/global-hook and exit-time reentrant/alternate entry, plus remaining
   reader/construction and non-sentinel driver/storage admission;
-  reuse CONFIG-243..253, EXE-249/520/561/567,
+  reuse CONFIG-243..255, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
-  Retain other caller/table/frame, driver and unmonitored writer histories.
-  Three timed closure batches complete at 7307ac04, with qualified measures.
+  Earlier timed closure measures remain at7307ac04.
   Fixed full fresh route at7f5baded passed twice with66 focused controls;
   use FRESH-PREFERENCES-HISTORY and docs/RUNTIME.md. Do not repeat the
   answered fixed startup-to-store history without a new question.
@@ -68,11 +67,11 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   each;79 focused controls pass. Use PREFERENCES-READBACK-OBSERVATION and
   RUNTIME; do not repeat their answered fixed menu/call/frame samples.
   CONFIG-249 supplies static bindings;250/251 retain the native scopes.
-  Positive keyboard tooling dc4eca6a/8075c75b retains incomplete native
-  attempts (CONFIG-252); do not repeat unchanged. Rejection mode76779199
-  passed twice (CONFIG-253), with95 focused controls. Its result admits
-  rejection only; positive callback/reload remains unadmitted. Reuse the
-  bounded plan/RUNTIME and answered rejection; do not weaken positive predicates.
+  Rejection mode76779199 passed twice (CONFIG-253), with95 focused controls.
+  Saved-keyboard16a6fba8 adds seven source/header controls. Use the bounded
+  plan/RUNTIME and CONFIG-254/255; do not repeat answered sampled gates,
+  callback/reload, header representation or getter/store without a new question.
+  Completion remains withheld; do not weaken positive predicates.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
@@ -113,10 +112,10 @@ zero complete-reading changes or answered deletions; Q-CONFIG-014 narrowed.
 No inventory/ownership denominator changes. Wall seconds research/tooling/
 validation: 1448.6/0/11.7,184.3/0/11.2,135.6/0/11.6. Handovers:17.6/28.6/55.3 seconds.
 These exclude commit hooks and are not active-effort measurements.
-Current 5d968824 to 94fe9888: zero qualifying readings or answered deletions;
-CONFIG-253 removes the fixed rejection/return/input-completion obligation.
-One finding, three tooling and one research commit; unchanged inventory/
-ownership denominators. Earlier CONFIG-242..245/
+Current f93e9b2e to d95267c2: zero qualifying readings or answered deletions;
+Q-CONFIG-014 narrowed by CONFIG-254/255. Two findings, three tooling and
+two research commits; unchanged inventory/ownership denominators.
+Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
@@ -155,3 +154,5 @@ Keyboard: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-keyboard-a-2
 siblings b/c incomplete; b/c use corrected diagnostic retention. No owned probes/lock.
 Rejection: same root's v181-q014-rejection-c-20261108/ and sibling d complete;
 a/b remain incomplete diagnostics. No owned probes/lock.
+Saved-keyboard: same root's v181-q014-saved-key-a-20261108/ and siblings b..e
+incomplete; use CONFIG-254/255. Native source: COMBAT-140's retained saved-map.
