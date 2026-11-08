@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-CONFIG-242, FND-CONFIG-243, FND-CONFIG-244, FND-CONFIG-245, FND-CONFIG-246, FND-CONFIG-247, FND-CONFIG-248, FND-CONFIG-249, FND-CONFIG-149, FND-CONFIG-155, FND-CONFIG-159, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-CONFIG-242, FND-CONFIG-243, FND-CONFIG-244, FND-CONFIG-245, FND-CONFIG-246, FND-CONFIG-247, FND-CONFIG-248, FND-CONFIG-249, FND-CONFIG-250, FND-CONFIG-149, FND-CONFIG-155, FND-CONFIG-159, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-PARTY-323, FND-PARTY-324, FND-PARTY-325, FND-PARTY-326, FND-PARTY-327, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -84,10 +84,11 @@ None known.
 ## Open questions
 
 - Q-CONFIG-014: FND-CONFIG-249 binds the known menu branch's event kind/control,
-  parent frame and outer Preferences return pair. Retain actual values and
-  post-child frame/event retention, other callers and keyboard key/gate reads,
+  parent frame and outer Preferences return pair. FND-CONFIG-250 supplies
+  actual menu/post-close/nested-frame samples on the fixed restored route.
+  Retain the earlier dispatcher call/window/target admission, other callers and keyboard key/gate reads,
   reentrant/nonlocal entries and unqueried indirect mechanisms. Static stack
-  balance is not native preservation; reuse these fields for a bounded observation.
+  balance and matching samples are not continuous preservation or all-entry proof.
 
 - Q-CONFIG-014: FND-CONFIG-246 supplies the fixed fresh program-entry-to-
   first-music-gate value history and positive word/pointer mutations.

@@ -115,6 +115,19 @@ continuous native segment/frame identity, audible output and later Preferences
 interaction remain unadmitted. FRESH-PREFERENCES-HISTORY documents the bounded
 command and controls. Both owned muted sessions closed normally.
 
+The strict restored-map Preferences command's fixed `parent` mode passed
+twice on 2026-11-08 in captures/rust-dos-preferences-readback/
+v181-q014-parent-a-20261108/ and v181-q014-parent-b-20261108/. It retains the
+existing checked play-ready restore, history/input/RNG and paired-store controls,
+and additionally samples menu+025E/+0281, the resident Preferences trampoline,
+getter and byte store under CONFIG-249's named frame contract. Actual event,
+handler/outer-return, stack/saved-BP and pointer-clear reads at those points
+are agent (FND-CONFIG-250); all three inputs complete, with one checked draw
+and no guest writes. Both owned muted sessions close normally. The earlier
+dispatcher call/window/target itself is not observed; other roots, keyboard/
+reentrant entry, between-sample frame writes and later menu return remain
+unadmitted. The existing observation plan gives the exact command and controls.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed
