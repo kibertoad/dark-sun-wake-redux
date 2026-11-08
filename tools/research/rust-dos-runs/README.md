@@ -1,5 +1,15 @@
 # rust-dos runs
 
+`preferences_readback.py <play-ready-source-run> <new-run-name>` strictly
+restores the existing current-pin play-ready checkpoint, opens the Game Menu
+with Tab and selects its fixed Preferences button. It pairs only the known
+getter's actual caller, return word and following byte store, stopping before
+the next call. See [PREFERENCES-READBACK-OBSERVATION](../../../docs/implementation-plans/PREFERENCES-READBACK-OBSERVATION.md).
+Output stays in GAME_DIR/captures/rust-dos-preferences-readback/. No guest
+writes, arbitrary targets or timed readiness are admitted. Synthetic command:
+project evidence Python with `-I tools/research/rust-dos-runs/check_preferences_readback.py`.
+Native capability and readback results require their own attempted run.
+
 `disc_startup.py <new-run-name>` is the fixed read-only Q-CONFIG-014 observer
 in [DISC-STARTUP-OBSERVATION](../../../docs/implementation-plans/DISC-STARTUP-OBSERVATION.md).
 It uses unchanged verified files and current pinned/muted session settings,

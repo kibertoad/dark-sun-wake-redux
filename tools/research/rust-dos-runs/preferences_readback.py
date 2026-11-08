@@ -1,0 +1,234 @@
+"""Fixed Tab/Preferences getter/store observation for Q-CONFIG-014.
+
+FND-CONFIG-235/236 give the getter, caller/store, gates and named library fields.
+FND-INPUT-012, FND-UI-055 and SCR-UI-006 give the menu input route.
+FND-COMBAT-051 gives the event-poll boundary. FND-RNG-001/010 give RNG guards.
+"""
+import hashlib
+import json
+import os
+from pathlib import Path
+import re
+import struct
+import sys
+
+from dinorefurb_dosbox_session import (
+    Media, RUST_DOS_PINNED_SHA256, RustDosConfig, RustDosSession,
+    RustDosSettings, SoundBlaster, Target, read_saved_state,
+)
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from probe_drive import ROOT
+from restore_opener import verify_checkpoint_executable
+from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checked_read
+from load_entry import fields, input_map_ready, observe_delivery
+from checkpoint_rng import Recorder
+from startup_window import wait_for_stop
+
+
+class MenuFlow:
+    def __init__(self):
+        self.phase = "menu"
+
+    def poll(self, state, delivery_done):
+        number = state["window"]["number"] if state["window"] else None
+        allowed = (None, 19501, 10500) if self.phase == "menu" else (10500,) if self.phase == "move" else (None, 10500)
+        if number not in allowed:
+            raise ValueError("unexpected window during fixed Preferences route")
+        if self.phase in ("menu", "move") and delivery_done and ready(state, 10500):
+            action = "move" if self.phase == "menu" else "click"
+            self.phase = "move" if action == "move" else "getter"
+            return action
+        return None
+
+
+class Readback:
+    def __init__(self, delta):
+        if type(delta) is not int or not -0x1000 <= delta <= 0:
+            raise ValueError("unsupported Preferences relocation")
+        self.delta, self.phase = delta, "entry"
+        self.caller = self.stack = self.result = None
+
+    def address(self, segment, offset):
+        return f"{segment + self.delta:04X}:{offset:04X}"
+
+    def named(self, client, stop, expected):
+        r = stop.get("registers", {})
+        if (stop.get("reason") != "breakpoint" or stop.get("cs_ip", "").upper() != expected
+                or r.get("system", {}).get("mode") != "real"):
+            raise ValueError("Preferences readback requires its declared real-mode stop")
+        try:
+            ds, ss, sp, ax = (int(r[key], 16) for key in ("ds", "ss", "sp", "ax"))
+        except (KeyError, ValueError, TypeError) as error:
+            raise ValueError("missing Preferences readback registers") from error
+        if ds != 0x57E0 + self.delta or ss != ds or not 0 <= ax <= 0xFFFF or not 0 <= sp <= 0xFFFF:
+            raise ValueError("Preferences readback DS/SS or word registers differ")
+        def value(offset, size):
+            return int.from_bytes(checked_read(client, ds, offset, size), "little")
+        cfg_off, cfg_seg = struct.unpack("<HH", checked_read(client, ds, 0x3411, 4))
+        if cfg_off == cfg_seg == 0:
+            raise ValueError("Preferences configuration pointer is null")
+        cfg = checked_read(client, cfg_seg, cfg_off, 59)
+        return {"cs_ip": stop["cs_ip"], "ss": ss, "sp": sp, "ax": ax,
+                "master_sound": value(0x13F7, 1), "music_on": value(0x1436, 1),
+                "music_level": value(0x26B4, 1), "music_slot": value(0x343E, 2),
+                "getter_handle": value(0x3464, 2), "configuration_pointer": f"{cfg_seg:04X}:{cfg_off:04X}",
+                "configuration": cfg.hex(), "card_id": struct.unpack_from("<H", cfg, 8)[0],
+                "library_mode": int.from_bytes(checked_read(client, 0x4E71 + self.delta, 0x0B51, 2), "little")}
+
+    def trampoline(self, client, segment):
+        s, o = (int(v, 16) for v in self.address(0x5782, 0).split(":"))
+        jump = checked_read(client, s, o, 5)
+        if jump[0] != 0xEA or struct.unpack_from("<HH", jump, 1) != (0, segment):
+            raise ValueError("Preferences trampoline does not name the admitted caller segment")
+
+    def entry(self, client, stop):
+        if self.phase != "entry":
+            raise ValueError("Preferences getter reentry or wrong phase")
+        item = self.named(client, stop, self.address(0x4A6E, 0x011F))
+        off, seg = struct.unpack("<HH", checked_read(client, item["ss"], item["sp"], 4))
+        if off != 0x003E or item["sp"] + 4 > 0xFFFF:
+            raise ValueError("Preferences getter return frame differs from the known caller")
+        self.trampoline(client, seg)
+        call = checked_read(client, seg, 0x0039, 5)
+        target_seg = 0x4A6E + self.delta
+        if call[0] != 0x9A or struct.unpack_from("<HH", call, 1) != (0x011F, target_seg):
+            raise ValueError("Preferences caller does not call the known resident getter")
+        store = checked_read(client, seg, 0x003E, 3)
+        if store[0] != 0xA2 or struct.unpack_from("<H", store, 1)[0] != 0x26B4:
+            raise ValueError("Preferences continuation is not the declared AL store")
+        if not item["master_sound"] or not item["music_on"]:
+            raise ValueError("Preferences getter entry has an unadmitted enable gate")
+        self.caller, self.stack = seg, (item["ss"], item["sp"] + 4)
+        self.phase = "return"
+        return item
+
+    def returned(self, client, stop):
+        if self.phase != "return":
+            raise ValueError("unpaired Preferences getter return")
+        item = self.named(client, stop, f"{self.caller:04X}:003E")
+        self.trampoline(client, self.caller)
+        if (item["ss"], item["sp"]) != self.stack:
+            raise ValueError("Preferences getter return stack differs")
+        self.result, self.phase = item["ax"], "store"
+        return item
+
+    def stored(self, client, stop):
+        if self.phase != "store":
+            raise ValueError("unpaired Preferences byte store")
+        item = self.named(client, stop, f"{self.caller:04X}:0041")
+        self.trampoline(client, self.caller)
+        if (item["ss"], item["sp"]) != self.stack or item["ax"] != self.result:
+            raise ValueError("Preferences store frame/result changed")
+        if item["music_level"] != self.result & 0xFF:
+            raise ValueError("Preferences stored byte differs from the observed AL")
+        self.phase = "done"
+        return item
+
+
+def main():
+    if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name>")
+    config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
+    game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
+                Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
+    source = game / "captures/rust-dos-regenerated" / sys.argv[1]
+    meta = json.loads((source / "regeneration.json").read_text(encoding="utf-8"))
+    controls = [c for c in meta["checkpoints"] if c["name"] == "play-ready" and c["checked"]]
+    if len(controls) != 1:
+        raise ValueError("source lacks a unique checked play-ready checkpoint")
+    control = controls[0]
+    state = read_saved_state(source, "play-ready")
+    verify_checkpoint_executable(state, config["original"]["analysisExecutable"])
+    admit_state(state)
+    delta = mapping(meta["load_mapping_stop"])
+    rng, trace, flow = Recorder(delta), Readback(delta), MenuFlow()
+    run = game / "captures/rust-dos-preferences-readback" / sys.argv[2]
+    if run.exists():
+        raise ValueError("Preferences readback run already exists")
+    settings = RustDosSettings(
+        emulator=ROOT / "artifacts/rust-dos/rust-dos.exe", emulator_sha256=RUST_DOS_PINNED_SHA256,
+        run_directory=run, target=Target("DSUN.EXE", ("-W0", "-L")), start_state=state,
+        emulator_config=RustDosConfig(media=(Media("D", game / "game.ins", "iso"),),
+            deterministic=True, cycles="15000", sound_blaster=SoundBlaster(base=0x220, irq=5, dma=1),
+            ultrasound=None), readiness_timeout=60.0)
+    report = {"source": sys.argv[1], "passed": False, "inputs": [], "draws": [], "writes": [], "readback": [],
+              "limits": "fixed restored-map getter/store; no continuous startup preservation, later UI, audible output or other caller proof"}
+    with RustDosSession(settings) as session:
+        def retain():
+            (run / "preferences-readback.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+        try:
+            stop = session.stop
+            if stop["reason"] != "load" or stop["cs_ip"] != state.stop["cs_ip"] or stop["emu_ns"] != state.stop["emu_ns"]:
+                raise ValueError("Preferences source restore instruction/time differs")
+            current = snapshot(session.client, delta)
+            if (current != control["state"]
+                    or hashlib.sha256(session.client.screenshot()).hexdigest() != control["frame_sha256"]
+                    or not input_map_ready(session.client, delta, current, fields(session.client, delta))):
+                raise ValueError("Preferences source differs from the admitted input map")
+            report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
+            generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
+            poll, getter = rng.address(0x39D1, 0x0854), rng.address(0x4A6E, 0x011F)
+            for site in (generator, setter, poll, getter):
+                session.client.set_breakpoint(site)
+            operation = session.send_input("key", {"key": "tab", "hold_ms": 100})
+            delivery, input_name, recorded = None, "tab", False
+            for index in range(512):
+                ob, exhausted = wait_for_stop(session, session.continue_(), attempts=2)
+                stop = ob.stop
+                report["last_stop"], report["stops"] = stop, index + 1
+                retain()
+                if exhausted or stop.get("reason") != "breakpoint":
+                    raise ValueError("Preferences did not reach a declared instruction stop")
+                delivery = observe_delivery(session, operation, delivery)
+                report["last_delivery"] = {"input": input_name, "state": delivery.state}
+                if not recorded and delivery.state == "done":
+                    report["inputs"].append({"input": input_name, "delivery": delivery.detail})
+                    recorded = True
+                site = stop["cs_ip"]
+                if site == generator:
+                    report["draws"].append(rng.record(session, stop))
+                elif site == setter:
+                    raise ValueError("unadmitted Preferences reseeding")
+                elif site == poll:
+                    current = snapshot(session.client, delta)
+                    report["ui_state"] = current
+                    action = flow.poll(current, delivery.state == "done")
+                    if action:
+                        input_name = action
+                        payload = ({"action": "move", "x": 160, "y": 101, "coords": "virtual"}
+                                   if action == "move" else {"action": "click", "button": "left", "hold_ms": 100})
+                        operation = session.send_input("mouse", payload)
+                        delivery, recorded = None, False
+                        print(action, flush=True)
+                elif site == getter:
+                    if flow.phase != "getter":
+                        raise ValueError("Preferences getter reached before its fixed input route")
+                    report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
+                    session.client.remove_breakpoints(poll)
+                    for offset in (0x003E, 0x0041):
+                        session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
+                    print("getter-entry", flush=True)
+                elif trace.caller is not None and site == f"{trace.caller:04X}:003E":
+                    report["readback"].append({"phase": "return", **trace.returned(session.client, stop)})
+                elif trace.caller is not None and site == f"{trace.caller:04X}:0041":
+                    report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
+                    if delivery.state != "done":
+                        raise ValueError("Preferences click delivery incomplete at endpoint")
+                    report["passed"] = True
+                    break
+                else:
+                    raise ValueError("unadmitted Preferences stop")
+                retain()
+            else:
+                raise ValueError("Preferences exceeds512 named stops")
+        except Exception as error:
+            report["error"] = str(error)
+            raise
+        finally:
+            retain()
+    print(json.dumps({"passed": report["passed"], "draws": len(report["draws"])}), flush=True)
+
+
+if __name__ == "__main__":
+    main()
