@@ -4,7 +4,7 @@ title: Music-level readback on the Preferences screen
 status: supported
 builds: [BLD-GOG-EN-1.1]
 superseded_by: []
-evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
+evidence: [FND-CONFIG-235, FND-CONFIG-010, FND-CONFIG-236, FND-CONFIG-237, FND-CONFIG-238, FND-CONFIG-239, FND-CONFIG-240, FND-CONFIG-241, FND-CONFIG-149, FND-CONFIG-155, FND-CONFIG-159, FND-PARTY-320, FND-PARTY-321, FND-PARTY-322, FND-SOUND-084, FND-SOUND-085, FND-SOUND-086, FND-SOUND-087, FND-SOUND-088, FND-SOUND-089, FND-SOUND-090, FND-SOUND-091, FND-SOUND-092, FND-SOUND-093, FND-SOUND-094, FND-SOUND-095, FND-SOUND-096, FND-CONFIG-029, FND-UI-034, FND-UI-065, SRC-MANUAL-1994]
 conflicting: []
 split_with: []
 related: [RULE-CONFIG-004, RULE-CONFIG-005, SCR-UI-007]
@@ -82,6 +82,22 @@ message-delay buttons (FND-CONFIG-235).
 None known.
 
 ## Open questions
+
+- Q-CONFIG-014: reuse FND-CONFIG-149/155/159, FND-SOUND-092/093
+  and FND-PARTY-320/321/322 for the already-read alternate lifecycle
+  paths. The sound initializer's exact-one ready gate, teardown's nonzero
+  gate and the exit caller's exact-one mode test are distinct. Under the
+  recorded intact-zero/frame model, the known registered shutdown route
+  has no finite ordinary return through its outer exit call. A returning
+  getter needs no blanket preservation proof across that whole route as a
+  returning child. Retain reentrant exit-time readers, actual ready/mode
+  and callback-table history, changed frames/nonlocal rejoining, other
+  incoming mechanisms and PARTY-322's unclassified separated alias-word
+  candidate at file 47BE2/47BEA. The ordinary first initializer still needs
+  actual child/state admission; the exit result excludes none of its calls.
+  This reuse review supplies no complete_reading declaration: none of those
+  findings closes the remaining caller, writer/lifetime and indirect-target
+  obligations for the whole rule.
 
 - Q-CONFIG-014: FND-CONFIG-241 supplies the local whole-array reset and
   ordinary reset/shutdown caller pairs. Reuse shutdown's conditional selector

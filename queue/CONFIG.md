@@ -102,14 +102,25 @@ Next ID: Q-CONFIG-015
   Remove unread local publication/check order, source versions, descriptor
   result propagation and caller destinations from the remaining work. Retain
   actual image/table/slot/frame and compatibility-word admission; ADV 20's
-  DOS/environment/termination conditions; reset/removal callers, cleanup
-  effects and continuous later writer/alias histories. Game slot-word clearing
+  DOS/environment/termination conditions; remaining lifecycle entry mechanisms,
+  reached cleanup effects and later writer/alias histories. Game slot-word clearing
   alone does not admit library-table removal or image lifetime.
   FND-CONFIG-241 identifies reset's bounded whole-array clear and both ordinary
   reset/shutdown caller pairs. Retain actual backing and intervening writes,
-  alternate overlay helper effects, shutdown's selector-68 targets and timer
-  children, scratch/frame preservation and excluded removal-entry mechanisms.
+  actually reached alternate-helper effects, shutdown's selector-68 targets
+  and timer children, scratch/frame preservation and excluded removal entries.
   A direct-call miss does not prove removal unreachable or table preservation.
+  Reuse FND-CONFIG-149/155/159, FND-SOUND-092/093 and
+  FND-PARTY-320/321/322 for the alternate initialization/shutdown bodies,
+  ready/mode predicates and known registered-exit route. Under their intact-
+  zero/frame model the outer exit has no finite ordinary return: do not demand
+  blanket state preservation across it as a returning getter child. Retain
+  reentrant exit-time readers, actual ready/mode/callback-table histories,
+  changed-frame/nonlocal rejoining and other entry mechanisms; PARTY-322's
+  separated alias-word candidate at file 47BE2/47BEA remains unclassified.
+  Initializer children and state histories are independently required, not
+  excluded by that conditional exit result. Local alternate helper bodies and
+  registered caller identity are no longer unread obligations.
   FND-SOUND-096 admits the unchanged installed configuration and known disc
   callback path in two native startups through the first music gate. Reuse
   its actual metadata, allocation and paired final write, whose physical span
@@ -275,6 +286,13 @@ Next ID: Q-CONFIG-015
     searches have positive controls and explicit exclusions. Actual backing,
     intervening writers, alternate helper and driver/timer effects and frame/
     scratch preservation remain; do not repeat the local array-clear reading.
+    Tried: reuse review applies FND-PARTY-320/321/322 and
+    FND-CONFIG-149/155/159 with SOUND-092/093 to this readback contract.
+    It removes generic unread alternate-helper/caller and ordinarily returning
+    exit-route preservation requirements under the findings' stated model.
+    Reentrant readers, the separated alias candidate, actual state/registration
+    history, changed frames and excluded entries remain. No whole-entry
+    complete_reading qualifies; do not reread these local lifecycle bodies.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
