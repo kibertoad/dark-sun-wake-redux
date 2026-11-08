@@ -171,6 +171,65 @@ m=Memory();m.choices=b'A'*128;reject(m)
 `, 'tools/research/rust-dos-runs');
 });
 
+test('notice pre-input endpoint binds wrapped locals and retains unexpected values without following pointers', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_poll,address,require_notice_profile
+loaded=0x05BA;ds=0x13F0;bp=0x0DE0
+stop={'reason':'breakpoint','cs_ip':address(loaded,0x190F,0x054B),
+      'registers':{'ds':'13F0','ss':'22D0','sp':'F676','bp':'0DE0'}}
+objects={'entry':{'ss':0x22D0,'sp':0x0DE2,'return_ip':0x050D,'return_cs':0x0C06},
+         'selector':0,'style_words':[15,1,7,0,15,2],
+         'text':{'body':{'length':99,'lf_count':2},'choices':{'length':8,'lf_count':0}}}
+texts={'body':b'A'*99+bytes([0]),'choices':b'B'*8+bytes([0])}
+class Memory:
+    def __init__(self):
+        self.seen={};self.drift=False;self.short=False;self.bad_frame=False;self.changed=False
+    def read_memory(self,where,size):
+        self.seen[where,size]=self.seen.get((where,size),0)+1
+        seg,off=(int(v,16) for v in where.split(':'))
+        if seg==0x22D0:
+            if off==0x0DE2:
+                assert size==12;value=struct.pack('<6H',0x050D,0x0C06,0xAF36,ds,0xD244,ds)
+                if self.bad_frame:value=bytes(12)
+            elif off==0xF67A:assert size==12;value=struct.pack('<6H',*range(6))
+            else:
+                assert size==2 and (bp-off) in (4,6,10,20,22,28,30,32,34,36)
+                value=struct.pack('<H',0xFFFF)
+        else:
+            assert seg==ds
+            if off==0x18F6:assert size==4;value=struct.pack('<HH',1,1)
+            elif off==0xAF36:assert size==2;value=bytes(2)
+            elif off==0xD244:assert size==12;value=struct.pack('<6H',*objects['style_words'])
+            elif 0xAF38<=off<0xAF38+100:
+                value=texts['body'][off-0xAF38:off-0xAF38+size]
+                if self.changed:value=bytes(size)
+            elif off==0xB138:assert size==9;value=texts['choices']
+            else:raise AssertionError('unbound read')
+        if self.drift and self.seen[where,size]>1:value=bytes([123])*size
+        return NS(data=value[:-1] if self.short else value)
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported notice poll admitted')
+r,p=observe_notice_poll(Memory(),stop,loaded,objects,texts)
+assert r['locals']['choice_rows']==65535 and r['row_words']==list(range(6))
+assert r['prefixes_retained'] and r['style_retained'] and p==texts
+m=Memory();m.changed=True;r,p=observe_notice_poll(m,stop,loaded,objects,texts)
+assert not r['prefixes_retained'] and p['body']!=texts['body']
+for key,value in [('ds','0000'),('ss','22D1'),('sp','F674'),('bp','0DE2')]:
+    s=copy.deepcopy(stop);s['registers'][key]=value
+    reject(lambda:observe_notice_poll(Memory(),s,loaded,objects,texts))
+s=copy.deepcopy(stop);s['cs_ip']=address(loaded,0x190F,0x0724)
+reject(lambda:observe_notice_poll(Memory(),s,loaded,objects,texts))
+for attr in ('short','drift','bad_frame'):
+    m=Memory();setattr(m,attr,True);reject(lambda:observe_notice_poll(m,stop,loaded,objects,texts))
+o=copy.deepcopy(objects);o['selector']=1;reject(lambda:require_notice_profile(o))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

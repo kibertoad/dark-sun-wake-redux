@@ -290,3 +290,25 @@ admitted. Synthetic controls cover exact caller/arguments, short reads,
 drift, bad bytes and absent terminators. Exit: tooling gate passes; separate
 paired research attempts establish this bounded native object profile or
 record the precise unsupported case before any continuation is planned.
+
+For Q-SOUND-010 after FND-SOUND-104, add --notice-poll. Require104's
+fixed selector/style and99-byte/two-LF body plus eight-byte/no-LF choice
+profile before removing only the190F:0000 guard and continuing to190F:054B,
+before its first poll argument push (EXE-486). Keep early-error/driver guards
+and add the normal0724 and rejection02C6 exits as stop guards. No input,
+guest write or continuation past054B. At the target require declared DS,
+unchanged SS, BP=(entry SP-2) modulo65536, and SP=(BP-176A) modulo65536
+(SOUND-103). Read the original12-byte caller/argument span at BP+2,
+ten named local words BP-4/-6/-0A/-14/-16/-1C/-1E/-20/-22/-24,
+the first12-byte row record at wrapped BP-1766 (EXE-485), and DS:18F6/18F8.
+Compute each named word offset separately modulo65536; do not read a
+contiguous wrapped frame or follow any resulting pointer. Require only
+the supported frame/binding, preserving unexpected local values as evidence.
+Recheck original selector/style/text prefixes against the entry snapshot,
+and repeat all observed spans while paused. Prefix mismatches are reported
+and retained locally, without treating equality as continuous lifetime proof.
+Synthetic controls cover stop/DS/SS/SP/BP, argument drift, wrap-derived row
+address, short reads and prefix/local drift. Exit: tooling gate passes;
+separate paired attempts record actual pre-input row/frame state or a specific
+guard. Native drawing, input, return and simultaneous allocation ownership
+remain distinct from reaching this endpoint.

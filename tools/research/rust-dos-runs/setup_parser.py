@@ -418,6 +418,51 @@ def observe_notice_objects(client, stop, loaded):
             "style_words": list(struct.unpack("<6H", style)), "text": summaries}, payloads
 
 
+def require_notice_profile(objects):
+    if (objects["selector"] != 0 or objects["style_words"] != [15, 1, 7, 0, 15, 2]
+            or [(objects["text"][name]["length"], objects["text"][name]["lf_count"])
+                for name in ("body", "choices")] != [(99, 2), (8, 0)]):
+        raise ValueError("unsupported notice continuation profile")
+
+
+def observe_notice_poll(client, stop, loaded, objects, texts):
+    """EXE-485/486 fixed pre-input endpoint, separately bound wrapped locals."""
+    require_notice_profile(objects)
+    entry = objects["entry"]
+    ds = loaded + 0x1E36 - 0x1000
+    ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
+    if (stop.get("reason") != "breakpoint" or stop.get("cs_ip") != address(loaded, 0x190F, 0x054B)
+            or word_register(stop, "ds") != ds or ss != entry["ss"]
+            or bp != (entry["sp"] - 2) & 0xFFFF or sp != (bp - 0x176A) & 0xFFFF):
+        raise ValueError("unsupported notice poll stop or frame")
+    names = (("selector", 4), ("body_height", 6), ("choice_length_sum", 10),
+             ("spacing_numerator", 20), ("spacing", 22), ("poll_value", 28),
+             ("registered_rows", 30), ("body_rows", 32), ("choice_rows", 34), ("accept_flag", 36))
+    spans = [(ss, bp + 2, 12)] + [(ss, (bp - delta) & 0xFFFF, 2) for _, delta in names]
+    spans += [(ss, (bp - 0x1766) & 0xFFFF, 12), (ds, 0x18F6, 4),
+              (ds, 0xAF36, 2), (ds, 0xD244, 12)]
+    for start, size in ((0xAF38, 100), (0xB138, 9)):
+        spans.extend((ds, start + i, min(16, size - i)) for i in range(0, size, 16))
+    first = [checked_read(client, *span) for span in spans]
+    if [checked_read(client, *span) for span in spans] != first:
+        raise ValueError("notice poll fields changed while paused")
+    expected_frame = (entry["return_ip"], entry["return_cs"], 0xAF36, ds, 0xD244, ds)
+    if struct.unpack("<6H", first[0]) != expected_frame:
+        raise ValueError("notice poll caller arguments changed")
+    body = b"".join(first[15:22])
+    choices = first[22]
+    if set(texts) != {"body", "choices"} or (len(texts["body"]), len(texts["choices"])) != (100, 9):
+        raise ValueError("unsupported notice entry prefixes")
+    return {"ss": ss, "sp": sp, "bp": bp,
+            "locals": {name: struct.unpack("<H", first[i + 1])[0] for i, (name, _) in enumerate(names)},
+            "row_words": list(struct.unpack("<6H", first[11])),
+            "input_mode": struct.unpack("<H", first[12][:2])[0],
+            "registration_count": struct.unpack("<H", first[12][2:])[0],
+            "selector_retained": struct.unpack("<H", first[13])[0] == objects["selector"],
+            "style_retained": list(struct.unpack("<6H", first[14])) == objects["style_words"],
+            "prefixes_retained": body == texts["body"] and choices == texts["choices"]}, {"body": body, "choices": choices}
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -428,12 +473,13 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll]")
     labels_profile = len(sys.argv) == 3
-    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects")
-    objects_profile = labels_profile and sys.argv[2] == "--notice-objects"
+    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll")
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll")
+    poll_profile = labels_profile and sys.argv[2] == "--notice-poll"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -527,6 +573,21 @@ def main():
                 print(json.dumps({"notice_return": report["notice_return"]}), flush=True)
                 if objects_profile:
                     print(json.dumps({"notice_objects": report["notice_objects"]}), flush=True)
+                if poll_profile:
+                    require_notice_profile(report["notice_objects"])
+                    for offset in (0x0724, 0x02C6):
+                        session.client.set_breakpoint(address(loaded, 0x190F, offset))
+                    session.client.remove_breakpoints(address(loaded, 0x190F, 0))
+                    operation = session.continue_(until=address(loaded, 0x190F, 0x054B))
+                    observed = wait_same_operation(session, operation)
+                    report["last_stop"] = observed.stop
+                    (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                    report["notice_poll"], later = observe_notice_poll(session.client, observed.stop, loaded,
+                                                                       report["notice_objects"], texts)
+                    for name, body in later.items():
+                        (run / f"notice-{name}-poll-native.bin").write_bytes(body)
+                    (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                    print(json.dumps({"notice_poll": report["notice_poll"]}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")
