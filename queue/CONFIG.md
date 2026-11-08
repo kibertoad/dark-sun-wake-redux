@@ -756,7 +756,8 @@ Next ID: Q-CONFIG-015
 - Q-CONFIG-005. FMT-CONFIG-006: What remaining settings-block construction,
   source admission and game-side field effects determine `SOUND.CFG` behavior?
   Settles it: admit setup1429:042D/063A's selecting input, EC/override and EE..FC
-  producers beyond259/260/262/263/264/265's paths; classify2 remaining EC and2 EE writes.
+  producers' actual inputs/lifetimes after259/260/262..266; all25 EC/20 EE
+  literal-census writes have local assignments, with59 walk gaps and excluded mechanisms.
   Admit14A2:0087's actual list indices/counts, label/frame and
   output/record aliasing, span and child lifetime before
   1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
@@ -773,9 +774,8 @@ Next ID: Q-CONFIG-015
   incoming storage, driver effects and implicit accesses above remain open.
   Tried: FND-CONFIG-257 settles both local constructors/overrides, replacing003's
   inference;258 settles adjustment mask/list/apply order and initial-index lookup.
-  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering. Tried: FND-CONFIG-261 settles its2713 decimal-prefix/sign/overflow and caller low-word contract. Tried: FND-CONFIG-262 supplies the BLASTER source/selection and twelve EC/EE writers, including7A. Tried: FND-CONFIG-263 supplies card6A's partial register-result producer, signature and bindings; other writers, actual reply and source/table/frame admission remain. Tried: FND-CONFIG-264 supplies card7D's ARIA helpers, four address spellings and ignored returns; two file-based families retain four EC/four EE sites. Tried: FND-CONFIG-265 supplies card81's ordered SNDSCAPE fields, byte-FF gates and two paired sites; card82 retains two EC/two EE sites.
+  Keep count/index/frame admission and incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering. Tried: FND-CONFIG-261 settles its2713 decimal-prefix/sign/overflow and caller low-word contract. Tried: FND-CONFIG-262 supplies the BLASTER source/selection and twelve EC/EE writers, including7A. Tried: FND-CONFIG-263 supplies card6A's partial register-result producer, signature and bindings; other writers, actual reply and source/table/frame admission remain. Tried: FND-CONFIG-264 supplies card7D's ARIA helpers, four address spellings and ignored returns; two file-based families retain four EC/four EE sites. Tried: FND-CONFIG-265 supplies card81's ordered SNDSCAPE fields, byte-FF gates and two paired sites; card82 retains two EC/two EE sites. Tried: FND-CONFIG-266 assigns those sites to its SW32 path/field gates; actual stream/seek/path/interrupt and downstream admission remain.
   Blocks: completing the named entry readings.
-
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
   group/numeric/count parsing and malformed token/value behavior?
   Settles it: 0B26's source/destination length and classification admission
