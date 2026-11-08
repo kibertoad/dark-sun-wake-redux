@@ -190,6 +190,18 @@ remain false; neither run resumes beyond that endpoint. Completed P and a
 later native endpoint remain unadmitted, as do continuous relocation/frame
 histories and other roots. No guest writes or RNG draws; owned sessions close.
 
+At c61798c1, saved-keyboard retains watches after the paired store and samples
+in fixed one-millisecond steps. Two 2026-11-08 runs, retained under
+GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-saved-ready-a-20261108/
+and sibling b, complete P delivery and reach ready WIND16500, mode2,
+handler5782:0043 (FND-CONFIG-256). These post-store input/UI observations
+are agent under current pins. Overall/keyboard/history completion passes;
+the only watched mutation remains music100 to255, with no RNG draws or
+guest writes. No expired frames are read during the continuation. Owned
+watches/sessions close. This admits the fixed restored positive P endpoint,
+not continuous frame/writer histories, other roots, visual/audio parity or
+the non-sentinel driver/storage paths. Earlier saved-key-a..e stay incomplete.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed
