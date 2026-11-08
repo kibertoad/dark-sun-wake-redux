@@ -1,7 +1,7 @@
 """Fixed naturally produced post-Save source for Q-CONFIG-014."""
 import struct
 from preferences_key import KeyTrace
-from regenerate_checkpoints import checked_read
+from regenerate_checkpoints import checked_read, ready
 from load_entry import named_file
 
 
@@ -25,6 +25,36 @@ def verify_save(run, meta):
 
 
 class SavedKeyTrace(KeyTrace):
+    WAIT_FOR_DELIVERY = True
+
+    def after_store(self, stop):
+        if self.phase != "done" or len(self.report["events"]) != 10:
+            raise ValueError("saved keyboard delivery requires paired store")
+        self.report["store_stop"] = {k: stop[k] for k in ("cs_ip", "seq", "emu_ns")}
+        self.report["endpoint"] = None
+        self.phase = "delivery"
+
+    def endpoint(self, stop, current, delivered):
+        if (self.phase != "delivery" or stop.get("reason") != "time"
+                or stop.get("registers", {}).get("system", {}).get("mode") != "real"
+                or type(stop.get("seq")) is not int or stop["seq"] <= self.sequence
+                or type(stop.get("emu_ns")) is not int or stop["emu_ns"] < self.time):
+            raise ValueError("saved keyboard endpoint requires ordered post-store time stop")
+        self.sequence, self.time = stop["seq"], stop["emu_ns"]
+        self.report["last_ui"] = current
+        if not (delivered and ready(current, 16500) and current.get("mode") == 2
+                and current.get("handler") == "5782:0043"):
+            return False
+        self.report["endpoint"] = {**{k: stop[k] for k in ("cs_ip", "seq", "emu_ns")},
+                                   "ui_state": current, "input_delivery": "done"}
+        self.phase = "done"
+        return True
+
+    def complete(self):
+        if self.report.get("endpoint") is None:
+            raise ValueError("saved keyboard completion needs delivered ready Preferences")
+        super().complete()
+
     def outer(self, client, item):
         off, seg = struct.unpack("<HH", checked_read(client, item["ss"], self.root_sp, 4))
         item["preferences_return"] = f"{seg:04X}:{off:04X}"

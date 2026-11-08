@@ -169,7 +169,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
     operation = session.send_input("key", {"key": "tab", "hold_ms": 100})
     delivery, input_name, recorded = None, "tab", False
     for index in range(512):
-        sampling = getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery"
+        sampling = (getattr(keyboard, "EXPECT_REJECTION", False) or getattr(keyboard, "WAIT_FOR_DELIVERY", False)) and keyboard.phase == "delivery"
         continuation = (session.continue_(until_ms=session.stop["emu_ns"] // 1000000 + 1)
                         if sampling else session.continue_())
         ob, exhausted = wait_for_stop(session, continuation, attempts=2)
@@ -183,6 +183,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             raise ValueError("unadmitted Preferences RNG/seed boundary")
         if getattr(keyboard, "EXPECT_REJECTION", False) and stop.get("cs_ip") == getter:
             raise ValueError("rejection reached forbidden getter")
+        if sampling and getattr(keyboard, "WAIT_FOR_DELIVERY", False) and stop.get("cs_ip") == getter:
+            raise ValueError("completed store reached repeated getter")
         if seed_expected is not None and int.from_bytes(checked_read(session.client, 0x57E0 + delta, 0x384A, 4), "little") != seed_expected:
             raise ValueError("Preferences seed differs from recorded chain")
         if history:
@@ -205,6 +207,18 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
         if not recorded and delivery.state == "done":
             report["inputs"].append({"input": input_name, "delivery": delivery.detail})
             recorded = True
+        if sampling and getattr(keyboard, "WAIT_FOR_DELIVERY", False) and stop["reason"] == "time":
+            current = snapshot(session.client, delta)
+            report["ui_state"] = current
+            if keyboard.endpoint(stop, current, delivery.state == "done"):
+                history.finish(session.client)
+                history.close(session.client)
+                history.complete()
+                keyboard.complete()
+                report["result"], report["passed"] = "keyboard-preferences-ready", True
+                break
+            retain()
+            continue
         site = stop["cs_ip"]
         if history and stop["reason"] == "watchpoint":
             if trace.caller is None or trace.phase != "store" or site != f"{trace.caller:04X}:0041":
@@ -272,6 +286,10 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             if parent:
                 parent.nested(session.client, stop, "store")
             if keyboard: keyboard.nested(session.client, stop, "store")
+            if getattr(keyboard, "WAIT_FOR_DELIVERY", False):
+                keyboard.after_store(stop)
+                retain()
+                continue
             if delivery.state != "done":
                 raise ValueError("Preferences click delivery incomplete at endpoint")
             if history:
@@ -294,7 +312,7 @@ def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
             or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard", "keyboard-rejection", "saved-keyboard")):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch|keyboard|keyboard-rejection]")
+        raise SystemExit("usage: preferences_readback.py <source-run> <new-run-name> [history|parent|dispatch|keyboard|keyboard-rejection|saved-keyboard]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",

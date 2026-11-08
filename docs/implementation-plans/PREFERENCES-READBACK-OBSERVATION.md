@@ -316,3 +316,24 @@ This samples a declared active frame only; no target following, execution
 breakpoint retargeting or continuous relocation claim. Synthetic controls
 cover trap/loaded forms and each mismatched field. Require the existing
 paired getter/store and P-delivery endpoint before positive completion.
+
+## Completed positive P delivery and Preferences readiness
+
+CONFIG-255 proves the paired store but P remains pending there. For
+Q-CONFIG-014 extend only saved-keyboard mode: after its ten accepted samples
+and paired store, retain all existing watches/RNG guards and use fixed
+one-millisecond continuations within the512-stop cap. Reuse operation handles;
+send no new input and do not read expired keyboard/opener frames. Completion
+requires actual P delivery done plus ready WIND16500, mode2 and normalized
+handler5782:0043 (SCR-UI-007, FND-UI-065). Intermediate UI construction is
+not completion. Record sampled UI/endpoint and stop provenance; require an
+ordered real-mode stop after the store. Repeated getter or setter access,
+unknown instruction stops and unadmitted RNG callers still refuse. The
+positive music-byte watch and unchanged configuration binding remain required
+through the endpoint; clean owned watches before marking history complete.
+Other modes retain the existing endpoint. Synthetic controls cover pending
+delivery, incomplete/wrong UI or hook, pre-store time stops, repeated getter,
+named mutations/RNG handling, exactly fixed deadlines, no expired-frame reads
+and final completion/cleanup. Separate native research repeats the extended
+fixed route twice and records only observed capabilities. Other roots, keys,
+driver/storage behavior and continuous frame/producer histories stay open.
