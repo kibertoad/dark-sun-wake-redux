@@ -231,3 +231,45 @@ and remaining driver/storage mechanisms stay open.
 Retain each candidate named sample before applying a gate that can reject it,
 marking it unaccepted until all checks pass. A failed gate must preserve its
 actual selecting value without advancing phase or granting completion.
+
+## Native turn-rejection completion
+
+CONFIG-252 admits the forwarded-P/state/turn samples but stops before the
+comparison. Add only fixed `keyboard-rejection` mode to observe the actual
+rejecting continuation. Reuse the same checked restore, Tab/P1ms gestures,
+KeyTrace fields, source/trampoline, history/RNG and unknown-stop controls.
+Read the two known mode/turn words at the strict restore before input,
+retaining that baseline without assigning a writer or cause to differences.
+
+Require a nonzero state result followed by actual signed turn>=4 at its
+comparison. Verify the declared comparison operand, then resume only with
+the existing positive callback/opener/getter points still armed as guards.
+Require the known +1EC9 epilogue before its pops/leave/return; match the
+keyboard frame, event/key/callback, stack, pointers and sampled mode/turn.
+Read only the active frame's saved caller BP. Require the matching menu
+return +0039 with SS unchanged, SP=keyboardBP+6 and the saved caller BP
+restored. Do not inspect the expired keyboard frame after return.
+
+Rearm only the known input-builder poll after that return. Complete only
+when P delivery is done and the same ready Game Menu10500 remains, with
+unchanged named menu pointers and no observed getter or callback/opener
+guard reached. The final native state and input delivery, not elapsed time,
+establish this endpoint. Keep the512-stop cap and original operation handles;
+never retry input or continue after an unknown stop. No guest writes or seeds.
+
+This mode's named-field history has a distinct no-observed-change predicate:
+require all watched values unchanged through the endpoint, retain empty
+changes and final values, and remove owned watches before completion. It
+does not provide a positive mutation-delivery control and must say so.
+Other modes retain their positive music-byte predicate. Overall pass in this
+mode means completed turn rejection only, with explicit result and limits;
+the readback array stays empty and no callback/getter/store is admitted.
+
+Synthetic controls cover baseline/branch predicate, epilogue/return pairing,
+changed frame/event/menu, positive-path guard refusal, pending input/window
+readiness, no-change history versus mutation, source/bounds checks and
+completion/cleanup. Keep all prior controls passing and run Test.ps1 Research
+before tooling commit. Separate research repeats the completed rejection
+twice and records actual capabilities. Positive callback/reload admission
+still needs a naturally admitted turn state and its producers; other roots,
+branches, between-stop changes and driver/storage obligations remain open.

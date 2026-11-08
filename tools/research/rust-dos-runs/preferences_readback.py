@@ -192,6 +192,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             continue
         if keyboard and keyboard.is_site(stop):
             keyboard.boundary(session.client, stop)
+            if getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery":
+                session.client.set_breakpoint(poll)
             retain()
             continue
         delivery = observe_delivery(session, operation, delivery)
@@ -219,6 +221,17 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
         elif site == poll:
             current = snapshot(session.client, delta)
             report["ui_state"] = current
+            if getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery":
+                if keyboard.endpoint(session.client, stop, current, delivery.state == "done"):
+                    if report["readback"]: raise ValueError("rejection reached a readback")
+                    history.finish(session.client)
+                    history.close(session.client)
+                    history.complete()
+                    keyboard.complete()
+                    report["result"], report["passed"] = "keyboard-turn-rejected", True
+                    break
+                retain()
+                continue
             action = flow.poll(current, delivery.state == "done")
             if action:
                 if keyboard:
@@ -236,6 +249,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
                 delivery, recorded = None, False
                 print(action, flush=True)
         elif site == getter:
+            if getattr(keyboard, "EXPECT_REJECTION", False): raise ValueError("rejection reached forbidden getter")
             if flow.phase != "getter":
                 raise ValueError("Preferences getter reached before its fixed input route")
             report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
@@ -275,8 +289,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
-            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard")):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch|keyboard]")
+            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard", "keyboard-rejection")):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch|keyboard|keyboard-rejection]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
@@ -305,6 +319,11 @@ def main():
     history = ValueHistory(delta) if history_mode else None
     parent = None
     keyboard = None
+    if len(sys.argv) == 4 and sys.argv[3] == "keyboard-rejection":
+        from preferences_rejection import RejectionTrace, RejectionHistory
+        keyboard, history = RejectionTrace(delta), RejectionHistory(delta)
+        report["keyboard"] = keyboard.report
+        report["limits"] = "fixed completed P turn rejection; no callback/reload/getter/store admission, positive mutation delivery or other routes"
     if len(sys.argv) == 4 and sys.argv[3] == "keyboard":
         from preferences_key import KeyTrace
         keyboard = KeyTrace(delta)
@@ -330,6 +349,7 @@ def main():
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             if history:
                 history.arm(session.client, stop)
+            if getattr(keyboard, "EXPECT_REJECTION", False): keyboard.baseline(session.client, stop)
             observe_readback(session, delta, report, retain, history, parent=parent, keyboard=keyboard)
         except Exception as error:
             report["error"] = str(error)
