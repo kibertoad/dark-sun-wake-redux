@@ -167,7 +167,18 @@ muted sessions close normally. Earlier sibling a exhausts512 builder stops
 with P pending; b is refused on redundant breakpoint deletion. Both remain
 incomplete. The Native turn-rejection completion plan section gives the
 corrected fixed command/controls. A positive callback/reload/opener route,
-other states/roots and between-stop writer histories remain unadmitted.
+other states/roots and between-stop writer histories remain unadmitted there.
+
+Fixed saved-keyboard mode at b77eacbd reuses FND-COMBAT-140's checked
+native saved-map checkpoint. Two 2026-11-08 runs, retained under
+GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-saved-key-a-20261108/
+and sibling b, verify source/frame/private-save identity and sample actual
+mode1, combat0, turn=leader1. Eight matching positive keyboard samples through
+callback return, key reload and Preferences trampoline are agent under current
+pins (FND-CONFIG-254). Getter entry is reached, but the nested outer-pair
+check refuses it; the rejected pair is not retained. Overall completion,
+paired getter return/store and completed P delivery remain unadmitted. No
+guest writes or RNG draws occur. Owned watches and muted sessions close.
 
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any

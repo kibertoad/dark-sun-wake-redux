@@ -91,9 +91,9 @@ Next ID: Q-CONFIG-015
   Caller and incoming transfers: other parent/event/frame and keyboard
   callback/post-child key states on an admitted turn path, including reentrant reads.
   CONFIG-252/253 supply actual gate and completed rejection/epilogue/P delivery
-  for the checked menu profile, plus a pre-input baseline. Retain naturally
-  admitted turn<4 state and its producers for callback/reload/opener admission;
-  pre-baseline and between-stop writer history remains. CONFIG-251
+  for the checked menu profile, plus a pre-input baseline. CONFIG-254 admits
+  native post-Save turn1 and callback/reload/opener samples; retain nested
+  outer-pair lifetime/relocation, getter/store/P completion and writer histories. CONFIG-251
   admits the fixed window-specific call/window/target and menu-frame join;
   CONFIG-250 supplies its later menu/post-close/nested-frame samples. Retain
   between-sample writes and reuse CONFIG-249's bindings, not another local reading;
@@ -323,7 +323,10 @@ Next ID: Q-CONFIG-015
     reloaded key, opener or completed P delivery is admitted; do not retry unchanged.
     Tried: FND-CONFIG-253 completes the fixed native turn-rejection, matching
     menu return and P delivery in two runs, with unchanged ready Game Menu.
-    Positive callback/reload still needs admitted turn state and producer history.
+    Positive callback/reload admission follows in FND-CONFIG-254.
+    Tried: FND-CONFIG-254 reuses COMBAT-063/064/140's ordinary producer/state;
+    two runs admit turn1 through callback/reload/opener, then refuse the getter's
+    outer pair. Retain actual changed pair/lifetime, getter/store/P completion.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
