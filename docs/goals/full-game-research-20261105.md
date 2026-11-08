@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 5331aeac -NoRestore passed:
-  2190 entries,208 parity rows,five deviations, existing skips (2026-11-09).
+- Stage Slices. Test.ps1 -Research -ChangedSince 3d54de7b -NoRestore passed:
+  2191 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,9 +75,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-SOUND-010: admit the second notice objects/frame and pending input completion
-  before retrying chooser rows. Complete delivery remains
-  unverified. Reuse SOUND-097..107 and EXE-483..489; do not repeat endpoint samples.
+- Next Q-SOUND-010: plan second-notice selection/return after the completed first event
+  before retrying chooser rows. Second selection/return remains
+  unverified. Reuse SOUND-097..108 and EXE-483..489; do not repeat endpoint samples.
   SOUND Static9,Live1; BIOS SI/DI/ES, port progress and native input remain.
   Q-CONFIG-005 retains constructor/dialog admission, source history and drivers.
   Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
@@ -114,9 +114,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Currentf80dc794 to8775085d: zero qualifying readings or answered deletions;
-Q-SOUND-010 narrowed by SOUND-107's next boundary. One finding,
-one tooling/one research commit; unchanged inventory/ownership denominators.
+Currentfd3ec046 to44047579: zero qualifying readings or answered deletions;
+Q-SOUND-010 narrowed by SOUND-108's construction/delivery. One finding,
+two tooling/one research commit; unchanged inventory/ownership denominators.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -151,8 +151,9 @@ Saved-keyboard: same root's v181-q014-saved-key-a-20261108/ and siblings b..e
 incomplete; saved-ready-a/b complete (CONFIG-256). Source: COMBAT-140's saved-map.
 Static: GAME_DIR/analysis/config-block-construction-20261108/SETUP-blocks.gpr;
 CONFIG-257..269/SOUND-097..099 name retained reports; cohorts assigned.
-Current native: GAME_DIR/captures/rust-dos-setup-parser/
-v181-setup-labels-20261109-a/ and sibling b/ complete (SOUND-100).
-setup_parser.py --labels has fixed no-input/write guards; both sessions closed.
-Same root: v181-setup-display-20261109-a/ and sibling b/ complete;
-v181-setup-rows-20261109-a/ guarded, no chooser endpoint (SOUND-101). All closed. Guard/object/poll pairs: SOUND-102/104/105. Enter: v181-notice-enter-20261109-b/c complete, a partial (SOUND-106); pending delivery. Next-boundary pair: v181-notice-next-20261109-a/b (SOUND-107).
+Current native: GAME_DIR/captures/rust-dos-setup-parser/.
+Label/display and guard/object/poll pairs: SOUND-100/101/102/104/105.
+Enter and next-boundary pairs: SOUND-106/107; retain their partial diagnostics.
+Second-wait: v181-second-wait-20261109-b/ and sibling c/ complete;
+a/ is the512-poll diagnostic (SOUND-108). All contexts closed; no owned lock.
+Use3d54de7b --second-wait; do not repeat answered construction/delivery.
