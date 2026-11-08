@@ -38,23 +38,21 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 16a6fba8 -NoRestore passed:
-  2164 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Active; Audit unmet. Unfinished reading below. Turn-limit checkpoint.
+- Stage Slices. Test.ps1 -Research -ChangedSince e0f597ab -NoRestore passed:
+  2167 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..255 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
-  CONFIG Static10,Live2,Blocked1,Next15; queue is 993 lines, all attempts retained.
+  CONFIG Static10,Live2,Blocked1,Next15; queue is1000 lines, all attempts retained.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: completed P delivery and later native endpoint after
-  CONFIG-254/255; reuse COMBAT-063/064/140 and EXE-562 before new reading.
-  Keep earlier/between-stop frame/writer history,
+  Q-CONFIG-014 retains earlier/between-stop frame/writer history,
   other parents/global-hook and exit-time reentrant/alternate entry, plus remaining
   reader/construction and non-sentinel driver/storage admission;
-  reuse CONFIG-243..255, EXE-249/520/561/567,
+  reuse CONFIG-243..257, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
   Earlier timed closure measures remain at7307ac04.
   Fixed full fresh route at7f5baded passed twice with66 focused controls;
@@ -68,16 +66,24 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   RUNTIME; do not repeat their answered fixed menu/call/frame samples.
   CONFIG-249 supplies static bindings;250/251 retain the native scopes.
   Rejection mode76779199 passed twice (CONFIG-253), with95 focused controls.
-  Saved-keyboard16a6fba8 adds seven source/header controls. Use the bounded
-  plan/RUNTIME and CONFIG-254/255; do not repeat answered sampled gates,
-  callback/reload, header representation or getter/store without a new question.
-  Completion remains withheld; do not weaken positive predicates.
+  Saved-keyboardc61798c1 includes seven source/header and five endpoint controls.
+  Use the bounded plan/RUNTIME and CONFIG-254..256; do not repeat answered
+  fixed keyboard samples/endpoint without a new question.
   Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
+- Next Q-CONFIG-005, FMT-CONFIG-006: finish the selected-record adjustment
+  contract at SOUND_DS14A2:0087, connecting its mask-selected list results,
+  mode argument and output writes to CONFIG-257 and SOUND-021/022.
+  Retained Ghidra report exists; reading is unfinished, with no new finding.
+  Keep EC/extended-field producers, incoming storage and driver effects open.
+  Existing-evidence review of FMT-CONFIG-006's predecessor at e88f47af/ae824c69
+  ended at e0f597ab; declaration gap none qualifying. CONFIG-257 and
+  FMT-CONFIG-006 replace their predecessors at15782e02.
+  Reuse SOUND-020/021/037/047/092. No CONFIG ownership JSON was added.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
   transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
@@ -107,14 +113,10 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-CONFIG comparison 7b9b6636 to 7307ac04: two findings plus reuse review,
-zero complete-reading changes or answered deletions; Q-CONFIG-014 narrowed.
-No inventory/ownership denominator changes. Wall seconds research/tooling/
-validation: 1448.6/0/11.7,184.3/0/11.2,135.6/0/11.6. Handovers:17.6/28.6/55.3 seconds.
-These exclude commit hooks and are not active-effort measurements.
-Current f93e9b2e to d95267c2: zero qualifying readings or answered deletions;
-Q-CONFIG-014 narrowed by CONFIG-254/255. Two findings, three tooling and
-two research commits; unchanged inventory/ownership denominators.
+Current e88f47af to15782e02: zero qualifying readings or answered deletions;
+Q-CONFIG-014/005 narrowed by CONFIG-256/257 and the format review.
+Two findings, one tooling and three research commits; unchanged inventory/
+ownership denominators. FMT-CONFIG-006 replaces001; no completion promotion.
 Earlier CONFIG-242..245/
 PARTY-323..327 comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
@@ -132,13 +134,8 @@ accepted readings/errors/stale/unmeasured inventories. Eight inventories total
 7014 rows; disc-associated636 add no independent understanding. Owner-excluded
 DOSBox lacks raw inventory. Counts are non-additive; embedded ADV is outside them.
 
-Historical PARTY/UI comparison 02e2d87549c20763b6951b505d1a73ff9a47a821 to
-127bdb98e3293b64826dd81f167a4086578a1f54: zero readings/answers/whole
-obligations closed; Q-PARTY-134 narrowed; two findings/four commits activity.
-Then eight obligations,6349 unassigned,three missing inventories. Earlier
-fa2a30bd904434e18ac242b3e76116c63ad16951 to
-56f71d560e4700bd7967646ebeed2153137554d6 also zero readings/answers;
-PARTY-264/265 removed two bounded components. Keep historical denominators.
+Historical PARTY/UI comparisons remain in this goal's e88f47af version;
+keep their original denominators and zero-reading/answer qualifications.
 
 Current: GAME_DIR/analysis/descriptor-pair-consumers-20261108/,
 preferences-root-contract-20261108/ and
@@ -155,4 +152,6 @@ siblings b/c incomplete; b/c use corrected diagnostic retention. No owned probes
 Rejection: same root's v181-q014-rejection-c-20261108/ and sibling d complete;
 a/b remain incomplete diagnostics. No owned probes/lock.
 Saved-keyboard: same root's v181-q014-saved-key-a-20261108/ and siblings b..e
-incomplete; use CONFIG-254/255. Native source: COMBAT-140's retained saved-map.
+incomplete; saved-ready-a/b complete (CONFIG-256). Source: COMBAT-140's saved-map.
+Current static: GAME_DIR/analysis/config-block-construction-20261108/,
+SETUP-blocks.gpr, constructors-ghidra.log and record-settings-producer-ghidra.log.
