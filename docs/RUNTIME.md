@@ -100,6 +100,21 @@ ended at a request stop during the cinematic interval. Corrected tooling
 neither exhaustion nor a pause is treated as reaching the opener. All three
 sessions closed with muted host output; derived logs remain local.
 
+The fixed `preferences-history` mode passed twice on 2026-11-08 in siblings
+v181-q014-fresh-preferences-a-20261108/ and
+v181-q014-fresh-preferences-b-20261108/. Nine watches stay armed from
+fresh entry through native seeding/opener, the existing two-character setup,
+mode-one/leader-one/input-map readiness and paired Preferences getter/store.
+All 24 inputs complete and eight caller-checked RNG draws are recorded;
+no restore, checkpoint, supplied seed or guest setup write is used. The
+music byte changes 100 to 255 at the actual paired store, supplying a positive
+byte control beside the startup word/pointer controls (FND-CONFIG-248).
+This exact continuous route and its declared reads/gestures are agent under
+current pins. Other routes, unmonitored/unchanged/intra-instruction effects,
+continuous native segment/frame identity, audible output and later Preferences
+interaction remain unadmitted. FRESH-PREFERENCES-HISTORY documents the bounded
+command and controls. Both owned muted sessions closed normally.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed

@@ -174,19 +174,19 @@ Next ID: Q-CONFIG-015
   known disc callback through the first music gate; FND-CONFIG-238 separately
   admits the restored Preferences caller/frame, result and byte store. Retain
   other gates/callers, non-sentinel driver-query admission, later/aliased
-  writers, actual extent/response freshness and uninterrupted startup-to-entry
+  writers, actual extent/response freshness and other startup-to-entry
   histories. Do not repeat the default-profile callback or restored pair
   without a new question; other configurations/targets/reinitialization stay
   outside those observations.
   FND-CONFIG-245 adds the fixed restored-map named-value history and positive
   byte-watch event; remove that unobserved-interval requirement on its exact
-  route. Retain startup outside that restored interval, other paths, later/unmonitored state, same-value
+  route. Retain other paths, later/unmonitored state, same-value
   and intra-instruction effects and untriggered-width delivery limits.
   FND-CONFIG-246 adds the fixed fresh program-entry-to-first-music-gate
   history and positive word/pointer mutations. FND-CONFIG-247 extends the
   uninterrupted watches through the checked native seed call to the opener
-  boundary. Retain the later opener/map-to-Preferences interval as one
-  unobserved history, plus other paths,
+  boundary. FND-CONFIG-248 supplies the uninterrupted fresh route through
+  map/leader readiness and the paired Preferences store. Retain other paths,
   unmonitored/unchanged/intra-instruction state and remaining entry/readers.
   Inherited research attempts remain under
   Q-CONFIG-002, which keeps initialization, voice synchronization and other
@@ -299,6 +299,9 @@ Next ID: Q-CONFIG-015
     unobserved first-music-gate-to-opener interval for nine fixed fields.
     The opener has not executed; later
     map/Preferences continuity, other paths and unmonitored effects remain.
+    Tried: FND-CONFIG-248's two matching runs remove the unobserved fresh-startup-to-entry
+    interval for nine fixed ranges on its admitted route. Other profiles,
+    callers, unmonitored state and remaining reader/driver/storage effects stay open.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
