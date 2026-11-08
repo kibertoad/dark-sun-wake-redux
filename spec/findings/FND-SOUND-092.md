@@ -21,7 +21,7 @@ locations:
     file: DSUN.EXE
     kind: file-data
     offset: 0x0005043E..0x00050446
-tool: resident_listing.py, window_operands.py and direct_callers.py at e3c6e842; tools/evidence/xxh3.mjs; pinned evidence Python and Capstone 5.0.9; Ghidra 12.1.3 focused decompiler/data reports; reused FND-CONFIG-003/020/021/155, FND-PARTY-320, FND-SOUND-011/016/082 and FND-RNG-084
+tool: resident_listing.py, window_operands.py and direct_callers.py at e3c6e842; tools/evidence/xxh3.mjs; pinned evidence Python and Capstone 5.0.9; Ghidra 12.1.3 focused decompiler/data reports; reused FND-CONFIG-257/020/021/155, FND-PARTY-320, FND-SOUND-011/016/082 and FND-RNG-084
 environment: null
 ---
 
@@ -34,7 +34,7 @@ bypass rather than extending driver internals. Addresses are hexadecimal
 unless a size/count is explicitly decimal.
 
 The current installed SOUND.CFG is 59 bytes and has XXH3-128
-64d376205212cb8a6b8a782b88576327, exactly FND-CONFIG-003's source identity.
+64d376205212cb8a6b8a782b88576327, exactly FND-CONFIG-257's source identity.
 Its word +14 is decimal 11, so bits 08, 02 and 01 are set. Identity
 agreement permits reuse of that field reading; it does not prove the loaded
 buffer remains unchanged. DSUN.EXE is the same approved 634416-byte image
@@ -127,7 +127,7 @@ audible outcome is claimed. No original game or emulated call was run.
 ## How to reproduce
 
 Hash current SOUND.CFG with node tools/evidence/xxh3.mjs and check its
-59-byte size against FND-CONFIG-003. Reuse that exact source's field reading.
+59-byte size against FND-CONFIG-257. Reuse that exact source's field reading.
 Run window_operands.py on approved DSUN.EXE and its current inventory for
 343E..3440 and 3444..3446; retain every candidate. Run direct_callers.py
 for 4734:0128 and verify the three sites against the existing caller streams.

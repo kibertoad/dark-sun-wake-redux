@@ -1,9 +1,9 @@
 ---
 id: FND-CONFIG-003
 title: SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes
-status: recorded
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FND-CONFIG-257]
 recorded_by: kibertoad
 reproduced_by: []
 method: static

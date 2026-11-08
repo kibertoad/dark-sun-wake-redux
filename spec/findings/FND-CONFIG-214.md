@@ -48,7 +48,7 @@ the nine stores above and a comparison of `E04D` with 4 at
 The nine-byte tail is constructed by sound setup from four input-record
 fields and one fixed word, rather than copied verbatim from a sound-card
 record. The installed file's word at `0x34` is 4, agreeing with the
-literal write (FND-CONFIG-003).
+literal write (FND-CONFIG-257).
 
 ## Alternatives
 

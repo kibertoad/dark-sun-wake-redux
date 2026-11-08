@@ -47,7 +47,7 @@ overlay 206.
 
 This is the game's sound-effect player. `DS:13F7` turns all sound on or off (FND-SOUND-010),
 `DS:1435` is the sound-effects setting saved as `unk_05` of `PREF` (FMT-CONFIG-003), and card 113
-in `SOUND.CFG` is the setup program's "No Sound" (FMT-CONFIG-001). Before a new effect the routine
+in `SOUND.CFG` is the setup program's "No Sound" (FMT-CONFIG-006). Before a new effect the routine
 stops one still playing. It looks for resource `n` of type `BVOC` first and plays it from memory;
 only when there is none does it play the loose file `SOUND` and `n` in three digits from the
 installation directory at `DS:44F2`, when that file exists. The number space is one: an effect

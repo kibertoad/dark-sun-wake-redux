@@ -1,9 +1,9 @@
 ---
 id: FMT-CONFIG-001
 title: Sound configuration SOUND.CFG
-status: supported
+status: superseded
 builds: [BLD-GOG-EN-1.1]
-superseded_by: []
+superseded_by: [FMT-CONFIG-006]
 files: ["SOUND.CFG"]
 byte_order: little
 size: 59

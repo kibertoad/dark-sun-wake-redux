@@ -51,7 +51,7 @@ An earlier search of the whole file for the upper-case `SOUND.CFG` and `SOUND.IN
 ## Interpretation
 
 `SOUND_DS.EXE` is the sound setup program. It reads the card list from `SOUND.INI` and writes the
-choice as the 59-byte `SOUND.CFG` (FND-CONFIG-003), in one `fwrite` of 59 bytes from `1E36:E01B`;
+choice as the 59-byte `SOUND.CFG` (FND-CONFIG-257), in one `fwrite` of 59 bytes from `1E36:E01B`;
 `1000:2C11` is `fopen`, `1000:2E28` `fwrite` and `1000:0357` `exit`. `SOUND.BAT` runs it with the
 drivers copied from the disc in drive D. The earlier search missed the names because they are in
 lower case.

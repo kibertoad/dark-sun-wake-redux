@@ -38,7 +38,7 @@ The selected `0x38` or `0x36` word is passed as the number with the four-byte
 tag `ADV ` (`0x20564441`) and a local output address to `38FF:05B5` at
 `DSUN.EXE+0x0003D132`. Prior bounded readings identify that entry as a
 resource-size query (FND-SCRIPT-019, FND-SOUND-007). The installed values
-are 11 and 8 respectively (FND-CONFIG-003), and setup copies them from
+are 11 and 8 respectively (FND-CONFIG-257), and setup copies them from
 separate input-record fields (FND-CONFIG-214).
 
 ## Interpretation
@@ -54,7 +54,7 @@ FND-CONFIG-024 shows that the selector pairs each `ADV ` number with one
 ten-byte settings block. Whether the resource request succeeds and what
 the branches for `0x34` and `0x3A` do remain unread. The
 installed values match music and digital chunk numbers in `SOUND.INI`
-(FND-CONFIG-003), but that match alone does not assign those roles to the
+(FND-CONFIG-257), but that match alone does not assign those roles to the
 selector values. Ghidra's recognized references and a raw search for nearby
 pointer loads are not an exhaustive consumer inventory.
 

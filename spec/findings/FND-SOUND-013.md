@@ -31,7 +31,7 @@ environment: null
 
 `DS` is the data segment `57E0`; `cfg` below is the record at the far pointer `DS:3411`, whose
 word at offset 8 and word at offset `0x14` are `unk_08` and `unk_14` of `SOUND.CFG`
-(FMT-CONFIG-001). The installed `SOUND.CFG` has 122 and 11 there.
+(FMT-CONFIG-006). The installed `SOUND.CFG` has 122 and 11 there.
 
 The far routine at `4A32:0011` takes a word, `n`, and returns nothing:
 

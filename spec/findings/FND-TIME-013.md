@@ -66,7 +66,7 @@ timer slot (FND-TIME-012) never exists.
 ## Alternatives
 
 Whether the setup program means word `0x14` as flags, or wrote the driver chunk number 11 there
-(FND-CONFIG-003), was not read. A store to `DS:3444` through a computed address is outside
+(FND-CONFIG-257), was not read. A store to `DS:3444` through a computed address is outside
 `immediate_search.py`'s search; FND-TIME-014's runs see none. What `2660:01C4` does beyond
 FND-SOUND-013's reading was not read.
 

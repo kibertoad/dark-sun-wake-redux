@@ -753,15 +753,15 @@ Next ID: Q-CONFIG-015
   indirect changes and callers remain unread.
   Blocks: completing the named entry readings.
 
-- Q-CONFIG-005. FMT-CONFIG-001: What remaining settings-block construction,
+- Q-CONFIG-005. FMT-CONFIG-006: What remaining settings-block construction,
   source admission and game-side field effects determine `SOUND.CFG` behavior?
-  Settles it: complete setup1429:042D/063A's first-block/second-block writes and
-  selecting inputs; bound output/record aliasing, span and child lifetime before
+  Settles it: admit setup1429:042D/063A's selecting input, EC/override and EE..FC
+  producers; bound output/record aliasing, span and child lifetime before
   1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
   settle receiving setup/driver effects that assign block roles or consume tail
   values, including pointer/block/implicit access outside literal censuses.
   Retain file short-read/release results and changed loaded-buffer bindings.
-  Tried: FND-CONFIG-003 compares source records;019 loads whole bytes without
+  Tried: FND-CONFIG-257 compares source records;019 loads whole bytes without
   parsing;020 reads08/0A/14/32;021 adds the first four words, another08 test
   and14/32 branches. Receiving routines' full effects remain unresolved.
   FND-CONFIG-214 maps tail stores to record offsets or literal4 (replacing022).
@@ -771,8 +771,9 @@ Next ID: Q-CONFIG-015
   and tail/name-output mappings, including low-byte SamplePlaybackMode and
   CardGroup summary argument;092 supplies the installed profile's conditional
   driver bypass. These local mappings no longer need a reading. Remaining
-  constructor blocks, incoming storage, driver effects and implicit accesses above
-  are not settled by equal shipped values, resource names or partial censuses.
+  incoming storage, driver effects and implicit accesses above remain open.
+  Tried: FND-CONFIG-257 settles both local block constructors and flag overrides;
+  it replaces003's equal-value inference. Retain the incoming/consumer gaps above.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`

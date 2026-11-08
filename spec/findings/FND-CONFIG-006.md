@@ -24,7 +24,7 @@ of the whole 204,593-byte file, including the 80,209 bytes after the load image,
 ## Interpretation
 
 The setup program does not add the extension to the driver names it writes to `SOUND.CFG`
-(FND-CONFIG-003); the names come whole from `SOUND.INI`, whose driver-name values include the
+(FND-CONFIG-257); the names come whole from `SOUND.INI`, whose driver-name values include the
 extension (FND-CONFIG-007).
 
 ## Alternatives

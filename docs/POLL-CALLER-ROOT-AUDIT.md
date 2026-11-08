@@ -159,7 +159,7 @@ full exits, remain unverified.
 
 ## Configuration-pointer producer and state-write candidate, 2026-10-06
 
-The current licensed configuration still matches FND-CONFIG-003's recorded
+The current licensed configuration still matches FND-CONFIG-257's recorded
 identity and field description. Its relevant pointed-word source value is
 nonzero. The earlier post-load AX-zero tests are therefore conditional decoder
 controls, not evidence of the shipped-file input or a native zero-guard path.

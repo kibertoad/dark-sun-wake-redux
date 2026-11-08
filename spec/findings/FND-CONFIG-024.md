@@ -46,7 +46,7 @@ Bit `0x01` of the `0x14` word gates the second pair's setup in this caller.
 
 The device identity of each pair, the meaning of `DS:3444`, and the two
 receiving far routines' effects remain unread. The installed values match
-music and digital driver chunk numbers (FND-CONFIG-003), but that match
+music and digital driver chunk numbers (FND-CONFIG-257), but that match
 does not alone establish a device label for either selector. Recognized
 direct references do not exclude indirect or overlay callers.
 

@@ -35,7 +35,7 @@ The load routine in overlay 192 passes the byte at `DS:26B4`, copied from
 81, resident segment `4A6E` (FMT-EXE-002, FMT-EXE-005).
 
 The routine at `4A6E:0064` checks the card ID at offset `0x08` of the
-`SOUND.CFG` record (FMT-CONFIG-001). When it is 113, it returns the byte at
+`SOUND.CFG` record (FMT-CONFIG-006). When it is 113, it returns the byte at
 `4E71:0C14` without applying the argument. Otherwise it compares its argument as a signed 16-bit word: values above
 100 become 100 and values below zero become zero, in that order. It reloads
 the configuration pointer, and a word at `+0x32` equal to 3 adds an upper

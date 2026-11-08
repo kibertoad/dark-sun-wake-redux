@@ -54,7 +54,7 @@ in the disc's root directory, every file checked against the build manifest:
 | 20 | `0x914D7` | 5,926 | `Copy` at +2 | equal to no disc file |
 
 The signatures are the two DSUN.EXE's driver install routine `4842:0A23` tests (FND-EXE-646). The
-installed `SOUND.CFG` names ADV 11 and 8 (FND-CONFIG-003, FND-CONFIG-023). The records of the
+installed `SOUND.CFG` names ADV 11 and 8 (FND-CONFIG-257, FND-CONFIG-023). The records of the
 installed `SOUND.INI` give `MidiDriverChunkNumber` 0, 1, 2, 4, 5, 7, 9, 11, 12 or 19 and
 `DigitalDriverChunkNumber` 0, 1, 3, 6, 8, 10, 13 or 20.
 
