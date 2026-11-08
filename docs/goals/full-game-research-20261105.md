@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince b866dcf2 -NoRestore passed:
-  2189 entries,208 parity rows,five deviations, existing skips (2026-11-09).
+- Stage Slices. Test.ps1 -Research -ChangedSince 5331aeac -NoRestore passed:
+  2190 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -54,7 +54,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   reader/construction and non-sentinel driver/storage admission;
   reuse CONFIG-243..257, EXE-249/520/561/567,
   PARTY-320..327 and CONFIG-149/155/159. Preserve unqueried entry mechanisms.
-  Earlier timed closure measures remain at7307ac04.
+  
   Fresh-route evidence: CONFIG-248;
   use FRESH-PREFERENCES-HISTORY and docs/RUNTIME.md. Do not repeat the
   answered fixed startup-to-store history without a new question.
@@ -75,9 +75,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-SOUND-010: resolve pending input delivery after the verified notice caller
-  return before retrying chooser rows. Complete delivery remains
-  unverified. Reuse SOUND-097..106 and EXE-483..489; do not repeat endpoint samples.
+- Next Q-SOUND-010: admit the second notice objects/frame and pending input completion
+  before retrying chooser rows. Complete delivery remains
+  unverified. Reuse SOUND-097..107 and EXE-483..489; do not repeat endpoint samples.
   SOUND Static9,Live1; BIOS SI/DI/ES, port progress and native input remain.
   Q-CONFIG-005 retains constructor/dialog admission, source history and drivers.
   Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
@@ -114,9 +114,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Current0d60f71f to9adf888e: zero qualifying readings or answered deletions;
-Q-SOUND-010 narrowed by SOUND-106's guest input/return. One finding,
-two tooling/one research commit; unchanged inventory/ownership denominators.
+Currentf80dc794 to8775085d: zero qualifying readings or answered deletions;
+Q-SOUND-010 narrowed by SOUND-107's next boundary. One finding,
+one tooling/one research commit; unchanged inventory/ownership denominators.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -139,7 +139,7 @@ music-getter-entry-census-20261108/;
 reuse handler-census-20261106/ and music-level-contract-20261107/.
 Other stores: goal version06458562.
 Earlier native stores: see CONFIG-238/245/246/247/248 and SOUND-096;
-all retained. Full fresh history: GAME_DIR/captures/rust-dos-disc-startup/
+all retained. Fresh history: GAME_DIR/captures/rust-dos-disc-startup/
 v181-q014-fresh-preferences-a-20261108/ and sibling b complete.
 Parent/dispatch: see CONFIG-250/251's retained complete runs.
 Static frame cross-check: GAME_DIR/analysis/preferences-parent-frame-20261108/.
@@ -155,4 +155,4 @@ Current native: GAME_DIR/captures/rust-dos-setup-parser/
 v181-setup-labels-20261109-a/ and sibling b/ complete (SOUND-100).
 setup_parser.py --labels has fixed no-input/write guards; both sessions closed.
 Same root: v181-setup-display-20261109-a/ and sibling b/ complete;
-v181-setup-rows-20261109-a/ guarded, no chooser endpoint (SOUND-101). All closed. Guard/object/poll pairs: SOUND-102/104/105. Enter: v181-notice-enter-20261109-b/c complete, a partial (SOUND-106); pending delivery.
+v181-setup-rows-20261109-a/ guarded, no chooser endpoint (SOUND-101). All closed. Guard/object/poll pairs: SOUND-102/104/105. Enter: v181-notice-enter-20261109-b/c complete, a partial (SOUND-106); pending delivery. Next-boundary pair: v181-notice-next-20261109-a/b (SOUND-107).
