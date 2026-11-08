@@ -25,6 +25,7 @@ from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checke
 from load_entry import fields, input_map_ready, observe_delivery
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop
+from preferences_history import ValueHistory
 
 
 def input_poll(client, delta):
@@ -72,7 +73,16 @@ class Readback:
 
     def named(self, client, stop, expected):
         r = stop.get("registers", {})
-        if (stop.get("reason") != "breakpoint" or stop.get("cs_ip", "").upper() != expected
+        watch = stop.get("watch", {})
+        try:
+            store_watch = (stop.get("reason") == "watchpoint" and self.phase == "store"
+                           and self.caller is not None and expected == f"{self.caller:04X}:0041"
+                           and int(watch.get("addr", "-1"), 16) == (0x57E0 + self.delta) * 16 + 0x26B4
+                           and type(watch.get("len")) is int and watch["len"] == 1
+                           and int(watch["old"], 16) != int(watch["new"], 16))
+        except (TypeError, ValueError, KeyError):
+            store_watch = False
+        if ((stop.get("reason") != "breakpoint" and not store_watch) or stop.get("cs_ip", "").upper() != expected
                 or r.get("system", {}).get("mode") != "real"):
             raise ValueError("Preferences readback requires its declared real-mode stop")
         try:
@@ -87,12 +97,16 @@ class Readback:
         if cfg_off == cfg_seg == 0:
             raise ValueError("Preferences configuration pointer is null")
         cfg = checked_read(client, cfg_seg, cfg_off, 59)
-        return {"cs_ip": stop["cs_ip"], "ss": ss, "sp": sp, "ax": ax,
+        item = {"cs_ip": stop["cs_ip"], "ss": ss, "sp": sp, "ax": ax,
                 "master_sound": value(0x13F7, 1), "music_on": value(0x1436, 1),
                 "music_level": value(0x26B4, 1), "music_slot": value(0x343E, 2),
                 "getter_handle": value(0x3464, 2), "configuration_pointer": f"{cfg_seg:04X}:{cfg_off:04X}",
                 "configuration": cfg.hex(), "card_id": struct.unpack_from("<H", cfg, 8)[0],
                 "library_mode": int.from_bytes(checked_read(client, 0x4E71 + self.delta, 0x0B51, 2), "little")}
+        if store_watch and (not 0 <= int(watch["old"], 16) <= 255
+                            or int(watch["new"], 16) != item["music_level"]):
+            raise ValueError("Preferences store watch differs from the named byte")
+        return item
 
     def trampoline(self, client, segment):
         # FND-INPUT-012: Preferences entry is trampoline8, not the header prefix.
@@ -146,8 +160,11 @@ class Readback:
 
 
 def main():
-    if len(sys.argv) != 3 or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:]):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name>")
+    if (len(sys.argv) not in (3, 4)
+            or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
+            or len(sys.argv) == 4 and sys.argv[3] != "history"):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history]")
+    history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                 Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -173,6 +190,9 @@ def main():
             ultrasound=None), readiness_timeout=60.0)
     report = {"source": sys.argv[1], "passed": False, "inputs": [], "draws": [], "writes": [], "readback": [],
               "limits": "fixed restored-map getter/store; no continuous startup preservation, later UI, audible output or other caller proof"}
+    history = ValueHistory(delta) if history_mode else None
+    if history:
+        report["value_history"] = history.report
     with RustDosSession(settings) as session:
         def retain():
             (run / "preferences-readback.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
@@ -186,6 +206,8 @@ def main():
                     or not input_map_ready(session.client, delta, current, fields(session.client, delta))):
                 raise ValueError("Preferences source differs from the admitted input map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
+            if history:
+                history.arm(session.client, stop)
             generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
             poll, getter = input_poll(session.client, delta), rng.address(0x4A6E, 0x011F)
             for site in (generator, setter, poll, getter):
@@ -197,16 +219,26 @@ def main():
                 stop = ob.stop
                 report["last_stop"], report["stops"] = stop, index + 1
                 retain()
-                if exhausted or stop.get("reason") != "breakpoint":
+                if exhausted or stop.get("reason") not in (("breakpoint", "watchpoint") if history else ("breakpoint",)):
                     raise ValueError("Preferences did not reach a declared instruction stop")
+                if history:
+                    if stop["reason"] == "watchpoint":
+                        history.changed(session.client, stop)
+                    else:
+                        history.check(session.client)
                 delivery = observe_delivery(session, operation, delivery)
                 report["last_delivery"] = {"input": input_name, "state": delivery.state}
                 if not recorded and delivery.state == "done":
                     report["inputs"].append({"input": input_name, "delivery": delivery.detail})
                     recorded = True
                 site = stop["cs_ip"]
-                if site == generator:
+                if history and stop["reason"] == "watchpoint":
+                    if trace.caller is None or trace.phase != "store" or site != f"{trace.caller:04X}:0041":
+                        continue
+                if stop["reason"] == "breakpoint" and site == generator:
                     report["draws"].append(rng.record(session, stop))
+                    if history:
+                        history.check(session.client)
                 elif site == setter:
                     raise ValueError("unadmitted Preferences reseeding")
                 elif site == poll:
@@ -223,15 +255,21 @@ def main():
                     if flow.phase != "getter":
                         raise ValueError("Preferences getter reached before its fixed input route")
                     report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
-                    for offset in (0x003E, 0x0041):
+                    for offset in ((0x003E,) if history else (0x003E, 0x0041)):
                         session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
                     print("getter-entry", flush=True)
                 elif trace.caller is not None and site == f"{trace.caller:04X}:003E":
                     report["readback"].append({"phase": "return", **trace.returned(session.client, stop)})
+                    if history and report["readback"][-1]["music_level"] == trace.result & 0xFF:
+                        session.client.set_breakpoint(f"{trace.caller:04X}:0041", once=True)
                 elif trace.caller is not None and site == f"{trace.caller:04X}:0041":
                     report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
                     if delivery.state != "done":
                         raise ValueError("Preferences click delivery incomplete at endpoint")
+                    if history:
+                        history.finish(session.client)
+                        history.close(session.client)
+                        history.complete()
                     report["passed"] = True
                     break
                 else:
@@ -243,7 +281,11 @@ def main():
             report["error"] = str(error)
             raise
         finally:
-            retain()
+            try:
+                if history:
+                    history.close(session.client)
+            finally:
+                retain()
     print(json.dumps({"passed": report["passed"], "draws": len(report["draws"])}), flush=True)
 
 

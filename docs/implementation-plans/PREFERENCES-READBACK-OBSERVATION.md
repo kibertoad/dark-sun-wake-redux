@@ -64,3 +64,54 @@ pairing. Exit for tooling: controls and Test.ps1 pass, fixed command documented.
 A later research batch attempts two independent restores, records only the
 capabilities and behavior actually reached, and narrows Q-CONFIG-014's admitted
 path. It cannot close the whole entry from one checkpoint or promote parity.
+
+The optional fixed `history` mode is described under Value history below. It adds changed-value watches only
+for that plan's named fields between strict restore and the paired store.
+Native history capability remains unverified until a separate research attempt;
+an armed watch alone is not mutation-delivery evidence.
+
+Tooling control command: run `check_preferences_history.py` and
+`check_preferences_readback.py` with the checkout-local evidence Python and
+`-I`. The fixed native command is `preferences_readback.py
+v181-q046-play-ready-20261104 <new-run-name> history`. It uses the same
+session-owned output root as the legacy command, with optional `value_history`
+in preferences-readback.json. Compare complete reports from two independent
+owned runs in a subsequent research batch; do not treat synthetic success as
+native history capability or a readback finding.
+
+## Value history
+
+For Q-CONFIG-014, extend the existing strict play-ready Preferences observer
+with an optional fixed `history` mode. Its research outcome is a named-field
+value history from admitted restore through the getter's AL store, not a new
+player behavior. Reuse CONFIG-235/236/238/243, SOUND-085/092 and the existing
+PREFERENCES-READBACK-OBSERVATION plan and fixed input/RNG contract.
+Before input, arm only the master/music gates, music byte, configuration
+pointer, driver slot, source/getter handles, library-mode word and the card
+word reached through the admitted configuration pointer. Reject overlapping,
+wrapping or short spans. Record initial values and every observed change with
+the actual post-instruction stop, sequence/time and old/new values. Validate
+all fields at ordinary stops; an unexplained change aborts. A configuration
+pointer change aborts rather than following an arbitrary new location.
+Watchpoints observe changed instruction-boundary values, not unchanged writes
+or all intra-instruction/transient accesses. They establish no startup-to-map
+history, unmonitored bytes, arbitrary caller, hardware effect or whole reading.
+
+Keep old probe invocation and report unchanged. The optional report adds
+`value_history` with fixed field metadata, initial/change/final values and a
+completion marker. No successful marker before the paired store and watch
+cleanup. At the known changed-byte store, admit only the exact music-byte
+watch at the already-verified caller's next boundary, preserving the actual
+stop reason; avoid a competing post-store execution breakpoint. An unchanged
+store uses its ordinary breakpoint and cannot supply the positive watch control.
+RNG continuation interrupted by a watch fails through the existing recorder;
+do not resume past an unrecorded nested event. No guest writes or new input.
+
+Acceptance: synthetic controls for all fixed spans, arm/cleanup and partial
+failure, real-mode/sequence/value checks, unknown or malformed watch records,
+missing changes, simultaneous changed fields, pointer mutation, exact watched
+store versus wrong field/phase/boundary, and unchanged legacy mode. Run the
+new and existing observer controls and the Research gate before tooling commit.
+Exit: documented bounded command and passing controls. A separate research
+batch attempts native observation with the pinned muted owned session, records
+the actual capability/result and narrows only the admitted interval.
