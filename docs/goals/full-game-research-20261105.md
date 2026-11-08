@@ -39,8 +39,8 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 0993e110 -NoRestore passed:
-  2185 entries,208 parity rows,five deviations, existing skips (2026-11-09).
+- Stage Slices. Test.ps1 -Research -ChangedSince 7a14d1b8 -NoRestore passed:
+  2186 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235..257 and
@@ -75,9 +75,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Embedded ADV lacks inventories; partial DSUN claim nodes do not reassign
   JSON plans. a0f58c56 adds controlled ADV operand census.
   SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
-- Next Q-SOUND-010: admit190F guard objects/input/frame from its identified
+- Next Q-SOUND-010: admit190F guard objects/input and wrapped-frame lifetime from its
   caller before retrying chooser rows. Input/frame capability remains
-  unverified. Reuse SOUND-097..102 and EXE-483..489; do not repeat endpoint samples.
+  unverified. Reuse SOUND-097..103 and EXE-483..489; do not repeat endpoint samples.
   SOUND Static9,Live1; BIOS SI/DI/ES, port progress and native input remain.
   Q-CONFIG-005 retains constructor/dialog admission, source history and drivers.
   Reuse CONFIG-257..269 and SOUND-020/021/022/037/047/092; do not repeat
@@ -114,9 +114,9 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   and SOUND-010 reuse SOUND-030..048, docs/RUNTIME.md and profile595c7602.
   DSUN reporters do not admit setup inputs.
 
-Currentcbf78cd1 to4f17618b: zero qualifying readings or answered deletions;
-Q-SOUND-010 narrowed by SOUND-102's caller binding. One finding, one tooling/
-one research commit; unchanged inventory/ownership denominators.
+Current7a14d1b8 to6d78d7ec: zero qualifying readings or answered deletions;
+Q-SOUND-010 narrowed by SOUND-103's frame constraint. One finding/research
+commit; unchanged inventory/ownership denominators.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
