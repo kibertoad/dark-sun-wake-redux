@@ -38,25 +38,24 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Resumed 2026-11-08; standing goal active, Audit unmet. No unfinished batch.
-- Stage Slices. Test.ps1 -Research -ChangedSince f21c0f63 -NoRestore passed:
-  2145 entries,208 parity rows,five deviations, existing checker skips.
+- Active; Audit unmet. No unfinished batch.
+- Stage Slices. Test.ps1 -Research -ChangedSince d5a7ccd7 -NoRestore passed:
+  2146 entries,208 parity rows,five deviations, existing checker skips.
   Previous integration passed Node checks and 758 .NET tests.
-  Set EVIDENCE_PYTHON to this checkout's artifacts/evidence-python/Scripts/python.exe;
-  inherited override selects another project's session package. Use supported escalation.
+  Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
+  overriding inherited configuration; use supported escalation.
 - RULE-CONFIG-003 remains supported. Reuse CONFIG-235/236/237 and
-  SOUND-082..095; do not repeat local getter/setter/query/reset/cache-progress
+  SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
-  CONFIG Static10,Live2,Blocked1,Next15. This is a split, not an answer.
-  Next Q-CONFIG-014: actual callback response/table-capacity and alias admission,
-  using SOUND-067/094/095. Mixed release retains CONFIG-165/167.
+  CONFIG Static10,Live2,Blocked1,Next15.
+  Next Q-CONFIG-014: later startup-to-Preferences getter/store admission,
+  using CONFIG-235/236 and SOUND-095/096. Mixed release retains CONFIG-165/167.
   Preserve computed/block/alias writers, actual state histories and other media,
   runtime-record/configuration, frame/lifetime and target obligations.
   Embedded ADV functions lack committed inventories; six named DSUN claim
   nodes do not reassign JSON plans. a0f58c56 adds controlled ADV operand census.
-  SOUND-082/083/084 complete three timed
-  batches after 1e870e55. Preserve timing qualifications in their commits.
+  SOUND-082/083/084 complete three timed batches after 1e870e55; keep their qualifications.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
   transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
@@ -97,7 +96,8 @@ answered deletion or complete reading. Validation11.130s; research/drafting
 upper bound4m30s includes context overhead. No closure speedup proved.
 Then SOUND-085..094 add producer/start/
 cleanup classifications, no readings or answered deletions. SOUND-095 narrows
-table admission without readings or answers. Keep histories
+table admission without readings or answers. SOUND-096 narrows Q-CONFIG-014
+and Q-SOUND-004; no complete reading or answered deletion. Keep histories
 and census exclusions.
 Upstream proposal: https://github.com/kibertoad/refurbished-dinosaurs/pull/133.
 
@@ -124,3 +124,5 @@ handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
 runtime-error-inventory-20261107/, music-level-contract-20261107/,
 music-driver-contract-20261107/, patch-enumeration-20261107/ and
 sequence-input-census-20261107/ and disc-table-contract-20261108/.
+Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/
+and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
