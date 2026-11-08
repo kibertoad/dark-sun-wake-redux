@@ -642,7 +642,6 @@ def main():
                             raise ValueError("notice Enter poll budget exhausted; no second event sent")
                         if value["ax"] != 13:
                             raise ValueError("notice Enter produced an unsupported poll result")
-                        session.client.remove_breakpoints(address(loaded, 0x190F, 0x0554))
                         for phase, site in (("selected", (0x190F, 0x0724)), ("returned", (0x164C, 0x050D))):
                             if phase == "returned":
                                 for offset in (0x0724, 0x02C6):
