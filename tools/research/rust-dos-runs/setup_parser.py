@@ -25,7 +25,8 @@ from setup_record_projection import project_source, RECORD_SIZE
 INPUTS = {"SOUND_DS.EXE": (204593, "236c2dc23c071eca421eb5b427caee57"),
           "SOUND.INI": (54669, "aecc7469098e0c188e0e3d056c5fd530")}
 # FND-SOUND-024/033 and FND-EXE-491; no arbitrary address or target input.
-PHASES = {"parser": (0x1AF6, 0x0001), "returned": (0x1ABD, 0x0021)}
+PHASES = {"parser": (0x1AF6, 0x0001), "returned": (0x1ABD, 0x0021),
+          "labels": (0x1ABD, 0x0092)}
 GUARDS = ((0x1AF6, 0x0040), (0x1AF6, 0x0090), (0x1AF6, 0x00C1),
           (0x1AF6, 0x00F0), (0x1AF6, 0x011F),
           (0x1000, 0x4127), (0x1C08, 0x0A25))
@@ -102,11 +103,13 @@ def wait_same_operation(session, operation, attempts=6):
     raise RuntimeError("setup continuation still pending after pause; closing owned session")
 
 
-def observe_records(client, stop, loaded, projection):
+def observe_records(client, stop, loaded, projection, phase="returned"):
     """Only named group headers/payloads at the existing successful return stop."""
-    fields = observe_fields(client, stop, loaded, "returned")
+    if phase not in ("returned", "labels"):
+        raise ValueError("unsupported setup record phase")
+    fields = observe_fields(client, stop, loaded, phase)
     names = {"main", "digital", "music_only"}
-    if (fields["ax"] != 1 or set(projection["counts"]) != names
+    if ((phase == "returned" and fields["ax"] != 1) or set(projection["counts"]) != names
             or set(projection["payloads"]) != names or fields["counts"] != projection["counts"]):
         raise ValueError("setup records need successful source-matching counts")
     registers = stop["registers"]
@@ -159,10 +162,98 @@ def observe_records(client, stop, loaded, projection):
                             "native_sha256": hashlib.sha256(actual).hexdigest(),
                             "differing_bytes": len(differing), "first_differing_offsets": differing[:32]})
         summaries[name] = summary
-    if observe_fields(client, stop, loaded, "returned") != fields:
+    if observe_fields(client, stop, loaded, phase) != fields:
         raise ValueError("setup named fields changed during paused record observation")
     return {"groups": summaries, "all_populated_equal": all(
                 row["equal"] for row in summaries.values() if row["compared_bytes"])}, native
+
+
+def expected_labels(projection):
+    """Documented short printable names, excluding every slot's unwritten tail."""
+    result = {}
+    if (set(projection["counts"]) != {"main", "digital", "music_only"}
+            or set(projection["payloads"]) != set(projection["counts"])):
+        raise ValueError("unsupported label groups")
+    for name, count in projection["counts"].items():
+        if type(count) is not int or count != -1 and not 1 <= count <= 16:
+            raise ValueError("unsupported label count")
+        body = projection["payloads"][name]
+        if type(body) is not bytes or len(body) != max(0, count) * RECORD_SIZE:
+            raise ValueError("label projection size differs")
+        rows = []
+        for index in range(max(0, count)):
+            field = body[index * RECORD_SIZE:index * RECORD_SIZE + 40]
+            end = field.find(b"\0")
+            if end < 0 or any(not 32 <= value <= 126 for value in field[:end]):
+                raise ValueError("label name outside terminated printable profile")
+            rows.append(field[:end] + b"\0")
+        result[name] = rows
+    return result
+
+
+def observe_labels(client, stop, loaded, projection, baseline):
+    """Only the fixed post-label stop; six modeled blocks, header-first reads."""
+    expected = expected_labels(projection)
+    fields = observe_fields(client, stop, loaded, "labels")
+    keys = ("counts", "groups", "mode")
+    if any(fields[key] != baseline[key] for key in keys):
+        raise ValueError("setup record bindings changed before labels")
+    records, record_native = observe_records(client, stop, loaded, projection, "labels")
+    ds = loaded + 0x1E36 - 0x1000
+    raw = checked_read(client, ds, 0x1898, 12)
+    words = struct.unpack("<6H", raw)
+    pointers = {name: (words[index], words[index + 1]) for name, index in
+                (("digital", 0), ("music_only", 2), ("main", 4))}
+    ss, sp = (int(stop["registers"][key], 16) for key in ("ss", "sp"))
+    floor = max(ds * 16 + 0x10000, ss * 16 + sp + 16)
+    blocks = []
+    for name, pointer in fields["groups"].items():
+        request = fields["counts"][name] * RECORD_SIZE & 0xFFFF
+        start = pointer["segment"] * 16
+        blocks.append((start, start + ((request + 19) // 16) * 16))
+    labels = {}
+    for name, (offset, segment) in pointers.items():
+        request = fields["counts"][name] * 80 & 0xFFFF
+        paragraphs = (request + 19) // 16
+        begin, end = segment * 16, segment * 16 + paragraphs * 16
+        if (offset != 4 or segment <= 0 or begin < floor or end > 0xA0000
+                or request + 4 > 0x10000
+                or any(begin < high and low < end for low, high in blocks)):
+            raise ValueError("unsupported or overlapping label extent")
+        blocks.append((begin, end))
+        labels[name] = {"offset": offset, "segment": segment, "paragraphs": paragraphs}
+    for name, block in labels.items():
+        value = struct.unpack("<H", checked_read(client, block["segment"], 0, 2))[0]
+        if value != block["paragraphs"]:
+            raise ValueError(f"label header differs for {name}")
+    summaries, payloads = {}, {}
+    total = 0
+    for name, rows in expected.items():
+        wanted, native, differences = b"".join(rows), bytearray(), []
+        for index, row in enumerate(rows):
+            total += len(row)
+            if len(row) > 41 or total > 1312:
+                raise ValueError("label prefix observation exceeds cap")
+            offset = 4 + index * 80
+            data = client.read_memory(f"{labels[name]['segment']:04X}:{offset:04X}", len(row)).data
+            if len(data) != len(row):
+                raise ValueError("short label prefix read")
+            differences.extend(index * 80 + byte for byte, (a, b) in enumerate(zip(data, row)) if a != b)
+            native.extend(data)
+        summaries[name] = {"count": fields["counts"][name], "header_paragraphs": labels[name]["paragraphs"],
+                           "pointer": {"offset": labels[name]["offset"], "segment": labels[name]["segment"]},
+                           "compared_bytes": len(wanted), "equal": native == wanted if rows else None,
+                           "differing_bytes": len(differences), "first_differing_offsets": differences[:32]}
+        if rows:
+            summaries[name].update(expected_sha256=hashlib.sha256(wanted).hexdigest(),
+                                   native_sha256=hashlib.sha256(native).hexdigest())
+            payloads[name] = (wanted, bytes(native))
+    if (checked_read(client, ds, 0x1898, 12) != raw
+            or observe_fields(client, stop, loaded, "labels") != fields):
+        raise ValueError("setup label bindings changed during paused observation")
+    return {"records": records, "bindings": fields, "groups": summaries,
+            "all_populated_equal": records["all_populated_equal"] and all(
+                row["equal"] for row in summaries.values() if row["compared_bytes"])}, payloads, record_native
 
 
 def verified_input(path, identity):
@@ -175,8 +266,10 @@ def verified_input(path, identity):
 
 
 def main():
-    if len(sys.argv) != 2 or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1]):
-        raise SystemExit("usage: setup_parser.py <new-run-name>")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] != "--labels"
+            or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels]")
+    labels_profile = len(sys.argv) == 3
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -201,6 +294,8 @@ def main():
     )
     report = {"target": "SOUND_DS.EXE", "inputs": INPUTS, "phases": [],
               "limits": "fixed utility parser capability only; no gameplay, input, guest writes, frames, drivers or rule/RNG replay claim"}
+    if labels_profile:
+        report["limits"] = "fixed parser and post-label endpoint only; no input, guest writes, frames, producers, drivers or gameplay"
     with RustDosSession(settings) as session:
         entry = session.entry
         report["entry"] = entry
@@ -209,7 +304,10 @@ def main():
         loaded = int(entry["registers"]["cs"], 16)
         for segment, offset in GUARDS:
             session.client.set_breakpoint(address(loaded, segment, offset))
-        for phase in PHASES:
+        if labels_profile:
+            for offset in (0x0052, 0x006D):
+                session.client.set_breakpoint(address(loaded, 0x1ABD, offset))
+        for phase in ("parser", "returned"):
             operation = session.continue_(until=address(loaded, *PHASES[phase]))
             observed = wait_same_operation(session, operation)
             report["last_stop"] = observed.stop
@@ -227,6 +325,23 @@ def main():
         print(json.dumps(summary), flush=True)
         if not summary["all_populated_equal"]:
             raise RuntimeError("setup record contents differ; local payloads and report retained")
+        if labels_profile:
+            operation = session.continue_(until=address(loaded, *PHASES["labels"]))
+            observed = wait_same_operation(session, operation)
+            report["last_stop"] = observed.stop
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            labels, payloads, records = observe_labels(session.client, observed.stop, loaded, projection, report["phases"][-1])
+            report["label_comparison"] = labels
+            for name, body in records.items():
+                (run / f"{name}-later-records-native.bin").write_bytes(body)
+                (run / f"{name}-later-records-expected.bin").write_bytes(projection["payloads"][name])
+            for name, (wanted, actual) in payloads.items():
+                (run / f"{name}-labels-expected.bin").write_bytes(wanted)
+                (run / f"{name}-labels-native.bin").write_bytes(actual)
+            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+            print(json.dumps(labels), flush=True)
+            if not labels["all_populated_equal"]:
+                raise RuntimeError("setup labels differ; local prefixes and report retained")
         print("setup parser boundary observed; closing owned session", flush=True)
 
 

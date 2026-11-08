@@ -182,3 +182,35 @@ Synthetic controls cover aliasing, each relative form, wrapping, unrelated
 targets and image bounds. Exit: selected tooling gate passes, then a
 separate research batch repeats the fixed census, reviews all hits and
 records whether direct-transfer uncertainty is removed or remains open.
+
+For Q-SOUND-010, extend the same fixed setup runner with an explicit
+`--labels` observation profile. After its existing successful parser/record
+checks, continue once to1ABD:0092, before producer selection. FND-SOUND-021
+binds this stop after all three label-preparation calls and names the label
+pointers at DS:1898/189C/18A0, record pointers and counts; SOUND-022/023/027
+bound the populated short printable labels. Add guards at1ABD:0052 for the
+intervening notice and006D for label-allocation failure; do not drive a notice
+or continue an unexpected stop. Keep all existing error/driver guards, private
+two-file drive, pinned muted session, no input/writes/frames and same-operation
+observation. Capability to reach the later stop remains unverified until an
+actual attempt; no later producer, driver or chooser execution is authorized
+by this profile.
+
+At that stop compare the populated records again against their existing source
+projection, retaining the original parser endpoint separately. Require unchanged
+named counts/record pointers/mode. Admit all six record/label allocations only
+as pairwise-disjoint offset-four blocks above loaded data and the active stack
+window, below0xA0000. Check each first size word against its request-derived
+paragraph count before any label payload read. For positive counts at most16,
+derive each expected label from the record's bounded printable40-byte name;
+read only that name's length plus terminator within its80-byte label slot.
+Never compare uninitialized slot tails, negative-group payloads or rounded
+slack. Cap each label read at41 bytes and aggregate at1312 bytes. Preserve
+source/native label prefixes locally, reporting hashes/equality and bounded
+difference offsets without strings. Recheck paused named fields and label
+pointers after reads. Synthetic controls cover wrong stop/DS, changed counts
+or pointers, alias/wrap/extent/header failures, short reads, bad names, bounded
+mismatches and refusal to read negative groups or tails. Exit: selected tooling
+gate passes; a separate runtime/research batch makes two fresh attempts and
+records actual endpoint evidence or the specific blocking guard. A later
+endpoint does not prove intermediate lifetime or native chooser admission.

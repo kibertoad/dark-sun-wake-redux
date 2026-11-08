@@ -4,6 +4,89 @@ import {spawnSync} from 'node:child_process';
 import {resolve} from 'node:path';
 import {enginePython} from '../../tools/tool-dependencies.mjs';
 
+test('post-label endpoint admits only disjoint header-verified printable prefixes and retains late records', () => {
+  check(`
+import sys, struct
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_labels, observe_fields, expected_labels, address, PHASES
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported label observation admitted')
+loaded=0x1000; ds=0x1E36
+counts={'main':2,'digital':3,'music_only':-1}
+names={'main':[b'A'*39,b'B'*39],'digital':[b'C',b'D',b'E'],'music_only':[]}
+expected={k:b''.join(n+b'\\0'*(254-len(n)) for n in rows) for k,rows in names.items()}
+projection={'counts':counts,'payloads':expected}
+stop={'reason':'breakpoint','cs_ip':address(loaded,*PHASES['labels']),
+      'registers':{'ds':f'{ds:04X}','ss':'3000','sp':'0100','ax':'0000'}}
+class Memory:
+    def __init__(self):
+        self.groups={'main':0x4000,'digital':0x4100,'music_only':0x4200}
+        self.labels={'main':0x5200,'digital':0x5300,'music_only':0x5400}
+        self.label_reads=0;self.label_headers=0;self.raw_reads=0
+        self.bad_header=False;self.short_header=False;self.short_prefix=False
+        self.mismatch=False;self.record_mismatch=False;self.drift=False
+    def read_memory(self,where,size):
+        values={f'{ds:04X}:EC74':struct.pack('<hhh',2,3,-1),
+                f'{ds:04X}:188C':struct.pack('<6H',4,self.groups['main'],4,self.groups['music_only'],4,self.groups['digital']),
+                f'{ds:04X}:1888':bytes(4),f'{ds:04X}:ECCC':struct.pack('<H',1)}
+        if where==f'{ds:04X}:1898':
+            self.raw_reads+=1
+            value=struct.pack('<6H',4,self.labels['digital'],4,self.labels['music_only'],4,self.labels['main'])
+            if self.drift and self.raw_reads>1:value=bytes(12)
+            assert size==12;return NS(data=value)
+        if where in values:
+            assert len(values[where])==size;return NS(data=values[where])
+        for group,segment in self.groups.items():
+            if where==f'{segment:04X}:0000':
+                assert size==2;return NS(data=struct.pack('<H',((counts[group]*254&65535)+19)//16))
+            if where==f'{segment:04X}:0004':
+                assert group!='music_only' and size==len(expected[group])
+                value=bytearray(expected[group])
+                if self.record_mismatch and group=='main':value[100]^=1
+                return NS(data=bytes(value))
+        for group,segment in self.labels.items():
+            if where==f'{segment:04X}:0000':
+                self.label_headers+=1;assert size==2
+                value=struct.pack('<H',((counts[group]*80&65535)+19)//16+int(self.bad_header and group=='music_only'))
+                return NS(data=value[:1] if self.short_header else value)
+            for index,name in enumerate(names[group]):
+                if where==f'{segment:04X}:{4+80*index:04X}':
+                    assert self.label_headers==3 and group!='music_only' and size==len(name)+1
+                    self.label_reads+=1;value=bytearray(name+b'\\0')
+                    if self.mismatch and group=='main' and index==0:
+                        value=bytearray(v^1 for v in value)
+                    return NS(data=bytes(value[:-1] if self.short_prefix else value))
+        raise AssertionError('read outside bounded named prefixes')
+m=Memory();baseline=observe_fields(m,stop,loaded,'labels')
+r,payloads,records=observe_labels(m,stop,loaded,projection,baseline)
+assert r['all_populated_equal'] and m.label_reads==5 and m.label_headers==3
+assert r['groups']['music_only']['compared_bytes']==0 and r['groups']['music_only']['equal'] is None
+assert records=={k:v for k,v in expected.items() if v}
+assert payloads['main']==(b'A'*39+b'\\0'+b'B'*39+b'\\0',)*2
+for attr in ['bad_header','short_header','short_prefix','drift']:
+    m=Memory();setattr(m,attr,True);reject(lambda:observe_labels(m,stop,loaded,projection,baseline))
+    if attr in ['bad_header','short_header']:assert m.label_reads==0
+m=Memory();m.mismatch=True;r,payloads,records=observe_labels(m,stop,loaded,projection,baseline)
+assert not r['all_populated_equal'] and r['groups']['main']['differing_bytes']==40
+assert r['groups']['main']['first_differing_offsets']==list(range(32))
+m=Memory();m.record_mismatch=True;r,payloads,records=observe_labels(m,stop,loaded,projection,baseline)
+assert not r['all_populated_equal'] and records['main']!=expected['main']
+for segment in [0,0x2000,0x4000,0x5201,0xFFF0]:
+    m=Memory();m.labels['digital']=segment
+    reject(lambda:observe_labels(m,stop,loaded,projection,baseline));assert m.label_reads==0
+bad={**baseline,'mode':2};reject(lambda:observe_labels(Memory(),stop,loaded,projection,bad))
+bad={**stop,'cs_ip':address(loaded,*PHASES['returned'])}
+reject(lambda:observe_labels(Memory(),bad,loaded,projection,baseline))
+for name in [b'Q'*40,b'bad\\nname',b'bad\\x01name']:
+    body=name+b'\\0'*(508-len(name))
+    reject(lambda:expected_labels({'counts':counts,'payloads':{**expected,'main':body}}))
+reject(lambda:expected_labels({'counts':{**counts,'main':0},'payloads':expected}))
+`, 'tools/research/rust-dos-runs');
+});
+
 function check(code, directory) {
   const result = spawnSync(enginePython(), ['-I', '-', resolve(directory)], {encoding: 'utf8', input: code});
   assert.equal(result.status, 0, result.stderr || result.stdout);
