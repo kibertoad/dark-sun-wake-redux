@@ -390,3 +390,26 @@ and closed. Retain it as a diagnostic, not failed native input. The expanded
 at each same-handle observation, to distinguish progress from a mere pending
 label. No restart of that terminal attempt or replay of its input is admitted;
 new attempts start fresh under the expanded tooling and keep all guards.
+
+For Q-SOUND-010 after FND-SOUND-108, add --second-select. Require108's
+two-choice/selector-one second profile, guarded pre-poll counts and completed
+first input operation before queuing exactly one further Enter held1ms.
+Reuse the fixed poll-frame observer at0554 for up to2048 FFFF results;
+only000D admits continuation to0724. Require selector one/poll local000D
+at that selected boundary, then stop at107's live caller164C:0C71 with
+original SS, SP=entry SP+4 and unchanged DS:3204/D244 arguments. Do not
+read expired locals. Record AX rather than assuming its meaning; only AX1
+admits the known next route. CONFIG-262's card79 producer and subsequent
+selection preparation may execute, with the existing driver/early guards
+and re-armed190F:0000 notice guard, only toward19CF:009A. Reuse107's
+bounded next-boundary reader; no further notice or chooser is operated.
+Retain both input-operation identities and all stopped states; observe the
+second handle's actual delivery status at the return/next boundary without
+resending it or advancing solely to make it done. A guard or unsupported
+result ends the attempt. Synthetic controls cover second caller/arguments,
+selector-one return state, completed-first-event prerequisite, single second
+event, pending/FFFF-to000D sequence, unexpected result/budget and wrong
+next-boundary refusal. Exit: tooling gate passes; separate fresh paired
+attempts record the second return and next boundary or the concrete guard.
+No device-success, second delivery-completion, chooser-row or lifetime claim
+is inferred merely from the branch or caller result.

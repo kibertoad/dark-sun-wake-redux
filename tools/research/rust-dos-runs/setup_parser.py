@@ -2,7 +2,7 @@
 
 Only two fingerprinted licensed files enter a private session drive. No
 arguments, guest writes, screenshots, driver use or gameplay is admitted.
-Only the named notice-input profiles admit one fixed Enter event.
+Only the named notice-input profiles admit a fixed Enter per declared notice.
 Reports are original-derived and remain beneath the approved GAME_DIR.
 """
 import hashlib
@@ -487,8 +487,9 @@ def observe_notice_poll(client, stop, loaded, objects, texts, profile="first"):
             "prefixes_retained": body == texts["body"] and choices == texts["choices"]}, {"body": body, "choices": choices}
 
 
-def observe_notice_input(client, stop, loaded, entry, phase):
-    sites = {"poll": (0x190F, 0x0554), "selected": (0x190F, 0x0724), "returned": (0x164C, 0x050D)}
+def observe_notice_input(client, stop, loaded, entry, phase, profile="first"):
+    return_ip, object_offset = notice_binding(profile)
+    sites = {"poll": (0x190F, 0x0554), "selected": (0x190F, 0x0724), "returned": (0x164C, return_ip)}
     if phase not in sites:
         raise ValueError("unsupported notice input phase")
     ds = loaded + 0x1E36 - 0x1000
@@ -508,11 +509,11 @@ def observe_notice_input(client, stop, loaded, entry, phase):
     first = [checked_read(client, *span) for span in spans]
     if [checked_read(client, *span) for span in spans] != first:
         raise ValueError("notice input fields changed while paused")
-    if phase == "returned" and struct.unpack("<4H", first[0]) != (0xAF36, ds, 0xD244, ds):
+    if phase == "returned" and struct.unpack("<4H", first[0]) != (object_offset, ds, 0xD244, ds):
         raise ValueError("notice return arguments changed")
     if phase == "poll" and first[0] != bytes([255, 255]):
         raise ValueError("notice poll mode differs")
-    if phase == "selected" and [struct.unpack("<H", value)[0] for value in first] != [0, 13]:
+    if phase == "selected" and [struct.unpack("<H", value)[0] for value in first] != [0 if profile == "first" else 1, 13]:
         raise ValueError("notice selected-return state differs")
     return {"phase": phase, "ax": word_register(stop, "ax"), "ss": ss, "sp": sp}
 
@@ -566,6 +567,59 @@ def wait_second_delivery(session, loaded, objects, poll, delivery, result, retai
     raise ValueError("original input delivery budget exhausted at second notice")
 
 
+def select_second_notice(session, loaded, second, result, retain):
+    if (not second.get("completed") or not second.get("polls")
+            or second["polls"][-1]["delivery"] != {"pending": False, "state": "done"}
+            or second["objects"]["selector"] != 1
+            or second["objects"]["text"]["choices"]["row_lengths"] != [13, 8]
+            or second["pre_poll"]["locals"]["choice_rows"] != 2):
+        raise ValueError("second selection needs the verified completed-input baseline")
+    entry = second["objects"]["entry"]
+    result.update(event={"key": "enter", "hold_ms": 1}, polls=[])
+    retain()
+    delivery = session.send_input("key", result["event"])
+    result["operation"] = delivery.op
+    retain()
+    for _ in range(2048):
+        operation = session.continue_(until=address(loaded, 0x190F, 0x0554))
+        observed = wait_same_operation(session, operation)
+        result["last_stop"] = observed.stop
+        retain()
+        value = observe_notice_input(session.client, observed.stop, loaded, entry, "poll", "second")
+        result["polls"].append(value)
+        retain()
+        if value["ax"] != 0xFFFF:
+            break
+    else:
+        raise ValueError("second Enter poll budget exhausted; event not replayed")
+    if value["ax"] != 13:
+        raise ValueError("second Enter produced an unsupported poll result")
+    for phase, site in (("selected", (0x190F, 0x0724)), ("returned", (0x164C, 0x0C71))):
+        if phase == "returned":
+            for offset in (0x0724, 0x02C6):
+                session.client.remove_breakpoints(address(loaded, 0x190F, offset))
+        operation = session.continue_(until=address(loaded, *site))
+        observed = wait_same_operation(session, operation)
+        result["last_stop"] = observed.stop
+        retain()
+        result[phase] = observe_notice_input(session.client, observed.stop, loaded, entry, phase, "second")
+        retain()
+    delivered = session.observe(delivery, timeout=0)
+    result["delivery_at_return"] = {"pending": delivered.pending, "state": delivered.state}
+    retain()
+    if result["returned"]["ax"] != 1:
+        raise ValueError("second notice returned an unsupported selection")
+    session.client.set_breakpoint(address(loaded, 0x190F, 0))
+    operation = session.continue_(until=address(loaded, *PHASES["chooser"]))
+    observed = wait_same_operation(session, operation)
+    result["last_stop"] = observed.stop
+    retain()
+    result["next"] = observe_notice_next(session.client, observed.stop, loaded)
+    delivered = session.observe(delivery, timeout=0)
+    result["next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
+    retain()
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -576,16 +630,17 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next|--second-wait]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next|--second-wait|--second-select]")
     labels_profile = len(sys.argv) == 3
     rows_profile = labels_profile and sys.argv[2] != "--labels"
-    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
-    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next", "--second-wait")
-    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next", "--second-wait")
-    next_profile = labels_profile and sys.argv[2] in ("--notice-next", "--second-wait")
-    second_profile = labels_profile and sys.argv[2] == "--second-wait"
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
+    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
+    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next", "--second-wait", "--second-select")
+    next_profile = labels_profile and sys.argv[2] in ("--notice-next", "--second-wait", "--second-select")
+    second_profile = labels_profile and sys.argv[2] in ("--second-wait", "--second-select")
+    select_profile = labels_profile and sys.argv[2] == "--second-select"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -616,6 +671,8 @@ def main():
         report["limits"] = "fixed MainGroup chooser row endpoint; notice/driver guards; no input, guest writes, frames, event loop or gameplay"
     if enter_profile:
         report["limits"] = "fixed notice route with one Enter event; no additional input, guest writes, frames, driver use or gameplay"
+    if select_profile:
+        report["limits"] = "fixed two-notice route with one Enter per notice and completed first input before second; guarded producer/selection continuation only; no additional input, guest writes, frames, driver use or gameplay"
     with RustDosSession(settings) as session:
         entry = session.entry
         report["entry"] = entry
@@ -771,6 +828,15 @@ def main():
                                 print(json.dumps({"second_notice": {"objects": objects, "pre_poll": poll,
                                                                      "polls": len(report["second_notice"]["polls"]),
                                                                      "completed": report["second_notice"].get("completed")}}), flush=True)
+                                if select_profile:
+                                    report["second_selection"] = {}
+                                    def retain_selection():
+                                        if "last_stop" in report["second_selection"]:
+                                            report["last_stop"] = report["second_selection"]["last_stop"]
+                                        (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                                    select_second_notice(session, loaded, report["second_notice"], report["second_selection"], retain_selection)
+                                    print(json.dumps({"second_selection": {key: value for key, value in report["second_selection"].items()
+                                                                          if key not in ("polls", "last_stop")}}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")

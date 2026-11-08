@@ -377,6 +377,62 @@ reject(lambda:wait_second_delivery(Session(),loaded,o,bad,delivery,{},lambda:Non
 `, 'tools/research/rust-dos-runs');
 });
 
+test('second selection requires completed first delivery and sends one event through its own return and next guard', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import select_second_notice,observe_notice_input
+loaded=0x1000
+baseline={'completed':True,'polls':[{'delivery':{'pending':False,'state':'done'}}],
+ 'objects':{'entry':{'ss':0x3000,'sp':0x0DE2},'selector':1,'text':{'choices':{'row_lengths':[13,8]}}},
+ 'pre_poll':{'locals':{'choice_rows':2}}}
+def stop(phase,ax):
+    sites={'poll':('190F:0554','F674'),'selected':('190F:0724','F676'),
+           'returned':('164C:0C71','0DE6'),'next':('19CF:009A','0DE2')}
+    site,sp=sites[phase]
+    return {'reason':'breakpoint','cs_ip':site,'registers':{'ds':'1E36','ss':'3000','sp':sp,'bp':'0DE0','ax':f'{ax:04X}'}}
+class Session:
+    def __init__(self,ax=13,budget=False):
+        self.events=[];self.removed=[];self.armed=[];self.current=None;self.delivery=NS(op=900)
+        self.queue=([('poll',65535)]*2048 if budget else [('poll',65535),('poll',ax),('selected',2),('returned',1),('next',0)])
+        self.client=NS(read_memory=self.read,remove_breakpoints=self.removed.append,set_breakpoint=self.armed.append)
+    def read(self,where,size):
+        values={'3000:F674':bytes([255,255]),'3000:0DDC':struct.pack('<H',1),
+                '3000:0DC4':struct.pack('<H',13),'3000:0DE6':struct.pack('<4H',0x3204,0x1E36,0xD244,0x1E36),
+                '3000:0DE2':struct.pack('<HH',0x008F,0x19CF)}
+        value=values[where];assert size==len(value);return NS(data=value)
+    def send_input(self,kind,event):self.events.append((kind,event));assert len(self.events)==1;return self.delivery
+    def continue_(self,until):
+        phase,ax=self.queue.pop(0);self.current=stop(phase,ax)
+        assert until==self.current['cs_ip'];return NS(op=1)
+    def observe(self,op,timeout):
+        if op is self.delivery:return NS(pending=True,state='pending')
+        return NS(pending=False,stop=self.current)
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported second selection admitted')
+s=Session();r={};select_second_notice(s,loaded,baseline,r,lambda:None)
+assert s.events==[('key',{'key':'enter','hold_ms':1})]
+assert s.removed==['190F:0724','190F:02C6'] and s.armed==['190F:0000']
+assert len(r['polls'])==2 and r['selected']['ax']==2 and r['returned']['ax']==1
+assert r['next']['boundary']=='chooser' and r['next']['delivery']['pending']
+for field,value in [('completed',False),('polls',[]),('polls',[{'delivery':{'pending':True,'state':'pending'}}])]:
+    b=copy.deepcopy(baseline);b[field]=value;s=Session()
+    reject(lambda:select_second_notice(s,loaded,b,{},lambda:None));assert not s.events
+for s in (Session(ax=5),Session(budget=True)):
+    reject(lambda:select_second_notice(s,loaded,baseline,{},lambda:None));assert len(s.events)==1
+s=Session();bad=stop('selected',2)
+bad['cs_ip']='190F:0724';s.current=bad
+assert observe_notice_input(s.client,bad,loaded,baseline['objects']['entry'],'selected','second')['ax']==2
+reject(lambda:observe_notice_input(s.client,bad,loaded,baseline['objects']['entry'],'selected'))
+bad=stop('returned',1)
+assert observe_notice_input(s.client,bad,loaded,baseline['objects']['entry'],'returned','second')['ax']==1
+reject(lambda:observe_notice_input(s.client,bad,loaded,baseline['objects']['entry'],'returned'))
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct
