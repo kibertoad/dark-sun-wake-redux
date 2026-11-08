@@ -335,3 +335,24 @@ driver or chooser continuation. Synthetic controls cover out-of-order/wrong
 stops, frame/argument drift, unexpected input words and selected-return
 state. Exit: tooling gate passes; separate fresh attempts record guest poll,
 normal caller return and delivery status or the precise guard/budget limit.
+
+For Q-SOUND-010 after FND-SOUND-106, add --notice-next. Preserve the
+single Enter event and its operation handle through106's verified caller
+return; do not replay or replace it while delivery is pending. The pinned
+rust-dos v1.8.1 docs/llm-debugging.md (Deterministic mode) states that queued
+scan codes advance at fixed emulated-time points, so a paused host wait is
+not a completion method. Re-arm190F:0000 and continue the same setup route
+only toward19CF:009A with all early/driver guards retained. Fixed producer
+and record-selection code may execute, as in the existing chooser profile.
+Stop at either the shared notice guard or chooser entry; do not bypass any
+notice or execute the chooser. At a notice reuse102's bounded return reader.
+At chooser entry require exact breakpoint/DS, bounded word SS/SP and four
+stable incoming return bytes bound to19CF:008F (SOUND-021). Do not follow
+arguments or presume that the older nonwrapping chooser profile is admitted.
+Retain the stopped state before validation, then observe the original input
+handle for its actual delivery status. Stop without another event whether
+delivery is done or still pending. Synthetic controls cover both fixed stops,
+caller relocation, short reads, drift and wrong frame/DS. Exit: tooling gate
+passes; separate fresh attempts record the next boundary and delivery status.
+This does not claim completed release in advance, chooser rows, original
+visual identity or continuous heap/vector/frame lifetime.

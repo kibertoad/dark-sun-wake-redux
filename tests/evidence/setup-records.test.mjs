@@ -274,6 +274,44 @@ reject(lambda:observe_notice_input(Memory(),s,loaded,entry,'unknown'))
 `, 'tools/research/rust-dos-runs');
 });
 
+test('next setup boundary admits only the notice guard or fixed chooser far caller', () => {
+  check(`
+import sys,struct,copy
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import observe_notice_next,address
+loaded=0x05BA
+s={'reason':'breakpoint','cs_ip':address(loaded,0x19CF,0x009A),
+   'registers':{'ds':'13F0','ss':'22D0','sp':'0DE2'}}
+class Memory:
+    def __init__(self):self.seen=0;self.short=False;self.drift=False;self.ip=0x008F;self.cs=0x0F89
+    def read_memory(self,where,size):
+        assert where=='22D0:0DE2' and size==4;self.seen+=1
+        value=struct.pack('<HH',self.ip,self.cs)
+        if self.drift and self.seen>1:value=bytes(4)
+        return NS(data=value[:3] if self.short else value)
+def reject(fn):
+    try:fn()
+    except ValueError:return
+    raise AssertionError('unsupported next boundary admitted')
+assert observe_notice_next(Memory(),s,loaded)['boundary']=='chooser'
+for attr in ('short','drift'):
+    m=Memory();setattr(m,attr,True);reject(lambda:observe_notice_next(m,s,loaded))
+m=Memory();m.ip=0x0091;reject(lambda:observe_notice_next(m,s,loaded))
+m=Memory();m.cs=0x19CF;reject(lambda:observe_notice_next(m,s,loaded))
+for key,value in [('ds','0000'),('ss','A000'),('sp','FFFE')]:
+    bad=copy.deepcopy(s);bad['registers'][key]=value
+    reject(lambda:observe_notice_next(Memory(),bad,loaded))
+bad=copy.deepcopy(s);bad['cs_ip']=address(loaded,0x164C,0x050D)
+reject(lambda:observe_notice_next(Memory(),bad,loaded))
+bad=copy.deepcopy(s);bad['reason']='time';reject(lambda:observe_notice_next(Memory(),bad,loaded))
+notice=copy.deepcopy(s);notice['cs_ip']=address(loaded,0x190F,0)
+m=Memory();m.ip=0x1234;m.cs=0x0C06
+r=observe_notice_next(m,notice,loaded)
+assert r['boundary']=='notice' and r['entry']['canonical_return_segment']==0x164C
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

@@ -493,6 +493,25 @@ def observe_notice_input(client, stop, loaded, entry, phase):
     return {"phase": phase, "ax": word_register(stop, "ax"), "ss": ss, "sp": sp}
 
 
+def observe_notice_next(client, stop, loaded):
+    if stop.get("cs_ip") == address(loaded, 0x190F, 0):
+        return {"boundary": "notice", "entry": observe_notice_return(client, stop, loaded)}
+    ds = loaded + 0x1E36 - 0x1000
+    if (stop.get("reason") != "breakpoint" or stop.get("cs_ip") != address(loaded, 0x19CF, 0x009A)
+            or word_register(stop, "ds") != ds):
+        raise ValueError("unsupported next setup boundary")
+    ss, sp = (word_register(stop, key) for key in ("ss", "sp"))
+    if sp + 4 > 0x10000 or ss * 16 + sp < ds * 16 + 0xECCE or ss * 16 + sp + 4 > 0xA0000:
+        raise ValueError("unsupported chooser incoming return span")
+    frame = checked_read(client, ss, sp, 4)
+    if checked_read(client, ss, sp, 4) != frame:
+        raise ValueError("chooser return changed while paused")
+    ip, cs = struct.unpack("<HH", frame)
+    if f"{cs:04X}:{ip:04X}" != address(loaded, 0x19CF, 0x008F):
+        raise ValueError("unsupported next chooser caller")
+    return {"boundary": "chooser", "ss": ss, "sp": sp, "return_cs": cs, "return_ip": ip}
+
+
 def verified_input(path, identity):
     size, digest = identity
     with path.open("rb") as stream:
@@ -503,14 +522,15 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next]")
     labels_profile = len(sys.argv) == 3
-    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter")
-    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter")
-    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter")
-    enter_profile = labels_profile and sys.argv[2] == "--notice-enter"
+    rows_profile = labels_profile and sys.argv[2] in ("--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next")
+    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next")
+    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next")
+    next_profile = labels_profile and sys.argv[2] == "--notice-next"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -656,6 +676,17 @@ def main():
                         report["notice_input"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
                         (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                         print(json.dumps({"notice_input": report["notice_input"]}), flush=True)
+                        if next_profile:
+                            session.client.set_breakpoint(address(loaded, 0x190F, 0))
+                            operation = session.continue_(until=address(loaded, *PHASES["chooser"]))
+                            observed = wait_same_operation(session, operation)
+                            report["last_stop"] = observed.stop
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                            report["notice_next"] = observe_notice_next(session.client, observed.stop, loaded)
+                            delivered = session.observe(delivery, timeout=1)
+                            report["notice_next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
+                            (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+                            print(json.dumps({"notice_next": report["notice_next"]}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")
