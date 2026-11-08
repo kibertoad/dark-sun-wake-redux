@@ -1,4 +1,5 @@
 """Fixed naturally produced post-Save source for Q-CONFIG-014."""
+import struct
 from preferences_key import KeyTrace
 from regenerate_checkpoints import checked_read
 from load_entry import named_file
@@ -24,6 +25,22 @@ def verify_save(run, meta):
 
 
 class SavedKeyTrace(KeyTrace):
+    def outer(self, client, item):
+        off, seg = struct.unpack("<HH", checked_read(client, item["ss"], self.root_sp, 4))
+        item["preferences_return"] = f"{seg:04X}:{off:04X}"
+        if (off, seg) == (0x1EC9, self.segment):
+            item["return_representation"] = "loaded"
+            return
+        header = 0x571F + self.delta
+        if (off, seg) != (0, header):
+            raise ValueError("saved keyboard outer pair is neither declared loaded nor header return")
+        prefix = checked_read(client, header, 0, 4)
+        trap = checked_read(client, header, 0x20, 5)
+        item["saved_return_offset"] = int.from_bytes(prefix[2:], "little")
+        if prefix != bytes((0xCD, 0x3F, 0xC9, 0x1E)) or trap != bytes((0xCD, 0x3F, 0x9B, 0x13, 0)):
+            raise ValueError("saved keyboard header return representation differs")
+        item["return_representation"] = "unloaded-header"
+
     def baseline(self, client, stop):
         if self.phase != "unarmed" or "baseline" in self.report or stop.get("reason") != "load":
             raise ValueError("saved keyboard baseline requires strict restore")

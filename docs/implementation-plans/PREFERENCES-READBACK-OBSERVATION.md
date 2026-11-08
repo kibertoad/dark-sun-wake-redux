@@ -304,3 +304,15 @@ before their checks, mark unaccepted until all checks pass, and retain the
 actual outer pair before comparing it. Preserve strict expected bindings and
 phase/completion refusal. Synthetic controls require the rejected actual pair
 and no phase advance. No relocation following is authorized by this change.
+
+The corrected diagnostic observes the exact keyboard header return pair,
+not an arbitrary relocated address. FND-EXE-562 already describes this
+unload representation: header:0 executes INT3F and header+2 retains the old
+return offset. For saved-keyboard only, admit either the existing loaded
+pair or exactly relocated571F:0000 with header opcode CD3F, saved offset
+1EC9 and its known key trampoline in trap form (target139B). Record every
+sample's representation; refuse any other pair, saved offset or trap form.
+This samples a declared active frame only; no target following, execution
+breakpoint retargeting or continuous relocation claim. Synthetic controls
+cover trap/loaded forms and each mismatched field. Require the existing
+paired getter/store and P-delivery endpoint before positive completion.

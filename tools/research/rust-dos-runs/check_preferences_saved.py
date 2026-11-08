@@ -74,5 +74,19 @@ class Controls(unittest.TestCase):
         self.assertEqual(trace.phase, "getter")
         self.assertFalse(trace.report["complete"])
 
+    def test_declared_header_return(self):
+        c, stop = self.baseline()
+        trace = SavedKeyTrace(0); trace.baseline(c, stop); prefix(c, trace)
+        c.put("57E0:2FEC", struct.pack("<HH", 0, 0x571F))
+        c.put("571F:0000", bytes((0xCD, 0x3F, 0xC9, 0x1E)))
+        c.put("571F:0020", bytes((0xCD, 0x3F, 0x9B, 0x13, 0)))
+        trace.nested(c, point("4A6E:011F", 12, sp=0x2FE6, bp=0x2FEA), "getter")
+        self.assertEqual(trace.report["events"][-1]["return_representation"], "unloaded-header")
+        for addr, value in (("571F:0000", bytes(4)), ("571F:0020", bytes(5))):
+            original = bytes((0xCD, 0x3F, 0xC9, 0x1E)) if addr.endswith("0000") else bytes((0xCD, 0x3F, 0x9B, 0x13, 0))
+            c.put(addr, value)
+            with self.assertRaises(ValueError): trace.outer(c, {"ss": 0x57E0})
+            c.put(addr, original)
+
 
 if __name__ == "__main__": unittest.main()
