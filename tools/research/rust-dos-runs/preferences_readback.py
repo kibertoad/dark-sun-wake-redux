@@ -159,7 +159,7 @@ class Readback:
         return item
 
 
-def observe_readback(session, delta, report, retain, history=None, seed_expected=None, parent=None):
+def observe_readback(session, delta, report, retain, history=None, seed_expected=None, parent=None, keyboard=None):
     """Fixed Tab/getter/store route, shared by restored and fresh observers."""
     rng, trace, flow = Recorder(delta), Readback(delta), MenuFlow()
     generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
@@ -190,6 +190,10 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             parent.boundary(session.client, stop)
             retain()
             continue
+        if keyboard and keyboard.is_site(stop):
+            keyboard.boundary(session.client, stop)
+            retain()
+            continue
         delivery = observe_delivery(session, operation, delivery)
         report["last_delivery"] = {"input": input_name, "state": delivery.state}
         if not recorded and delivery.state == "done":
@@ -217,6 +221,13 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             report["ui_state"] = current
             action = flow.poll(current, delivery.state == "done")
             if action:
+                if keyboard:
+                    if action != "move": raise ValueError("keyboard route reached an unexpected UI action")
+                    keyboard.arm(session.client)
+                    session.client.remove_breakpoints(poll)
+                    operation = session.send_input("key", {"key": "p", "hold_ms": 1})
+                    input_name, flow.phase, delivery, recorded = "p", "getter", None, False
+                    continue
                 input_name = action
                 if parent and action == "click":
                     parent.arm(session.client)
@@ -230,6 +241,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
             if parent:
                 parent.nested(session.client, stop, "getter")
+            if keyboard: keyboard.nested(session.client, stop, "getter")
             for offset in ((0x003E,) if history else (0x003E, 0x0041)):
                 session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
             print("getter-entry", flush=True)
@@ -241,6 +253,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             report["readback"].append({"phase": "stored", **trace.stored(session.client, stop)})
             if parent:
                 parent.nested(session.client, stop, "store")
+            if keyboard: keyboard.nested(session.client, stop, "store")
             if delivery.state != "done":
                 raise ValueError("Preferences click delivery incomplete at endpoint")
             if history:
@@ -249,6 +262,7 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
                 history.complete()
             if parent:
                 parent.complete()
+            if keyboard: keyboard.complete()
             report["passed"] = True
             break
         else:
@@ -261,8 +275,8 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
 def main():
     if (len(sys.argv) not in (3, 4)
             or any(not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", x) for x in sys.argv[1:3])
-            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch")):
-        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch]")
+            or len(sys.argv) == 4 and sys.argv[3] not in ("history", "parent", "dispatch", "keyboard")):
+        raise SystemExit("usage: preferences_readback.py <play-ready-source-run> <new-run-name> [history|parent|dispatch|keyboard]")
     history_mode = len(sys.argv) == 4
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
@@ -290,6 +304,11 @@ def main():
               "limits": "fixed restored-map getter/store; no continuous startup preservation, later UI, audible output or other caller proof"}
     history = ValueHistory(delta) if history_mode else None
     parent = None
+    keyboard = None
+    if len(sys.argv) == 4 and sys.argv[3] == "keyboard":
+        from preferences_key import KeyTrace
+        keyboard = KeyTrace(delta)
+        report["keyboard"] = keyboard.report
     if len(sys.argv) == 4 and sys.argv[3] in ("parent", "dispatch"):
         from preferences_parent import ParentTrace, DispatchTrace
         parent = (DispatchTrace if sys.argv[3] == "dispatch" else ParentTrace)(delta)
@@ -311,7 +330,7 @@ def main():
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             if history:
                 history.arm(session.client, stop)
-            observe_readback(session, delta, report, retain, history, parent=parent)
+            observe_readback(session, delta, report, retain, history, parent=parent, keyboard=keyboard)
         except Exception as error:
             report["error"] = str(error)
             raise

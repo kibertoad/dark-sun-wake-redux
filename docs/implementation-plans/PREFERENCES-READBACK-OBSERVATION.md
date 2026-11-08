@@ -187,3 +187,44 @@ all prior controls and Test.ps1 must pass before tooling commit. Separate
 native research repeats this exact route twice and records only actual
 dispatcher/caller admission. Other roots, between-stop writes, keyboard/
 reentrant paths and remaining driver/storage obligations stay open.
+
+## Forwarded P-key gate and callback admission
+
+Q-CONFIG-014 retains keyboard post-child key/gate admission. CONFIG-243 and
+INPUT-012 bind overlay190 +139B's event kind at SS:BP+6, key word at+12,
+close callback at+1E and the P state/turn/callback/reload/opener sites. Add
+only fixed `keyboard` mode to the same strict restored command and history.
+After the existing Tab delivery and ready Game Menu10500 gate, replace the
+mouse motion/click with a single lower-case P key held1ms. This new gesture
+is a capability attempt; require actual delivery by the paired store and
+retain an incomplete result if that fails. No timed wait establishes readiness,
+input retry, guest write, new configuration or arbitrary key is admitted.
+
+Resolve only the known key trampoline571F:0020 to offset139B and the known
+menu-handler/close trampolines. Verify the fixed P opener call and require
+the forwarded event kind6, folded key p and close callback56B9:002A. Require
+that close trampoline's known jump targets the loaded menu's +0612; do not
+follow a different callback. Observe key+1A82/+1A87/+1A8E, +1CBE/+1CC5/
++1CC8, +1EC4, the resident Preferences trampoline, getter and store. Record
+actual event/key/callback/frame, DS:0DAB mode, signed DS:426D turn word and
+the two menu pointer fields at these named boundaries. Require the state
+getter's full AX nonzero and equal to the sampled mode, and signed turn<4
+at its actual comparison; do not invent a valid negative gameplay domain.
+
+Bind one actual keyboard parent BP/SS/handler-return and its event/key/
+callback slots. Require key retention across the reached callback, matching
+pre-call/post-return SP, pointer clears, and the final P opener arm after
+the reload. Pair the outer Preferences return and nested saved keyboard BP
+with the existing Readback contract, retaining the actual trampoline and
+getter/store checks. Old modes keep their existing input and report scopes.
+
+Keep all history/RNG/unknown-stop controls. Require all ten ordered samples,
+both input deliveries, positive music-byte change and watch cleanup before
+completion. Observe named fields and actual frames only, never arbitrary
+stack contents or released backing. Synthetic controls cover exact targets,
+state/turn rejection, changed key/callback/frame, callback SP/pointer changes,
+wrong nested returns, pending input and missing endpoints; keep every existing
+control passing and run Test.ps1 Research. Separate native research repeats
+the fixed route twice and narrows only actual observed keyboard admission.
+Other keys, callers, gate branches, reentrant paths, between-stop changes
+and remaining driver/storage mechanisms stay open.
