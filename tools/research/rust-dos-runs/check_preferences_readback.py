@@ -1,6 +1,7 @@
 """Synthetic menu and getter/store controls; no original content or emulator.
 
-FND-CONFIG-235/236 supply named addresses; data values below are invented.
+FND-CONFIG-235/236, FND-PARTY-031 and FND-UI-010/054 supply named
+addresses; data values below are invented.
 """
 from pathlib import Path
 import struct
@@ -9,7 +10,7 @@ from types import SimpleNamespace
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from preferences_readback import MenuFlow, Readback
+from preferences_readback import MenuFlow, Readback, input_poll
 
 
 def window(number, flags=8, mouse=1):
@@ -39,6 +40,7 @@ class Memory:
         self.put("5782:0000", struct.pack("<BHH", 0xEA, 0, 0x7000))
         self.put("7000:0039", struct.pack("<BHH", 0x9A, 0x011F, 0x4A6E))
         self.put("7000:003E", struct.pack("<BH", 0xA2, 0x26B4))
+        self.put("277B:0541", struct.pack("<BHH", 0x9A, 0x097D, 0x39D1))
 
     def put(self, address, body):
         s, o = (int(x, 16) for x in address.split(":"))
@@ -53,6 +55,15 @@ class Memory:
 
 
 class Controls(unittest.TestCase):
+    def test_poll_admission_requires_main_call_not_the_choice_loop(self):
+        memory = Memory()
+        self.assertEqual(input_poll(memory, 0), "39D1:097D")
+        for opcode, offset, segment in ((0x9A, 0x0854, 0x39D1), (0xEA, 0x097D, 0x39D1),
+                                         (0x9A, 0x097D, 0x39D2)):
+            memory.put("277B:0541", struct.pack("<BHH", opcode, offset, segment))
+            with self.assertRaises(ValueError):
+                input_poll(memory, 0)
+
     def test_menu_route_requires_ready_menu_and_separate_motion_delivery(self):
         flow = MenuFlow()
         self.assertIsNone(flow.poll(window(19501), True))

@@ -2,7 +2,8 @@
 
 FND-CONFIG-235/236 give the getter, caller/store, gates and named library fields.
 FND-INPUT-012, FND-UI-055 and SCR-UI-006 give the menu input route.
-FND-COMBAT-051 gives the event-poll boundary. FND-RNG-001/010 give RNG guards.
+FND-UI-010/054 give the key-event builder; FND-PARTY-031 covers main.
+FND-RNG-001/010 give RNG guards.
 """
 import hashlib
 import json
@@ -24,6 +25,15 @@ from regenerate_checkpoints import admit_state, mapping, snapshot, ready, checke
 from load_entry import fields, input_map_ready, observe_delivery
 from checkpoint_rng import Recorder
 from startup_window import wait_for_stop
+
+
+def input_poll(client, delta):
+    """Admit the key-event builder through main's actual relocated far call."""
+    trace = Readback(delta)
+    call = checked_read(client, 0x277B + delta, 0x0541, 5)
+    if call[0] != 0x9A or struct.unpack_from("<HH", call, 1) != (0x097D, 0x39D1 + delta):
+        raise ValueError("main does not call the declared key-event builder")
+    return trace.address(0x39D1, 0x097D)
 
 
 class MenuFlow:
@@ -168,7 +178,7 @@ def main():
                 raise ValueError("Preferences source differs from the admitted input map")
             report["restored_stop"], report["initial_seed"] = stop, current["rng_state"]
             generator, setter = rng.address(0x1000, 0x0822), rng.address(0x1000, 0x0811)
-            poll, getter = rng.address(0x39D1, 0x0854), rng.address(0x4A6E, 0x011F)
+            poll, getter = input_poll(session.client, delta), rng.address(0x4A6E, 0x011F)
             for site in (generator, setter, poll, getter):
                 session.client.set_breakpoint(site)
             operation = session.send_input("key", {"key": "tab", "hold_ms": 100})

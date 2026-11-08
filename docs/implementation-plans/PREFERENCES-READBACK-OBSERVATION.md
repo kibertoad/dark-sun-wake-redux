@@ -21,8 +21,10 @@ documented deterministic Sound Blaster/media configuration. The restored
 private drive remains session-owned; no canonical source or checkpoint changes.
 
 SCR-UI-006, FND-INPUT-012 and FND-UI-055 give the fixed Tab/Game Menu and
-Preferences button route. Send Tab, await a ready WIND/10500 at a named
-event-poll stop, move to virtual(160,101), await motion delivery and recheck
+Preferences button route. Verify main's relocated call to FND-UI-010/054's
+key-event builder before arming that poll; the modal choice loop is a separate
+routine. Send Tab, await a ready WIND/10500 at that named builder stop,
+move to virtual(160,101), await motion delivery and recheck
 that menu, then send one left click. Never retry an input because observation
 timed out. Record every input delivery and every admitted RNG draw through
 Recorder; unknown draws, reseeding, stops, windows or exhausted bounds stop.
@@ -47,6 +49,7 @@ following arbitrary return addresses. Native observed equality does not
 settle other getters, indirect targets, aliases or continuous preservation.
 
 Synthetic acceptance covers the fixed menu state machine, input ordering,
+main-call poll admission with the modal-choice target as a negative control,
 wrong windows, incomplete delivery, wrong trampoline/call/store/frame,
 wrong mode/segments, short/wrapping reads, AL-versus-AX and entry/return/store
 pairing. Exit for tooling: controls and Test.ps1 pass, fixed command documented.

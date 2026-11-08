@@ -26,6 +26,17 @@ Setup: `./tools/Restore-ToolDependencies.ps1` installs
 build into `artifacts/rust-dos/`, refusing an archive or executable whose
 SHA-256 differs from the package's pins.
 
+The first preferences_readback.py attempt, v181-q014-preferences-a-20261108,
+strictly restored the current play-ready checkpoint and recorded one admitted
+sound-rule RNG draw. It then exhausted the same continuation's observation
+budget before reaching its configured poll. That poll was the modal Quit
+choice routine, not main's key-event builder. The last observed Tab delivery
+was pending; no getter/store observation or Preferences input capability is
+admitted. The owned session paused and closed, releasing its lock. Retain
+captures/rust-dos-preferences-readback/v181-q014-preferences-a-20261108/.
+The corrected tooling verifies main's relocated builder call before arming
+the poll and has a synthetic old-choice-target rejection control.
+
 The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
 in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and
 v181-q014-disc-startup-b-20261108/. Fresh unchanged manifest-verified drives
