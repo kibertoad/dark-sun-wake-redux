@@ -38,7 +38,8 @@ seed changes are permitted.
 
 Observe only the documented resident getter. Its actual far return must
 name overlay203's Preferences store at relative003E; the relocated fixed
-entry trampoline must name offset zero in that same segment. Verify the
+entry trampoline (FND-INPUT-012's stub8, not the overlay header prefix)
+must name offset zero in that same segment. Verify the
 call's resident target and the following direct AL store using their
 documented operands, not an inferred decompiler parameter. Record source
 configuration, master/music gates, slot/getter handles and old music-level
@@ -57,6 +58,7 @@ Synthetic acceptance covers the fixed menu state machine, input ordering,
 main-call poll admission with the modal-choice target as a negative control,
 selected-control admission and poll removal before the fixed click,
 wrong windows, incomplete delivery, wrong trampoline/call/store/frame,
+header-prefix substitution for the actual entry trampoline,
 wrong mode/segments, short/wrapping reads, AL-versus-AX and entry/return/store
 pairing. Exit for tooling: controls and Test.ps1 pass, fixed command documented.
 A later research batch attempts two independent restores, records only the

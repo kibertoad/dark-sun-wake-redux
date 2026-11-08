@@ -95,7 +95,8 @@ class Readback:
                 "library_mode": int.from_bytes(checked_read(client, 0x4E71 + self.delta, 0x0B51, 2), "little")}
 
     def trampoline(self, client, segment):
-        s, o = (int(v, 16) for v in self.address(0x5782, 0).split(":"))
+        # FND-INPUT-012: Preferences entry is trampoline8, not the header prefix.
+        s, o = (int(v, 16) for v in self.address(0x5782, 0x0048).split(":"))
         jump = checked_read(client, s, o, 5)
         if jump[0] != 0xEA or struct.unpack_from("<HH", jump, 1) != (0, segment):
             raise ValueError("Preferences trampoline does not name the admitted caller segment")

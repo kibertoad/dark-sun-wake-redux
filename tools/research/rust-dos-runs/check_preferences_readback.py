@@ -1,6 +1,6 @@
 """Synthetic menu and getter/store controls; no original content or emulator.
 
-FND-CONFIG-235/236, FND-PARTY-031 and FND-UI-010/054 supply named
+FND-CONFIG-235/236, FND-INPUT-012, FND-PARTY-031 and FND-UI-010/054 supply named
 addresses; data values below are invented.
 """
 from pathlib import Path
@@ -38,7 +38,7 @@ class Memory:
         self.put("57E0:3464", struct.pack("<H", 0xFFFF))
         self.put("4E71:0B51", struct.pack("<H", 259))
         self.put("57E0:1000", struct.pack("<HH", 0x003E, 0x7000))
-        self.put("5782:0000", struct.pack("<BHH", 0xEA, 0, 0x7000))
+        self.put("5782:0048", struct.pack("<BHH", 0xEA, 0, 0x7000))
         self.put("7000:0039", struct.pack("<BHH", 0x9A, 0x011F, 0x4A6E))
         self.put("7000:003E", struct.pack("<BH", 0xA2, 0x26B4))
         self.put("277B:0541", struct.pack("<BHH", 0x9A, 0x097D, 0x39D1))
@@ -56,6 +56,12 @@ class Memory:
 
 
 class Controls(unittest.TestCase):
+    def test_header_prefix_cannot_substitute_for_the_entry_trampoline(self):
+        memory = Memory()
+        memory.put("5782:0000", struct.pack("<BHH", 0xEA, 0, 0x7000))
+        memory.put("5782:0048", bytes(5))
+        with self.assertRaisesRegex(ValueError, "trampoline"):
+            Readback(0).entry(memory, stop())
     def test_click_removes_only_the_poll_before_sending_the_original_gesture(self):
         calls, operation = [], object()
         def send(kind, payload):
@@ -153,8 +159,8 @@ class Controls(unittest.TestCase):
 
     def test_trampoline_call_store_and_return_pair_controls(self):
         for address, body in (
-            ("5782:0000", struct.pack("<BHH", 0xEA, 1, 0x7000)),
-            ("5782:0000", struct.pack("<BHH", 0xEA, 0, 0x7001)),
+            ("5782:0048", struct.pack("<BHH", 0xEA, 1, 0x7000)),
+            ("5782:0048", struct.pack("<BHH", 0xEA, 0, 0x7001)),
             ("7000:0039", struct.pack("<BHH", 0x9A, 0x0120, 0x4A6E)),
             ("7000:0039", struct.pack("<BHH", 0x9A, 0x011F, 0x4A6F)),
             ("7000:003E", struct.pack("<BH", 0xA2, 0x26B5)),
@@ -190,7 +196,7 @@ class Controls(unittest.TestCase):
             trace.entry(memory, stop())
         with self.assertRaises(ValueError):
             trace.returned(memory, stop("7000:003E", 0x1006))
-        memory.put("5782:0000", struct.pack("<BHH", 0xEA, 0, 0x7001))
+        memory.put("5782:0048", struct.pack("<BHH", 0xEA, 0, 0x7001))
         with self.assertRaises(ValueError):
             trace.returned(memory, stop("7000:003E", 0x1004))
 

@@ -51,6 +51,12 @@ operation does not prove that the native builder has consumed its packet.
 The corrected flow waits for BUTN/10303 within the existing cap; it neither
 clicks an unmatched control nor repeats motion. Retain the sibling c report.
 That owned session closed and released its lock. No getter capability follows.
+The d attempt reached the resident getter after the checked button selection,
+but rejected the subsequent caller admission because the tool read the overlay
+header prefix instead of FND-INPUT-012's entry trampoline8. No result/store
+pair was recorded. The corrected binding uses that actual trampoline and a
+synthetic header-substitution negative. Retain the sibling d report; its
+owned session closed and released its lock.
 
 The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
 in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and
