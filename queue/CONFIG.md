@@ -105,6 +105,11 @@ Next ID: Q-CONFIG-015
   DOS/environment/termination conditions; reset/removal callers, cleanup
   effects and continuous later writer/alias histories. Game slot-word clearing
   alone does not admit library-table removal or image lifetime.
+  FND-CONFIG-241 identifies reset's bounded whole-array clear and both ordinary
+  reset/shutdown caller pairs. Retain actual backing and intervening writes,
+  alternate overlay helper effects, shutdown's selector-68 targets and timer
+  children, scratch/frame preservation and excluded removal-entry mechanisms.
+  A direct-call miss does not prove removal unreachable or table preservation.
   FND-SOUND-096 admits the unchanged installed configuration and known disc
   callback path in two native startups through the first music gate. Reuse
   its actual metadata, allocation and paired final write, whose physical span
@@ -264,8 +269,12 @@ Next ID: Q-CONFIG-015
     ADV 20 discards its environment helper's result. Publication precedes the
     installer's checks and caller result stores precede their failure tests.
     Reset/removal callers and reached cleanup effects, actual slot/table/frame
-    preservation and sequence state remain. Next connect the lifecycle callers
-    to the library array rather than repeating descriptor/version readings.
+    preservation and sequence state remain.
+    Tried: FND-CONFIG-241 connects the ordinary reset/shutdown caller pairs
+    with the array clear and conditional selector-68 route. Direct removal
+    searches have positive controls and explicit exclusions. Actual backing,
+    intervening writers, alternate helper and driver/timer effects and frame/
+    scratch preservation remain; do not repeat the local array-clear reading.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
