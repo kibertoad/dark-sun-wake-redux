@@ -88,10 +88,10 @@ Next ID: Q-CONFIG-015
   lifecycle/producer/entry results. Do not repeat answered local branches,
   field identities or unchanged controlled censuses. Remaining obligations:
 
-  Caller and incoming transfers: actual dispatcher call/window/target binding
-  behind FND-CONFIG-250's sampled handler return; other parent/event/frame and
-  keyboard post-child gate/key states, including exit-time reentrant reads.
-  CONFIG-250 supplies the fixed menu/post-close/nested-frame samples; retain
+  Caller and incoming transfers: other parent/event/frame and keyboard
+  post-child gate/key states, including exit-time reentrant reads. CONFIG-251
+  admits the fixed window-specific call/window/target and menu-frame join;
+  CONFIG-250 supplies its later menu/post-close/nested-frame samples. Retain
   between-sample writes and reuse CONFIG-249's bindings, not another local reading;
   unqueried jump/indirect/table/return entries, dynamic/copied/distant-pair
   pointers, relocated-offset reuse and changed streams (FND-CONFIG-242/243).
@@ -311,6 +311,9 @@ Next ID: Q-CONFIG-015
     Tried: FND-CONFIG-250 supplies two matching actual menu-event/post-close/
     nested-frame observations. The earlier dispatcher call/window/target was
     not observed; other roots, keyboard/reentrant states and unmonitored effects remain.
+    Tried: FND-CONFIG-251 directly admits that window-specific call, copied
+    event, live menu/handler and following frame in two matching runs. Other
+    roots, keyboard/reentrant paths and between-stop/unmonitored effects remain.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on

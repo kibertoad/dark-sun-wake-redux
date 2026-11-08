@@ -128,6 +128,18 @@ dispatcher call/window/target itself is not observed; other roots, keyboard/
 reentrant entry, between-sample frame writes and later menu return remain
 unadmitted. The existing observation plan gives the exact command and controls.
 
+The same strict command's fixed `dispatch` mode passed twice on 2026-11-08
+in sibling v181-q014-dispatch-a-20261108/ and
+v181-q014-dispatch-b-20261108/. It additionally stops at the known window-
+specific call before execution, requires the actual copied event, live menu
+and handler target, and pairs the next menu-arm stack/return with that call.
+Those exact outgoing-argument/window/target/frame reads and the six-point
+continuation are agent (FND-CONFIG-251). All existing input/RNG/history and
+paired-store controls pass, with no guest writes; both owned muted sessions
+close normally. Other windows/handlers, global-hook and keyboard/reentrant
+routes, between-stop changes and later returns remain unadmitted. The plan's
+Direct dispatcher admission section gives the fixed scope and controls.
+
 The first failed-Save lock probe, v181-q009-native-write-failure-20261106,
 stopped during return-segment relocation after7 observations, before any
 file lock, payload fault or guest setup write. The probe had not installed
