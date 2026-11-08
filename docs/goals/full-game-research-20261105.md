@@ -84,7 +84,6 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
   Retain59 walk gaps and excluded mechanisms; no presumed index-word dependence.
   FMT-CONFIG-006 predecessor review ended at e0f597ab; none qualifying.
   CONFIG-257/FMT-CONFIG-006 replace predecessors at15782e02.
-  No CONFIG ownership JSON.
 - FMT-EXE-003 stays supported. Reuse EXE-644/645/647's finite cohort and
   GAME_DIR/analysis/header-pointer-reach-report-20261106.json: fifty unresolved
   transfers,five gaps,four contested,false negativeUsable. EXE-655/PARTY-343
@@ -118,7 +117,6 @@ Currente18f988f to37ce92fa: zero qualifying readings or answered deletions;
 Q-SOUND-010 narrowed by SOUND-097's event-binding obligation; remaining
 child/native admission stays explicit. One finding/one research commit;
 unchanged inventory/ownership denominators. Prior CONFIG comparison at e18f988f.
-Earlier CONFIG/PARTY comparisons remain in prior versions.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
