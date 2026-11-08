@@ -9,7 +9,7 @@ byte_order: little
 size: 59
 text: false
 definition: fmt_config_006.ksy
-evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258, FND-CONFIG-259, FND-CONFIG-260, FND-CONFIG-261]
+evidence: [FND-CONFIG-257, FND-CONFIG-213, FND-CONFIG-005, FND-CONFIG-236, FND-CONFIG-019, FND-CONFIG-020, FND-CONFIG-021, FND-CONFIG-214, FND-CONFIG-023, FND-CONFIG-024, FND-SOUND-007, FND-SOUND-008, FND-SOUND-013, FND-SOUND-020, FND-SOUND-037, FND-SOUND-047, FND-SOUND-092, FND-CONFIG-258, FND-CONFIG-259, FND-CONFIG-260, FND-CONFIG-261, FND-CONFIG-262]
 conflicting: []
 split_with: []
 related: []
@@ -90,7 +90,10 @@ The one installed file [FND-CONFIG-257].
   take different source fields; this is not a universal card-field meaning.
   FND-CONFIG-261 supplies that route's decimal-prefix/sign/modulo conversion;
   the caller retains AX, while actual source/table/frame admission stays open.
-  Twenty other EC and18 other EE writes, excluded mechanisms and actual
+  FND-CONFIG-262 maps twelve more EC/EE writers, including the installed7A
+  source/selection path. Repeated BLASTER lookups and optional profile choices
+  remain conditional; loaded zero globals are not a runtime reset.
+  Eight other EC and6 other EE writes, excluded mechanisms and actual
   group/count/pointer preservation remain obligations, not immutable state.
   DSUN.EXE roots 4734:0063, 47B9:0236 and initializer4734:0133 are in its
   corresponding inventory. Resource selector47B9:0334 and digital setup
