@@ -102,6 +102,12 @@ class Controls(unittest.TestCase):
             (point("6300:1EC9", 7), None), (point("6200:0039", 8, sp=0x3006, bp=0x3100), None),
             ({**point("2000:0100", 9, sp=0x4000, bp=0x4100), "reason": "time", "emu_ns": 1000016}, None)]
         session = Session(c, actions)
+        breakpoints = set()
+        c.set_breakpoint = lambda site, **kwargs: breakpoints.add(site)
+        def remove(site):
+            if site not in breakpoints: raise ValueError("no breakpoint at requested address")
+            breakpoints.remove(site)
+        c.remove_breakpoints = remove
         continuations = []
         def resume(**kwargs):
             continuations.append(kwargs)

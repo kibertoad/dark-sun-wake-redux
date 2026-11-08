@@ -198,8 +198,6 @@ def observe_readback(session, delta, report, retain, history=None, seed_expected
             continue
         if keyboard and keyboard.is_site(stop):
             keyboard.boundary(session.client, stop)
-            if getattr(keyboard, "EXPECT_REJECTION", False) and keyboard.phase == "delivery":
-                session.client.remove_breakpoints(poll)
             retain()
             continue
         delivery = observe_delivery(session, operation, delivery)

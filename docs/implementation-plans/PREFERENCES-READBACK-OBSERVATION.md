@@ -250,7 +250,8 @@ Read only the active frame's saved caller BP. Require the matching menu
 return +0039 with SS unchanged, SP=keyboardBP+6 and the saved caller BP
 restored. Do not inspect the expired keyboard frame after return.
 
-After that return, remove the input-builder poll and advance in fixed
+Keep the input-builder poll removed after P dispatch; after the matched
+return, advance in fixed
 one-millisecond sampling quanta, keeping every callback/opener/getter guard.
 The first builder-only attempt exhausted512 stops while input was pending;
 frequent builder entries do not imply completed queued delivery. Complete only
@@ -272,7 +273,8 @@ Synthetic controls cover baseline/branch predicate, epilogue/return pairing,
 changed frame/event/menu, positive-path guard refusal, pending input/window
 readiness, no-change history versus mutation, source/bounds checks and
 completion/cleanup, including time stops admitted only after the paired return
-and one fixed sampling deadline per continuation. Keep all prior controls passing and run Test.ps1 Research
+and one fixed sampling deadline per continuation. Refuse deletion of an absent
+breakpoint in the synthetic client, matching the pinned native API. Keep all prior controls passing and run Test.ps1 Research
 before tooling commit. Separate research repeats the completed rejection
 twice and records actual capabilities. Positive callback/reload admission
 still needs a naturally admitted turn state and its producers; other roots,
