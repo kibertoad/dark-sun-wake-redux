@@ -756,7 +756,7 @@ Next ID: Q-CONFIG-015
 - Q-CONFIG-005. FMT-CONFIG-006: What remaining settings-block construction,
   source admission and game-side field effects determine `SOUND.CFG` behavior?
   Settles it: admit setup1429:042D/063A's selecting input, EC/override and EE..FC
-  producers beyond259/260/262's group/card paths; classify8 remaining EC and6 EE writes.
+  producers beyond259/260/262/263's group/card paths; classify6 remaining EC and6 EE writes.
   Admit14A2:0087's actual list indices/counts, label/frame and
   output/record aliasing, span and child lifetime before
   1BD4:0003's whole-buffer write. For DSUN's47B9:0334/49EC:015F and initializer,
@@ -773,7 +773,7 @@ Next ID: Q-CONFIG-015
   incoming storage, driver effects and implicit accesses above remain open.
   Tried: FND-CONFIG-257 settles both local constructors/overrides, replacing003's
   inference;258 settles adjustment mask/list/apply order and initial-index lookup.
-  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering. Tried: FND-CONFIG-261 settles its2713 decimal-prefix/sign/overflow and caller low-word contract. Tried: FND-CONFIG-262 supplies the BLASTER source/selection and twelve EC/EE writers, including7A; other writers and actual source/table/frame admission remain.
+  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering. Tried: FND-CONFIG-261 settles its2713 decimal-prefix/sign/overflow and caller low-word contract. Tried: FND-CONFIG-262 supplies the BLASTER source/selection and twelve EC/EE writers, including7A. Tried: FND-CONFIG-263 supplies card6A's partial register-result producer, signature and bindings; other writers, actual reply and source/table/frame admission remain.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
