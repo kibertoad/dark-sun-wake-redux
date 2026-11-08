@@ -36,6 +36,15 @@ admitted. The owned session paused and closed, releasing its lock. Retain
 captures/rust-dos-preferences-readback/v181-q014-preferences-a-20261108/.
 The corrected tooling verifies main's relocated builder call before arming
 the poll and has a synthetic old-choice-target rejection control.
+The corrected b attempt reached the ready Game Menu, observed Tab and pointer
+motion delivered, and read selected BUTN/10303 at the fixed point. Those
+specific input/menu parts are agent. It exhausted512 builder stops while the
+click's last observed state was still pending, before a getter stop. Repeated
+polling had advanced less guest time than the fixed100ms hold required.
+No readback or click-completion capability follows. That owned session also
+closed and released its lock; retain the sibling b directory. The next
+tooling revision removes the poll after checked pointer selection, before
+the unchanged click; getter/RNG guards and the stop budget remain unchanged.
 
 The fixed read-only disc_startup.py observer passed twice on 2026-11-08,
 in captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/ and

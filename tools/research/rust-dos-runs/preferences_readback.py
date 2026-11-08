@@ -47,9 +47,17 @@ class MenuFlow:
             raise ValueError("unexpected window during fixed Preferences route")
         if self.phase in ("menu", "move") and delivery_done and ready(state, 10500):
             action = "move" if self.phase == "menu" else "click"
+            if action == "click" and state.get("selected_control") != {"tag": "BUTN", "number": 10303}:
+                raise ValueError("delivered pointer is not on the Preferences control")
             self.phase = "move" if action == "move" else "getter"
             return action
         return None
+
+
+def select_preferences(session, poll):
+    """The admitted click needs only getter/RNG stops, not repeated UI polls."""
+    session.client.remove_breakpoints(poll)
+    return session.send_input("mouse", {"action": "click", "button": "left", "hold_ms": 100})
 
 
 class Readback:
@@ -206,16 +214,14 @@ def main():
                     action = flow.poll(current, delivery.state == "done")
                     if action:
                         input_name = action
-                        payload = ({"action": "move", "x": 160, "y": 101, "coords": "virtual"}
-                                   if action == "move" else {"action": "click", "button": "left", "hold_ms": 100})
-                        operation = session.send_input("mouse", payload)
+                        operation = (session.send_input("mouse", {"action": "move", "x": 160, "y": 101, "coords": "virtual"})
+                                     if action == "move" else select_preferences(session, poll))
                         delivery, recorded = None, False
                         print(action, flush=True)
                 elif site == getter:
                     if flow.phase != "getter":
                         raise ValueError("Preferences getter reached before its fixed input route")
                     report["readback"].append({"phase": "entry", **trace.entry(session.client, stop)})
-                    session.client.remove_breakpoints(poll)
                     for offset in (0x003E, 0x0041):
                         session.client.set_breakpoint(f"{trace.caller:04X}:{offset:04X}", once=True)
                     print("getter-entry", flush=True)

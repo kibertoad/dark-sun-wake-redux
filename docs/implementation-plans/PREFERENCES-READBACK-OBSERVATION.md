@@ -25,7 +25,10 @@ Preferences button route. Verify main's relocated call to FND-UI-010/054's
 key-event builder before arming that poll; the modal choice loop is a separate
 routine. Send Tab, await a ready WIND/10500 at that named builder stop,
 move to virtual(160,101), await motion delivery and recheck
-that menu, then send one left click. Never retry an input because observation
+that menu and selected BUTN/10303, then send one left click. Remove the UI
+poll before that click and wait only on the getter/RNG guards: repeated
+builder stops are unnecessary while the button's hold/release completes.
+Keep the stop budget and gesture unchanged. Never retry an input because observation
 timed out. Record every input delivery and every admitted RNG draw through
 Recorder; unknown draws, reseeding, stops, windows or exhausted bounds stop.
 Do not use elapsed time as a readiness condition. No guest writes or setup
@@ -50,6 +53,7 @@ settle other getters, indirect targets, aliases or continuous preservation.
 
 Synthetic acceptance covers the fixed menu state machine, input ordering,
 main-call poll admission with the modal-choice target as a negative control,
+selected-control admission and poll removal before the fixed click,
 wrong windows, incomplete delivery, wrong trampoline/call/store/frame,
 wrong mode/segments, short/wrapping reads, AL-versus-AX and entry/return/store
 pairing. Exit for tooling: controls and Test.ps1 pass, fixed command documented.

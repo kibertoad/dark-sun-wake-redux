@@ -10,11 +10,12 @@ from types import SimpleNamespace
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from preferences_readback import MenuFlow, Readback, input_poll
+from preferences_readback import MenuFlow, Readback, input_poll, select_preferences
 
 
 def window(number, flags=8, mouse=1):
-    return {"window": {"number": number, "flags": flags} if number else None, "mouse_enabled": mouse}
+    return {"window": {"number": number, "flags": flags} if number else None, "mouse_enabled": mouse,
+            "selected_control": {"tag": "BUTN", "number": 10303}}
 
 
 def stop(at="4A6E:011F", sp=0x1000, ax=0x00FF):
@@ -55,6 +56,25 @@ class Memory:
 
 
 class Controls(unittest.TestCase):
+    def test_click_removes_only_the_poll_before_sending_the_original_gesture(self):
+        calls, operation = [], object()
+        def send(kind, payload):
+            calls.append((kind, payload))
+            return operation
+        session = SimpleNamespace(client=SimpleNamespace(remove_breakpoints=lambda site: calls.append(("remove", site))),
+                                  send_input=send)
+        self.assertIs(select_preferences(session, "39D1:097D"), operation)
+        self.assertEqual(calls, [("remove", "39D1:097D"),
+            ("mouse", {"action": "click", "button": "left", "hold_ms": 100})])
+
+    def test_motion_must_land_on_the_declared_preferences_button(self):
+        for control in (None, {"tag": "BUTN", "number": 10304}, {"tag": "WIND", "number": 10303}):
+            flow, state = MenuFlow(), window(10500)
+            flow.poll(state, True)
+            state["selected_control"] = control
+            with self.assertRaisesRegex(ValueError, "Preferences control"):
+                flow.poll(state, True)
+
     def test_poll_admission_requires_main_call_not_the_choice_loop(self):
         memory = Memory()
         self.assertEqual(input_poll(memory, 0), "39D1:097D")
