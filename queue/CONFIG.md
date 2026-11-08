@@ -98,6 +98,12 @@ Next ID: Q-CONFIG-015
   jump/indirect/table/return entries, dynamic/copied/distant-pair pointers,
   relocated-offset reuse and changed streams. These modeled forms are no
   longer an unread caller census; they exclude no writer/lifetime history.
+  FND-CONFIG-243 connects the two ordinary opener calls with their local
+  event/key gates, child/frame reload and readback order. Retain actual parent,
+  event/frame and child-state histories and exit-time reentrancy. The additional
+  numerical pair at file 4B6D2/4B6D8 spans distinct descriptor fields; whether
+  a consumer combines/transforms them as an incoming pointer remains open,
+  alongside the previously excluded construction and transfer mechanisms.
   FND-CONFIG-239 completes the normal installed-source interface partition:
   ten Copy resources have AE/AF/B1, six Copy resources lack them, and ADV 10
   selects a resident DIGPAK adapter that also lacks them. Remove an unread
@@ -318,6 +324,11 @@ Next ID: Q-CONFIG-015
     the other raw-offset words do not add an encoded target under that model.
     Actual root/context/frame and reentrant-reader admission plus excluded
     pointer/entry and writer mechanisms remain; no whole question closes.
+    Tried: FND-CONFIG-243 supplies the two ordinary caller-to-store contracts.
+    The finite pair census additionally identifies a cross-descriptor candidate
+    whose numerical target survives loading; its actual consumption remains
+    unestablished. Parent/event/child/frame and reentrant histories remain;
+    local menu and P predicates no longer require another reading.
   Blocks: slice 3.
 
 - Q-CONFIG-007. RULE-CONFIG-005, SCR-UI-007: Does another path impose an upper limit on
