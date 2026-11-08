@@ -773,7 +773,7 @@ Next ID: Q-CONFIG-015
   incoming storage, driver effects and implicit accesses above remain open.
   Tried: FND-CONFIG-257 settles both local constructors/overrides, replacing003's
   inference;258 settles adjustment mask/list/apply order and initial-index lookup.
-  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering; other writers, conversion grammar and storage admission remain.
+  Keep actual count/index/frame admission and the incoming/consumer gaps above. Tried: FND-CONFIG-259 supplies the conditional first-match group marker and EC census. Tried: FND-CONFIG-260 supplies card7C's paired extended-field producer, remaps and marker ordering. Tried: FND-CONFIG-261 settles its2713 decimal-prefix/sign/overflow and caller low-word contract; other writers and actual source/table/frame admission remain.
   Blocks: completing the named entry readings.
 
 - Q-CONFIG-006. FMT-CONFIG-002: What remains of setup's `SOUND.INI`
