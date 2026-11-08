@@ -38,7 +38,7 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 
 ## Handover
 
-- Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
+- Active; Audit unmet. Turn-limit checkpoint.
 - Stage Slices. Test.ps1 -Research -ChangedSince b866dcf2 -NoRestore passed:
   2189 entries,208 parity rows,five deviations, existing skips (2026-11-09).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
@@ -155,4 +155,4 @@ Current native: GAME_DIR/captures/rust-dos-setup-parser/
 v181-setup-labels-20261109-a/ and sibling b/ complete (SOUND-100).
 setup_parser.py --labels has fixed no-input/write guards; both sessions closed.
 Same root: v181-setup-display-20261109-a/ and sibling b/ complete;
-v181-setup-rows-20261109-a/ guarded, no chooser endpoint (SOUND-101). All closed. Guard/object/poll pairs: SOUND-102/104/105. Enter: v181-notice-enter-20261109-b/c complete, a partial (SOUND-106); pending delivery, all closed.
+v181-setup-rows-20261109-a/ guarded, no chooser endpoint (SOUND-101). All closed. Guard/object/poll pairs: SOUND-102/104/105. Enter: v181-notice-enter-20261109-b/c complete, a partial (SOUND-106); pending delivery.
