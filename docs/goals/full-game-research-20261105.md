@@ -39,18 +39,18 @@ Generated spec/index/ and PARITY.md. Unowned original-game processes.
 ## Handover
 
 - Active; Audit unmet. No unfinished batch. Turn-limit checkpoint.
-- Stage Slices. Test.ps1 -Research -ChangedSince 8ed93f71 -NoRestore passed:
-  2150 entries,208 parity rows,five deviations, existing skips (2026-11-08).
+- Stage Slices. Test.ps1 -Research -ChangedSince df32a167 -NoRestore passed:
+  2151 entries,208 parity rows,five deviations, existing skips (2026-11-08).
   Use checkout-local EVIDENCE_PYTHON (artifacts/evidence-python/Scripts/python.exe),
   overriding inherited configuration; use supported escalation.
-- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..241 and
+- RULE-CONFIG-003 remains supported. Reuse CONFIG-235..242 and
   SOUND-082..096; do not repeat local getter/setter/query/reset/cache-progress
   or installed-input assessments. Q-CONFIG-014 now owns the readback contract,
   split from Q-CONFIG-002, which retains initialization/voice/other controls.
   CONFIG Static10,Live2,Blocked1,Next15.
   Whole-entry review complete at 7b9b6636; no qualifying declaration.
-  Next Q-CONFIG-014: remaining lifecycle entry/alias and reentrant-reader
-  admission; reuse PARTY-320..322 and CONFIG-149/155/159 before reading.
+  Next Q-CONFIG-014: Preferences root/event/frame and reentrant-reader
+  admission; reuse PARTY-320..327 and CONFIG-149/155/159 before reading.
   Retain actual caller/table/frame, driver and writer histories.
   Three timed closure batches complete at 7307ac04, with qualified measures.
   Fixed Preferences tooling/controls pass; use bdd2f514, not earlier repairs.
@@ -94,6 +94,9 @@ zero complete-reading changes or answered deletions; Q-CONFIG-014 narrowed.
 No inventory/ownership denominator changes. Wall seconds research/tooling/
 validation: 1448.6/0/11.7,184.3/0/11.2,135.6/0/11.6. Handovers:17.6/28.6/55.3 seconds.
 These exclude commit hooks and are not active-effort measurements.
+Current 06458562 to 209c01ee: zero qualifying readings or answered deletions;
+CONFIG-242 and PARTY-323..327 narrow/correct Q-CONFIG-014. One finding and
+two research commits; inventory/ownership denominators unchanged.
 Earlier CONFIG/UI/SOUND timed baselines and qualified measurements remain in
 this goal's 11d0b53e version; no closure speedup was proved. SOUND-095/096
 retain their narrower conditions. Do not repeat answered local/native pairs.
@@ -117,13 +120,9 @@ fa2a30bd904434e18ac242b3e76116c63ad16951 to
 56f71d560e4700bd7967646ebeed2153137554d6 also zero readings/answers;
 PARTY-264/265 removed two bounded components. Keep historical denominators.
 
-Retained stores under GAME_DIR/analysis/: class-table-closure-20261106/,
-handler-census-20261106/, item-removal-20261104/, disc-adv-survey-20261104/,
-runtime-error-inventory-20261107/, music-level-contract-20261107/,
-music-driver-contract-20261107/, patch-enumeration-20261107/ and
-sequence-input-census-20261107/ and disc-table-contract-20261108/.
-Current: GAME_DIR/analysis/driver-slot-handoff-20261108/,
-slot-lifecycle-20261108/ and alternate-slot-lifecycle-20261108/.
+Current: GAME_DIR/analysis/music-getter-entry-census-20261108/;
+reuse handler-census-20261106/ and music-level-contract-20261107/.
+Other retained stores remain named in this goal's 06458562 version.
 Native: GAME_DIR/captures/rust-dos-disc-startup/v181-q014-disc-startup-a-20261108/
 and v181-q014-disc-startup-b-20261108/. No owned orphans remain.
 Preferences: GAME_DIR/captures/rust-dos-preferences-readback/v181-q014-preferences-e-20261108/
