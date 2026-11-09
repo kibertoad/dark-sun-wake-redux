@@ -414,6 +414,31 @@ not a native failure. The expanded cap is2048 polls. All contexts close
 without additional events or writes. Endpoint equality does not admit
 continuous lifetime, deeper-stack effects or live allocation ownership.
 
+The initial --second-select attempt at01c33a8a, retained as
+v181-second-select-20261109-a/ under the same root, ended in host
+WinError10048 while observing an existing continuation during the first
+event's release wait. It sent no second event; this is not a game failure.
+The owned emulator closed. Toolkit issue511 tracks the connection-per-request
+boundary: https://github.com/kibertoad/refurbished-dinosaurs-toolkit/issues/511.
+Toolingda2f94a1 retries only this error for read-only named memory reads
+or observation of the same handle, at most60 attempts with one host second
+between failures. It never retries mutations or resumes the guest as backoff.
+The installed package and host settings are unchanged. A new issue follow-up
+was not posted: automatic approval review rejected external diagnostic
+disclosure without specific approval; the bounded draft remains local.
+
+The fixed --second-select route atda2f94a1 verifies completion of the first
+event before sending exactly one second Enter (FND-SOUND-109). Its second
+notice returns1 at164C:0C71 and the next guarded continuation reaches
+19CF:009A with incoming far return19CF:008F. This bounded event/return/
+generic-entry observation is agent; the second event remains pending at
+caller return and chooser entry. Runs v181-second-select-20261109-b/ and
+sibling c/ are under the setup-parser root; sibling a/ is the host transport
+diagnostic above. No wrapper/source/count/text or chooser locals are admitted
+by this entry-only read. The older nonwrapping chooser-row profile is not
+validated by it. Contexts close without further input or chooser operation;
+no device-success, row/vector, lifetime or live allocation claim follows.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,

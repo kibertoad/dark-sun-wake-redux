@@ -9,7 +9,7 @@ byte_order: little
 size: null
 text: false
 definition: fmt_sound_004.ksy
-evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100, FND-SOUND-101, FND-SOUND-102, FND-SOUND-103, FND-SOUND-104, FND-SOUND-105, FND-SOUND-106, FND-SOUND-107, FND-SOUND-108]
+evidence: [FND-EXE-491, FND-EXE-492, FND-EXE-496, FND-EXE-646, FND-EXE-590, FND-SOUND-019, FND-SOUND-020, FND-SOUND-021, FND-SOUND-022, FND-SOUND-023, FND-SOUND-024, FND-SOUND-025, FND-SOUND-026, FND-SOUND-027, FND-SOUND-037, FND-SOUND-029, FND-SOUND-097, FND-SOUND-098, FND-SOUND-099, FND-SOUND-100, FND-SOUND-101, FND-SOUND-102, FND-SOUND-103, FND-SOUND-104, FND-SOUND-105, FND-SOUND-106, FND-SOUND-107, FND-SOUND-108, FND-SOUND-109]
 conflicting: []
 split_with: []
 related: []
@@ -80,49 +80,27 @@ selection or successful driver initialization.
   consumption, including transformed-byte continuation; child preservation
   and native table/frame/input admission remain required.
 
-  FND-SOUND-098 settles pure attribute updates, rectangle bounds/copy interfaces
-  and conditional delay/copy register restoration. Native BIOS SI/DI/ES,
-  port progress, scrolling scratch/coordinate and backing/frame admission remain
-  Q-SOUND-010; none is inferred from successful local traversal.
+  FND-SOUND-098 and FND-SOUND-099 bind the local drawing/copy/delay
+  interfaces and display-state producers. Native BIOS SI/DI/ES, port
+  progress, scrolling scratch/coordinates and backing/frame admission
+  remain Q-SOUND-010 beyond the bounded observations below.
 
-  FND-SOUND-099 assigns the mode-request and geometry/copy-gate producers.
-  The loaded enabling word is1, but queried width/rows, copy synchronization
-  and retained mode/flag state still require native/history admission.
+  FND-SOUND-100 verifies post-label records, written prefixes and six
+  modeled allocation headers; FND-SOUND-101 verifies the display gates,
+  mode/geometry and declared interrupt-zero vector at that endpoint.
+  Intermediate/later heap, alias, vector and chooser retention remain open.
 
-  FND-SOUND-100 verifies both fresh post-label endpoints: all26 written
-  prefixes and populated records match the projection, with six disjoint
-  modeled allocation headers. Intermediate and later lifetime, vector/chooser
-  state and native index admission remain Q-SOUND-010.
-
-  FND-SOUND-101 observes matching mode/geometry/copy gates and the declared
-  vector at two post-label endpoints. Retention to use remains open; the
-  chooser-use attempt stopped at the shared handler guard before entry.
-  FND-SOUND-102 identifies its caller as164C:050D in two fresh attempts;
-  its input/object/frame and continuation contract remains Q-SOUND-010.
-
-  FND-SOUND-103 derives a wrapped handler frame from102's entry state;
-  its upper interval intersects100's earlier negative record-block model.
-  Simultaneous lifetime/alias admission remains Q-SOUND-010; no native
-  overwrite or failure is inferred.
-
-  FND-SOUND-104 verifies both fixed incoming objects, selector zero and
-  terminated small text prefixes at two fresh guard stops. Their retention,
-  wrapped-frame consumption and input/continuation remain Q-SOUND-010.
-
-  FND-SOUND-105 verifies the fixed notice's first pre-poll endpoint twice:
-  wrapped frame, three body rows, one registered choice and matching entry
-  objects/prefixes. Later retention, input/return and live allocation ownership
-  remain Q-SOUND-010; endpoint coherence is not continuous preservation.
-
-  FND-SOUND-106 observes000D after one Enter event and normal notice
-  return0000 in two fresh runs. The queued event remains pending at return;
-  full delivery, later continuation and retention remain Q-SOUND-010.
-
-  FND-SOUND-107 observes the next guarded invocation at caller164C:0C71
-  twice, with the same original input still pending. Its distinct object,
-  frame/input admission and later continuation remain Q-SOUND-010.
-
-  FND-SOUND-108 verifies the second entry's selector one, two choices,
-  pre-poll construction and eventual original-event delivery completion
-  without a second selection. Later input/return, retention and live allocation
-  ownership remain Q-SOUND-010.
+  FND-SOUND-102, FND-SOUND-104 and FND-SOUND-105 identify the first
+  notice caller, its objects and pre-poll construction. FND-SOUND-106
+  verifies its fixed Enter response and selected-word return; its event
+  is pending at that return. FND-SOUND-107 identifies the second notice,
+  and FND-SOUND-108 verifies its selector-one/two-choice profile,
+  construction and completion of the original event while it waits.
+  FND-SOUND-109 verifies the second selected word and generic chooser
+  entry. The second event remains pending there; wrapper/source/count/text,
+  wrapped chooser-frame and row/vector admission remain Q-SOUND-010.
+  FND-SOUND-103 derives the wrapped notice frame and its intersection
+  with an earlier modeled negative-group allocation. Observed endpoint
+  coherence does not establish simultaneous live ownership, continuous
+  object/frame preservation or effects on unread payloads. Those lifetime
+  conditions and other native profiles remain Q-SOUND-010.
