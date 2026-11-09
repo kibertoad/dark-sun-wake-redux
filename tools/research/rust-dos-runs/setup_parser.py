@@ -13,6 +13,7 @@ import re
 import shutil
 import struct
 import sys
+import time
 
 import xxhash
 from dinorefurb_dosbox_session import (
@@ -45,6 +46,24 @@ def address(loaded, segment, offset):
     return f"{actual:04X}:{offset:04X}"
 
 
+def retry_debugger_read(read, pause=time.sleep, attempts=60):
+    """Internal read-only calls only; never pass a mutation or replay an input."""
+    if type(attempts) is not int or not 1 <= attempts <= 60:
+        raise ValueError("unsupported local read retry budget")
+    for index in range(attempts):
+        try:
+            return read()
+        except OSError as error:
+            if getattr(error, "winerror", None) != 10048 or index + 1 == attempts:
+                raise
+            print(f"local debugger read WinError10048; same read retry {index + 1}/{attempts}", flush=True)
+            pause(1)
+
+
+def observe_debugger(session, operation, timeout):
+    return retry_debugger_read(lambda: session.observe(operation, timeout=timeout))
+
+
 def checked_read(client, segment, offset, size):
     if any(type(value) is not int for value in (segment, offset, size)):
         raise ValueError("invalid setup read type")
@@ -52,7 +71,7 @@ def checked_read(client, segment, offset, size):
         raise ValueError("unsupported setup read")
     if offset + size > 0x10000 or segment * 16 + offset + size > 0x100000:
         raise ValueError("setup read wraps")
-    data = client.read_memory(f"{segment:04X}:{offset:04X}", size).data
+    data = retry_debugger_read(lambda: client.read_memory(f"{segment:04X}:{offset:04X}", size)).data
     if len(data) != size:
         raise ValueError("short setup field read")
     return data
@@ -93,13 +112,13 @@ def observe_fields(client, stop, loaded, phase):
 
 def wait_same_operation(session, operation, attempts=6):
     for _ in range(attempts):
-        observed = session.observe(operation, timeout=30)
+        observed = observe_debugger(session, operation, timeout=30)
         if not observed.pending:
             return observed
         print("pending setup operation", operation.op, flush=True)
     session.pause()
     for _ in range(3):
-        observed = session.observe(operation, timeout=30)
+        observed = observe_debugger(session, operation, timeout=30)
         if not observed.pending:
             raise RuntimeError("setup observation budget ended at a paused stop")
     raise RuntimeError("setup continuation still pending after pause; closing owned session")
@@ -154,7 +173,7 @@ def observe_records(client, stop, loaded, projection, phase="returned"):
         if expected:
             if len(expected) > 4096:
                 raise ValueError("setup populated record observation exceeds cap")
-            actual = client.read_memory(f"{block['segment']:04X}:0004", len(expected)).data
+            actual = retry_debugger_read(lambda: client.read_memory(f"{block['segment']:04X}:0004", len(expected))).data
             if len(actual) != len(expected):
                 raise ValueError("short setup record payload read")
             native[name] = actual
@@ -237,7 +256,7 @@ def observe_labels(client, stop, loaded, projection, baseline):
             if len(row) > 41 or total > 1312:
                 raise ValueError("label prefix observation exceeds cap")
             offset = 4 + index * 80
-            data = client.read_memory(f"{labels[name]['segment']:04X}:{offset:04X}", len(row)).data
+            data = retry_debugger_read(lambda: client.read_memory(f"{labels[name]['segment']:04X}:{offset:04X}", len(row))).data
             if len(data) != len(row):
                 raise ValueError("short label prefix read")
             differences.extend(index * 80 + byte for byte, (a, b) in enumerate(zip(data, row)) if a != b)
@@ -313,7 +332,7 @@ def observe_chooser(client, stop, loaded, projection, baseline, main_labels):
             or text_offset != bp - 0x400 or sp + 14 > text_offset
             or len(wanted) > 1024 or text_offset + len(wanted) > bp):
         raise ValueError("unsupported chooser caller or source binding")
-    actual = client.read_memory(f"{ss:04X}:{text_offset:04X}", len(wanted)).data
+    actual = retry_debugger_read(lambda: client.read_memory(f"{ss:04X}:{text_offset:04X}", len(wanted))).data
     if len(actual) != len(wanted):
         raise ValueError("short chooser text read")
     if (checked_read(client, ss, sp, 14) != frame
@@ -551,7 +570,7 @@ def wait_second_delivery(session, loaded, objects, poll, delivery, result, retai
         retain()
         value = observe_notice_input(session.client, observed.stop, loaded, objects["entry"], "poll")
         value["emu_ns"] = observed.stop.get("emu_ns")
-        delivered = session.observe(delivery, timeout=0)
+        delivered = observe_debugger(session, delivery, timeout=0)
         value["delivery"] = {"pending": delivered.pending, "state": delivered.state}
         value["delivery_detail"] = delivered.detail
         result["polls"].append(value)
@@ -604,7 +623,7 @@ def select_second_notice(session, loaded, second, result, retain):
         retain()
         result[phase] = observe_notice_input(session.client, observed.stop, loaded, entry, phase, "second")
         retain()
-    delivered = session.observe(delivery, timeout=0)
+    delivered = observe_debugger(session, delivery, timeout=0)
     result["delivery_at_return"] = {"pending": delivered.pending, "state": delivered.state}
     retain()
     if result["returned"]["ax"] != 1:
@@ -615,7 +634,7 @@ def select_second_notice(session, loaded, second, result, retain):
     result["last_stop"] = observed.stop
     retain()
     result["next"] = observe_notice_next(session.client, observed.stop, loaded)
-    delivered = session.observe(delivery, timeout=0)
+    delivered = observe_debugger(session, delivery, timeout=0)
     result["next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
     retain()
 
@@ -786,7 +805,7 @@ def main():
                             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                             report["notice_input"][phase] = observe_notice_input(session.client, observed.stop, loaded, report["notice_objects"]["entry"], phase)
                             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-                        delivered = session.observe(delivery, timeout=1)
+                        delivered = observe_debugger(session, delivery, timeout=1)
                         report["notice_input"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
                         (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                         print(json.dumps({"notice_input": report["notice_input"]}), flush=True)
@@ -797,7 +816,7 @@ def main():
                             report["last_stop"] = observed.stop
                             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                             report["notice_next"] = observe_notice_next(session.client, observed.stop, loaded)
-                            delivered = session.observe(delivery, timeout=1)
+                            delivered = observe_debugger(session, delivery, timeout=1)
                             report["notice_next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
                             (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
                             print(json.dumps({"notice_next": report["notice_next"]}), flush=True)

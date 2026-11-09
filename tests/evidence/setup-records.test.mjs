@@ -433,6 +433,53 @@ reject(lambda:observe_notice_input(s.client,bad,loaded,baseline['objects']['entr
 `, 'tools/research/rust-dos-runs');
 });
 
+test('local transport backoff retries only WinError10048 reads and preserves the original operation', () => {
+  check(`
+import sys
+from types import SimpleNamespace as NS
+sys.path.insert(0,sys.argv[1])
+from setup_parser import retry_debugger_read,observe_debugger,select_second_notice
+def conflict():
+    error=OSError('synthetic local socket conflict');error.winerror=10048;return error
+pauses=[];seen=[];handle=object()
+def read():
+    seen.append(handle)
+    if len(seen)<3:raise conflict()
+    return 'done'
+assert retry_debugger_read(read,pause=pauses.append,attempts=3)=='done'
+assert seen==[handle]*3 and pauses==[1,1]
+error=conflict();calls=[];pauses=[]
+def fail():calls.append(1);raise error
+try:retry_debugger_read(fail,pause=pauses.append,attempts=3)
+except OSError as caught:assert caught is error
+else:raise AssertionError('exhausted read admitted')
+assert len(calls)==3 and pauses==[1,1]
+for error in (OSError('other error'),ValueError('bad read')):
+    calls=[];pauses=[]
+    try:retry_debugger_read(fail,pause=pauses.append,attempts=3)
+    except type(error) as caught:assert caught is error
+    else:raise AssertionError('other error hidden')
+    assert len(calls)==1 and not pauses
+for budget in (0,61,True):
+    try:retry_debugger_read(lambda:None,attempts=budget)
+    except ValueError:pass
+    else:raise AssertionError('unbounded retry budget')
+seen=[]
+def observe(operation,timeout):seen.append((operation,timeout));return NS(pending=False)
+assert not observe_debugger(NS(observe=observe),handle,3).pending
+assert seen==[(handle,3)]
+baseline={'completed':True,'polls':[{'delivery':{'pending':False,'state':'done'}}],
+ 'objects':{'entry':{'ss':0x3000,'sp':0x0DE2},'selector':1,'text':{'choices':{'row_lengths':[13,8]}}},
+ 'pre_poll':{'locals':{'choice_rows':2}}}
+events=[]
+def send(kind,event):events.append((kind,event));raise conflict()
+try:select_second_notice(NS(send_input=send),0x1000,baseline,{},lambda:None)
+except OSError:pass
+else:raise AssertionError('mutation conflict hidden')
+assert len(events)==1
+`, 'tools/research/rust-dos-runs');
+});
+
 test('fixed chooser row observations bind both callers, stack text, vector and paused geometry', () => {
   check(`
 import sys,struct

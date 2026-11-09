@@ -413,3 +413,19 @@ next-boundary refusal. Exit: tooling gate passes; separate fresh paired
 attempts record the second return and next boundary or the concrete guard.
 No device-success, second delivery-completion, chooser-row or lifetime claim
 is inferred merely from the branch or caller result.
+
+The initial second-select attempt ended in host WinError10048 while
+observing an existing continuation during the already verified first-event
+release wait. It never sent its second event. Toolkit issue511 already
+tracks the connection-per-request transport boundary. Add a bounded local
+read-only recovery helper for this specific OS error: at most60 attempts,
+one host second between failures, observing the same operation handle or
+repeating the same named paused memory read. Do not retry input, continue,
+breakpoint changes, writes or any other mutation; do not change the installed
+package, server, TCP settings or host protections. Other errors propagate.
+Log each retry as host transport metadata and stop on exhaustion. Host
+backoff does not resume the guest. Synthetic controls cover exact error
+selection, same-handle reuse, exhaustion and no retry of other errors.
+Fresh attempts use the updated tool; the terminal failed attempt is retained
+as a diagnostic and is never restarted. This changes transport observation,
+not native stop/read guards, input count, evidence scope or validation gates.
