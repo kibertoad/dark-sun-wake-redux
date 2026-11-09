@@ -309,13 +309,15 @@ def observe_label_display(client, stop, loaded, baseline):
                         "window": dict(zip(("left", "top", "right", "bottom", "attribute"), first[0]))}}
 
 
-def observe_chooser(client, stop, loaded, projection, baseline, main_labels):
+def observe_chooser(client, stop, loaded, projection, baseline, main_labels, wrapped=False):
     """Fixed MainGroup wrapper entry only, before the chooser makes a frame."""
     fields = observe_fields(client, stop, loaded, "chooser")
     if any(fields[key] != baseline[key] for key in ("counts", "groups", "mode")):
         raise ValueError("chooser record bindings differ")
     ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
-    if (bp < 0x400 or sp < 0x1DB4 or bp + 18 > 0x10000
+    ds = loaded + 0x1E36 - 0x1000
+    if (type(wrapped) is not bool or bp < 0x400 or (not wrapped and sp < 0x1DB4)
+            or wrapped and (sp < 2 or ss * 16 < ds * 16 + 0xECCE) or bp + 18 > 0x10000
             or ss * 16 + bp + 18 > 0xA0000):
         raise ValueError("unsupported chooser entry frame span")
     frame = checked_read(client, ss, sp, 14)
@@ -341,22 +343,31 @@ def observe_chooser(client, stop, loaded, projection, baseline, main_labels):
         raise ValueError("chooser entry bindings changed while paused")
     differences = [i for i, (a, b) in enumerate(zip(actual, wanted)) if a != b]
     return {"bindings": fields, "ss": ss, "entry_sp": sp, "initial_index": signed_word(initial),
+            "wrapped_frame": wrapped, "wrapper_bp": bp,
+            "wrapper_caller": {"segment": caller_cs, "offset": caller_ip},
             "source_count": count, "compared_bytes": len(wanted), "equal": not differences,
             "expected_sha256": hashlib.sha256(wanted).hexdigest(),
             "native_sha256": hashlib.sha256(actual).hexdigest(),
             "differing_bytes": len(differences), "first_differing_offsets": differences[:32]}, (wanted, actual)
 
 
-def observe_rows(client, stop, loaded, entry):
+def observe_rows(client, stop, loaded, entry, wrapped=False):
     """Fixed post-adjustment row endpoint; never follow vector/video pointers."""
     fields = observe_fields(client, stop, loaded, "rows")
     ss, sp, bp = (word_register(stop, key) for key in ("ss", "sp", "bp"))
-    if (ss != entry["ss"] or bp != entry["entry_sp"] - 2 or bp < 0x1DB2
-            or sp != bp - 0x1DB2
+    ds = loaded + 0x1E36 - 0x1000
+    if (type(wrapped) is not bool or ss != entry["ss"]
+            or bp != ((entry["entry_sp"] - 2) & 0xFFFF if wrapped else entry["entry_sp"] - 2)
+            or not wrapped and bp < 0x1DB2
+            or wrapped and (entry.get("wrapped_frame") is not True or ss * 16 < ds * 16 + 0xECCE)
+            or sp != ((bp - 0x1DB2) & 0xFFFF if wrapped else bp - 0x1DB2)
+            or ss * 16 + sp + 4 > 0xA0000
             or any(fields[key] != entry["bindings"][key] for key in ("counts", "groups", "mode"))):
         raise ValueError("unsupported chooser row frame or binding")
-    ds = loaded + 0x1E36 - 0x1000
-    spans = ((ss, bp - 0x1C, 4), (ds, 0xDEB8, 5), (ds, 0xDEBE, 11), (0, 0, 4))
+    local = (bp - 0x1C) & 0xFFFF if wrapped else bp - 0x1C
+    if ss * 16 + local + 4 > 0xA0000:
+        raise ValueError("unsupported chooser local span")
+    spans = ((ss, local, 4), (ds, 0xDEB8, 5), (ds, 0xDEBE, 11), (0, 0, 4))
     first = tuple(checked_read(client, *span) for span in spans)
     if (tuple(checked_read(client, *span) for span in spans) != first
             or observe_fields(client, stop, loaded, "rows") != fields):
@@ -367,6 +378,7 @@ def observe_rows(client, stop, loaded, entry):
     count = signed_word(word_register(stop, "si"))
     index = signed_word(word_register(stop, "di"))
     return {"row_count": count, "adjusted_count": adjusted, "comparison_iterations": iteration,
+            "frame": {"ss": ss, "sp": sp, "bp": bp, "wraps": bp < 0x1DB2},
             "source_count": entry["source_count"], "matches_source_count": count == entry["source_count"],
             "current_index": index, "index_matches_entry": index == max(0, entry["initial_index"]),
             "vector_zero": {"offset": offset, "segment": segment,
@@ -637,6 +649,7 @@ def select_second_notice(session, loaded, second, result, retain):
     delivered = observe_debugger(session, delivery, timeout=0)
     result["next"]["delivery"] = {"pending": delivered.pending, "state": delivered.state}
     retain()
+    return delivery
 
 
 def verified_input(path, identity):
@@ -649,17 +662,18 @@ def verified_input(path, identity):
 
 
 def main():
-    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
+    if (len(sys.argv) not in (2, 3) or len(sys.argv) == 3 and sys.argv[2] not in ("--labels", "--chooser-rows", "--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select", "--chooser-bound-rows")
             or not re.fullmatch(r"[A-Za-z0-9_-]{1,64}", sys.argv[1])):
-        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next|--second-wait|--second-select]")
+        raise SystemExit("usage: setup_parser.py <new-run-name> [--labels|--chooser-rows|--notice-objects|--notice-poll|--notice-enter|--notice-next|--second-wait|--second-select|--chooser-bound-rows]")
     labels_profile = len(sys.argv) == 3
     rows_profile = labels_profile and sys.argv[2] != "--labels"
-    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
-    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select")
-    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next", "--second-wait", "--second-select")
-    next_profile = labels_profile and sys.argv[2] in ("--notice-next", "--second-wait", "--second-select")
-    second_profile = labels_profile and sys.argv[2] in ("--second-wait", "--second-select")
-    select_profile = labels_profile and sys.argv[2] == "--second-select"
+    objects_profile = labels_profile and sys.argv[2] in ("--notice-objects", "--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select", "--chooser-bound-rows")
+    poll_profile = labels_profile and sys.argv[2] in ("--notice-poll", "--notice-enter", "--notice-next", "--second-wait", "--second-select", "--chooser-bound-rows")
+    enter_profile = labels_profile and sys.argv[2] in ("--notice-enter", "--notice-next", "--second-wait", "--second-select", "--chooser-bound-rows")
+    next_profile = labels_profile and sys.argv[2] in ("--notice-next", "--second-wait", "--second-select", "--chooser-bound-rows")
+    second_profile = labels_profile and sys.argv[2] in ("--second-wait", "--second-select", "--chooser-bound-rows")
+    select_profile = labels_profile and sys.argv[2] in ("--second-select", "--chooser-bound-rows")
+    bound_rows_profile = labels_profile and sys.argv[2] == "--chooser-bound-rows"
     config = json.loads((ROOT / "tools/project-config.json").read_text(encoding="utf-8-sig"))
     game = Path(os.environ.get("DARK_SUN_WAKE_REDUX_GAME_DIR",
                               Path(config["original"]["analysisExecutable"]["path"]).parent)).resolve()
@@ -692,6 +706,8 @@ def main():
         report["limits"] = "fixed notice route with one Enter event; no additional input, guest writes, frames, driver use or gameplay"
     if select_profile:
         report["limits"] = "fixed two-notice route with one Enter per notice and completed first input before second; guarded producer/selection continuation only; no additional input, guest writes, frames, driver use or gameplay"
+    if bound_rows_profile:
+        report["limits"] = "fixed two-notice input route and bound MainGroup chooser row/vector endpoint before layout; no additional input, guest writes, frames, driver use, chooser event loop or gameplay"
     with RustDosSession(settings) as session:
         entry = session.entry
         report["entry"] = entry
@@ -850,12 +866,36 @@ def main():
                                 if select_profile:
                                     report["second_selection"] = {}
                                     def retain_selection():
-                                        if "last_stop" in report["second_selection"]:
+                                        if "chooser_row_stop" in report:
+                                            report["last_stop"] = report["chooser_row_stop"]
+                                        elif "last_stop" in report["second_selection"]:
                                             report["last_stop"] = report["second_selection"]["last_stop"]
                                         (run / "setup-parser.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-                                    select_second_notice(session, loaded, report["second_notice"], report["second_selection"], retain_selection)
+                                    second_delivery = select_second_notice(session, loaded, report["second_notice"], report["second_selection"], retain_selection)
                                     print(json.dumps({"second_selection": {key: value for key, value in report["second_selection"].items()
                                                                           if key not in ("polls", "last_stop")}}), flush=True)
+                                    if bound_rows_profile:
+                                        if report["second_selection"]["next"]["boundary"] != "chooser":
+                                            raise ValueError("bound row profile did not reach chooser entry")
+                                        chooser, (wanted, actual) = observe_chooser(
+                                            session.client, report["second_selection"]["last_stop"], loaded,
+                                            projection, labels["bindings"], labels["groups"]["main"]["pointer"], wrapped=True)
+                                        report["chooser_entry"] = chooser
+                                        (run / "chooser-text-expected.bin").write_bytes(wanted)
+                                        (run / "chooser-text-native.bin").write_bytes(actual)
+                                        retain_selection()
+                                        if not chooser["equal"]:
+                                            raise ValueError("bound chooser text differs")
+                                        session.client.set_breakpoint(address(loaded, 0x19CF, 0x0AD2))
+                                        operation = session.continue_(until=address(loaded, *PHASES["rows"]))
+                                        observed = wait_same_operation(session, operation)
+                                        report["chooser_row_stop"] = observed.stop
+                                        retain_selection()
+                                        report["chooser_rows"] = observe_rows(session.client, observed.stop, loaded, chooser, wrapped=True)
+                                        delivered = observe_debugger(session, second_delivery, timeout=0)
+                                        report["chooser_rows"]["second_delivery"] = {"pending": delivered.pending, "state": delivered.state}
+                                        retain_selection()
+                                        print(json.dumps({"chooser_entry": chooser, "chooser_rows": report["chooser_rows"]}), flush=True)
                 return
             if objects_profile:
                 raise ValueError("notice object profile did not reach its fixed guard")

@@ -562,6 +562,39 @@ m=Memory();m.short=f'{ss:04X}:{bp-0x400:04X}'
 reject(lambda:observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
 bad={**entry_stop,'cs_ip':address(loaded,*PHASES['labels'])}
 reject(lambda:observe_chooser(Memory(),bad,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+# The native low-SP profile keeps its wrapper/text spans nonwrapping while
+# the chooser's larger frame subtracts modulo 65536.
+bp=0x0FE4;sp=0x0BD2;row_bp=sp-2;row_sp=(row_bp-0x1DB2)&65535
+entry_stop={**entry_stop,'registers':{**entry_stop['registers'],'bp':f'{bp:04X}','sp':f'{sp:04X}'}}
+rows_stop={**rows_stop,'registers':{**rows_stop['registers'],'bp':f'{row_bp:04X}','sp':f'{row_sp:04X}'}}
+m=Memory();baseline=observe_fields(m,entry_stop,loaded,'chooser')
+reject(lambda:observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200}))
+assert m.text_reads==0
+entry,pair=observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200},wrapped=True)
+assert entry['equal'] and entry['wrapped_frame'] and entry['wrapper_bp']==bp
+assert entry['wrapper_caller']=={'segment':0x1429,'offset':0x0296}
+reject(lambda:observe_rows(Memory(),rows_stop,loaded,entry))
+r=observe_rows(Memory(),rows_stop,loaded,entry,wrapped=True)
+assert r['matches_source_count'] and r['frame']=={'ss':ss,'sp':row_sp,'bp':row_bp,'wraps':True}
+m=Memory();m.data['0000:0000']=bytes(4)
+assert not observe_rows(m,rows_stop,loaded,entry,wrapped=True)['vector_zero']['matches_declared_handler']
+m=Memory();m.drift=True;reject(lambda:observe_rows(m,rows_stop,loaded,entry,wrapped=True))
+m=Memory();m.short=f'{ss:04X}:{row_bp-0x1C:04X}'
+reject(lambda:observe_rows(m,rows_stop,loaded,entry,wrapped=True))
+for reg,value in [('bp','0BD2'),('sp',f'{row_sp+2:04X}'),('ss','3001')]:
+ bad={**rows_stop,'registers':{**rows_stop['registers'],reg:value}}
+ reject(lambda:observe_rows(Memory(),bad,loaded,entry,wrapped=True))
+for reg,value in [('sp','0001'),('ss','2000'),('bp','03FF')]:
+ bad={**entry_stop,'registers':{**entry_stop['registers'],reg:value}}
+ reject(lambda:observe_chooser(Memory(),bad,loaded,projection,baseline,{'offset':4,'segment':0x5200},wrapped=True))
+reject(lambda:observe_rows(Memory(),rows_stop,loaded,{**entry,'wrapped_frame':False},wrapped=True))
+cross={**entry,'entry_sp':0x001C}
+cross_stop={**rows_stop,'registers':{**rows_stop['registers'],'bp':'001A','sp':f'{(0x1A-0x1DB2)&65535:04X}'}}
+reject(lambda:observe_rows(Memory(),cross_stop,loaded,cross,wrapped=True))
+m=Memory();m.data[f'{ss:04X}:{sp:04X}']=struct.pack('<7H',0x8F,0x19CF,0xFFFF,0x20,ds,bp-0x400,ss)
+m.data[f'{ss:04X}:{bp+2:04X}']=struct.pack('<8H',0x296,0x1429,2,4,0x5200,0x20,ds,0xFFFF)
+entry,pair=observe_chooser(m,entry_stop,loaded,projection,baseline,{'offset':4,'segment':0x5200},wrapped=True)
+assert entry['initial_index']==-1 and observe_rows(m,rows_stop,loaded,entry,wrapped=True)['index_matches_entry']
 `, 'tools/research/rust-dos-runs');
 });
 

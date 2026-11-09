@@ -429,3 +429,32 @@ selection, same-handle reuse, exhaustion and no retry of other errors.
 Fresh attempts use the updated tool; the terminal failed attempt is retained
 as a diagnostic and is never restarted. This changes transport observation,
 not native stop/read guards, input count, evidence scope or validation gates.
+
+For Q-SOUND-010 after FND-SOUND-109, add --chooser-bound-rows, implying
+the verified two-notice route. At the reached chooser entry require both
+the19CF:008F incoming return and1429:0296 outer caller, matching MainGroup
+count/label pointer, forwarded title/index and SS:(wrapper BP-0400) text
+from SOUND-021/022. Reuse the independent source-name/LF/NUL comparison;
+do not identify the source from registers or screenshots. Add an explicit
+wrapped option to the existing entry/row observers, leaving their older
+nonwrapping defaults unchanged. Admit only a word SP>=2 and SS base above
+the named data span through DS:ECCD, with separately bounded nonwrapping
+incoming/wrapper/text spans belowA0000. This admits these named reads,
+not an entire stack allocation or simultaneous heap ownership.
+
+The retained chooser instructions establish push BP, BP=SP, subtract1DAE,
+save SI/DI. After entry bindings/text agree, arm19CF:0AD2 cleanup as an
+unexpected-return guard and continue only to19CF:025B before layout/backing
+allocation. Require BP=(entry SP-2) modulo65536 and SP=(BP-1DB2) modulo65536.
+Read only the existing named BP-1C/-1A words using modulo offset arithmetic,
+row count/index registers, display spans and far-zero pointer; each actual
+read must itself be nonwrapping and below conventional memory. Repeat
+paused reads/field coherence and report unexpected row/vector/display values
+without forcing the static prediction. No contiguous wrapped-frame, vector
+target or video-pointer read. Observe the same second input handle's actual
+delivery status at this endpoint; send no third event and do not operate
+layout or the chooser event loop. Synthetic controls cover low-SP admission,
+legacy refusal, source/caller/text binding, modulo SP/BP, changed local/vector,
+short reads and unsupported spans. Exit: tooling gate passes; paired fresh
+attempts record source/text, actual row/vector/display state and delivery,
+or the precise binding/guard that prevents the row-use observation.

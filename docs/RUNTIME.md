@@ -439,6 +439,13 @@ by this entry-only read. The older nonwrapping chooser-row profile is not
 validated by it. Contexts close without further input or chooser operation;
 no device-success, row/vector, lifetime or live allocation claim follows.
 
+The prepared --chooser-bound-rows profile adds fixed outer-caller/source/text
+bindings and explicit modulo chooser-frame observation through025B before
+layout/backing. Its synthetic controls and tooling gate pass, but no original
+attempt was made before the owner's2026-11-09 wrap-up. This profile's native
+caller/source/row/vector/delivery capability remains unverified; use the
+plan and a fresh bounded research attempt before claiming those parts agent.
+
 On 2026-11-04, session 1.0.0/rust-dos v1.8.1 passed the fixed
 startup_segments.py startup-to-main attempt with its RNG guard. This verifies
 owned process startup, declared breakpoint stops and the probe's memory reads,
