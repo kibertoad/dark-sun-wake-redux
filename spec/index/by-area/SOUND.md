@@ -107,6 +107,21 @@ Entries by area.
 | [FND-SOUND-092](../../findings/FND-SOUND-092.md) | Installed sound flags clear the local music-enable gate before driver installation and sequence allocation | recorded |
 | [FND-SOUND-093](../../findings/FND-SOUND-093.md) | Startup size configuration does not allocate buffers, and paired retained-buffer state selects release | recorded |
 | [FND-SOUND-094](../../findings/FND-SOUND-094.md) | Known disc-initialization failures return a nonzero word despite a zero result byte | recorded |
+| [FND-SOUND-095](../../findings/FND-SOUND-095.md) | Disc initialization publishes an unchecked lead-out after conditional track-table acquisition | recorded |
+| [FND-SOUND-096](../../findings/FND-SOUND-096.md) | Repeated installed startup initializes the disc table and reaches the music gate with enable zero | recorded |
+| [FND-SOUND-097](../../findings/FND-SOUND-097.md) | Setup chooser completion uses a registered ordinal and byte-wide transformed polling state | recorded |
+| [FND-SOUND-098](../../findings/FND-SOUND-098.md) | Chooser display children separate pure attribute and copy preservation from BIOS-dependent output | recorded |
+| [FND-SOUND-099](../../findings/FND-SOUND-099.md) | Setup refresh derives display geometry and copy gates from requested mode and native query fields | recorded |
+| [FND-SOUND-100](../../findings/FND-SOUND-100.md) | Two fresh post-label setup stops preserve populated records and match every written label prefix | recorded |
+| [FND-SOUND-101](../../findings/FND-SOUND-101.md) | Fresh post-label display and vector samples agree while a shared-handler guard prevents the chooser-use attempt | recorded |
+| [FND-SOUND-102](../../findings/FND-SOUND-102.md) | Two fresh setup guard observations bind the intervening handler to the BLASTER producer notice call | recorded |
+| [FND-SOUND-103](../../findings/FND-SOUND-103.md) | The observed setup notice entry implies a wrapped frame whose upper interval intersects the earlier negative-group allocation | recorded |
+| [FND-SOUND-104](../../findings/FND-SOUND-104.md) | Two fresh setup notice observations bind fixed objects to a small terminated body and one choice | recorded |
+| [FND-SOUND-105](../../findings/FND-SOUND-105.md) | Two fresh setup notices reach the first pre-poll stop with matching wrapped frame and one registered choice | recorded |
+| [FND-SOUND-106](../../findings/FND-SOUND-106.md) | One Enter event produces the notice exit word and normal caller return in two fresh runs while delivery remains pending | recorded |
+| [FND-SOUND-107](../../findings/FND-SOUND-107.md) | Fresh continuation after the first setup notice reaches a second BLASTER choice call while the original input remains pending | recorded |
+| [FND-SOUND-108](../../findings/FND-SOUND-108.md) | Second setup notice constructs two choices and allows the original Enter operation to complete without another selection | recorded |
+| [FND-SOUND-109](../../findings/FND-SOUND-109.md) | The second fixed Enter returns selector one and reaches the generic chooser entry after completion of the first event | recorded |
 | [RULE-SOUND-001](../../rules/RULE-SOUND-001.md) | A sound effect plays the BVOC resource of its number, or the installed SOUND file when there is no such resource | supported |
 | [RULE-SOUND-002](../../rules/RULE-SOUND-002.md) | A spoken line plays INTR files from the disc below 50 and SPCH files from the installation or the disc from 50 up | supported |
 | [RULE-SOUND-003](../../rules/RULE-SOUND-003.md) | Music is chosen from DJ.DAT by region at startup and by party health in combat, and plays as a disc audio track | supported |

@@ -6,15 +6,16 @@ Entries by kind.
 
 ## formats
 
-5 entries.
+6 entries.
 
 | ID | Title | Status |
 |---|---|---|
-| [FMT-CONFIG-001](../../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | supported |
+| [FMT-CONFIG-001](../../formats/FMT-CONFIG-001.md) | Sound configuration SOUND.CFG | superseded |
 | [FMT-CONFIG-002](../../formats/FMT-CONFIG-002.md) | Sound card list SOUND.INI | supported |
 | [FMT-CONFIG-003](../../formats/FMT-CONFIG-003.md) | Saved settings in the PREF resource | supported |
 | [FMT-CONFIG-004](../../formats/FMT-CONFIG-004.md) | game.ins disc-track mapping file | supported |
 | [FMT-CONFIG-005](../../formats/FMT-CONFIG-005.md) | PATCH.RTP file | unknown |
+| [FMT-CONFIG-006](../../formats/FMT-CONFIG-006.md) | Sound configuration SOUND.CFG | supported |
 
 ## rules
 
@@ -30,13 +31,13 @@ Entries by kind.
 
 ## findings
 
-237 entries.
+269 entries.
 
 | ID | Title | Status |
 |---|---|---|
 | [FND-CONFIG-001](../../findings/FND-CONFIG-001.md) | The installed CHARSAVE.GFF holds one 9-byte PREF resource, number 100 | recorded |
 | [FND-CONFIG-002](../../findings/FND-CONFIG-002.md) | The PREF tag bytes occur once in the resident image of DSUN.EXE, inside a label, and three times in overlay 192 | recorded |
-| [FND-CONFIG-003](../../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes | recorded |
+| [FND-CONFIG-003](../../findings/FND-CONFIG-003.md) | SOUND.CFG is 59 bytes: two equal 10-byte blocks, a word, two 14-byte driver names and nine more bytes | superseded |
 | [FND-CONFIG-004](../../findings/FND-CONFIG-004.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT | superseded |
 | [FND-CONFIG-005](../../findings/FND-CONFIG-005.md) | DSUN.EXE reads sound.cfg through its sound library and warns when it cannot | recorded |
 | [FND-CONFIG-006](../../findings/FND-CONFIG-006.md) | SOUND_DS.EXE does not hold .adv in either case | recorded |
@@ -271,3 +272,35 @@ Entries by kind.
 | [FND-CONFIG-235](../../findings/FND-CONFIG-235.md) | Preferences direct music-level stores do not exclude indirect or callee changes | recorded |
 | [FND-CONFIG-236](../../findings/FND-CONFIG-236.md) | Music-level readback has explicit sentinel exits and its setter clamps a signed word before dispatch | recorded |
 | [FND-CONFIG-237](../../findings/FND-CONFIG-237.md) | Copy-driver level queries read current sequence state and the immediate setter writes current and target before update | recorded |
+| [FND-CONFIG-238](../../findings/FND-CONFIG-238.md) | Restored Preferences entry stores getter result 255 over the music-level byte 100 | recorded |
+| [FND-CONFIG-239](../../findings/FND-CONFIG-239.md) | Installed ADV 10 uses the DIGPAK adapter whose table has no music-level query selectors | recorded |
+| [FND-CONFIG-240](../../findings/FND-CONFIG-240.md) | Copy-driver descriptor publication and caller slot results have distinct failure and lifetime conditions | recorded |
+| [FND-CONFIG-241](../../findings/FND-CONFIG-241.md) | Driver reset clears table bindings while ordinary shutdown dispatches through retained slots | recorded |
+| [FND-CONFIG-242](../../findings/FND-CONFIG-242.md) | The music getter's modeled direct and declared-pair entries reduce to the known Preferences call | recorded |
+| [FND-CONFIG-243](../../findings/FND-CONFIG-243.md) | Preferences has two ordinary opener calls with distinct menu and keyboard admission gates | recorded |
+| [FND-CONFIG-244](../../findings/FND-CONFIG-244.md) | Ordinary descriptor consumers do not construct the cross-row Preferences pointer candidate | recorded |
+| [FND-CONFIG-245](../../findings/FND-CONFIG-245.md) | Fixed Preferences watches repeat one music-byte change from strict restore through the paired store | recorded |
+| [FND-CONFIG-246](../../findings/FND-CONFIG-246.md) | Fresh startup watches record the music-enable clear before configuration-pointer publication | recorded |
+| [FND-CONFIG-247](../../findings/FND-CONFIG-247.md) | Fresh startup watches remain active through the checked native seed call to the opener boundary | recorded |
+| [FND-CONFIG-248](../../findings/FND-CONFIG-248.md) | A fresh uninterrupted startup route reaches Preferences with sentinel handles and stores music byte 255 | recorded |
+| [FND-CONFIG-249](../../findings/FND-CONFIG-249.md) | The menu Preferences arm reads two event words and forms an argument-free far opener frame after close | recorded |
+| [FND-CONFIG-250](../../findings/FND-CONFIG-250.md) | The menu event and outer Preferences frame retain their sampled values across close and readback | recorded |
+| [FND-CONFIG-251](../../findings/FND-CONFIG-251.md) | The window-specific dispatcher reaches the Game Menu Preferences arm with its copied button event | recorded |
+| [FND-CONFIG-252](../../findings/FND-CONFIG-252.md) | Forwarded P reaches its turn comparison with state two and turn word 9999 on the checked menu route | recorded |
+| [FND-CONFIG-253](../../findings/FND-CONFIG-253.md) | Forwarded P takes the signed-turn rejection and leaves the Game Menu ready after input delivery | recorded |
+| [FND-CONFIG-254](../../findings/FND-CONFIG-254.md) | Native post-Save turn admits forwarded P through callback reload and Preferences trampoline | recorded |
+| [FND-CONFIG-255](../../findings/FND-CONFIG-255.md) | Forwarded P reaches paired getter and music byte store through the declared unloaded keyboard return header | recorded |
+| [FND-CONFIG-256](../../findings/FND-CONFIG-256.md) | Positive forwarded P completes delivery with ready Preferences and the watched getter result retained | recorded |
+| [FND-CONFIG-257](../../findings/FND-CONFIG-257.md) | SOUND.CFG constructors distinguish DMA words from flag counts and copy packed flags rather than a music resource number | recorded |
+| [FND-CONFIG-258](../../findings/FND-CONFIG-258.md) | Setup adjustment selects masked address IRQ and DMA values before mode-specific settings writes | recorded |
+| [FND-CONFIG-259](../../findings/FND-CONFIG-259.md) | Setup marks the first matching record in each card group and retains a finite census of other EC writes | recorded |
+| [FND-CONFIG-260](../../findings/FND-CONFIG-260.md) | Card 7C setup fills extended settings from five source fields before marking its main and digital records | recorded |
+| [FND-CONFIG-261](../../findings/FND-CONFIG-261.md) | Setup source conversion accepts a signed decimal prefix and returns wrapped DX AX while its card caller retains AX | recorded |
+| [FND-CONFIG-262](../../findings/FND-CONFIG-262.md) | BLASTER fields and profile selection supply twelve extended-record writer sites including installed card 7A | recorded |
+| [FND-CONFIG-263](../../findings/FND-CONFIG-263.md) | Card 6A copies interrupt-result IRQ and DMA words while retaining its existing extended addresses | recorded |
+| [FND-CONFIG-264](../../findings/FND-CONFIG-264.md) | ARIA source fields condition card 7D paired records with four address spellings and ignored extraction returns | recorded |
+| [FND-CONFIG-265](../../findings/FND-CONFIG-265.md) | Card81 reads ordered SNDSCAPE file fields before paired extended-record writes | recorded |
+| [FND-CONFIG-266](../../findings/FND-CONFIG-266.md) | Card82 derives an SW32 file path and gates paired records on ordered section fields | recorded |
+| [FND-CONFIG-267](../../findings/FND-CONFIG-267.md) | Setup candidate marking, selection and fallback use different producer result gates | recorded |
+| [FND-CONFIG-268](../../findings/FND-CONFIG-268.md) | Post-dispatch setup writes group indices by fixed membership priority rather than selected or marked card | recorded |
+| [FND-CONFIG-269](../../findings/FND-CONFIG-269.md) | Controlled setup index-word cohorts contain only the twenty post-dispatch stores | recorded |
