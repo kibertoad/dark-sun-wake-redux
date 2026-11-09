@@ -37,7 +37,7 @@ Entries by area.
 | [FND-PARTY-009](../../findings/FND-PARTY-009.md) | The resident image of DSUN.EXE holds CHAR only inside text and has no PSIN, PSST, SPST or CACT bytes | recorded |
 | [FND-PARTY-010](../../findings/FND-PARTY-010.md) | Unpacked, CHARTRAN.EXE names charsave.gff and OBJEX.GFF and moves Dark Sun 1 characters into the party list | recorded |
 | [FND-PARTY-011](../../findings/FND-PARTY-011.md) | CHARTRAN.EXE stores each transferred character as CACT, CHAR, SPST, PSST and PSIN resources under one number from 0 to 39 | recorded |
-| [FND-PARTY-012](../../findings/FND-PARTY-012.md) | Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN | recorded |
+| [FND-PARTY-012](../../findings/FND-PARTY-012.md) | Overlays 171, 184 and 186 keep stored characters under CACT numbers 1 to 39 with their CHAR, SPST, PSST and PSIN | superseded |
 | [FND-PARTY-013](../../findings/FND-PARTY-013.md) | A routine in overlay 182 loads CHAR 40 to 43 into party slots 0 to 3 | recorded |
 | [FND-PARTY-014](../../findings/FND-PARTY-014.md) | SVIEW.EXE is a text viewer and names no GFF file or character tag | recorded |
 | [FND-PARTY-015](../../findings/FND-PARTY-015.md) | DSUN.EXE does not hold the names of the shipped characters | recorded |
@@ -69,7 +69,7 @@ Entries by area.
 | [FND-PARTY-041](../../findings/FND-PARTY-041.md) | MAS 99 runs straight through string and number assignments and opcodes 0x6D and 0x70 to its stop, and none of their handlers reaches the count, DS:0DAB or pointer writers | recorded |
 | [FND-PARTY-042](../../findings/FND-PARTY-042.md) | GPLDATA.GFF is registered before the MAS 99 call and nothing on the way unregisters it, so the load can fail only on a file call's result | recorded |
 | [FND-PARTY-043](../../findings/FND-PARTY-043.md) | The call through [di+0x6393] picks one of four text-layout routines, and the call through the text record's +0x0C field is skipped once the record is set | recorded |
-| [FND-PARTY-044](../../findings/FND-PARTY-044.md) | Before the party-loader gate, the window and APFM callback fields hold no routine that reaches the count, DS:0DAB or pointer writers unless another start-window button runs first | recorded |
+| [FND-PARTY-044](../../findings/FND-PARTY-044.md) | Before the party-loader gate, the window and APFM callback fields hold no routine that reaches the count, DS:0DAB or pointer writers unless another start-window button runs first | superseded |
 | [FND-PARTY-045](../../findings/FND-PARTY-045.md) | The Load Saved Game window reaches no count, DS:0DAB or pointer writer unless a game is loaded, and the Create Characters window passes its events to overlay 190 routines that do | recorded |
 | [FND-PARTY-046](../../findings/FND-PARTY-046.md) | ADD on the Create Characters screen loads a stored character and calls the placement routine, which increments the placed-object count, and Esc returns to the start window without a store that clears it | recorded |
 | [FND-PARTY-047](../../findings/FND-PARTY-047.md) | The placement helper 31E0:0EFF returns -1 at once while DS:265B is 0, and start-up sets that byte through overlay 180 +0141 and overlay 200 +02BE before the start window | recorded |
@@ -130,12 +130,12 @@ Entries by area.
 | [FND-PARTY-102](../../findings/FND-PARTY-102.md) | Overlay 179 +0C7F passes its item number to the hit routine +0D2F, and its far callers pass -1 from the overlay 173 swing and from overlays 195 and 204 and the DATA numbers 100, 79, 221 and 18 from overlay 193, leaving overlay 193 +145E and overlay 204 +130E with computed numbers | recorded |
 | [FND-PARTY-103](../../findings/FND-PARTY-103.md) | Overlay 204 +12B4's callers pass the DATA numbers 148, 157, 159 and 178 to the hit routine, and overlay 193 +13EC passes the word at +0 of an 18-byte record of the table at 51F1:0000, which overlay 193 +12A8 indexes by its second argument | recorded |
 | [FND-PARTY-104](../../findings/FND-PARTY-104.md) | A new Preserver level opens a window that sets one bit of the character's SPST entry, the spell it learns, and a new Psionicist level opens one that learns or enhances one or two psionic powers, whose ranks are bits 1 to 7 of the character's PSST bytes | recorded |
-| [FND-PARTY-105](../../findings/FND-PARTY-105.md) | A divide error runs the C run time's signal catcher, which calls the game's floating-point signal handler; that handler restores the screen, prints Math Err and ends the program with exit code 1 | recorded |
+| [FND-PARTY-105](../../findings/FND-PARTY-105.md) | A divide error runs the C run time's signal catcher, which calls the game's floating-point signal handler; that handler restores the screen, prints Math Err and ends the program with exit code 1 | superseded |
 | [FND-PARTY-106](../../findings/FND-PARTY-106.md) | The table at 51F1:0000 that overlay 193 +12A8 passes to the hit routine is 112 records of 18 bytes loaded from the executable and never written, and none of their DATA numbers is 104 or 225 | recorded |
-| [FND-PARTY-107](../../findings/FND-PARTY-107.md) | The hit routine's call in overlay 179 +11DC's queue branch is never taken, and overlay 193 +003C passes its third argument as the item, which overlay 179 +12B1's queue and overlay 193 +0000 fill with fixed DATA numbers other than 104 and 225 or with computed ones | recorded |
+| [FND-PARTY-107](../../findings/FND-PARTY-107.md) | The hit routine's call in overlay 179 +11DC's queue branch is never taken, and overlay 193 +003C passes its third argument as the item, which overlay 179 +12B1's queue and overlay 193 +0000 fill with fixed DATA numbers other than 104 and 225 or with computed ones | superseded |
 | [FND-PARTY-108](../../findings/FND-PARTY-108.md) | Besides item 313 on a roll of 20, effect code 59 reaches overlay 193 +166F as the byte at +0x19 of the DATA record the hit routine is given, which is 59 for the spells DATA 104 and DATA 225, and as a script's argument to function 23 of script opcode 0x22; every other caller passes a fixed code other than 59 | recorded |
 | [FND-PARTY-109](../../findings/FND-PARTY-109.md) | A spell of target type 4 cast from overlay 211's list goes through overlay 208's target cursor, which takes a combatant of a side the caster's side is hostile to, or of any side while a Shift key is held, and overlay 193 +003C passes a single chosen target to the hit routine with no side test | recorded |
-| [FND-PARTY-110](../../findings/FND-PARTY-110.md) | The party's cast list holds a spell below 115 when the slot's SPST bit for it is set, and a spell from 115 to 234 when one of the slot's classes has the spell's sphere bit and the spell's level is within the slot's priest spell level; DATA 104 is a level 9 wizard spell and DATA 225 a level 7 druid spell | recorded |
+| [FND-PARTY-110](../../findings/FND-PARTY-110.md) | The party's cast list holds a spell below 115 when the slot's SPST bit for it is set, and a spell from 115 to 234 when one of the slot's classes has the spell's sphere bit and the spell's level is within the slot's priest spell level; DATA 104 is a level 9 wizard spell and DATA 225 a level 7 druid spell | superseded |
 | [FND-PARTY-111](../../findings/FND-PARTY-111.md) | Overlay 182 +0B52 sets a party member's spells to cast per level from overlay 177 +05B7, and the cast window steps only to levels up to overlay 211 +208C, so level 9 wizard spells need class level 17 and 18 and level 7 priest spells class level 13 and 12 | recorded |
 | [FND-PARTY-112](../../findings/FND-PARTY-112.md) | For the spells DATA 104 and 225, the three overlay 197 calls before the hit routine's saving throw end the hit only for a target with certain effect flags or effects, a failed resistance test, or a creature type, record byte or details byte that the tables or tests name | recorded |
 | [FND-PARTY-113](../../findings/FND-PARTY-113.md) | The 19 CHAR records of CHARSAVE.GFF hold 0 in bytes 0x18 and 0x19, which a load copies to bytes +0x0E and +0x0F of a party member's combatant record, and the two stores found to those bytes through DS:19C9 leave 0 in place or have no caller | recorded |
@@ -172,7 +172,7 @@ Entries by area.
 | [FND-PARTY-144](../../findings/FND-PARTY-144.md) | Byte 0x29 of a CHAR record is the combatant's facing, a direction from 0 to 7 that the drawing code maps onto four sprite views | recorded |
 | [FND-PARTY-145](../../findings/FND-PARTY-145.md) | Byte 0x66 of a CHAR record is the character's base armor class, from which overlay 173 +2C00 computes the value an attack roll is compared against | recorded |
 | [FND-PARTY-146](../../findings/FND-PARTY-146.md) | Bytes 0x1D and 0x67 of a CHAR record are the character's current and base movement rate, 12 or 15 for a thri-kreen, which a fight turns into ten movement points per unit | recorded |
-| [FND-PARTY-147](../../findings/FND-PARTY-147.md) | The word at 0x53 of a CHAR record is the key of the character's details record, which is 0 for a free record and which generation sets to the new combatant identifier | recorded |
+| [FND-PARTY-147](../../findings/FND-PARTY-147.md) | The word at 0x53 of a CHAR record is the key of the character's details record, which is 0 for a free record and which generation sets to the new combatant identifier | superseded |
 | [FND-PARTY-148](../../findings/FND-PARTY-148.md) | The words at 0x04, 0x06 and 0x0E of a CHAR record hold the party slot the character was written from, and the words at 0x12 to 0x16 are 9,999 exactly where the record has no chunk for that field | recorded |
 | [FND-PARTY-149](../../findings/FND-PARTY-149.md) | The words at 0x81 and 0x83 of a CHAR record are sound numbers that overlays 179 and 206 play for the combatant in an attack and in the damage routine | recorded |
 | [FND-PARTY-150](../../findings/FND-PARTY-150.md) | Byte 0x68 of a CHAR record is the character's magic resistance, a percentage that overlay 179 +2BD7 rolls 1d100 against | recorded |
@@ -288,6 +288,86 @@ Entries by area.
 | [FND-PARTY-261](../../findings/FND-PARTY-261.md) | Known second-entry registration paths write a condition and full radius byte while the decoded callback census retains its source and state limits | recorded |
 | [FND-PARTY-262](../../findings/FND-PARTY-262.md) | Overlay 206 +0E1E returns before its unload calls for a slot below 4, and the DUAL window's handler overlay 209 +169C also reaches the unload 31E0:05BB through overlay 179 +1373, overlay 193 +003C, 371D:050F and overlay 206 +0000 | recorded |
 | [FND-PARTY-263](../../findings/FND-PARTY-263.md) | Three DUAL-route unloaders retain bounded slot origins but the resident zero-argument path leaves party-slot lifetime unresolved | recorded |
+| [FND-PARTY-264](../../findings/FND-PARTY-264.md) | The class-table accessor and three resource-reader roots have no additional relocated pointer-pair route in a controlled segment-alias census | recorded |
+| [FND-PARTY-265](../../findings/FND-PARTY-265.md) | The equipment hook's guarded DATA request cannot pass positive 1001, while the generic getter has 87 nonliteral direct-call arguments | recorded |
+| [FND-PARTY-266](../../findings/FND-PARTY-266.md) | The direct resource-reader tag census excludes 105 literal non-DATA requests and names the remaining variable-tag sites | superseded |
+| [FND-PARTY-267](../../findings/FND-PARTY-267.md) | The direct resource-reader tag census excludes 105 literal non-DATA requests and names the remaining variable-tag sites | recorded |
+| [FND-PARTY-268](../../findings/FND-PARTY-268.md) | Nine variable-tag reader setups have local or known-caller non-DATA bindings while four retain unresolved argument domains | recorded |
+| [FND-PARTY-269](../../findings/FND-PARTY-269.md) | Remaining DATA type routes have bounded chunk and window sources while the two unbound readers have no relocated nearby pointer candidate | recorded |
+| [FND-PARTY-270](../../findings/FND-PARTY-270.md) | Tag-prefix operand census finds only its copy-source argument and no direct overlapping scalar writer | recorded |
+| [FND-PARTY-271](../../findings/FND-PARTY-271.md) | Both known direct window-registration routes use WIND acquisition and the registration body spares child selector fields | recorded |
+| [FND-PARTY-272](../../findings/FND-PARTY-272.md) | Two DATA-name getter sites exclude 1001 by local bounds while three word-input helpers admit it locally | recorded |
+| [FND-PARTY-273](../../findings/FND-PARTY-273.md) | The object-dice route forwards an effect-row DATA word whose 112 recorded source values exclude 1001 | recorded |
+| [FND-PARTY-274](../../findings/FND-PARTY-274.md) | Byte-derived effect indices exclude shipped DATA word 1001 at every wrapped source position but negative positions alias mutable resident data | recorded |
+| [FND-PARTY-275](../../findings/FND-PARTY-275.md) | Wrapped-word writer census isolates twenty bounded error stores and no fixed operand for the negative-38 alias | recorded |
+| [FND-PARTY-276](../../findings/FND-PARTY-276.md) | Sixteen more overlapping constant stores exclude 1001 and sixteen raw candidates are operand-size-prefix interiors | recorded |
+| [FND-PARTY-277](../../findings/FND-PARTY-277.md) | All remaining raw writer decodes have identified enclosing instructions and no tested direct incoming call, with nine resident pointer pairs unresolved | recorded |
+| [FND-PARTY-278](../../findings/FND-PARTY-278.md) | The nine nearby interior-pointer pairs are unrelated operands or descriptor fields, and a truncated resident inventory body gains its continuation | recorded |
+| [FND-PARTY-279](../../findings/FND-PARTY-279.md) | The selection-count store forces the aliased low byte away from E9 under the list builders' explicit capacity and frame conditions | recorded |
+| [FND-PARTY-280](../../findings/FND-PARTY-280.md) | The party's cast list holds a spell below 115 when the slot's SPST bit for it is set, and a spell from 115 to 234 when one of the slot's classes has the spell's sphere bit and the spell's level is within the slot's priest spell level; DATA 104 is a level 9 wizard spell and DATA 225 a level 7 druid spell | recorded |
+| [FND-PARTY-281](../../findings/FND-PARTY-281.md) | Six archive alias writers reduce to record-pointer low bytes and explicit counter predecessor ranges | recorded |
+| [FND-PARTY-282](../../findings/FND-PARTY-282.md) | The timer segment store excludes the canonical alias value while five draw stores depend on step and residual state | recorded |
+| [FND-PARTY-283](../../findings/FND-PARTY-283.md) | Three graphics alias stores depend on FONT pointer bytes and an allocator segment, not resource selector values | recorded |
+| [FND-PARTY-284](../../findings/FND-PARTY-284.md) | Four event-window publications share one exact pointer-byte condition for the wrapped alias | recorded |
+| [FND-PARTY-285](../../findings/FND-PARTY-285.md) | Seven overlay alias expressions finish the fixed-writer classification while retaining coordinate, counter and flag admission | recorded |
+| [FND-PARTY-286](../../findings/FND-PARTY-286.md) | Immediate callers of three word-selector clients supply no new 1001 exclusion | recorded |
+| [FND-PARTY-287](../../findings/FND-PARTY-287.md) | The script-cast producer derives a signed remainder selector that cannot itself equal positive 1001 | recorded |
+| [FND-PARTY-288](../../findings/FND-PARTY-288.md) | Reflected-cast queue routes distinguish literal 307, a tested spell interval and an unbounded forwarded number | recorded |
+| [FND-PARTY-289](../../findings/FND-PARTY-289.md) | Reflection helpers preserve DI intrinsically, by a saved word, or only on the getter's local return branches | recorded |
+| [FND-PARTY-290](../../findings/FND-PARTY-290.md) | Cache-miss lookup and allocation interfaces narrow DI preservation to saved words, guards and transfer services | recorded |
+| [FND-PARTY-291](../../findings/FND-PARTY-291.md) | Transfer wrappers leave DI unchanged locally while the final handle wrapper restores its saved value | recorded |
+| [FND-PARTY-292](../../findings/FND-PARTY-292.md) | The pinned built-in file-service source preserves live DI under explicit routing and ordinary-file conditions | recorded |
+| [FND-PARTY-293](../../findings/FND-PARTY-293.md) | Known setter-call branches request vectors other than 21 and expose an unowned interrupt-23 body | recorded |
+| [FND-PARTY-294](../../findings/FND-PARTY-294.md) | Existing startup setter and dynamic-service readings narrow vector admission while the loader vector remains mutable | recorded |
+| [FND-PARTY-295](../../findings/FND-PARTY-295.md) | Loader selector operand census identifies one established indexed writer with an explicit pointer-admission condition | recorded |
+| [FND-PARTY-296](../../findings/FND-PARTY-296.md) | Known details-pointer allocation and release representations exclude the loader selector indexed alias by address residues | recorded |
+| [FND-PARTY-297](../../findings/FND-PARTY-297.md) | The reflected-cast mask-10 path rejects an intact DATA 1001 payload before the forwarded-number branch | recorded |
+| [FND-PARTY-298](../../findings/FND-PARTY-298.md) | A failed reflection getter tests vector-four offset bit fifteen, with different default and requested-handler flag results | recorded |
+| [FND-PARTY-299](../../findings/FND-PARTY-299.md) | The reflection helper distinguishes intact DATA 1001 from a second null result under the pinned default vector bytes | recorded |
+| [FND-PARTY-300](../../findings/FND-PARTY-300.md) | Controlled cache-key operands and the helper's local copy narrow the two-getter transition boundary | recorded |
+| [FND-PARTY-301](../../findings/FND-PARTY-301.md) | Three encoded range-wrapper callers reduce to two byte-plus-235 producers and one forwarded word with known producer families | recorded |
+| [FND-PARTY-302](../../findings/FND-PARTY-302.md) | Five known case-four callers bypass the word client while two cursor callers read the same stored number | recorded |
+| [FND-PARTY-303](../../findings/FND-PARTY-303.md) | Cursor SI producers reduce to exact last-cast/list words and an unrefreshed non-list-mode register path | recorded |
+| [FND-PARTY-304](../../findings/FND-PARTY-304.md) | Both encoded mode-setter callers clear the list count on their selected-member mode-zero branch | recorded |
+| [FND-PARTY-305](../../findings/FND-PARTY-305.md) | Intended cursor frame registrations bound list indices to 0..33 and shipped last-cast indices to 0..5 | recorded |
+| [FND-PARTY-306](../../findings/FND-PARTY-306.md) | The cast-window callback refreshes an active member before publishing its list count but skips an empty member | recorded |
+| [FND-PARTY-307](../../findings/FND-PARTY-307.md) | Character-box selection publishes the new member before redraw and the cast handler's later mode-zero count clear | recorded |
+| [FND-PARTY-308](../../findings/FND-PARTY-308.md) | Member-switch state brackets change flags and a counter and their forced release can reach graphics callbacks | recorded |
+| [FND-PARTY-309](../../findings/FND-PARTY-309.md) | Unchanged shipped APFM fields exclude the member-switch graphics callback routes under the known mode writers | recorded |
+| [FND-PARTY-310](../../findings/FND-PARTY-310.md) | The current ES field-writer census reduces graphics callback overlap to two setters, button construction and three fixed-data writes | recorded |
+| [FND-PARTY-311](../../findings/FND-PARTY-311.md) | APFM selector callers include a menu-cleared pointer path while the lookup setter has no tested incoming forms | recorded |
+| [FND-PARTY-312](../../findings/FND-PARTY-312.md) | Both encoded menu-selection admission routes are excluded by unchanged shipped window graphs and matching payload tags | recorded |
+| [FND-PARTY-313](../../findings/FND-PARTY-313.md) | Cursor-number overlap and record-pointer censuses retain one literal publisher and distinguish selector snapshots from later reloads | recorded |
+| [FND-PARTY-314](../../findings/FND-PARTY-314.md) | Getter stack guards have no finite ordinary return through the forced termination chain when their zero argument and frames survive | recorded |
+| [FND-PARTY-315](../../findings/FND-PARTY-315.md) | Stack-limit literal writers distinguish allocation state from driver fields and object cleanup | recorded |
+| [FND-PARTY-316](../../findings/FND-PARTY-316.md) | Timer interrupt restores saved DI through captured stack state and thirteen apparent stack writes are trampoline data | recorded |
+| [FND-PARTY-317](../../findings/FND-PARTY-317.md) | Timer capture-word census and known callbacks narrow saved-stack alias obligations | recorded |
+| [FND-PARTY-318](../../findings/FND-PARTY-318.md) | Existing sound-record seed and driver write domains narrow timer backing admission | recorded |
+| [FND-PARTY-319](../../findings/FND-PARTY-319.md) | Timer old-vector publication and nesting reset have explicit state producers and flag-restoration paths | recorded |
+| [FND-PARTY-320](../../findings/FND-PARTY-320.md) | Known timer nesting-reset callers belong to gated sound initialization and the zero-mode setup branch | recorded |
+| [FND-PARTY-321](../../findings/FND-PARTY-321.md) | Sound teardown has a nonzero-ready wrapper and a conditional nonreturning error route | recorded |
+| [FND-PARTY-322](../../findings/FND-PARTY-322.md) | Known ordinary sound shutdown is selected by an exact-one mode test in the registered exit callback | recorded |
+| [FND-PARTY-323](../../findings/FND-PARTY-323.md) | Shutdown alias-pattern candidate is excluded because its supposed offset word is itself relocated | recorded |
+| [FND-PARTY-324](../../findings/FND-PARTY-324.md) | Known literal sound-mode producers yield only zero or one and adjacent stores do not overlap the mode byte | recorded |
+| [FND-PARTY-325](../../findings/FND-PARTY-325.md) | Three raw sound-mode write candidates begin inside operands of established instruction streams | recorded |
+| [FND-PARTY-326](../../findings/FND-PARTY-326.md) | Controlled overlay near-transfer census finds no encoded entry to the two operand-interior mode-write candidates | recorded |
+| [FND-PARTY-327](../../findings/FND-PARTY-327.md) | Declared segment and offset-word queries find no modeled far-pointer pair for the resident mode-write candidate | recorded |
+| [FND-PARTY-328](../../findings/FND-PARTY-328.md) | Queue producers bound their own index transitions but do not establish immutable dispatch kinds | recorded |
+| [FND-PARTY-329](../../findings/FND-PARTY-329.md) | The shipped VECT load requests bytes after the cast queue and marks its attempt before reading | recorded |
+| [FND-PARTY-330](../../findings/FND-PARTY-330.md) | Fixed spell and saved-state requests have specific queue-relative bounds and SPST has an unchecked slot input | recorded |
+| [FND-PARTY-331](../../findings/FND-PARTY-331.md) | The two direct spell-reader callers supply a byte loop slot or a reloaded selected-slot word | recorded |
+| [FND-PARTY-332](../../findings/FND-PARTY-332.md) | Reflected publication returns directly to the hit wrapper's first queue drain | superseded |
+| [FND-PARTY-333](../../findings/FND-PARTY-333.md) | An admitted overlay header-return trap restores its own interrupt frame through the first-match rewrite | superseded |
+| [FND-PARTY-334](../../findings/FND-PARTY-334.md) | Overlay cache hooks select one copy backend and expose specific header and native-transfer bindings | superseded |
+| [FND-PARTY-335](../../findings/FND-PARTY-335.md) | The strict play-ready restore has EMS selected and disjoint observed overlay and stack backing | superseded |
+| [FND-PARTY-336](../../findings/FND-PARTY-336.md) | Queue drain decrements the post-client index and the cast client has a separate post-hit lifetime | superseded |
+| [FND-PARTY-337](../../findings/FND-PARTY-337.md) | Reflected publication returns directly to the hit wrapper's first queue drain | recorded |
+| [FND-PARTY-338](../../findings/FND-PARTY-338.md) | An admitted overlay header-return trap restores its own interrupt frame through the first-match rewrite | recorded |
+| [FND-PARTY-339](../../findings/FND-PARTY-339.md) | Overlay cache hooks select one copy backend and expose specific header and native-transfer bindings | recorded |
+| [FND-PARTY-340](../../findings/FND-PARTY-340.md) | The strict play-ready restore has EMS selected and disjoint observed overlay and stack backing | recorded |
+| [FND-PARTY-341](../../findings/FND-PARTY-341.md) | Queue drain decrements the post-client index and the cast client has a separate post-hit lifetime | recorded |
+| [FND-PARTY-342](../../findings/FND-PARTY-342.md) | A divide error runs the C run time's signal catcher, which calls the game's floating-point signal handler; that handler restores the screen, prints Math Err and ends the program with exit code 1 | recorded |
+| [FND-PARTY-343](../../findings/FND-PARTY-343.md) | Before the party-loader gate, the window and APFM callback fields hold no routine that reaches the count, DS:0DAB or pointer writers unless another start-window button runs first | recorded |
 | [RULE-PARTY-001](../../rules/RULE-PARTY-001.md) | A party has one to four characters | supported |
 | [RULE-PARTY-002](../../rules/RULE-PARTY-002.md) | What a new character may be | supported |
 | [RULE-PARTY-003](../../rules/RULE-PARTY-003.md) | Which psionic disciplines and elemental sphere a new character chooses | supported |

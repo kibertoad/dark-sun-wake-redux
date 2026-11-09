@@ -24,13 +24,13 @@ Entries by kind.
 |---|---|---|
 | [RULE-CONFIG-001](../../rules/RULE-CONFIG-001.md) | The on-off settings and their keys | supported |
 | [RULE-CONFIG-002](../../rules/RULE-CONFIG-002.md) | The difficulty setting | supported |
-| [RULE-CONFIG-003](../../rules/RULE-CONFIG-003.md) | The Preferences screen shows the music volume and has no control that changes it | supported |
+| [RULE-CONFIG-003](../../rules/RULE-CONFIG-003.md) | Music-level readback on the Preferences screen | supported |
 | [RULE-CONFIG-004](../../rules/RULE-CONFIG-004.md) | The Preferences sound-effects volume adjustment | supported |
 | [RULE-CONFIG-005](../../rules/RULE-CONFIG-005.md) | The Preferences message-delay adjustment | supported |
 
 ## findings
 
-222 entries.
+237 entries.
 
 | ID | Title | Status |
 |---|---|---|
@@ -45,7 +45,7 @@ Entries by kind.
 | [FND-CONFIG-009](../../findings/FND-CONFIG-009.md) | The Preferences renderer indexes its four difficulty labels with the first PREF word | recorded |
 | [FND-CONFIG-010](../../findings/FND-CONFIG-010.md) | Preferences button dispatch changes sound, animation, difficulty and message-delay state | recorded |
 | [FND-CONFIG-011](../../findings/FND-CONFIG-011.md) | Overlay 172 gates the message-delay wait on a nonzero far pointer | recorded |
-| [FND-CONFIG-012](../../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting | recorded |
+| [FND-CONFIG-012](../../findings/FND-CONFIG-012.md) | The saved PREF byte at offset 2 feeds the sound library's music-level setting | superseded |
 | [FND-CONFIG-013](../../findings/FND-CONFIG-013.md) | The second saved music byte is the Preferences bar's scaling denominator | recorded |
 | [FND-CONFIG-014](../../findings/FND-CONFIG-014.md) | The launcher, Preferences button and save path use two separate speech gates | recorded |
 | [FND-CONFIG-015](../../findings/FND-CONFIG-015.md) | Overlay 171 writes difficulty 3 only after a record-field threshold test | superseded |
@@ -71,7 +71,7 @@ Entries by kind.
 | [FND-CONFIG-035](../../findings/FND-CONFIG-035.md) | Fifty-six overlay call sites target the message-delay routine | recorded |
 | [FND-CONFIG-036](../../findings/FND-CONFIG-036.md) | Literal references to the display bounds outside initialization are reads | recorded |
 | [FND-CONFIG-037](../../findings/FND-CONFIG-037.md) | Opening and closing resource archives changes the pointer tested by message acquisition | recorded |
-| [FND-CONFIG-038](../../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records | recorded |
+| [FND-CONFIG-038](../../findings/FND-CONFIG-038.md) | Message resource lookup searches typed entries across archive records | superseded |
 | [FND-CONFIG-039](../../findings/FND-CONFIG-039.md) | Startup opens RESOURCE.GFF or RESFLOP.GFF before initializing graphics | recorded |
 | [FND-CONFIG-040](../../findings/FND-CONFIG-040.md) | Startup selects wraparound traversal of the open resource archives | recorded |
 | [FND-CONFIG-041](../../findings/FND-CONFIG-041.md) | Direct archive-close calls target region and save handles or close all | recorded |
@@ -95,7 +95,7 @@ Entries by kind.
 | [FND-CONFIG-059](../../findings/FND-CONFIG-059.md) | Overlay 180's close-all archive call lies in a separate exported cleanup routine | recorded |
 | [FND-CONFIG-060](../../findings/FND-CONFIG-060.md) | No literal far call to overlay 180's close-all routine was found in the shipped executable | recorded |
 | [FND-CONFIG-061](../../findings/FND-CONFIG-061.md) | Startup registers overlay 180's archive cleanup as a runtime exit callback | recorded |
-| [FND-CONFIG-062](../../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request | recorded |
+| [FND-CONFIG-062](../../findings/FND-CONFIG-062.md) | A failed startup resource-archive open reaches the runtime termination request | superseded |
 | [FND-CONFIG-063](../../findings/FND-CONFIG-063.md) | Display-bound reads feed mouse range services | recorded |
 | [FND-CONFIG-064](../../findings/FND-CONFIG-064.md) | Literal archive traversal-mode references are two writes and two reads | recorded |
 | [FND-CONFIG-065](../../findings/FND-CONFIG-065.md) | The shipped message window follows the indexed resource lookup path | recorded |
@@ -243,7 +243,7 @@ Entries by kind.
 | [FND-CONFIG-207](../../findings/FND-CONFIG-207.md) | A resident path installs a record whose lookup pointer comes from a FONT selector request | recorded |
 | [FND-CONFIG-208](../../findings/FND-CONFIG-208.md) | The pointer acquisition wrapper gates archive state and distinguishes optional-output clearing paths | recorded |
 | [FND-CONFIG-209](../../findings/FND-CONFIG-209.md) | The shared reader allocation wrapper requests a wrapped product plus one and marks runtime header extent | recorded |
-| [FND-CONFIG-210](../../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | recorded |
+| [FND-CONFIG-210](../../findings/FND-CONFIG-210.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | superseded |
 | [FND-CONFIG-211](../../findings/FND-CONFIG-211.md) | Heap acquisition writes paragraph headers through exact removal, tail splitting and memory-request paths | recorded |
 | [FND-CONFIG-212](../../findings/FND-CONFIG-212.md) | Heap request arithmetic separates a signed high-word gate from wrapped far-address normalization | recorded |
 | [FND-CONFIG-213](../../findings/FND-CONFIG-213.md) | SOUND_DS.EXE reads sound.ini and writes the 59 bytes of sound.cfg, run by SOUND.BAT | recorded |
@@ -252,7 +252,22 @@ Entries by kind.
 | [FND-CONFIG-216](../../findings/FND-CONFIG-216.md) | The keyboard packet supplies the event-six word to the global fallback | recorded |
 | [FND-CONFIG-217](../../findings/FND-CONFIG-217.md) | The item-feedback callback limits mouse event bits before its shared message path | recorded |
 | [FND-CONFIG-218](../../findings/FND-CONFIG-218.md) | F4 and F5 change the music and sound-effects bytes as the Preferences buttons do, A and F6 both toggle the animation byte unless it is locked, and no key changes the voice bytes | recorded |
-| [FND-CONFIG-219](../../findings/FND-CONFIG-219.md) | None of the 13 Preferences buttons writes the music level, which the screen only reads from the sound library on entry and draws as a bar | recorded |
+| [FND-CONFIG-219](../../findings/FND-CONFIG-219.md) | None of the 13 Preferences buttons writes the music level, which the screen only reads from the sound library on entry and draws as a bar | superseded |
 | [FND-CONFIG-220](../../findings/FND-CONFIG-220.md) | No uncompressed shipped program or batch file names PATCH.RTP, and PATCH.EXE keeps its program compressed after a 4,474-byte loader | recorded |
 | [FND-CONFIG-221](../../findings/FND-CONFIG-221.md) | Window-callback dispatch has no global fallthrough and zero window count rewrites the global event kind | recorded |
 | [FND-CONFIG-222](../../findings/FND-CONFIG-222.md) | Window count has three literal writers and wrapped bookkeeping differs from graph validity and signed traversal | recorded |
+| [FND-CONFIG-223](../../findings/FND-CONFIG-223.md) | The runtime allocation wrapper clears a wrapped product in bounded chunks after a nonnull heap return | recorded |
+| [FND-CONFIG-224](../../findings/FND-CONFIG-224.md) | The shared fatal diagnostic selects runtime exit rather than an ordinary caller return even if the terminate interrupt returns | recorded |
+| [FND-CONFIG-225](../../findings/FND-CONFIG-225.md) | Inventoried heap control stores have explicit owners and ordinary resize nesting republishes the same saved data segment under preserved bindings | recorded |
+| [FND-CONFIG-226](../../findings/FND-CONFIG-226.md) | Heap break and bound producers separate startup quantities and later updates from same-offset object and transfer-record stores | recorded |
+| [FND-CONFIG-227](../../findings/FND-CONFIG-227.md) | Allocated and free heap blocks use different metadata footprints and tail splitting requires a valid following header | recorded |
+| [FND-CONFIG-228](../../findings/FND-CONFIG-228.md) | The heap checker tests selected physical and free-list relationships before segment classification or free-payload fill checks | recorded |
+| [FND-CONFIG-229](../../findings/FND-CONFIG-229.md) | The game memory-total query combines unchecked block extents and a bound-derived addend after a temporary allocation | recorded |
+| [FND-CONFIG-230](../../findings/FND-CONFIG-230.md) | Nonterminal release composes predecessor and successor merges with a finite metadata write set and ordinary segment restoration | recorded |
+| [FND-CONFIG-231](../../findings/FND-CONFIG-231.md) | Terminal release publishes root changes before requesting a smaller bound and does not roll them back on rejection | recorded |
+| [FND-CONFIG-232](../../findings/FND-CONFIG-232.md) | The shipped FONT request admits an 8300-byte user span and the width reader has a bounded ASCII domain with distinct high-byte accesses | recorded |
+| [FND-CONFIG-233](../../findings/FND-CONFIG-233.md) | Graphics cleanup releases the stored FONT pointer without an own pointer clear and reinstalls the saved graphics record | recorded |
+| [FND-CONFIG-234](../../findings/FND-CONFIG-234.md) | Message resource lookup searches typed entries across archive records | recorded |
+| [FND-CONFIG-235](../../findings/FND-CONFIG-235.md) | Preferences direct music-level stores do not exclude indirect or callee changes | recorded |
+| [FND-CONFIG-236](../../findings/FND-CONFIG-236.md) | Music-level readback has explicit sentinel exits and its setter clamps a signed word before dispatch | recorded |
+| [FND-CONFIG-237](../../findings/FND-CONFIG-237.md) | Copy-driver level queries read current sequence state and the immediate setter writes current and target before update | recorded |

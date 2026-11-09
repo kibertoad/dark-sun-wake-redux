@@ -19,7 +19,7 @@ Entries by status.
 
 ## superseded
 
-18 entries.
+22 entries.
 
 | ID | Title |
 |---|---|
@@ -38,13 +38,17 @@ Entries by status.
 | [FND-EXE-495](../../findings/FND-EXE-495.md) | Disc Miles drivers build no interrupt opcode at run time and hold few indirect far transfers |
 | [FND-EXE-574](../../findings/FND-EXE-574.md) | No interrupt 21 request in the installed DSUN.EXE selects AH=4B and the file holds no interrupt 2E; of its 100 interrupt 21 sites the walk from its established entries reaches 80, and its two stack-built interrupt routines are called only for interrupts 2F and 21 with AX values other than 4Bxx |
 | [FND-EXE-577](../../findings/FND-EXE-577.md) | Six of the runtime library's computed calls in DSUN.EXE go to handlers inside the file, and declaring them reaches two more interrupt 21 sites, neither selecting AH=4B |
+| [FND-EXE-585](../../findings/FND-EXE-585.md) | DSUN.EXE's timer callbacks and sound driver function calls go to routines in the file or to driver code loaded from ADV resources, and the driver dispatch's far return is a transfer the walk does not report |
 | [FND-EXE-596](../../findings/FND-EXE-596.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress |
 | [FND-EXE-605](../../findings/FND-EXE-605.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party |
 | [FND-EXE-608](../../findings/FND-EXE-608.md) | The 7 routines of overlay 211 that no entry placed redraw the spell window's four party boxes and current name, close the spell window, handle the events of its 34 list controls, and draw a frame over one of those controls through overlay 190 or 2D40:3BEC |
+| [FND-EXE-611](../../findings/FND-EXE-611.md) | The 7 routines of overlay 176 that no entry placed test whether a member's power in effect can be kept, derive four bytes from a signed byte, clear a known power's rank, return a power's cost or third byte, do nothing, and return the name of a power's DATA record |
+| [FND-EXE-614](../../findings/FND-EXE-614.md) | The 32 routines of overlay 188 that no entry placed are script-instruction helpers that move an object to a region and cell, find a free cell near a point, move items between holders, read a number or text typed into the dialog, ask a yes or no question, add dialog lines, roll a thief skill with a modifier, save and restore the move records of slots 5 to 0x2F, and stop a script |
+| [FND-EXE-621](../../findings/FND-EXE-621.md) | The 6 routines of overlay 192 that no entry placed read one save file's description into a list row, list the SAVE??.SAV files into the ten rows, end the Save and Load window's draw, save a game, and write a row's text into its button or the name box |
 
 ## recorded
 
-494 entries.
+505 entries.
 
 | ID | Title |
 |---|---|
@@ -489,7 +493,6 @@ Entries by status.
 | [FND-EXE-582](../../findings/FND-EXE-582.md) | The overlay manager's hook calls in DSUN.EXE go to manager routines or to an empty far routine, and declaring them reaches two more XMS calls and no interrupt site |
 | [FND-EXE-583](../../findings/FND-EXE-583.md) | Eight of DSUN.EXE's guarded calls through DGROUP far pointers go to routines in segment 2660, segment 49D2 or overlay 180, or never run |
 | [FND-EXE-584](../../findings/FND-EXE-584.md) | DSUN.EXE's nine calls through the record table at DGROUP 3F42 go to routines in segments 1425 and 15F3, which reach one more interrupt 21 site (AH 3F) and nine more XMS calls |
-| [FND-EXE-585](../../findings/FND-EXE-585.md) | DSUN.EXE's timer callbacks and sound driver function calls go to routines in the file or to driver code loaded from ADV resources, and the driver dispatch's far return is a transfer the walk does not report |
 | [FND-EXE-586](../../findings/FND-EXE-586.md) | DSUN.EXE's script opcode dispatch, text formatter, block copy, overlay 204 callback and video far jump tables go to routines in the file, and declaring them reaches no further interrupt site |
 | [FND-EXE-587](../../findings/FND-EXE-587.md) | DSUN.EXE's window hook and window record callbacks, and overlay 190's callback arguments, go to overlay routines and one resident routine that their setters' callers pass as relocated constants |
 | [FND-EXE-588](../../findings/FND-EXE-588.md) | DSUN.EXE's application frame callbacks in segment 3D72 go to overlay routines and two resident routines, or are never set, and declaring the one that is set reaches no further interrupt site |
@@ -512,17 +515,14 @@ Entries by status.
 | [FND-EXE-607](../../findings/FND-EXE-607.md) | The 8 routines of overlay 207 that no entry placed sort a store's items into a page of six slots, draw the store panel and its slots, move a bought item onto the pointer, draw the character panel and the party's money in the inventory window, and adjust a buying and a selling price by the words at 4E71:0036 and 4E71:0034 |
 | [FND-EXE-609](../../findings/FND-EXE-609.md) | The 7 routines of overlay 171 that no entry placed pass the ADD window's position to overlay 190 +3456, select the first stored character not in the party, draw and mark one list line, test a line against the party, show a line's name, close the window and reopen the member's last window, and delete a stored character's CACT entry |
 | [FND-EXE-610](../../findings/FND-EXE-610.md) | The 4 routines of overlay 184 that no entry placed compute a new character's psionic points from constitution, intelligence, wisdom and psionicist level, load and free a run of resources into an array of far pointers, and clear a slot's items or move its worn items that overlay 189 +2B64 refuses |
-| [FND-EXE-611](../../findings/FND-EXE-611.md) | The 7 routines of overlay 176 that no entry placed test whether a member's power in effect can be kept, derive four bytes from a signed byte, clear a known power's rank, return a power's cost or third byte, do nothing, and return the name of a power's DATA record |
 | [FND-EXE-612](../../findings/FND-EXE-612.md) | The 2 routines of overlay 210 that no entry placed multiply a slot's greatest hit points less its constitution bonus by its class count, and sum a thief value from dexterity, origin and thief level while reading the details record through DS |
 | [FND-EXE-613](../../findings/FND-EXE-613.md) | Overlays 214, 215, 216 and 217 are one routine each that decode the FLI player's chunks, copying colour packets into a palette buffer, sending them to the VGA palette registers, expanding a byte-run frame and applying a line-compressed delta |
-| [FND-EXE-614](../../findings/FND-EXE-614.md) | The 32 routines of overlay 188 that no entry placed are script-instruction helpers that move an object to a region and cell, find a free cell near a point, move items between holders, read a number or text typed into the dialog, ask a yes or no question, add dialog lines, roll a thief skill with a modifier, save and restore the move records of slots 5 to 0x2F, and stop a script |
 | [FND-EXE-615](../../findings/FND-EXE-615.md) | The 6 routines of overlay 213 that no entry placed open the item view window WIND 15502 and set its two buttons, list the party members who can use an item, read an OJFF record and an item's BMP picture, draw the window's item icon or usable-by list, and draw its frame |
 | [FND-EXE-616](../../findings/FND-EXE-616.md) | The 6 routines of overlay 174 that no entry placed return a spell's weight, sum the hit points of the marked combatants of one group, step the N and P target through the hostile slots near the leader, equip a combatant's carried items into its empty positions, find a carried item at position 2, and route a spell count decrement by slot |
 | [FND-EXE-617](../../findings/FND-EXE-617.md) | The 3 routines of overlay 181 that no entry placed close the Game Menu window, show the name of the Game Menu control under the pointer, and clear that name once |
 | [FND-EXE-618](../../findings/FND-EXE-618.md) | The 4 routines of overlay 186 that no entry placed draw a BMP picture centred in a given width, height or both, draw a record's picture in a 30 by 30 box, report whether all 39 CACT character records of CHARSAVE.GFF are in use, and close CHARSAVE.GFF |
 | [FND-EXE-619](../../findings/FND-EXE-619.md) | The 2 routines of overlay 195 that no entry placed pass every loaded object slot's 16-byte flag block to overlay 197, and add 60 times a count to the double word at 4C13:035B |
 | [FND-EXE-620](../../findings/FND-EXE-620.md) | The 7 routines of overlay 172 that no entry placed open the three-item choice's window, handle the message window's events, open, redraw and close the last-cast window, end the last-cast window's draw, and show a one-line message window |
-| [FND-EXE-621](../../findings/FND-EXE-621.md) | The 6 routines of overlay 192 that no entry placed read one save file's description into a list row, list the SAVE??.SAV files into the ten rows, end the Save and Load window's draw, save a game, and write a row's text into its button or the name box |
 | [FND-EXE-622](../../findings/FND-EXE-622.md) | The 6 routines of overlay 191 that no entry placed drop the first item of the object slot in DS:1A32 as a new object, move a lying object's item into another slot's held objects, test for a worn item of a given number, remove a held item, hand a slot to the drop or the party paths by its state, and step a point off the placed entries already on it |
 | [FND-EXE-623](../../findings/FND-EXE-623.md) | The 3 routines of overlay 200 that no entry placed link a chain of object slots in after another slot, request the image of every placed entry with bit 3 of byte 5 set, and release the buffers and screen handles of the overlay's initializer |
 | [FND-EXE-624](../../findings/FND-EXE-624.md) | The 7 routines of overlay 177 that no entry placed find or make a slot's row of prepared spells, take a free row or evict the oldest, release one slot's row or all rows, sort a spell number into a wizard or priest range, and use up one prepared spell |
@@ -542,6 +542,21 @@ Entries by status.
 | [FND-EXE-638](../../findings/FND-EXE-638.md) | Regenerated resident metadata admits the repaired joined function inventory |
 | [FND-EXE-639](../../findings/FND-EXE-639.md) | The 27 routines of overlay 187 that no entry placed write and read saved-game resources, remap GPLI pairs, keep two map bitmaps, copy and play cinematics, and show copy progress |
 | [FND-EXE-640](../../findings/FND-EXE-640.md) | The 15 routines of overlay 182 that no entry placed test that a file exists, close a window, open a region file, place a box beside or centred on another, find a free cell near a point, snap object positions to cell centres, remap an image's colours, set the interface colours for seven modes, record the sizes of five FLI files, and hide or show the party |
+| [FND-EXE-641](../../findings/FND-EXE-641.md) | The 7 routines of overlay 176 that no entry placed test whether a member's power in effect can be kept, derive four bytes from a signed byte, clear a known power's rank, return a power's cost or third byte, do nothing, and return the name of a power's DATA record |
+| [FND-EXE-642](../../findings/FND-EXE-642.md) | The 6 routines of overlay 192 that no entry placed read one save file's description into a list row, list the SAVE??.SAV files into the ten rows, end the Save and Load window's draw, save a game, and write a row's text into its button or the name box |
+| [FND-EXE-643](../../findings/FND-EXE-643.md) | The 32 routines of overlay 188 that no entry placed are script-instruction helpers that move an object to a region and cell, find a free cell near a point, move items between holders, read a number or text typed into the dialog, ask a yes or no question, add dialog lines, roll a thief skill with a modifier, save and restore the move records of slots 5 to 0x2F, and stop a script |
+| [FND-EXE-644](../../findings/FND-EXE-644.md) | Nine branch-joined overlay trampoline pairs reach window or per-slot callback arguments without an intervening header-data dereference |
+| [FND-EXE-645](../../findings/FND-EXE-645.md) | All 144 first-call overlay pointer candidates match relocated callback arguments under the retained argument-reader contract |
+| [FND-EXE-646](../../findings/FND-EXE-646.md) | DSUN.EXE's timer callbacks and sound driver function calls go to routines in the file or to driver code loaded from ADV resources, and the driver dispatch's far return is a transfer the walk does not report |
+| [FND-EXE-647](../../findings/FND-EXE-647.md) | The finite overlay callback-pair census has 466 exact instruction-start matches in the retained declared-root model |
+| [FND-EXE-648](../../findings/FND-EXE-648.md) | The slot-action window publishes allocation-derived returns in two stages and clears its pointer only after a returning close helper |
+| [FND-EXE-649](../../findings/FND-EXE-649.md) | The recorded break publisher graph preserves canonical offsets and conditionally excludes fresh heap headers from the resident overlay domain |
+| [FND-EXE-650](../../findings/FND-EXE-650.md) | Free-list header address confinement needs visited-link and extent bounds rather than a complete heap-validity certificate |
+| [FND-EXE-651](../../findings/FND-EXE-651.md) | Five direct release sites use four segment-source classes and the input-queue ownership flag depends on setup history |
+| [FND-EXE-652](../../findings/FND-EXE-652.md) | The packet writer uses at most two fixed-segment copy spans whose header disjointness does not require valid ring indices |
+| [FND-EXE-653](../../findings/FND-EXE-653.md) | The current fifty unresolved transfers match retained mechanism readings plus the added signal-2 handler root |
+| [FND-EXE-654](../../findings/FND-EXE-654.md) | The current-pin startup constructor return has the game-data segment and the checked environment root mirror |
+| [FND-EXE-655](../../findings/FND-EXE-655.md) | The runtime-error decode gaps cross inline metadata and a separately entered overlay-error routine |
 
 ## Open questions
 
@@ -550,4 +565,5 @@ Entries whose Open questions section says more than None known.
 | ID | Title | Status |
 |---|---|---|
 | [FMT-EXE-002](../../formats/FMT-EXE-002.md) | FBOV segment-table descriptor | supported |
+| [FMT-EXE-003](../../formats/FMT-EXE-003.md) | FBOV overlay header in the resident image | supported |
 | [FMT-EXE-006](../../formats/FMT-EXE-006.md) | BAT launch files | supported |
