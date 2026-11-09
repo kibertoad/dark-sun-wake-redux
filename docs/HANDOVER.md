@@ -1,107 +1,84 @@
 # Handover
 
-## Current state and retained inputs
+## Current state
 
-- Stage: Slices. Full research Audit remains unmet. Full-game goal claim cleared.
-  Owner cleared the goal on 2026-11-04 and requested batch completion,
-  documentation, progress, push to main and stop. Goal dropped, not achieved.
-- Latest research: FND-SOUND-019 through FND-SOUND-029 and FND-SOUND-017, with FND-ITEM-071/072,
-  with FND-ITEM-043 through FND-ITEM-070;
-  active corrected DUAL evidence is FND-PARTY-262/263. Q-ITEM-009 is closed.
-  FMT-ACTOR-001 retains its FND-COMBAT-162 Defect note.
-  Q-SOUND-008 is closed; FMT-SOUND-004/005 are supported, code still missing.
-- Latest research gate: 2026-11-04, Test.ps1 -Research -ChangedSince f3bcd060
-  -NoRestore passed. Documentation, queue, policy and package checks passed.
-  Tooling gate: Test.ps1 -ChangedSince b418fe72 -NoRestore passed,
-  including source record-span controls. Last integration:
-  2026-11-04, Test.ps1 -NoRestore passed all Node controls and 758 .NET tests. Existing argument-count/generation skips and 61 uncompiled
-  Kaitai definitions remain.
-- Select artifacts/evidence-python/Scripts/python.exe explicitly through
-  EVIDENCE_PYTHON; the inherited override belongs to another project. Use UTF-8.
-  Each research gate uses the pre-batch commit as ChangedSince. Uncertain or
-  mixed input ownership requires integration; staged hooks remain enabled.
-- Runtime: session 1.0.0 and rust-dos v1.8.1 are pinned and installed.
-  Follow docs/RUNTIME.md and the existing session-package contract, muted host
-  output and machine run lock. Never operate an unowned emulator.
-  Valid current-pin checkpoints are play-ready under
-  GAME_DIR/captures/rust-dos-regenerated/v181-q046-play-ready-20261104/ and
-  saved-map under
+- Stage: Slices. Full research Audit remains unmet. The owner cleared the
+  full-game goal on 2026-11-09 and requested batch completion, documentation,
+  push to main and stop. The goal is dropped, not achieved; this does not
+  accept any unresolved evidence as out of reach.
+- The final tooling batch prepares `setup_parser.py --chooser-bound-rows`.
+  Synthetic controls pass, but no original attempt was made before wrap-up.
+  Its native wrapper/source/row/vector capability remains unverified.
+  Use docs/implementation-plans/ADV-SURVEY.md and docs/RUNTIME.md.
+- Last acceptance: 2026-11-09, `./tools/Test.ps1 -Integration -NoRestore`
+  passed the full Node checks, build and .NET tests, with the existing
+  documented argument-count, Kaitai and scheduled-generation skips.
+  The final tooling gate also passed with `-ChangedSince 17db43d8 -NoRestore`.
+  docs/PROGRESS.md is the refreshed script-generated snapshot.
+- Set EVIDENCE_PYTHON to the checkout's
+  artifacts/evidence-python/Scripts/python.exe; the inherited override belongs
+  to another project. Keep hooks enabled and use supported child-process access.
+- Runtime pins remain session 1.0.0 and rust-dos v1.8.1. Follow the package's
+  owned-process/run-lock contract and default muted host output. Never operate
+  an unowned emulator. All owned probes are closed; no owned run lock remains.
+  Reusable MSBuild workers are intentionally preserved.
+
+## Unfinished work and limitations
+
+- No unfinished batch. The prepared wrapped-row profile needs a fresh bounded
+  research capability attempt; it is not validated by the older generic-entry
+  observations. No gameplay implementation was added.
+- Toolkit issue511 remains the shared transport reference. The follow-up
+  diagnostic was not posted: automatic approval review rejected external
+  disclosure without specific approval. The local draft and approval request
+  remain pending; this does not block independent preservation work.
+- Controlled memory profiles remain unavailable under the pinned API;
+  toolkit issue552 tracks typed support. Never replace the package-owned config.
+- Keep implementation separate from research. Original-derived reports and
+  payloads remain in GAME_DIR, never Git. Existing queue items and parity
+  limitations remain authoritative.
+
+## Next research work
+
+1. Q-SOUND-010: actual chooser wrapper/source/count/text, wrapped-frame and
+   row/vector admission, second-event completion and later lifetime. Reuse
+   FND-SOUND-097..109, FND-EXE-483..489 and FND-CONFIG-257..269; do not repeat
+   answered notice construction or first-event delivery. Preserve BIOS SI/DI/ES,
+   port-progress, scratch/backing and live-allocation obligations. Other SOUND
+   items reuse SOUND-049..083; Q-CONFIG-005 retains constructor/source/driver
+   admission. No hypothetical source is assigned from register values alone.
+2. Q-CONFIG-014 and Q-CONFIG-002: remaining Preferences readback, initialization,
+   writer/frame history, alternate/reentrant parent and non-sentinel driver
+   admission. Reuse FND-CONFIG-235..257, SOUND-082..096 and the existing
+   Preferences helpers. FMT-CONFIG-006 predecessor review checkpoint is e0f597ab;
+   reuse CONFIG-257 and its supersession links rather than repeating that review.
+3. Q-EXE-033..037 and FMT-EXE-003: remaining entry mechanisms, return/alias,
+   buffer-domain and callback obligations. Reuse EXE-644/645/647..655,
+   CONFIG-225/226/227/230/231/234 and PARTY-339/342/343. Preserve unassigned/shared
+   functions, contested transfers, walk gaps, missing inventories and exclusions.
+   Consult docs/RESEARCH-CLOSURE.md; checklists alone promote nothing.
+4. Q-PARTY-137/138/136: first-handoff backing/frame/native preservation, other
+   roots/index changes/nested drains and shutdown admission. Reuse PARTY-288..296,
+   314..331,337..343 and RNG-081/082/093/095. Retain Q-PARTY-134/135/124/121/120/116
+   separately. checkpoint_rng.py admits sound/script-52 only; no untraced runner.
+5. Other open work stays in queue/: Q-RNG-040/029, Q-SCRIPT-019/024/025,
+   Q-CONFIG-008/013 and Q-SAVE-007 reuse SCRIPT-053..065, CONFIG-224..237,
+   SAVE-027..044 and RNG-096..098. Q-COMBAT-059 owns post-error work. Earlier
+   item/script contracts and captures remain indexed by their findings.
+
+## Retained local references
+
+- GAME_DIR/captures/rust-dos-setup-parser/: v181-second-select-20261109-b/
+  and sibling c/ are complete; a/ is the host diagnostic (SOUND-109).
+  SOUND-100..108 name earlier paired routes and retained partial diagnostics.
+  Use da2f94a1's read-only transport recovery; mutations are never replayed.
+- Static project: GAME_DIR/analysis/config-block-construction-20261108/SETUP-blocks.gpr.
+  Reuse the controlled reports and exact regeneration commands named by findings.
+- Additional retained stores: GAME_DIR/analysis/descriptor-pair-consumers-20261108/,
+  preferences-root-contract-20261108/, music-getter-entry-census-20261108/ and
+  header-pointer-reach-report-20261106.json. Earlier references remain in the
+  17db43d8 goal checkpoint and the relevant findings/runtime records.
+- Current-pin play-ready checkpoint:
+  GAME_DIR/captures/rust-dos-regenerated/v181-q046-play-ready-20261104/.
+  Saved-map checkpoint:
   GAME_DIR/captures/rust-dos-native-save/v181-q063-native-save-input-20261104/.
-  Current accepted paused table observation is
-  GAME_DIR/captures/rust-dos-native-save/v181-q109-placed-table-20261104/;
-  native-save.json retains the complete original-derived report privately.
-  FND-ITEM-067 and CHECKPOINT-METADATA name its command, bounds and limits.
-  No gameplay continuation, input or guest writes occurred in that observation.
-  The fixed startup flag observation is retained under
-  GAME_DIR/captures/rust-dos-startup-segments/v181-q118-main-flag-20261104/;
-  FND-ITEM-071 names its guarded endpoint and reproduction command.
-- Disc-audio Survey reports and exact repeats are retained under
-  GAME_DIR/analysis/disc-audio-survey-20261104/. FND-SOUND-017 and
-  DISC-AUDIO-SURVEY name the committed inspector, source controls and limits.
-  No decoder or GOG runtime execution was attempted.
-- ADV reports/repeats and setup listings are retained under
-  GAME_DIR/analysis/disc-adv-survey-20261104/. FND-SOUND-019 through FND-SOUND-029 name the
-  envelope, tag/dispatch/case controls and initial-binding listings.
-  Keep the +0A00..0A74 linear decoder output diagnostic: it is table data.
-  FND-SOUND-021 names the header/top dispatch and incoming controls plus
-  selection, fallback, label-preparation and dialog listings. The separately
-  named setup-choice-labels listing is not the label builder.
-  FND-SOUND-037/029 name setup-jumper-jumps controls/repeat and
-  setup-source-record-spans report/repeat.
-  Q-SOUND-007 retains other setters/callers and later state preservation;
-  Q-SOUND-010 owns dialog row/index, storage and child-state admission.
-  Source profile reports/repeats are setup-source-label-profile.json and
-  setup-source-label-profile-repeat.json in that directory. FND-SOUND-022
-  names startup/concat and vector listings; retain its conditional bounds.
-  FND-SOUND-024/025/026/027/028/029 name the group/count, decimal scanner, allocation,
-  clearing and label-formatter listings. Number-formats, scan/print classes
-  and jumps have exact report/repeat pairs there. Use the findings' exact
-  ranges, not adjacent linear table decodes. Next SOUND ID is 011. Q-CONFIG-006 retains other
-  numeric inputs, bounds and complete file/error/child contracts. Q-SOUND-010
-  retains native heap/break, vector, state and chooser/child admission.
-- Earlier paused getter/header/item-type observations are FND-COMBAT-169/170/171.
-  FND-COMBAT-133 through FND-COMBAT-168 retain load/save/caller obligations.
-  Session event_log is null; do not reconstruct unreported journals or bytes.
-  Keep FND-EXE-562/FND-COMBAT-142's trap/frame guards and remove a consumed
-  return watch before interrupt-frame reuse. restore_caller.py's fixed failure
-  and synthetic control remain authoritative; do not repeat its old deletion.
-- Canonical item research reports and entry-based listings remain under
-  GAME_DIR/analysis/item-removal-20261104/. FND-ITEM-043 through FND-ITEM-067
-  give exact controls and regeneration procedures. New joint rows are
-  item-hook-inputs.json; the old type-50 Look rows are not an all-item join.
-  FND-ITEM-063 names area-list/range/object-scan and data42 reports;
-  FND-ITEM-064 names area-filter-complete and paired table reports;
-  FND-ITEM-065 names effect-row constructor/insert/search/insert-leaf listings;
-  FND-ITEM-066 names placement-table-allocation.txt; FND-ITEM-068 names
-  placement-effect-samples.txt there. FND-ITEM-069 names the exact/overlap
-  equipment-flag operand reports and census controls there. FND-ITEM-070
-  names equipment-flag-startup.txt there. FND-ITEM-072 names the new
-  equipment-sound-gates.txt and placement-sound-data/source-summary reports.
-  Partial area-filter and generic-transfer-bindings listings remain diagnostic.
-  placement-caller-incoming.txt, temporary-presentation-candidates.txt,
-  effect-code-indexed-store-candidates.txt and hit-flags windows are candidate
-  diagnostics, not complete writer censuses. Keep canonical inputs and captures.
-- Shared heap prerequisites remain FND-RNG-093, FND-CONFIG-209/210/211/212
-  and FND-PARTY-215; Q-CONFIG-008 and Q-SCRIPT-003 retain their admission.
-  Active script corrections are FND-SCRIPT-038 and FND-PARTY-261.
-  Script reports remain under GAME_DIR/analysis/walk-script-20261104/.
-- Next: Q-SOUND-010 and Q-CONFIG-006 retain native admission and parser gaps.
-  Q-PARTY-109 retains action/owner/item/reset and other child admission.
-  Independent obligations are Q-PARTY-116 counted row publication/lifetime,
-  Q-PARTY-117 DATA coherence and Q-PARTY-118 flag producers/consumers.
-  Reuse FND-ITEM-056 through FND-ITEM-072 and the controlled flag reports;
-  the paused endpoint is not a constructor observation. Next PARTY ID is 119.
-- Q-PARTY-077's DUAL slot lifetime, using FND-PARTY-262/263. Keep its actual
-  action/target conditions separate from the equipment source composition.
-- Q-ITEM-003's native placement/graph/class retention, Q-ITEM-005/006's other
-  consumers/writers and Q-ITEM-013's aliases. Q-ITEM-011 is the separate segment
-  prerequisite; spell/store work is Q-ITEM-014/015. Reuse FND-ITEM-044..064.
-- Q-SCRIPT-017/023's coordinate/grid/DS/stack and reset preservation;
-  Q-PARTY-115's other name/type producers, using FND-ITEM-036..042 and
-  FND-SCRIPT-036..041 rather than repeating those bounded readings.
-- Q-COMBAT-067 and Q-COMBAT-045 cleanup/save admission; Q-COMBAT-064/065/066
-  shared record, pointer/backing and caller/child lifetime. Reuse
-  FND-COMBAT-149..171 and FND-COMBAT-032/033/046 censuses.
-- No unfinished batch or owned process remains. Research stopped at owner
-  request. This is not an Audit exit or acceptance of out-of-reach evidence.
-  docs/PROGRESS.md is the current generated snapshot.
